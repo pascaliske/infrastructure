@@ -1,0 +1,80 @@
+version: '3.7'
+services:
+  unifi:
+    image: ryansch/unifi-rpi:latest
+    container_name: unifi
+    restart: always
+    network_mode: host
+    volumes:
+      - ./unifi/config:/var/lib/unifi
+      - ./unifi/log:/usr/lib/unifi/logs
+      - ./unifi/log2:/var/log/unifi
+      - ./unifi/run:/usr/lib/unifi/run
+      - ./unifi/run2:/run/unifi
+      - ./unifi/work:/usr/lib/unifi/work
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    restart: unless-stopped
+    depends_on:
+      - cloudflared
+    ports:
+      - '53:53/tcp'
+      - '53:53/udp'
+      - '67:67/udp'
+      - '80:80/tcp'
+      - '443:443/tcp'
+    environment:
+      TZ: 'Europe/Berlin'
+      DNS1: 172.20.0.3#5053
+      DNS2: 1.1.1.1
+      VIRTUAL_PORT: 80
+      WEBPASSWORD: 'YOUR-PASSWORD-HERE'
+      PROXY_LOCATION: 'pihole'
+    volumes:
+      - ./pihole/etc-pihole/:/etc/pihole/
+      - ./pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/
+      - ./pihole/themes/dark.min.css:/var/www/html/admin/style/vendor/skin-blue.min.css
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    networks:
+      pihole:
+        ipv4_address: 172.20.0.2
+    cap_add:
+      - NET_ADMIN
+  cloudflared:
+    image: crazymax/cloudflared:latest
+    container_name: cloudflared
+    restart: always
+    ports:
+      - '5053:5053/udp'
+      - '49312:49312/tcp'
+    environment:
+      TZ: 'Europe/Berlin'
+      TUNNEL_DNS_UPSTREAM: 'https://1.1.1.1/dns-query,https://1.0.0.1/dns-query'
+    networks:
+      pihole:
+        ipv4_address: 172.20.0.3
+networks:
+  pihole:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+volumes:
+  config:
+    driver: local
+  log:
+    driver: local
+  log2:
+    driver: local
+  run:
+    driver: local
+  run2:
+    driver: local
+  work:
+    driver: local
+  etc-pihole:
+    driver: local
+  etc-dnsmasq.d:
+    driver: local
