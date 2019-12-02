@@ -4,9 +4,9 @@
 
 This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
 
-- [UniFi Controller](https://www.ui.com/software/)
-- [Pi-Hole](https://pi-hole.net/) including its web interface
-- [Cloudflared](https://github.com/cloudflare/cloudflared) for DNS-over-HTTPS
+- [UniFi Controller](https://www.ui.com/software/) for managing UniFi gear
+- [Pi-Hole](https://pi-hole.net/) for blocking ads and malicious domains
+- [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using DNS-over-HTTPS
 
 ## Requirements
 
@@ -16,6 +16,7 @@ This repository features a [docker-compose.yml](docker-compose.yml) file for the
 ## Install
 
 ```zsh
+git clone https://github.com/pascaliske/network-controller .network && cs .network
 docker-compose up --detach
 ```
 

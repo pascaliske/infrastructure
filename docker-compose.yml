@@ -6,12 +6,12 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - ./unifi/config:/var/lib/unifi
-      - ./unifi/log:/usr/lib/unifi/logs
-      - ./unifi/log2:/var/log/unifi
-      - ./unifi/run:/usr/lib/unifi/run
-      - ./unifi/run2:/run/unifi
-      - ./unifi/work:/usr/lib/unifi/work
+      - unifi/config:/var/lib/unifi
+      - unifi/log:/usr/lib/unifi/logs
+      - unifi/log2:/var/log/unifi
+      - unifi/run:/usr/lib/unifi/run
+      - unifi/run2:/run/unifi
+      - unifi/work:/usr/lib/unifi/work
   pihole:
     image: pihole/pihole:latest
     container_name: pihole
@@ -32,9 +32,9 @@ services:
       WEBPASSWORD: 'YOUR-PASSWORD-HERE'
       PROXY_LOCATION: 'pihole'
     volumes:
-      - ./pihole/etc-pihole/:/etc/pihole/
-      - ./pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/
-      - ./pihole/themes/dark.min.css:/var/www/html/admin/style/vendor/skin-blue.min.css
+      - pihole/etc-pihole/:/etc/pihole/
+      - pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/
+      - pihole/themes/dark.min.css:/var/www/html/admin/style/vendor/skin-blue.min.css
     dns:
       - 127.0.0.1
       - 1.1.1.1
