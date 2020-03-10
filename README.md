@@ -16,7 +16,7 @@ This repository features a [docker-compose.yml](docker-compose.yml) file for the
 ## Install
 
 ```zsh
-git clone https://github.com/pascaliske/network-controller .network && cs .network
+git clone https://github.com/pascaliske/network-controller .network && cd .network
 docker-compose up --detach
 ```
 
