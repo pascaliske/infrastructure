@@ -50,6 +50,14 @@ docker exec -it pihole pihole <command>
 
 For more information on the pihole command [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
 
+### The `hass` command
+
+```zsh
+docker exec -it home-assistant hass -h
+```
+
+For more information on the hass command [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
+
 ## License
 
 [MIT](LICENSE.md) – © 2019 [Pascal Iske](https://pascal-iske.de)

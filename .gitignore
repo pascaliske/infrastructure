@@ -8,4 +8,6 @@ unifi/*
 # exceptions
 !.env.example
 !*/.gitkeep
+!home-assistant/configuration.yaml
+!home-assistant/sensors.yaml
 !pihole/themes/dark.min.css

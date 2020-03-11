@@ -1,0 +1,11 @@
+tts:
+  - platform: google_translate
+
+homeassistant:
+  customize: !include customize.yaml
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
