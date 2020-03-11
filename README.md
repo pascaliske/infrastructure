@@ -8,6 +8,7 @@ This repository features a [docker-compose.yml](docker-compose.yml) file for the
 - [UniFi Network Management Controller](https://www.ui.com/software/) for managing UniFi gear
 - [Pi-Hole](https://pi-hole.net) for blocking ads and malicious domains network-wide
 - [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using [DNS-over-HTTPS](https://en.m.wikipedia.org/wiki/DNS_over_HTTPS)
+- [Home Assistant](https://home-assistant.io) as Home Automation hub
 
 ## Requirements
 

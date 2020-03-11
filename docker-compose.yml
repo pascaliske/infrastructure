@@ -67,6 +67,15 @@ services:
     networks:
       pihole:
         ipv4_address: 172.20.0.3
+  homeassistant:
+    image: homeassistant/home-assistant:stable
+    container_name: home-assistant
+    restart: always
+    network_mode: host
+    environment:
+      TZ: 'Europe/Berlin'
+    volumes:
+      - ./home-assistant:/config
 networks:
   pihole:
     ipam:
