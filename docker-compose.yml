@@ -1,5 +1,16 @@
 version: '3.7'
 services:
+  portainer:
+    image: portainer/portainer:latest
+    container_name: portainer
+    restart: always
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - 9000:9000
+      - 8000:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer:/data
   unifi:
     image: ryansch/unifi-rpi:latest
     container_name: unifi
@@ -77,4 +88,6 @@ volumes:
   etc-pihole:
     driver: local
   etc-dnsmasq.d:
+    driver: local
+  portrainer:
     driver: local
