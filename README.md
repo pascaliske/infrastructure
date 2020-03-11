@@ -1,37 +1,49 @@
 # Network Controller Services
 
-> Docker definition file for home network services.
+> Docker definition file for my home network services.
 
 This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
 
-- [UniFi Controller](https://www.ui.com/software/) for managing UniFi gear
-- [Pi-Hole](https://pi-hole.net/) for blocking ads and malicious domains
-- [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using DNS-over-HTTPS
+- [UniFi Network Management Controller](https://www.ui.com/software/) for managing UniFi gear
+- [Pi-Hole](https://pi-hole.net) for blocking ads and malicious domains network-wide
+- [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using [DNS-over-HTTPS](https://en.m.wikipedia.org/wiki/DNS_over_HTTPS)
 
 ## Requirements
 
-- [Docker](https://www.docker.com/)
-- [`docker-compose`](https://github.com/docker/compose)
+- [Docker](https://docs.docker.com/install/) + [`docker-compose`](https://docs.docker.com/compose/install/)
 
 ## Install
 
 ```zsh
-git clone https://github.com/pascaliske/network-controller .network && cd .network
+# clone the repo
+git clone https://github.com/pascaliske/network-controller ~/network && cd ~/network
+
+# setup secret env variables
+cp .env{.example,} && editor .env
+
+# start up services
 docker-compose up --detach
 ```
 
 ## Update
 
 ```zsh
+# shut down services
 docker-compose down
+
+# pull updates
 docker-compose pull
+
+# start up services
 docker-compose up --detach --remove-orphans
 ```
 
-## Usage
+## CLIs
+
+### The `pihole` command
 
 ```zsh
-docker exec -it pihole pihole -h
+docker exec -it pihole pihole <command>
 ```
 
 ## License
