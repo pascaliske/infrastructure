@@ -47,6 +47,8 @@ docker-compose up --detach --remove-orphans
 docker exec -it pihole pihole <command>
 ```
 
+For more information on the pihole command [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
+
 ## License
 
 [MIT](LICENSE.md) – © 2019 [Pascal Iske](https://pascal-iske.de)
