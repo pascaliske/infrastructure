@@ -1,0 +1,9 @@
+# ignores
+pihole/*
+unifi/*
+*env*
+
+# exceptions
+!.env.example
+!*/.gitkeep
+!pihole/themes/dark.min.css
