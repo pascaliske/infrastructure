@@ -1,8 +1,11 @@
+homeassistant:
+  customize: !include customize.yaml
+
 tts:
   - platform: google_translate
 
-homeassistant:
-  customize: !include customize.yaml
+default_config:
+frontend:
 
 group: !include groups.yaml
 automation: !include automations.yaml
