@@ -9,6 +9,7 @@ unifi/*
 !.env.example
 !*/.gitkeep
 !home-assistant/configuration.yaml
+!home-assistant/frontend.yaml
 !home-assistant/sensors.yaml
 !home-assistant/spotify.yaml
 !home-assistant/tts.yaml
