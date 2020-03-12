@@ -10,4 +10,6 @@ unifi/*
 !*/.gitkeep
 !home-assistant/configuration.yaml
 !home-assistant/sensors.yaml
+!home-assistant/spotify.yaml
+!home-assistant/tts.yaml
 !pihole/themes/dark.min.css

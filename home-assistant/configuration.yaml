@@ -1,14 +1,11 @@
+default_config:
 homeassistant:
   customize: !include customize.yaml
-
-tts:
-  - platform: google_translate
-
-default_config:
-frontend:
-
+frontend: !include frontend.yaml
+tts: !include tts.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml
+spotify: !include spotify.yaml
