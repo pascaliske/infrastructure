@@ -1,0 +1,2 @@
+pi_hole:
+  - host: !secret pi_hole_ip
