@@ -9,8 +9,10 @@ unifi/*
 !.env.example
 !*/.gitkeep
 !home-assistant/configuration.yaml
-!home-assistant/frontend.yaml
-!home-assistant/sensors.yaml
-!home-assistant/spotify.yaml
-!home-assistant/tts.yaml
+!home-assistant/automations
+!home-assistant/groups
+!home-assistant/integrations
+!home-assistant/scenes
+!home-assistant/scripts
+!home-assistant/sensors
 !pihole/themes/dark.min.css

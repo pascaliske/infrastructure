@@ -1,11 +1,4 @@
 default_config:
 homeassistant:
   customize: !include customize.yaml
-frontend: !include frontend.yaml
-tts: !include tts.yaml
-group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
-scene: !include scenes.yaml
-sensor: !include sensors.yaml
-spotify: !include spotify.yaml
+  packages: !include_dir_named integrations

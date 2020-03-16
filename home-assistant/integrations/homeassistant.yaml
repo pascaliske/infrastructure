@@ -1,0 +1,7 @@
+homeassistant:
+  name: N12
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  unit_system: metric
+  time_zone: Europe/Berlin
+
