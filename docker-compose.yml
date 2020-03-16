@@ -3,7 +3,7 @@ services:
   portainer:
     image: portainer/portainer:latest
     container_name: portainer
-    restart: always
+    restart: unless-stopped
     command: -H unix:///var/run/docker.sock
     ports:
       - 9000:9000
@@ -14,7 +14,7 @@ services:
   unifi:
     image: ryansch/unifi-rpi:latest
     container_name: unifi
-    restart: always
+    restart: unless-stopped
     network_mode: host
     volumes:
       - ./unifi/config:/var/lib/unifi
@@ -57,7 +57,7 @@ services:
   cloudflared:
     image: crazymax/cloudflared:latest
     container_name: cloudflared
-    restart: always
+    restart: unless-stopped
     ports:
       - '5053:5053/udp'
       - '49312:49312/tcp'
@@ -70,7 +70,7 @@ services:
   homeassistant:
     image: homeassistant/home-assistant:stable
     container_name: home-assistant
-    restart: always
+    restart: unless-stopped
     network_mode: host
     environment:
       TZ: 'Europe/Berlin'
