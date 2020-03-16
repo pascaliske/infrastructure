@@ -1,4 +1,0 @@
-platform: command_line
-name: HDD Temperature
-command: "hddtemp -n /dev/sda"
-unit_of_measurement: "°C"
