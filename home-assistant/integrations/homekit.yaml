@@ -1,6 +1,14 @@
 homekit:
+  auto_start: true
   filter:
     include_domains:
       - light
       - switch
       - media_player
+  entity_config:
+    media_player.spotify_pascal_iske:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
