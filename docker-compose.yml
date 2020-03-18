@@ -71,7 +71,7 @@ services:
       default:
         ipv4_address: 172.20.0.4
   homeassistant:
-    build: ./home-assistant
+    image: homeassistant/home-assistant:stable
     container_name: homeassistant
     restart: unless-stopped
     network_mode: host
@@ -81,6 +81,8 @@ services:
       PASSWORD: ${ALEXA_PASSWORD}
       MFA_SECRET: ${ALEXA_MFA_SECRET}
     volumes:
+      - /usr/bin/oathtool
+      - ./bin/alexa-cli/alexa_remote_control.sh:/usr/bin/alexa-cli
       - ./home-assistant:/config
 networks:
   default:

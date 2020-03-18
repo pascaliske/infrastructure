@@ -8,7 +8,6 @@ unifi/*
 # exceptions
 !.env.example
 !*/.gitkeep
-!*/Dockerfile
 !home-assistant/configuration.yaml
 !home-assistant/automations
 !home-assistant/groups
