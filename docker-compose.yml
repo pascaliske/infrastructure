@@ -71,7 +71,9 @@ services:
       default:
         ipv4_address: 172.20.0.4
   homeassistant:
-    build: ./home-assistant
+    build:
+      dockerfile: ./home-assistant/Dockerfile
+      context: .
     container_name: homeassistant
     restart: unless-stopped
     network_mode: host
