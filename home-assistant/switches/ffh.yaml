@@ -2,5 +2,5 @@ platform: command_line
 switches:
   FFH:
     friendly_name: FFH
-    command_on: alexa-cli -d "Pascals Echo Dot" -r s17490
-    command_off: alexa-cli -d "Pascals Echo Dot" -e pause
+    command_on: /tmp/bin/alexa-cli -d "Pascals Echo Dot" -r s17490
+    command_off: /tmp/bin/alexa-cli -d "Pascals Echo Dot" -e pause

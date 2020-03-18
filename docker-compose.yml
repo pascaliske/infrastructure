@@ -43,7 +43,7 @@ services:
       DNS1: 172.20.0.4#5053
       DNS2: 1.1.1.1
       VIRTUAL_PORT: 80
-      WEBPASSWORD: '${PI_HOLE_PASSWORD}'
+      WEBPASSWORD: ${PI_HOLE_PASSWORD}
       PROXY_LOCATION: 'pihole'
     volumes:
       - ./pihole/etc-pihole/:/etc/pihole/
@@ -77,7 +77,11 @@ services:
     network_mode: host
     environment:
       TZ: 'Europe/Berlin'
+      EMAIL: ${ALEXA_EMAIL}
+      PASSWORD: ${ALEXA_PASSWORD}
+      MFA_SECRET: ${ALEXA_MFA_SECRET}
     volumes:
+      - ./bin/alexa-cli/alexa_remote_control.sh:/tmp/bin/alexa-cli
       - ./home-assistant:/config
 networks:
   default:
