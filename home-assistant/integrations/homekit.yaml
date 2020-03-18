@@ -9,4 +9,3 @@ homekit:
     media_player.spotify_pascal_iske:
       feature_list:
         - feature: play_pause
-        - feature: play_stop
