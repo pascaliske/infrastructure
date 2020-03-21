@@ -1,0 +1,17 @@
+sensor.ffmmbp_207_battery_state:
+  friendly_name: FFMMBP-207
+sensor.pascaliske_battery_state:
+  friendly_name: Pascals iPhone
+sensor.passi_s_ipad_battery_state:
+  friendly_name: Pascals iPad
+sensor.sarah_s_iphone_battery_state:
+  friendly_name: Sarahs iPhone
+sensor.pi_hole_ads_blocked_today:
+  friendly_name: Ads Blocked
+sensor.pi_hole_ads_percentage_blocked_today:
+  friendly_name: Ads Percentage
+sensor.pi_hole_domains_blocked:
+  friendly_name: Ads Blocklist
+  icon: mdi:close-octagon-outline
+sensor.withings_weight_kg_pascal_iske:
+  friendly_name: Pascals Weight
