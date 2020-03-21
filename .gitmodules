@@ -1,3 +1,0 @@
-[submodule "bin/alexa-cli"]
-	path = bin/alexa-cli
-	url = https://github.com/thorsten-gehrig/alexa-remote-control

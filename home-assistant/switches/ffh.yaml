@@ -1,6 +1,0 @@
-platform: command_line
-switches:
-  ffh:
-    friendly_name: FFH
-    command_on: /usr/bin/alexa-cli -d "Pascals Echo Dot" -r s17490
-    command_off: /usr/bin/alexa-cli -d "Pascals Echo Dot" -e pause

@@ -77,9 +77,6 @@ services:
     network_mode: host
     environment:
       TZ: 'Europe/Berlin'
-      EMAIL: ${ALEXA_EMAIL}
-      PASSWORD: ${ALEXA_PASSWORD}
-      MFA_SECRET: ${ALEXA_MFA_SECRET}
     volumes:
       - ./bin/oathtool:/usr/bin/oathtool
       - ./bin/alexa-cli/alexa_remote_control.sh:/usr/bin/alexa-cli
