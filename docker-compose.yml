@@ -3,7 +3,7 @@ services:
   portainer:
     image: portainer/portainer:latest
     container_name: portainer
-    restart: unless-stopped
+    restart: on-failure
     command: -H unix:///var/run/docker.sock
     ports:
       - 9000:9000
