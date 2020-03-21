@@ -5,6 +5,14 @@
         }
     ],
     "settings": {
+        "cSpell.words": [
+            "cloudflared",
+            "dnsmasq",
+            "homeassistant",
+            "pihole",
+            "portainer",
+            "unifi"
+        ],
         "files.associations": {
             "*.yaml": "home-assistant"
         }
