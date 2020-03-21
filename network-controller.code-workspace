@@ -2,6 +2,18 @@
     "folders": [
         {
             "path": "."
+        },
+        {
+            "path": "./home-assistant"
+        },
+        {
+            "path": "./pihole"
+        },
+        {
+            "path": "./portainer"
+        },
+        {
+            "path": "./unifi"
         }
     ],
     "settings": {
