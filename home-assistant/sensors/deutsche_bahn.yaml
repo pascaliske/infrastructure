@@ -2,4 +2,4 @@ platform: deutsche_bahn
 from: !secret deutsche_bahn_from
 to: !secret deutsche_bahn_to
 offset: 00:12
-only_direct: true
+only_direct: false
