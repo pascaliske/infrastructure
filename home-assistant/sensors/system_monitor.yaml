@@ -4,6 +4,6 @@ resources:
   - type: memory_use_percent
   - type: swap_use_percent
   - type: disk_use_percent
-    arg: /home
+    arg: /
   - type: ipv4_address
   - type: last_boot
