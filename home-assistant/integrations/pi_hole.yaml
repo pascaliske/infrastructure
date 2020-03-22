@@ -1,2 +1,3 @@
 pi_hole:
   - host: !secret pi_hole_ip
+    api_key: !secret pi_hole_api_key
