@@ -1,0 +1,3 @@
+platform: fritzbox_netmonitor
+host: !secret fritz_box_ip
+name: FRITZ!Box Net Monitor
