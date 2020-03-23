@@ -1,0 +1,101 @@
+views:
+  - title: Home
+    path: home
+    icon: mdi:home
+    theme: Google - Dark
+    panel: true
+    badges: []
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: weather-forecast
+                entity: weather.home
+              - type: sensor
+                entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
+                name: S1 → Westend
+              - type: entities
+                title: Batteries
+                show_header_toggle: false
+                entities:
+                  - entity: sensor.ffmmbp_207_battery_state
+                  - entity: sensor.pascaliske_battery_state
+                  - entity: sensor.passi_s_ipad_battery_state
+                  - entity: sensor.sarah_s_iphone_battery_state
+          - type: vertical-stack
+            cards:
+              - type: media-control
+                entity: media_player.spotify_pascal_iske
+              - type: entities
+                title: Living Room
+                show_header_toggle: true
+                entities:
+                  - entity: switch.kugel
+                    icon: mdi:lightbulb
+                  - entity: switch.lampe
+                    icon: mdi:lightbulb
+                  - entity: switch.duftlampe
+                    icon: mdi:lightbulb
+              - type: entities
+                title: Bedroom
+                show_header_toggle: true
+                entities:
+                  - entity: switch.licht
+                    icon: mdi:lightbulb
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: sensor
+                    name: Download
+                    graph: line
+                    icon: mdi:speedometer
+                    entity: sensor.speedtest_download
+                  - type: sensor
+                    name: Upload
+                    graph: line
+                    icon: mdi:speedometer
+                    entity: sensor.speedtest_upload
+                  - type: sensor
+                    name: Ping
+                    graph: line
+                    icon: mdi:speedometer
+                    entity: sensor.speedtest_ping
+              - type: horizontal-stack
+                cards:
+                  - type: sensor
+                    name: Processor
+                    graph: line
+                    icon: mdi:memory
+                    entity: sensor.processor_use
+                  - type: sensor
+                    name: Memory
+                    graph: line
+                    icon: mdi:memory
+                    entity: sensor.memory_use_percent
+              - type: horizontal-stack
+                cards:
+                  - type: sensor
+                    name: Swap
+                    graph: line
+                    icon: mdi:harddisk
+                    entity: sensor.swap_use_percent
+                  - type: sensor
+                    name: Disk
+                    graph: line
+                    icon: mdi:harddisk
+                    entity: sensor.disk_use_percent
+              - type: sensor
+                name: CPU Temperature
+                graph: line
+                icon: mdi:thermometer
+                entity: sensor.cpu_temperature
+              - type: entities
+                show_header_toggle: false
+                entities:
+                  - entity: switch.pi_hole
+                  - entity: sensor.pi_hole_ads_percentage_blocked_today
+                  - entity: sensor.pi_hole_ads_blocked_today
+                  - entity: sensor.pi_hole_domains_blocked
+                  - entity: sensor.last_boot
