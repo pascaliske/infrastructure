@@ -57,6 +57,11 @@ views:
                     icon: mdi:lightbulb
           - type: vertical-stack
             cards:
+              - type: sensor
+                name: Public IP
+                graph: none
+                icon: mdi:ip
+                entity: sensor.public_ip
               - type: horizontal-stack
                 cards:
                   - type: sensor
