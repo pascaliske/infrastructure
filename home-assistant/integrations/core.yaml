@@ -6,3 +6,6 @@ config:
 
 # incorporate latest changes
 default_config:
+
+# enable wake on lan
+wake_on_lan:
