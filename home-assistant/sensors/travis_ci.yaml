@@ -1,0 +1,9 @@
+platform: travisci
+api_key: !secret travis_ci_api_key
+monitored_conditions:
+  - last_build_id
+  - last_build_duration
+  - last_build_finished_at
+  - last_build_started_at
+  - last_build_state
+  - state
