@@ -77,7 +77,7 @@ views:
                   - type: sensor
                     name: Ping
                     graph: line
-                    icon: mdi:speedometer
+                    icon: mdi:timer
                     entity: sensor.speedtest_ping
               - type: horizontal-stack
                 cards:
