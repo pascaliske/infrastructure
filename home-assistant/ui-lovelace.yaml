@@ -91,28 +91,37 @@ views:
                     graph: line
                     icon: mdi:memory
                     entity: sensor.memory_use_percent
+                  - type: sensor
+                    name: Temperature
+                    graph: line
+                    icon: mdi:thermometer
+                    entity: sensor.cpu_temperature
               - type: horizontal-stack
                 cards:
-                  - type: sensor
-                    name: Swap
-                    graph: line
-                    icon: mdi:harddisk
-                    entity: sensor.swap_use_percent
                   - type: sensor
                     name: Disk
                     graph: line
                     icon: mdi:harddisk
                     entity: sensor.disk_use_percent
-              - type: sensor
-                name: CPU Temperature
-                graph: line
-                icon: mdi:thermometer
-                entity: sensor.cpu_temperature
+                  - type: sensor
+                    name: Swap
+                    graph: line
+                    icon: mdi:file
+                    entity: sensor.swap_use_percent
+                  - type: sensor
+                    name: Last Boot
+                    graph: none
+                    icon: mdi:clock-outline
+                    entity: sensor.relative_last_boot
               - type: entities
+                title: Ad Blocker
                 show_header_toggle: false
                 entities:
                   - entity: switch.pi_hole
+                    name: Blocking Enabled
                   - entity: sensor.pi_hole_ads_percentage_blocked_today
+                    name: Percentage Today
                   - entity: sensor.pi_hole_ads_blocked_today
+                    name: Blocked Today
                   - entity: sensor.pi_hole_domains_blocked
-                  - entity: sensor.last_boot
+                    name: Blocklist
