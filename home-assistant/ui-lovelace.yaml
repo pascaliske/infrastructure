@@ -15,6 +15,18 @@ views:
               - type: sensor
                 entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
                 name: S1 → Westend
+              - type: horizontal-stack
+                cards:
+                  - type: sensor
+                    name: Weight Pascal
+                    graph: line
+                    icon: mdi:scale-bathroom
+                    entity: !secret withings_sensor_pascal
+                  - type: sensor
+                    name: Weight Sarah
+                    graph: line
+                    icon: mdi:scale-bathroom
+                    entity: !secret withings_sensor_sarah
               - type: entities
                 title: Batteries
                 show_header_toggle: false
