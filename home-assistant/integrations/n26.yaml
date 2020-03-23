@@ -1,0 +1,3 @@
+n26:
+  username: !secret n26_username
+  password: !secret n26_password
