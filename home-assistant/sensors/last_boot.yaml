@@ -1,5 +1,0 @@
-platform: template
-sensors:
-  relative_last_boot:
-    friendly_name: Last Boot
-    value_template: "{{ relative_time(strptime(states.sensor.last_boot.state, '%Y-%m-%dT%I:%M:%S%z')) }} ago"
