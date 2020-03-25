@@ -1,0 +1,21 @@
+platform: template
+sensors:
+  fritzbox_downstream:
+    friendly_name: FRITZ!Box Downstream
+    value_template: >
+      {% set downstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_down') %}
+      {{ (downstream | int * 8 / 1000) | round(2) }}
+    unit_of_measurement: kbit/s
+  fritzbox_upstream:
+    friendly_name: FRITZ!Box Upstream
+    value_template: >
+      {% set upstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_up') %}
+      {{ (upstream | int * 8 / 1000) | round(2) }}
+    unit_of_measurement: kbit/s
+  fritzbox_uptime:
+    friendly_name: FRITZ!Box Connection Uptime
+    value_template: >
+      {% set uptime = state_attr('sensor.fritzbox_netmonitor', 'uptime') %}
+      {% set diff = now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - uptime) %}
+      {{ diff.days }}
+    unit_of_measurement: days
