@@ -1,6 +1,6 @@
 input_boolean:
   pi_hole:
-    name: Ads Blocking
+    name: Pi-hole Blocking State
     initial: on
 
 pi_hole:
