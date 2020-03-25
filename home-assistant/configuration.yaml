@@ -1,5 +1,7 @@
 homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named integrations
+  auth_providers:
+    - type: homeassistant
 lovelace:
   mode: yaml
