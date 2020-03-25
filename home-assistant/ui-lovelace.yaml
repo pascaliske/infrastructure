@@ -60,7 +60,7 @@ views:
               - type: sensor
                 name: Public IP
                 graph: none
-                icon: mdi:ip
+                icon: mdi:web
                 entity: sensor.public_ip
               - type: horizontal-stack
                 cards:
@@ -68,17 +68,37 @@ views:
                     name: Download
                     graph: line
                     icon: mdi:speedometer
+                    hours_to_show: 48
                     entity: sensor.speedtest_download
                   - type: sensor
                     name: Upload
                     graph: line
                     icon: mdi:speedometer
+                    hours_to_show: 48
                     entity: sensor.speedtest_upload
                   - type: sensor
                     name: Ping
                     graph: line
                     icon: mdi:timer
+                    hours_to_show: 48
                     entity: sensor.speedtest_ping
+              - type: horizontal-stack
+                cards:
+                  - type: sensor
+                    name: Downstream
+                    graph: line
+                    icon: mdi:arrow-down
+                    entity: sensor.fritzbox_downstream
+                  - type: sensor
+                    name: Upstream
+                    graph: line
+                    icon: mdi:arrow-up
+                    entity: sensor.fritzbox_upstream
+                  - type: sensor
+                    name: Uptime
+                    graph: line
+                    icon: mdi:clock-outline
+                    entity: sensor.fritzbox_uptime
               - type: horizontal-stack
                 cards:
                   - type: sensor
