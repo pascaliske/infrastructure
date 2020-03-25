@@ -1,11 +1,35 @@
-# enable ios frontend
-ios:
-
 # enables configuration ui
 config:
 
 # incorporate latest changes
 default_config:
 
+# modify logger
+logger:
+  default: info
+  logs:
+    homeassistant.setup: warn
+    homeassistant.loader: warn
+
+# set auth providers
+auth_providers:
+    - type: homeassistant
+
+# enable themes
+frontend:
+  themes: !include_dir_merge_named ../themes
+  javascript_version: latest
+
+# enable ios frontend
+ios:
+
 # enable wake on lan
 wake_on_lan:
+
+# split imports
+automation: !include_dir_list ../automations
+group: !include_dir_merge_named ../groups
+scene: !include_dir_list ../scenes
+script: !include_dir_merge_named ../scripts
+sensor: !include_dir_list ../sensors
+switch: !include_dir_list ../switches
