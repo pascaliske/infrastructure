@@ -89,17 +89,17 @@ views:
                 cards:
                   - type: sensor
                     name: Downstream
-                    graph: line
+                    graph: none
                     icon: mdi:arrow-down
                     entity: sensor.fritzbox_downstream
                   - type: sensor
                     name: Upstream
-                    graph: line
+                    graph: none
                     icon: mdi:arrow-up
                     entity: sensor.fritzbox_upstream
                   - type: sensor
                     name: Uptime
-                    graph: line
+                    graph: none
                     icon: mdi:clock-outline
                     entity: sensor.fritzbox_uptime
               - type: horizontal-stack
