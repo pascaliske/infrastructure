@@ -10,6 +10,8 @@ logger:
   logs:
     homeassistant.setup: warn
     homeassistant.loader: warn
+    pyhap.hap_server: warn
+    hole: warn
 
 # enable themes
 frontend:
