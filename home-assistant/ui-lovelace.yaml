@@ -107,6 +107,23 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: sensor
+                    name: Downstream
+                    graph: none
+                    icon: mdi:arrow-down
+                    entity: sensor.fritzbox_downstream
+                  - type: sensor
+                    name: Upstream
+                    graph: none
+                    icon: mdi:arrow-up
+                    entity: sensor.fritzbox_upstream
+                  - type: sensor
+                    name: Uptime
+                    graph: none
+                    icon: mdi:clock-outline
+                    entity: sensor.fritzbox_uptime
+              - type: horizontal-stack
+                cards:
+                  - type: sensor
                     name: Download
                     graph: line
                     icon: mdi:speedometer
@@ -124,23 +141,6 @@ views:
                     icon: mdi:timer
                     hours_to_show: 48
                     entity: sensor.speedtest_ping
-              - type: horizontal-stack
-                cards:
-                  - type: sensor
-                    name: Downstream
-                    graph: none
-                    icon: mdi:arrow-down
-                    entity: sensor.fritzbox_downstream
-                  - type: sensor
-                    name: Upstream
-                    graph: none
-                    icon: mdi:arrow-up
-                    entity: sensor.fritzbox_upstream
-                  - type: sensor
-                    name: Uptime
-                    graph: none
-                    icon: mdi:clock-outline
-                    entity: sensor.fritzbox_uptime
               - type: horizontal-stack
                 cards:
                   - type: sensor
