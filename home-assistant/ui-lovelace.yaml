@@ -12,6 +12,45 @@ views:
             cards:
               - type: weather-forecast
                 entity: weather.home
+              - type: conditional
+                conditions:
+                  - entity: sensor.dwd_weather_warnings_current_warning_level
+                    state_not: "0"
+                  - entity: sensor.dwd_weather_warnings_advance_warning_level
+                    state_not: "0"
+                card:
+                  type: markdown
+                  entity_id: sensor.dwd_weather_warnings_current_warning_level
+                  card_size:
+                  content: >
+                    <div style="line-height:19px;">
+                    {% set level_colors = ["#c5e566", "#ffeb3b", "#fb8c00", "#e53935", "#880e4f"] %}
+                    {% set current_count = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_count") %}
+                    {% set advance_count = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_count") %}
+                    {% for i in range(current_count) %}
+                    {% set headline = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_headline") %}
+                    {% set description = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_description") %}
+                    {% set level = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_level") %}
+                    {% set time_start = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_start") %}
+                    {% set time_end = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_end") %}
+                    <b><font color={{ level_colors[level] }}>{{ headline }}</font></b>
+                    ({{ time_start.strftime("%a %I:%M %p") ~ " - " ~ time_end.strftime("%a %I:%M %p") }})<br>
+                    {{ description }}
+                    {% if not loop.last %}<br><br>{% endif %}
+                    {% endfor %}
+                    {% if ((current_count != 0) and (advance_count != 0)) %}<hr>{% endif %}
+                    {% for i in range(advance_count) %}
+                    {% set headline = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_headline") %}
+                    {% set description = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_description") %}
+                    {% set level = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_level") %}
+                    {% set time_start = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_start") %}
+                    {% set time_end = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_end") %}
+                    <b><font color={{ level_colors[level] }}>{{ headline }}</font></b>
+                    ({{ time_start.strftime("%a %I:%M %p") ~ " - " ~ time_end.strftime("%a %I:%M %p") }})<br>
+                    {{ description }}
+                    {% if not loop.last %}<br><br>{% endif %}
+                    {% endfor %}
+                    </div>
               - type: sensor
                 entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
                 name: S1 → Westend
