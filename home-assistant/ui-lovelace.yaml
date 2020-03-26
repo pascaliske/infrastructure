@@ -27,14 +27,6 @@ views:
                     graph: line
                     icon: mdi:scale-bathroom
                     entity: !secret withings_sensor_sarah
-              - type: entities
-                title: Batteries
-                show_header_toggle: false
-                entities:
-                  - entity: sensor.ffmmbp_207_battery_state
-                  - entity: sensor.pascaliske_battery_state
-                  - entity: sensor.passi_s_ipad_battery_state
-                  - entity: sensor.sarah_s_iphone_battery_state
           - type: vertical-stack
             cards:
               - type: media-control
@@ -55,6 +47,17 @@ views:
                 entities:
                   - entity: switch.licht
                     icon: mdi:lightbulb
+              - type: entity-filter
+                title: Batteries
+                show_empty: false
+                state_filter:
+                  - operator: '!='
+                    value: 'unavailable'
+                entities:
+                  - entity: sensor.ffmmbp_207_battery_state
+                  - entity: sensor.pascaliske_battery_state
+                  - entity: sensor.passi_s_ipad_battery_state
+                  - entity: sensor.sarah_s_iphone_battery_state
           - type: vertical-stack
             cards:
               - type: sensor
