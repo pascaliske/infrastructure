@@ -41,6 +41,7 @@ services:
     environment:
       TZ: Europe/Berlin
       DNS1: 172.20.0.4#5053
+      DNS2: no
       VIRTUAL_PORT: 80
       WEBPASSWORD: ${PI_HOLE_PASSWORD}
       PROXY_LOCATION: pihole
