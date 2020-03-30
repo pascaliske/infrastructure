@@ -73,6 +73,10 @@ views:
             cards:
               - type: media-control
                 entity: media_player.spotify_pascal_iske
+                style: |
+                  ha-card .background.no-image .color-block, ha-card .background.no-image .no-img {
+                    background: inherit;
+                  }
               - type: entities
                 title: Living Room
                 show_header_toggle: true
