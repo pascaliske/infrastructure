@@ -5,3 +5,6 @@ homeassistant:
     - type: homeassistant
 lovelace:
   mode: yaml
+  resources:
+    - url: /local/lovelace-card-mod/card-mod.js
+      type: module

@@ -1,6 +1,3 @@
-resources:
-  - url: /local/lovelace-card-mod/card-mod.js
-    type: module
 views:
   - title: Home
     path: home
