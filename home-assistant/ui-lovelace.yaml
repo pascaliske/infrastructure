@@ -114,12 +114,12 @@ views:
                     name: Downstream
                     graph: none
                     icon: mdi:arrow-down
-                    entity: sensor.fritzbox_downstream
+                    entity: sensor.fritzbox_downstream_percentage
                   - type: sensor
                     name: Upstream
                     graph: none
                     icon: mdi:arrow-up
-                    entity: sensor.fritzbox_upstream
+                    entity: sensor.fritzbox_upstream_percentage
                   - type: sensor
                     name: Uptime
                     graph: none
