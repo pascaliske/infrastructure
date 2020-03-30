@@ -48,7 +48,7 @@ services:
     volumes:
       - ./pihole/etc-pihole/:/etc/pihole/
       - ./pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/
-      - ./pihole/themes/dark.min.css:/var/www/html/admin/style/vendor/skin-blue.min.css
+      - ./pihole/themes/pi-hole-midnight/skin-blue.min.css:/var/www/html/admin/style/vendor/skin-blue.min.css
     dns:
       - 127.0.0.1
       - 1.1.1.1
