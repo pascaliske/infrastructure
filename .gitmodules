@@ -1,0 +1,3 @@
+[submodule "home-assistant/www/lovelace-card-mod"]
+	path = home-assistant/www/lovelace-card-mod
+	url = https://github.com/thomasloven/lovelace-card-mod
