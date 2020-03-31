@@ -107,7 +107,7 @@ views:
                 name: Public IP
                 graph: none
                 icon: mdi:web
-                entity: sensor.public_ip
+                entity: sensor.fritzbox_public_ip
               - type: horizontal-stack
                 cards:
                   - type: sensor

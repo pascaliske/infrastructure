@@ -33,3 +33,8 @@ sensors:
       {% set diff = now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - uptime) %}
       {{ diff.days }}
     unit_of_measurement: days
+  fritzbox_public_ip:
+    friendly_name: FRITZ!Box Public IP
+    value_template: >
+      {% set public_ip = state_attr('sensor.fritzbox_netmonitor', 'external_ip') %}
+      {{ public_ip }}
