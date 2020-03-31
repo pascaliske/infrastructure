@@ -15,3 +15,5 @@ sensor.pi_hole_domains_blocked:
   icon: mdi:close-octagon-outline
 sensor.withings_weight_kg_pascal_iske:
   friendly_name: Pascals Weight
+sensor.withings_weight_kg_sarah_iske:
+  friendly_name: Sarahs Weight
