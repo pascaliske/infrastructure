@@ -89,7 +89,7 @@ views:
                 show_header_toggle: true
                 entities:
                   - entity: switch.licht
-                    icon: mdi:lightbulb
+                    icon: mdi:string-lights
               - type: entity-filter
                 title: Batteries
                 show_empty: false
