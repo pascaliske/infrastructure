@@ -1,4 +1,4 @@
-alias: 'Set theme at startup'
+alias: Set theme at startup
 trigger:
   platform: homeassistant
   event: start

@@ -1,15 +1,17 @@
-alias: "Disk Use Alarm"
+alias: Disk Use Alarm
 trigger:
   platform: numeric_state
   entity_id: sensor.disk_use_percent
   above: 90
 action:
   - service: notify.mobile_app_pascaliske
-    data:
+    data_template:
       title: Hard Drive Monitor
-      message: 'Network controller is running out of space: {{ states.sensor.disk_use_percent.state }}%'
+      message: >
+        Network Controller is running out of space: {{ states('sensor.disk_use_percent') }}%
   - service: persistent_notification.create
-    data:
+    data_template:
       title: Hard Drive Monitor
-      message: 'Network controller is running out of space: {{ states.sensor.disk_use_percent.state }}%'
+      message: >
+        Network Controller is running out of space: {{ states('sensor.disk_use_percent') }}%
       notification_id: "Critical Alert"
