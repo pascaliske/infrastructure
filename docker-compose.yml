@@ -80,8 +80,6 @@ services:
     environment:
       TZ: Europe/Berlin
     volumes:
-      - ./bin/oathtool:/usr/bin/oathtool
-      - ./bin/alexa-cli/alexa_remote_control.sh:/usr/bin/alexa-cli
       - ./home-assistant:/config
 networks:
   default:
