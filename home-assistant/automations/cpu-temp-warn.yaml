@@ -1,0 +1,11 @@
+alias: CPU Temperature Alarm
+trigger:
+  platform: numeric_state
+  entity_id: sensor.cpu_temperature
+  above: 60
+action:
+  - service: notify.mobile_app_pascaliske
+    data_template:
+      title: CPU Temperature Alarm
+      message: >
+        Network Controller is getting too hot: {{ states('sensor.cpu_temperature') }}°C
