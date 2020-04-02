@@ -2,6 +2,8 @@
 
 > Docker definition file for my home network services.
 
+[![Build Status](https://travis-ci.com/pascaliske/network-controller.svg?branch=master)](https://travis-ci.com/pascaliske/network-controller)
+
 This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
 
 - [Portainer](https://www.portainer.io) for managing all following services
