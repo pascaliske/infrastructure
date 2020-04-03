@@ -3,5 +3,6 @@ services:
   - docker
 before_install:
   - mv home-assistant/secrets.yaml{.example,}
+  - mv home-assistant/integrations/withings.yaml{,.ignore}
 script:
   - docker run -v $(pwd)/home-assistant:/config homeassistant/home-assistant:stable hass --script check_config --config /config
