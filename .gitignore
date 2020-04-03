@@ -10,7 +10,7 @@ unifi/*
 !*/.gitkeep
 !home-assistant/configuration.yaml
 !home-assistant/customize.yaml
-!home-assistant/secrets.yml.enc
+!home-assistant/secrets.yaml.dist
 !home-assistant/ui-lovelace.yaml
 !home-assistant/automations
 !home-assistant/groups

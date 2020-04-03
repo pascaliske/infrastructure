@@ -2,8 +2,6 @@ language: minimal
 services:
   - docker
 before_install:
-  - openssl aes-256-cbc -K $encrypted_0c059d0e8188_key -iv $encrypted_0c059d0e8188_iv -in home-assistant/secrets.yml.enc -out home-assistant/secrets.yml -d
-  - ls -lisahG home-assistant
+  - mv home-assistant/secrets.yaml{.dist,}
 script:
-  - ls -lisahG home-assistant
   - docker run -v $(pwd)/home-assistant:/config homeassistant/home-assistant:stable hass --script check_config --config /config
