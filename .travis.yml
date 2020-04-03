@@ -2,6 +2,6 @@ language: minimal
 services:
   - docker
 before_install:
-  - mv home-assistant/secrets.yaml{.dist,}
+  - mv home-assistant/secrets.yaml{.example,}
 script:
   - docker run -v $(pwd)/home-assistant:/config homeassistant/home-assistant:stable hass --script check_config --config /config
