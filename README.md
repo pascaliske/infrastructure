@@ -7,7 +7,7 @@
 This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
 
 - [Portainer](https://www.portainer.io) for managing all following services
-- [UniFi Network Management Controller](https://www.ui.com/software/) for managing UniFi gear
+- [UniFi Controller](https://www.ui.com/software/) for managing all UniFi network gear
 - [Pi-Hole](https://pi-hole.net) for blocking ads and malicious domains network-wide
 - [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using [DNS-over-HTTPS](https://en.m.wikipedia.org/wiki/DNS_over_HTTPS)
 - [Home Assistant](https://home-assistant.io) as Home Automation hub
