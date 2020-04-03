@@ -86,22 +86,3 @@ networks:
     ipam:
       config:
         - subnet: 172.20.0.0/24
-volumes:
-  config:
-    driver: local
-  log:
-    driver: local
-  log2:
-    driver: local
-  run:
-    driver: local
-  run2:
-    driver: local
-  work:
-    driver: local
-  etc-pihole:
-    driver: local
-  etc-dnsmasq.d:
-    driver: local
-  portrainer:
-    driver: local
