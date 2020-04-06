@@ -1,0 +1,20 @@
+alias: Check Home Assistant Version once a day
+trigger:
+  platform: time
+  at: '10:00:00'
+condition:
+  condition: template
+  value_template: >
+    {{ states('sensor.latest_version') > states('sensor.current_version') }}
+action:
+  - service: notify.notify
+    data_template:
+      title: Update available
+      message: >
+        New version of Home Assistant available: {{ states('sensor.latest_version') }}
+  - service: persistent_notification.create
+    data_template:
+      title: Update available
+      message: >
+        New version of Home Assistant available: {{ states('sensor.latest_version') }}
+      notification_id: "Update available"
