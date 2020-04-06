@@ -3,6 +3,9 @@ homeassistant:
   packages: !include_dir_named integrations
   auth_providers:
     - type: homeassistant
+http:
+  ssl_certificate: /config/fullchain.pem
+  ssl_key: /config/privkey.pem
 lovelace:
   mode: yaml
   resources:
