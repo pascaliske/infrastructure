@@ -3,7 +3,7 @@ trigger:
   platform: homeassistant
   event: start
 action:
-  - service: notify.mobile_app_pascaliske
+  - service: notify.notify
     data:
       title: Home Assistant
       message: Home Assistant has been started successfully!

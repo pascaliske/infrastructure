@@ -4,7 +4,7 @@ trigger:
   entity_id: sensor.disk_use_percent
   above: 90
 action:
-  - service: notify.mobile_app_pascaliske
+  - service: notify.notify
     data_template:
       title: Hard Drive Monitor
       message: >

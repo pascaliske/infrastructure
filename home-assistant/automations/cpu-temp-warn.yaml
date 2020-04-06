@@ -4,7 +4,7 @@ trigger:
   entity_id: sensor.cpu_temperature
   above: 60
 action:
-  - service: notify.mobile_app_pascaliske
+  - service: notify.notify
     data_template:
       title: CPU Temperature Alarm
       message: >
