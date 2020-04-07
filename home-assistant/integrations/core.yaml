@@ -20,6 +20,9 @@ frontend:
 
 # enable auto discovery
 discovery:
+  ignore:
+    - frontier_silicon
+    - igd
 
 # enable ios frontend
 ios:
