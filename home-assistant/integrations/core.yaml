@@ -10,6 +10,7 @@ logger:
   logs:
     homeassistant.setup: warn
     homeassistant.loader: warn
+    homeassistant.components.discovery: warn
     pyhap.hap_server: warn
     hole: warn
 
@@ -20,9 +21,6 @@ frontend:
 
 # enable auto discovery
 discovery:
-  ignore:
-    - frontier_silicon
-    - igd
 
 # enable ios frontend
 ios:
