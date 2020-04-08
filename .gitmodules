@@ -1,6 +1,9 @@
-[submodule "home-assistant/www/lovelace-card-mod"]
-	path = home-assistant/www/lovelace-card-mod
-	url = https://github.com/thomasloven/lovelace-card-mod
 [submodule "pihole/themes/pi-hole-midnight"]
 	path = pihole/themes/pi-hole-midnight
 	url = https://github.com/jacobbates/pi-hole-midnight.git
+[submodule "home-assistant/www/lovelace-card-mod"]
+	path = home-assistant/www/lovelace-card-mod
+	url = https://github.com/thomasloven/lovelace-card-mod
+[submodule "home-assistant/www/lovelace-battery-entity"]
+	path = home-assistant/www/lovelace-battery-entity
+	url = https://github.com/cbulock/lovelace-battery-entity.git

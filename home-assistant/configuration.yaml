@@ -6,5 +6,7 @@ homeassistant:
 lovelace:
   mode: yaml
   resources:
-    - url: /local/lovelace-card-mod/card-mod.js
+    - url: /local/lovelace-card-mod/card-mod.js?v=1
+      type: module
+    - url: /local/lovelace-battery-entity/battery-entity.js?v=1
       type: module
