@@ -1,0 +1,11 @@
+alias: Ad Blocking Alarm
+trigger:
+  platform: numeric_state
+  entity_id: sensor.pi_hole_ads_percentage_blocked_today
+  below: 20
+action:
+  - service: notify.notify
+    data_template:
+      title: Ad Blocking Alarm
+      message: >
+        Ad Blocking percentage dropped below limit: {{ states('sensor.pi_hole_ads_percentage_blocked_today') }}%
