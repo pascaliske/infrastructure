@@ -7,3 +7,6 @@
 [submodule "home-assistant/www/lovelace-battery-entity"]
 	path = home-assistant/www/lovelace-battery-entity
 	url = https://github.com/cbulock/lovelace-battery-entity.git
+[submodule "home-assistant/www/lovelace-slider-entity-row"]
+	path = home-assistant/www/lovelace-slider-entity-row
+	url = https://github.com/thomasloven/lovelace-slider-entity-row
