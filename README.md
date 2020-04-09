@@ -2,7 +2,7 @@
 
 > Docker definition file for my home network services.
 
-[![Build Status](https://travis-ci.com/pascaliske/network-controller.svg?branch=master)](https://travis-ci.com/pascaliske/network-controller)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.com/pascaliske/network-controller.svg?branch=master)](https://travis-ci.com/pascaliske/network-controller)
 
 This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
 
@@ -32,17 +32,14 @@ docker-compose up --detach
 ## Update
 
 ```zsh
-# shut down services
-docker-compose down
-
-# pull updates
+# pull service updates
 docker-compose pull
 
-# start up services
+# re-create services
 docker-compose up --detach --remove-orphans
 ```
 
-## CLIs
+## Service CLIs
 
 ### The `pihole` command
 
@@ -50,7 +47,7 @@ docker-compose up --detach --remove-orphans
 docker exec -it pihole pihole <command>
 ```
 
-For more information on the pihole command [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
+For more information on the pihole command itself [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
 
 ### The `hass` command
 
@@ -58,8 +55,8 @@ For more information on the pihole command [visit their docs](https://docs.pi-ho
 docker exec -it home-assistant hass -h
 ```
 
-For more information on the hass command [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
+For more information on the hass command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
 
 ## License
 
-[MIT](LICENSE.md) – © 2019 [Pascal Iske](https://pascal-iske.de)
+[MIT](LICENSE.md) – © 2020 [Pascal Iske](https://pascal-iske.de)
