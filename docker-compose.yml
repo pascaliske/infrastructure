@@ -4,7 +4,7 @@ services:
     image: portainer/portainer:latest
     container_name: portainer
     restart: on-failure
-    command: -H unix:///var/run/docker.sock
+    command: -H unix:///var/run/docker.sock --no-analytics --ssl --sslcert /data/fullchain.pem --sslkey /data/privkey.pem
     ports:
       - '9000:9000'
       - '8000:8000'
