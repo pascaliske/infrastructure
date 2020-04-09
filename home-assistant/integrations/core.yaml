@@ -6,7 +6,7 @@ default_config:
 
 # modify logger
 logger:
-  default: info
+  default: warn
   logs:
     homeassistant.setup: warn
     homeassistant.loader: warn
