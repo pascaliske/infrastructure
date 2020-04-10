@@ -20,4 +20,5 @@ unifi/*
 !home-assistant/sensors
 !home-assistant/switches
 !home-assistant/themes
+!home-assistant/views
 !pihole/themes/dark.min.css

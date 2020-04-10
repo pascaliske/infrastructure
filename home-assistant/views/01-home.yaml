@@ -1,0 +1,207 @@
+title: Home
+path: home
+icon: mdi:home
+theme: Google - Dark
+panel: true
+badges: []
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: weather-forecast
+            entity: weather.home
+          - type: conditional
+            conditions:
+              - entity: sensor.dwd_weather_warnings_current_warning_level
+                state_not: "0"
+              - entity: sensor.dwd_weather_warnings_advance_warning_level
+                state_not: "0"
+            card:
+              type: markdown
+              entity_id: sensor.dwd_weather_warnings_current_warning_level
+              card_size:
+              content: >
+                <div style="line-height:19px;">
+                {% set level_colors = ["#c5e566", "#ffeb3b", "#fb8c00", "#e53935", "#880e4f"] %}
+                {% set current_count = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_count") | int %}
+                {% set advance_count = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_count") | int %}
+                {% for i in range(current_count) %}
+                {% set headline = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_headline") %}
+                {% set description = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_description") %}
+                {% set level = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_level") %}
+                {% set time_start = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_start") %}
+                {% set time_end = state_attr("sensor.dwd_weather_warnings_current_warning_level", "warning_" ~ loop.index ~ "_end") %}
+                <b><font color={{ level_colors[level] }}>{{ headline }}</font></b>
+                ({{ time_start.strftime("%a %I:%M %p") ~ " - " ~ time_end.strftime("%a %I:%M %p") }})<br>
+                {{ description }}
+                {% if not loop.last %}<br><br>{% endif %}
+                {% endfor %}
+                {% if ((current_count != 0) and (advance_count != 0)) %}<hr>{% endif %}
+                {% for i in range(advance_count) %}
+                {% set headline = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_headline") %}
+                {% set description = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_description") %}
+                {% set level = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_level") %}
+                {% set time_start = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_start") %}
+                {% set time_end = state_attr("sensor.dwd_weather_warnings_advance_warning_level", "warning_" ~ loop.index ~ "_end") %}
+                <b><font color={{ level_colors[level] }}>{{ headline }}</font></b>
+                ({{ time_start.strftime("%a %I:%M %p") ~ " - " ~ time_end.strftime("%a %I:%M %p") }})<br>
+                {{ description }}
+                {% if not loop.last %}<br><br>{% endif %}
+                {% endfor %}
+                </div>
+          - type: sensor
+            entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
+            name: S1 → Westend
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Weight Pascal
+                graph: line
+                icon: mdi:scale-bathroom
+                entity: !secret withings_sensor_pascal
+              - type: sensor
+                name: Weight Sarah
+                graph: line
+                icon: mdi:scale-bathroom
+                entity: !secret withings_sensor_sarah
+      - type: vertical-stack
+        cards:
+          - type: media-control
+            entity: media_player.spotify_pascal_iske
+            style: |
+              ha-card .background.no-image .color-block, ha-card .background.no-image .no-img {
+                background: inherit;
+              }
+          - type: entities
+            title: Living Room
+            icon: mdi:sofa
+            state_color: true
+            show_header_toggle: true
+            entities:
+              - entity: switch.kugel
+              - entity: switch.lampe
+              - entity: switch.duftlampe
+          - type: entities
+            title: Bedroom
+            icon: mdi:bed-king
+            state_color: true
+            show_header_toggle: true
+            entities:
+              - entity: switch.licht
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Batteries
+              icon: mdi:battery
+              show_header_toggle: false
+            entities:
+              - entity: sensor.ffmmbp_207_battery_state
+              - entity: sensor.pascaliske_battery_state
+              - entity: sensor.passi_s_ipad_battery_state
+              - entity: sensor.sarah_s_iphone_battery_state
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Printer
+              icon: mdi:printer
+              show_header_toggle: false
+            entities:
+              - entity: sensor.epson_et_2750_series
+              - entity: sensor.epson_et_2750_series_black_ink
+              - entity: sensor.epson_et_2750_series_cyan_ink
+              - entity: sensor.epson_et_2750_series_magenta_ink
+              - entity: sensor.epson_et_2750_series_yellow_ink
+      - type: vertical-stack
+        cards:
+          - type: sensor
+            name: Public IP
+            graph: none
+            icon: mdi:web
+            entity: sensor.fritzbox_public_ip
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Downstream
+                graph: none
+                icon: mdi:arrow-down
+                entity: sensor.fritzbox_downstream_percentage
+              - type: sensor
+                name: Upstream
+                graph: none
+                icon: mdi:arrow-up
+                entity: sensor.fritzbox_upstream_percentage
+              - type: sensor
+                name: Uptime
+                graph: none
+                icon: mdi:clock-outline
+                entity: sensor.fritzbox_uptime
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Download
+                graph: line
+                icon: mdi:speedometer
+                hours_to_show: 48
+                entity: sensor.speedtest_download
+              - type: sensor
+                name: Upload
+                graph: line
+                icon: mdi:speedometer
+                hours_to_show: 48
+                entity: sensor.speedtest_upload
+              - type: sensor
+                name: Ping
+                graph: line
+                icon: mdi:timer
+                hours_to_show: 48
+                entity: sensor.speedtest_ping
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Processor
+                graph: line
+                icon: mdi:memory
+                entity: sensor.processor_use
+              - type: sensor
+                name: Memory
+                graph: line
+                icon: mdi:memory
+                entity: sensor.memory_use_percent
+              - type: sensor
+                name: Temperature
+                graph: line
+                icon: mdi:thermometer
+                entity: sensor.cpu_temperature
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Disk
+                graph: line
+                icon: mdi:harddisk
+                entity: sensor.disk_use_percent
+              - type: sensor
+                name: Swap
+                graph: line
+                icon: mdi:file
+                entity: sensor.swap_use_percent
+              - type: sensor
+                name: Last Boot
+                graph: none
+                icon: mdi:clock-outline
+                entity: sensor.relative_last_boot
+          - type: entities
+            title: Ad Blocker
+            icon: mdi:newspaper
+            show_header_toggle: false
+            entities:
+              - entity: switch.pi_hole
+              - entity: sensor.pi_hole_ads_percentage_blocked_today
+              - entity: sensor.pi_hole_ads_blocked_today
+              - entity: sensor.pi_hole_domains_blocked
