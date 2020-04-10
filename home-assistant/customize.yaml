@@ -1,3 +1,11 @@
+switch.kugel:
+  icon: mdi:lightbulb
+switch.lampe:
+  icon: mdi:lightbulb
+switch.duftlampe:
+  icon: mdi:lightbulb
+switch.licht:
+  icon: mdi:string-lights
 sensor.ffmmbp_207_battery_state:
   friendly_name: FFMMBP-207
 sensor.pascaliske_battery_state:
@@ -7,13 +15,26 @@ sensor.passi_s_ipad_battery_state:
 sensor.sarah_s_iphone_battery_state:
   friendly_name: Sarahs iPhone
 sensor.pi_hole_ads_blocked_today:
-  friendly_name: Ads Blocked
+  friendly_name: Blocked Today
+  icon: mdi:counter
 sensor.pi_hole_ads_percentage_blocked_today:
-  friendly_name: Ads Percentage
+  friendly_name: Percentage Today
+  icon: mdi:percent
 sensor.pi_hole_domains_blocked:
-  friendly_name: Ads Blocklist
-  icon: mdi:close-octagon-outline
+  friendly_name: Blocklist
+  icon: mdi:playlist-remove
 sensor.withings_weight_kg_pascal_iske:
   friendly_name: Pascals Weight
 sensor.withings_weight_kg_sarah_iske:
   friendly_name: Sarahs Weight
+sensor.epson_et_2750_series:
+  friendly_name: State
+  icon: mdi:flash
+sensor.epson_et_2750_series_black_ink:
+  friendly_name: Black Ink
+sensor.epson_et_2750_series_cyan_ink:
+  friendly_name: Cyan Ink
+sensor.epson_et_2750_series_magenta_ink:
+  friendly_name: Magenta Ink
+sensor.epson_et_2750_series_yellow_ink:
+  friendly_name: Yellow Ink

@@ -79,17 +79,13 @@ views:
                 show_header_toggle: true
                 entities:
                   - entity: switch.kugel
-                    icon: mdi:lightbulb
                   - entity: switch.lampe
-                    icon: mdi:lightbulb
                   - entity: switch.duftlampe
-                    icon: mdi:lightbulb
               - type: entities
                 title: Bedroom
                 show_header_toggle: true
                 entities:
                   - entity: switch.licht
-                    icon: mdi:string-lights
               - type: entity-filter
                 title: Batteries
                 show_empty: false
@@ -184,10 +180,6 @@ views:
                 show_header_toggle: false
                 entities:
                   - entity: switch.pi_hole
-                    name: Blocking Enabled
                   - entity: sensor.pi_hole_ads_percentage_blocked_today
-                    name: Percentage Today
                   - entity: sensor.pi_hole_ads_blocked_today
-                    name: Blocked Today
                   - entity: sensor.pi_hole_domains_blocked
-                    name: Blocklist

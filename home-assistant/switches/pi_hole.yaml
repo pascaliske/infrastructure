@@ -1,7 +1,7 @@
 platform: template
 switches:
   pi_hole:
-    friendly_name: Ads Blocking
+    friendly_name: Blocking Enabled
     value_template: >
       {{ is_state('input_boolean.pi_hole', 'on') }}
     turn_on:
