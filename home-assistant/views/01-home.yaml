@@ -12,7 +12,7 @@ cards:
           - type: media-control
             entity: media_player.spotify_pascal_iske
             style: |
-              ha-card .background.no-image .color-block, ha-card .background.no-image .no-img {
+              .background .color-block, .background .no-img, .background .image {
                 background: inherit;
               }
           - type: weather-forecast
@@ -208,3 +208,7 @@ cards:
               - entity: sensor.pi_hole_ads_percentage_blocked_today
               - entity: sensor.pi_hole_ads_blocked_today
               - entity: sensor.pi_hole_domains_blocked
+            footer:
+              type: graph
+              entity: sensor.pi_hole_ads_percentage_blocked_today
+              hours_to_show: 72
