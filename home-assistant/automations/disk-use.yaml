@@ -14,4 +14,4 @@ action:
       title: Hard Drive Monitor
       message: >
         Network Controller is running out of space: {{ states('sensor.disk_use_percent') }}%
-      notification_id: "Critical Alert"
+      notification_id: "Hard Drive Monitor"
