@@ -25,6 +25,9 @@ git clone https://github.com/pascaliske/network-controller ~/network && cd ~/net
 # setup secret env variables
 cp .env{.example,} && editor .env
 
+# setup secrets file (for Home Assistant only)
+cp home-assistant/secrets.yaml{.example,} && editor home-assistant/secrets.yaml
+
 # start up services
 docker-compose up --detach
 ```
@@ -56,6 +59,18 @@ docker exec -it home-assistant hass -h
 ```
 
 For more information on the hass command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
+
+## Hardware
+
+The services are currently running inside Docker on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers the Pi using the `802.3af` Power-over-Ethernet standard.
+
+The fan of the PoE hat appears to be very noisy. Therefore I adjusted the temperature thresholds of the fan inside of `/boot/config.txt` to 70°C and 80°C:
+
+```toml
+# Fan settings from the official RPi PoE-Hat
+dtparam=poe_fan_temp0=70000,poe_fan_temp0_hyst=5000
+dtparam=poe_fan_temp1=80000,poe_fan_temp1_hyst=2000
+```
 
 ## License
 
