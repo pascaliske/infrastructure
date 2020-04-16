@@ -4,6 +4,7 @@ pihole/*
 portainer/*
 unifi/*
 *env*
+package.json
 
 # exceptions
 !.env.example
