@@ -3,8 +3,8 @@ sensors:
   fritzbox_downstream:
     friendly_name: FRITZ!Box Downstream
     entity_id:
-      - sensor.fritzbox_netmonitor
       - sensor.date
+      - sensor.fritzbox_netmonitor
     value_template: >
       {% set downstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_down') | int %}
       {{ (downstream * 8 / 1000) | round(2) }}
@@ -12,8 +12,8 @@ sensors:
   fritzbox_downstream_percentage:
     friendly_name: FRITZ!Box Downstream Percentage
     entity_id:
-      - sensor.fritzbox_netmonitor
       - sensor.date
+      - sensor.fritzbox_netmonitor
     value_template: >
       {% set downstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_down') | int %}
       {% set maxDownstream = state_attr('sensor.fritzbox_netmonitor', 'max_byte_rate_down') | int %}
@@ -22,8 +22,8 @@ sensors:
   fritzbox_upstream:
     friendly_name: FRITZ!Box Upstream
     entity_id:
-      - sensor.fritzbox_netmonitor
       - sensor.date
+      - sensor.fritzbox_netmonitor
     value_template: >
       {% set upstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_up') | int %}
       {{ (upstream * 8 / 1000) | round(2) }}
@@ -31,8 +31,8 @@ sensors:
   fritzbox_upstream_percentage:
     friendly_name: FRITZ!Box Upstream Percentage
     entity_id:
-      - sensor.fritzbox_netmonitor
       - sensor.date
+      - sensor.fritzbox_netmonitor
     value_template: >
       {% set upstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_up') | int %}
       {% set maxUpstream = state_attr('sensor.fritzbox_netmonitor', 'max_byte_rate_up') | int %}
@@ -41,8 +41,8 @@ sensors:
   fritzbox_uptime:
     friendly_name: FRITZ!Box Connection Uptime
     entity_id:
-      - sensor.fritzbox_netmonitor
       - sensor.date
+      - sensor.fritzbox_netmonitor
     value_template: >
       {% set uptime = state_attr('sensor.fritzbox_netmonitor', 'uptime') %}
       {% set diff = now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - uptime) %}
@@ -51,8 +51,8 @@ sensors:
   fritzbox_public_ip:
     friendly_name: FRITZ!Box Public IP
     entity_id:
-      - sensor.fritzbox_netmonitor
       - sensor.date
+      - sensor.fritzbox_netmonitor
     value_template: >
       {% set public_ip = state_attr('sensor.fritzbox_netmonitor', 'external_ip') %}
       {{ public_ip }}
