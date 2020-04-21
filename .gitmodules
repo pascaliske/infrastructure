@@ -10,3 +10,6 @@
 [submodule "home-assistant/www/lovelace-slider-entity-row"]
 	path = home-assistant/www/lovelace-slider-entity-row
 	url = https://github.com/thomasloven/lovelace-slider-entity-row
+[submodule "home-assistant/www/mini-graph-card"]
+	path = home-assistant/www/mini-graph-card
+	url = https://github.com/kalkih/mini-graph-card
