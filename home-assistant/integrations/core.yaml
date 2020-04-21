@@ -13,6 +13,8 @@ logger:
     homeassistant.helpers.entity: warn
     homeassistant.components.http.ban: warn
     homeassistant.components.discovery: warn
+    homeassistant.components.upnp: warn
+    homeassistant.components.ipp: warn
     pyhap.hap_server: warn
     hole: warn
 
