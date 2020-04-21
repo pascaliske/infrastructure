@@ -10,6 +10,8 @@ logger:
   logs:
     homeassistant.setup: warn
     homeassistant.loader: warn
+    homeassistant.helpers.entity: warn
+    homeassistant.components.http.ban: warn
     homeassistant.components.discovery: warn
     pyhap.hap_server: warn
     hole: warn
