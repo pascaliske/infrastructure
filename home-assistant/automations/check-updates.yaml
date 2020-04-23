@@ -16,5 +16,5 @@ action:
     data_template:
       title: Update available
       message: >
-        New version of Home Assistant available: [{{ states('sensor.latest_version') }}](https://www.home-assistant.io/blog/)
+        New version of Home Assistant available: [{{ states('sensor.latest_version') }}](https://www.home-assistant.io/blog/categories/release-notes/)
       notification_id: "Update available"
