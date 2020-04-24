@@ -1,0 +1,33 @@
+platform: template
+sensors:
+  # Bedroom Light
+  licht_amps:
+    friendly_name_template: >
+      {{ state_attr('switch.licht', 'name') }} Current
+    value_template: >
+      {{ state_attr('switch.licht', 'current_a') }}
+    unit_of_measurement: A
+  licht_volts:
+    friendly_name_template: >
+      {{ state_attr('switch.licht', 'name') }} Voltage
+    value_template: >
+      {{ state_attr('switch.licht', 'voltage') }}
+    unit_of_measurement: V
+  licht_watts:
+    friendly_name_template: >
+      {{ state_attr('switch.licht', 'name') }} Current Consumption
+    value_template: >
+      {{ state_attr('switch.licht', 'current_power_w') }}
+    unit_of_measurement: W
+  licht_total_consumption:
+    friendly_name_template: >
+      {{ state_attr('switch.licht', 'name') }} Total Consumption
+    value_template: >
+      {{ state_attr('switch.licht', 'total_energy_kwh') }}
+    unit_of_measurement: kWh
+  licht_today_consumption:
+    friendly_name_template: >
+      {{ state_attr('switch.licht', 'name') }} Today's Consumption
+    value_template: >
+      {{ state_attr('switch.licht', 'today_energy_kwh') }}
+    unit_of_measurement: kWh
