@@ -6,6 +6,16 @@ switch.duftlampe:
   icon: mdi:lightbulb
 switch.licht:
   icon: mdi:string-lights
+sensor.licht_amps:
+  icon: mdi:flash
+sensor.licht_volts:
+  icon: mdi:flash
+sensor.licht_watts:
+  icon: mdi:flash
+sensor.licht_total_consumption:
+  icon: mdi:flash
+sensor.licht_today_consumption:
+  icon: mdi:flash
 sensor.ffmmbp_207_battery_state:
   friendly_name: FFMMBP-207
 sensor.pascaliske_battery_state:
