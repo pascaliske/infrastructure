@@ -2,7 +2,7 @@ alias: CPU Temperature Alarm
 trigger:
   platform: numeric_state
   entity_id: sensor.cpu_temperature
-  above: 70
+  above: 69
 action:
   - service: notify.notify
     data_template:
