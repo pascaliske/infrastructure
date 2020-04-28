@@ -18,6 +18,12 @@ logger:
     pyhap.hap_server: warn
     hole: warn
 
+# database recorder
+recorder:
+  purge_interval: 1
+  purge_keep_days: 7
+  commit_interval: 600
+
 # enable themes
 frontend:
   themes: !include_dir_merge_named ../themes
