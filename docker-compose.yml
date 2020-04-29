@@ -1,5 +1,22 @@
 version: '3.7'
 services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: on-failure
+    environment:
+      TZ: Europe/Berlin
+      WATCHTOWER_SCHEDULE: '0 0 0 * * *'
+      WATCHTOWER_NO_RESTART: 'true'
+      WATCHTOWER_CLEANUP: 'true'
+      WATCHTOWER_NOTIFICATION_EMAIL_FROM: ${WATCHTOWER_EMAIL_FROM}
+      WATCHTOWER_NOTIFICATION_EMAIL_TO: ${WATCHTOWER_EMAIL_TO}
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER: ${WATCHTOWER_EMAIL_SERVER}
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: ${WATCHTOWER_EMAIL_FROM}
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: ${WATCHTOWER_EMAIL_PASSWORD}
+      WATCHTOWER_NOTIFICATION_EMAIL_DELAY: 2
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   portainer:
     image: portainer/portainer:latest
     container_name: portainer

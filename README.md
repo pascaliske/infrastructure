@@ -6,6 +6,7 @@
 
 This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
 
+- [Watchtower](https://github.com/containrrr/watchtower) for updating all services automatically
 - [Portainer](https://www.portainer.io) for managing all following services
 - [UniFi Controller](https://www.ui.com/software/) for managing all UniFi network gear
 - [Pi-Hole](https://pi-hole.net) for blocking ads and malicious domains network-wide
