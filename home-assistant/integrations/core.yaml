@@ -1,3 +1,10 @@
+homeassistant:
+  name: N12
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  unit_system: metric
+  time_zone: Europe/Berlin
+
 # enables configuration ui
 config:
 
@@ -23,6 +30,10 @@ recorder:
   purge_interval: 1
   purge_keep_days: 7
   commit_interval: 600
+
+http:
+  ssl_certificate: /config/fullchain.pem
+  ssl_key: /config/privkey.pem
 
 # enable themes
 frontend:
