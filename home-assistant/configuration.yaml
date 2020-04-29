@@ -2,6 +2,10 @@ homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named integrations
   auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - !secret ffmmbp207_ip
+      allow_bypass_login: true
     - type: homeassistant
 lovelace:
   mode: yaml
