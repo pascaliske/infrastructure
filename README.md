@@ -35,6 +35,9 @@ docker-compose up --detach
 
 ## Update
 
+The integrated watchtower container automatically checks for updates of all containers every night.
+To manually update the containers you can use the following commands:
+
 ```zsh
 # pull service updates
 docker-compose pull
