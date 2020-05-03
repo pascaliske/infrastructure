@@ -6,12 +6,16 @@
 
 This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
 
-- [Watchtower](https://github.com/containrrr/watchtower) for updating all services automatically
-- [Portainer](https://www.portainer.io) for managing all following services
 - [UniFi Controller](https://www.ui.com/software/) for managing all UniFi network gear
 - [Pi-Hole](https://pi-hole.net) for blocking ads and malicious domains network-wide
 - [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using [DNS-over-HTTPS](https://en.m.wikipedia.org/wiki/DNS_over_HTTPS)
 - [Home Assistant](https://home-assistant.io) as Home Automation hub
+
+It also includes the following maintenance containers:
+
+- [Dozzle](https://github.com/amir20/dozzle) for viewing container logs
+- [Watchtower](https://github.com/containrrr/watchtower) for updating all services automatically
+- [Portainer](https://www.portainer.io) for managing all service containers
 
 ## Requirements
 
