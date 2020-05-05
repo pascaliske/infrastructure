@@ -5,6 +5,8 @@ homeassistant:
     - type: trusted_networks
       trusted_networks:
         - !secret ip_ffmmbp207
+        - !secret ip_iphone
+        - !secret ip_ipad
       allow_bypass_login: true
     - type: homeassistant
 lovelace:
