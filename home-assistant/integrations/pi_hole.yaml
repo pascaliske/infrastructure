@@ -4,5 +4,5 @@ input_boolean:
     initial: on
 
 pi_hole:
-  - host: !secret pi_hole_ip
+  - host: !secret ip_pi_hole
     api_key: !secret pi_hole_api_key

@@ -1,4 +1,4 @@
 platform: fritzbox_netmonitor
-host: !secret fritzbox_ip
+host: !secret ip_fritzbox
 name: fritzbox_netmonitor
 scan_interval: 10

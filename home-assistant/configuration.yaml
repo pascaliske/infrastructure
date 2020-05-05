@@ -4,7 +4,7 @@ homeassistant:
   auth_providers:
     - type: trusted_networks
       trusted_networks:
-        - !secret ffmmbp207_ip
+        - !secret ip_ffmmbp207
       allow_bypass_login: true
     - type: homeassistant
 lovelace:
