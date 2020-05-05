@@ -63,7 +63,7 @@ For more information on the pihole command itself [visit their docs](https://doc
 ### The `hass` command
 
 ```zsh
-docker exec -it home-assistant hass -h
+docker exec -it homeassistant hass -h
 ```
 
 For more information on the hass command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
