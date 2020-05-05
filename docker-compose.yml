@@ -3,7 +3,7 @@ services:
   dozzle:
     image: amir20/dozzle
     container_name: dozzle
-    restart: on-failure
+    restart: always
     ports:
       - 9001:8080
     volumes:
@@ -11,7 +11,7 @@ services:
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
-    restart: on-failure
+    restart: always
     environment:
       TZ: Europe/Berlin
       WATCHTOWER_SCHEDULE: '0 0 0 * * *'
