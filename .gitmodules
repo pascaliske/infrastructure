@@ -13,3 +13,6 @@
 [submodule "home-assistant/www/mini-graph-card"]
 	path = home-assistant/www/mini-graph-card
 	url = https://github.com/kalkih/mini-graph-card
+[submodule "home-assistant/www/multiple-entity-row"]
+	path = home-assistant/www/multiple-entity-row
+	url = https://github.com/benct/lovelace-multiple-entity-row
