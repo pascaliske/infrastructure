@@ -16,3 +16,6 @@
 [submodule "home-assistant/www/multiple-entity-row"]
 	path = home-assistant/www/multiple-entity-row
 	url = https://github.com/benct/lovelace-multiple-entity-row
+[submodule "home-assistant/www/lovelace-github-entity-row"]
+	path = home-assistant/www/lovelace-github-entity-row
+	url = https://github.com/benct/lovelace-github-entity-row
