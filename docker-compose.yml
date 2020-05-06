@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   proxy:
-    image: jwilder/nginx-proxy
+    image: budry/jwilder-nginx-proxy-arm
     container_name: proxy
     restart: always
     ports:
