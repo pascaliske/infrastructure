@@ -1,13 +1,5 @@
 version: '3.7'
 services:
-  dozzle:
-    image: amir20/dozzle
-    container_name: dozzle
-    restart: always
-    ports:
-      - 9001:8080
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
@@ -25,6 +17,14 @@ services:
       WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: ${WATCHTOWER_EMAIL_PASSWORD}
       WATCHTOWER_NOTIFICATION_EMAIL_DELAY: 2
       WATCHTOWER_DEBUG: '${WATCHTOWER_DEBUG:-false}'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  dozzle:
+    image: amir20/dozzle
+    container_name: dozzle
+    restart: on-failure
+    ports:
+      - 9001:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   portainer:
