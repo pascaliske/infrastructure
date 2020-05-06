@@ -85,8 +85,8 @@ services:
       TZ: Europe/Berlin
       VIRTUAL_HOST: pihole.pi
       VIRTUAL_PORT: 80
-      DNS1: 172.20.0.2#5053
-      DNS2: 'no'
+      DNS1: 127.0.0.1
+      DNS2: 172.20.0.2#5053
       WEBPASSWORD: ${PI_HOLE_PASSWORD}
       CONDITIONAL_FORWARDING: 'true'
       CONDITIONAL_FORWARDING_IP: ${ROUTER_IP}
