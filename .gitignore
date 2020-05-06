@@ -2,7 +2,6 @@
 home-assistant/*
 pihole/*
 portainer/*
-proxy/*
 unifi/*
 *env*
 package.json
