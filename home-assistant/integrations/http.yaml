@@ -1,3 +1,0 @@
-http:
-  ssl_certificate: /config/fullchain.pem
-  ssl_key: /config/privkey.pem
