@@ -1,0 +1,7 @@
+glances:
+  - name: Glances GitLab
+    host: !secret glances_gitlab_host
+    username: !secret glances_gitlab_username
+    password: !secret glances_gitlab_password
+    port: 443
+    ssl: true
