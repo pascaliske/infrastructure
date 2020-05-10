@@ -75,7 +75,6 @@ cards:
         cards:
           - type: entities
             title: Living Room
-            icon: mdi:sofa
             state_color: true
             show_header_toggle: true
             entities:
@@ -84,7 +83,6 @@ cards:
               - entity: switch.duftlampe
           - type: entities
             title: Bedroom
-            icon: mdi:bed-king
             state_color: true
             show_header_toggle: true
             entities:
@@ -96,7 +94,6 @@ cards:
                 value: 'unavailable'
             card:
               title: Batteries
-              icon: mdi:battery
               show_header_toggle: false
             entities:
               - entity: sensor.ffmmbp_207_battery_state
@@ -198,7 +195,6 @@ cards:
                 entity: sensor.relative_last_boot
           - type: entities
             title: Ad Blocker
-            icon: mdi:newspaper
             show_header_toggle: false
             entities:
               - entity: switch.pi_hole
