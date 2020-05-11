@@ -42,6 +42,10 @@ cards:
             title: GitLab
             show_header_toggle: false
             entities:
+              - entity: sensor.glances_gitlab_rootfs_used_percent
+                name: Disk usage
+              - entity: sensor.glances_gitlab_rootfs_free
+                name: Disk space left
               - entity: sensor.glances_gitlab_containers_active
                 name: Containers
           - type: entities
