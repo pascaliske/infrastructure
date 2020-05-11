@@ -8,3 +8,18 @@ monitored_conditions:
   - last_build_started_at
   - last_build_state
   - state
+repository:
+  - network-controller
+  - pascal-iske.de
+  - dynamic-components
+  - ngx-sentry
+  - ngx-notifications
+  - ngx-prerenderer
+  - html-helpers
+  - mime-types
+  - typescript-api
+  - form-elements
+  - schematics
+  - prettier-config
+  - tsconfig
+  - eslint-config
