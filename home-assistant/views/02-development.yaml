@@ -44,6 +44,22 @@ cards:
               - entity: sensor.glances_gitlab_swap_used_percent
                 name: Swap Used
                 y_axis: secondary
+          - type: entities
+            title: Certificates
+            show_header_toggle: false
+            entities:
+              - entity: sensor.cert_expiry_pascal_iske_de
+                name: pascal-iske.de
+              - entity: sensor.cert_expiry_git_pascal_iske_de
+                name: git.pascal-iske.de
+              - entity: sensor.cert_expiry_registry_pascal_iske_de
+                name: registry.pascal-iske.de
+              - entity: sensor.cert_expiry_mattermost_pascal_iske_de
+                name: mattermost.pascal-iske.de
+              - entity: sensor.cert_expiry_stats_pascal_iske_de
+                name: stats.pascal-iske.de
+              - entity: sensor.cert_expiry_code_pascal_iske_de
+                name: code.pascal-iske.de
       - type: vertical-stack
         cards:
           - type: entities
