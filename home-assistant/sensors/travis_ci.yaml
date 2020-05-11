@@ -1,5 +1,6 @@
 platform: travisci
 api_key: !secret travis_ci_api_key
+branch: develop
 monitored_conditions:
   - last_build_id
   - last_build_duration
