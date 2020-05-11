@@ -9,17 +9,17 @@ monitored_conditions:
   - last_build_state
   - state
 repository:
-  - network-controller
-  - pascal-iske.de
-  - dynamic-components
-  - ngx-sentry
-  - ngx-notifications
-  - ngx-prerenderer
-  - html-helpers
-  - mime-types
-  - typescript-api
-  - form-elements
-  - schematics
-  - prettier-config
-  - tsconfig
-  - eslint-config
+  - pascaliske/network-controller
+  - pascaliske/pascal-iske.de
+  - pascaliske/dynamic-components
+  - pascaliske/ngx-sentry
+  - pascaliske/ngx-notifications
+  - pascaliske/ngx-prerenderer
+  - pascaliske/html-helpers
+  - pascaliske/mime-types
+  - pascaliske/typescript-api
+  - pascaliske/form-elements
+  - pascaliske/schematics
+  - pascaliske/prettier-config
+  - pascaliske/tsconfig
+  - pascaliske/eslint-config
