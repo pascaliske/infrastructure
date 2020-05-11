@@ -9,12 +9,6 @@ cards:
     cards:
       - type: vertical-stack
         cards:
-          - type: entities
-            title: GitLab
-            show_header_toggle: false
-            entities:
-              - entity: sensor.glances_gitlab_containers_active
-                name: Containers
           - type: custom:mini-graph-card
             aggregate_func: max
             group_by: hour
@@ -44,6 +38,12 @@ cards:
               - entity: sensor.glances_gitlab_swap_used_percent
                 name: Swap Used
                 y_axis: secondary
+          - type: entities
+            title: GitLab
+            show_header_toggle: false
+            entities:
+              - entity: sensor.glances_gitlab_containers_active
+                name: Containers
           - type: entities
             title: Certificates
             show_header_toggle: false
