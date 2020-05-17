@@ -87,6 +87,7 @@ cards:
             show_header_toggle: true
             entities:
               - entity: switch.licht
+              - entity: switch.love
           - type: entity-filter
             show_empty: false
             state_filter:
