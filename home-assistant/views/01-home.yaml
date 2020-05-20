@@ -65,11 +65,13 @@ cards:
                 name: Weight Pascal
                 graph: line
                 icon: mdi:scale-bathroom
+                hours_to_show: 168
                 entity: !secret withings_sensor_pascal
               - type: sensor
                 name: Weight Sarah
                 graph: line
                 icon: mdi:scale-bathroom
+                hours_to_show: 168
                 entity: !secret withings_sensor_sarah
       - type: vertical-stack
         cards:
@@ -223,4 +225,4 @@ cards:
             footer:
               type: graph
               entity: sensor.pi_hole_ads_percentage_blocked_today
-              hours_to_show: 72
+              hours_to_show: 168
