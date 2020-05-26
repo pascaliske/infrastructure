@@ -48,22 +48,6 @@ cards:
                 name: Disk space left
               - entity: sensor.glances_gitlab_containers_active
                 name: Containers
-          - type: entities
-            title: Certificates
-            show_header_toggle: false
-            entities:
-              - entity: sensor.cert_expiry_pascal_iske_de
-                name: pascal-iske.de
-              - entity: sensor.cert_expiry_git_pascal_iske_de
-                name: git.pascal-iske.de
-              - entity: sensor.cert_expiry_registry_pascal_iske_de
-                name: registry.pascal-iske.de
-              - entity: sensor.cert_expiry_mattermost_pascal_iske_de
-                name: mattermost.pascal-iske.de
-              - entity: sensor.cert_expiry_stats_pascal_iske_de
-                name: stats.pascal-iske.de
-              - entity: sensor.cert_expiry_code_pascal_iske_de
-                name: code.pascal-iske.de
       - type: vertical-stack
         cards:
           - type: entities
@@ -80,3 +64,23 @@ cards:
                 tap_action:
                   action: url
                   url_path: https://git.pascal-iske.de/pi-webdesign/jh-of/api
+          - type: entities
+            title: Certificates
+            show_header_toggle: false
+            entities:
+              - entity: sensor.cert_expiry_pascal_iske_de
+                name: pascal-iske.de
+              - entity: sensor.cert_expiry_git_pascal_iske_de
+                name: git.pascal-iske.de
+              - entity: sensor.cert_expiry_registry_pascal_iske_de
+                name: registry.pascal-iske.de
+              - entity: sensor.cert_expiry_mattermost_pascal_iske_de
+                name: mattermost.pascal-iske.de
+              - entity: sensor.cert_expiry_stats_pascal_iske_de
+                name: stats.pascal-iske.de
+              - entity: sensor.cert_expiry_logs_pascal_iske_de
+                name: logs.pascal-iske.de
+              - entity: sensor.cert_expiry_portainer_pascal_iske_de
+                name: portainer.pascal-iske.de
+              - entity: sensor.cert_expiry_code_pascal_iske_de
+                name: code.pascal-iske.de
