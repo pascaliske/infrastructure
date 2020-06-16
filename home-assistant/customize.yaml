@@ -20,7 +20,7 @@ sensor.licht_today_consumption:
   icon: mdi:flash
 sensor.ffmmbp_207_battery_state:
   friendly_name: FFMMBP-207
-sensor.pascaliske_battery_state:
+sensor.pascals_iphone_battery_state:
   friendly_name: Pascals iPhone
 sensor.passi_s_ipad_battery_state:
   friendly_name: Pascals iPad
