@@ -23,7 +23,7 @@ services:
   dozzle:
     image: amir20/dozzle
     container_name: dozzle
-    restart: on-failure
+    restart: always
     ports:
       - 9001:8080
     volumes:
@@ -31,7 +31,7 @@ services:
   portainer:
     image: portainer/portainer:latest
     container_name: portainer
-    restart: on-failure
+    restart: unless-stopped
     command: -H unix:///var/run/docker.sock --no-analytics --ssl --sslcert /data/fullchain.pem --sslkey /data/privkey.pem
     ports:
       - '9000:9000'
