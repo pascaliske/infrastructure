@@ -9,6 +9,11 @@ action:
       title: Hard Drive Monitor
       message: >
         Network Controller is running out of space: {{ states('sensor.disk_use_percent') }}%
+  - service: notify.slack
+    data_template:
+      title: Hard Drive Monitor
+      message: >
+        Network Controller is running out of space: {{ states('sensor.disk_use_percent') }}%
   - service: persistent_notification.create
     data_template:
       title: Hard Drive Monitor

@@ -12,6 +12,11 @@ action:
       title: Update available
       message: >
         New version of Home Assistant available: {{ states('sensor.latest_version') }}
+  - service: notify.slack
+    data_template:
+      title: Update available
+      message: >
+        New version of Home Assistant available: {{ states('sensor.latest_version') }}
   - service: persistent_notification.create
     data_template:
       title: Update available

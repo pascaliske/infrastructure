@@ -9,3 +9,8 @@ action:
       title: CPU Temperature Alarm
       message: >
         Network Controller is getting too hot: {{ states('sensor.cpu_temperature') }}°C
+  - service: notify.slack
+    data_template:
+      title: CPU Temperature Alarm
+      message: >
+        Network Controller is getting too hot: {{ states('sensor.cpu_temperature') }}°C
