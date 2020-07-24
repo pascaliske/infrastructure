@@ -159,7 +159,7 @@ cards:
               - type: sensor
                 name: Ping
                 graph: line
-                icon: mdi:timer
+                icon: mdi:timer-outline
                 hours_to_show: 48
                 entity: sensor.speedtest_ping
           - type: horizontal-stack
