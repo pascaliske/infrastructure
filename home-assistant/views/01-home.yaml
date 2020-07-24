@@ -66,13 +66,13 @@ cards:
                 graph: line
                 icon: mdi:scale-bathroom
                 hours_to_show: 168
-                entity: !secret withings_sensor_pascal
+                entity: sensor.withings_weight_kg_pascal_iske_2
               - type: sensor
                 name: Weight Sarah
                 graph: line
                 icon: mdi:scale-bathroom
                 hours_to_show: 168
-                entity: !secret withings_sensor_sarah
+                entity: sensor.withings_weight_kg_sarah_iske_2
       - type: vertical-stack
         cards:
           - type: entities
