@@ -4,11 +4,6 @@ trigger:
   entity_id: sensor.cpu_temperature
   above: 69
 action:
-  - service: notify.notify
-    data_template:
-      title: CPU Temperature Alarm
-      message: >
-        Network Controller is getting too hot: {{ states('sensor.cpu_temperature') }}°C
   - service: notify.slack
     data_template:
       title: CPU Temperature Alarm

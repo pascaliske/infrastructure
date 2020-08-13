@@ -4,11 +4,6 @@ trigger:
   entity_id: sensor.disk_use_percent
   above: 90
 action:
-  - service: notify.notify
-    data_template:
-      title: Hard Drive Monitor
-      message: >
-        Network Controller is running out of space: {{ states('sensor.disk_use_percent') }}%
   - service: notify.slack
     data_template:
       title: Hard Drive Monitor

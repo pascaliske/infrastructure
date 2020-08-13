@@ -3,10 +3,6 @@ trigger:
   platform: homeassistant
   event: start
 action:
-  - service: notify.notify
-    data:
-      title: Home Assistant
-      message: Home Assistant has been started successfully!
   - service: notify.slack
     data:
       title: Home Assistant
