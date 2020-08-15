@@ -58,29 +58,29 @@ cards:
                 name: App
                 tap_action:
                   action: url
-                  url_path: https://git.pascal-iske.de/pi-webdesign/jh-of/app
+                  url_path: https://git.pascaliske.dev/pi-webdesign/jh-of/app
               - entity: sensor.jh_of_api
                 name: API
                 tap_action:
                   action: url
-                  url_path: https://git.pascal-iske.de/pi-webdesign/jh-of/api
+                  url_path: https://git.pascaliske.dev/pi-webdesign/jh-of/api
           - type: entities
             title: Certificates
             show_header_toggle: false
             entities:
               - entity: sensor.cert_expiry_pascal_iske_de
-                name: pascal-iske.de
+                name: pascaliske.dev
               - entity: sensor.cert_expiry_git_pascal_iske_de
-                name: git.pascal-iske.de
+                name: git.pascaliske.dev
               - entity: sensor.cert_expiry_registry_pascal_iske_de
-                name: registry.pascal-iske.de
+                name: registry.pascaliske.dev
               - entity: sensor.cert_expiry_mattermost_pascal_iske_de
-                name: mattermost.pascal-iske.de
+                name: mattermost.pascaliske.dev
               - entity: sensor.cert_expiry_stats_pascal_iske_de
-                name: stats.pascal-iske.de
+                name: stats.pascaliske.dev
               - entity: sensor.cert_expiry_logs_pascal_iske_de
-                name: logs.pascal-iske.de
+                name: logs.pascaliske.dev
               - entity: sensor.cert_expiry_portainer_pascal_iske_de
-                name: portainer.pascal-iske.de
+                name: portainer.pascaliske.dev
               - entity: sensor.cert_expiry_code_pascal_iske_de
-                name: code.pascal-iske.de
+                name: code.pascaliske.dev
