@@ -80,7 +80,11 @@ cards:
                 name: stats.pascaliske.dev
               - entity: sensor.cert_expiry_logs_pascaliske_dev
                 name: logs.pascaliske.dev
-              - entity: sensor.cert_expiry_portainer_pascaliske_dev
-                name: portainer.pascaliske.dev
               - entity: sensor.cert_expiry_code_pascaliske_dev
                 name: code.pascaliske.dev
+              - entity: sensor.cert_expiry_go_pascaliske_dev
+                name: go.pascaliske.dev
+              - entity: sensor.cert_expiry_portainer_pascaliske_dev
+                name: portainer.pascaliske.dev
+              - entity: sensor.cert_expiry_satis_pascaliske_dev
+                name: satis.pascaliske.dev
