@@ -2,7 +2,7 @@ alias: Ad Blocking Alarm
 trigger:
   platform: numeric_state
   entity_id: sensor.pi_hole_ads_percentage_blocked_today
-  below: 15
+  below: 10
 action:
   - service: notify.slack
     data_template:
