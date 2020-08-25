@@ -27,6 +27,8 @@ services:
     image: amir20/dozzle
     container_name: dozzle
     restart: always
+    depends_on:
+      - pihole
     ports:
       - 9001:8080
     volumes:
@@ -35,6 +37,8 @@ services:
     image: portainer/portainer:latest
     container_name: portainer
     restart: unless-stopped
+    depends_on:
+      - pihole
     command: -H unix:///var/run/docker.sock --no-analytics --ssl --sslcert /data/fullchain.pem --sslkey /data/privkey.pem
     ports:
       - '9000:9000'
@@ -46,6 +50,8 @@ services:
     image: ryansch/unifi-rpi:latest
     container_name: unifi
     restart: unless-stopped
+    depends_on:
+      - pihole
     network_mode: host
     volumes:
       - ./unifi/config:/var/lib/unifi
