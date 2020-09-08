@@ -96,19 +96,6 @@ cards:
               - operator: '!='
                 value: 'unavailable'
             card:
-              title: Batteries
-              show_header_toggle: false
-            entities:
-              - entity: sensor.ffmmbp_207_battery_state
-              - entity: sensor.pascals_iphone_battery_state
-              - entity: sensor.passi_s_ipad_battery_state
-              - entity: sensor.sarah_s_iphone_battery_state
-          - type: entity-filter
-            show_empty: false
-            state_filter:
-              - operator: '!='
-                value: 'unavailable'
-            card:
               title: Printer
               icon: mdi:printer
               show_header_toggle: false
