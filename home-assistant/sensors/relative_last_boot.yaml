@@ -2,9 +2,6 @@ platform: template
 sensors:
   relative_last_boot:
     friendly_name: Relative Last Boot
-    entity_id:
-      - sensor.date
-      - sensor.last_boot
     value_template: >
       {% set date = strptime(states('sensor.last_boot'), '%Y-%m-%dT%H:%M:%S%z') %}
       {% set diff = now() - date %}
