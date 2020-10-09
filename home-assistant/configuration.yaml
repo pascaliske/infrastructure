@@ -22,5 +22,5 @@ lovelace:
       type: module
     - url: /local/mini-graph-card/dist/mini-graph-card-bundle.js?v=1
       type: module
-    - url: /local/multiple-entity-row/multiple-entity-row.js?v=1
+    - url: /local/multiple-entity-row/multiple-entity-row.js?v=3.4.0
       type: module
