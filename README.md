@@ -2,7 +2,7 @@
 
 > Docker definition file for my home network services.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.com/pascaliske/network-controller.svg?branch=master)](https://travis-ci.com/pascaliske/network-controller)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/network-controller/master?style=flat-square)](https://travis-ci.com/github/pascaliske/network-controller) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/network-controller?style=flat-square)](https://github.com/pascaliske/network-controller)
 
 This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
 
