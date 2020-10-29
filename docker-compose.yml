@@ -76,6 +76,8 @@ services:
       CONDITIONAL_FORWARDING_IP: ${ROUTER_IP}
       CONDITIONAL_FORWARDING_DOMAIN: fritz.box
       PROXY_LOCATION: pihole
+      WEBUIBOXEDLAYOUT: traditional
+      TEMPERATUREUNIT: c
     volumes:
       - ./pihole/etc-pihole/:/etc/pihole/
       - ./pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/
