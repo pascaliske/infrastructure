@@ -18,14 +18,6 @@ sensor.licht_total_consumption:
   icon: mdi:flash
 sensor.licht_today_consumption:
   icon: mdi:flash
-sensor.ffmmbp_207_battery_state:
-  friendly_name: FFMMBP-207
-sensor.pascals_iphone_battery_state:
-  friendly_name: Pascals iPhone
-sensor.passi_s_ipad_battery_state:
-  friendly_name: Pascals iPad
-sensor.sarah_s_iphone_battery_state:
-  friendly_name: Sarahs iPhone
 sensor.pi_hole_ads_blocked_today:
   friendly_name: Blocked Today
   icon: mdi:counter
