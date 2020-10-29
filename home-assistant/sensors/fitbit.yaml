@@ -1,0 +1,29 @@
+platform: fitbit
+clock_format: 12H
+monitored_resources:
+  - activities/activityCalories
+  - activities/calories
+  - activities/caloriesBMR
+  - activities/distance
+  - activities/elevation
+  - activities/floors
+  - activities/heart
+  - activities/minutesFairlyActive
+  - activities/minutesLightlyActive
+  - activities/minutesSedentary
+  - activities/minutesVeryActive
+  - activities/steps
+  - activities/tracker/activityCalories
+  - activities/tracker/calories
+  - activities/tracker/distance
+  - activities/tracker/elevation
+  - activities/tracker/floors
+  - activities/tracker/steps
+  - sleep/awakeningsCount
+  - sleep/efficiency
+  - sleep/minutesAfterWakeup
+  - sleep/minutesAsleep
+  - sleep/minutesAwake
+  - sleep/minutesToFallAsleep
+  - sleep/startTime
+  - sleep/timeInBed
