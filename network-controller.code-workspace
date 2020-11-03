@@ -13,6 +13,9 @@
             "path": "./portainer"
         },
         {
+            "path": "./prometheus"
+        },
+        {
             "path": "./unifi"
         }
     ],

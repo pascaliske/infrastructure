@@ -2,6 +2,7 @@
 home-assistant/*
 pihole/*
 portainer/*
+prometheus/*
 unifi/*
 *env*
 package.json
@@ -23,3 +24,4 @@ package.json
 !home-assistant/themes
 !home-assistant/views
 !pihole/themes/dark.min.css
+!prometheus/prometheus.yml

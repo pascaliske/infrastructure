@@ -15,6 +15,16 @@ services:
       WATCHTOWER_DEBUG: '${WATCHTOWER_DEBUG:-false}'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - '9090:9090'
+    environment:
+      TZ: Europe/Berlin
+    volumes:
+      - ./prometheus:/etc/prometheus
   dozzle:
     image: amir20/dozzle
     container_name: dozzle
