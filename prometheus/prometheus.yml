@@ -7,6 +7,10 @@ scrape_configs:
     static_configs:
       - targets: ['prometheus:9090']
 
+  - job_name: network/node
+    static_configs:
+      - targets: ['node-exporter:9100']
+
   - job_name: network/cloudflared
     static_configs:
       - targets: ['cloudflared:49312']
