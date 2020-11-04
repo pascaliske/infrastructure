@@ -41,8 +41,8 @@ services:
     restart: unless-stopped
     depends_on:
       - pihole
-    ports:
-      - '9617:9617'
+    expose:
+      - 9617
     environment:
       PIHOLE_HOSTNAME: ${CONTROLLER_IP}
       PIHOLE_PASSWORD: ${PI_HOLE_PASSWORD}
