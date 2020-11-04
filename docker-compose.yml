@@ -35,6 +35,17 @@ services:
       TZ: Europe/Berlin
     volumes:
       - grafana:/var/lib/grafana
+  pihole-exporter:
+    image: ekofr/pihole-exporter:0.0.10
+    container_name: pihole-exporter
+    restart: unless-stopped
+    depends_on:
+      - pihole
+    ports:
+      - '9617:9617'
+    environment:
+      PIHOLE_HOSTNAME: ${CONTROLLER_IP}
+      PIHOLE_PASSWORD: ${PI_HOLE_PASSWORD}
   dozzle:
     image: amir20/dozzle
     container_name: dozzle

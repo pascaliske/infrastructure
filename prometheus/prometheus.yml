@@ -10,3 +10,7 @@ scrape_configs:
   - job_name: cloudflared
     static_configs:
       - targets: ['cloudflared:49312']
+
+  - job_name: network/pihole
+    static_configs:
+      - targets: ['pihole-exporter:9617']
