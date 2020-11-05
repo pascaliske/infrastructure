@@ -50,6 +50,17 @@ services:
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+  unifi-exporter:
+    image: jessestuart/unifi_exporter:latest
+    container_name: unifi-exporter
+    restart: unless-stopped
+    depends_on:
+      - unifi
+    expose:
+      - 9130
+    volumes:
+      - './unifi/exporter-config.yml:/etc/unifi-exporter/config.yml:ro'
+    command: '-config.file=/etc/unifi-exporter/config.yml'
   pihole-exporter:
     image: ekofr/pihole-exporter:0.0.10
     container_name: pihole-exporter
