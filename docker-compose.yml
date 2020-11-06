@@ -24,7 +24,13 @@ services:
     environment:
       TZ: Europe/Berlin
     volumes:
+      - prometheus:/prometheus
       - ./prometheus:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=168h'
+      - '--web.enable-lifecycle'
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -177,4 +183,5 @@ networks:
       config:
         - subnet: 172.20.0.0/24
 volumes:
+  prometheus:
   grafana:
