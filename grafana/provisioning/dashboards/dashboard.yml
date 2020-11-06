@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - type: file
+    name: Prometheus
+    editable: true
+    allowUiUpdates: true
+    disableDeletion: true
+    options:
+      path: /etc/grafana/provisioning/dashboards
+      foldersFromFilesStructure: true

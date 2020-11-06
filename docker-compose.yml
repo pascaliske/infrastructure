@@ -61,6 +61,7 @@ services:
       GF_USERS_ALLOW_SIGN_UP: 'false'
     volumes:
       - grafana:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter

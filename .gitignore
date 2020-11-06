@@ -1,5 +1,6 @@
 # ignores
 alertmanager/*
+grafana/*
 home-assistant/*
 pihole/*
 portainer/*
@@ -12,6 +13,7 @@ package.json
 !.env.example
 !*/.gitkeep
 !alertmanager/config.yml
+!grafana/provisioning
 !home-assistant/configuration.yaml
 !home-assistant/customize.yaml
 !home-assistant/secrets.yaml.example
