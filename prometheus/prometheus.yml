@@ -2,6 +2,9 @@ global:
   scrape_interval: 30s
   evaluation_interval: 30s
 
+rule_files:
+  - 'alert.rules'
+
 scrape_configs:
   - job_name: prometheus
     static_configs:
@@ -22,3 +25,9 @@ scrape_configs:
   - job_name: network/pihole
     static_configs:
       - targets: ['pihole-exporter:9617']
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets: ['alertmanager:9093']

@@ -1,4 +1,5 @@
 # ignores
+alertmanager/*
 home-assistant/*
 pihole/*
 portainer/*
@@ -10,6 +11,7 @@ package.json
 # exceptions
 !.env.example
 !*/.gitkeep
+!alertmanager/config.yml
 !home-assistant/configuration.yaml
 !home-assistant/customize.yaml
 !home-assistant/secrets.yaml.example
@@ -24,4 +26,5 @@ package.json
 !home-assistant/themes
 !home-assistant/views
 !pihole/themes/dark.min.css
+!prometheus/alert.rules
 !prometheus/prometheus.yml
