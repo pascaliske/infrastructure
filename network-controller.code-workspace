@@ -4,6 +4,12 @@
             "path": "."
         },
         {
+            "path": "./alertmanager"
+        },
+        {
+            "path": "./grafana"
+        },
+        {
             "path": "./home-assistant"
         },
         {
