@@ -1,0 +1,23 @@
+{
+  "name": "network-controller",
+  "description": "Docker definition file for my home network services.",
+  "license": "MIT",
+  "author": {
+    "name": "Pascal Iske",
+    "email": "info@pascaliske.dev",
+    "url": "https://pascaliske.dev"
+  },
+  "repository": {
+    "url": "https://github.com/pascaliske/network-controller.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pascaliske/network-controller/issues"
+  },
+  "private": true,
+  "scripts": {
+    "ssh": "ssh -t -i $ANSIBLE_PRIVATE_KEY_FILE $ANSIBLE_REMOTE_USER@$CONTROLLER_IP",
+    "ping": "ansible all --module-name=ping",
+    "play": "ansible-playbook"
+  }
+}

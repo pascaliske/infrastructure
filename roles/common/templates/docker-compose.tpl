@@ -5,7 +5,7 @@ services:
     container_name: watchtower
     restart: always
     environment:
-      TZ: Europe/Berlin
+      TZ: {{ timezone }}
       WATCHTOWER_SCHEDULE: '0 0 0 * * *'
       WATCHTOWER_CLEANUP: 'true'
       WATCHTOWER_NOTIFICATIONS: slack
@@ -22,10 +22,10 @@ services:
     ports:
       - '9090:9090'
     environment:
-      TZ: Europe/Berlin
+      TZ: {{ timezone }}
     volumes:
       - prometheus:/prometheus
-      - ./prometheus:/etc/prometheus
+      - '{{ root_path }}/prometheus:/etc/prometheus'
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -38,7 +38,7 @@ services:
     expose:
       - 9093
     volumes:
-      - ./alertmanager:/etc/alertmanager
+      - '{{ root_path }}/alertmanager:/etc/alertmanager'
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
@@ -55,14 +55,14 @@ services:
     ports:
       - '3000:3000'
     environment:
-      TZ: Europe/Berlin
+      TZ: {{ timezone }}
       GF_SECURITY_ADMIN_USER: ${GRAFANA_USER}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
       GF_USERS_ALLOW_SIGN_UP: 'false'
       GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
       - grafana:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning
+      - '{{ root_path }}/grafana/provisioning:/etc/grafana/provisioning'
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
@@ -87,7 +87,7 @@ services:
     expose:
       - 9130
     volumes:
-      - './unifi/exporter-config.yml:/etc/unifi-exporter/config.yml:ro'
+      - '{{ root_path }}/unifi-exporter/config.yml:/etc/unifi-exporter/config.yml:ro'
     command: '-config.file=/etc/unifi-exporter/config.yml'
   pihole-exporter:
     image: ekofr/pihole-exporter:0.0.10
@@ -122,7 +122,7 @@ services:
       - '8000:8000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer:/data
+      - '{{ root_path }}/portainer:/data'
   unifi:
     image: ryansch/unifi-rpi:latest
     container_name: unifi
@@ -131,12 +131,12 @@ services:
       - pihole
     network_mode: host
     volumes:
-      - ./unifi/config:/var/lib/unifi
-      - ./unifi/log:/usr/lib/unifi/logs
-      - ./unifi/log2:/var/log/unifi
-      - ./unifi/run:/usr/lib/unifi/run
-      - ./unifi/run2:/run/unifi
-      - ./unifi/work:/usr/lib/unifi/work
+      - '{{ root_path }}/unifi/config:/var/lib/unifi'
+      - '{{ root_path }}/unifi/log:/usr/lib/unifi/logs'
+      - '{{ root_path }}/unifi/log2:/var/log/unifi'
+      - '{{ root_path }}/unifi/run:/usr/lib/unifi/run'
+      - '{{ root_path }}/unifi/run2:/run/unifi'
+      - '{{ root_path }}/unifi/work:/usr/lib/unifi/work'
   pihole:
     image: pihole/pihole:latest
     container_name: pihole
@@ -151,7 +151,7 @@ services:
       - '443:443/tcp'
     environment:
       ServerIP: ${CONTROLLER_IP}
-      TZ: Europe/Berlin
+      TZ: {{ timezone }}
       VIRTUAL_PORT: 80
       DNS1: 172.20.0.2#5053
       DNS2: 'no'
@@ -164,9 +164,9 @@ services:
       WEBUIBOXEDLAYOUT: traditional
       TEMPERATUREUNIT: c
     volumes:
-      - ./pihole/etc-pihole/:/etc/pihole/
-      - ./pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/
-      - ./pihole/themes/pi-hole-midnight/skin-blue.min.css:/var/www/html/admin/style/vendor/skin-blue.min.css
+      - '{{ root_path }}/pihole/etc-pihole/:/etc/pihole/'
+      - '{{ root_path }}/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      - '{{ root_path }}/pihole/themes/pi-hole-midnight/skin-blue.min.css:/var/www/html/admin/style/vendor/skin-blue.min.css'
     dns:
       - 127.0.0.1
       - 1.1.1.1
@@ -183,7 +183,7 @@ services:
       - '5053:5053/udp'
       - '49312:49312/tcp'
     environment:
-      TZ: Europe/Berlin
+      TZ: {{ timezone }}
       TUNNEL_DNS_UPSTREAM: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
     networks:
       default:
@@ -196,9 +196,9 @@ services:
       - pihole
     network_mode: host
     environment:
-      TZ: Europe/Berlin
+      TZ: {{ timezone }}
     volumes:
-      - ./home-assistant:/config
+      - '{{ root_path }}/home-assistant:/config'
 networks:
   default:
     ipam:

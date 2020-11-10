@@ -1,0 +1,5 @@
+---
+- name: Configure Network Controller
+  hosts: network
+  roles:
+    - common

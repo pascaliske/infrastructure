@@ -1,4 +1,5 @@
 # ignores
+.vagrant
 alertmanager/*
 grafana/*
 home-assistant/*
@@ -7,7 +8,6 @@ portainer/*
 prometheus/*
 unifi/*
 *env*
-package.json
 
 # exceptions
 !.env.example

@@ -1,0 +1,4 @@
+- name: Create docker-compose file.
+  template:
+    src: ../templates/docker-compose.tpl
+    dest: '{{ root_path }}/docker-compose.yml'
