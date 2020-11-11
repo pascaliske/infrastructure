@@ -4,12 +4,13 @@
             "path": "."
         },
         {
-            "path": "./roles/monitoring/templates",
-            "name": "monitoring"
+            "path": "./playbooks"
         },
         {
-            "path": "./roles/pihole/templates",
-            "name": "pihole"
+            "path": "./roles/monitoring"
+        },
+        {
+            "path": "./roles/pihole"
         },
         {
             "path": "./home-assistant"
