@@ -1,6 +1,6 @@
 ---
 - name: Configure Network Controller
-  hosts: network
+  hosts: testing
   roles:
     - common
     - monitoring
