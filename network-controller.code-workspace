@@ -7,6 +7,9 @@
             "path": "./playbooks"
         },
         {
+            "path": "./roles/common"
+        },
+        {
             "path": "./roles/monitoring"
         },
         {
