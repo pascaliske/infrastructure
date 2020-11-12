@@ -1,0 +1,5 @@
+prometheus:
+  namespace: homeassistant
+  filter:
+    include_domains:
+      - sensor
