@@ -7,16 +7,24 @@
             "path": "./playbooks"
         },
         {
-            "path": "./roles/common"
+            "path": "./roles/common",
+            "name": "roles/common"
         },
         {
-            "path": "./roles/monitoring"
+            "path": "./roles/monitoring",
+            "name": "roles/monitoring"
         },
         {
-            "path": "./roles/pihole"
+            "path": "./roles/pihole",
+            "name": "roles/pihole"
         },
         {
-            "path": "./roles/home-assistant"
+            "path": "./roles/home-assistant",
+            "name": "roles/home-assistant"
+        },
+        {
+            "path": "./roles/portainer",
+            "name": "roles/portainer"
         }
     ],
     "settings": {
