@@ -31,6 +31,8 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=168h'
       - '--web.enable-lifecycle'
+    extra_hosts:
+      - 'dockerhost:172.20.0.1'
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager
@@ -204,6 +206,7 @@ networks:
     ipam:
       config:
         - subnet: 172.20.0.0/24
+          gateway: 172.20.0.1
 volumes:
   prometheus:
   grafana:
