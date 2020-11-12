@@ -31,6 +31,10 @@ scrape_configs:
     static_configs:
       - targets: ['pihole-exporter:9617']
 
+  - job_name: network/fritzbox
+    static_configs:
+      - targets: ['fritzbox-exporter:8765']
+
   - job_name: network/homeassistant
     metrics_path: /api/prometheus
     bearer_token: '{{ home_assistant_access_token }}'

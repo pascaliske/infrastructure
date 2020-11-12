@@ -102,6 +102,16 @@ services:
     environment:
       PIHOLE_HOSTNAME: {{ controller_ip }}
       PIHOLE_PASSWORD: {{ pi_hole_password }}
+  fritzbox-exporter:
+    image: sealife/fritzbox-exporter:latest
+    container_name: fritzbox-exporter
+    restart: unless-stopped
+    expose:
+      - 8765
+    environment:
+      FRITZ_HOST: {{ router_ip }}
+      FRITZ_USER: {{ fritzbox_user }}
+      FRITZ_PASS: {{ fritzbox_password }}
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle
