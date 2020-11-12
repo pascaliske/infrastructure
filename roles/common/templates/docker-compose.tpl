@@ -9,10 +9,10 @@ services:
       WATCHTOWER_SCHEDULE: '0 0 0 * * *'
       WATCHTOWER_CLEANUP: 'true'
       WATCHTOWER_NOTIFICATIONS: slack
-      WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: ${WATCHTOWER_SLACK_HOOK_URL}
+      WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: {{ watchtower_slack_hook_url }}
       WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER: watchtower
       WATCHTOWER_NOTIFICATION_SLACK_CHANNEL: '#hosting'
-      WATCHTOWER_DEBUG: '${WATCHTOWER_DEBUG:-false}'
+      WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   prometheus:
@@ -58,8 +58,8 @@ services:
       - '3000:3000'
     environment:
       TZ: {{ timezone }}
-      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER}
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+      GF_SECURITY_ADMIN_USER: {{ grafana_user }}
+      GF_SECURITY_ADMIN_PASSWORD: {{ grafana_password }}
       GF_USERS_ALLOW_SIGN_UP: 'false'
       GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
@@ -100,8 +100,8 @@ services:
     expose:
       - 9617
     environment:
-      PIHOLE_HOSTNAME: ${CONTROLLER_IP}
-      PIHOLE_PASSWORD: ${PI_HOLE_PASSWORD}
+      PIHOLE_HOSTNAME: {{ controller_ip }}
+      PIHOLE_PASSWORD: {{ pi_hole_password }}
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle
@@ -152,15 +152,15 @@ services:
       - '80:80/tcp'
       - '443:443/tcp'
     environment:
-      ServerIP: ${CONTROLLER_IP}
+      ServerIP: {{ controller_ip }}
       TZ: {{ timezone }}
       VIRTUAL_PORT: 80
       DNS1: 172.20.0.2#5053
       DNS2: 'no'
       DNS_FQDN_REQUIRED: 'true'
-      WEBPASSWORD: ${PI_HOLE_PASSWORD}
+      WEBPASSWORD: {{ pi_hole_password }}
       CONDITIONAL_FORWARDING: 'true'
-      CONDITIONAL_FORWARDING_IP: ${ROUTER_IP}
+      CONDITIONAL_FORWARDING_IP: {{ router_ip }}
       CONDITIONAL_FORWARDING_DOMAIN: fritz.box
       PROXY_LOCATION: pihole
       WEBUIBOXEDLAYOUT: traditional

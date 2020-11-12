@@ -1,0 +1,8 @@
+---
+router_ip: "{{ lookup('env', 'ROUTER_IP') }}"
+controller_ip: "{{ lookup('env', 'CONTROLLER_IP') }}"
+watchtower_slack_hook_url: "{{ lookup('env', 'WATCHTOWER_SLACK_HOOK_URL') }}"
+watchtower_debug: "{{ lookup('env', 'WATCHTOWER_DEBUG') }}"
+grafana_user: "{{ lookup('env', 'GRAFANA_USER') }}"
+grafana_password: "{{ lookup('env', 'GRAFANA_PASSWORD') }}"
+pi_hole_password: "{{ lookup('env', 'PI_HOLE_PASSWORD') }}"
