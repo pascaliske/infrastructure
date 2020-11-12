@@ -8,10 +8,11 @@
             "name": "monitoring"
         },
         {
-            "path": "./home-assistant"
+            "path": "./roles/pihole/templates",
+            "name": "pihole"
         },
         {
-            "path": "./pihole"
+            "path": "./home-assistant"
         }
     ],
     "settings": {
