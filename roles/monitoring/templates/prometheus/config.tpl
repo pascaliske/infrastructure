@@ -31,6 +31,13 @@ scrape_configs:
     static_configs:
       - targets: ['pihole-exporter:9617']
 
+  - job_name: network/homeassistant
+    metrics_path: /api/prometheus
+    bearer_token: '{{ home_assistant_access_token }}'
+    scheme: https
+    static_configs:
+      - targets: ['dockerhost:8123']
+
 alerting:
   alertmanagers:
     - scheme: http
