@@ -2,4 +2,5 @@
 alertmanager_slack_channel: "{{ lookup('env', 'ALERTMANAGER_SLACK_CHANNEL') }}"
 alertmanager_slack_username: "{{ lookup('env', 'ALERTMANAGER_SLACK_USERNAME') }}"
 alertmanager_slack_webhook: "{{ lookup('env', 'ALERTMANAGER_SLACK_WEBHOOK') }}"
+unifi_password: "{{ lookup('env', 'UNIFI_PASSWORD') }}"
 home_assistant_access_token: "{{ lookup('env', 'HOME_ASSISTANT_ACCESS_TOKEN') }}"
