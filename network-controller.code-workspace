@@ -4,25 +4,14 @@
             "path": "."
         },
         {
-            "path": "./alertmanager"
-        },
-        {
-            "path": "./grafana"
+            "path": "./roles/monitoring/templates",
+            "name": "monitoring"
         },
         {
             "path": "./home-assistant"
         },
         {
             "path": "./pihole"
-        },
-        {
-            "path": "./portainer"
-        },
-        {
-            "path": "./prometheus"
-        },
-        {
-            "path": "./unifi"
         }
     ],
     "settings": {

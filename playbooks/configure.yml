@@ -3,3 +3,4 @@
   hosts: network
   roles:
     - common
+    - monitoring

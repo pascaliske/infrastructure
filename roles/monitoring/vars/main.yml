@@ -1,0 +1,4 @@
+---
+alertmanager_slack_channel: '#alerts'
+alertmanager_slack_username: 'Prometheus'
+alertmanager_slack_webhook: 'https://hooks.slack.com/services/xyz'
