@@ -2,8 +2,7 @@ language: minimal
 services:
   - docker
 before_install:
-  - mv home-assistant/secrets.yaml{.example,}
-  - mv home-assistant/integrations/http.yaml{,.disabled}
-  - mv home-assistant/integrations/withings.yaml{,.disabled}
+  - mv roles/home-assistant/templates/integrations/http.yaml{,.disabled}
+  - mv roles/home-assistant/templates/integrations/withings.yaml{,.disabled}
 script:
-  - docker run -v $(pwd)/home-assistant:/config homeassistant/home-assistant:stable hass --script check_config --config /config
+  - docker run -v $(pwd)/roles/home-assistant/templates:/config homeassistant/home-assistant:stable hass --script check_config --config /config
