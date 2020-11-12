@@ -1,4 +1,0 @@
-- name: Ensure root directory exists.
-  file:
-    path: '{{ root_path }}'
-    state: directory

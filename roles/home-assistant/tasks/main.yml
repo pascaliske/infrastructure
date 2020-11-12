@@ -1,9 +1,9 @@
-- name: Ensure config directories exists.
+- name: Ensure config directories exists
   file:
     path: '{{ root_path }}/{{ role_name }}'
     state: directory
 
-- name: Copy home-assistant files to config directory
+- name: Copy Home Assistant files to config directory
   copy:
     src: ../templates/
     dest: '{{ root_path }}/{{ role_name }}'

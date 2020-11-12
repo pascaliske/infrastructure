@@ -1,4 +1,4 @@
-- name: Ensure config directories exists.
+- name: Ensure config directories exists
   file:
     path: '{{ root_path }}/{{ role_name }}'
     state: directory

@@ -1,4 +1,4 @@
-- name: Ensure config directories exists.
+- name: Ensure config directories exists
   file:
     path: '{{ root_path }}/{{ item }}'
     state: directory
@@ -12,11 +12,11 @@
   vars:
     item: prometheus
   block:
-    - name: Copy prometheus config to config directory.
+    - name: Copy Prometheus config to config directory
       template:
         src: ../templates/{{ item }}/config.tpl
         dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
-    - name: Copy prometheus alert rules to config directory.
+    - name: Copy Prometheus alert rules to config directory
       template:
         src: ../templates/{{ item }}/alert.rules.tpl
         dest: '{{ root_path }}/{{ item }}/alert.rules'
@@ -25,7 +25,7 @@
   vars:
     item: alertmanager
   block:
-    - name: Copy alertmanager config to config directory.
+    - name: Copy Alertmanager config to config directory
       template:
         src: ../templates/{{ item }}/config.tpl
         dest: '{{ root_path }}/{{ item }}/config.yml'
@@ -34,7 +34,7 @@
   vars:
     item: grafana
   block:
-    - name: Provisioning Grafana.
+    - name: Copy Grafana Provisioning files to config directory
       copy:
         src: ../templates/{{ item }}/provisioning
         dest: '{{ root_path }}/{{ item }}'
@@ -43,7 +43,7 @@
   vars:
     item: unifi-exporter
   block:
-    - name: Copy unifi-exporter config to config directory.
+    - name: Copy UniFi Exporter config to config directory
       template:
         src: ../templates/{{ item }}/config.tpl
         dest: '{{ root_path }}/{{ item }}/config.yml'
