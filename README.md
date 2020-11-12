@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/network-controller/master?style=flat-square)](https://travis-ci.com/github/pascaliske/network-controller) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/network-controller?style=flat-square)](https://github.com/pascaliske/network-controller)
 
-This repository features a [docker-compose.yml](docker-compose.yml) file for the following services:
+This repository features a [docker-compose.yml](roles/common/templates/docker-compose.tpl) file for the following services:
 
 - [Prometheus](https://prometheus.io) for collecting service metrics
 - [UniFi Controller](https://www.ui.com/software/) for managing all UniFi network gear
@@ -20,19 +20,20 @@ It also includes the following maintenance containers:
 
 ## Requirements
 
+- [Ansible](https://www.ansible.com)
 - [Docker](https://docs.docker.com/install/) + [`docker-compose`](https://docs.docker.com/compose/install/)
 
 ## Install
 
 ```zsh
-# clone the repo
-git clone https://github.com/pascaliske/network-controller ~/network && cd ~/network
+# clone the repo to your local machine
+git clone https://github.com/pascaliske/network-controller
 
 # setup secret env variables
 cp .env{.example,} && editor .env
 
-# setup secrets file (for Home Assistant only)
-cp home-assistant/secrets.yaml{.example,} && editor home-assistant/secrets.yaml
+# provision target machine using ansible
+yarn run play playbooks/configure.yml
 
 # start up services
 docker-compose up --detach
