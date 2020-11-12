@@ -19,6 +19,10 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
+  - job_name: network/dockerhost
+    static_configs:
+      - targets: ['dockerhost:9323']
+
   - job_name: network/cloudflared
     static_configs:
       - targets: ['cloudflared:49312']
