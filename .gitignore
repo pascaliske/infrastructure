@@ -1,18 +1,7 @@
 # ignores
 .vagrant
-alertmanager/*
-grafana/*
-pihole/*
-portainer/*
-prometheus/*
-unifi/*
 *env*
 
 # exceptions
 !.env.example
 !*/.gitkeep
-!alertmanager/config.yml
-!grafana/provisioning
-!pihole/themes/dark.min.css
-!prometheus/alert.rules
-!prometheus/prometheus.yml
