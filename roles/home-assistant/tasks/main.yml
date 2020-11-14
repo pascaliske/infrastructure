@@ -5,5 +5,10 @@
 
 - name: Copy Home Assistant files to config directory
   copy:
-    src: ../templates/
+    src: ../files/
     dest: '{{ root_path }}/{{ role_name }}'
+
+- name: Copy Home Assistant secrets to config directory
+  template:
+    src: ../templates/secrets.tpl
+    dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
