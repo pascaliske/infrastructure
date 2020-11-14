@@ -1,5 +1,5 @@
-[submodule "roles/pihole/templates/themes/pi-hole-midnight"]
-	path = roles/pihole/templates/themes/pi-hole-midnight
+[submodule "roles/pihole/files/themes/pi-hole-midnight"]
+	path = roles/pihole/files/themes/pi-hole-midnight
 	url = https://github.com/jacobbates/pi-hole-midnight.git
 [submodule "roles/home-assistant/files/www/lovelace-card-mod"]
 	path = roles/home-assistant/files/www/lovelace-card-mod

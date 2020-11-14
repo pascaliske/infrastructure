@@ -2,3 +2,8 @@
   file:
     path: '{{ root_path }}/{{ role_name }}'
     state: directory
+
+- name: Copy Pihole files to config directory
+  copy:
+    src: ../files/
+    dest: '{{ root_path }}/{{ role_name }}'
