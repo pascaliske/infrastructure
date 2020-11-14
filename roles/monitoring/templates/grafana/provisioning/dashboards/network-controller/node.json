@@ -75,7 +75,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -192,7 +192,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -223,7 +223,7 @@
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 60,
+          "value": 65,
           "yaxis": "left"
         }
       ],
@@ -311,7 +311,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "targets": [
         {
           "expr": "node_time_seconds - node_boot_time_seconds",
@@ -370,7 +370,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "targets": [
         {
           "expr": "count without(cpu, mode) (node_cpu_seconds_total{mode=\"idle\"})",
@@ -431,7 +431,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "targets": [
         {
           "expr": "node_load1",
@@ -493,7 +493,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "targets": [
         {
           "expr": "node_load5",
@@ -555,7 +555,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "targets": [
         {
           "expr": "node_load15",
@@ -613,7 +613,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -695,9 +695,11 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "decimals": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "unit": "none"
         },
         "overrides": []
       },
@@ -712,15 +714,17 @@
       "hiddenSeries": false,
       "id": 10,
       "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
         "rightSide": false,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -729,7 +733,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -774,7 +778,8 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "decimals": null,
+          "format": "none",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -787,7 +792,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -850,7 +855,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -966,7 +971,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.1",
+      "pluginVersion": "7.3.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1046,5 +1051,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "ayJNJ1mRk",
-  "version": 8
+  "version": 9
 }
