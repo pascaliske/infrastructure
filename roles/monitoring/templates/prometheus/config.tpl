@@ -43,6 +43,8 @@ scrape_configs:
     metrics_path: /api/prometheus
     bearer_token: '{{ home_assistant_access_token }}'
     scheme: https
+    tls_config:
+      insecure_skip_verify: true
     static_configs:
       - targets: ['dockerhost:8123']
 
