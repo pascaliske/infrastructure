@@ -4,7 +4,7 @@ datasources:
   - type: prometheus
     name: Prometheus
     url: http://prometheus:9090
-    access: direct
+    access: proxy
     basicAuth: false
     isDefault: true
     editable: true
