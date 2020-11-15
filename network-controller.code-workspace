@@ -21,10 +21,6 @@
         {
             "path": "./roles/home-assistant",
             "name": "roles/home-assistant"
-        },
-        {
-            "path": "./roles/portainer",
-            "name": "roles/portainer"
         }
     ],
     "settings": {
