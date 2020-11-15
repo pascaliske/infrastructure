@@ -39,6 +39,12 @@ scrape_configs:
     static_configs:
       - targets: ['fritzbox-exporter:8765']
 
+  - job_name: network/speedtest
+    scrape_interval: 5m
+    scrape_timeout: 5m
+    static_configs:
+      - targets: ['speedtest-exporter:9112']
+
   - job_name: network/homeassistant
     metrics_path: /api/prometheus
     bearer_token: '{{ home_assistant_access_token }}'

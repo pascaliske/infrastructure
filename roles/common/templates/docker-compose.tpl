@@ -112,6 +112,12 @@ services:
       FRITZ_HOST: {{ router_ip }}
       FRITZ_USER: {{ fritzbox_user }}
       FRITZ_PASS: {{ fritzbox_password }}
+  speedtest-exporter:
+    image: shrunbr/speedtest-exporter-arm:latest
+    container_name: speedtest-exporter
+    restart: unless-stopped
+    expose:
+      - 9112
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle
