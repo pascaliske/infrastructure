@@ -81,7 +81,7 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
   unifi-exporter:
-    image: jessestuart/unifi_exporter:latest
+    image: golift/unifi-poller:latest
     container_name: unifi-exporter
     restart: unless-stopped
     depends_on:
@@ -89,8 +89,9 @@ services:
     expose:
       - 9130
     volumes:
-      - '{{ root_path }}/unifi-exporter/config.yml:/etc/unifi-exporter/config.yml:ro'
-    command: '-config.file=/etc/unifi-exporter/config.yml'
+      - '{{ root_path }}/unifi-exporter/unifi-poller.conf:/config/unifi-poller.conf'
+    extra_hosts:
+      - 'dockerhost:172.20.0.1'
   pihole-exporter:
     image: ekofr/pihole-exporter:0.0.10
     container_name: pihole-exporter

@@ -45,5 +45,5 @@
   block:
     - name: Copy UniFi Exporter config to config directory
       template:
-        src: ../templates/{{ item }}/config.tpl
-        dest: '{{ root_path }}/{{ item }}/config.yml'
+        src: ../templates/{{ item }}/unifi-poller.conf
+        dest: '{{ root_path }}/{{ item }}/unifi-poller.conf'
