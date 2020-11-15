@@ -1,0 +1,9 @@
+- name: Ensure root directory exists
+  file:
+    path: '{{ root_path }}'
+    state: directory
+
+- name: Create docker-compose file
+  template:
+    src: ../templates/docker-compose.tpl
+    dest: '{{ root_path }}/docker-compose.yml'

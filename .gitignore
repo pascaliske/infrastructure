@@ -1,32 +1,7 @@
 # ignores
-alertmanager/*
-grafana/*
-home-assistant/*
-pihole/*
-portainer/*
-prometheus/*
-unifi/*
+.vagrant
 *env*
-package.json
 
 # exceptions
 !.env.example
 !*/.gitkeep
-!alertmanager/config.yml
-!grafana/provisioning
-!home-assistant/configuration.yaml
-!home-assistant/customize.yaml
-!home-assistant/secrets.yaml.example
-!home-assistant/ui-lovelace.yaml
-!home-assistant/automations
-!home-assistant/groups
-!home-assistant/integrations
-!home-assistant/scenes
-!home-assistant/scripts
-!home-assistant/sensors
-!home-assistant/switches
-!home-assistant/themes
-!home-assistant/views
-!pihole/themes/dark.min.css
-!prometheus/alert.rules
-!prometheus/prometheus.yml

@@ -1,0 +1,49 @@
+- name: Ensure config directories exists
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - prometheus
+    - alertmanager
+    - grafana
+    - unifi-exporter
+
+- name: Configure Prometheus
+  vars:
+    item: prometheus
+  block:
+    - name: Copy Prometheus config to config directory
+      template:
+        src: ../templates/{{ item }}/config.tpl
+        dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
+    - name: Copy Prometheus alert rules to config directory
+      template:
+        src: ../templates/{{ item }}/alert.rules.tpl
+        dest: '{{ root_path }}/{{ item }}/alert.rules'
+
+- name: Configure Alertmanager
+  vars:
+    item: alertmanager
+  block:
+    - name: Copy Alertmanager config to config directory
+      template:
+        src: ../templates/{{ item }}/config.tpl
+        dest: '{{ root_path }}/{{ item }}/config.yml'
+
+- name: Configure Grafana
+  vars:
+    item: grafana
+  block:
+    - name: Copy Grafana Provisioning files to config directory
+      copy:
+        src: ../templates/{{ item }}/provisioning
+        dest: '{{ root_path }}/{{ item }}'
+
+- name: Configure UniFi Exporter
+  vars:
+    item: unifi-exporter
+  block:
+    - name: Copy UniFi Exporter config to config directory
+      template:
+        src: ../templates/{{ item }}/config.tpl
+        dest: '{{ root_path }}/{{ item }}/config.yml'

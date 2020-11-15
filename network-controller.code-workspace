@@ -4,25 +4,23 @@
             "path": "."
         },
         {
-            "path": "./alertmanager"
+            "path": "./playbooks"
         },
         {
-            "path": "./grafana"
+            "path": "./roles/common",
+            "name": "roles/common"
         },
         {
-            "path": "./home-assistant"
+            "path": "./roles/monitoring",
+            "name": "roles/monitoring"
         },
         {
-            "path": "./pihole"
+            "path": "./roles/pihole",
+            "name": "roles/pihole"
         },
         {
-            "path": "./portainer"
-        },
-        {
-            "path": "./prometheus"
-        },
-        {
-            "path": "./unifi"
+            "path": "./roles/home-assistant",
+            "name": "roles/home-assistant"
         }
     ],
     "settings": {
@@ -35,6 +33,7 @@
             "unifi"
         ],
         "files.associations": {
+            "*.tpl": "yaml",
             "*.yaml": "home-assistant",
             "*.yaml.disabled": "home-assistant",
             "*.yaml.example": "home-assistant"

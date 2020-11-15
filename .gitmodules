@@ -1,21 +1,21 @@
-[submodule "pihole/themes/pi-hole-midnight"]
-	path = pihole/themes/pi-hole-midnight
+[submodule "roles/pihole/files/themes/pi-hole-midnight"]
+	path = roles/pihole/files/themes/pi-hole-midnight
 	url = https://github.com/jacobbates/pi-hole-midnight.git
-[submodule "home-assistant/www/lovelace-card-mod"]
-	path = home-assistant/www/lovelace-card-mod
+[submodule "roles/home-assistant/files/www/lovelace-card-mod"]
+	path = roles/home-assistant/files/www/lovelace-card-mod
 	url = https://github.com/thomasloven/lovelace-card-mod
-[submodule "home-assistant/www/lovelace-battery-entity"]
-	path = home-assistant/www/lovelace-battery-entity
+[submodule "roles/home-assistant/files/www/lovelace-battery-entity"]
+	path = roles/home-assistant/files/www/lovelace-battery-entity
 	url = https://github.com/cbulock/lovelace-battery-entity.git
-[submodule "home-assistant/www/lovelace-slider-entity-row"]
-	path = home-assistant/www/lovelace-slider-entity-row
+[submodule "roles/home-assistant/files/www/lovelace-slider-entity-row"]
+	path = roles/home-assistant/files/www/lovelace-slider-entity-row
 	url = https://github.com/thomasloven/lovelace-slider-entity-row
-[submodule "home-assistant/www/mini-graph-card"]
-	path = home-assistant/www/mini-graph-card
+[submodule "roles/home-assistant/files/www/mini-graph-card"]
+	path = roles/home-assistant/files/www/mini-graph-card
 	url = https://github.com/kalkih/mini-graph-card
-[submodule "home-assistant/www/multiple-entity-row"]
-	path = home-assistant/www/multiple-entity-row
+[submodule "roles/home-assistant/files/www/multiple-entity-row"]
+	path = roles/home-assistant/files/www/multiple-entity-row
 	url = https://github.com/benct/lovelace-multiple-entity-row
-[submodule "home-assistant/www/lovelace-github-entity-row"]
-	path = home-assistant/www/lovelace-github-entity-row
+[submodule "roles/home-assistant/files/www/lovelace-github-entity-row"]
+	path = roles/home-assistant/files/www/lovelace-github-entity-row
 	url = https://github.com/benct/lovelace-github-entity-row
