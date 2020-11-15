@@ -134,7 +134,7 @@ services:
       - '8000:8000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - '{{ root_path }}/portainer:/data'
+      - portainer:/data
   unifi:
     image: ryansch/unifi-rpi:latest
     container_name: unifi
@@ -220,3 +220,4 @@ networks:
 volumes:
   prometheus:
   grafana:
+  portainer:
