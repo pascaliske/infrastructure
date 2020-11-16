@@ -217,7 +217,10 @@ services:
     environment:
       TZ: {{ timezone }}
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - '{{ root_path }}/home-assistant:/config'
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
 networks:
   default:
     ipam:
