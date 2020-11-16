@@ -5,6 +5,8 @@ homekit:
       - light
       - switch
       - media_player
+    include_entity_globs:
+      - sensor.*_lumi_weather
   entity_config:
     media_player.spotify_pascal_iske:
       feature_list:
