@@ -90,6 +90,23 @@ cards:
             entities:
               - entity: switch.licht
               - entity: switch.love
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Temperature
+                graph: line
+                hours_to_show: 48
+                entity: sensor.lumi_lumi_weather_temperature
+              - type: sensor
+                name: Humidity
+                graph: line
+                hours_to_show: 48
+                entity: sensor.lumi_lumi_weather_humidity
+              - type: sensor
+                name: Pressure
+                graph: line
+                hours_to_show: 48
+                entity: sensor.lumi_lumi_weather_pressure
           - type: entity-filter
             show_empty: false
             state_filter:
