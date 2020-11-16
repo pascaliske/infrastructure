@@ -406,7 +406,7 @@
               }
             ]
           },
-          "unit": "percentunit"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -424,7 +424,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
@@ -434,7 +434,7 @@
       "pluginVersion": "7.3.2",
       "targets": [
         {
-          "expr": "node_load1",
+          "expr": "sum(node_load1) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "",
@@ -468,7 +468,7 @@
               }
             ]
           },
-          "unit": "percentunit"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -486,7 +486,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
@@ -496,7 +496,7 @@
       "pluginVersion": "7.3.2",
       "targets": [
         {
-          "expr": "node_load5",
+          "expr": "sum(node_load5) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "",
@@ -530,7 +530,7 @@
               }
             ]
           },
-          "unit": "percentunit"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -548,7 +548,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
@@ -558,7 +558,7 @@
       "pluginVersion": "7.3.2",
       "targets": [
         {
-          "expr": "node_load15",
+          "expr": "sum(node_load15) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "",
@@ -1051,5 +1051,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "ayJNJ1mRk",
-  "version": 9
+  "version": 13
 }
