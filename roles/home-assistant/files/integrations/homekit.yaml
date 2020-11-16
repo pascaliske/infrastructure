@@ -6,7 +6,11 @@ homekit:
       - switch
       - media_player
     include_entity_globs:
-      - sensor.*_lumi_weather
+      - sensor.*_lumi_weather_*
+      - binary_sensor.*_lumi_sensor_magnet_*
+    exclude_entities:
+      - switch.network_controller
+      - switch.pi_hole_2
   entity_config:
     media_player.spotify_pascal_iske:
       feature_list:
