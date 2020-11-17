@@ -23,6 +23,7 @@
     repo: 'https://github.com/{{ item.user }}/{{ item.repo }}.git'
     version: master
     dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}'
+    force: yes
   loop:
     - { user: 'benct', repo: 'lovelace-github-entity-row' }
     - { user: 'benct', repo: 'lovelace-multiple-entity-row' }
