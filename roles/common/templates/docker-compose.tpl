@@ -1,5 +1,6 @@
 version: '3.7'
 services:
+  # maintenance
   watchtower:
     image: containrrr/watchtower:latest
     container_name: watchtower
@@ -15,6 +16,31 @@ services:
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    restart: always
+    depends_on:
+      - pihole
+    ports:
+      - 9001:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    depends_on:
+      - pihole
+    command: -H unix:///var/run/docker.sock --no-analytics --ssl --sslcert /data/fullchain.pem --sslkey /data/privkey.pem
+    ports:
+      - '9000:9000'
+      - '8000:8000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer:/data
+
+  # monitoring
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -119,29 +145,8 @@ services:
     restart: unless-stopped
     expose:
       - 9112
-  dozzle:
-    image: amir20/dozzle:latest
-    container_name: dozzle
-    restart: always
-    depends_on:
-      - pihole
-    ports:
-      - 9001:8080
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    restart: unless-stopped
-    depends_on:
-      - pihole
-    command: -H unix:///var/run/docker.sock --no-analytics --ssl --sslcert /data/fullchain.pem --sslkey /data/privkey.pem
-    ports:
-      - '9000:9000'
-      - '8000:8000'
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer:/data
+
+  # services
   unifi:
     image: ryansch/unifi-rpi:latest
     container_name: unifi
