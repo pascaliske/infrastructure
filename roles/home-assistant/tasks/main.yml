@@ -1,4 +1,4 @@
-- name: Ensure config directories exists
+- name: Ensure config directory exists
   file:
     path: '{{ root_path }}/{{ role_name }}'
     state: directory
@@ -12,3 +12,36 @@
   template:
     src: ../templates/secrets.tpl
     dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
+
+- name: Ensure plugin directory exists
+  file:
+    path: '{{ root_path }}/{{ role_name }}/www'
+    state: directory
+
+- name: Clone plugins into plugin directory
+  git:
+    repo: 'https://github.com/{{ item.user }}/{{ item.repo }}.git'
+    version: master
+    dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}'
+  loop:
+    - { user: 'benct', repo: 'lovelace-github-entity-row' }
+    - { user: 'benct', repo: 'lovelace-multiple-entity-row' }
+    - { user: 'cbulock', repo: 'lovelace-battery-entity' }
+    - { user: 'thomasloven', repo: 'lovelace-card-mod' }
+    - { user: 'thomasloven', repo: 'lovelace-slider-entity-row' }
+
+- name: Download plugins into plugin directory
+  vars:
+    plugins:
+      - { folder: 'mini-graph-card', url: 'https://github.com/kalkih/mini-graph-card/releases/latest/download/mini-graph-card-bundle.js' }
+  block:
+    - name: Ensure plugin folders exist
+      file:
+        path: '{{ root_path }}/{{ role_name }}/www/{{ item.folder }}'
+        state: directory
+      loop: '{{ plugins }}'
+    - name: Download plugins into plugin directory
+      get_url:
+        url: '{{ item.url }}'
+        dest: '{{ root_path }}/{{ role_name }}/www/{{ item.folder }}/'
+      loop: '{{ plugins }}'

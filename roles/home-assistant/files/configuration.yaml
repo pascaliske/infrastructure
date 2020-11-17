@@ -12,15 +12,15 @@ homeassistant:
 lovelace:
   mode: yaml
   resources:
-    - url: /local/lovelace-card-mod/card-mod.js?v=1
+    - url: /local/lovelace-github-entity-row/github-entity-row.js?v=1
+      type: module
+    - url: /local/lovelace-multiple-entity-row/multiple-entity-row.js?v=3.4.0
       type: module
     - url: /local/lovelace-battery-entity/battery-entity.js?v=1
       type: module
-    - url: /local/lovelace-slider-entity-row/slider-entity-row.js?v=1
-      type: module
-    - url: /local/lovelace-github-entity-row/github-entity-row.js?v=1
-      type: module
     - url: /local/mini-graph-card/dist/mini-graph-card-bundle.js?v=1
       type: module
-    - url: /local/multiple-entity-row/multiple-entity-row.js?v=3.4.0
+    - url: /local/lovelace-card-mod/card-mod.js?v=1
+      type: module
+    - url: /local/lovelace-slider-entity-row/slider-entity-row.js?v=1
       type: module
