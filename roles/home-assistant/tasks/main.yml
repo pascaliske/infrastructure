@@ -4,7 +4,7 @@
     state: directory
 
 - name: Copy Home Assistant files to config directory
-  copy:
+  synchronize:
     src: ../files/
     dest: '{{ root_path }}/{{ role_name }}'
 

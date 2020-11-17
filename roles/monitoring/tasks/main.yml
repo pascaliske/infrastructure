@@ -35,7 +35,7 @@
     item: grafana
   block:
     - name: Copy Grafana Provisioning files to config directory
-      copy:
+      synchronize:
         src: ../templates/{{ item }}/provisioning
         dest: '{{ root_path }}/{{ item }}'
 
