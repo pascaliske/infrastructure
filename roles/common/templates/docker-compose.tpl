@@ -190,7 +190,6 @@ services:
     volumes:
       - '{{ root_path }}/pihole/etc-pihole/:/etc/pihole/'
       - '{{ root_path }}/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
-      - '{{ root_path }}/pihole/themes/pi-hole-midnight/skin-blue.min.css:/var/www/html/admin/style/vendor/skin-blue.min.css'
     dns:
       - 127.0.0.1
       - 1.1.1.1
