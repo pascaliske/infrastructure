@@ -38,6 +38,7 @@
       synchronize:
         src: ../templates/{{ item }}/provisioning
         dest: '{{ root_path }}/{{ item }}'
+        delete: yes
 
 - name: Configure UniFi Exporter
   vars:
