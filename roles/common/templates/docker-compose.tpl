@@ -127,7 +127,7 @@ services:
     expose:
       - 9617
     environment:
-      PIHOLE_HOSTNAME: {{ controller_ip }}
+      PIHOLE_HOSTNAME: pihole
       PIHOLE_PASSWORD: {{ pi_hole_password }}
   fritzbox-exporter:
     image: sealife/fritzbox-exporter:latest
