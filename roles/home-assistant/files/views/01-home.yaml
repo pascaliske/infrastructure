@@ -149,43 +149,6 @@ cards:
           - type: horizontal-stack
             cards:
               - type: sensor
-                name: Download
-                graph: line
-                icon: mdi:speedometer
-                hours_to_show: 48
-                entity: sensor.speedtest_download
-              - type: sensor
-                name: Upload
-                graph: line
-                icon: mdi:speedometer
-                hours_to_show: 48
-                entity: sensor.speedtest_upload
-              - type: sensor
-                name: Ping
-                graph: line
-                icon: mdi:timer-outline
-                hours_to_show: 48
-                entity: sensor.speedtest_ping
-          - type: horizontal-stack
-            cards:
-              - type: sensor
-                name: Processor
-                graph: line
-                icon: mdi:memory
-                entity: sensor.processor_use
-              - type: sensor
-                name: Memory
-                graph: line
-                icon: mdi:memory
-                entity: sensor.memory_use_percent
-              - type: sensor
-                name: Temperature
-                graph: line
-                icon: mdi:thermometer
-                entity: sensor.cpu_temperature
-          - type: horizontal-stack
-            cards:
-              - type: sensor
                 name: Disk
                 graph: line
                 icon: mdi:harddisk
