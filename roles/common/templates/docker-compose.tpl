@@ -119,7 +119,7 @@ services:
     extra_hosts:
       - 'dockerhost:172.20.0.1'
   pihole-exporter:
-    image: ekofr/pihole-exporter:arm
+    image: ekofr/pihole-exporter:0.0.10
     container_name: pihole-exporter
     restart: unless-stopped
     depends_on:
