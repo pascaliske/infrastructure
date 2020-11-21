@@ -19,6 +19,82 @@
   "links": [],
   "panels": [
     {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dtdurations"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.3.3",
+      "targets": [
+        {
+          "expr": "fritzbox_ppp_connection_uptime",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 14,
+      "panels": [],
+      "title": "Speed Test",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -48,10 +124,10 @@
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 19,
         "x": 0,
-        "y": 0
+        "y": 5
       },
       "hiddenSeries": false,
       "id": 2,
@@ -71,7 +147,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.3.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -151,10 +227,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 5,
         "x": 19,
-        "y": 0
+        "y": 5
       },
       "id": 10,
       "options": {
@@ -171,7 +247,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.3.3",
       "targets": [
         {
           "expr": "speedtest_download",
@@ -217,10 +293,10 @@
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 19,
         "x": 0,
-        "y": 8
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 6,
@@ -240,7 +316,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.3.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -325,10 +401,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 5,
         "x": 19,
-        "y": 8
+        "y": 12
       },
       "id": 11,
       "options": {
@@ -345,7 +421,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.3.3",
       "targets": [
         {
           "expr": "speedtest_upload",
@@ -391,10 +467,10 @@
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 19,
         "x": 0,
-        "y": 16
+        "y": 19
       },
       "hiddenSeries": false,
       "id": 8,
@@ -414,7 +490,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.3.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -500,10 +576,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 5,
         "x": 19,
-        "y": 16
+        "y": 19
       },
       "id": 12,
       "options": {
@@ -520,7 +596,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.2",
+      "pluginVersion": "7.3.3",
       "targets": [
         {
           "expr": "speedtest_ping",
@@ -552,5 +628,5 @@
   "timezone": "",
   "title": "Internet",
   "uid": "aNaybNWRk",
-  "version": 8
+  "version": 12
 }
