@@ -68,6 +68,7 @@ services:
     expose:
       - 9093
     volumes:
+      - alertmanager:/alertmanager
       - '{{ root_path }}/alertmanager:/etc/alertmanager'
     command:
       - '--config.file=/etc/alertmanager/config.yml'
@@ -239,5 +240,6 @@ networks:
           gateway: 172.20.0.1
 volumes:
   prometheus:
+  alertmanager:
   grafana:
   portainer:
