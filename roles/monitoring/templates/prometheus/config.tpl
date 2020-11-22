@@ -24,6 +24,10 @@ scrape_configs:
     static_configs:
       - targets: ['dockerhost:9323']
 
+  - job_name: network/docker
+    static_configs:
+      - targets: ['cadvisor:8080']
+
   - job_name: network/cloudflared
     static_configs:
       - targets: ['cloudflared:49312']
