@@ -63,6 +63,8 @@ services:
     image: prom/alertmanager:latest
     container_name: alertmanager
     restart: unless-stopped
+    depends_on:
+      - prometheus
     expose:
       - 9093
     volumes:
@@ -74,12 +76,16 @@ services:
     image: prom/pushgateway:latest
     container_name: pushgateway
     restart: unless-stopped
+    depends_on:
+      - prometheus
     expose:
       - 9091
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
     restart: unless-stopped
+    depends_on:
+      - prometheus
     ports:
       - '3000:3000'
     environment:
