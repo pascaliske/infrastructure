@@ -10,7 +10,8 @@ homekit:
       - binary_sensor.*_lumi_sensor_magnet_*
     exclude_entities:
       - switch.network_controller
-      - switch.pi_hole_2
+    exclude_entity_globs:
+      - switch.pi_hole_*
   entity_config:
     media_player.spotify_pascal_iske:
       feature_list:
