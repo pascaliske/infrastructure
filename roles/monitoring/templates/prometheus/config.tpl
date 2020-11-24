@@ -11,11 +11,6 @@ scrape_configs:
     static_configs:
       - targets: ['prometheus:9090']
 
-  - job_name: pushgateway
-    honor_labels: true
-    static_configs:
-      - targets: ['pushgateway:9091']
-
   - job_name: network/node
     static_configs:
       - targets: ['node-exporter:9100']

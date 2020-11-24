@@ -73,14 +73,6 @@ services:
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
-  pushgateway:
-    image: prom/pushgateway:latest
-    container_name: pushgateway
-    restart: unless-stopped
-    depends_on:
-      - prometheus
-    expose:
-      - 9091
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
