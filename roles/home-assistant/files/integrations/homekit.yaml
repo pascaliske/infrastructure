@@ -6,8 +6,8 @@ homekit:
       - switch
       - media_player
     include_entity_globs:
-      - sensor.*_lumi_weather_*
-      - binary_sensor.*_lumi_sensor_magnet_*
+      - sensor.*_lumi_*
+      - binary_sensor.*_lumi_*
     exclude_entities:
       - switch.network_controller
     exclude_entity_globs:

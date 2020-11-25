@@ -1,0 +1,22 @@
+title: Living Room
+path: livingroom
+icon: mdi:sofa
+theme: Google - Dark
+panel: true
+badges: []
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Lights
+            state_color: true
+            show_header_toggle: true
+            entities:
+              - entity: switch.kugel
+                secondary_info: last-changed
+              - entity: switch.lampe
+                secondary_info: last-changed
+              - entity: switch.duftlampe
+                secondary_info: last-changed

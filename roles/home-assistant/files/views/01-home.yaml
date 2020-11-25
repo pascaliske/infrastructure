@@ -37,37 +37,40 @@ cards:
       - type: vertical-stack
         cards:
           - type: entities
-            title: Living Room
-            state_color: true
-            show_header_toggle: true
+            title: Entrance
+            state_color: false
+            show_header_toggle: false
             entities:
-              - entity: switch.kugel
-              - entity: switch.lampe
-              - entity: switch.duftlampe
+              - entity: binary_sensor.entrance_lumi_magnet_on_off
+                secondary_info: last-changed
+                icon: 'mdi:door'
+                name: Door
+              - entity: sensor.entrance_lumi_magnet_power
+                secondary_info: last-changed
+                name: Battery
           - type: entities
             title: Bedroom
             state_color: true
             show_header_toggle: true
             entities:
-              - entity: switch.licht
-              - entity: switch.love
-          - type: horizontal-stack
-            cards:
-              - type: sensor
+              - entity: sensor.bed_room_lumi_temperature
+                secondary_info: last-changed
                 name: Temperature
-                graph: line
-                hours_to_show: 48
-                entity: sensor.lumi_lumi_weather_temperature
-              - type: sensor
-                name: Humidity
-                graph: line
-                hours_to_show: 48
-                entity: sensor.lumi_lumi_weather_humidity
-              - type: sensor
-                name: Pressure
-                graph: line
-                hours_to_show: 48
-                entity: sensor.lumi_lumi_weather_pressure
+              - entity: switch.licht
+                secondary_info: last-changed
+              - entity: switch.love
+                secondary_info: last-changed
+          - type: entities
+            title: Living Room
+            state_color: true
+            show_header_toggle: true
+            entities:
+              - entity: switch.kugel
+                secondary_info: last-changed
+              - entity: switch.lampe
+                secondary_info: last-changed
+              - entity: switch.duftlampe
+                secondary_info: last-changed
           - type: entity-filter
             show_empty: false
             state_filter:
@@ -83,34 +86,3 @@ cards:
               - entity: sensor.epson_et_2750_series_cyan_ink
               - entity: sensor.epson_et_2750_series_magenta_ink
               - entity: sensor.epson_et_2750_series_yellow_ink
-      - type: vertical-stack
-        cards:
-          - type: sensor
-            name: Public IP
-            graph: none
-            icon: mdi:web
-            entity: sensor.fritzbox_public_ip
-          - type: horizontal-stack
-            cards:
-              - type: sensor
-                name: Downstream
-                graph: none
-                icon: mdi:arrow-down
-                entity: sensor.fritzbox_downstream_percentage
-              - type: sensor
-                name: Upstream
-                graph: none
-                icon: mdi:arrow-up
-                entity: sensor.fritzbox_upstream_percentage
-              - type: sensor
-                name: Uptime
-                graph: none
-                icon: mdi:clock-outline
-                entity: sensor.fritzbox_uptime
-          - type: horizontal-stack
-            cards:
-              - type: sensor
-                name: Last Boot
-                graph: none
-                icon: mdi:clock-outline
-                entity: sensor.relative_last_boot
