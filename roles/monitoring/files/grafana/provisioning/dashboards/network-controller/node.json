@@ -64,7 +64,7 @@
         "max": true,
         "min": true,
         "rightSide": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": true
       },
@@ -85,7 +85,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{job=\"network/node\",mode=\"idle\"}[10m])) * 100)",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{job=\"network/node\",mode=\"idle\"}[5m])) * 100)",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Average CPU Usage",
@@ -181,7 +181,7 @@
         "current": true,
         "max": true,
         "min": true,
-        "show": true,
+        "show": false,
         "total": false,
         "values": true
       },
@@ -602,7 +602,7 @@
         "hideEmpty": false,
         "max": true,
         "min": true,
-        "show": true,
+        "show": false,
         "total": false,
         "values": true
       },
@@ -722,13 +722,13 @@
         "max": true,
         "min": true,
         "rightSide": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": true
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "alertThreshold": true
       },
@@ -745,7 +745,7 @@
         {
           "expr": "node_procs_running",
           "interval": "",
-          "intervalFactor": 3,
+          "intervalFactor": 1,
           "legendFormat": "running",
           "refId": "A"
         },
@@ -947,7 +947,7 @@
       "fieldConfig": {
         "defaults": {
           "custom": {},
-          "unit": "Bps"
+          "unit": "bps"
         },
         "overrides": []
       },
@@ -972,7 +972,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "alertThreshold": true
       },
@@ -987,13 +987,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[1m])",
+          "expr": "rate(node_network_receive_bytes_total{device!=\"lo\"}[1m]) * 8",
           "interval": "",
           "legendFormat": "{{ device }}-in",
           "refId": "A"
         },
         {
-          "expr": "irate(node_network_transmit_bytes_total{device!=\"lo\"}[1m])",
+          "expr": "rate(node_network_transmit_bytes_total{device!=\"lo\"}[1m]) * 8",
           "interval": "",
           "legendFormat": "{{ device }}-out",
           "refId": "B"
@@ -1020,7 +1020,7 @@
       },
       "yaxes": [
         {
-          "format": "Bps",
+          "format": "bps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1057,5 +1057,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "ayJNJ1mRk",
-  "version": 25
+  "version": 31
 }

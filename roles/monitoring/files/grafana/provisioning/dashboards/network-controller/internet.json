@@ -19,6 +19,20 @@
   "links": [],
   "panels": [
     {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 21,
+      "panels": [],
+      "title": "General",
+      "type": "row"
+    },
+    {
       "datasource": null,
       "fieldConfig": {
         "defaults": {
@@ -44,10 +58,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 8,
-        "x": 16,
-        "y": 0
+        "h": 2,
+        "w": 9,
+        "x": 15,
+        "y": 1
       },
       "id": 16,
       "options": {
@@ -64,7 +78,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "fritzbox_ppp_connection_uptime",
@@ -87,7 +101,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 4
+        "y": 3
       },
       "id": 14,
       "panels": [],
@@ -127,7 +141,7 @@
         "h": 7,
         "w": 19,
         "x": 0,
-        "y": 5
+        "y": 4
       },
       "hiddenSeries": false,
       "id": 2,
@@ -147,7 +161,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -227,10 +241,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 4,
         "w": 5,
         "x": 19,
-        "y": 5
+        "y": 4
       },
       "id": 10,
       "options": {
@@ -247,10 +261,70 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.3.4",
+      "targets": [
+        {
+          "expr": "avg_over_time(speedtest_download[$__range])",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Average Download",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Mbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 8
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "speedtest_download",
+          "hide": false,
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -296,7 +370,7 @@
         "h": 7,
         "w": 19,
         "x": 0,
-        "y": 12
+        "y": 11
       },
       "hiddenSeries": false,
       "id": 6,
@@ -316,7 +390,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -391,7 +465,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "yellow",
                 "value": null
               }
             ]
@@ -401,10 +475,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 4,
         "w": 5,
         "x": 19,
-        "y": 12
+        "y": 11
       },
       "id": 11,
       "options": {
@@ -421,7 +495,65 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.3.4",
+      "targets": [
+        {
+          "expr": "avg_over_time(speedtest_upload[$__range])",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Average Upload",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Mbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 15
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "speedtest_upload",
@@ -433,7 +565,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Current Download",
+      "title": "Current Upload",
       "transparent": true,
       "type": "stat"
     },
@@ -470,7 +602,7 @@
         "h": 7,
         "w": 19,
         "x": 0,
-        "y": 19
+        "y": 18
       },
       "hiddenSeries": false,
       "id": 8,
@@ -490,7 +622,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -566,7 +698,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
               }
             ]
@@ -576,10 +708,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 4,
         "w": 5,
         "x": 19,
-        "y": 19
+        "y": 18
       },
       "id": 12,
       "options": {
@@ -596,7 +728,65 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.3.4",
+      "targets": [
+        {
+          "expr": "avg_over_time(speedtest_ping[$__range])",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Average Ping",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 22
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "speedtest_ping",
@@ -628,5 +818,5 @@
   "timezone": "",
   "title": "Internet",
   "uid": "aNaybNWRk",
-  "version": 12
+  "version": 26
 }

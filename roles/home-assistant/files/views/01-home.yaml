@@ -36,35 +36,67 @@ cards:
                 entity: sensor.withings_weight_kg_sarah_iske_2
       - type: vertical-stack
         cards:
-          - type: entities
-            title: Entrance
-            state_color: false
-            show_header_toggle: false
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Entrance
+              state_color: false
+              show_header_toggle: false
             entities:
               - entity: binary_sensor.entrance_lumi_magnet_on_off
                 secondary_info: last-changed
-                icon: 'mdi:door'
+                icon: mdi:door
                 name: Door
               - entity: sensor.entrance_lumi_magnet_power
                 secondary_info: last-changed
                 name: Battery
-          - type: entities
-            title: Bedroom
-            state_color: true
-            show_header_toggle: true
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Bedroom
+              state_color: true
+              show_header_toggle: true
             entities:
               - entity: sensor.bed_room_lumi_temperature
                 secondary_info: last-changed
                 name: Temperature
+              - entity: sensor.bed_room_lumi_humidity
+                secondary_info: last-changed
+                name: Humidity
+              - entity: sensor.bed_room_lumi_power
+                secondary_info: last-changed
+                name: Battery
               - entity: switch.licht
                 secondary_info: last-changed
               - entity: switch.love
                 secondary_info: last-changed
-          - type: entities
-            title: Living Room
-            state_color: true
-            show_header_toggle: true
+      - type: vertical-stack
+        cards:
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Living Room
+              state_color: true
+              show_header_toggle: true
             entities:
+              - entity: sensor.living_room_lumi_temperature
+                secondary_info: last-changed
+                name: Temperature
+              - entity: sensor.living_room_lumi_humidity
+                secondary_info: last-changed
+                name: Humidity
+              - entity: sensor.living_room_lumi_power
+                secondary_info: last-changed
+                name: Battery
               - entity: switch.kugel
                 secondary_info: last-changed
               - entity: switch.lampe
@@ -77,12 +109,16 @@ cards:
               - operator: '!='
                 value: 'unavailable'
             card:
-              title: Printer
-              icon: mdi:printer
-              show_header_toggle: false
+              title: Child
+              state_color: true
+              show_header_toggle: true
             entities:
-              - entity: sensor.epson_et_2750_series
-              - entity: sensor.epson_et_2750_series_black_ink
-              - entity: sensor.epson_et_2750_series_cyan_ink
-              - entity: sensor.epson_et_2750_series_magenta_ink
-              - entity: sensor.epson_et_2750_series_yellow_ink
+              - entity: sensor.child_lumi_temperature
+                secondary_info: last-changed
+                name: Temperature
+              - entity: sensor.child_lumi_humidity
+                secondary_info: last-changed
+                name: Humidity
+              - entity: sensor.child_lumi_power
+                secondary_info: last-changed
+                name: Battery

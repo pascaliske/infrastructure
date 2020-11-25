@@ -38,6 +38,21 @@ cards:
                 graph: none
                 icon: mdi:clock-outline
                 entity: sensor.fritzbox_uptime
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Printer
+              icon: mdi:printer
+              show_header_toggle: false
+            entities:
+              - entity: sensor.epson_et_2750_series
+              - entity: sensor.epson_et_2750_series_black_ink
+              - entity: sensor.epson_et_2750_series_cyan_ink
+              - entity: sensor.epson_et_2750_series_magenta_ink
+              - entity: sensor.epson_et_2750_series_yellow_ink
       - type: vertical-stack
         cards:
           - type: entities
