@@ -1,9 +1,22 @@
 language: minimal
 services:
   - docker
-before_install:
-  - cp roles/home-assistant/{templates/secrets.tpl,files/secrets.yaml}
-  - mv roles/home-assistant/files/integrations/http.yaml{,.disabled}
-  - mv roles/home-assistant/files/integrations/withings.yaml{,.disabled}
-script:
-  - docker run -v $(pwd)/roles/home-assistant/files:/config homeassistant/home-assistant:stable hass --script check_config --config /config
+
+jobs:
+  include:
+    # check prometheus config
+    - stage: prometheus
+      before_install:
+        - cp roles/monitoring/{templates/prometheus/alert.rules.tpl,files/alert.rules}
+        - cp roles/monitoring/{templates/prometheus/config.tpl,files/prometheus.yml}
+      script:
+        - docker run -v $(pwd)/roles/monitoring/files:/tmp dnanexus/promtool:2.9.2 check config /tmp/prometheus.yml
+
+    # check home-assistant config
+    - stage: home-assistant
+      before_install:
+        - cp roles/home-assistant/{templates/secrets.tpl,files/secrets.yaml}
+        - mv roles/home-assistant/files/integrations/http.yaml{,.disabled}
+        - mv roles/home-assistant/files/integrations/withings.yaml{,.disabled}
+      script:
+        - docker run -v $(pwd)/roles/home-assistant/files:/config homeassistant/home-assistant:stable hass --script check_config --config /config
