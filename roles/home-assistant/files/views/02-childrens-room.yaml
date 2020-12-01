@@ -1,0 +1,32 @@
+title: Children's Room
+path: childrens-room
+icon: mdi:baby-face
+theme: Google - Dark
+panel: true
+badges: []
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Climate
+            state_color: false
+            show_header_toggle: false
+            entities:
+              - entity: sensor.childrens_room_lumi_temperature
+                secondary_info: last-changed
+                name: Temperature
+              - entity: sensor.childrens_room_lumi_humidity
+                secondary_info: last-changed
+                name: Humidity
+              - entity: sensor.childrens_room_lumi_pressure
+                secondary_info: last-changed
+                name: Pressure
+              - entity: sensor.childrens_room_lumi_power
+                secondary_info: last-changed
+                name: Battery
+            footer:
+              type: graph
+              entity: sensor.childrens_room_lumi_temperature
+              hours_to_show: 48

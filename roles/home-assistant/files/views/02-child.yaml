@@ -1,9 +1,0 @@
-title: Children's Room
-path: child
-icon: mdi:baby-face
-theme: Google - Dark
-panel: true
-badges: []
-cards:
-  - type: horizontal-stack
-    cards: []

@@ -113,12 +113,12 @@ cards:
               state_color: true
               show_header_toggle: true
             entities:
-              - entity: sensor.child_lumi_temperature
+              - entity: sensor.childrens_room_lumi_temperature
                 secondary_info: last-changed
                 name: Temperature
-              - entity: sensor.child_lumi_humidity
+              - entity: sensor.childrens_room_lumi_humidity
                 secondary_info: last-changed
                 name: Humidity
-              - entity: sensor.child_lumi_power
+              - entity: sensor.childrens_room_lumi_power
                 secondary_info: last-changed
                 name: Battery
