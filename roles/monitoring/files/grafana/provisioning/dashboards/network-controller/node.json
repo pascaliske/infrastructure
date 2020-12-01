@@ -133,7 +133,7 @@
           "format": "percent",
           "label": "",
           "logBase": 1,
-          "max": null,
+          "max": "100",
           "min": null,
           "show": true
         },
@@ -745,14 +745,14 @@
         {
           "expr": "node_procs_running",
           "interval": "",
-          "intervalFactor": 1,
+          "intervalFactor": 3,
           "legendFormat": "running",
           "refId": "A"
         },
         {
           "expr": "node_procs_blocked",
           "interval": "",
-          "intervalFactor": 1,
+          "intervalFactor": 3,
           "legendFormat": "blocked by I/O",
           "refId": "B"
         }
@@ -839,14 +839,14 @@
       "hiddenSeries": false,
       "id": 6,
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -859,21 +859,33 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "Swap Usage",
+          "yaxis": 2,
+          "zindex": -1
+        },
+        {
+          "alias": "Disk Usage",
+          "zindex": 1
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - ((node_filesystem_avail_bytes{device=\"/dev/root\",mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{device=\"/dev/root\",mountpoint=\"/\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\"})",
           "instant": false,
           "interval": "",
+          "intervalFactor": 1,
           "legendFormat": "Disk Usage",
           "refId": "A"
         },
         {
           "expr": "100 - ((node_memory_SwapFree_bytes * 100) / node_memory_SwapTotal_bytes)",
           "interval": "",
+          "intervalFactor": 4,
           "legendFormat": "Swap Usage",
           "refId": "B"
         }
@@ -925,7 +937,8 @@
           "show": true
         },
         {
-          "format": "short",
+          "decimals": 1,
+          "format": "percent",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1057,5 +1070,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "ayJNJ1mRk",
-  "version": 31
+  "version": 35
 }
