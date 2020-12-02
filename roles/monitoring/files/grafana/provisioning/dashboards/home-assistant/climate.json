@@ -14,7 +14,7 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
   "id": 7,
   "links": [],
   "panels": [
@@ -69,7 +69,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(homeassistant_temperature_c, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate temperature\")",
+          "expr": "label_replace(homeassistant_temperature_c{friendly_name=~\"(.*) Climate Temperature\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Temperature\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -169,7 +169,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(homeassistant_humidity_percent, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate humidity\")",
+          "expr": "label_replace(homeassistant_humidity_percent{friendly_name=~\"(.*) Climate Humidity\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Humidity\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -244,7 +244,7 @@
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 24,
         "x": 0,
         "y": 18
@@ -278,7 +278,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(homeassistant_pressure_hpa, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate pressure\")",
+          "expr": "label_replace(homeassistant_pressure_hpa{friendly_name=~\"(.*) Climate Pressure\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Pressure\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -327,7 +327,7 @@
       }
     }
   ],
-  "refresh": "1m",
+  "refresh": "5s",
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
@@ -342,5 +342,5 @@
   "timezone": "",
   "title": "Climate",
   "uid": "7pNNLTRgz",
-  "version": 3
+  "version": 7
 }
