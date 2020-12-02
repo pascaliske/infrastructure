@@ -1,0 +1,170 @@
+title: Tech
+path: tech
+icon: mdi:server-network
+theme: Google - Dark
+panel: true
+badges: []
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Public IP
+                graph: none
+                icon: mdi:web
+                entity: sensor.fritzbox_public_ip
+              - type: sensor
+                name: Last Boot
+                graph: none
+                icon: mdi:clock-outline
+                entity: sensor.relative_last_boot
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Downstream
+                graph: none
+                icon: mdi:arrow-down
+                entity: sensor.fritzbox_downstream_percentage
+              - type: sensor
+                name: Upstream
+                graph: none
+                icon: mdi:arrow-up
+                entity: sensor.fritzbox_upstream_percentage
+              - type: sensor
+                name: Uptime
+                graph: none
+                icon: mdi:clock-outline
+                entity: sensor.fritzbox_uptime
+          - type: entities
+            title: Ad Blocker
+            show_header_toggle: false
+            entities:
+              - entity: switch.pi_hole
+                type: custom:multiple-entity-row
+                name: Enabled
+                secondary_info: last-changed
+                toggle: true
+                tap_action:
+                  action: url
+                  url_path: !secret pi_hole_url
+                entities:
+                  - entity: sensor.pi_hole_ads_percentage_blocked_today
+                    name: Percentage
+                  - entity: sensor.pi_hole_ads_blocked_today
+                    name: Queries
+                    unit: false
+                  - entity: sensor.pi_hole_domains_blocked
+                    name: Blocklist
+                    unit: false
+              - type: divider
+                style: |
+                  div {
+                    height: 10px;
+                  }
+            footer:
+              type: graph
+              entity: sensor.pi_hole_ads_percentage_blocked_today
+              hours_to_show: 168
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Printer
+              icon: mdi:printer
+              show_header_toggle: false
+            entities:
+              - entity: sensor.epson_et_2750_series
+              - entity: sensor.epson_et_2750_series_black_ink
+              - entity: sensor.epson_et_2750_series_cyan_ink
+              - entity: sensor.epson_et_2750_series_magenta_ink
+              - entity: sensor.epson_et_2750_series_yellow_ink
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: GitLab
+            show_header_toggle: false
+            entities:
+              - entity: sensor.glances_gitlab_rootfs_used_percent
+                name: Disk usage
+              - entity: sensor.glances_gitlab_rootfs_free
+                name: Disk space left
+              - entity: sensor.glances_gitlab_cpu_load
+                name: CPU Load
+                unit: false
+              - entity: sensor.glances_gitlab_containers_active
+                name: Containers
+              - entity: sensor.glances_gitlab_containers_cpu_used
+                name: Docker CPU usage
+              - entity: sensor.glances_gitlab_containers_ram_used
+                name: Docker Memory usage
+          - type: custom:mini-graph-card
+            name: Metrics
+            aggregate_func: max
+            group_by: hour
+            animate: true
+            line_width: 3
+            align_state: center
+            style: |
+              .header .name, .header .name .ellipsis {
+                color: #d7d7d7;
+                font-family: var(--ha-card-header-font-family, inherit);
+                font-size: var(--ha-card-header-font-size, 24px);
+                letter-spacing: -0.012em;
+                line-height: 32px;
+                opacity: 1;
+              }
+            tap_action:
+              action: url
+              url_path: !secret glances_gitlab_url
+            entities:
+              - entity: sensor.glances_gitlab_cpu_used
+                name: CPU usage
+              - entity: sensor.glances_gitlab_ram_used_percent
+                name: Memory usage
+                y_axis: secondary
+              - entity: sensor.glances_gitlab_swap_used_percent
+                name: Swap usage
+                y_axis: secondary
+          - type: entities
+            title: Pipelines
+            show_header_toggle: false
+            entities:
+              - entity: sensor.jh_of_app
+                name: pi-webdesign/jh-of/app
+                tap_action:
+                  action: url
+                  url_path: https://git.pascaliske.dev/pi-webdesign/jh-of/app
+              - entity: sensor.jh_of_api
+                name: pi-webdesign/jh-of/api
+                tap_action:
+                  action: url
+                  url_path: https://git.pascaliske.dev/pi-webdesign/jh-of/api
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Certificates
+            show_header_toggle: false
+            entities:
+              - entity: sensor.cert_expiry_pascaliske_dev
+                name: pascaliske.dev
+              - entity: sensor.cert_expiry_git_pascaliske_dev
+                name: git.pascaliske.dev
+              - entity: sensor.cert_expiry_registry_pascaliske_dev
+                name: registry.pascaliske.dev
+              - entity: sensor.cert_expiry_mattermost_pascaliske_dev
+                name: mattermost.pascaliske.dev
+              - entity: sensor.cert_expiry_stats_pascaliske_dev
+                name: stats.pascaliske.dev
+              - entity: sensor.cert_expiry_logs_pascaliske_dev
+                name: logs.pascaliske.dev
+              - entity: sensor.cert_expiry_code_pascaliske_dev
+                name: code.pascaliske.dev
+              - entity: sensor.cert_expiry_go_pascaliske_dev
+                name: go.pascaliske.dev
+              - entity: sensor.cert_expiry_portainer_pascaliske_dev
+                name: portainer.pascaliske.dev
