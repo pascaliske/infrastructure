@@ -40,8 +40,8 @@ scrape_configs:
       - targets: ['fritzbox-exporter:8765']
 
   - job_name: network/speedtest
-    scrape_interval: 5m
-    scrape_timeout: 5m
+    scrape_interval: 15m
+    scrape_timeout: 10m
     static_configs:
       - targets: ['speedtest-exporter:9112']
 
