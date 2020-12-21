@@ -61,6 +61,7 @@
         "avg": true,
         "current": true,
         "hideEmpty": false,
+        "hideZero": false,
         "max": true,
         "min": true,
         "rightSide": false,
@@ -75,7 +76,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -85,11 +86,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{job=\"network/node\",mode=\"idle\"}[5m])) * 100)",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100) - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"iowait\"}[5m])) * 100)",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Average CPU Usage",
+          "legendFormat": "Usage",
           "refId": "A"
+        },
+        {
+          "expr": "avg by (instance) (irate(node_cpu_seconds_total{mode=\"iowait\"}[5m])) * 100",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "IOwait",
+          "refId": "B"
         }
       ],
       "thresholds": [
@@ -116,7 +124,7 @@
       "title": "CPU Usage",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "transparent": true,
@@ -133,7 +141,7 @@
           "format": "percent",
           "label": "",
           "logBase": 1,
-          "max": "100",
+          "max": null,
           "min": null,
           "show": true
         },
@@ -192,7 +200,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -311,7 +319,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "node_time_seconds - node_boot_time_seconds",
@@ -373,7 +381,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "sum(node_load1) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -435,7 +443,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "sum(node_load5) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -497,7 +505,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "sum(node_load15) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -555,7 +563,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -675,7 +683,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -797,7 +805,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -823,13 +831,6 @@
           "intervalFactor": 1,
           "legendFormat": "Disk Usage",
           "refId": "A"
-        },
-        {
-          "expr": "100 - ((node_memory_SwapFree_bytes * 100) / node_memory_SwapTotal_bytes)",
-          "interval": "",
-          "intervalFactor": 4,
-          "legendFormat": "Swap Usage",
-          "refId": "B"
         }
       ],
       "thresholds": [
@@ -853,7 +854,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Disk & Swap Usage",
+      "title": "Disk Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -932,7 +933,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1012,5 +1013,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "node",
-  "version": 46
+  "version": 54
 }
