@@ -117,6 +117,8 @@ services:
       - /var/run:/var/run:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
+    command:
+      - '--docker_only=true'
   unifi-exporter:
     image: golift/unifi-poller:latest
     container_name: unifi-exporter
