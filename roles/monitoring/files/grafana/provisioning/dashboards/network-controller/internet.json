@@ -37,13 +37,148 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "blue",
+            "fixedColor": "green",
             "mode": "fixed"
           },
           "custom": {},
           "decimals": 2,
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 11,
+        "y": 1
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.3.6",
+      "targets": [
+        {
+          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_downstream_percentage\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Download Usage",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 14,
+        "y": 1
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.3.6",
+      "targets": [
+        {
+          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_upstream_percentage\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Upload Usage",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "custom": {},
+          "decimals": 1,
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -58,9 +193,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
-        "w": 9,
-        "x": 15,
+        "h": 3,
+        "w": 7,
+        "x": 17,
         "y": 1
       },
       "id": 16,
@@ -71,14 +206,14 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
-          "values": false
+          "values": true
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "fritzbox_ppp_connection_uptime",
@@ -90,7 +225,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
+      "title": "Uptime",
       "transparent": true,
       "type": "stat"
     },
@@ -101,7 +236,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 4
       },
       "id": 14,
       "panels": [],
@@ -141,7 +276,7 @@
         "h": 7,
         "w": 19,
         "x": 0,
-        "y": 4
+        "y": 5
       },
       "hiddenSeries": false,
       "id": 2,
@@ -161,7 +296,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -244,7 +379,7 @@
         "h": 4,
         "w": 5,
         "x": 19,
-        "y": 4
+        "y": 5
       },
       "id": 10,
       "options": {
@@ -261,7 +396,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "avg_over_time(speedtest_download[$__range])",
@@ -303,7 +438,7 @@
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 8
+        "y": 9
       },
       "id": 17,
       "options": {
@@ -320,7 +455,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "speedtest_download",
@@ -370,7 +505,7 @@
         "h": 7,
         "w": 19,
         "x": 0,
-        "y": 11
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 6,
@@ -390,7 +525,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -478,7 +613,7 @@
         "h": 4,
         "w": 5,
         "x": 19,
-        "y": 11
+        "y": 12
       },
       "id": 11,
       "options": {
@@ -495,7 +630,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "avg_over_time(speedtest_upload[$__range])",
@@ -536,7 +671,7 @@
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 15
+        "y": 16
       },
       "id": 18,
       "options": {
@@ -553,7 +688,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "speedtest_upload",
@@ -602,7 +737,7 @@
         "h": 7,
         "w": 19,
         "x": 0,
-        "y": 18
+        "y": 19
       },
       "hiddenSeries": false,
       "id": 8,
@@ -622,7 +757,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -711,7 +846,7 @@
         "h": 4,
         "w": 5,
         "x": 19,
-        "y": 18
+        "y": 19
       },
       "id": 12,
       "options": {
@@ -728,7 +863,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "avg_over_time(speedtest_ping[$__range])",
@@ -769,7 +904,7 @@
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 22
+        "y": 23
       },
       "id": 19,
       "options": {
@@ -786,7 +921,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "speedtest_ping",
@@ -818,5 +953,5 @@
   "timezone": "",
   "title": "Internet",
   "uid": "internet",
-  "version": 26
+  "version": 48
 }

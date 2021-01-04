@@ -302,7 +302,7 @@
       },
       "yaxes": [
         {
-          "decimals": null,
+          "decimals": 1,
           "format": "percentunit",
           "label": null,
           "logBase": 1,
@@ -453,5 +453,5 @@
   "timezone": "",
   "title": "UniFi",
   "uid": "unifi",
-  "version": 27
+  "version": 30
 }

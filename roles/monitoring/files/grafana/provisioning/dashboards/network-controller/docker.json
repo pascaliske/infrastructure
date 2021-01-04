@@ -42,13 +42,19 @@
       "hiddenSeries": false,
       "id": 4,
       "legend": {
-        "avg": false,
+        "alignAsTable": true,
+        "avg": true,
         "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
         "max": false,
         "min": false,
-        "show": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -139,17 +145,19 @@
       "hiddenSeries": false,
       "id": 2,
       "legend": {
-        "alignAsTable": false,
-        "avg": false,
+        "alignAsTable": true,
+        "avg": true,
         "current": false,
         "hideEmpty": true,
         "hideZero": true,
         "max": false,
         "min": false,
-        "rightSide": false,
-        "show": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -232,5 +240,5 @@
   "timezone": "",
   "title": "Docker",
   "uid": "docker",
-  "version": 23
+  "version": 25
 }

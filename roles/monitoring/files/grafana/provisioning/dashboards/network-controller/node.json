@@ -165,7 +165,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "decimals": 1,
+      "decimals": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -527,7 +527,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "decimals": 1,
+      "decimals": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -756,7 +756,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "decimals": 1,
+      "decimals": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -871,7 +871,7 @@
       },
       "yaxes": [
         {
-          "decimals": 1,
+          "decimals": 2,
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -937,19 +937,25 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "eth0-out",
+          "transform": "negative-Y"
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(node_network_receive_bytes_total{device!=\"lo\"}[1m]) * 8",
+          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[5m]) * 8",
           "interval": "",
           "legendFormat": "{{ device }}-in",
           "refId": "A"
         },
         {
-          "expr": "rate(node_network_transmit_bytes_total{device!=\"lo\"}[1m]) * 8",
+          "expr": "irate(node_network_transmit_bytes_total{device!=\"lo\"}[5m]) * 8",
+          "instant": false,
           "interval": "",
           "legendFormat": "{{ device }}-out",
           "refId": "B"
@@ -1013,5 +1019,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "node",
-  "version": 54
+  "version": 61
 }

@@ -63,7 +63,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "pihole_unique_clients",
@@ -122,7 +122,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "pihole_unique_domains",
@@ -185,7 +185,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "pihole_domains_being_blocked",
@@ -250,7 +250,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "targets": [
         {
           "expr": "pihole_ads_percentage_today",
@@ -321,7 +321,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -438,7 +438,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -557,7 +557,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -677,7 +677,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 0.5,
       "points": false,
       "renderer": "flot",
@@ -780,7 +780,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -882,7 +882,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -960,5 +960,5 @@
   "timezone": "",
   "title": "Pihole",
   "uid": "pihole",
-  "version": 61
+  "version": 65
 }
