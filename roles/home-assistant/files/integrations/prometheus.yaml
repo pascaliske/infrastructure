@@ -1,5 +1,9 @@
 prometheus:
   namespace: homeassistant
   filter:
-    include_domains:
-      - sensor
+    include_entity_globs:
+      - sensor.cert_*
+      - sensor.fritzbox_*
+      - sensor.*_lumi_temperature
+      - sensor.*_lumi_humidity
+      - sensor.*_lumi_pressure
