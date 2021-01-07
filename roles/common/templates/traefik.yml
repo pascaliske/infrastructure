@@ -1,0 +1,25 @@
+# globals
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+api:
+  insecure: true
+  dashboard: true
+
+# entry points
+entryPoints:
+  http:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          permanent: false
+  https:
+    address: :443
+
+# providers
+providers:
+  docker:
+    endpoint: unix:///var/run/docker.sock
+    exposedByDefault: false

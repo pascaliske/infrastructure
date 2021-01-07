@@ -40,6 +40,21 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer:/data
 
+  # proxy
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8080:8080'
+    environment:
+      TZ: {{ timezone }}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
+
   # monitoring
   prometheus:
     image: prom/prometheus:latest
