@@ -67,8 +67,8 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     restart: unless-stopped
-    ports:
-      - '9090:9090'
+    expose:
+      - 9090
     environment:
       TZ: {{ timezone }}
     volumes:
@@ -79,8 +79,14 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=168h'
       - '--web.enable-lifecycle'
+      - '--web.external-url=http://localhost:9090/prometheus/'
     extra_hosts:
       - 'dockerhost:172.20.0.1'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.prometheus.rule=PathPrefix(`/prometheus`)
+      - traefik.http.routers.prometheus.entrypoints=https
+      - traefik.http.routers.prometheus.tls=true
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager

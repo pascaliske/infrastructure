@@ -8,6 +8,7 @@ rule_files:
 
 scrape_configs:
   - job_name: prometheus
+    metrics_path: /prometheus/metrics
     static_configs:
       - targets: ['prometheus:9090']
 
