@@ -34,6 +34,10 @@
   vars:
     item: grafana
   block:
+    - name: Copy Grafana config file
+      template:
+        src: ../templates/{{ item }}/grafana.ini
+        dest: '{{ root_path }}/{{ item }}/grafana.ini'
     - name: Copy Grafana Provisioning files to config directory
       synchronize:
         src: ../files/{{ item }}/provisioning

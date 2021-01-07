@@ -107,8 +107,8 @@ services:
     restart: unless-stopped
     depends_on:
       - prometheus
-    ports:
-      - '3000:3000'
+    expose:
+      - 3000
     environment:
       TZ: {{ timezone }}
       GF_SECURITY_ADMIN_USER: {{ grafana_user }}
@@ -117,7 +117,13 @@ services:
       GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
       - grafana:/var/lib/grafana
+      - '{{ root_path }}/grafana/grafana.ini:/etc/grafana/grafana.ini'
       - '{{ root_path }}/grafana/provisioning:/etc/grafana/provisioning'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)
+      - traefik.http.routers.grafana.entrypoints=https
+      - traefik.http.routers.grafana.tls=true
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
