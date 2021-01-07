@@ -22,10 +22,17 @@ services:
     restart: always
     depends_on:
       - pihole
-    ports:
-      - 9001:8080
+    expose:
+      - 8080
+    environment:
+      DOZZLE_BASE: /dozzle
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dozzle.rule=PathPrefix(`/dozzle`)
+      - traefik.http.routers.dozzle.entrypoints=https
+      - traefik.http.routers.dozzle.tls=true
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
