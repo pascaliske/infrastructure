@@ -31,8 +31,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.dozzle.rule=PathPrefix(`/dozzle`)
-      - traefik.http.routers.dozzle.entrypoints=https
-      - traefik.http.routers.dozzle.tls=true
+      - traefik.http.routers.dozzle.entrypoints=http
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
@@ -85,8 +84,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.prometheus.rule=PathPrefix(`/prometheus`)
-      - traefik.http.routers.prometheus.entrypoints=https
-      - traefik.http.routers.prometheus.tls=true
+      - traefik.http.routers.prometheus.entrypoints=http
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager
@@ -122,8 +120,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)
-      - traefik.http.routers.grafana.entrypoints=https
-      - traefik.http.routers.grafana.tls=true
+      - traefik.http.routers.grafana.entrypoints=http
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
