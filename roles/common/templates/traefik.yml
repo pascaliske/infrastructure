@@ -19,9 +19,16 @@ entryPoints:
     address: :443
   traefik:
     address: :9001
+  metrics:
+    address: :9002
 
 # providers
 providers:
   docker:
     endpoint: unix:///var/run/docker.sock
     exposedByDefault: false
+
+# prometheus metrics
+metrics:
+  prometheus:
+    entryPoint: metrics

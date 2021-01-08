@@ -55,6 +55,8 @@ services:
       - '80:80'
       - '443:443'
       - '9001:9001'
+    expose:
+      - 9002
     environment:
       TZ: {{ timezone }}
     volumes:

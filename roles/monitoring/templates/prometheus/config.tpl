@@ -12,6 +12,10 @@ scrape_configs:
     static_configs:
       - targets: ['prometheus:9090']
 
+  - job_name: network/proxy
+    static_configs:
+      - targets: ['traefik:9002']
+
   - job_name: network/node
     static_configs:
       - targets: ['node-exporter:9100']
