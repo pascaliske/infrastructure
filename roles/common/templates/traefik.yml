@@ -17,6 +17,8 @@ entryPoints:
     #       permanent: false
   https:
     address: :443
+  traefik:
+    address: :9001
 
 # providers
 providers:

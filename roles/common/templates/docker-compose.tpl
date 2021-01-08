@@ -54,7 +54,7 @@ services:
     ports:
       - '80:80'
       - '443:443'
-      - '8080:8080'
+      - '9001:9001'
     environment:
       TZ: {{ timezone }}
     volumes:
