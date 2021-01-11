@@ -1,4 +1,5 @@
 ---
+network_ip: "{{ lookup('env', 'NETWORK_IP') }}"
 router_ip: "{{ lookup('env', 'ROUTER_IP') }}"
 controller_ip: "{{ lookup('env', 'CONTROLLER_IP') }}"
 watchtower_slack_hook_url: "{{ lookup('env', 'WATCHTOWER_SLACK_HOOK_URL') }}"

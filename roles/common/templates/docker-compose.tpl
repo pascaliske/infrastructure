@@ -229,14 +229,15 @@ services:
       ServerIP: {{ controller_ip }}
       TZ: {{ timezone }}
       VIRTUAL_PORT: 80
-      DNS1: 172.20.0.2#5053
-      DNS2: 'no'
+      PIHOLE_DNS_: 172.20.0.2#5053
       DNS_FQDN_REQUIRED: 'true'
       WEBPASSWORD: {{ pi_hole_password }}
-      CONDITIONAL_FORWARDING: 'true'
-      CONDITIONAL_FORWARDING_IP: {{ router_ip }}
-      CONDITIONAL_FORWARDING_DOMAIN: fritz.box
+      REV_SERVER: 'true'
+      REV_SERVER_CIDR: {{ network_ip }}
+      REV_SERVER_TARGET: {{ router_ip }}
+      REV_SERVER_DOMAIN: fritz.box
       PROXY_LOCATION: pihole
+      SKIPGRAVITYONBOOT: 'true'
       WEBUIBOXEDLAYOUT: traditional
       TEMPERATUREUNIT: c
     volumes:
