@@ -38,13 +38,19 @@ services:
     restart: unless-stopped
     depends_on:
       - pihole
-    command: -H unix:///var/run/docker.sock --no-analytics --ssl --sslcert /data/fullchain.pem --sslkey /data/privkey.pem
-    ports:
-      - '9000:9000'
-      - '8000:8000'
+    command: -H unix:///var/run/docker.sock
+    expose:
+      - 9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer:/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.portainer.rule=PathPrefix(`/portainer`)
+      - traefik.http.routers.portainer.entrypoints=http
+      - traefik.http.routers.portainer.middlewares=portainer-stripprefix
+      - traefik.http.services.portainer-network.loadbalancer.server.port=9000
+      - traefik.http.middlewares.portainer-stripprefix.stripprefix.prefixes=/portainer
 
   # proxy
   traefik:
