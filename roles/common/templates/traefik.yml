@@ -8,6 +8,7 @@ api:
 
 # entry points
 entryPoints:
+  # services
   http:
     address: :80
     # http:
@@ -17,6 +18,14 @@ entryPoints:
     #       permanent: false
   https:
     address: :443
+
+  # dns
+  dns-tcp:
+    address: :53
+  dns-udp:
+    address: :53/udp
+
+  # internal
   traefik:
     address: :9001
   metrics:

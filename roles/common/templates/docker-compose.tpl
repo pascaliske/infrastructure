@@ -60,6 +60,8 @@ services:
     ports:
       - '80:80'
       - '443:443'
+      - '53:53'
+      - '53:53/udp'
       - '9001:9001'
     expose:
       - 9002
@@ -219,12 +221,11 @@ services:
     restart: unless-stopped
     depends_on:
       - cloudflared
-    ports:
-      - '53:53/tcp'
-      - '53:53/udp'
-      - '67:67/udp'
-      - '80:80/tcp'
-      - '443:443/tcp'
+    expose:
+      - 80
+      - 443
+      - 53
+      - 53/udp
     environment:
       ServerIP: {{ controller_ip }}
       TZ: {{ timezone }}
@@ -246,11 +247,28 @@ services:
     dns:
       - 127.0.0.1
       - 1.1.1.1
-    networks:
-      default:
-        ipv4_address: 172.20.0.3
     cap_add:
       - NET_ADMIN
+    labels:
+      - traefik.enable=true
+
+      # web interface
+      - traefik.http.routers.pihole.rule=PathPrefix(`/pihole`)
+      - traefik.http.routers.pihole.entrypoints=http
+      - traefik.http.routers.pihole.middlewares=pihole-stripprefix,pihole-addprefix
+      - traefik.http.services.pihole-network.loadbalancer.server.port=80
+      - traefik.http.middlewares.pihole-addprefix.addprefix.prefix=/admin
+      - traefik.http.middlewares.pihole-stripprefix.stripprefix.prefixes=/pihole
+
+      # dns over tcp
+      - traefik.tcp.routers.pihole.entrypoints=dns-tcp
+      - traefik.tcp.routers.pihole.service=pihole-network
+      - traefik.tcp.services.pihole-network.loadbalancer.server.port=53
+
+      # dns over udp
+      - traefik.udp.routers.pihole.entrypoints=dns-udp
+      - traefik.udp.routers.pihole.service=pihole-network
+      - traefik.udp.services.pihole-network.loadbalancer.server.port=53
   cloudflared:
     image: crazymax/cloudflared:latest
     container_name: cloudflared
