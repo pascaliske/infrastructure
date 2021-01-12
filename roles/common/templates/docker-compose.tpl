@@ -275,7 +275,8 @@ services:
     restart: unless-stopped
     ports:
       - '5053:5053/udp'
-      - '49312:49312/tcp'
+    expose:
+      - 49312
     environment:
       TZ: {{ timezone }}
       TUNNEL_DNS_UPSTREAM: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
