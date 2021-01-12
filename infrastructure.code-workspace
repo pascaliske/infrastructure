@@ -33,7 +33,6 @@
             "unifi"
         ],
         "files.associations": {
-            "*.tpl": "yaml",
             "*.yaml": "home-assistant",
             "*.yaml.disabled": "home-assistant",
             "*.yaml.example": "home-assistant"

@@ -1,6 +1,6 @@
 {
-  "name": "network-controller",
-  "description": "Docker definition file for my home network services.",
+  "name": "infrastructure",
+  "description": "Configurations for most of my infrastructure services.",
   "license": "MIT",
   "author": {
     "name": "Pascal Iske",
@@ -8,11 +8,11 @@
     "url": "https://pascaliske.dev"
   },
   "repository": {
-    "url": "https://github.com/pascaliske/network-controller.git",
+    "url": "https://github.com/pascaliske/infrastructure.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/pascaliske/network-controller/issues"
+    "url": "https://github.com/pascaliske/infrastructure/issues"
   },
   "private": true,
   "scripts": {

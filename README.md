@@ -1,8 +1,8 @@
-# Network Controller Services
+# Infrastructure
 
-> Docker definition file for my home network services.
+> Configurations for most of my infrastructure services.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/network-controller/master?style=flat-square)](https://travis-ci.com/github/pascaliske/network-controller) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/network-controller?style=flat-square)](https://github.com/pascaliske/network-controller)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/infrastructure/master?style=flat-square)](https://travis-ci.com/github/pascaliske/infrastructure) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure)
 
 This repository features a [docker-compose.yml](roles/common/templates/docker-compose.tpl) file for the following services:
 
@@ -27,7 +27,7 @@ It also includes the following maintenance containers:
 
 ```zsh
 # clone the repo to your local machine
-git clone https://github.com/pascaliske/network-controller
+git clone https://github.com/pascaliske/infrastructure
 
 # setup secret env variables
 cp .env{.example,} && editor .env
@@ -84,4 +84,4 @@ dtparam=poe_fan_temp1=80000,poe_fan_temp1_hyst=2000
 
 ## License
 
-[MIT](LICENSE.md) – © 2020 [Pascal Iske](https://pascaliske.dev)
+[MIT](LICENSE.md) – © 2021 [Pascal Iske](https://pascaliske.dev)
