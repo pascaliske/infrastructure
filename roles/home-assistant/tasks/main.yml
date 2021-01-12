@@ -10,7 +10,7 @@
 
 - name: Copy Home Assistant secrets to config directory
   template:
-    src: ../templates/secrets.tpl
+    src: ../templates/secrets.yml
     dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
 
 - name: Ensure plugin directory exists

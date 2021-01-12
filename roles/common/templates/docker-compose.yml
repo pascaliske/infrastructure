@@ -105,7 +105,7 @@ services:
       - alertmanager:/alertmanager
       - '{{ root_path }}/alertmanager:/etc/alertmanager'
     command:
-      - '--config.file=/etc/alertmanager/config.yml'
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--storage.path=/alertmanager'
   grafana:
     image: grafana/grafana:latest

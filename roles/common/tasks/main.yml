@@ -5,7 +5,7 @@
 
 - name: Create docker-compose file
   template:
-    src: ../templates/docker-compose.tpl
+    src: ../templates/docker-compose.yml
     dest: '{{ root_path }}/docker-compose.yml'
 
 - name: Create traefik configuration file
