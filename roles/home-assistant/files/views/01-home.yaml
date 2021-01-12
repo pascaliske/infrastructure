@@ -74,7 +74,7 @@ cards:
                 name: Battery
               - entity: switch.licht
                 secondary_info: last-changed
-              - entity: switch.love
+              - entity: switch.kugel
                 secondary_info: last-changed
       - type: vertical-stack
         cards:
@@ -97,8 +97,6 @@ cards:
               - entity: sensor.living_room_lumi_power
                 secondary_info: last-changed
                 name: Battery
-              - entity: switch.kugel
-                secondary_info: last-changed
               - entity: switch.lampe
                 secondary_info: last-changed
               - entity: switch.duftlampe
@@ -109,7 +107,7 @@ cards:
               - operator: '!='
                 value: 'unavailable'
             card:
-              title: Child
+              title: Childrens Room
               state_color: true
               show_header_toggle: true
             entities:
@@ -122,3 +120,5 @@ cards:
               - entity: sensor.childrens_room_lumi_power
                 secondary_info: last-changed
                 name: Battery
+              - entity: switch.love
+                secondary_info: last-changed

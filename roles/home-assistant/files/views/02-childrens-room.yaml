@@ -30,3 +30,12 @@ cards:
               type: graph
               entity: sensor.childrens_room_lumi_temperature
               hours_to_show: 48
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Lights
+            state_color: true
+            show_header_toggle: true
+            entities:
+              - entity: switch.love
+                secondary_info: last-changed
