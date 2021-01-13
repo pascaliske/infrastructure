@@ -60,10 +60,8 @@ cards:
                     name: Blocklist
                     unit: false
               - type: divider
-                style: |
-                  div {
-                    height: 10px;
-                  }
+                style:
+                  height: 10px;
             footer:
               type: graph
               entity: sensor.pi_hole_ads_percentage_blocked_today
@@ -74,9 +72,11 @@ cards:
               - operator: '!='
                 value: 'unavailable'
             card:
+              type: entities
               title: Printer
               icon: mdi:printer
               show_header_toggle: false
+              entities: []
             entities:
               - entity: sensor.epson_et_2750_series
               - entity: sensor.epson_et_2750_series_black_ink
@@ -95,7 +95,6 @@ cards:
                 name: Disk space left
               - entity: sensor.glances_gitlab_cpu_load
                 name: CPU Load
-                unit: false
               - entity: sensor.glances_gitlab_containers_active
                 name: Containers
               - entity: sensor.glances_gitlab_containers_cpu_used
