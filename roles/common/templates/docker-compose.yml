@@ -232,7 +232,7 @@ services:
       DNS_FQDN_REQUIRED: 'true'
       WEBPASSWORD: {{ pi_hole_password }}
       REV_SERVER: 'true'
-      REV_SERVER_CIDR: {{ network_ip }}
+      REV_SERVER_CIDR: {{ network }}
       REV_SERVER_TARGET: {{ router_ip }}
       REV_SERVER_DOMAIN: fritz.box
       PROXY_LOCATION: pihole
