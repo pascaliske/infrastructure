@@ -168,8 +168,6 @@ services:
       - 9130
     volumes:
       - '{{ root_path }}/unifi-exporter/unifi-poller.conf:/config/unifi-poller.conf'
-    extra_hosts:
-      - 'dockerhost:172.20.0.1'
   pihole-exporter:
     image: ekofr/pihole-exporter:0.0.10
     container_name: pihole-exporter
@@ -205,7 +203,14 @@ services:
     restart: unless-stopped
     depends_on:
       - pihole
-    network_mode: host
+    ports:
+      - '3478:3478/udp'
+      - '8080:8080'
+      - '8443:8443'
+      - '8880:8880'
+      - '8843:8843'
+      - '6789:6789'
+      - '10001:10001/udp'
     volumes:
       - '{{ root_path }}/unifi/config:/var/lib/unifi'
       - '{{ root_path }}/unifi/log:/usr/lib/unifi/logs'
