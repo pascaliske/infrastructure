@@ -2,6 +2,8 @@
 global:
   checkNewVersion: false
   sendAnonymousUsage: false
+
+# internals
 api:
   insecure: true
   dashboard: true
@@ -19,11 +21,9 @@ entryPoints:
   https:
     address: :443
 
-  # internal
-  traefik:
-    address: :9001
+  # metrics
   metrics:
-    address: :9002
+    address: :9000
 
 # providers
 providers:

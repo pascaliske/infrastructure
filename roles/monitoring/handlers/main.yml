@@ -1,5 +1,5 @@
 ---
 - name: Reload Prometheus
   uri:
-    url: 'http://127.0.0.1:9080/prometheus/-/reload'
+    url: 'http://prometheus.iske.cloud/-/reload'
     method: POST

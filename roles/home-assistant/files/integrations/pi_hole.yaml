@@ -4,6 +4,6 @@ input_boolean:
     initial: on
 
 pi_hole:
-  - host: 127.0.0.1
-    location: pihole
+  - host: !secret pi_hole_url
+    location: ''
     api_key: !secret pi_hole_api_key

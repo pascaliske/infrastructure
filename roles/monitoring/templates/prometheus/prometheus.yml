@@ -8,13 +8,12 @@ rule_files:
 
 scrape_configs:
   - job_name: prometheus
-    metrics_path: /prometheus/metrics
     static_configs:
       - targets: ['prometheus:9090']
 
   - job_name: network/proxy
     static_configs:
-      - targets: ['traefik:9002']
+      - targets: ['traefik:9000']
 
   - job_name: network/node
     static_configs:
