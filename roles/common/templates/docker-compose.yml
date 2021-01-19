@@ -6,11 +6,11 @@ services:
     container_name: watchtower
     restart: always
     environment:
-      TZ: {{ timezone }}
+      TZ: '{{ timezone }}'
       WATCHTOWER_SCHEDULE: '0 0 0 * * *'
       WATCHTOWER_CLEANUP: 'true'
       WATCHTOWER_NOTIFICATIONS: slack
-      WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: {{ watchtower_slack_hook_url }}
+      WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: '{{ watchtower_slack_hook_url }}'
       WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER: watchtower
       WATCHTOWER_NOTIFICATION_SLACK_CHANNEL: '#hosting'
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
@@ -64,7 +64,7 @@ services:
     expose:
       - 9000
     environment:
-      TZ: {{ timezone }}
+      TZ: '{{ timezone }}'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
@@ -82,7 +82,7 @@ services:
     expose:
       - 9090
     environment:
-      TZ: {{ timezone }}
+      TZ: '{{ timezone }}'
     volumes:
       - prometheus:/prometheus
       - '{{ root_path }}/prometheus:/etc/prometheus'
@@ -121,9 +121,9 @@ services:
     expose:
       - 3000
     environment:
-      TZ: {{ timezone }}
-      GF_SECURITY_ADMIN_USER: {{ grafana_user }}
-      GF_SECURITY_ADMIN_PASSWORD: {{ grafana_password }}
+      TZ: '{{ timezone }}'
+      GF_SECURITY_ADMIN_USER: '{{ grafana_user }}'
+      GF_SECURITY_ADMIN_PASSWORD: '{{ grafana_password }}'
       GF_USERS_ALLOW_SIGN_UP: 'false'
       GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
@@ -183,7 +183,7 @@ services:
       - 9617
     environment:
       PIHOLE_HOSTNAME: pihole
-      PIHOLE_PASSWORD: {{ pi_hole_password }}
+      PIHOLE_PASSWORD: '{{ pi_hole_password }}'
   fritzbox-exporter:
     image: sealife/fritzbox-exporter:latest
     container_name: fritzbox-exporter
@@ -191,9 +191,9 @@ services:
     expose:
       - 8765
     environment:
-      FRITZ_HOST: {{ router_ip }}
-      FRITZ_USER: {{ fritzbox_user }}
-      FRITZ_PASS: {{ fritzbox_password }}
+      FRITZ_HOST: '{{ router_ip }}'
+      FRITZ_USER: '{{ fritzbox_user }}'
+      FRITZ_PASS: '{{ fritzbox_password }}'
   speedtest-exporter:
     image: shrunbr/speedtest-exporter-arm:latest
     container_name: speedtest-exporter
@@ -235,15 +235,15 @@ services:
     expose:
       - 80
     environment:
-      ServerIP: {{ controller_ip }}
-      TZ: {{ timezone }}
+      ServerIP: '{{ controller_ip }}'
+      TZ: '{{ timezone }}'
       VIRTUAL_PORT: 80
       PIHOLE_DNS_: 172.20.0.2#5053
       DNS_FQDN_REQUIRED: 'true'
-      WEBPASSWORD: {{ pi_hole_password }}
+      WEBPASSWORD: '{{ pi_hole_password }}'
       REV_SERVER: 'true'
-      REV_SERVER_CIDR: {{ network }}
-      REV_SERVER_TARGET: {{ router_ip }}
+      REV_SERVER_CIDR: '{{ network }}'
+      REV_SERVER_TARGET: '{{ router_ip }}'
       REV_SERVER_DOMAIN: fritz.box
       PROXY_LOCATION: pihole
       SKIPGRAVITYONBOOT: 'true'
@@ -273,7 +273,7 @@ services:
     expose:
       - 49312
     environment:
-      TZ: {{ timezone }}
+      TZ: '{{ timezone }}'
       TUNNEL_DNS_UPSTREAM: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
     networks:
       default:
@@ -286,7 +286,7 @@ services:
       - pihole
     network_mode: host
     environment:
-      TZ: {{ timezone }}
+      TZ: '{{ timezone }}'
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - '{{ root_path }}/home-assistant:/config'
