@@ -7,6 +7,8 @@ global:
 api:
   insecure: true
   dashboard: true
+ping:
+  entryPoint: metrics
 
 # entry points
 entryPoints:
