@@ -1,11 +1,13 @@
 switch.kugel:
-  icon: mdi:lightbulb
+  icon: mdi:string-lights
 switch.lampe:
   icon: mdi:lightbulb
 switch.duftlampe:
   icon: mdi:lightbulb
+switch.love:
+  icon: mdi:string-lights
 switch.lichterkette:
-  icon: mdi:lightbulb
+  icon: mdi:string-lights
 switch.licht:
   icon: mdi:string-lights
 sensor.licht_amps:
@@ -27,9 +29,9 @@ sensor.pi_hole_ads_percentage_blocked_today:
 sensor.pi_hole_domains_blocked:
   friendly_name: Blocklist
   icon: mdi:playlist-remove
-sensor.withings_weight_kg_pascal_iske_2:
+sensor.withings_weight_kg_pascal_iske:
   friendly_name: Pascals Weight
-sensor.withings_weight_kg_sarah_iske_2:
+sensor.withings_weight_kg_sarah_iske:
   friendly_name: Sarahs Weight
 sensor.epson_et_2750_series:
   friendly_name: State
