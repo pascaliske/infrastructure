@@ -76,6 +76,18 @@ cards:
                 secondary_info: last-changed
               - entity: switch.duftlampe
                 secondary_info: last-changed
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Kitchen
+              state_color: true
+              show_header_toggle: true
+            entities:
+              - entity: switch.lichterkette
+                secondary_info: last-changed
       - type: vertical-stack
         cards:
           - type: entity-filter

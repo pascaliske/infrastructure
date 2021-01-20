@@ -4,7 +4,7 @@ switch.lampe:
   icon: mdi:lightbulb
 switch.duftlampe:
   icon: mdi:lightbulb
-switch.love:
+switch.lichterkette:
   icon: mdi:lightbulb
 switch.licht:
   icon: mdi:string-lights
