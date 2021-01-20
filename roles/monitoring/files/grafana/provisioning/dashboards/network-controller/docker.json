@@ -63,7 +63,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -73,7 +73,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg by (container_label_com_docker_compose_service) (irate(container_cpu_usage_seconds_total{container_label_com_docker_compose_project=\"network\"}[5m])) * 100",
+          "expr": "sum by (container_label_com_docker_compose_service) (irate(container_cpu_usage_seconds_total{container_label_com_docker_compose_project=\"network\"}[5m])) * 100",
           "interval": "",
           "legendFormat": "{{ container_label_com_docker_compose_service }}",
           "refId": "A"
@@ -166,7 +166,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -176,7 +176,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{container_label_com_docker_compose_project=\"network\"}",
+          "expr": "sum by (container_label_com_docker_compose_service) (container_memory_usage_bytes{container_label_com_docker_compose_project=\"network\"})",
           "interval": "",
           "legendFormat": "{{ container_label_com_docker_compose_service }}",
           "refId": "A"
@@ -240,5 +240,5 @@
   "timezone": "",
   "title": "Docker",
   "uid": "docker",
-  "version": 25
+  "version": 27
 }
