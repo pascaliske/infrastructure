@@ -29,7 +29,8 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.dozzle.rule=Host(`dozzle.iske.cloud`)
-      - traefik.http.routers.dozzle.entrypoints=http
+      - traefik.http.routers.dozzle.entrypoints=https
+      - traefik.http.routers.dozzle.tls=true
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
@@ -45,7 +46,8 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.portainer.rule=Host(`portainer.iske.cloud`)
-      - traefik.http.routers.portainer.entrypoints=http
+      - traefik.http.routers.portainer.entrypoints=https
+      - traefik.http.routers.portainer.tls=true
       - traefik.http.services.portainer-network.loadbalancer.server.port=9000
 
   # proxy
@@ -68,11 +70,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
+      - '{{ root_path }}/traefik:/etc/traefik'
     labels:
       - traefik.enable=true
       - traefik.http.routers.api.rule=Host(`traefik.iske.cloud`)
-      - traefik.http.routers.api.entrypoints=http
+      - traefik.http.routers.api.entrypoints=https
       - traefik.http.routers.api.service=api@internal
+      - traefik.http.routers.api.tls=true
 
   # monitoring
   prometheus:
@@ -97,7 +101,8 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.prometheus.rule=Host(`prometheus.iske.cloud`)
-      - traefik.http.routers.prometheus.entrypoints=http
+      - traefik.http.routers.prometheus.entrypoints=https
+      - traefik.http.routers.prometheus.tls=true
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager
@@ -133,7 +138,8 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.grafana.rule=Host(`grafana.iske.cloud`)
-      - traefik.http.routers.grafana.entrypoints=http
+      - traefik.http.routers.grafana.entrypoints=https
+      - traefik.http.routers.grafana.tls=true
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
@@ -218,7 +224,8 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.homer.rule=Host(`iske.cloud`)
-      - traefik.http.routers.homer.entrypoints=http
+      - traefik.http.routers.homer.entrypoints=https
+      - traefik.http.routers.homer.tls=true
   unifi:
     image: ryansch/unifi-rpi:latest
     container_name: unifi
@@ -277,8 +284,9 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.pihole.rule=Host(`pihole.iske.cloud`)
-      - traefik.http.routers.pihole.entrypoints=http
+      - traefik.http.routers.pihole.entrypoints=https
       - traefik.http.routers.pihole.middlewares=pihole-addprefix
+      - traefik.http.routers.pihole.tls=true
       - traefik.http.services.pihole-network.loadbalancer.server.port=80
       - traefik.http.middlewares.pihole-addprefix.addprefix.prefix=/admin
   cloudflared:

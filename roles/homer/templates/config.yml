@@ -72,7 +72,7 @@ footer: >
 links:
   - name: Proxy
     icon: fas fa-shield-alt
-    url: http://traefik.{{ homer_domain }}
+    url: https://traefik.{{ homer_domain }}
     target: _blank
   - name: GitHub
     icon: fab fa-github
@@ -101,22 +101,22 @@ services:
       - name: Prometheus
         logo: assets/logos/prometheus.png
         subtitle: Monitoring metrics collector
-        url: http://prometheus.{{ homer_domain }}
+        url: https://prometheus.{{ homer_domain }}
         <<: *monitoring
       - name: Grafana
         logo: assets/logos/grafana.png
         subtitle: Monitoring metrics visualizer
-        url: http://grafana.{{ homer_domain }}
+        url: https://grafana.{{ homer_domain }}
         <<: *monitoring
       - name: Dozzle
         logo: assets/logos/dozzle.png
         subtitle: View container logs
-        url: http://dozzle.{{ homer_domain }}
+        url: https://dozzle.{{ homer_domain }}
         <<: *monitoring
       - name: Portainer
         logo: assets/logos/portainer.png
         subtitle: Container Management
-        url: http://portainer.{{ homer_domain }}
+        url: https://portainer.{{ homer_domain }}
         <<: *monitoring
   - name: Network
     icon: fas fa-network-wired
@@ -129,7 +129,7 @@ services:
       - name: Pi-Hole
         logo: assets/logos/pihole.png
         subtitle: Network wide DNS based ad blocker
-        url: http://pihole.{{ homer_domain }}
+        url: https://pihole.{{ homer_domain }}
         <<: *network
       - name: FRITZ!Box
         logo: assets/logos/fritzbox.png

@@ -5,7 +5,6 @@ global:
 
 # internals
 api:
-  insecure: true
   dashboard: true
 ping:
   entryPoint: metrics
@@ -15,11 +14,11 @@ entryPoints:
   # services
   http:
     address: :80
-    # http:
-    #   redirections:
-    #     entryPoint:
-    #       to: https
-    #       permanent: false
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          permanent: false
   https:
     address: :443
 
@@ -29,6 +28,9 @@ entryPoints:
 
 # providers
 providers:
+  file:
+    directory: /etc/traefik/dynamic
+    watch: true
   docker:
     endpoint: unix:///var/run/docker.sock
     exposedByDefault: false
