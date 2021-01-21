@@ -202,6 +202,23 @@ services:
       - 9112
 
   # services
+  homer:
+    image: b4bz/homer:latest
+    container_name: homer
+    restart: always
+    expose:
+      - 8080
+    environment:
+      TZ: '{{ timezone }}'
+      UID: 1000
+      GID: 1000
+    volumes:
+      - '{{ root_path }}/homer/assets:/www/assets'
+      - '{{ root_path }}/homer/config.yml:/www/assets/config.yml'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.homer.rule=Host(`iske.cloud`)
+      - traefik.http.routers.homer.entrypoints=http
   unifi:
     image: ryansch/unifi-rpi:latest
     container_name: unifi

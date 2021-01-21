@@ -11,6 +11,10 @@
             "name": "roles/common"
         },
         {
+            "path": "./roles/homer",
+            "name": "roles/homer"
+        },
+        {
             "path": "./roles/monitoring",
             "name": "roles/monitoring"
         },
