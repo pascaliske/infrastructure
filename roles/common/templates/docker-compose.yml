@@ -5,6 +5,7 @@ services:
     image: containrrr/watchtower:latest
     container_name: watchtower
     restart: always
+    network_mode: none
     environment:
       TZ: '{{ timezone }}'
       WATCHTOWER_SCHEDULE: '0 0 0 * * *'
@@ -20,12 +21,12 @@ services:
     image: amir20/dozzle:latest
     container_name: dozzle
     restart: always
-    depends_on:
-      - pihole
     expose:
       - 8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - proxy
     labels:
       - traefik.enable=true
       - traefik.http.routers.dozzle.rule=Host(`dozzle.iske.cloud`)
@@ -35,14 +36,14 @@ services:
     image: portainer/portainer-ce:latest
     container_name: portainer
     restart: unless-stopped
-    depends_on:
-      - pihole
     command: -H unix:///var/run/docker.sock
     expose:
       - 9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer:/data
+    networks:
+      - proxy
     labels:
       - traefik.enable=true
       - traefik.http.routers.portainer.rule=Host(`portainer.iske.cloud`)
@@ -71,8 +72,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
       - '{{ root_path }}/traefik:/etc/traefik'
+    networks:
+      - proxy
     extra_hosts:
-      - 'dockerhost:172.20.0.1'
+      - 'dockerhost:172.20.1.1'
     labels:
       - traefik.enable=true
       - traefik.http.routers.api.rule=Host(`traefik.iske.cloud`)
@@ -98,8 +101,11 @@ services:
       - '--storage.tsdb.retention.time=168h'
       - '--web.enable-lifecycle'
       - '--web.external-url=http://localhost:9090/'
+    networks:
+      - proxy
+      - monitoring
     extra_hosts:
-      - 'dockerhost:172.20.0.1'
+      - 'dockerhost:172.20.1.1'
     labels:
       - traefik.enable=true
       - traefik.http.routers.prometheus.rule=Host(`prometheus.iske.cloud`)
@@ -119,6 +125,8 @@ services:
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--storage.path=/alertmanager'
+    networks:
+      - monitoring
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -137,6 +145,9 @@ services:
       - grafana:/var/lib/grafana
       - '{{ root_path }}/grafana/grafana.ini:/etc/grafana/grafana.ini'
       - '{{ root_path }}/grafana/provisioning:/etc/grafana/provisioning'
+    networks:
+      - proxy
+      - monitoring
     labels:
       - traefik.enable=true
       - traefik.http.routers.grafana.rule=Host(`grafana.iske.cloud`)
@@ -157,6 +168,8 @@ services:
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+    networks:
+      - monitoring
   cadvisor:
     image: budry/cadvisor-arm:latest
     container_name: cadvisor
@@ -171,6 +184,8 @@ services:
       - /dev/disk/:/dev/disk:ro
     command:
       - '--docker_only=true'
+    networks:
+      - monitoring
   unifi-exporter:
     image: golift/unifi-poller:latest
     container_name: unifi-exporter
@@ -181,6 +196,8 @@ services:
       - 9130
     volumes:
       - '{{ root_path }}/unifi-exporter/unifi-poller.conf:/config/unifi-poller.conf'
+    networks:
+      - monitoring
   pihole-exporter:
     image: ekofr/pihole-exporter:0.0.10
     container_name: pihole-exporter
@@ -192,6 +209,8 @@ services:
     environment:
       PIHOLE_HOSTNAME: pihole
       PIHOLE_PASSWORD: '{{ pi_hole_password }}'
+    networks:
+      - monitoring
   fritzbox-exporter:
     image: sealife/fritzbox-exporter:latest
     container_name: fritzbox-exporter
@@ -202,12 +221,16 @@ services:
       FRITZ_HOST: '{{ router_ip }}'
       FRITZ_USER: '{{ fritzbox_user }}'
       FRITZ_PASS: '{{ fritzbox_password }}'
+    networks:
+      - monitoring
   speedtest-exporter:
     image: shrunbr/speedtest-exporter-arm:latest
     container_name: speedtest-exporter
     restart: unless-stopped
     expose:
       - 9112
+    networks:
+      - monitoring
 
   # services
   homer:
@@ -223,6 +246,8 @@ services:
     volumes:
       - '{{ root_path }}/homer/assets:/www/assets'
       - '{{ root_path }}/homer/config.yml:/www/assets/config.yml'
+    networks:
+      - proxy
     labels:
       - traefik.enable=true
       - traefik.http.routers.homer.rule=Host(`iske.cloud`)
@@ -250,6 +275,9 @@ services:
       - '{{ root_path }}/unifi/run:/usr/lib/unifi/run'
       - '{{ root_path }}/unifi/run2:/run/unifi'
       - '{{ root_path }}/unifi/work:/usr/lib/unifi/work'
+    networks:
+      - proxy
+      - monitoring
     labels:
       - traefik.enable=true
       - traefik.http.routers.unifi.rule=Host(`unifi.iske.cloud`)
@@ -282,7 +310,7 @@ services:
       ServerIP: '{{ controller_ip }}'
       TZ: '{{ timezone }}'
       VIRTUAL_PORT: 80
-      PIHOLE_DNS_: 172.20.0.2#5053
+      PIHOLE_DNS_: 172.20.3.2#5053
       DNS_FQDN_REQUIRED: 'true'
       WEBPASSWORD: '{{ pi_hole_password }}'
       REV_SERVER: 'true'
@@ -296,6 +324,10 @@ services:
     volumes:
       - '{{ root_path }}/pihole/etc-pihole/:/etc/pihole/'
       - '{{ root_path }}/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    networks:
+      - proxy
+      - monitoring
+      - dns
     dns:
       - 127.0.0.1
       - 1.1.1.1
@@ -321,14 +353,13 @@ services:
       TZ: '{{ timezone }}'
       TUNNEL_DNS_UPSTREAM: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
     networks:
-      default:
-        ipv4_address: 172.20.0.2
+      monitoring: {}
+      dns:
+        ipv4_address: 172.20.3.2
   homeassistant:
     image: homeassistant/home-assistant:stable
     container_name: homeassistant
     restart: unless-stopped
-    depends_on:
-      - pihole
     network_mode: host
     environment:
       TZ: '{{ timezone }}'
@@ -340,11 +371,21 @@ services:
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
 networks:
-  default:
+  proxy:
     ipam:
       config:
-        - subnet: 172.20.0.0/24
-          gateway: 172.20.0.1
+        - subnet: 172.20.1.0/24
+          gateway: 172.20.1.1
+  monitoring:
+    ipam:
+      config:
+        - subnet: 172.20.2.0/24
+          gateway: 172.20.2.1
+  dns:
+    ipam:
+      config:
+        - subnet: 172.20.3.0/24
+          gateway: 172.20.3.1
 volumes:
   prometheus:
   alertmanager:

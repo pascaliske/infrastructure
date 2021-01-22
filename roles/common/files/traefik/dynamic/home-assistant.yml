@@ -10,4 +10,4 @@ http:
     homeassistant:
       loadBalancer:
         servers:
-        - url: https://dockerhost:8123
+          - url: https://dockerhost:8123

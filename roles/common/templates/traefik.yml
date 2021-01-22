@@ -33,6 +33,7 @@ providers:
     watch: true
   docker:
     endpoint: unix:///var/run/docker.sock
+    network: network_proxy
     exposedByDefault: false
 
 # prometheus metrics
