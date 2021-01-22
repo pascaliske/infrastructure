@@ -1,0 +1,161 @@
+---
+# general
+title: Dashboard
+subtitle: Pascal Iske
+logo: logo.png
+header: true
+footer: >
+  <style>
+    body #bighead {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+    }
+
+    body #bighead .first-line {
+      padding: 5px 10px;
+    }
+
+    body #bighead .first-line .logo img {
+      padding: 10px 10px 10px 0;
+    }
+
+    body #bighead .dashboard-title {
+      padding: 6px 0 0 70px;
+    }
+
+    body #bighead .first-line .headline {
+      margin-left: 2px;
+    }
+
+    body #bighead .navbar-menu a {
+      padding-bottom: 7px;
+    }
+
+    body #bighead .navbar-menu i {
+      margin-bottom: 2px;
+    }
+
+    body .search-bar input {
+      width: 200px;
+    }
+
+    body #main-section {
+      padding-bottom: 35px;
+    }
+
+    body #main-section .container {
+      padding: 10px;
+    }
+
+    body #main-section .group-title {
+      text-transform: capitalize;
+    }
+
+    body #main-section .group-title i {
+      width: 35px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      body #main-section {
+        padding-bottom: 60px;
+      }
+
+      body #main-section .container {
+        padding: 0;
+      }
+    }
+  </style>
+  <p>&copy; 2021 <a href="https://pascaliske.dev">Pascal Iske</a></p>
+
+# navbar
+links:
+  - name: Proxy
+    icon: fas fa-shield-alt
+    url: https://traefik.{{ homer_domain }}
+    target: _blank
+  - name: GitHub
+    icon: fab fa-github
+    url: https://github.com/pascaliske/infrastructure
+    target: _blank
+  - name: Configure
+    icon: fas fa-wrench
+    url: https://code.pascaliske.dev/?workspace=/home/coder/projects/infrastructure/infrastructure.code-workspace
+    target: _blank
+
+.monitoring: &monitoring
+  tag: monitoring
+  target: _blank
+.network: &network
+  tag: network
+  target: _blank
+.automation: &automation
+  tag: automation
+  target: _blank
+
+# services
+services:
+  - name: Monitoring
+    icon: fas fa-chart-area
+    items:
+      - name: Prometheus
+        logo: assets/logos/prometheus.png
+        subtitle: Monitoring metrics collector
+        url: https://prometheus.{{ homer_domain }}
+        <<: *monitoring
+      - name: Grafana
+        logo: assets/logos/grafana.png
+        subtitle: Monitoring metrics visualizer
+        url: https://grafana.{{ homer_domain }}
+        <<: *monitoring
+      - name: Dozzle
+        logo: assets/logos/dozzle.png
+        subtitle: View container logs
+        url: https://dozzle.{{ homer_domain }}
+        <<: *monitoring
+      - name: Portainer
+        logo: assets/logos/portainer.png
+        subtitle: Container Management
+        url: https://portainer.{{ homer_domain }}
+        <<: *monitoring
+  - name: Network
+    icon: fas fa-network-wired
+    items:
+      - name: UniFi Controller
+        logo: assets/logos/unifi.png
+        subtitle: Network management controller
+        url: https://unifi.{{ homer_domain }}
+        <<: *network
+      - name: Pi-Hole
+        logo: assets/logos/pihole.png
+        subtitle: Network wide DNS based ad blocker
+        url: https://pihole.{{ homer_domain }}
+        <<: *network
+      - name: FRITZ!Box
+        logo: assets/logos/fritzbox.png
+        subtitle: Gateway & Firewall
+        url: http://{{ homer_router_ip }}
+        <<: *network
+      - name: TP-Link Switch 8
+        logo: assets/logos/tplink.png
+        subtitle: 8 port core switch
+        url: http://{{ homer_switch_8p_ip }}
+        <<: *network
+      - name: TP-Link Switch 5
+        logo: assets/logos/tplink.png
+        subtitle: 5 port switch
+        url: http://{{ homer_switch_5p_ip }}
+        <<: *network
+      - name: Gigaset GO
+        logo: assets/logos/gigaset.png
+        subtitle: VoIP phone management
+        url: http://{{ homer_gigaset_ip }}
+        <<: *network
+  - name: Automation
+    icon: fas fa-robot
+    items:
+      - name: Home Assistant
+        logo: assets/logos/homeassistant.png
+        subtitle: Central home automation hub
+        url: https://homeassistant.{{ homer_domain }}
+        <<: *automation

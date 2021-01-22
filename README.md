@@ -4,9 +4,12 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/infrastructure/master?style=flat-square)](https://travis-ci.com/github/pascaliske/infrastructure) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure)
 
-This repository features a [docker-compose.yml](roles/common/templates/docker-compose.tpl) file for the following services:
+This repository features a [docker-compose.yml](roles/common/templates/docker-compose.yml) file for the following services:
 
+- [Traefik](https://traefik.io) reverse proxy for all services
+- [Homer](https://github.com/bastienwirtz/homer) as service dashboard
 - [Prometheus](https://prometheus.io) for collecting service metrics
+- [Grafana](https://grafana.com/) for querying and displaying metrics data
 - [UniFi Controller](https://www.ui.com/software/) for managing all UniFi network gear
 - [Pi-Hole](https://pi-hole.net) for blocking ads and malicious domains network-wide
 - [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using [DNS-over-HTTPS](https://en.m.wikipedia.org/wiki/DNS_over_HTTPS)

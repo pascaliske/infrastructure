@@ -14,11 +14,12 @@
   block:
     - name: Copy Prometheus config to config directory
       template:
-        src: ../templates/{{ item }}/config.tpl
+        src: ../templates/{{ item }}/{{ item }}.yml
         dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
+      notify: Reload Prometheus
     - name: Copy Prometheus alert rules to config directory
       template:
-        src: ../templates/{{ item }}/alert.rules.tpl
+        src: ../templates/{{ item }}/alert.rules
         dest: '{{ root_path }}/{{ item }}/alert.rules'
 
 - name: Configure Alertmanager
@@ -27,13 +28,17 @@
   block:
     - name: Copy Alertmanager config to config directory
       template:
-        src: ../templates/{{ item }}/config.tpl
-        dest: '{{ root_path }}/{{ item }}/config.yml'
+        src: ../templates/{{ item }}/{{ item }}.yml
+        dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
 
 - name: Configure Grafana
   vars:
     item: grafana
   block:
+    - name: Copy Grafana config file
+      template:
+        src: ../templates/{{ item }}/grafana.ini
+        dest: '{{ root_path }}/{{ item }}/grafana.ini'
     - name: Copy Grafana Provisioning files to config directory
       synchronize:
         src: ../files/{{ item }}/provisioning

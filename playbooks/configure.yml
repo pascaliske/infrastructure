@@ -3,6 +3,7 @@
   hosts: network
   roles:
     - common
+    - homer
     - monitoring
     - pihole
     - home-assistant

@@ -1,0 +1,6 @@
+---
+- name: Reload Prometheus
+  uri:
+    url: 'https://prometheus.iske.cloud/-/reload'
+    method: POST
+    validate_certs: false

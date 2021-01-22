@@ -1,0 +1,13 @@
+http:
+  routers:
+    homeassistant:
+      rule: Host(`homeassistant.iske.cloud`)
+      entryPoints:
+        - https
+      service: homeassistant
+      tls: true
+  services:
+    homeassistant:
+      loadBalancer:
+        servers:
+          - url: https://dockerhost:8123

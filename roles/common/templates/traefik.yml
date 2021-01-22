@@ -1,0 +1,46 @@
+# globals
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+# internals
+api:
+  dashboard: true
+ping:
+  entryPoint: metrics
+
+# entry points
+entryPoints:
+  # services
+  http:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          permanent: false
+  https:
+    address: :443
+
+  # metrics
+  metrics:
+    address: :9000
+
+# providers
+providers:
+  file:
+    directory: /etc/traefik/dynamic
+    watch: true
+  docker:
+    endpoint: unix:///var/run/docker.sock
+    network: network_proxy
+    exposedByDefault: false
+
+# prometheus metrics
+metrics:
+  prometheus:
+    entryPoint: metrics
+
+# ignore self signed certs
+serversTransport:
+  insecureSkipVerify: true

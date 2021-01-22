@@ -1,5 +1,7 @@
 # ignores
 .vagrant
+*pem*
+*p12*
 *env*
 
 # exceptions
