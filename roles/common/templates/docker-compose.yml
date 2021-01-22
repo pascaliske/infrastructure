@@ -235,11 +235,12 @@ services:
     ports:
       - '3478:3478/udp'
       - '8080:8080'
-      - '8443:8443'
       - '8880:8880'
       - '8843:8843'
       - '6789:6789'
       - '10001:10001/udp'
+    expose:
+      - 8443
     volumes:
       - '{{ root_path }}/unifi/config:/var/lib/unifi'
       - '{{ root_path }}/unifi/log:/usr/lib/unifi/logs'
@@ -247,6 +248,23 @@ services:
       - '{{ root_path }}/unifi/run:/usr/lib/unifi/run'
       - '{{ root_path }}/unifi/run2:/run/unifi'
       - '{{ root_path }}/unifi/work:/usr/lib/unifi/work'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.unifi.rule=Host(`unifi.iske.cloud`)
+      - traefik.http.routers.unifi.entrypoints=https
+      - traefik.http.routers.unifi.tls=true
+      - traefik.http.services.unifi-network.loadbalancer.server.scheme=https
+      - traefik.http.services.unifi-network.loadbalancer.server.port=8443
+      - traefik.http.middlewares.unifi.headers.sslredirect=true
+      - traefik.http.middlewares.unifi.headers.stsSeconds=315360000
+      - traefik.http.middlewares.unifi.headers.browserXSSFilter=true
+      - traefik.http.middlewares.unifi.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.unifi.headers.forceSTSHeader=true
+      - traefik.http.middlewares.unifi.headers.STSIncludeSubdomains=true
+      - traefik.http.middlewares.unifi.headers.STSPreload=true
+      - traefik.http.middlewares.unifi.headers.frameDeny=true
+      - traefik.http.middlewares.unifi.headers.accessControlAllowCredentials=true
+      - traefik.http.middlewares.unifi.headers.SSLHost=unifi.iske.cloud
   pihole:
     image: pihole/pihole:latest
     container_name: pihole

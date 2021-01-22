@@ -124,7 +124,7 @@ services:
       - name: UniFi Controller
         logo: assets/logos/unifi.png
         subtitle: Network management controller
-        url: https://10.0.2.2:8443
+        url: https://unifi.{{ homer_domain }}
         <<: *network
       - name: Pi-Hole
         logo: assets/logos/pihole.png

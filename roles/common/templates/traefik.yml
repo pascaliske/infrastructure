@@ -39,3 +39,7 @@ providers:
 metrics:
   prometheus:
     entryPoint: metrics
+
+# ignore self signed certs
+serversTransport:
+  insecureSkipVerify: true
