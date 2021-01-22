@@ -157,5 +157,5 @@ services:
       - name: Home Assistant
         logo: assets/logos/homeassistant.png
         subtitle: Central home automation hub
-        url: https://{{ homer_controller_ip }}:8123
+        url: https://homeassistant.{{ homer_domain }}
         <<: *automation
