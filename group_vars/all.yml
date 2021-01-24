@@ -1,3 +1,4 @@
 ---
 timezone: Europe/Berlin
+domain: iske.cloud
 root_path: /home/{{ remote_user }}/network

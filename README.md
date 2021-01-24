@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/infrastructure/master?style=flat-square)](https://travis-ci.com/github/pascaliske/infrastructure) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure)
 
-This repository features a [docker-compose.yml](roles/common/templates/docker-compose.yml) file for the following services:
+This repository features a [docker-compose.yml](roles/common/templates/docker/docker-compose.yml) file for the following services:
 
 - [Traefik](https://traefik.io) reverse proxy for all services
 - [Homer](https://github.com/bastienwirtz/homer) as service dashboard

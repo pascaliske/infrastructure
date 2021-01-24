@@ -5,15 +5,18 @@
 
 - name: Create docker-compose file
   template:
-    src: ../templates/docker-compose.yml
+    src: ../templates/docker/docker-compose.yml
     dest: '{{ root_path }}/docker-compose.yml'
 
 - name: Create traefik configuration file
   template:
-    src: ../templates/traefik.yml
+    src: ../templates/traefik/traefik.yml
     dest: '{{ root_path }}/traefik.yml'
 
-- name: Copy traefik dynamic configuration files
-  synchronize:
-    src: ../files/traefik/
-    dest: '{{ root_path }}/traefik'
+- name: Create traefik dynamic configuration files
+  template:
+    src: ../templates/traefik/dynamic/{{ item }}.yml
+    dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
+  loop:
+    - tls
+    - home-assistant

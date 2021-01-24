@@ -1,7 +1,7 @@
 http:
   routers:
     homeassistant:
-      rule: Host(`homeassistant.iske.cloud`)
+      rule: Host(`homeassistant.{{ domain }}`)
       entryPoints:
         - https
       service: homeassistant

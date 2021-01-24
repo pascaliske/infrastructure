@@ -1,6 +1,0 @@
-tls:
-  stores:
-    default:
-      defaultCertificate:
-        certFile: /etc/traefik/certs/iske.cloud+1.pem
-        keyFile: /etc/traefik/certs/iske.cloud+1-key.pem
