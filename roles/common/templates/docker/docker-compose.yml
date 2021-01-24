@@ -306,6 +306,7 @@ services:
       - traefik.http.routers.unifi.rule=Host(`unifi.{{ domain }}`)
       - traefik.http.routers.unifi.entrypoints=https
       - traefik.http.routers.unifi.tls=true
+      - traefik.http.routers.unifi.middlewares=auth@file
       - traefik.http.services.unifi-network.loadbalancer.server.scheme=https
       - traefik.http.services.unifi-network.loadbalancer.server.port=8443
       - traefik.http.middlewares.unifi.headers.sslredirect=true

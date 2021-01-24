@@ -27,6 +27,8 @@ access_control:
       policy: one_factor
     - domain: 'prometheus.{{ domain }}'
       policy: one_factor
+    - domain: 'unifi.{{ domain }}'
+      policy: bypass
     - domain: 'homeassistant.{{ domain }}'
       policy: one_factor
 
