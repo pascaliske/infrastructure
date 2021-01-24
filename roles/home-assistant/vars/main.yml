@@ -17,6 +17,7 @@ home_assistant_ip_ffmmbp207: "{{ lookup('env', 'HOME_ASSISTANT_IP_FFMMBP207') }}
 home_assistant_ip_fritzbox: "{{ lookup('env', 'HOME_ASSISTANT_IP_FRITZBOX') }}"
 home_assistant_ip_ipad: "{{ lookup('env', 'HOME_ASSISTANT_IP_IPAD') }}"
 home_assistant_ip_iphone: "{{ lookup('env', 'HOME_ASSISTANT_IP_IPHONE') }}"
+home_assistant_ip_proxy: "{{ lookup('env', 'HOME_ASSISTANT_IP_PROXY') }}"
 home_assistant_pi_hole_api_key: "{{ lookup('env', 'HOME_ASSISTANT_PI_HOLE_API_KEY') }}"
 home_assistant_pi_hole_url: "{{ lookup('env', 'HOME_ASSISTANT_PI_HOLE_URL') }}"
 home_assistant_slack_api_key: "{{ lookup('env', 'HOME_ASSISTANT_SLACK_API_KEY') }}"

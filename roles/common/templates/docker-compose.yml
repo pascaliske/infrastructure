@@ -73,7 +73,8 @@ services:
       - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
       - '{{ root_path }}/traefik:/etc/traefik'
     networks:
-      - proxy
+      proxy:
+        ipv4_address: 172.20.1.2
     extra_hosts:
       - 'dockerhost:172.20.1.1'
     labels:
