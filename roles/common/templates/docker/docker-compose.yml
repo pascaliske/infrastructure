@@ -110,6 +110,11 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     restart: unless-stopped
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:9090/-/healthy || exit 1
+      interval: 30s
+      timeout: 3s
+      retries: 30
     expose:
       - 9090
     environment:
