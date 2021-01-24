@@ -23,6 +23,8 @@ access_control:
       policy: one_factor
     - domain: 'traefik.{{ domain }}'
       policy: one_factor
+    - domain: 'prometheus.{{ domain }}'
+      policy: one_factor
     - domain: 'homeassistant.{{ domain }}'
       policy: one_factor
 

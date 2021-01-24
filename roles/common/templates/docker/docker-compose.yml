@@ -132,6 +132,7 @@ services:
       - traefik.http.routers.prometheus.rule=Host(`prometheus.{{ domain }}`)
       - traefik.http.routers.prometheus.entrypoints=https
       - traefik.http.routers.prometheus.tls=true
+      - traefik.http.routers.prometheus.middlewares=auth@file
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager
