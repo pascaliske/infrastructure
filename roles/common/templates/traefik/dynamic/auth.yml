@@ -1,0 +1,11 @@
+http:
+  middlewares:
+    auth:
+      forwardAuth:
+        address: 'http://authelia:9091/api/verify?rd=https://auth.{{ domain }}'
+        trustForwardHeader: true
+        authResponseHeaders:
+          - Remote-User
+          - Remote-Groups
+          - Remote-Name
+          - Remote-Email

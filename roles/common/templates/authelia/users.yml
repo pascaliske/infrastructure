@@ -1,0 +1,8 @@
+# List of users
+users:
+  '{{ auth_username }}':
+    email: '{{ auth_email }}'
+    password: '{{ auth_password }}'
+    displayname: '{{ auth_display_name }}'
+    groups:
+      - admins
