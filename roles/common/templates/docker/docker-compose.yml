@@ -176,6 +176,7 @@ services:
       - traefik.http.routers.grafana.rule=Host(`grafana.{{ domain }}`)
       - traefik.http.routers.grafana.entrypoints=https
       - traefik.http.routers.grafana.tls=true
+      - traefik.http.routers.grafana.middlewares=auth@file
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
