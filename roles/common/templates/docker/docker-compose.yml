@@ -31,6 +31,7 @@ services:
       - traefik.http.routers.dozzle.rule=Host(`dozzle.{{ domain }}`)
       - traefik.http.routers.dozzle.entrypoints=https
       - traefik.http.routers.dozzle.tls=true
+      - traefik.http.routers.dozzle.middlewares=auth@file
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer

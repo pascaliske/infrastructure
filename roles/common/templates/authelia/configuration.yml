@@ -19,6 +19,8 @@ authentication_backend:
 access_control:
   default_policy: deny
   rules:
+    - domain: 'dozzle.{{ domain }}'
+      policy: one_factor
     - domain: 'traefik.{{ domain }}'
       policy: one_factor
 
