@@ -49,6 +49,7 @@ services:
       - traefik.http.routers.portainer.rule=Host(`portainer.{{ domain }}`)
       - traefik.http.routers.portainer.entrypoints=https
       - traefik.http.routers.portainer.tls=true
+      - traefik.http.routers.portainer.middlewares=auth@file
       - traefik.http.services.portainer-network.loadbalancer.server.port=9000
 
   # proxy

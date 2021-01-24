@@ -21,6 +21,8 @@ access_control:
   rules:
     - domain: 'dozzle.{{ domain }}'
       policy: one_factor
+    - domain: 'portainer.{{ domain }}'
+      policy: bypass
     - domain: 'traefik.{{ domain }}'
       policy: one_factor
     - domain: 'prometheus.{{ domain }}'
