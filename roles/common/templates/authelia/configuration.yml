@@ -19,22 +19,18 @@ authentication_backend:
 access_control:
   default_policy: deny
   rules:
-    - domain: 'dozzle.{{ domain }}'
-      policy: one_factor
-    - domain: 'portainer.{{ domain }}'
+    - domain:
+        - dozzle.{{ domain }}
+        - traefik.{{ domain }}
+        - prometheus.{{ domain }}
+        - grafana.{{ domain }}
+        - pihole.{{ domain }}
+        - homeassistant.{{ domain }}
+      policy: two_factor
+    - domain:
+        - portainer.{{ domain }}
+        - unifi.{{ domain }}
       policy: bypass
-    - domain: 'traefik.{{ domain }}'
-      policy: one_factor
-    - domain: 'prometheus.{{ domain }}'
-      policy: one_factor
-    - domain: 'grafana.{{ domain }}'
-      policy: one_factor
-    - domain: 'unifi.{{ domain }}'
-      policy: bypass
-    - domain: 'pihole.{{ domain }}'
-      policy: one_factor
-    - domain: 'homeassistant.{{ domain }}'
-      policy: one_factor
 
 session:
   name: authelia_session
