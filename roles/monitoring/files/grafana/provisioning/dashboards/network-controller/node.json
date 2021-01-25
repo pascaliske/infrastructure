@@ -47,7 +47,7 @@
         "overrides": []
       },
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 2,
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -76,7 +76,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -200,7 +200,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -319,7 +319,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "node_time_seconds - node_boot_time_seconds",
@@ -381,7 +381,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(node_load1) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -443,7 +443,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(node_load5) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -505,7 +505,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(node_load15) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -536,7 +536,7 @@
         "overrides": []
       },
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 2,
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -563,7 +563,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -645,7 +645,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "decimals": null,
+      "decimals": 0,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -653,8 +653,8 @@
         },
         "overrides": []
       },
-      "fill": 0,
-      "fillGradient": 0,
+      "fill": 1,
+      "fillGradient": 2,
       "gridPos": {
         "h": 8,
         "w": 6,
@@ -683,8 +683,8 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
-      "pointradius": 2,
+      "pluginVersion": "7.3.7",
+      "pointradius": 1,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
@@ -728,7 +728,7 @@
       },
       "yaxes": [
         {
-          "decimals": null,
+          "decimals": 0,
           "format": "none",
           "label": null,
           "logBase": 1,
@@ -805,7 +805,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -871,7 +871,7 @@
       },
       "yaxes": [
         {
-          "decimals": 2,
+          "decimals": 1,
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -880,17 +880,17 @@
           "show": true
         },
         {
-          "decimals": 1,
-          "format": "percent",
+          "decimals": null,
+          "format": "none",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
-        "align": true,
+        "align": false,
         "alignLevel": null
       }
     },
@@ -933,7 +933,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1019,5 +1019,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "node",
-  "version": 61
+  "version": 70
 }
