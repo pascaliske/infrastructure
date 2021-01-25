@@ -53,5 +53,17 @@ storage:
     path: /config/db.sqlite3
 
 notifier:
-  filesystem:
-    filename: /config/notification.txt
+  smtp:
+    host: '{{ auth_smtp_host }}'
+    port: '{{ auth_smtp_port }}'
+    username: '{{ auth_smtp_email }}'
+    password: '{{ auth_smtp_password }}'
+    sender: '{{ auth_smtp_email }}'
+    identifier: localhost
+    subject: "[Auth] {title}"
+    startup_check_address: '{{ auth_username }}'
+    disable_require_tls: false
+    disable_html_emails: false
+    tls:
+      skip_verify: false
+      minimum_version: TLS1.2
