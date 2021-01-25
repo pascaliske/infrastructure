@@ -72,11 +72,11 @@ footer: >
 links:
   - name: Proxy
     icon: fas fa-shield-alt
-    url: https://traefik.{{ homer_domain }}
+    url: https://traefik.{{ domain }}
     target: _blank
   - name: Auth
     icon: fas fa-lock
-    url: https://auth.{{ homer_domain }}
+    url: https://auth.{{ domain }}
     target: _blank
   - name: GitHub
     icon: fab fa-github
@@ -105,22 +105,22 @@ services:
       - name: Prometheus
         logo: assets/logos/prometheus.png
         subtitle: Monitoring metrics collector
-        url: https://prometheus.{{ homer_domain }}
+        url: https://prometheus.{{ domain }}
         <<: *monitoring
       - name: Grafana
         logo: assets/logos/grafana.png
         subtitle: Monitoring metrics visualizer
-        url: https://grafana.{{ homer_domain }}
+        url: https://grafana.{{ domain }}
         <<: *monitoring
       - name: Dozzle
         logo: assets/logos/dozzle.png
         subtitle: View container logs
-        url: https://dozzle.{{ homer_domain }}
+        url: https://dozzle.{{ domain }}
         <<: *monitoring
       - name: Portainer
         logo: assets/logos/portainer.png
         subtitle: Container Management
-        url: https://portainer.{{ homer_domain }}
+        url: https://portainer.{{ domain }}
         <<: *monitoring
   - name: Network
     icon: fas fa-network-wired
@@ -128,12 +128,12 @@ services:
       - name: UniFi Controller
         logo: assets/logos/unifi.png
         subtitle: Network management controller
-        url: https://unifi.{{ homer_domain }}
+        url: https://unifi.{{ domain }}
         <<: *network
       - name: Pi-Hole
         logo: assets/logos/pihole.png
         subtitle: Network wide DNS based ad blocker
-        url: https://pihole.{{ homer_domain }}
+        url: https://pihole.{{ domain }}
         <<: *network
       - name: FRITZ!Box
         logo: assets/logos/fritzbox.png
@@ -161,5 +161,5 @@ services:
       - name: Home Assistant
         logo: assets/logos/homeassistant.png
         subtitle: Central home automation hub
-        url: https://homeassistant.{{ homer_domain }}
+        url: https://homeassistant.{{ domain }}
         <<: *automation
