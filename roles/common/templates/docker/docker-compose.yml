@@ -285,12 +285,11 @@ services:
     ports:
       - '3478:3478/udp'
       - '8080:8080'
+      - '8443:8443'
       - '8880:8880'
       - '8843:8843'
       - '6789:6789'
       - '10001:10001/udp'
-    expose:
-      - 8443
     volumes:
       - '{{ root_path }}/unifi/config:/var/lib/unifi'
       - '{{ root_path }}/unifi/log:/usr/lib/unifi/logs'
