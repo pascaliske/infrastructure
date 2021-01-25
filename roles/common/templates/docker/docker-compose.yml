@@ -162,7 +162,6 @@ services:
       TZ: '{{ timezone }}'
       GF_SECURITY_ADMIN_USER: '{{ grafana_user }}'
       GF_SECURITY_ADMIN_PASSWORD: '{{ grafana_password }}'
-      GF_USERS_ALLOW_SIGN_UP: 'false'
       GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
       - grafana:/var/lib/grafana
