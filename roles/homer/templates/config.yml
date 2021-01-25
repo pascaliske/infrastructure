@@ -66,7 +66,7 @@ footer: >
       }
     }
   </style>
-  <p>&copy; 2021 <a href="https://pascaliske.dev">Pascal Iske</a></p>
+  <p>&copy; {{ ansible_date_time.year }} <a href="https://pascaliske.dev">Pascal Iske</a></p>
 
 # navbar
 links:
