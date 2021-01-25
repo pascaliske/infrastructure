@@ -1,4 +1,4 @@
-# globals
+# general
 global:
   checkNewVersion: false
   sendAnonymousUsage: false

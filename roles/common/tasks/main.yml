@@ -3,10 +3,17 @@
     path: '{{ root_path }}'
     state: directory
 
+# docker
 - name: Create docker-compose file
   template:
     src: ../templates/docker/docker-compose.yml
     dest: '{{ root_path }}/docker-compose.yml'
+
+# traefik
+- name: Ensure traefik directory exists
+  file:
+    path: '{{ root_path }}/traefik'
+    state: directory
 
 - name: Create traefik configuration file
   template:
@@ -19,4 +26,21 @@
     dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
   loop:
     - tls
+    - auth
     - home-assistant
+
+# authelia
+- name: Ensure authelia directory exists
+  file:
+    path: '{{ root_path }}/authelia'
+    state: directory
+
+- name: Create authelia configuration file
+  template:
+    src: ../templates/authelia/configuration.yml
+    dest: '{{ root_path }}/authelia/configuration.yml'
+
+- name: Create authelia users file
+  template:
+    src: ../templates/authelia/users.yml
+    dest: '{{ root_path }}/authelia/users.yml'

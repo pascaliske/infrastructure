@@ -1,5 +1,4 @@
 ---
-homer_domain: "{{ lookup('env', 'DOMAIN') }}"
 homer_router_ip: "{{ lookup('env', 'ROUTER_IP') }}"
 homer_controller_ip: "{{ lookup('env', 'CONTROLLER_IP') }}"
 homer_switch_8p_ip: "{{ lookup('env', 'SWITCH_8P_IP') }}"

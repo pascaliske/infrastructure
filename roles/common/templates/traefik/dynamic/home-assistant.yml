@@ -5,6 +5,8 @@ http:
       entryPoints:
         - https
       service: homeassistant
+      middlewares:
+        - auth@file
       tls: true
   services:
     homeassistant:

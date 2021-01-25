@@ -1,0 +1,65 @@
+# general
+host: 0.0.0.0
+port: 9091
+jwt_secret: '{{ auth_jwt_secret }}'
+default_redirection_url: 'https://{{ domain }}'
+totp:
+  issuer: '{{ domain }}'
+
+authentication_backend:
+  file:
+    path: /config/users.yml
+    password:
+      algorithm: sha512
+      iterations: 1
+      salt_length: 16
+      parallelism: 8
+      memory: 128
+
+access_control:
+  default_policy: deny
+  rules:
+    - domain:
+        - dozzle.{{ domain }}
+        - traefik.{{ domain }}
+        - prometheus.{{ domain }}
+        - grafana.{{ domain }}
+        - pihole.{{ domain }}
+        - homeassistant.{{ domain }}
+      policy: two_factor
+    - domain:
+        - portainer.{{ domain }}
+        - unifi.{{ domain }}
+      policy: bypass
+
+session:
+  name: authelia_session
+  domain: '{{ domain }}'
+  secret: '{{ auth_session_secret }}'
+  expiration: 3600
+  inactivity: 300
+
+regulation:
+  max_retries: 3
+  find_time: 120
+  ban_time: 300
+
+storage:
+  local:
+    path: /config/db.sqlite3
+
+notifier:
+  smtp:
+    host: '{{ auth_smtp_host }}'
+    port: '{{ auth_smtp_port }}'
+    username: '{{ auth_smtp_email }}'
+    password: '{{ auth_smtp_password }}'
+    sender: '{{ auth_smtp_email }}'
+    identifier: localhost
+    subject: "[Auth] {title}"
+    startup_check_address: '{{ auth_username }}'
+    disable_require_tls: false
+    disable_html_emails: false
+    tls:
+      skip_verify: false
+      minimum_version: TLS1.2
