@@ -5,7 +5,6 @@ services:
     image: containrrr/watchtower:latest
     container_name: watchtower
     restart: always
-    network_mode: none
     environment:
       TZ: '{{ timezone }}'
       WATCHTOWER_SCHEDULE: '0 0 0 * * *'
