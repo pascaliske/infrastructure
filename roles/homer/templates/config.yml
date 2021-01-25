@@ -74,6 +74,10 @@ links:
     icon: fas fa-shield-alt
     url: https://traefik.{{ homer_domain }}
     target: _blank
+  - name: Auth
+    icon: fas fa-lock
+    url: https://auth.{{ homer_domain }}
+    target: _blank
   - name: GitHub
     icon: fab fa-github
     url: https://github.com/pascaliske/infrastructure
