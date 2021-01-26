@@ -13,9 +13,15 @@ services:
       WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: '{{ watchtower_slack_hook_url }}'
       WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER: watchtower
       WATCHTOWER_NOTIFICATION_SLACK_CHANNEL: '#hosting'
+      WATCHTOWER_HTTP_API_TOKEN: '{{ watchtower_http_api_token }}'
+      WATCHTOWER_HTTP_API_METRICS: 'true'
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
+    expose:
+      - 8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - monitoring
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle

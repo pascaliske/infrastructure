@@ -15,6 +15,12 @@ scrape_configs:
     static_configs:
       - targets: ['traefik:9000']
 
+  - job_name: network/watchtower
+    metrics_path: /v1/metrics
+    bearer_token: '{{ watchtower_access_token }}'
+    static_configs:
+      - targets: ['watchtower:8080']
+
   - job_name: network/node
     static_configs:
       - targets: ['node-exporter:9100']
