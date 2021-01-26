@@ -89,6 +89,11 @@ services:
     image: authelia/authelia
     container_name: authelia
     restart: unless-stopped
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:9091 || exit 1
+      interval: 30s
+      timeout: 3s
+      retries: 30
     expose:
       - 9091
     environment:
@@ -110,6 +115,11 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     restart: unless-stopped
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:9090/-/healthy || exit 1
+      interval: 30s
+      timeout: 3s
+      retries: 30
     expose:
       - 9090
     environment:
@@ -154,6 +164,11 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     restart: unless-stopped
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
+      interval: 30s
+      timeout: 3s
+      retries: 30
     depends_on:
       - prometheus
     expose:
@@ -260,6 +275,11 @@ services:
     image: b4bz/homer:latest
     container_name: homer
     restart: always
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:8080 || exit 1
+      interval: 30s
+      timeout: 3s
+      retries: 30
     expose:
       - 8080
     environment:
