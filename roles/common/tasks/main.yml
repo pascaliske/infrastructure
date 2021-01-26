@@ -15,6 +15,11 @@
     path: '{{ root_path }}/traefik'
     state: directory
 
+- name: Ensure traefik dynamic directory exists
+  file:
+    path: '{{ root_path }}/traefik/dynamic'
+    state: directory
+
 - name: Create traefik configuration file
   template:
     src: ../templates/traefik/traefik.yml
