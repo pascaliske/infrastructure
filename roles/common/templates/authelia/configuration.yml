@@ -20,6 +20,15 @@ access_control:
   default_policy: deny
   rules:
     - domain:
+        - portainer.{{ domain }}
+        - unifi.{{ domain }}
+      policy: bypass
+    - domain:
+        - prometheus.{{ domain }}
+      resources:
+        - /-/reload
+      policy: bypass
+    - domain:
         - dozzle.{{ domain }}
         - traefik.{{ domain }}
         - prometheus.{{ domain }}
@@ -27,10 +36,6 @@ access_control:
         - pihole.{{ domain }}
         - homeassistant.{{ domain }}
       policy: two_factor
-    - domain:
-        - portainer.{{ domain }}
-        - unifi.{{ domain }}
-      policy: bypass
 
 session:
   name: authelia_session
