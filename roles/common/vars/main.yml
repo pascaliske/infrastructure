@@ -2,6 +2,7 @@
 network: "{{ lookup('env', 'NETWORK') }}"
 router_ip: "{{ lookup('env', 'ROUTER_IP') }}"
 controller_ip: "{{ lookup('env', 'CONTROLLER_IP') }}"
+watchtower_notifications_level: "{{ lookup('env', 'WATCHTOWER_NOTIFICATIONS_LEVEL') }}"
 watchtower_slack_hook_url: "{{ lookup('env', 'WATCHTOWER_SLACK_HOOK_URL') }}"
 watchtower_http_api_token: "{{ lookup('env', 'WATCHTOWER_HTTP_API_TOKEN') }}"
 watchtower_debug: "{{ lookup('env', 'WATCHTOWER_DEBUG') }}"

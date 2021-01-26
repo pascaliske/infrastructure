@@ -10,6 +10,7 @@ services:
       WATCHTOWER_SCHEDULE: '0 0 0 * * *'
       WATCHTOWER_CLEANUP: 'true'
       WATCHTOWER_NOTIFICATIONS: slack
+      WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower_notifications_level }}'
       WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: '{{ watchtower_slack_hook_url }}'
       WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER: watchtower
       WATCHTOWER_NOTIFICATION_SLACK_CHANNEL: '#hosting'
