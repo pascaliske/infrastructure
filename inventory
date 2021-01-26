@@ -2,4 +2,4 @@
 10.0.2.2 remote_user=pi
 
 [testing]
-127.0.0.1 ansible_port=2222 ansible_user=vagrant remote_user=vagrant
+127.0.0.1 remote_user=vagrant ansible_user=vagrant ansible_port=2222
