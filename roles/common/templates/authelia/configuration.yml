@@ -29,6 +29,11 @@ access_control:
         - /-/reload
       policy: bypass
     - domain:
+        - pihole.{{ domain }}
+      resources:
+        - ^\/api\.php
+      policy: bypass
+    - domain:
         - dozzle.{{ domain }}
         - traefik.{{ domain }}
         - prometheus.{{ domain }}
