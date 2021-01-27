@@ -1,6 +1,6 @@
 ---
 # general
-title: Dashboard
+title: Home Cloud
 subtitle: Pascal Iske
 logo: logo.png
 header: true
@@ -104,22 +104,22 @@ services:
     items:
       - name: Prometheus
         logo: assets/logos/prometheus.png
-        subtitle: Monitoring metrics collector
+        subtitle: Metrics collector
         url: https://prometheus.{{ domain }}
         <<: *monitoring
       - name: Grafana
         logo: assets/logos/grafana.png
-        subtitle: Monitoring metrics visualizer
+        subtitle: Metrics visualizer
         url: https://grafana.{{ domain }}
         <<: *monitoring
       - name: Dozzle
         logo: assets/logos/dozzle.png
-        subtitle: View container logs
+        subtitle: Container logs
         url: https://dozzle.{{ domain }}
         <<: *monitoring
       - name: Portainer
         logo: assets/logos/portainer.png
-        subtitle: Container Management
+        subtitle: Container management
         url: https://portainer.{{ domain }}
         <<: *monitoring
   - name: Network
@@ -132,7 +132,7 @@ services:
         <<: *network
       - name: Pi-Hole
         logo: assets/logos/pihole.png
-        subtitle: Network wide DNS based ad blocker
+        subtitle: DNS based ad blocker
         url: https://pihole.{{ domain }}
         <<: *network
       - name: FRITZ!Box
@@ -147,7 +147,7 @@ services:
         <<: *network
       - name: TP-Link Switch 5
         logo: assets/logos/tplink.png
-        subtitle: 5 port switch
+        subtitle: 5 port distribution switch
         url: http://{{ homer_switch_5p_ip }}
         <<: *network
       - name: Gigaset GO
