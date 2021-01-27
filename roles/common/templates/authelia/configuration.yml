@@ -46,8 +46,8 @@ session:
   name: authelia_session
   domain: '{{ domain }}'
   secret: '{{ auth_session_secret }}'
-  expiration: 3600
-  inactivity: 300
+  expiration: 42h
+  inactivity: 15m
 
 regulation:
   max_retries: 3
