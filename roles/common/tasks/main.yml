@@ -30,7 +30,6 @@
     src: ../templates/traefik/dynamic/{{ item }}.yml
     dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
   loop:
-    - tls
     - auth
     - home-assistant
 

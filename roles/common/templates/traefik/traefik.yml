@@ -26,6 +26,16 @@ entryPoints:
   metrics:
     address: :9000
 
+# certificates
+certificatesResolvers:
+  digitalocean:
+    acme:
+      email: '{{ auth_email }}'
+      storage: /etc/traefik/acme.json
+      dnsChallenge:
+        provider: digitalocean
+        delayBeforeCheck: 0
+
 # providers
 providers:
   file:
