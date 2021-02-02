@@ -8,6 +8,15 @@ Vagrant.configure("2") do |config|
     # check for update
     config.vm.box_check_update = false
 
+    # configure vm
+    config.vm.provider :virtualbox do |vb|
+        vb.cpus = 2
+        vb.memory = 2048
+        vb.gui = false
+
+        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    end
+
     # provision
     config.vm.provision "file", source: "~/.ssh/id_network.pub", destination: "~/.ssh/id_network.pub"
     config.vm.provision "shell", inline: <<-SHELL
