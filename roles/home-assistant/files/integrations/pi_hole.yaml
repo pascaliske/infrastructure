@@ -5,5 +5,7 @@ input_boolean:
 
 pi_hole:
   - host: !secret pi_hole_url
-    location: ''
     api_key: !secret pi_hole_api_key
+    location: ''
+    ssl: true
+    verify_ssl: false
