@@ -357,6 +357,7 @@ services:
   pihole:
     image: pihole/pihole:latest
     container_name: pihole
+    hostname: pihole
     restart: unless-stopped
     depends_on:
       - cloudflared
