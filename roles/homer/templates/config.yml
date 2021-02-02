@@ -36,8 +36,19 @@ footer: >
       margin-bottom: 2px;
     }
 
+    body #bighead .navbar-end {
+      display: flex;
+      align-items: center;
+    }
+
+    body .search-bar {
+      max-width: 330px;
+      flex: 1;
+      order: -1;
+    }
+
     body .search-bar input {
-      width: 200px;
+      width: 100%;
     }
 
     body #main-section {
@@ -56,6 +67,12 @@ footer: >
       width: 35px;
     }
 
+    @media screen and (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+    }
+
     @media screen and (min-width: 1024px) {
       body #main-section {
         padding-bottom: 60px;
@@ -63,6 +80,10 @@ footer: >
 
       body #main-section .container {
         padding: 0;
+      }
+
+      body .search-bar {
+        order: 1;
       }
     }
   </style>
