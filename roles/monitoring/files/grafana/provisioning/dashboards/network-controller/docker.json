@@ -14,7 +14,7 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 2,
+  "graphTooltip": 1,
   "id": 4,
   "links": [],
   "panels": [
@@ -249,6 +249,8 @@
       "legend": {
         "avg": false,
         "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
         "max": false,
         "min": false,
         "show": true,
@@ -362,5 +364,5 @@
   "timezone": "",
   "title": "Docker",
   "uid": "docker",
-  "version": 29
+  "version": 31
 }

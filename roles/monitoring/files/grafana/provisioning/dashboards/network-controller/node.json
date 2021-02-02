@@ -908,7 +908,7 @@
         "overrides": []
       },
       "fill": 1,
-      "fillGradient": 3,
+      "fillGradient": 2,
       "gridPos": {
         "h": 10,
         "w": 24,
@@ -928,7 +928,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "connected",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -948,13 +948,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[5m]) * 8",
+          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[1m]) * 8",
           "interval": "",
           "legendFormat": "{{ device }}-in",
           "refId": "A"
         },
         {
-          "expr": "irate(node_network_transmit_bytes_total{device!=\"lo\"}[5m]) * 8",
+          "expr": "irate(node_network_transmit_bytes_total{device!=\"lo\"}[1m]) * 8",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ device }}-out",
@@ -1019,5 +1019,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "node",
-  "version": 70
+  "version": 74
 }
