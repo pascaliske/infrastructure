@@ -1,6 +1,7 @@
 # general
 host: 0.0.0.0
 port: 9091
+theme: dark
 jwt_secret: '{{ auth_jwt_secret }}'
 default_redirection_url: 'https://{{ domain }}'
 totp:
