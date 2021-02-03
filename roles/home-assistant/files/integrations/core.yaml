@@ -19,6 +19,7 @@ logger:
     homeassistant.setup: warn
     homeassistant.loader: warn
     homeassistant.helpers.entity: warn
+    homeassistant.config_entries: warn
     homeassistant.components.http.ban: warn
     homeassistant.components.discovery: warn
     homeassistant.components.upnp: warn
