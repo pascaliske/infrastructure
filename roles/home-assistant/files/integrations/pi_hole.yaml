@@ -8,4 +8,3 @@ pi_hole:
     api_key: !secret pi_hole_api_key
     location: ''
     ssl: true
-    verify_ssl: false
