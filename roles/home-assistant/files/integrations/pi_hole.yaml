@@ -4,7 +4,7 @@ input_boolean:
     initial: on
 
 pi_hole:
-  - host: !secret pi_hole_url
+  - host: !secret pi_hole_host
     api_key: !secret pi_hole_api_key
     location: ''
     ssl: true

@@ -32,7 +32,7 @@ access_control:
     - domain:
         - pihole.{{ domain }}
       resources:
-        - ^\/api\.php
+        - ^\/+api\.php
       policy: bypass
     - domain:
         - dozzle.{{ domain }}
