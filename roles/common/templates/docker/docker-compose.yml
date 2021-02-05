@@ -9,11 +9,10 @@ services:
       TZ: '{{ timezone }}'
       WATCHTOWER_SCHEDULE: '0 0 0 * * *'
       WATCHTOWER_CLEANUP: 'true'
-      WATCHTOWER_NOTIFICATIONS: slack
+      WATCHTOWER_NOTIFICATIONS: shoutrrr
       WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower_notifications_level }}'
-      WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: '{{ watchtower_slack_hook_url }}'
-      WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER: watchtower
-      WATCHTOWER_NOTIFICATION_SLACK_CHANNEL: '{{ watchtower_slack_channel }}'
+      WATCHTOWER_NOTIFICATION_URL: 'slack://{{ watchtower_slack_name }}@{{ watchtower_slack_tokens }}'
+      WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower_slack_template }}'
       WATCHTOWER_HTTP_API_TOKEN: '{{ watchtower_http_api_token }}'
       WATCHTOWER_HTTP_API_METRICS: 'true'
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
