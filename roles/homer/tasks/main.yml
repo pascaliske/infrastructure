@@ -1,18 +1,18 @@
-- name: Ensure config directory exists
+# directories
+- name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ role_name }}'
+    path: '{{ root_path }}/{{ role_name }}/{{ item }}'
     state: directory
+  loop:
+    - assets
 
-- name: Ensure assets directory exists
-  file:
-    path: '{{ root_path }}/{{ role_name }}/assets'
-    state: directory
-
-- name: Copy config file to config directory
+# config files
+- name: Create configuration file
   template:
     src: ../templates/config.yml
     dest: '{{ root_path }}/{{ role_name }}/config.yml'
 
+# assets
 - name: Copy assets to assets directory
   synchronize:
     src: ../files/

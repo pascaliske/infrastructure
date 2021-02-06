@@ -1,7 +1,12 @@
-- name: Ensure root directory exists
+# directories
+- name: Ensure directories exist
   file:
-    path: '{{ root_path }}'
+    path: '{{ root_path }}/{{ item }}'
     state: directory
+  loop:
+    - traefik
+    - traefik/dynamic
+    - authelia
 
 # docker
 - name: Create docker-compose file
@@ -10,16 +15,6 @@
     dest: '{{ root_path }}/docker-compose.yml'
 
 # traefik
-- name: Ensure traefik directory exists
-  file:
-    path: '{{ root_path }}/traefik'
-    state: directory
-
-- name: Ensure traefik dynamic directory exists
-  file:
-    path: '{{ root_path }}/traefik/dynamic'
-    state: directory
-
 - name: Create traefik configuration file
   template:
     src: ../templates/traefik/traefik.yml
@@ -34,11 +29,6 @@
     - home-assistant
 
 # authelia
-- name: Ensure authelia directory exists
-  file:
-    path: '{{ root_path }}/authelia'
-    state: directory
-
 - name: Create authelia configuration file
   template:
     src: ../templates/authelia/configuration.yml

@@ -1,4 +1,5 @@
-- name: Ensure config directories exists
+# directories
+- name: Ensure directories exist
   file:
     path: '{{ root_path }}/{{ item }}'
     state: directory
@@ -6,36 +7,40 @@
     - prometheus
     - alertmanager
     - grafana
+    - grafana/provisioning
     - unifi-exporter
 
+# prometheus
 - name: Configure Prometheus
   vars:
     item: prometheus
   block:
-    - name: Copy Prometheus config to config directory
+    - name: Create Prometheus config
       template:
         src: ../templates/{{ item }}/{{ item }}.yml
         dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
       notify: Reload Prometheus
-    - name: Copy Prometheus alert rules to config directory
+    - name: Create alert rules config
       template:
         src: ../templates/{{ item }}/alert.rules
         dest: '{{ root_path }}/{{ item }}/alert.rules'
 
+# alertmanager
 - name: Configure Alertmanager
   vars:
     item: alertmanager
   block:
-    - name: Copy Alertmanager config to config directory
+    - name: Create Alertmanager config
       template:
         src: ../templates/{{ item }}/{{ item }}.yml
         dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
 
+# grafana
 - name: Configure Grafana
   vars:
     item: grafana
   block:
-    - name: Copy Grafana config file
+    - name: Create Grafana config file
       template:
         src: ../templates/{{ item }}/grafana.ini
         dest: '{{ root_path }}/{{ item }}/grafana.ini'
@@ -45,11 +50,12 @@
         dest: '{{ root_path }}/{{ item }}'
         delete: yes
 
+# unifi-exporter
 - name: Configure UniFi Exporter
   vars:
     item: unifi-exporter
   block:
-    - name: Copy UniFi Exporter config to config directory
+    - name: Create UniFi Exporter config
       template:
         src: ../templates/{{ item }}/unifi-poller.conf
         dest: '{{ root_path }}/{{ item }}/unifi-poller.conf'

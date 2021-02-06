@@ -1,8 +1,12 @@
-- name: Ensure config directory exists
+# directories
+- name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ role_name }}'
+    path: '{{ root_path }}/{{ role_name }}/{{ item }}'
     state: directory
+  loop:
+    - www
 
+# config files
 - name: Copy Home Assistant files to config directory
   synchronize:
     src: ../files/
@@ -13,11 +17,7 @@
     src: ../templates/secrets.yml
     dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
 
-- name: Ensure plugin directory exists
-  file:
-    path: '{{ root_path }}/{{ role_name }}/www'
-    state: directory
-
+# plugins
 - name: Clone plugins into plugin directory
   git:
     repo: 'https://github.com/{{ item.user }}/{{ item.repo }}.git'
