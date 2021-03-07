@@ -1,0 +1,23 @@
+alias: Love Mini Switch
+description: Allows changing Love Switch in Children's Room. Single press to toggle, double press to turn on for 10 minutes.
+mode: restart
+use_blueprint:
+  path: SeanM/zha-aqara-wireless-mini-switch.yaml
+  input:
+    aqara_mini_switch: 9959beea1aa127c59c25518950573b87
+    button_single_press:
+      - service: switch.toggle
+        target:
+          entity_id: switch.love
+    button_double_press:
+      - condition: state
+        entity_id: switch.love
+        state: 'off'
+      - service: switch.turn_on
+        target:
+          entity_id: switch.love
+      - delay:
+          minutes: 10
+      - service: switch.turn_off
+        target:
+          entity_id: switch.love
