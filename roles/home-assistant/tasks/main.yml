@@ -7,10 +7,29 @@
     - www
 
 # config files
-- name: Copy Home Assistant files to config directory
+- name: Copy Home Assistant config files
   synchronize:
-    src: ../files/
-    dest: '{{ root_path }}/{{ role_name }}'
+    src: ../files/{{ item }}.yaml
+    dest: '{{ root_path }}/{{ role_name }}/{{ item }}.yaml'
+  loop:
+    - configuration
+    - customize
+    - ui-lovelace
+
+- name: Copy Home Assistant config directories
+  synchronize:
+    src: ../files/{{ item }}/
+    dest: '{{ root_path }}/{{ role_name }}/{{ item }}'
+  loop:
+    - automations
+    - groups
+    - integrations
+    - scenes
+    - scripts
+    - sensors
+    - switches
+    - themes
+    - views
 
 - name: Copy Home Assistant secrets to config directory
   template:
