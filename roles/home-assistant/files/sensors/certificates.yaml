@@ -25,11 +25,6 @@ sensors:
     unit_of_measurement: Days
     value_template: >
       {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_logs_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
-  cert_expiry_mattermost_pascaliske_dev:
-    friendly_name: mattermost.pascaliske.dev
-    unit_of_measurement: Days
-    value_template: >
-      {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_mattermost_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
   cert_expiry_portainer_pascaliske_dev:
     friendly_name: portainer.pascaliske.dev
     unit_of_measurement: Days

@@ -155,8 +155,6 @@ cards:
                 name: git.pascaliske.dev
               - entity: sensor.cert_expiry_registry_pascaliske_dev
                 name: registry.pascaliske.dev
-              - entity: sensor.cert_expiry_mattermost_pascaliske_dev
-                name: mattermost.pascaliske.dev
               - entity: sensor.cert_expiry_stats_pascaliske_dev
                 name: stats.pascaliske.dev
               - entity: sensor.cert_expiry_logs_pascaliske_dev
