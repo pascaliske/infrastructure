@@ -4,6 +4,7 @@
     path: '{{ root_path }}/{{ role_name }}/{{ item }}'
     state: directory
   loop:
+    - themes
     - www
 
 # config files
@@ -28,13 +29,21 @@
     - scripts
     - sensors
     - switches
-    - themes
     - views
 
 - name: Copy Home Assistant secrets to config directory
   template:
     src: ../templates/secrets.yml
     dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
+
+# themes
+- name: Download themes into theme directory
+  get_url:
+    url: '{{ item.url }}'
+    dest: '{{ root_path }}/{{ role_name }}/themes/{{ item.name }}.yaml'
+  loop:
+    - { name: 'google-home', url: 'https://raw.githubusercontent.com/liri/lovelace-themes/master/themes/google-home.yaml' }
+
 
 # plugins
 - name: Clone plugins into plugin directory
