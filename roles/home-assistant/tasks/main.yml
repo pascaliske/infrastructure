@@ -21,6 +21,7 @@
   synchronize:
     src: ../files/{{ item }}/
     dest: '{{ root_path }}/{{ role_name }}/{{ item }}'
+    delete: yes
   loop:
     - automations
     - groups
