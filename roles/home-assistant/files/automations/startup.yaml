@@ -1,8 +1,11 @@
-alias: Send Notification on Startup
+alias: Startup Checks
 trigger:
   platform: homeassistant
   event: start
 action:
+  - service: frontend.set_theme
+    data:
+      name: Google - Dark
   - service: notify.slack
     data:
       title: Home Assistant
