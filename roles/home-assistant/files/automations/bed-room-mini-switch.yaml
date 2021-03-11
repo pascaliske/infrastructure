@@ -1,0 +1,10 @@
+alias: Bed Room Mini Switch
+mode: restart
+use_blueprint:
+  path: SeanM/zha-aqara-wireless-mini-switch.yaml
+  input:
+    aqara_mini_switch: f16c892cbe1ea75906a419aae6fb11fe
+    button_single_press:
+      - service: switch.toggle
+        target:
+          entity_id: switch.licht
