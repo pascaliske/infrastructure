@@ -1,0 +1,96 @@
+# general
+external_url 'https://git.{{ domain }}'
+registry_external_url 'http://registry.{{ domain }}'
+gitlab_rails['time_zone'] = '{{ timezone }}'
+
+# backups
+gitlab_rails['backup_path'] = '/var/opt/gitlab-backups'
+
+# default theme
+gitlab_rails['gitlab_default_theme'] = 2
+
+# default project features
+gitlab_rails['gitlab_default_projects_features_issues'] = true
+gitlab_rails['gitlab_default_projects_features_merge_requests'] = true
+gitlab_rails['gitlab_default_projects_features_wiki'] = true
+gitlab_rails['gitlab_default_projects_features_snippets'] = true
+gitlab_rails['gitlab_default_projects_features_builds'] = true
+gitlab_rails['gitlab_default_projects_features_container_registry'] = true
+
+# gitlab ci
+gitlab_ci['gitlab_ci_all_broken_builds'] = true
+
+# artifacts
+gitlab_rails['artifacts_enabled'] = true
+
+# dependency proxy
+gitlab_rails['dependency_proxy_enabled'] = true
+
+# git lfs
+gitlab_rails['lfs_enabled'] = true
+
+# impersonation settings
+gitlab_rails['impersonation_enabled'] = true
+
+# emails
+gitlab_rails['gitlab_email_enabled'] = true
+gitlab_rails['gitlab_email_from'] = '{{ email }}'
+gitlab_rails['gitlab_email_reply_to'] = '{{ email }}'
+gitlab_rails['gitlab_email_display_name'] = 'GitLab | PI-Webdesign'
+gitlab_rails['gitlab_email_subject_suffix'] = ''
+gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_domain'] = '{{ domain }}'
+gitlab_rails['smtp_address'] = '{{ smtp_host }}'
+gitlab_rails['smtp_user_name'] = '{{ email }}'
+gitlab_rails['smtp_password'] = '{{ smtp_password }}'
+gitlab_rails['smtp_authentication'] = 'login'
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_port'] = 587
+
+# disable integrated certificates
+letsencrypt['enable'] = false
+letsencrypt['auto_renew'] = false
+
+{% if sentry_dsn | length > 0 %}
+# sentry error logging
+gitlab_rails['sentry_enabled'] = true
+gitlab_rails['sentry_dsn'] = '{{ sentry_dsn }}'
+gitlab_rails['sentry_clientside_dsn'] = '{{ sentry_dsn }}'
+gitlab_rails['sentry_environment'] = 'production'
+
+{% endif -%}
+
+{% if google_analytics_id | length > 0 %}
+# google analytics
+gitlab_rails['extra_google_analytics_id'] = '{{ google_analytics_id }}'
+
+{% endif -%}
+
+# nginx
+nginx['listen_port'] = 80
+nginx['listen_https'] = false
+nginx['worker_processes'] = 2
+nginx['proxy_set_headers'] = {
+    'Host' => 'git.{{ domain }}',
+    'Upgrade' => '$http_upgrade',
+    'Connection' => '$connection_upgrade',
+    'X-Forwarded-Proto' => 'https',
+    'X-Forwarded-Ssl' => 'on',
+    'X-Forwarded-For' => '$proxy_add_x_forwarded_for',
+    'X-Real-IP' => '$remote_addr'
+}
+
+# sidekiq
+sidekiq['concurrency'] = 2
+
+# puma
+puma['worker_processes'] = 2
+
+# grafana
+grafana['gitlab_application_id'] = '{{ grafana_app_id }}';
+grafana['gitlab_secret'] = '{{ grafana_app_secret }}';
+grafana['allow_user_sign_up'] = true
+grafana['disable_login_form'] = false
+grafana['env'] = {
+    'GF_SERVER_SERVE_FROM_SUB_PATH' => "true"
+}

@@ -1,0 +1,24 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - gitlab
+    - gitlab/config
+    - gitlab/data
+    - gitlab/backups
+    - gitlab/logs
+    - gitlab-runner
+
+# gitlab
+- name: Create configuration file
+  template:
+    src: gitlab/gitlab.rb.j2
+    dest: '{{ root_path }}/gitlab/config/gitlab.rb'
+
+# gitlab-runner
+- name: Create runner configuration file
+  template:
+    src: gitlab-runner/config.toml.j2
+    dest: '{{ root_path }}/gitlab-runner/config.toml'

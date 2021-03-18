@@ -13,6 +13,7 @@ This repository contains the configurations for most of my services:
 - [UniFi Controller](https://www.ui.com/software/) for managing all UniFi network gear
 - [Pi-Hole](https://pi-hole.net) for blocking ads and malicious domains network-wide
 - [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using [DNS-over-HTTPS](https://en.m.wikipedia.org/wiki/DNS_over_HTTPS)
+- [GitLab](https://about.gitlab.com/) as DevOps platform
 - [Home Assistant](https://home-assistant.io) as Home Automation hub
 
 It also includes the following maintenance containers:

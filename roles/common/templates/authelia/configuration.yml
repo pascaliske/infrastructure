@@ -3,7 +3,7 @@ host: 0.0.0.0
 port: 9091
 theme: dark
 jwt_secret: '{{ auth_jwt_secret }}'
-default_redirection_url: 'https://{{ domain }}'
+default_redirection_url: 'https://{{ 'go.' if ansible_play_name == 'gitlab' }}{{ domain }}'
 totp:
   issuer: '{{ domain }}'
 
@@ -42,6 +42,20 @@ access_control:
         - grafana.{{ domain }}
         - pihole.{{ domain }}
         - homeassistant.{{ domain }}
+      policy: two_factor
+  {% elif ansible_play_name == 'gitlab' -%}
+  rules:
+    - domain:
+        - portainer.{{ domain }}
+        - git.{{ domain }}
+        - registry.{{ domain }}
+      policy: bypass
+    - domain:
+        - code.{{ domain }}
+        - logs.{{ domain }}
+        - links.{{ domain }}
+        - traefik.{{ domain }}
+        - stats.{{ domain }}
       policy: two_factor
   {% else -%}
   rules: {{ '[]' -}}

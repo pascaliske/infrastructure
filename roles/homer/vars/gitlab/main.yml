@@ -1,0 +1,43 @@
+---
+dashboard: Server
+services:
+  - name: Self Hosted
+    icon: fas fa-cloud
+    items:
+      - name: GitLab
+        subtitle: Web based DevOps lifecycle application
+        url: https://git.{{ domain }}
+      - name: Grafana
+        subtitle: Monitoring metrics visualizer
+        url: https://git.{{ domain }}/-/grafana/
+      - name: Code Server
+        subtitle: Web based integrated development environment
+        logo: assets/logos/vscode.png
+        url: https://code.{{ domain }}
+      - name: Glances
+        subtitle: View general server stats
+        url: https://stats.{{ domain }}
+      - name: Dozzle
+        subtitle: View container logs
+        url: https://logs.{{ domain }}
+      - name: Portainer
+        subtitle: Container Management
+  - name: Cloud
+    icon: fas fa-cloud
+    items:
+      - name: UniFi Cloud
+        subtitle: Network management controller
+        logo: assets/logos/unifi.png
+        url: https://network.unifi.ui.com
+      - name: Slack
+        subtitle: Chat & Notifications
+        url: https://pascaliske.slack.com
+      - name: Sentry
+        subtitle: Issue Reporting
+        url: https://sentry.io/organizations/pi-webdesign/issues/
+      - name: NameCheap
+        subtitle: Domain Management
+        url: https://ap.www.namecheap.com
+      - name: DomainFactory
+        subtitle: Domain Management
+        url: https://admin.df.eu

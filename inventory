@@ -1,5 +1,8 @@
 [network]
 10.0.2.2
 
+[gitlab]
+45.9.60.94
+
 [testing]
 127.0.0.1 remote_user=vagrant ansible_user=vagrant ansible_port=2222
