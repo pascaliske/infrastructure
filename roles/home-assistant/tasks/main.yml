@@ -34,7 +34,7 @@
 
 - name: Copy Home Assistant secrets to config directory
   template:
-    src: ../templates/secrets.yml
+    src: home-assistant/secrets.yml.j2
     dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
 
 # themes

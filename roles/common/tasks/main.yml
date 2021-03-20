@@ -1,3 +1,9 @@
+# variables
+- name: Load host specific variables
+  include_vars:
+    file: '{{ ansible_play_name }}/main.yml'
+    name: '{{ ansible_play_name }}'
+
 # directories
 - name: Ensure directories exist
   file:
@@ -11,19 +17,20 @@
 # docker
 - name: Create docker-compose file
   template:
-    src: ../templates/docker/docker-compose.yml
+    src: docker/{{ ansible_play_name }}/docker-compose.yml
     dest: '{{ root_path }}/docker-compose.yml'
 
 # traefik
 - name: Create traefik configuration file
   template:
-    src: ../templates/traefik/traefik.yml
+    src: traefik/traefik.yml.j2
     dest: '{{ root_path }}/traefik.yml'
 
 - name: Create traefik dynamic configuration files
   template:
-    src: ../templates/traefik/dynamic/{{ item }}.yml
+    src: traefik/dynamic/{{ item }}.yml
     dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
+  when: ansible_play_name == 'network' or ansible_play_name == 'gitlab' and item != 'home-assistant'
   loop:
     - auth
     - home-assistant
@@ -31,10 +38,10 @@
 # authelia
 - name: Create authelia configuration file
   template:
-    src: ../templates/authelia/configuration.yml
+    src: authelia/configuration.yml
     dest: '{{ root_path }}/authelia/configuration.yml'
 
 - name: Create authelia users file
   template:
-    src: ../templates/authelia/users.yml
+    src: authelia/users.yml
     dest: '{{ root_path }}/authelia/users.yml'

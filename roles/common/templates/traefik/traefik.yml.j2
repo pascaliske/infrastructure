@@ -46,10 +46,13 @@ providers:
     network: network_proxy
     exposedByDefault: false
 
+{% if ansible_play_name == 'network' %}
 # prometheus metrics
 metrics:
   prometheus:
     entryPoint: metrics
+
+{% endif -%}
 
 # ignore self signed certs
 serversTransport:

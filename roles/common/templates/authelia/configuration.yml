@@ -19,6 +19,7 @@ authentication_backend:
 
 access_control:
   default_policy: deny
+  {% if ansible_play_name == 'network' -%}
   rules:
     - domain:
         - portainer.{{ domain }}
@@ -42,6 +43,9 @@ access_control:
         - pihole.{{ domain }}
         - homeassistant.{{ domain }}
       policy: two_factor
+  {% else -%}
+  rules: {{ '[]' -}}
+  {%- endif %}
 
 session:
   name: authelia_session
@@ -67,7 +71,7 @@ notifier:
     password: '{{ auth_smtp_password }}'
     sender: '{{ auth_smtp_email }}'
     identifier: localhost
-    subject: "[Auth] {title}"
+    subject: "[auth@{{ ansible_play_name }}] {title}"
     startup_check_address: '{{ auth_username }}'
     disable_require_tls: false
     disable_html_emails: false

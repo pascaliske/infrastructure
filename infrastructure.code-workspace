@@ -37,6 +37,7 @@
             "unifi"
         ],
         "files.associations": {
+            "*.j2": "nunjucks",
             "*.yaml": "home-assistant",
             "*.yaml.disabled": "home-assistant",
             "*.yaml.example": "home-assistant"

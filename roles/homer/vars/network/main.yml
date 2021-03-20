@@ -1,0 +1,46 @@
+---
+dashboard: Home Cloud
+services:
+  - name: Monitoring
+    icon: fas fa-chart-area
+    items:
+      - name: Prometheus
+        subtitle: Metrics collector
+      - name: Grafana
+        subtitle: Metrics visualizer
+      - name: Dozzle
+        subtitle: Container logs
+      - name: Portainer
+        subtitle: Container management
+  - name: Network
+    icon: fas fa-network-wired
+    items:
+      - name: UniFi Controller
+        subtitle: Network management controller
+        logo: assets/logos/unifi.png
+        url: https://unifi.{{ domain }}
+      - name: Pi-Hole
+        subtitle: DNS based ad blocker
+        url: https://pihole.{{ domain }}
+        type: PiHole
+      - name: FRITZ!Box
+        subtitle: Gateway & Firewall
+        logo: assets/logos/fritzbox.png
+        url: http://{{ lookup('env', 'ROUTER_IP') }}
+      - name: TP-Link Switch 8
+        subtitle: 8 port core switch
+        logo: assets/logos/tplink.png
+        url: http://{{ lookup('env', 'SWITCH_8P_IP') }}
+      - name: TP-Link Switch 5
+        subtitle: 5 port distribution switch
+        logo: assets/logos/tplink.png
+        url: http://{{ lookup('env', 'SWITCH_5P_IP') }}
+      - name: Gigaset GO
+        subtitle: VoIP phone management
+        url: http://{{ lookup('env', 'GIGASET_IP') }}
+  - name: Automation
+    icon: fas fa-robot
+    items:
+      - name: Home Assistant
+        subtitle: Central home automation hub
+        url: https://homeassistant.{{ domain }}

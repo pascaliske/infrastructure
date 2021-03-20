@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/infrastructure/master?style=flat-square)](https://travis-ci.com/github/pascaliske/infrastructure) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure)
 
-This repository features a [docker-compose.yml](roles/common/templates/docker/docker-compose.yml) file for the following services:
+This repository contains the configurations for most of my services:
 
 - [Traefik](https://traefik.io) reverse proxy for all services
 - [Homer](https://github.com/bastienwirtz/homer) as service dashboard
@@ -35,8 +35,8 @@ git clone https://github.com/pascaliske/infrastructure
 # setup secret env variables
 cp .env{.example,} && editor .env
 
-# provision target machine using ansible
-yarn run play playbooks/configure.yml
+# provision target group using ansible
+yarn run play playbooks/{group}/configure.yml
 
 # start up services
 docker-compose up --detach
@@ -73,9 +73,9 @@ docker exec -it homeassistant hass -h
 
 For more information on the hass command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
 
-## Hardware
+## Hardware (Group Network)
 
-The services are currently running inside Docker on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers the Pi using the `802.3af` Power-over-Ethernet standard.
+The network services are currently running inside Docker on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers it using the `802.3af` Power-over-Ethernet standard.
 
 The fan of the PoE hat appears to be very noisy. Therefore I adjusted the temperature thresholds of the fan inside of `/boot/config.txt` to 70°C and 80°C:
 

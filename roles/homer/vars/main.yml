@@ -1,6 +1,1 @@
 ---
-homer_router_ip: "{{ lookup('env', 'ROUTER_IP') }}"
-homer_controller_ip: "{{ lookup('env', 'CONTROLLER_IP') }}"
-homer_switch_8p_ip: "{{ lookup('env', 'SWITCH_8P_IP') }}"
-homer_switch_5p_ip: "{{ lookup('env', 'SWITCH_5P_IP') }}"
-homer_gigaset_ip: "{{ lookup('env', 'GIGASET_IP') }}"

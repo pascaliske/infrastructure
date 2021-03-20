@@ -7,14 +7,14 @@ services:
     restart: always
     environment:
       TZ: '{{ timezone }}'
-      WATCHTOWER_SCHEDULE: '0 0 0 * * *'
-      WATCHTOWER_CLEANUP: 'true'
+      WATCHTOWER_SCHEDULE: '{{ watchtower_schedule | default("0 0 0 * * *") }}'
       WATCHTOWER_NOTIFICATIONS: shoutrrr
-      WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower_notifications_level }}'
-      WATCHTOWER_NOTIFICATION_URL: 'slack://{{ watchtower_slack_name }}@{{ watchtower_slack_tokens }}'
+      WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower_slack_level }}'
+      WATCHTOWER_NOTIFICATION_URL: '{{ watchtower_slack_url }}'
       WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower_slack_template }}'
       WATCHTOWER_HTTP_API_TOKEN: '{{ watchtower_http_api_token }}'
-      WATCHTOWER_HTTP_API_METRICS: 'true'
+      WATCHTOWER_HTTP_API_METRICS: '{{ watchtower_http_api_metrics | default(true) }}'
+      WATCHTOWER_CLEANUP: '{{ watchtower_debug | default(true) }}'
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
     expose:
       - 8080
@@ -187,8 +187,8 @@ services:
       - 3000
     environment:
       TZ: '{{ timezone }}'
-      GF_SECURITY_ADMIN_USER: '{{ grafana_user }}'
-      GF_SECURITY_ADMIN_PASSWORD: '{{ grafana_password }}'
+      GF_SECURITY_ADMIN_USER: '{{ network.grafana_user }}'
+      GF_SECURITY_ADMIN_PASSWORD: '{{ network.grafana_password }}'
       GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
       - grafana:/var/lib/grafana
@@ -259,7 +259,7 @@ services:
       - 9617
     environment:
       PIHOLE_HOSTNAME: pihole
-      PIHOLE_PASSWORD: '{{ pi_hole_password }}'
+      PIHOLE_PASSWORD: '{{ network.pi_hole_password }}'
     networks:
       - monitoring
   fritzbox-exporter:
@@ -269,9 +269,9 @@ services:
     expose:
       - 8765
     environment:
-      FRITZ_HOST: '{{ router_ip }}'
-      FRITZ_USER: '{{ fritzbox_user }}'
-      FRITZ_PASS: '{{ fritzbox_password }}'
+      FRITZ_HOST: '{{ network.router_ip }}'
+      FRITZ_USER: '{{ network.fritzbox_user }}'
+      FRITZ_PASS: '{{ network.fritzbox_password }}'
     networks:
       - monitoring
   speedtest-exporter:
@@ -317,13 +317,13 @@ services:
     depends_on:
       - pihole
     ports:
-      - '3478:3478/udp'
-      - '8080:8080'
-      - '8443:8443'
-      - '8880:8880'
-      - '8843:8843'
-      - '6789:6789'
-      - '10001:10001/udp'
+      - '3478:3478/udp' # stun
+      - '8080:8080' # device <-> controller communication
+      - '8443:8443' # controller ui
+      - '8880:8880' # http portal redirect
+      - '8843:8843' # https portal redirect
+      - '6789:6789' # mobile speed test
+      - '10001:10001/udp' # device discovery
     volumes:
       - '{{ root_path }}/unifi/config:/var/lib/unifi'
       - '{{ root_path }}/unifi/log:/usr/lib/unifi/logs'
@@ -366,15 +366,15 @@ services:
     expose:
       - 80
     environment:
-      ServerIP: '{{ controller_ip }}'
+      ServerIP: '{{ network.controller_ip }}'
       TZ: '{{ timezone }}'
       VIRTUAL_PORT: 80
       PIHOLE_DNS_: 172.20.3.2#5053
       DNS_FQDN_REQUIRED: 'true'
-      WEBPASSWORD: '{{ pi_hole_password }}'
+      WEBPASSWORD: '{{ network.pi_hole_password }}'
       REV_SERVER: 'true'
-      REV_SERVER_CIDR: '{{ network }}'
-      REV_SERVER_TARGET: '{{ router_ip }}'
+      REV_SERVER_CIDR: '{{ network.network }}'
+      REV_SERVER_TARGET: '{{ network.router_ip }}'
       REV_SERVER_DOMAIN: fritz.box
       PROXY_LOCATION: pihole
       SKIPGRAVITYONBOOT: 'true'

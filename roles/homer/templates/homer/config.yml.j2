@@ -1,0 +1,140 @@
+---
+# general
+title: '{{ lookup('vars', ansible_play_name)['dashboard'] }}'
+subtitle: Pascal Iske
+logo: logo.png
+header: true
+footer: >
+  <style>
+    body #bighead {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+    }
+
+    body #bighead .first-line {
+      padding: 5px 10px;
+    }
+
+    body #bighead .first-line .logo img {
+      padding: 10px 10px 10px 0;
+    }
+
+    body #bighead .dashboard-title {
+      padding: 6px 0 0 70px;
+    }
+
+    body #bighead .first-line .headline {
+      margin-left: 2px;
+    }
+
+    body #bighead .navbar-menu a {
+      padding-bottom: 7px;
+    }
+
+    body #bighead .navbar-menu i {
+      margin-bottom: 2px;
+    }
+
+    body #bighead .navbar-end {
+      display: flex;
+      align-items: center;
+    }
+
+    body .search-bar {
+      max-width: 330px;
+      flex: 1;
+      order: -1;
+    }
+
+    body .search-bar input {
+      width: 100%;
+    }
+
+    body #main-section {
+      padding-bottom: 35px;
+    }
+
+    body #main-section .container {
+      padding: 10px;
+    }
+
+    body #main-section .group-title {
+      text-transform: capitalize;
+    }
+
+    body #main-section .group-title i {
+      width: 35px;
+    }
+
+    @media screen and (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      body #main-section {
+        padding-bottom: 60px;
+      }
+
+      body #main-section .container {
+        padding: 0;
+      }
+
+      body .search-bar {
+        order: 1;
+      }
+    }
+  </style>
+  <p>&copy; {{ ansible_date_time.year }} <a href="https://pascaliske.dev">Pascal Iske</a></p>
+
+# navbar
+links:
+  - name: Proxy
+    icon: fas fa-shield-alt
+    url: https://traefik.{{ domain }}
+    target: _blank
+  - name: Auth
+    icon: fas fa-lock
+    url: https://auth.{{ domain }}
+    target: _blank
+  - name: GitHub
+    icon: fab fa-github
+    url: https://github.com/pascaliske/infrastructure
+    target: _blank
+  - name: Configure
+    icon: fas fa-wrench
+    url: https://code.pascaliske.dev/?workspace=/home/coder/projects/infrastructure/infrastructure.code-workspace
+    target: _blank
+
+# tags
+{% for group in lookup('vars', ansible_play_name)['services'] %}
+.{{ group.name|replace(' ', '-')|lower }}: &{{ group.name|replace(' ', '-')|lower }}
+  tag: {{ group.name|replace(' ', '-')|lower }}
+  target: _blank
+{% endfor %}
+
+# services
+services:
+{% for group in lookup('vars', ansible_play_name)['services'] %}
+  - name: {{ group.name }}
+    icon: {{ group.icon }}
+    items:
+{% for service in group['items'] %}
+      - name: {{ service.name }}
+        {% if service.type|default(false) -%}
+        type: {{ service.type }}
+        {% endif -%}
+        {% if service.subtitle -%}
+        subtitle: {{ service.subtitle }}
+        {% endif -%}
+        logo: {{ service.logo|default('assets/logos/' ~ service.name|replace(' ', '-')|lower ~ '.png') }}
+        url: {{ service.url|default('https://' ~ service.name|replace(' ', '-')|lower ~ '.' ~ domain) }}
+        <<: *{{ group.name|replace(' ', '-')|lower }}
+{% else %}
+      {{- ' []' }}
+{% endfor %}
+{% else %}
+  {{- ' []' }}
+{% endfor %}
