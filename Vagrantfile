@@ -18,10 +18,10 @@ Vagrant.configure("2") do |config|
     end
 
     # provision
-    config.vm.provision "file", source: "~/.ssh/id_network.pub", destination: "~/.ssh/id_network.pub"
+    config.vm.provision "file", source: "#{ENV["ANSIBLE_PRIVATE_KEY_FILE"]}.pub", destination: "/home/id_vagrant.pub"
     config.vm.provision "shell", inline: <<-SHELL
         apt-get update
         apt-get install -y vim
-        cat /home/vagrant/.ssh/id_network.pub >> /home/vagrant/.ssh/authorized_keys
+        cat /home/vagrant/.ssh/id_vagrant.pub >> /home/vagrant/.ssh/authorized_keys
     SHELL
 end
