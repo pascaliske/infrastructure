@@ -1,0 +1,9 @@
+---
+- name: network
+  hosts: network
+  become: yes
+  tasks:
+    - name: Update apt packages
+      apt:
+        upgrade: safe
+        update_cache: yes
