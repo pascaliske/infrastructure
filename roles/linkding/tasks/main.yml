@@ -1,0 +1,7 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - linkding

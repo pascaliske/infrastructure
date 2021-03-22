@@ -1,0 +1,23 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - code-server
+    - code-server/data
+    - projects
+
+# code-server
+- name: Create configuration file
+  template:
+    src: code-server/config.yml.j2
+    dest: '{{ root_path }}/code-server/config.yml'
+
+# checkout project repositories
+- name: Checkout project repositories
+  git:
+    repo: 'https://github.com/{{ item.user }}/{{ item.repo }}.git'
+    dest: '{{ root_path }}/projects/{{ item.repo }}'
+    version: '{{ item.ref | default("master") }}'
+  loop: '{{ projects }}'

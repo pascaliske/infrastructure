@@ -1,19 +1,23 @@
 # Infrastructure
 
-> Configurations for most of my infrastructure services.
+> Configurations for most of my services.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/infrastructure/master?style=flat-square)](https://travis-ci.com/github/pascaliske/infrastructure) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure)
 
-This repository features a [docker-compose.yml](roles/common/templates/docker/docker-compose.yml) file for the following services:
+This repository contains the configurations for most of my services:
 
 - [Traefik](https://traefik.io) reverse proxy for all services
+- [Authelia](https://www.authelia.com) as SSO platform for all services
 - [Homer](https://github.com/bastienwirtz/homer) as service dashboard
 - [Prometheus](https://prometheus.io) for collecting service metrics
 - [Grafana](https://grafana.com/) for querying and displaying metrics data
 - [UniFi Controller](https://www.ui.com/software/) for managing all UniFi network gear
 - [Pi-Hole](https://pi-hole.net) for blocking ads and malicious domains network-wide
 - [Cloudflared](https://github.com/cloudflare/cloudflared) for securing all DNS traffic using [DNS-over-HTTPS](https://en.m.wikipedia.org/wiki/DNS_over_HTTPS)
-- [Home Assistant](https://home-assistant.io) as Home Automation hub
+- [GitLab](https://about.gitlab.com/) as DevOps platform (including GitLab Runner)
+- [Home Assistant](https://home-assistant.io), an Home Automation platform
+- [Code Server](https://github.com/cdr/code-server), an in-browser VS Code instance
+- [Linkding](https://github.com/sissbruecker/linkding), an self-hosted bookmark service
 
 It also includes the following maintenance containers:
 
@@ -35,8 +39,11 @@ git clone https://github.com/pascaliske/infrastructure
 # setup secret env variables
 cp .env{.example,} && editor .env
 
-# provision target machine using ansible
-yarn run play playbooks/configure.yml
+# provision target group using ansible
+yarn run play playbooks/{group}/configure.yml
+
+# ssh into target group
+yarn run ssh:{group}
 
 # start up services
 docker-compose up --detach
@@ -48,14 +55,25 @@ The integrated watchtower container automatically checks for updates of all cont
 To manually update the containers you can use the following commands:
 
 ```zsh
-# pull service updates
+# ssh into target group
+yarn run ssh:{group}
+
+# pull image updates
 docker-compose pull
 
-# re-create services
+# re-create containers
 docker-compose up --detach --remove-orphans
 ```
 
 ## Service CLIs
+
+### The `gitlab-backup` command
+
+```zsh
+docker exec -it gitlab gitlab-backup <task> # tasks: create | restore
+```
+
+For more information on the `gitlab-backup` command itself [visit their docs](https://docs.gitlab.com/ee/raketasks/backup_restore.html#back-up-gitlab).
 
 ### The `pihole` command
 
@@ -63,7 +81,7 @@ docker-compose up --detach --remove-orphans
 docker exec -it pihole pihole <command>
 ```
 
-For more information on the pihole command itself [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
+For more information on the `pihole` command itself [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
 
 ### The `hass` command
 
@@ -71,11 +89,11 @@ For more information on the pihole command itself [visit their docs](https://doc
 docker exec -it homeassistant hass -h
 ```
 
-For more information on the hass command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
+For more information on the `hass` command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
 
-## Hardware
+## Hardware (Group Network)
 
-The services are currently running inside Docker on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers the Pi using the `802.3af` Power-over-Ethernet standard.
+The network services are currently running inside Docker on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers it using the `802.3af` Power-over-Ethernet standard.
 
 The fan of the PoE hat appears to be very noisy. Therefore I adjusted the temperature thresholds of the fan inside of `/boot/config.txt` to 70°C and 80°C:
 

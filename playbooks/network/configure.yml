@@ -1,6 +1,7 @@
 ---
-- name: Configure Network Controller
+- name: network
   hosts: network
+  remote_user: pi
   roles:
     - common
     - homer

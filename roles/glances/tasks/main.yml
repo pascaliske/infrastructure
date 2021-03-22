@@ -1,0 +1,13 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - glances
+
+# glances
+- name: Create configuration file
+  template:
+    src: glances/glances.conf.j2
+    dest: '{{ root_path }}/glances/glances.conf'

@@ -28,6 +28,12 @@ entryPoints:
 
 # certificates
 certificatesResolvers:
+  http:
+    acme:
+      email: '{{ auth_email }}'
+      storage: /etc/traefik/acme-http.json
+      httpChallenge:
+        entryPoint: http
   digitalocean:
     acme:
       email: '{{ auth_email }}'
@@ -46,10 +52,13 @@ providers:
     network: network_proxy
     exposedByDefault: false
 
+{% if ansible_play_name == 'network' %}
 # prometheus metrics
 metrics:
   prometheus:
     entryPoint: metrics
+
+{% endif -%}
 
 # ignore self signed certs
 serversTransport:

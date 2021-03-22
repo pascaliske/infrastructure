@@ -19,12 +19,28 @@
             "name": "roles/monitoring"
         },
         {
+            "path": "./roles/gitlab",
+            "name": "roles/gitlab"
+        },
+        {
             "path": "./roles/pihole",
             "name": "roles/pihole"
         },
         {
+            "path": "./roles/glances",
+            "name": "roles/glances"
+        },
+        {
             "path": "./roles/home-assistant",
             "name": "roles/home-assistant"
+        },
+        {
+            "path": "./roles/code-server",
+            "name": "roles/code-server"
+        },
+        {
+            "path": "./roles/linkding",
+            "name": "roles/linkding"
         }
     ],
     "settings": {
@@ -37,6 +53,7 @@
             "unifi"
         ],
         "files.associations": {
+            "*.j2": "nunjucks",
             "*.yaml": "home-assistant",
             "*.yaml.disabled": "home-assistant",
             "*.yaml.example": "home-assistant"

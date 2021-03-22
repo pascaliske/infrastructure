@@ -1,0 +1,12 @@
+---
+- name: gitlab
+  hosts: gitlab
+  remote_user: root
+  become: yes
+  roles:
+    - common
+    - homer
+    - gitlab
+    - code-server
+    - glances
+    - linkding
