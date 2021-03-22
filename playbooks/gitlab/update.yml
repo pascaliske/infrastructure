@@ -1,0 +1,9 @@
+---
+- name: gitlab
+  hosts: gitlab
+  become: yes
+  tasks:
+    - name: Update apt packages
+      apt:
+        upgrade: safe
+        update_cache: yes
