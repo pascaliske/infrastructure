@@ -207,6 +207,7 @@ services:
     environment:
       TZ: '{{ timezone }}'
       XDG_DATA_HOME: /home/coder
+      XDG_CONFIG_HOME: /home/coder/.config
       PROXY_DOMAIN: 'code.{{ domain }}'
     volumes:
       - '{{ root_path }}/code-server/data:/home/coder/code-server'
