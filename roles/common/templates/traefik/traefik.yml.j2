@@ -48,7 +48,7 @@ providers:
     directory: /etc/traefik/dynamic
     watch: true
   docker:
-    endpoint: unix:///var/run/docker.sock
+    endpoint: tcp://docker-proxy:2375
     network: network_proxy
     exposedByDefault: false
 

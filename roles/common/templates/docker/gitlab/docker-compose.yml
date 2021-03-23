@@ -7,6 +7,7 @@ services:
     restart: always
     environment:
       TZ: '{{ timezone }}'
+      DOCKER_HOST: tcp://docker-proxy:2375
       WATCHTOWER_SCHEDULE: '{{ watchtower_schedule | default("0 0 0 * * *") }}'
       WATCHTOWER_NOTIFICATIONS: shoutrrr
       WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower_slack_level }}'
@@ -14,18 +15,37 @@ services:
       WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower_slack_template }}'
       WATCHTOWER_CLEANUP: '{{ watchtower_debug | default(true) }}'
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
+    networks:
+      - docker
+  docker-proxy:
+    image: tecnativa/docker-socket-proxy:latest
+    container_name: docker-proxy
+    restart: always
+    expose:
+      - 2375
+    environment:
+      INFO: 1
+      CONTAINERS: 1
+      IMAGES: 1
+      NETWORKS: 1
+      VOLUMES: 1
+      SERVICES: 1
+      POST: 1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - docker
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle
     restart: always
     expose:
       - 8080
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      DOCKER_HOST: tcp://docker-proxy:2375
     networks:
       - proxy
+      - docker
     labels:
       - traefik.enable=true
       - traefik.http.routers.dozzle.rule=Host(`logs.{{ domain }}`)
@@ -37,14 +57,14 @@ services:
     image: portainer/portainer-ce:latest
     container_name: portainer
     restart: unless-stopped
-    command: -H unix:///var/run/docker.sock
+    command: --host tcp://docker-proxy:2375
     expose:
       - 9000
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - portainer:/data
     networks:
       - proxy
+      - docker
     labels:
       - traefik.enable=true
       - traefik.http.routers.portainer.rule=Host(`portainer.{{ domain }}`)
@@ -59,15 +79,16 @@ services:
     restart: unless-stopped
     environment:
       TZ: '{{ timezone }}'
+      DOCKER_HOST: tcp://docker-proxy:2375
       GLANCES_OPT: '-w'
     expose:
       - 61208
     volumes:
       - /:/rootfs:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
       - '{{ root_path }}/glances/glances.conf:/glances/conf/glances.conf'
     networks:
       - proxy
+      - docker
     labels:
       - traefik.enable=true
       - traefik.http.routers.glances.rule=Host(`stats.{{ domain }}`)
@@ -94,12 +115,12 @@ services:
       TZ: '{{ timezone }}'
       DO_AUTH_TOKEN: '{{ digital_ocean_token }}'
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
       - '{{ root_path }}/traefik:/etc/traefik'
     networks:
       proxy:
         ipv4_address: 172.20.1.2
+      docker: {}
     labels:
       - traefik.enable=true
       - traefik.http.routers.api.rule=Host(`traefik.{{ domain }}`)
@@ -195,9 +216,12 @@ services:
     image: gitlab/gitlab-runner:alpine
     container_name: gitlab-runner
     restart: unless-stopped
+    environment:
+      DOCKER_HOST: tcp://docker-proxy:2375
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
       - '{{ root_path }}/gitlab-runner:/etc/gitlab-runner'
+    networks:
+      - docker
   code-server:
     image: codercom/code-server
     container_name: code-server
@@ -246,5 +270,10 @@ networks:
       config:
         - subnet: 172.20.1.0/24
           gateway: 172.20.1.1
+  docker:
+    ipam:
+      config:
+        - subnet: 172.20.2.0/24
+          gateway: 172.20.2.1
 volumes:
   portainer:
