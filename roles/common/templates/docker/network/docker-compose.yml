@@ -57,7 +57,7 @@ services:
       - traefik.http.routers.dozzle.entrypoints=https
       - traefik.http.routers.dozzle.tls=true
       - traefik.http.routers.dozzle.tls.certresolver=digitalocean
-      - traefik.http.routers.dozzle.middlewares=auth@file
+      - traefik.http.routers.dozzle.middlewares=auth@file,rate-limit@file
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
@@ -76,7 +76,7 @@ services:
       - traefik.http.routers.portainer.entrypoints=https
       - traefik.http.routers.portainer.tls=true
       - traefik.http.routers.portainer.tls.certresolver=digitalocean
-      - traefik.http.routers.portainer.middlewares=auth@file
+      - traefik.http.routers.portainer.middlewares=auth@file,rate-limit@file
       - traefik.http.services.portainer-network.loadbalancer.server.port=9000
 
   # proxy
@@ -113,7 +113,7 @@ services:
       - traefik.http.routers.api.service=api@internal
       - traefik.http.routers.api.tls=true
       - traefik.http.routers.api.tls.certresolver=digitalocean
-      - traefik.http.routers.api.middlewares=auth@file
+      - traefik.http.routers.api.middlewares=auth@file,rate-limit@file
   authelia:
     image: authelia/authelia
     container_name: authelia
@@ -139,6 +139,7 @@ services:
       - traefik.http.routers.authelia.entrypoints=https
       - traefik.http.routers.authelia.tls=true
       - traefik.http.routers.authelia.tls.certresolver=digitalocean
+      - traefik.http.routers.authelia.middlewares=rate-limit@file
 
   # monitoring
   prometheus:
@@ -174,7 +175,7 @@ services:
       - traefik.http.routers.prometheus.entrypoints=https
       - traefik.http.routers.prometheus.tls=true
       - traefik.http.routers.prometheus.tls.certresolver=digitalocean
-      - traefik.http.routers.prometheus.middlewares=auth@file
+      - traefik.http.routers.prometheus.middlewares=auth@file,rate-limit@file
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager
@@ -222,7 +223,7 @@ services:
       - traefik.http.routers.grafana.entrypoints=https
       - traefik.http.routers.grafana.tls=true
       - traefik.http.routers.grafana.tls.certresolver=digitalocean
-      - traefik.http.routers.grafana.middlewares=auth@file
+      - traefik.http.routers.grafana.middlewares=auth@file,rate-limit@file
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
@@ -329,6 +330,7 @@ services:
       - traefik.http.routers.homer.entrypoints=https
       - traefik.http.routers.homer.tls=true
       - traefik.http.routers.homer.tls.certresolver=digitalocean
+      - traefik.http.routers.homer.middlewares=rate-limit@file
   unifi:
     image: ryansch/unifi-rpi:latest
     container_name: unifi
@@ -359,7 +361,7 @@ services:
       - traefik.http.routers.unifi.entrypoints=https
       - traefik.http.routers.unifi.tls=true
       - traefik.http.routers.unifi.tls.certresolver=digitalocean
-      - traefik.http.routers.unifi.middlewares=auth@file
+      - traefik.http.routers.unifi.middlewares=auth@file,rate-limit@file
       - traefik.http.services.unifi-network.loadbalancer.server.scheme=https
       - traefik.http.services.unifi-network.loadbalancer.server.port=8443
       - traefik.http.middlewares.unifi.headers.sslredirect=true
@@ -415,7 +417,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.pihole.rule=Host(`pihole.{{ domain }}`)
       - traefik.http.routers.pihole.entrypoints=https
-      - traefik.http.routers.pihole.middlewares=auth@file,pihole-addprefix
+      - traefik.http.routers.pihole.middlewares=auth@file,rate-limit@file,pihole-addprefix
       - traefik.http.routers.pihole.tls=true
       - traefik.http.routers.pihole.tls.certresolver=digitalocean
       - traefik.http.services.pihole-network.loadbalancer.server.port=80
