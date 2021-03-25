@@ -1,27 +1,36 @@
 ---
 dashboard: Server
 services:
-  - name: Self Hosted
-    icon: fas fa-cloud
+  - name: Monitoring
+    icon: fas fa-chart-area
+    items:
+      - name: Grafana
+        subtitle: Metrics visualizer
+        url: https://git.{{ domain }}/-/grafana/
+      - name: Dozzle
+        subtitle: Container logs
+        url: https://logs.{{ domain }}
+      - name: Portainer
+        subtitle: Container Management
+      - name: Glances
+        subtitle: View general server stats
+        url: https://stats.{{ domain }}
+  - name: Development
+    icon: fas fa-code
     items:
       - name: GitLab
-        subtitle: Web based DevOps lifecycle application
+        subtitle: Web based DevOps lifecycle platform
         url: https://git.{{ domain }}
-      - name: Grafana
-        subtitle: Monitoring metrics visualizer
-        url: https://git.{{ domain }}/-/grafana/
       - name: Code Server
         subtitle: Web based integrated development environment
         logo: assets/logos/vscode.png
         url: https://code.{{ domain }}
-      - name: Glances
-        subtitle: View general server stats
-        url: https://stats.{{ domain }}
-      - name: Dozzle
-        subtitle: View container logs
-        url: https://logs.{{ domain }}
-      - name: Portainer
-        subtitle: Container Management
+  - name: Self Hosted
+    icon: fas fa-cloud
+    items:
+      - name: Linkding
+        subtitle: Collect links and categorize them
+        url: https://links.{{ domain }}
   - name: Cloud
     icon: fas fa-cloud
     items:

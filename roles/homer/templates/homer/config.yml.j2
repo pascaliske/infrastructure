@@ -1,8 +1,10 @@
+{%- set vars = lookup('vars', ansible_play_name) -%}
 ---
 # general
-title: '{{ lookup('vars', ansible_play_name)['dashboard'] }}'
+title: '{{ vars['dashboard'] }}'
 subtitle: Pascal Iske
 logo: logo.png
+columns: '{{ '4' if vars['services'] | length > 3 else '3' }}'
 header: true
 footer: >
   <style>
@@ -109,7 +111,7 @@ links:
     target: _blank
 
 # tags
-{% for group in lookup('vars', ansible_play_name)['services'] %}
+{% for group in vars['services'] %}
 .{{ group.name|replace(' ', '-')|lower }}: &{{ group.name|replace(' ', '-')|lower }}
   tag: {{ group.name|replace(' ', '-')|lower }}
   target: _blank
@@ -117,7 +119,7 @@ links:
 
 # services
 services:
-{% for group in lookup('vars', ansible_play_name)['services'] %}
+{% for group in vars['services'] %}
   - name: {{ group.name }}
     icon: {{ group.icon }}
     items:
