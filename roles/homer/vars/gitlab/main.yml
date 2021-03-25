@@ -47,6 +47,9 @@ services:
       - name: Sentry
         subtitle: Issue Reporting
         url: https://sentry.io/organizations/pi-webdesign/issues/
+      - name: Digital Ocean
+        subtitle: Domain Management
+        url: https://cloud.digitalocean.com
       - name: NameCheap
         subtitle: Domain Management
         url: https://ap.www.namecheap.com
