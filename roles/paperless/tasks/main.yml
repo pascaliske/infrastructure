@@ -1,0 +1,8 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - paperless/import
+    - paperless/export

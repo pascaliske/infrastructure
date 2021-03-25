@@ -268,6 +268,49 @@ services:
       - traefik.http.routers.linkding.tls.certresolver=http
       - traefik.http.routers.linkding.middlewares=auth@file,rate-limit@file
       - traefik.http.services.linkding-gitlab.loadbalancer.server.port=9090
+  paperless:
+    image: jonaswinkler/paperless-ng:latest
+    container_name: paperless
+    restart: unless-stopped
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    environment:
+      TZ: '{{ timezone }}'
+      PAPERLESS_REDIS: redis://redis:6379
+      PAPERLESS_TIME_ZONE: '{{ timezone }}'
+      PAPERLESS_SECRET_KEY: '{{ paperless_secret_key }}'
+      PAPERLESS_ENABLE_HTTP_REMOTE_USER: 'true'
+      PAPERLESS_OCR_LANGUAGE: 'deu'
+    volumes:
+      - paperless:/usr/src/paperless
+      - '{{ root_path }}/paperless/export:/usr/src/paperless/export'
+      - '{{ root_path }}/paperless/import:/usr/src/paperless/consume'
+    networks:
+      - proxy
+      - redis
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.paperless.rule=Host(`docs.{{ domain }}`)
+      - traefik.http.routers.paperless.entrypoints=https
+      - traefik.http.routers.paperless.tls=true
+      - traefik.http.routers.paperless.tls.certresolver=http
+      - traefik.http.routers.paperless.middlewares=auth@file,rate-limit@file
+      - traefik.http.services.paperless-gitlab.loadbalancer.server.port=8000
+
+  # dependencies
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: unless-stopped
+    expose:
+      - 6379
+    networks:
+      - redis
 networks:
   proxy:
     ipam:
@@ -279,5 +322,11 @@ networks:
       config:
         - subnet: 172.20.2.0/24
           gateway: 172.20.2.1
+  redis:
+    ipam:
+      config:
+        - subnet: 172.20.3.0/24
+          gateway: 172.20.3.1
 volumes:
   portainer:
+  paperless:

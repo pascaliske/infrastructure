@@ -31,6 +31,9 @@ services:
       - name: Linkding
         subtitle: Collect links and categorize them
         url: https://links.{{ domain }}
+      - name: Paperless
+        subtitle: Scan, index and archive documents
+        url: https://docs.{{ domain }}
   - name: Cloud
     icon: fas fa-cloud
     items:
