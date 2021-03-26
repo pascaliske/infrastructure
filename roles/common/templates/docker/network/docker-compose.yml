@@ -451,6 +451,17 @@ services:
       - 127.0.0.1
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
+  dyndns:
+    image: tunix/digitalocean-dyndns-armv7:latest
+    container_name: dyndns
+    restart: unless-stopped
+    environment:
+      TZ: '{{ timezone }}'
+      DIGITALOCEAN_TOKEN: '{{ digital_ocean_token }}'
+      DOMAIN: '{{ domain }}'
+      NAME: vpn
+    networks:
+      - dns
 networks:
   proxy:
     ipam:
