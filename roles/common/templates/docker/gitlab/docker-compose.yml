@@ -118,9 +118,8 @@ services:
       - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
       - '{{ root_path }}/traefik:/etc/traefik'
     networks:
-      proxy:
-        ipv4_address: 172.20.1.2
-      docker: {}
+      - proxy
+      - docker
     labels:
       - traefik.enable=true
       - traefik.http.routers.api.rule=Host(`traefik.{{ domain }}`)
