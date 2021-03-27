@@ -1,6 +1,4 @@
 http:
   trusted_proxies:
-    - !secret ip_proxy
+    - 172.20.1.2
   use_x_forwarded_for: true
-  ssl_certificate: /config/fullchain.pem
-  ssl_key: /config/privkey.pem
