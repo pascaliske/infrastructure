@@ -17,24 +17,6 @@ services:
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
     networks:
       - docker
-  docker-proxy:
-    image: tecnativa/docker-socket-proxy:latest
-    container_name: docker-proxy
-    restart: always
-    expose:
-      - 2375
-    environment:
-      INFO: 1
-      CONTAINERS: 1
-      IMAGES: 1
-      NETWORKS: 1
-      VOLUMES: 1
-      SERVICES: 1
-      POST: 1
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - docker
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle
@@ -98,6 +80,25 @@ services:
       - traefik.http.routers.glances.middlewares=auth@file,rate-limit@file
       - traefik.http.services.glances-gitlab.loadbalancer.server.port=61208
 
+  # security
+  docker-proxy:
+    image: tecnativa/docker-socket-proxy:latest
+    container_name: docker-proxy
+    restart: always
+    expose:
+      - 2375
+    environment:
+      INFO: 1
+      CONTAINERS: 1
+      IMAGES: 1
+      NETWORKS: 1
+      VOLUMES: 1
+      SERVICES: 1
+      POST: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - docker
   # proxy
   traefik:
     image: traefik:latest
