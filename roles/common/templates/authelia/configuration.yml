@@ -6,6 +6,7 @@ jwt_secret: '{{ auth_jwt_secret }}'
 default_redirection_url: 'https://{{ 'go.' if ansible_play_name == 'gitlab' }}{{ domain }}'
 totp:
   issuer: '{{ domain }}'
+log_file_path: /var/log/authelia.log
 
 authentication_backend:
   file:

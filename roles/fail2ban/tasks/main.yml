@@ -4,8 +4,9 @@
     path: '{{ root_path }}/{{ role_name }}/{{ item }}.d'
     state: directory
   loop:
-    - filter
     - jail
+    - filter
+    - action
 
 - name: Copy config directories
   synchronize:
@@ -13,5 +14,6 @@
     dest: '{{ root_path }}/{{ role_name }}/{{ item }}.d'
     delete: yes
   loop:
-    - filter
     - jail
+    - filter
+    - action

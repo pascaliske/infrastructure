@@ -168,6 +168,7 @@ services:
       PUID: 1000
       PGID: 1000
     volumes:
+      - /var/log/authelia:/var/log
       - '{{ root_path }}/authelia:/config'
     networks:
       - proxy
