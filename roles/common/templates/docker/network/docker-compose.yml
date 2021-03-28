@@ -80,6 +80,28 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - docker
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: fail2ban
+    restart: always
+    network_mode: host
+    environment:
+      TZ: '{{ timezone }}'
+      F2B_LOG_TARGET: STDOUT
+      F2B_LOG_LEVEL: INFO
+      F2B_DB_PURGE_AGE: 1d
+      SSMTP_HOST: '{{ auth_smtp_host }}'
+      SSMTP_PORT: '{{ auth_smtp_port }}'
+      # SSMTP_HOSTNAME: example.com
+      SSMTP_USER: '{{ auth_smtp_email }}'
+      SSMTP_PASSWORD: '{{ auth_smtp_password }}'
+      SSMTP_TLS: 'YES'
+    volumes:
+      - /var/log:/var/log:ro
+      - '{{ root_path }}/fail2ban:/data'
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
 
   # proxy
   traefik:
