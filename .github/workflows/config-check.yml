@@ -1,0 +1,44 @@
+name: Config Check
+on: push
+
+jobs:
+  check_prometheus:
+    name: check prometheus config
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v2
+
+      # prepare
+      - run: |
+          cp roles/monitoring/{templates/prometheus,files}/alert.rules
+          cp roles/monitoring/{templates/prometheus,files}/prometheus.yml
+
+      # check prometheus config
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: dnanexus/promtool:2.9.2
+          options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
+          run: promtool check config /tmp/prometheus.yml
+
+  check_home_assistant:
+    name: check home-assistant config
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v2
+
+      # prepare
+      - run: |
+          tail -n +3 roles/home-assistant/vars/main.yml | awk '{$1=$1};1' > roles/home-assistant/files/secrets.yaml
+          mv roles/home-assistant/files/integrations/http.yaml{,.disabled}
+          mv roles/home-assistant/files/integrations/withings.yaml{,.disabled}
+          mv roles/home-assistant/files/automations/bed-room-mini-switch.yaml{,.disabled}
+          mv roles/home-assistant/files/automations/love-mini-switch.yaml{,.disabled}
+
+      # check prometheus config
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: homeassistant/home-assistant:stable
+          options: -v ${{ github.workspace }}/roles/home-assistant/files:/config
+          run: hass --script check_config --config /config
