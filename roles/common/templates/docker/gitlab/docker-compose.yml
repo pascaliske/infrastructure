@@ -165,8 +165,8 @@ services:
       - 9091
     environment:
       TZ: '{{ timezone }}'
-      PUID: 1000
-      PGID: 1000
+      PUID: 0
+      PGID: 0
     volumes:
       - /var/log/authelia:/var/log
       - '{{ root_path }}/authelia:/config'
@@ -194,8 +194,8 @@ services:
       - 8080
     environment:
       TZ: '{{ timezone }}'
-      UID: 1000
-      GID: 1000
+      UID: 0
+      GID: 0
     volumes:
       - '{{ root_path }}/homer/assets:/www/assets'
       - '{{ root_path }}/homer/config.yml:/www/assets/config.yml'
