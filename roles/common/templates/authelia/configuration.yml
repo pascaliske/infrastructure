@@ -9,6 +9,7 @@ totp:
 log_file_path: /var/log/authelia.log
 
 authentication_backend:
+  disable_reset_password: true
   file:
     path: /config/users.yml
     password:
