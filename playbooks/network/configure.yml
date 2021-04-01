@@ -3,6 +3,7 @@
   hosts: network
   roles:
     - common
+    - fail2ban
     - homer
     - monitoring
     - pihole

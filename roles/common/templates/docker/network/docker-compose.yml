@@ -22,24 +22,6 @@ services:
     networks:
       - monitoring
       - docker
-  docker-proxy:
-    image: tecnativa/docker-socket-proxy:latest
-    container_name: docker-proxy
-    restart: always
-    expose:
-      - 2375
-    environment:
-      INFO: 1
-      CONTAINERS: 1
-      IMAGES: 1
-      NETWORKS: 1
-      VOLUMES: 1
-      SERVICES: 1
-      POST: 1
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - docker
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle
@@ -78,6 +60,48 @@ services:
       - traefik.http.routers.portainer.tls.certresolver=digitalocean
       - traefik.http.routers.portainer.middlewares=auth@file,rate-limit@file
       - traefik.http.services.portainer-network.loadbalancer.server.port=9000
+
+  # security
+  docker-proxy:
+    image: tecnativa/docker-socket-proxy:latest
+    container_name: docker-proxy
+    restart: always
+    expose:
+      - 2375
+    environment:
+      INFO: 1
+      CONTAINERS: 1
+      IMAGES: 1
+      NETWORKS: 1
+      VOLUMES: 1
+      SERVICES: 1
+      POST: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - docker
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: fail2ban
+    restart: always
+    network_mode: host
+    environment:
+      TZ: '{{ timezone }}'
+      F2B_LOG_TARGET: STDOUT
+      F2B_LOG_LEVEL: INFO
+      F2B_DB_PURGE_AGE: 1d
+      SSMTP_HOST: '{{ auth_smtp_host }}'
+      SSMTP_PORT: '{{ auth_smtp_port }}'
+      # SSMTP_HOSTNAME: example.com
+      SSMTP_USER: '{{ auth_smtp_email }}'
+      SSMTP_PASSWORD: '{{ auth_smtp_password }}'
+      SSMTP_TLS: 'YES'
+    volumes:
+      - /var/log:/var/log:ro
+      - '{{ root_path }}/fail2ban:/data'
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
 
   # proxy
   traefik:
@@ -130,6 +154,7 @@ services:
       PUID: 1000
       PGID: 1000
     volumes:
+      - /var/log/authelia:/var/log
       - '{{ root_path }}/authelia:/config'
     networks:
       - proxy
