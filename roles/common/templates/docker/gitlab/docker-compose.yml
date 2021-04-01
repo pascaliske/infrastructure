@@ -13,7 +13,7 @@ services:
       WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower_slack_level }}'
       WATCHTOWER_NOTIFICATION_URL: '{{ watchtower_slack_url }}'
       WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower_slack_template }}'
-      WATCHTOWER_CLEANUP: '{{ watchtower_debug | default(true) }}'
+      WATCHTOWER_CLEANUP: '{{ watchtower_cleanup | default(true) }}'
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
     networks:
       - docker

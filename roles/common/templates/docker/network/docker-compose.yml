@@ -15,7 +15,7 @@ services:
       WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower_slack_template }}'
       WATCHTOWER_HTTP_API_TOKEN: '{{ watchtower_http_api_token }}'
       WATCHTOWER_HTTP_API_METRICS: '{{ watchtower_http_api_metrics | default(true) }}'
-      WATCHTOWER_CLEANUP: '{{ watchtower_debug | default(true) }}'
+      WATCHTOWER_CLEANUP: '{{ watchtower_cleanup | default(true) }}'
       WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
     expose:
       - 8080
