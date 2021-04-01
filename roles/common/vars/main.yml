@@ -1,6 +1,6 @@
 ---
 watchtower_schedule: '0 0 0 * * *'
-watchtower_slack_level: warn # TODO: switch back to 'info' if watchtower was updated to v1.1.7
+watchtower_slack_level: info
 watchtower_slack_url: "slack://watchtower@{{ lookup('env', 'WATCHTOWER_SLACK_TOKENS') }}"
 watchtower_slack_template: "{{ '{{range .}}[' ~ ansible_play_name ~ '] {{.Message}}{{println}}{{end}}' }}"
 watchtower_http_api_token: "{{ lookup('env', 'WATCHTOWER_HTTP_API_TOKEN') }}"
