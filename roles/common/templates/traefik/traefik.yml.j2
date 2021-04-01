@@ -60,6 +60,13 @@ metrics:
 
 {% endif -%}
 
+# access logs
+accessLog:
+  filePath: /var/log/access.log
+  filters:
+    statusCodes:
+      - 400-599
+
 # ignore self signed certs
 serversTransport:
   insecureSkipVerify: true
