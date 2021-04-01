@@ -2,7 +2,7 @@
 
 > Configurations for most of my services.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Build Status](https://img.shields.io/travis/com/pascaliske/infrastructure/master?style=flat-square)](https://travis-ci.com/github/pascaliske/infrastructure) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) ![Build Status (config-check)](https://img.shields.io/github/workflow/status/pascaliske/infrastructure/config-check/master?label=config-check&style=flat-square) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure)
 
 This repository contains the configurations for most of my services:
 
