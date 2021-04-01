@@ -178,7 +178,11 @@ services:
       - traefik.http.routers.authelia.entrypoints=https
       - traefik.http.routers.authelia.tls=true
       - traefik.http.routers.authelia.tls.certresolver=http
-      - traefik.http.routers.authelia.middlewares=rate-limit@file
+      - traefik.http.routers.authelia.middlewares=rate-limit@file,authelia-headers
+      - traefik.http.middlewares.authelia-headers.headers.browserXssFilter=true
+      - traefik.http.middlewares.authelia-headers.headers.customResponseHeaders.Cache-Control=no-store
+      - traefik.http.middlewares.authelia-headers.headers.customResponseHeaders.Pragma=no-cache
+      - traefik.http.middlewares.authelia-headers.headers.customFrameOptionsValue=SAMEORIGIN
 
   # services
   homer:
