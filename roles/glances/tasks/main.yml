@@ -4,10 +4,10 @@
     path: '{{ root_path }}/{{ item }}'
     state: directory
   loop:
-    - glances
+    - '{{ role_name }}'
 
 # glances
 - name: Create configuration file
   template:
-    src: glances/glances.conf.j2
-    dest: '{{ root_path }}/glances/glances.conf'
+    src: '{{ role_name }}/glances.conf.j2'
+    dest: '{{ root_path }}/{{ role_name }}/glances.conf'

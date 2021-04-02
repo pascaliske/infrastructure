@@ -4,18 +4,18 @@
     path: '{{ root_path }}/{{ item }}'
     state: directory
   loop:
-    - gitlab
-    - gitlab/config
-    - gitlab/data
-    - gitlab/backups
-    - gitlab/logs
+    - '{{ role_name }}'
+    - '{{ role_name }}/config'
+    - '{{ role_name }}/data'
+    - '{{ role_name }}/backups'
+    - '{{ role_name }}/logs'
     - gitlab-runner
 
 # gitlab
 - name: Create configuration file
   template:
-    src: gitlab/gitlab.rb.j2
-    dest: '{{ root_path }}/gitlab/config/gitlab.rb'
+    src: '{{ role_name }}/gitlab.rb.j2'
+    dest: '{{ root_path }}/{{ role_name }}/config/gitlab.rb'
 
 # gitlab-runner
 - name: Create runner configuration file
