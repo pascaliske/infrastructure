@@ -1,3 +1,16 @@
 ---
 timezone: Europe/Berlin
 root_path: '{{ ansible_env.HOME }}/{{ ansible_play_name }}'
+email: "{{ lookup('env', 'AUTH_EMAIL') }}"
+mail:
+  host: "{{ lookup('env', 'AUTH_SMTP_HOST') }}"
+  port: "{{ lookup('env', 'AUTH_SMTP_PORT') }}"
+  accounts:
+    auth:
+      email: "{{ lookup('env', 'AUTH_SMTP_EMAIL') }}"
+      password: "{{ lookup('env', 'AUTH_SMTP_PASSWORD') }}"
+      name: ""
+    gitlab:
+      email: "{{ lookup('env', 'GITLAB_SMTP_EMAIL') }}"
+      password: "{{ lookup('env', 'GITLAB_SMTP_PASSWORD') }}"
+      name: GitLab | PI-Webdesign

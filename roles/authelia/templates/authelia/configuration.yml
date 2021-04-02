@@ -82,11 +82,11 @@ storage:
 
 notifier:
   smtp:
-    host: '{{ auth_smtp_host }}'
-    port: '{{ auth_smtp_port }}'
-    username: '{{ auth_smtp_email }}'
-    password: '{{ auth_smtp_password }}'
-    sender: '{{ auth_smtp_email }}'
+    host: '{{ mail.host }}'
+    port: '{{ mail.port }}'
+    username: '{{ mail.accounts.auth.email }}'
+    password: '{{ mail.accounts.auth.password }}'
+    sender: '{{ mail.accounts.auth.email }}'
     identifier: localhost
     subject: "[auth@{{ ansible_play_name }}] {title}"
     startup_check_address: '{{ auth_username }}'

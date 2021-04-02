@@ -1,7 +1,4 @@
 ---
-email: 'gitlab@{{ domain }}'
-smtp_host: "{{ lookup('env', 'GITLAB_SMTP_HOST') }}"
-smtp_password: "{{ lookup('env', 'GITLAB_SMTP_PASSWORD') }}"
 grafana_app_id: "{{ lookup('env', 'GITLAB_GRAFANA_APP_ID') }}"
 grafana_app_secret: "{{ lookup('env', 'GITLAB_GRAFANA_APP_SECRET') }}"
 sentry_dsn: "{{ lookup('env', 'GITLAB_SENTRY_DSN') }}"

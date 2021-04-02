@@ -34,18 +34,18 @@ gitlab_rails['impersonation_enabled'] = true
 
 # emails
 gitlab_rails['gitlab_email_enabled'] = true
-gitlab_rails['gitlab_email_from'] = '{{ email }}'
-gitlab_rails['gitlab_email_reply_to'] = '{{ email }}'
-gitlab_rails['gitlab_email_display_name'] = 'GitLab | PI-Webdesign'
+gitlab_rails['gitlab_email_from'] = '{{ mail.accounts.gitlab.email }}'
+gitlab_rails['gitlab_email_reply_to'] = '{{ mail.accounts.gitlab.email }}'
+gitlab_rails['gitlab_email_display_name'] = '{{ mail.accounts.gitlab.name }}'
 gitlab_rails['gitlab_email_subject_suffix'] = ''
 gitlab_rails['smtp_enable'] = true
 gitlab_rails['smtp_domain'] = '{{ domain }}'
-gitlab_rails['smtp_address'] = '{{ smtp_host }}'
-gitlab_rails['smtp_user_name'] = '{{ email }}'
-gitlab_rails['smtp_password'] = '{{ smtp_password }}'
+gitlab_rails['smtp_address'] = '{{ mail.host }}'
+gitlab_rails['smtp_user_name'] = '{{ mail.accounts.gitlab.email }}'
+gitlab_rails['smtp_password'] = '{{ mail.accounts.gitlab.password }}'
 gitlab_rails['smtp_authentication'] = 'login'
 gitlab_rails['smtp_enable_starttls_auto'] = true
-gitlab_rails['smtp_port'] = 587
+gitlab_rails['smtp_port'] = {{ mail.port }}
 
 # disable integrated certificates
 letsencrypt['enable'] = false
