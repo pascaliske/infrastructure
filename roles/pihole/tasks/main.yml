@@ -1,5 +1,7 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ role_name }}'
+    path: '{{ root_path }}/{{ item }}'
     state: directory
+  loop:
+    - '{{ role_name }}'
