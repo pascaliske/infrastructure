@@ -1,7 +1,7 @@
 ---
 grafana_app_id: "{{ lookup('env', 'GITLAB_GRAFANA_APP_ID') }}"
 grafana_app_secret: "{{ lookup('env', 'GITLAB_GRAFANA_APP_SECRET') }}"
-sentry_dsn: "{{ lookup('env', 'GITLAB_SENTRY_DSN') }}"
-sentry_dsn_legacy: "{{ lookup('env', 'GITLAB_SENTRY_DSN_LEGACY') }}"
+sentry_dsn: "{{ lookup('env', 'SENTRY_DSN') }}"
+sentry_dsn_legacy: "{{ lookup('env', 'SENTRY_DSN_LEGACY') }}"
 ci_runner_token: "{{ lookup('env', 'GITLAB_RUNNER_TOKEN') }}"
 google_analytics_id: 'UA-77052352-2'
