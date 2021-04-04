@@ -19,6 +19,6 @@
     "ssh:network": "ssh -t -i $ANSIBLE_PRIVATE_KEY_FILE $SSH_NETWORK",
     "ssh:gitlab": "ssh -t -i $ANSIBLE_PRIVATE_KEY_FILE $SSH_GITLAB",
     "ping": "ansible all --module-name=ping",
-    "play": "ansible-playbook"
+    "play": "ansible-playbook --diff"
   }
 }
