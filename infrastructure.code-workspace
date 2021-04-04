@@ -11,6 +11,10 @@
             "name": "roles/common"
         },
         {
+            "path": "./roles/authelia",
+            "name": "roles/authelia"
+        },
+        {
             "path": "./roles/fail2ban",
             "name": "roles/fail2ban"
         },
