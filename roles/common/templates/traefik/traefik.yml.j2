@@ -30,13 +30,13 @@ entryPoints:
 certificatesResolvers:
   http:
     acme:
-      email: '{{ auth_email }}'
+      email: '{{ email }}'
       storage: /etc/traefik/acme-http.json
       httpChallenge:
         entryPoint: http
   digitalocean:
     acme:
-      email: '{{ auth_email }}'
+      email: '{{ email }}'
       storage: /etc/traefik/acme.json
       dnsChallenge:
         provider: digitalocean

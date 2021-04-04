@@ -4,6 +4,7 @@
   become: yes
   roles:
     - common
+    - authelia
     - fail2ban
     - homer
     - gitlab

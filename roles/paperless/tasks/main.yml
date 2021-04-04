@@ -4,5 +4,5 @@
     path: '{{ root_path }}/{{ item }}'
     state: directory
   loop:
-    - paperless/import
-    - paperless/export
+    - '{{ role_name }}/import'
+    - '{{ role_name }}/export'

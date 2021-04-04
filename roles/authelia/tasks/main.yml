@@ -1,0 +1,17 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - '{{ role_name }}'
+
+- name: Create configuration file
+  template:
+    src: '{{ role_name }}/configuration.yml.j2'
+    dest: '{{ root_path }}/{{ role_name }}/configuration.yml'
+
+- name: Create users file
+  template:
+    src: '{{ role_name }}/users.yml.j2'
+    dest: '{{ root_path }}/{{ role_name }}/users.yml'

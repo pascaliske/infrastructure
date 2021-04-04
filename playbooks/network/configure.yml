@@ -3,6 +3,7 @@
   hosts: network
   roles:
     - common
+    - authelia
     - fail2ban
     - homer
     - monitoring

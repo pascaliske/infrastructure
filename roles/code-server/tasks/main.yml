@@ -4,15 +4,15 @@
     path: '{{ root_path }}/{{ item }}'
     state: directory
   loop:
-    - code-server
-    - code-server/data
+    - '{{ role_name }}'
+    - '{{ role_name }}/data'
     - projects
 
 # code-server
 - name: Create configuration file
   template:
-    src: code-server/config.yml.j2
-    dest: '{{ root_path }}/code-server/config.yml'
+    src: '{{ role_name }}/config.yml.j2'
+    dest: '{{ root_path }}/{{ role_name }}/config.yml'
 
 # checkout project repositories
 - name: Checkout project repositories
