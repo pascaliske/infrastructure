@@ -11,8 +11,8 @@ jobs:
 
       # prepare
       - run: |
-          cp roles/monitoring/{templates/prometheus,files}/alert.rules
-          cp roles/monitoring/{templates/prometheus,files}/prometheus.yml
+          cp roles/monitoring/{templates/prometheus/alert.rules.j2,files/alert.rules}
+          cp roles/monitoring/{templates/prometheus/prometheus.yml.j2,files/prometheus.yml}
 
       # check prometheus config
       - uses: addnab/docker-run-action@v3
