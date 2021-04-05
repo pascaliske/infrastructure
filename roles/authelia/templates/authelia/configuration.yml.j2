@@ -28,6 +28,7 @@ access_control:
         - unifi.{{ domain }}
       policy: bypass
     - domain:
+        - alerts.{{ domain }}
         - prometheus.{{ domain }}
       resources:
         - /-/reload
@@ -38,6 +39,7 @@ access_control:
         - ^\/+api\.php
       policy: bypass
     - domain:
+        - alerts.{{ domain }}
         - dozzle.{{ domain }}
         - traefik.{{ domain }}
         - prometheus.{{ domain }}
