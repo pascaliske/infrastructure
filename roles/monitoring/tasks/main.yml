@@ -24,6 +24,7 @@
       template:
         src: '{{ item }}/alert.rules.j2'
         dest: '{{ root_path }}/{{ item }}/alert.rules'
+      notify: Reload Prometheus
 
 # alertmanager
 - name: Configure Alertmanager
@@ -34,6 +35,7 @@
       template:
         src: '{{ item }}/{{ item }}.yml.j2'
         dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
+      notify: Reload Alertmanager
 
 # grafana
 - name: Configure Grafana
