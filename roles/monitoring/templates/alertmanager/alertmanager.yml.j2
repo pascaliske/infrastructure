@@ -1,7 +1,7 @@
 {# title template #}
 {%- set __title -%}
 {%- raw %}
-[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}
+[{{ .Status | toLower }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}
 {%- endraw %}
 {%- endset -%}
 
