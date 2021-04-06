@@ -28,7 +28,7 @@
 
 - name: Create traefik dynamic configuration files
   template:
-    src: traefik/dynamic/{{ item }}.yml
+    src: traefik/dynamic/{{ item }}.yml.j2
     dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
   when: ansible_play_name == 'network' or ansible_play_name == 'gitlab' and item != 'home-assistant'
   loop:
