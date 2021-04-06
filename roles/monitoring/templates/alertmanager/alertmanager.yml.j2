@@ -1,0 +1,36 @@
+{# title template #}
+{%- set __title -%}
+{%- raw %}
+[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}
+{%- endraw %}
+{%- endset -%}
+
+{# text template #}
+{%- set __text -%}
+{%- raw %}
+{{ range .Alerts -}}
+*Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+
+*Description:* {{ .Annotations.description }}
+
+*Details:*
+{{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+{{ end }}
+{{ end }}
+{%- endraw -%}
+{%- endset -%}
+
+route:
+  receiver: slack
+
+receivers:
+  - name: slack
+    slack_configs:
+      - channel: '{{ alertmanager_slack_channel }}'
+        username: '{{ alertmanager_slack_username }}'
+        api_url: '{{ alertmanager_slack_webhook }}'
+        title: |
+          {{- __title | indent(width=10, indentfirst=True) }}
+        text: |
+          {{- __text | indent(width=10, indentfirst=True) }}
+        send_resolved: true

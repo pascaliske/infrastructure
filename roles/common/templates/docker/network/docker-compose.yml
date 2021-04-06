@@ -210,6 +210,11 @@ services:
     image: prom/alertmanager:latest
     container_name: alertmanager
     restart: unless-stopped
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:9093/-/healthy || exit 1
+      interval: 30s
+      timeout: 3s
+      retries: 30
     depends_on:
       - prometheus
     expose:
@@ -221,7 +226,15 @@ services:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--storage.path=/alertmanager'
     networks:
+      - proxy
       - monitoring
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.alertmanager.rule=Host(`alerts.{{ domain }}`)
+      - traefik.http.routers.alertmanager.entrypoints=https
+      - traefik.http.routers.alertmanager.tls=true
+      - traefik.http.routers.alertmanager.tls.certresolver=digitalocean
+      - traefik.http.routers.alertmanager.middlewares=auth@file,rate-limit@file
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
