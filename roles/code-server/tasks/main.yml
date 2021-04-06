@@ -21,3 +21,4 @@
     dest: '{{ root_path }}/projects/{{ item.repo }}'
     version: '{{ item.ref | default("master") }}'
   loop: '{{ projects }}'
+  diff: no
