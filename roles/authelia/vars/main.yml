@@ -5,3 +5,43 @@ auth_password: "{{ lookup('env', 'AUTH_PASSWORD') }}"
 auth_display_name: "{{ lookup('env', 'AUTH_DISPLAY_NAME') }}"
 auth_jwt_secret: "{{ lookup('env', 'AUTH_JWT_SECRET') }}"
 auth_session_secret: "{{ lookup('env', 'AUTH_SESSION_SECRET') }}"
+rules:
+  network:
+    - policy: bypass
+      services:
+        - unifi
+        - portainer
+    - policy: bypass
+      resources:
+        - /-/reload
+      services:
+        - prometheus
+        - alerts
+    - policy: bypass
+      resources:
+        - ^\/+api\.php
+      services:
+        - pihole
+    - policy: two_factor
+      services:
+        - traefik
+        - prometheus
+        - grafana
+        - alerts
+        - pihole
+        - homeassistant
+        - dozzle
+  gitlab:
+    - policy: bypass
+      services:
+        - git
+        - registry
+        - portainer
+    - policy: two_factor
+      services:
+        - traefik
+        - code
+        - links
+        - docs
+        - stats
+        - logs

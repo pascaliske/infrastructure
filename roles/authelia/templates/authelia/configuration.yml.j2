@@ -1,3 +1,23 @@
+{# rule domains block #}
+{%- macro rule_domains(rule) %}
+{%- for service in rule.services %}
+  - {{ service }}.{{ domain }}
+{% endfor -%}
+{% endmacro -%}
+
+{# rule resources block #}
+{%- macro rule_resources(rule) %}
+resources:
+{% for resource in rule.resources %}
+  - {{ resource }}
+{% endfor -%}
+{% endmacro -%}
+
+{# rule policy block #}
+{%- macro rule_policy(rule) %}
+policy: {{ rule.policy -}}
+{% endmacro -%}
+
 # general
 host: 0.0.0.0
 port: 9091
@@ -21,48 +41,15 @@ authentication_backend:
 
 access_control:
   default_policy: deny
-  {% if ansible_play_name == 'network' -%}
+  {% if rules[ansible_play_name] is defined -%}
   rules:
+    {% for rule in rules[ansible_play_name] -%}
     - domain:
-        - portainer.{{ domain }}
-        - unifi.{{ domain }}
-      policy: bypass
-    - domain:
-        - alerts.{{ domain }}
-        - prometheus.{{ domain }}
-      resources:
-        - /-/reload
-      policy: bypass
-    - domain:
-        - pihole.{{ domain }}
-      resources:
-        - ^\/+api\.php
-      policy: bypass
-    - domain:
-        - alerts.{{ domain }}
-        - dozzle.{{ domain }}
-        - traefik.{{ domain }}
-        - prometheus.{{ domain }}
-        - grafana.{{ domain }}
-        - pihole.{{ domain }}
-        - homeassistant.{{ domain }}
-      policy: two_factor
-  {% elif ansible_play_name == 'gitlab' -%}
-  rules:
-    - domain:
-        - portainer.{{ domain }}
-        - git.{{ domain }}
-        - registry.{{ domain }}
-      policy: bypass
-    - domain:
-        - code.{{ domain }}
-        - logs.{{ domain }}
-        - links.{{ domain }}
-        - traefik.{{ domain }}
-        - stats.{{ domain }}
-        - docs.{{ domain }}
-      policy: two_factor
-  {% else -%}
+      {{+ rule_domains(rule) | indent(6) -}}
+      {{+ rule_resources(rule) | indent(6, indentfirst=True) if rule.resources is defined -}}
+      {{+ rule_policy(rule) | indent(6, indentfirst=True) }}
+    {% endfor -%}
+  {%- else -%}
   rules: {{ '[]' -}}
   {%- endif %}
 
