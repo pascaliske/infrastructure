@@ -1,3 +1,6 @@
+{# host specific vars #}
+{%- set vars = lookup('vars', ansible_play_name) -%}
+
 {# rule domains block #}
 {%- macro rule_domains(rule) %}
 {%- for service in rule.services %}
@@ -41,9 +44,9 @@ authentication_backend:
 
 access_control:
   default_policy: deny
-  {% if rules[ansible_play_name] is defined -%}
+  {% if vars.rules is defined and vars.rules | length > 0 -%}
   rules:
-    {% for rule in rules[ansible_play_name] -%}
+    {% for rule in vars.rules -%}
     - domain:
       {{+ rule_domains(rule) | indent(6) -}}
       {{+ rule_resources(rule) | indent(6, indentfirst=True) if rule.resources is defined -}}

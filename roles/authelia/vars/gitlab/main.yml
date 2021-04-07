@@ -1,0 +1,15 @@
+---
+rules:
+  - policy: bypass
+    services:
+      - git
+      - registry
+      - portainer
+  - policy: two_factor
+    services:
+      - traefik
+      - code
+      - links
+      - docs
+      - stats
+      - logs
