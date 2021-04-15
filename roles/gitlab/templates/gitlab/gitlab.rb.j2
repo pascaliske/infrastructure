@@ -80,6 +80,15 @@ nginx['proxy_set_headers'] = {
     'X-Real-IP' => '$remote_addr'
 }
 
+# registry nginx
+registry_nginx['proxy_set_headers'] = {
+    'Host' => '$http_host',
+    'X-Forwarded-Proto' => 'https',
+    'X-Forwarded-Ssl' => 'on',
+    'X-Forwarded-For' => '$proxy_add_x_forwarded_for',
+    'X-Real-IP' => '$remote_addr'
+}
+
 # sidekiq
 sidekiq['concurrency'] = 2
 
