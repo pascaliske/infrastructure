@@ -1,5 +1,4 @@
 homekit:
-  auto_start: true
   filter:
     include_domains:
       - light
