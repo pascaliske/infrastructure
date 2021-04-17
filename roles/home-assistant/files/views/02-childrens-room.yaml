@@ -39,3 +39,5 @@ cards:
             entities:
               - entity: switch.love
                 secondary_info: last-changed
+              - entity: switch.kugel
+                secondary_info: last-changed

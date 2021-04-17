@@ -111,8 +111,6 @@ cards:
                 name: Battery
               - entity: switch.licht
                 secondary_info: last-changed
-              - entity: switch.kugel
-                secondary_info: last-changed
           - type: entity-filter
             show_empty: false
             state_filter:
@@ -133,4 +131,6 @@ cards:
                 secondary_info: last-changed
                 name: Battery
               - entity: switch.love
+                secondary_info: last-changed
+              - entity: switch.kugel
                 secondary_info: last-changed

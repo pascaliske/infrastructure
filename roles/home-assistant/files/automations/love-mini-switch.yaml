@@ -9,6 +9,9 @@ use_blueprint:
       - service: switch.toggle
         target:
           entity_id: switch.love
+      - service: switch.toggle
+        target:
+          entity_id: switch.kugel
     button_double_press:
       - condition: state
         entity_id: switch.love
@@ -16,8 +19,14 @@ use_blueprint:
       - service: switch.turn_on
         target:
           entity_id: switch.love
+      - service: switch.turn_on
+        target:
+          entity_id: switch.kugel
       - delay:
           minutes: 10
       - service: switch.turn_off
         target:
           entity_id: switch.love
+      - service: switch.turn_off
+        target:
+          entity_id: switch.kugel
