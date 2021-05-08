@@ -40,7 +40,6 @@
             "fixedColor": "green",
             "mode": "fixed"
           },
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "max": 100,
@@ -82,9 +81,10 @@
           "fields": "",
           "values": true
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_downstream_percentage\"}",
@@ -108,22 +108,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "noValue": "0",
-          "thresholds": {
-            "mode": "percentage",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
           "unit": "percent"
         },
         "overrides": []
@@ -154,7 +138,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -175,7 +159,6 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -221,7 +204,6 @@
             "fixedColor": "yellow",
             "mode": "fixed"
           },
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "max": 100,
@@ -263,9 +245,10 @@
           "fields": "",
           "values": true
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_upstream_percentage\"}",
@@ -289,22 +272,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "noValue": "0",
-          "thresholds": {
-            "mode": "percentage",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
           "unit": "percent"
         },
         "overrides": []
@@ -335,7 +302,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -356,7 +323,6 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -402,7 +368,6 @@
             "fixedColor": "blue",
             "mode": "fixed"
           },
-          "custom": {},
           "decimals": 1,
           "mappings": [],
           "thresholds": {
@@ -437,9 +402,10 @@
           "fields": "",
           "values": true
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "fritzbox_ppp_connection_uptime",
@@ -477,21 +443,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
           "unit": "Mbits"
         },
         "overrides": []
@@ -522,7 +473,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -584,7 +535,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "noValue": "0",
@@ -620,9 +570,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "avg_over_time(speedtest_download[$__range])",
@@ -643,7 +594,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "noValue": "0",
@@ -679,9 +629,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "speedtest_download",
@@ -706,21 +657,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
           "unit": "Mbits"
         },
         "overrides": []
@@ -751,7 +687,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -818,7 +754,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "noValue": "0",
@@ -854,9 +789,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "avg_over_time(speedtest_upload[$__range])",
@@ -876,7 +812,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "noValue": "0",
@@ -912,9 +847,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "speedtest_upload",
@@ -938,21 +874,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
           "unit": "ms"
         },
         "overrides": []
@@ -983,7 +904,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1051,7 +972,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "noValue": "0",
@@ -1087,9 +1007,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "avg_over_time(speedtest_ping[$__range])",
@@ -1109,7 +1030,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "noValue": "0",
@@ -1145,9 +1065,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.3.7",
+      "pluginVersion": "7.5.5",
       "targets": [
         {
           "expr": "speedtest_ping",
@@ -1165,7 +1086,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 26,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1179,5 +1100,5 @@
   "timezone": "",
   "title": "Internet",
   "uid": "internet",
-  "version": 51
+  "version": 60
 }
