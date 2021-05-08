@@ -134,3 +134,22 @@ cards:
                 secondary_info: last-changed
               - entity: switch.kugel
                 secondary_info: last-changed
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              title: Bathroom
+              state_color: true
+              show_header_toggle: true
+            entities:
+              - entity: sensor.bathroom_lumi_temperature
+                secondary_info: last-changed
+                name: Temperature
+              - entity: sensor.bathroom_lumi_humidity
+                secondary_info: last-changed
+                name: Humidity
+              - entity: sensor.bathroom_lumi_power
+                secondary_info: last-changed
+                name: Battery
