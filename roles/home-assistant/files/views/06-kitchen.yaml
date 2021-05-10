@@ -1,0 +1,18 @@
+title: Kitchen
+path: kitchen
+icon: mdi:pot-steam
+theme: Google - Dark
+panel: true
+badges: []
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Lights
+            state_color: true
+            show_header_toggle: true
+            entities:
+              - entity: switch.lichterkette
+                secondary_info: last-changed

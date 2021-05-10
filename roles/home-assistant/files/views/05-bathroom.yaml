@@ -1,0 +1,32 @@
+title: Bathroom
+path: bathroom
+icon: mdi:shower
+theme: Google - Dark
+panel: true
+badges: []
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Climate
+            state_color: false
+            show_header_toggle: false
+            entities:
+              - entity: sensor.bathroom_lumi_temperature
+                secondary_info: last-changed
+                name: Temperature
+              - entity: sensor.bathroom_lumi_humidity
+                secondary_info: last-changed
+                name: Humidity
+              - entity: sensor.bathroom_lumi_pressure
+                secondary_info: last-changed
+                name: Pressure
+              - entity: sensor.bathroom_lumi_power
+                secondary_info: last-changed
+                name: Battery
+            footer:
+              type: graph
+              entity: sensor.bathroom_lumi_temperature
+              hours_to_show: 48
