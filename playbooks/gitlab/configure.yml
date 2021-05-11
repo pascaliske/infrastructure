@@ -3,12 +3,30 @@
   hosts: gitlab
   become: yes
   roles:
-    - common
-    - authelia
-    - fail2ban
-    - homer
-    - gitlab
-    - code-server
-    - glances
-    - linkding
-    - paperless
+    - role: common
+      tags:
+        - common
+    - role: authelia
+      tags:
+        - authelia
+    - role: fail2ban
+      tags:
+        - fail2ban
+    - role: homer
+      tags:
+        - homer
+    - role: gitlab
+      tags:
+        - gitlab
+    - role: code-server
+      tags:
+        - code-server
+    - role: glances
+      tags:
+        - glances
+    - role: linkding
+      tags:
+        - linkding
+    - role: paperless
+      tags:
+        - paperless

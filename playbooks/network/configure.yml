@@ -2,10 +2,24 @@
 - name: network
   hosts: network
   roles:
-    - common
-    - authelia
-    - fail2ban
-    - homer
-    - monitoring
-    - pihole
-    - home-assistant
+    - role: common
+      tags:
+        - common
+    - role: authelia
+      tags:
+        - authelia
+    - role: fail2ban
+      tags:
+        - fail2ban
+    - role: homer
+      tags:
+        - homer
+    - role: monitoring
+      tags:
+        - monitoring
+    - role: pihole
+      tags:
+        - pihole
+    - role: home-assistant
+      tags:
+        - home-assistant
