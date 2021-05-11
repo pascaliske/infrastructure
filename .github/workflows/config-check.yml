@@ -33,6 +33,7 @@ jobs:
           tail -n +3 roles/home-assistant/vars/main.yml | awk '{$1=$1};1' > roles/home-assistant/files/secrets.yaml
           mv roles/home-assistant/files/integrations/http.yaml{,.disabled}
           mv roles/home-assistant/files/integrations/withings.yaml{,.disabled}
+          mv roles/home-assistant/files/automations/battery-check.yaml{,.disabled}
           mv roles/home-assistant/files/automations/bed-room-mini-switch.yaml{,.disabled}
           mv roles/home-assistant/files/automations/love-mini-switch.yaml{,.disabled}
 
