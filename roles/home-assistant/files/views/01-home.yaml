@@ -72,6 +72,15 @@ cards:
               - entity: sensor.living_room_lumi_power
                 secondary_info: last-changed
                 name: Battery
+              - type: custom:text-divider-row
+                entity: sensor.time
+                text: Lights
+                style: |
+                  h2.text-divider {
+                    font-weight: normal;
+                    letter-spacing: 0.5px;
+                    opacity: .5;
+                  }
               - entity: switch.lampe
                 secondary_info: last-changed
               - entity: switch.duftlampe
@@ -109,6 +118,15 @@ cards:
               - entity: sensor.bed_room_lumi_power
                 secondary_info: last-changed
                 name: Battery
+              - type: custom:text-divider-row
+                entity: sensor.time
+                text: Lights
+                style: |
+                  h2.text-divider {
+                    font-weight: normal;
+                    letter-spacing: 0.5px;
+                    opacity: .5;
+                  }
               - entity: switch.licht
                 secondary_info: last-changed
           - type: entity-filter
@@ -130,6 +148,15 @@ cards:
               - entity: sensor.childrens_room_lumi_power
                 secondary_info: last-changed
                 name: Battery
+              - type: custom:text-divider-row
+                entity: sensor.time
+                text: Lights
+                style: |
+                  h2.text-divider {
+                    font-weight: normal;
+                    letter-spacing: 0.5px;
+                    opacity: .5;
+                  }
               - entity: switch.love
                 secondary_info: last-changed
               - entity: switch.kugel

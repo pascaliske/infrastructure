@@ -64,6 +64,7 @@
   vars:
     plugins:
       - { folder: 'mini-graph-card', url: 'https://github.com/kalkih/mini-graph-card/releases/latest/download/mini-graph-card-bundle.js' }
+      - { folder: 'text-divider-row', url: 'https://github.com/iantrich/text-divider-row/releases/latest/download/text-divider-row.js' }
   block:
     - name: Ensure plugin folders exist
       file:

@@ -24,3 +24,5 @@ lovelace:
       type: module
     - url: /local/lovelace-slider-entity-row/slider-entity-row.js?v=1
       type: module
+    - url: /local/text-divider-row/text-divider-row.js?v=1
+      type: module
