@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       # prepare
       - run: |
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       # prepare
       - run: |
