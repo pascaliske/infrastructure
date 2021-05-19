@@ -85,9 +85,14 @@ cards:
               - entity: sensor.epson_et_2750_series_yellow_ink
       - type: vertical-stack
         cards:
-          - type: entities
-            title: GitLab
-            show_header_toggle: false
+          - type: entity-filter
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              type: entities
+              title: GitLab
+              show_header_toggle: false
             entities:
               - entity: sensor.glances_gitlab_rootfs_used_percent
                 name: Disk usage
@@ -101,13 +106,19 @@ cards:
                 name: Docker CPU usage
               - entity: sensor.glances_gitlab_containers_ram_used
                 name: Docker Memory usage
-          - type: custom:mini-graph-card
-            name: Metrics
-            aggregate_func: max
-            group_by: hour
-            animate: true
-            line_width: 3
-            align_state: center
+          - type: entity-filter
+            show_empty: false
+            state_filter:
+              - operator: '!='
+                value: 'unavailable'
+            card:
+              type: custom:mini-graph-card
+              name: Metrics
+              aggregate_func: max
+              group_by: hour
+              animate: true
+              line_width: 3
+              align_state: center
             card_mod:
               style: |
                 .header .name, .header .name .ellipsis {
