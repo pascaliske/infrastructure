@@ -5,182 +5,195 @@ theme: Google - Dark
 panel: true
 badges: []
 cards:
-  - type: horizontal-stack
-    cards:
-      - type: vertical-stack
-        cards:
-          - type: media-control
-            entity: media_player.spotify_pascal_iske
-            card_mod:
-              style: |
-                .background .color-block, .background .no-img, .background .image {
-                  background: inherit;
-                }
-          - type: weather-forecast
-            entity: weather.home
-          - type: sensor
-            entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
-            name: S1 → Westend
-          - type: horizontal-stack
-            cards:
-              - type: sensor
-                name: Weight Pascal
-                graph: line
-                icon: mdi:scale-bathroom
-                hours_to_show: 168
-                entity: sensor.withings_weight_kg_pascal_iske
-              - type: sensor
-                name: Weight Sarah
-                graph: line
-                icon: mdi:scale-bathroom
-                hours_to_show: 168
-                entity: sensor.withings_weight_kg_sarah_iske
-      - type: vertical-stack
-        cards:
-          - type: entity-filter
-            show_empty: false
-            state_filter:
-              - operator: '!='
-                value: 'unavailable'
-            card:
-              title: Entrance
-              state_color: false
-              show_header_toggle: false
-            entities:
-              - entity: binary_sensor.entrance_lumi_magnet_on_off
-                secondary_info: last-changed
-                icon: mdi:door
-                name: Door
-              - entity: sensor.entrance_lumi_magnet_power
-                secondary_info: last-changed
-                name: Battery
-          - type: entity-filter
-            show_empty: false
-            state_filter:
-              - operator: '!='
-                value: 'unavailable'
-            card:
-              title: Living Room
-              state_color: true
-              show_header_toggle: true
-            entities:
-              - entity: sensor.living_room_lumi_temperature
-                secondary_info: last-changed
-                name: Temperature
-              - entity: sensor.living_room_lumi_humidity
-                secondary_info: last-changed
-                name: Humidity
-              - entity: sensor.living_room_lumi_power
-                secondary_info: last-changed
-                name: Battery
-              - type: custom:text-divider-row
-                entity: sensor.time
-                text: Lights
-                card_mod:
-                  style: |
-                    h2.text-divider {
-                      font-weight: normal;
-                      letter-spacing: 0.5px;
-                      opacity: .5;
-                    }
-              - entity: switch.lampe
-                secondary_info: last-changed
-              - entity: switch.duftlampe
-                secondary_info: last-changed
-          - type: entity-filter
-            show_empty: false
-            state_filter:
-              - operator: '!='
-                value: 'unavailable'
-            card:
-              title: Kitchen
-              state_color: true
-              show_header_toggle: true
-            entities:
-              - entity: switch.lichterkette
-                secondary_info: last-changed
-      - type: vertical-stack
-        cards:
-          - type: entity-filter
-            show_empty: false
-            state_filter:
-              - operator: '!='
-                value: 'unavailable'
-            card:
-              title: Bedroom
-              state_color: true
-              show_header_toggle: true
-            entities:
-              - entity: sensor.bed_room_lumi_temperature
-                secondary_info: last-changed
-                name: Temperature
-              - entity: sensor.bed_room_lumi_humidity
-                secondary_info: last-changed
-                name: Humidity
-              - entity: sensor.bed_room_lumi_power
-                secondary_info: last-changed
-                name: Battery
-              - type: custom:text-divider-row
-                entity: sensor.time
-                text: Lights
-                card_mod:
-                  style: |
-                    h2.text-divider {
-                      font-weight: normal;
-                      letter-spacing: 0.5px;
-                      opacity: .5;
-                    }
-              - entity: switch.licht
-                secondary_info: last-changed
-          - type: entity-filter
-            show_empty: false
-            state_filter:
-              - operator: '!='
-                value: 'unavailable'
-            card:
-              title: Childrens Room
-              state_color: true
-              show_header_toggle: true
-            entities:
-              - entity: sensor.childrens_room_lumi_temperature
-                secondary_info: last-changed
-                name: Temperature
-              - entity: sensor.childrens_room_lumi_humidity
-                secondary_info: last-changed
-                name: Humidity
-              - entity: sensor.childrens_room_lumi_power
-                secondary_info: last-changed
-                name: Battery
-              - type: custom:text-divider-row
-                entity: sensor.time
-                text: Lights
-                card_mod:
-                  style: |
-                    h2.text-divider {
-                      font-weight: normal;
-                      letter-spacing: 0.5px;
-                      opacity: .5;
-                    }
-              - entity: switch.love
-                secondary_info: last-changed
-              - entity: switch.kugel
-                secondary_info: last-changed
-          - type: entity-filter
-            show_empty: false
-            state_filter:
-              - operator: '!='
-                value: 'unavailable'
-            card:
-              title: Bathroom
-              state_color: true
-              show_header_toggle: true
-            entities:
-              - entity: sensor.bathroom_lumi_temperature
-                secondary_info: last-changed
-                name: Temperature
-              - entity: sensor.bathroom_lumi_humidity
-                secondary_info: last-changed
-                name: Humidity
-              - entity: sensor.bathroom_lumi_power
-                secondary_info: last-changed
-                name: Battery
+  - type: custom:mod-card
+    card:
+      type: custom:layout-card
+      layout_type: custom:horizontal-layout
+      layout:
+        max_width: 1000
+      cards:
+        - type: vertical-stack
+          cards:
+            - type: media-control
+              entity: media_player.spotify_pascal_iske
+              card_mod:
+                style: |
+                  .background .color-block, .background .no-img, .background .image {
+                    background: inherit;
+                  }
+            - type: weather-forecast
+              entity: weather.home
+            - type: sensor
+              entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
+              name: S1 → Westend
+            - type: horizontal-stack
+              cards:
+                - type: sensor
+                  name: Weight Pascal
+                  graph: line
+                  icon: mdi:scale-bathroom
+                  hours_to_show: 168
+                  entity: sensor.withings_weight_kg_pascal_iske
+                - type: sensor
+                  name: Weight Sarah
+                  graph: line
+                  icon: mdi:scale-bathroom
+                  hours_to_show: 168
+                  entity: sensor.withings_weight_kg_sarah_iske
+        - type: vertical-stack
+          cards:
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Entrance
+                state_color: false
+                show_header_toggle: false
+              entities:
+                - entity: binary_sensor.entrance_lumi_magnet_on_off
+                  secondary_info: last-changed
+                  icon: mdi:door
+                  name: Door
+                - entity: sensor.entrance_lumi_magnet_power
+                  secondary_info: last-changed
+                  name: Battery
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Living Room
+                state_color: true
+                show_header_toggle: true
+              entities:
+                - entity: sensor.living_room_lumi_temperature
+                  secondary_info: last-changed
+                  name: Temperature
+                - entity: sensor.living_room_lumi_humidity
+                  secondary_info: last-changed
+                  name: Humidity
+                - entity: sensor.living_room_lumi_power
+                  secondary_info: last-changed
+                  name: Battery
+                - type: custom:text-divider-row
+                  entity: sensor.time
+                  text: Lights
+                  card_mod:
+                    style: |
+                      h2.text-divider {
+                        font-weight: normal;
+                        letter-spacing: 0.5px;
+                        opacity: .5;
+                      }
+                - entity: switch.lampe
+                  secondary_info: last-changed
+                - entity: switch.duftlampe
+                  secondary_info: last-changed
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Kitchen
+                state_color: true
+                show_header_toggle: true
+              entities:
+                - entity: switch.lichterkette
+                  secondary_info: last-changed
+        - type: vertical-stack
+          cards:
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Bedroom
+                state_color: true
+                show_header_toggle: true
+              entities:
+                - entity: sensor.bed_room_lumi_temperature
+                  secondary_info: last-changed
+                  name: Temperature
+                - entity: sensor.bed_room_lumi_humidity
+                  secondary_info: last-changed
+                  name: Humidity
+                - entity: sensor.bed_room_lumi_power
+                  secondary_info: last-changed
+                  name: Battery
+                - type: custom:text-divider-row
+                  entity: sensor.time
+                  text: Lights
+                  card_mod:
+                    style: |
+                      h2.text-divider {
+                        font-weight: normal;
+                        letter-spacing: 0.5px;
+                        opacity: .5;
+                      }
+                - entity: switch.licht
+                  secondary_info: last-changed
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Childrens Room
+                state_color: true
+                show_header_toggle: true
+              entities:
+                - entity: sensor.childrens_room_lumi_temperature
+                  secondary_info: last-changed
+                  name: Temperature
+                - entity: sensor.childrens_room_lumi_humidity
+                  secondary_info: last-changed
+                  name: Humidity
+                - entity: sensor.childrens_room_lumi_power
+                  secondary_info: last-changed
+                  name: Battery
+                - type: custom:text-divider-row
+                  entity: sensor.time
+                  text: Lights
+                  card_mod:
+                    style: |
+                      h2.text-divider {
+                        font-weight: normal;
+                        letter-spacing: 0.5px;
+                        opacity: .5;
+                      }
+                - entity: switch.love
+                  secondary_info: last-changed
+                - entity: switch.kugel
+                  secondary_info: last-changed
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Bathroom
+                state_color: true
+                show_header_toggle: true
+              entities:
+                - entity: sensor.bathroom_lumi_temperature
+                  secondary_info: last-changed
+                  name: Temperature
+                - entity: sensor.bathroom_lumi_humidity
+                  secondary_info: last-changed
+                  name: Humidity
+                - entity: sensor.bathroom_lumi_power
+                  secondary_info: last-changed
+                  name: Battery
+    card_mod:
+      style: |
+        ha-card {
+          margin-top: -8px;
+          margin-right: -8px;
+          margin-left: -7px;
+          transition: none;
+        }
