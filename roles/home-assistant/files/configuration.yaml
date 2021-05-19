@@ -28,3 +28,5 @@ lovelace:
       type: module
     - url: /local/lovelace-layout-card/layout-card.js?v=1
       type: module
+    - url: /local/swipe-card/dist/swipe-card.js?v=1
+      type: module
