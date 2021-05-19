@@ -59,6 +59,7 @@
     - { user: 'cbulock', repo: 'lovelace-battery-entity' }
     - { user: 'thomasloven', repo: 'lovelace-card-mod' }
     - { user: 'thomasloven', repo: 'lovelace-slider-entity-row' }
+    - { user: 'thomasloven', repo: 'lovelace-layout-card' }
 
 - name: Download plugins into plugin directory
   vars:

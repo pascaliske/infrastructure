@@ -26,3 +26,5 @@ lovelace:
       type: module
     - url: /local/text-divider-row/text-divider-row.js?v=1
       type: module
+    - url: /local/lovelace-layout-card/layout-card.js?v=1
+      type: module
