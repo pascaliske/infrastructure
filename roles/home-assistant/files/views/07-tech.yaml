@@ -108,15 +108,16 @@ cards:
             animate: true
             line_width: 3
             align_state: center
-            style: |
-              .header .name, .header .name .ellipsis {
-                color: #d7d7d7;
-                font-family: var(--ha-card-header-font-family, inherit);
-                font-size: var(--ha-card-header-font-size, 24px);
-                letter-spacing: -0.012em;
-                line-height: 32px;
-                opacity: 1;
-              }
+            card_mod:
+              style: |
+                .header .name, .header .name .ellipsis {
+                  color: #d7d7d7;
+                  font-family: var(--ha-card-header-font-family, inherit);
+                  font-size: var(--ha-card-header-font-size, 24px);
+                  letter-spacing: -0.012em;
+                  line-height: 32px;
+                  opacity: 1;
+                }
             tap_action:
               action: url
               url_path: !secret glances_gitlab_url
