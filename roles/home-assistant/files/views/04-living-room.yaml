@@ -5,39 +5,52 @@ theme: Google - Dark
 panel: true
 badges: []
 cards:
-  - type: horizontal-stack
-    cards:
-      - type: vertical-stack
-        cards:
-          - type: entities
-            title: Climate
-            state_color: false
-            show_header_toggle: false
-            entities:
-              - entity: sensor.living_room_lumi_temperature
-                secondary_info: last-changed
-                name: Temperature
-              - entity: sensor.living_room_lumi_humidity
-                secondary_info: last-changed
-                name: Humidity
-              - entity: sensor.living_room_lumi_pressure
-                secondary_info: last-changed
-                name: Pressure
-              - entity: sensor.living_room_lumi_power
-                secondary_info: last-changed
-                name: Battery
-            footer:
-              type: graph
-              entity: sensor.living_room_lumi_temperature
-              hours_to_show: 48
-      - type: vertical-stack
-        cards:
-          - type: entities
-            title: Lights
-            state_color: true
-            show_header_toggle: true
-            entities:
-              - entity: switch.lampe
-                secondary_info: last-changed
-              - entity: switch.duftlampe
-                secondary_info: last-changed
+  - type: custom:mod-card
+    card:
+      type: custom:layout-card
+      layout_type: custom:horizontal-layout
+      layout:
+        max_width: 1000
+      cards:
+        - type: vertical-stack
+          cards:
+            - type: entities
+              title: Climate
+              state_color: false
+              show_header_toggle: false
+              entities:
+                - entity: sensor.living_room_lumi_temperature
+                  secondary_info: last-changed
+                  name: Temperature
+                - entity: sensor.living_room_lumi_humidity
+                  secondary_info: last-changed
+                  name: Humidity
+                - entity: sensor.living_room_lumi_pressure
+                  secondary_info: last-changed
+                  name: Pressure
+                - entity: sensor.living_room_lumi_power
+                  secondary_info: last-changed
+                  name: Battery
+              footer:
+                type: graph
+                entity: sensor.living_room_lumi_temperature
+                hours_to_show: 48
+        - type: vertical-stack
+          cards:
+            - type: entities
+              title: Lights
+              state_color: true
+              show_header_toggle: true
+              entities:
+                - entity: switch.lampe
+                  secondary_info: last-changed
+                - entity: switch.duftlampe
+                  secondary_info: last-changed
+    card_mod:
+      style: |
+        ha-card {
+          margin-top: -8px;
+          margin-right: -8px;
+          margin-left: -7px;
+          transition: none;
+        }
