@@ -99,6 +99,14 @@ cards:
                 title: GitLab
                 show_header_toggle: false
               entities:
+                - entity: sensor.time
+                  type: button
+                  name: Admin Dashboard
+                  icon: mdi:cog
+                  action_name: Open
+                  tap_action:
+                    action: url
+                    url_path: !secret gitlab_admin_url
                 - entity: sensor.glances_gitlab_rootfs_used_percent
                   name: Disk usage
                 - entity: sensor.glances_gitlab_rootfs_free

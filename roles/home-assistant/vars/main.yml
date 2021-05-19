@@ -6,6 +6,7 @@ secrets:
   dwd_weather_region: "{{ lookup('env', 'HOME_ASSISTANT_DWD_WEATHER_REGION') }}"
   gitlab_token: "{{ lookup('env', 'HOME_ASSISTANT_GITLAB_TOKEN') }}"
   gitlab_url: "{{ lookup('env', 'HOME_ASSISTANT_GITLAB_URL') }}"
+  gitlab_admin_url: "{{ lookup('env', 'HOME_ASSISTANT_GITLAB_URL') }}/admin"
   glances_gitlab_host: "{{ lookup('env', 'HOME_ASSISTANT_GLANCES_GITLAB_HOST') }}"
   glances_gitlab_password: "{{ lookup('env', 'HOME_ASSISTANT_GLANCES_GITLAB_PASSWORD') }}"
   glances_gitlab_url: "{{ lookup('env', 'HOME_ASSISTANT_GLANCES_GITLAB_URL') }}"
