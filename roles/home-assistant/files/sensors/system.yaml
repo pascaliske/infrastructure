@@ -1,3 +1,13 @@
+# system monitor
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: ipv4_address
+      arg: eth0
+    - type: last_boot
+
+# relative last boot
 - platform: template
   sensors:
     relative_last_boot:
