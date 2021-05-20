@@ -30,3 +30,5 @@ lovelace:
       type: module
     - url: /local/swipe-card/dist/swipe-card.js?v=1
       type: module
+    - url: /local/home-assistant-sun-card/home-assistant-sun-card.js?v=1
+      type: module

@@ -48,6 +48,8 @@ cards:
                       }
             - type: weather-forecast
               entity: weather.home
+            - type: custom:sun-card
+              darkMode: true
             - type: sensor
               entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
               name: S1 → Westend
