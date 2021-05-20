@@ -4,6 +4,7 @@
     path: '{{ root_path }}/{{ role_name }}/{{ item }}'
     state: directory
   loop:
+    - custom_components
     - themes
     - www
 
@@ -79,3 +80,21 @@
         url: 'https://github.com/{{ item.user }}/{{ item.repo }}/releases/latest/download/{{ item.file | default(item.repo) }}.js'
         dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}/'
       loop: '{{ cards }}'
+
+# components
+- name: Download HACS components into custom_components directory
+  vars:
+    components:
+      - { user: 'custom-components', repo: 'breaking_changes' }
+  block:
+    - name: Ensure component folders exist
+      file:
+        path: '{{ root_path }}/{{ role_name }}/custom_components/{{ item.repo }}'
+        state: directory
+      loop: '{{ components }}'
+    - name: Download component into components directory
+      unarchive:
+        src: 'https://github.com/{{ item.user }}/{{ item.repo }}/releases/latest/download/{{ item.file | default(item.repo) }}.zip'
+        dest: '{{ root_path }}/{{ role_name }}/custom_components/{{ item.repo }}'
+        remote_src: yes
+      loop: '{{ components }}'
