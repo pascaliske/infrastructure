@@ -53,20 +53,6 @@ cards:
             - type: sensor
               entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
               name: S1 → Westend
-            - type: horizontal-stack
-              cards:
-                - type: sensor
-                  name: Weight Pascal
-                  graph: line
-                  icon: mdi:scale-bathroom
-                  hours_to_show: 168
-                  entity: sensor.withings_weight_kg_pascal_iske
-                - type: sensor
-                  name: Weight Sarah
-                  graph: line
-                  icon: mdi:scale-bathroom
-                  hours_to_show: 168
-                  entity: sensor.withings_weight_kg_sarah_iske
         - type: vertical-stack
           cards:
             - type: entity-filter

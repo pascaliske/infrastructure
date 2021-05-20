@@ -35,6 +35,20 @@ cards:
                 type: graph
                 entity: sensor.bathroom_lumi_temperature
                 hours_to_show: 48
+            - type: horizontal-stack
+              cards:
+                - type: sensor
+                  name: Weight Pascal
+                  graph: line
+                  icon: mdi:scale-bathroom
+                  hours_to_show: 168
+                  entity: sensor.withings_weight_kg_pascal_iske
+                - type: sensor
+                  name: Weight Sarah
+                  graph: line
+                  icon: mdi:scale-bathroom
+                  hours_to_show: 168
+                  entity: sensor.withings_weight_kg_sarah_iske
     card_mod:
       style: |
         ha-card {
