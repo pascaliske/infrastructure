@@ -53,5 +53,5 @@ automation: !include_dir_list ../automations
 group: !include_dir_merge_named ../groups
 scene: !include_dir_list ../scenes
 script: !include_dir_merge_named ../scripts
-sensor: !include_dir_list ../sensors
+sensor: !include_dir_merge_list ../sensors
 switch: !include_dir_list ../switches

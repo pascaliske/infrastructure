@@ -1,40 +1,40 @@
-platform: template
-sensors:
-  fritzbox_downstream:
-    friendly_name: FRITZ!Box Downstream
-    value_template: >
-      {% set downstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_down') | int %}
-      {{ (downstream * 8 / 1000) | round(2) }}
-    unit_of_measurement: kbit/s
-  fritzbox_downstream_percentage:
-    friendly_name: FRITZ!Box Downstream Percentage
-    value_template: >
-      {% set downstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_down') | int %}
-      {% set maxDownstream = state_attr('sensor.fritzbox_netmonitor', 'max_byte_rate_down') | int %}
-      {{ ((downstream * 8 / 1000) / (maxDownstream / 125) * 100) | round(2) }}
-    unit_of_measurement: '%'
-  fritzbox_upstream:
-    friendly_name: FRITZ!Box Upstream
-    value_template: >
-      {% set upstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_up') | int %}
-      {{ (upstream * 8 / 1000) | round(2) }}
-    unit_of_measurement: kbit/s
-  fritzbox_upstream_percentage:
-    friendly_name: FRITZ!Box Upstream Percentage
-    value_template: >
-      {% set upstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_up') | int %}
-      {% set maxUpstream = state_attr('sensor.fritzbox_netmonitor', 'max_byte_rate_up') | int %}
-      {{ ((upstream * 8 / 1000) / (maxUpstream / 125) * 100) | round(2) }}
-    unit_of_measurement: '%'
-  fritzbox_uptime:
-    friendly_name: FRITZ!Box Connection Uptime
-    value_template: >
-      {% set uptime = state_attr('sensor.fritzbox_netmonitor', 'uptime') %}
-      {% set diff = now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - uptime) %}
-      {{ diff.days }}
-    unit_of_measurement: days
-  fritzbox_public_ip:
-    friendly_name: FRITZ!Box Public IP
-    value_template: >
-      {% set public_ip = state_attr('sensor.fritzbox_netmonitor', 'external_ip') %}
-      {{ public_ip }}
+- platform: template
+  sensors:
+    fritzbox_downstream:
+      friendly_name: FRITZ!Box Downstream
+      value_template: >
+        {% set downstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_down') | int %}
+        {{ (downstream * 8 / 1000) | round(2) }}
+      unit_of_measurement: kbit/s
+    fritzbox_downstream_percentage:
+      friendly_name: FRITZ!Box Downstream Percentage
+      value_template: >
+        {% set downstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_down') | int %}
+        {% set maxDownstream = state_attr('sensor.fritzbox_netmonitor', 'max_byte_rate_down') | int %}
+        {{ ((downstream * 8 / 1000) / (maxDownstream / 125) * 100) | round(2) }}
+      unit_of_measurement: '%'
+    fritzbox_upstream:
+      friendly_name: FRITZ!Box Upstream
+      value_template: >
+        {% set upstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_up') | int %}
+        {{ (upstream * 8 / 1000) | round(2) }}
+      unit_of_measurement: kbit/s
+    fritzbox_upstream_percentage:
+      friendly_name: FRITZ!Box Upstream Percentage
+      value_template: >
+        {% set upstream = state_attr('sensor.fritzbox_netmonitor', 'transmission_rate_up') | int %}
+        {% set maxUpstream = state_attr('sensor.fritzbox_netmonitor', 'max_byte_rate_up') | int %}
+        {{ ((upstream * 8 / 1000) / (maxUpstream / 125) * 100) | round(2) }}
+      unit_of_measurement: '%'
+    fritzbox_uptime:
+      friendly_name: FRITZ!Box Connection Uptime
+      value_template: >
+        {% set uptime = state_attr('sensor.fritzbox_netmonitor', 'uptime') %}
+        {% set diff = now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - uptime) %}
+        {{ diff.days }}
+      unit_of_measurement: days
+    fritzbox_public_ip:
+      friendly_name: FRITZ!Box Public IP
+      value_template: >
+        {% set public_ip = state_attr('sensor.fritzbox_netmonitor', 'external_ip') %}
+        {{ public_ip }}

@@ -1,2 +1,2 @@
-platform: version
-source: local
+- platform: version
+  source: local
