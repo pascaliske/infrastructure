@@ -48,6 +48,9 @@ ios:
 # enable wake on lan
 wake_on_lan:
 
+# enable breaking changes component
+breaking_changes:
+
 # split imports
 automation: !include_dir_list ../automations
 group: !include_dir_merge_named ../groups
