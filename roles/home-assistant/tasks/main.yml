@@ -46,8 +46,8 @@
     - { name: 'google-home', url: 'https://raw.githubusercontent.com/liri/lovelace-themes/master/themes/google-home.yaml' }
 
 
-# plugins
-- name: Clone plugins into plugin directory
+# cards
+- name: Clone cards into www directory
   git:
     repo: 'https://github.com/{{ item.user }}/{{ item.repo }}.git'
     version: master
@@ -62,20 +62,20 @@
     - { user: 'thomasloven', repo: 'lovelace-layout-card' }
     - { user: 'bramkragten', repo: 'swipe-card' }
 
-- name: Download plugins into plugin directory
+- name: Download cards into www directory
   vars:
-    plugins:
-      - { folder: 'mini-graph-card', url: 'https://github.com/kalkih/mini-graph-card/releases/latest/download/mini-graph-card-bundle.js' }
-      - { folder: 'text-divider-row', url: 'https://github.com/iantrich/text-divider-row/releases/latest/download/text-divider-row.js' }
-      - { folder: 'home-assistant-sun-card', url: 'https://github.com/AitorDB/home-assistant-sun-card/releases/latest/download/home-assistant-sun-card.js' }
+    cards:
+      - { user: 'kalkih', repo: 'mini-graph-card', file: 'mini-graph-card-bundle' }
+      - { user: 'iantrich', repo: 'text-divider-row' }
+      - { user: 'AitorDB', repo: 'home-assistant-sun-card' }
   block:
-    - name: Ensure plugin folders exist
+    - name: Ensure card folders exist
       file:
-        path: '{{ root_path }}/{{ role_name }}/www/{{ item.folder }}'
+        path: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}'
         state: directory
-      loop: '{{ plugins }}'
-    - name: Download plugins into plugin directory
+      loop: '{{ cards }}'
+    - name: Download card into card directory
       get_url:
-        url: '{{ item.url }}'
-        dest: '{{ root_path }}/{{ role_name }}/www/{{ item.folder }}/'
-      loop: '{{ plugins }}'
+        url: 'https://github.com/{{ item.user }}/{{ item.repo }}/releases/latest/download/{{ item.file | default(item.repo) }}.js'
+        dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}/'
+      loop: '{{ cards }}'
