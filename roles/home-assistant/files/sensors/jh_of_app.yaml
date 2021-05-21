@@ -1,5 +1,0 @@
-platform: gitlab_ci
-gitlab_id: pi-webdesign/jh-of/app
-token: !secret gitlab_token
-url: !secret gitlab_url
-name: jh-of-app

@@ -1,6 +1,6 @@
-platform: time_date
-display_options:
-  - date_time
-  - time_date
-  - time
-  - date
+- platform: time_date
+  display_options:
+    - date_time
+    - time_date
+    - time
+    - date

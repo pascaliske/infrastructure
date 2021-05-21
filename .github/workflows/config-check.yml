@@ -31,6 +31,7 @@ jobs:
       # prepare
       - run: |
           tail -n +3 roles/home-assistant/vars/main.yml | awk '{$1=$1};1' > roles/home-assistant/files/secrets.yaml
+          sed -i 's/breaking_changes/# breaking_changes/g' roles/home-assistant/files/integrations/core.yaml
           mv roles/home-assistant/files/integrations/http.yaml{,.disabled}
           mv roles/home-assistant/files/integrations/withings.yaml{,.disabled}
           mv roles/home-assistant/files/automations/battery-check.yaml{,.disabled}

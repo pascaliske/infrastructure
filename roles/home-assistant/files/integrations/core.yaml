@@ -48,10 +48,13 @@ ios:
 # enable wake on lan
 wake_on_lan:
 
+# enable breaking changes component
+breaking_changes:
+
 # split imports
 automation: !include_dir_list ../automations
 group: !include_dir_merge_named ../groups
-scene: !include_dir_list ../scenes
+scene: !include_dir_merge_list ../scenes
 script: !include_dir_merge_named ../scripts
-sensor: !include_dir_list ../sensors
-switch: !include_dir_list ../switches
+sensor: !include_dir_merge_list ../sensors
+switch: !include_dir_merge_list ../switches
