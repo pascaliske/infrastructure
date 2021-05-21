@@ -96,6 +96,37 @@ cards:
                   value: 'unavailable'
               card:
                 type: entities
+                title: GitHub
+                show_header_toggle: false
+              entities:
+                - type: custom:multiple-entity-row
+                  entity: sensor.infrastructure
+                  name: pascaliske/infrastructure
+                  state_header: Commit
+                  secondary_info:
+                    entity: sensor.infrastructure
+                    attribute: latest_commit_message
+                    name: false
+                  tap_action:
+                    action: url
+                    url_path: https://github.com/pascaliske/infrastructure
+                  entities:
+                    - entity: sensor.infrastructure_open_issues
+                      name: Issues
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/infrastructure/issues
+                    - entity: sensor.infrastructure_open_pull_requests
+                      name: PRs
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/infrastructure/pulls
+            - type: entity-filter
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                type: entities
                 title: GitLab
                 show_header_toggle: false
               entities:
