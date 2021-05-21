@@ -4,6 +4,7 @@ secrets:
   deutsche_bahn_to: "{{ lookup('env', 'HOME_ASSISTANT_DEUTSCHE_BAHN_TO') }}"
   digital_ocean_token: "{{ lookup('env', 'HOME_ASSISTANT_DIGITAL_OCEAN_TOKEN') }}"
   dwd_weather_region: "{{ lookup('env', 'HOME_ASSISTANT_DWD_WEATHER_REGION') }}"
+  github_token: "{{ lookup('env', 'HOME_ASSISTANT_GITHUB_TOKEN') }}"
   gitlab_token: "{{ lookup('env', 'HOME_ASSISTANT_GITLAB_TOKEN') }}"
   gitlab_url: "{{ lookup('env', 'HOME_ASSISTANT_GITLAB_URL') }}"
   gitlab_admin_url: "{{ lookup('env', 'HOME_ASSISTANT_GITLAB_URL') }}/admin"
