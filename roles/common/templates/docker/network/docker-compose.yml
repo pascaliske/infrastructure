@@ -191,7 +191,7 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention.time=168h'
+      - '--storage.tsdb.retention.time=2w'
       - '--web.enable-lifecycle'
       - '--web.external-url=http://localhost:9090/'
     networks:
