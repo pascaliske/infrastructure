@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 10,
-  "iteration": 1622126485905,
+  "iteration": 1622189235708,
   "links": [],
   "panels": [
     {
@@ -26,12 +26,13 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
               }
             ]
@@ -82,12 +83,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -925,7 +922,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Open Connections",
       "tooltip": {
         "shared": true,
@@ -1214,5 +1213,5 @@
   "timezone": "",
   "title": "Reverse Proxy",
   "uid": "reverse-proxy",
-  "version": 15
+  "version": 17
 }

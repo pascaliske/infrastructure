@@ -16,6 +16,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 4,
+  "iteration": 1622150820602,
   "links": [],
   "panels": [
     {
@@ -73,7 +74,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (container_label_com_docker_compose_service) (irate(container_cpu_usage_seconds_total{container_label_com_docker_compose_project=\"network\"}[5m])) * 100",
+          "exemplar": true,
+          "expr": "sum by (container_label_com_docker_compose_service) (irate(container_cpu_usage_seconds_total{container_label_com_docker_compose_project=\"network\",container_label_com_docker_compose_service=~\"$service\"}[5m])) * 100",
           "interval": "",
           "legendFormat": "{{ container_label_com_docker_compose_service }}",
           "refId": "A"
@@ -175,7 +177,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (container_label_com_docker_compose_service) (container_memory_usage_bytes{container_label_com_docker_compose_project=\"network\"})",
+          "exemplar": true,
+          "expr": "sum by (container_label_com_docker_compose_service) (container_memory_usage_bytes{container_label_com_docker_compose_project=\"network\",container_label_com_docker_compose_service=~\"$service\"})",
           "interval": "",
           "legendFormat": "{{ container_label_com_docker_compose_service }}",
           "refId": "A"
@@ -237,7 +240,7 @@
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 24,
         "x": 0,
         "y": 17
@@ -251,7 +254,7 @@
         "hideZero": false,
         "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": false
       },
@@ -356,7 +359,155 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": null,
+        "definition": "label_values(container_memory_usage_bytes, container_label_com_docker_compose_service)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Service",
+        "multi": false,
+        "name": "service",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "alertmanager",
+            "value": "alertmanager"
+          },
+          {
+            "selected": false,
+            "text": "authelia",
+            "value": "authelia"
+          },
+          {
+            "selected": false,
+            "text": "cadvisor",
+            "value": "cadvisor"
+          },
+          {
+            "selected": false,
+            "text": "cloudflared",
+            "value": "cloudflared"
+          },
+          {
+            "selected": false,
+            "text": "docker-proxy",
+            "value": "docker-proxy"
+          },
+          {
+            "selected": false,
+            "text": "dozzle",
+            "value": "dozzle"
+          },
+          {
+            "selected": false,
+            "text": "dyndns",
+            "value": "dyndns"
+          },
+          {
+            "selected": false,
+            "text": "fail2ban",
+            "value": "fail2ban"
+          },
+          {
+            "selected": false,
+            "text": "fritzbox-exporter",
+            "value": "fritzbox-exporter"
+          },
+          {
+            "selected": false,
+            "text": "grafana",
+            "value": "grafana"
+          },
+          {
+            "selected": false,
+            "text": "homeassistant",
+            "value": "homeassistant"
+          },
+          {
+            "selected": false,
+            "text": "homer",
+            "value": "homer"
+          },
+          {
+            "selected": false,
+            "text": "node-exporter",
+            "value": "node-exporter"
+          },
+          {
+            "selected": false,
+            "text": "pihole",
+            "value": "pihole"
+          },
+          {
+            "selected": false,
+            "text": "pihole-exporter",
+            "value": "pihole-exporter"
+          },
+          {
+            "selected": false,
+            "text": "portainer",
+            "value": "portainer"
+          },
+          {
+            "selected": false,
+            "text": "prometheus",
+            "value": "prometheus"
+          },
+          {
+            "selected": false,
+            "text": "speedtest-exporter",
+            "value": "speedtest-exporter"
+          },
+          {
+            "selected": false,
+            "text": "traefik",
+            "value": "traefik"
+          },
+          {
+            "selected": false,
+            "text": "unifi",
+            "value": "unifi"
+          },
+          {
+            "selected": false,
+            "text": "unifi-exporter",
+            "value": "unifi-exporter"
+          },
+          {
+            "selected": false,
+            "text": "watchtower",
+            "value": "watchtower"
+          }
+        ],
+        "query": {
+          "query": "label_values(container_memory_usage_bytes, container_label_com_docker_compose_service)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-24h",
@@ -366,5 +517,5 @@
   "timezone": "",
   "title": "Docker",
   "uid": "docker",
-  "version": 44
+  "version": 47
 }

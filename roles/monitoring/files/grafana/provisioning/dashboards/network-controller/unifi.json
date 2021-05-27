@@ -16,6 +16,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 5,
+  "iteration": 1622150742265,
   "links": [],
   "panels": [
     {
@@ -373,7 +374,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total[5m]))",
+          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name=~\"$client\"}[5m]))",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{ name }}",
@@ -473,7 +474,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total[5m]))",
+          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name=~\"$client\"}[5m]))",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -631,7 +632,230 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": null,
+        "definition": "label_values(unifipoller_client_transmit_bytes_total, name)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Client",
+        "multi": false,
+        "name": "client",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Alberts-Handy",
+            "value": "Alberts-Handy"
+          },
+          {
+            "selected": false,
+            "text": "EPSON ET-2750",
+            "value": "EPSON ET-2750"
+          },
+          {
+            "selected": false,
+            "text": "Echo Dot Kitchen",
+            "value": "Echo Dot Kitchen"
+          },
+          {
+            "selected": false,
+            "text": "Echo Dot Living Room",
+            "value": "Echo Dot Living Room"
+          },
+          {
+            "selected": false,
+            "text": "FFMMBP-207",
+            "value": "FFMMBP-207"
+          },
+          {
+            "selected": false,
+            "text": "FRITZ!Box 7590",
+            "value": "FRITZ!Box 7590"
+          },
+          {
+            "selected": false,
+            "text": "Gigaset GO Box",
+            "value": "Gigaset GO Box"
+          },
+          {
+            "selected": false,
+            "text": "Jannis-Handy",
+            "value": "Jannis-Handy"
+          },
+          {
+            "selected": false,
+            "text": "Jannis-PC",
+            "value": "Jannis-PC"
+          },
+          {
+            "selected": false,
+            "text": "LEDs Bed Room",
+            "value": "LEDs Bed Room"
+          },
+          {
+            "selected": false,
+            "text": "Lamp Living Room",
+            "value": "Lamp Living Room"
+          },
+          {
+            "selected": false,
+            "text": "Lucas-Handy",
+            "value": "Lucas-Handy"
+          },
+          {
+            "selected": false,
+            "text": "Lucas-PS4",
+            "value": "Lucas-PS4"
+          },
+          {
+            "selected": false,
+            "text": "Lucas-TV",
+            "value": "Lucas-TV"
+          },
+          {
+            "selected": false,
+            "text": "Marks-Handy",
+            "value": "Marks-Handy"
+          },
+          {
+            "selected": false,
+            "text": "Marks-Laptop",
+            "value": "Marks-Laptop"
+          },
+          {
+            "selected": false,
+            "text": "Marks-Tablet",
+            "value": "Marks-Tablet"
+          },
+          {
+            "selected": false,
+            "text": "Monikas-Handy",
+            "value": "Monikas-Handy"
+          },
+          {
+            "selected": false,
+            "text": "Monikas-Tablet",
+            "value": "Monikas-Tablet"
+          },
+          {
+            "selected": false,
+            "text": "Network Controller",
+            "value": "Network Controller"
+          },
+          {
+            "selected": false,
+            "text": "Pascals-PS4",
+            "value": "Pascals-PS4"
+          },
+          {
+            "selected": false,
+            "text": "Pascals-Watch",
+            "value": "Pascals-Watch"
+          },
+          {
+            "selected": false,
+            "text": "Pascals-iPad",
+            "value": "Pascals-iPad"
+          },
+          {
+            "selected": false,
+            "text": "Pascals-iPhone",
+            "value": "Pascals-iPhone"
+          },
+          {
+            "selected": false,
+            "text": "PascalspleWatch",
+            "value": "PascalspleWatch"
+          },
+          {
+            "selected": false,
+            "text": "Sarahs-iPhone",
+            "value": "Sarahs-iPhone"
+          },
+          {
+            "selected": false,
+            "text": "Scentsy Lamp Living Room",
+            "value": "Scentsy Lamp Living Room"
+          },
+          {
+            "selected": false,
+            "text": "Sony Bravia TV",
+            "value": "Sony Bravia TV"
+          },
+          {
+            "selected": false,
+            "text": "Stephanies-Laptop",
+            "value": "Stephanies-Laptop"
+          },
+          {
+            "selected": false,
+            "text": "Stephanies-iPhone",
+            "value": "Stephanies-iPhone"
+          },
+          {
+            "selected": false,
+            "text": "TP-Link TL-SG105E",
+            "value": "TP-Link TL-SG105E"
+          },
+          {
+            "selected": false,
+            "text": "TP-Link TL-SG108E",
+            "value": "TP-Link TL-SG108E"
+          },
+          {
+            "selected": false,
+            "text": "TP-Link TL-WA901ND",
+            "value": "TP-Link TL-WA901ND"
+          },
+          {
+            "selected": false,
+            "text": "TP-Link WiFi Extender",
+            "value": "TP-Link WiFi Extender"
+          },
+          {
+            "selected": false,
+            "text": "Teufel Radio 3sixty",
+            "value": "Teufel Radio 3sixty"
+          },
+          {
+            "selected": false,
+            "text": "Window Light Kitchen",
+            "value": "Window Light Kitchen"
+          },
+          {
+            "selected": false,
+            "text": "android-d864d5b53764ff3f",
+            "value": "android-d864d5b53764ff3f"
+          }
+        ],
+        "query": {
+          "query": "label_values(unifipoller_client_transmit_bytes_total, name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-24h",
@@ -641,5 +865,5 @@
   "timezone": "",
   "title": "UniFi",
   "uid": "unifi",
-  "version": 43
+  "version": 45
 }
