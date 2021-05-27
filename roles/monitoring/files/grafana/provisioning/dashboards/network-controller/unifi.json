@@ -57,7 +57,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -162,7 +162,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -261,7 +261,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -326,6 +326,207 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 2,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "hiddenSeries": false,
+      "id": 18,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null as zero",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total[5m]))",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Client Transmit",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 2,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 17
+      },
+      "hiddenSeries": false,
+      "id": 20,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total[5m]))",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Client Receive",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -339,7 +540,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 25
       },
       "hiddenSeries": false,
       "id": 4,
@@ -363,7 +564,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -373,6 +574,7 @@
       "steppedLine": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "unifipoller_device_port_poe_watts",
           "instant": false,
           "interval": "",
@@ -439,5 +641,5 @@
   "timezone": "",
   "title": "UniFi",
   "uid": "unifi",
-  "version": 39
+  "version": 43
 }

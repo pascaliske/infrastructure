@@ -61,7 +61,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -184,7 +184,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -277,7 +277,7 @@
               }
             ]
           },
-          "unit": "s"
+          "unit": "dtdurations"
         },
         "overrides": []
       },
@@ -303,9 +303,10 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
+          "exemplar": true,
           "expr": "node_time_seconds - node_boot_time_seconds",
           "instant": true,
           "interval": "",
@@ -365,7 +366,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(node_load1) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -427,7 +428,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(node_load5) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -489,7 +490,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(node_load15) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -546,7 +547,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -665,7 +666,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 1,
       "points": false,
       "renderer": "flot",
@@ -772,7 +773,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -899,7 +900,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -985,5 +986,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "node",
-  "version": 81
+  "version": 84
 }

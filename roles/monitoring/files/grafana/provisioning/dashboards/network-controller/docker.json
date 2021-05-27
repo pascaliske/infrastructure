@@ -63,7 +63,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -165,7 +165,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -229,6 +229,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "decimals": null,
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -246,8 +247,8 @@
       "legend": {
         "avg": false,
         "current": false,
-        "hideEmpty": true,
-        "hideZero": true,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": false,
         "min": false,
         "show": true,
@@ -261,7 +262,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -281,16 +282,20 @@
       ],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "watchtower_containers_scanned",
+          "instant": false,
           "interval": "",
           "legendFormat": "Scanned",
           "refId": "A"
         },
         {
+          "exemplar": true,
           "expr": "watchtower_containers_updated",
+          "instant": false,
           "interval": "",
           "legendFormat": "Updated",
           "refId": "B"
@@ -361,5 +366,5 @@
   "timezone": "",
   "title": "Docker",
   "uid": "docker",
-  "version": 42
+  "version": 44
 }
