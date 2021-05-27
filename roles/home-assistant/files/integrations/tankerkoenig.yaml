@@ -1,0 +1,8 @@
+tankerkoenig:
+  api_key: !secret tankerkoenig_api_key
+  radius: 1
+  fuel_types:
+    - e5
+    - diesel
+  stations:
+    - !secret tankerkoenig_station

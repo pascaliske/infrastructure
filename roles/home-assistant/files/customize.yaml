@@ -44,3 +44,11 @@ sensor.epson_et_2750_series_magenta_ink:
   friendly_name: Magenta Ink
 sensor.epson_et_2750_series_yellow_ink:
   friendly_name: Yellow Ink
+sensor.tankerkoenig_car_tank_24_e5:
+  friendly_name: Neumann Tankstelle E5
+sensor.tankerkoenig_car_tank_24_diesel:
+  friendly_name: Neumann Tankstelle Diesel
+sensor.tankerkoenig_tankcenter_rodgau_e5:
+  friendly_name: Tankcenter E5
+sensor.tankerkoenig_tankcenter_rodgau_diesel:
+  friendly_name: Tankcenter Diesel

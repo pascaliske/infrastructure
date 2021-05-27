@@ -27,6 +27,8 @@ secrets:
   slack_bearer_token: "{{ lookup('env', 'HOME_ASSISTANT_SLACK_BEARER_TOKEN') }}"
   spotify_client_id: "{{ lookup('env', 'HOME_ASSISTANT_SPOTIFY_CLIENT_ID') }}"
   spotify_client_secret: "{{ lookup('env', 'HOME_ASSISTANT_SPOTIFY_CLIENT_SECRET') }}"
+  tankerkoenig_api_key: "{{ lookup('env', 'HOME_ASSISTANT_TANKERKOENIG_API_KEY') }}"
+  tankerkoenig_station: "{{ lookup('env', 'HOME_ASSISTANT_TANKERKOENIG_STATION') }}"
   travis_ci_api_key: "{{ lookup('env', 'HOME_ASSISTANT_TRAVIS_CI_API_KEY') }}"
   withings_client_id: "{{ lookup('env', 'HOME_ASSISTANT_WITHINGS_CLIENT_ID') }}"
   withings_client_secret: "{{ lookup('env', 'HOME_ASSISTANT_WITHINGS_CLIENT_SECRET') }}"

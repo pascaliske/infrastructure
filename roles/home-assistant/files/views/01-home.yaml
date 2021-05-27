@@ -53,6 +53,32 @@ cards:
             - type: sensor
               entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
               name: S1 → Westend
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              entities:
+                - type: custom:multiple-entity-row
+                  entity: sensor.tankerkoenig_car_tank_24_e5
+                  show_state: false
+                  name: Neumann Tankstelle
+                  secondary_info: last-changed
+                  entities:
+                    - entity: sensor.tankerkoenig_car_tank_24_e5
+                      name: Gas
+                    - entity: sensor.tankerkoenig_car_tank_24_diesel
+                      name: Diesel
+                - type: custom:multiple-entity-row
+                  entity: sensor.tankerkoenig_car_tank_24_e5
+                  show_state: false
+                  name: Tankcenter Rodgau
+                  secondary_info: last-changed
+                  entities:
+                    - entity: sensor.tankerkoenig_tankcenter_rodgau_e5
+                      name: Gas
+                    - entity: sensor.tankerkoenig_tankcenter_rodgau_diesel
+                      name: Diesel
         - type: vertical-stack
           cards:
             - type: entity-filter
