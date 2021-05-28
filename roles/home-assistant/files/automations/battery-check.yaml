@@ -7,5 +7,5 @@ use_blueprint:
         data_template:
           title: Battery Level Check
           message: >
-            Low battery level for sensors: {{ sensors }}.
+            Low battery level for sensors: {{ sensors | replace(' battery state', '') }}.
 
