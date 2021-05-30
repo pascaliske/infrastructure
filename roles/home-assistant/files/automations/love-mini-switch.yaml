@@ -9,7 +9,12 @@ use_blueprint:
       - service: switch.toggle
         target:
           entity_id: switch.love
-      - service: switch.toggle
+      - service: >
+          {% if is_state('switch.love', 'on') %}
+            switch.turn_on
+          {% else %}
+            switch.turn_off
+          {% endif %}
         target:
           entity_id: switch.kugel
     button_double_press:
