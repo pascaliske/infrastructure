@@ -58,6 +58,14 @@ cards:
                   .sun-card-header .sun-card-text-container:last-child {
                     align-items: flex-end;
                   }
+                  .sun-card-header .sun-card-text-container:last-child .sun-card-text-time {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    align-items: baseline;
+                  }
+                  .sun-card-header .sun-card-text-container:last-child .sun-card-text-time-period {
+                    margin-right: 8px;
+                  }
             - type: sensor
               entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
               name: S1 → Westend
