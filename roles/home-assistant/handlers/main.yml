@@ -1,23 +1,23 @@
 ---
 - name: Reload Home Assistant Core
   uri:
-    url: 'https://{{ controller_ip }}:8123/api/services/{{ item | replace(".", "/") }}'
+    url: 'https://{{ vault.ips.controller }}:8123/api/services/{{ item | replace(".", "/") }}'
     method: POST
     body_format: json
     validate_certs: false
     headers:
-      Authorization: 'Bearer {{ home_assistant_access_token }}'
+      Authorization: 'Bearer {{ vault.home_assistant.access_token }}'
   loop:
     - homeassistant.reload_core_config
     - homekit.reload
 - name: Reload Home Assistant UI
   uri:
-    url: 'https://{{ controller_ip }}:8123/api/services/{{ item | replace(".", "/") }}'
+    url: 'https://{{ vault.ips.controller }}:8123/api/services/{{ item | replace(".", "/") }}'
     method: POST
     body_format: json
     validate_certs: false
     headers:
-      Authorization: 'Bearer {{ home_assistant_access_token }}'
+      Authorization: 'Bearer {{ vault.home_assistant.access_token }}'
   loop:
     - lovelace.reload_resources
     - frontend.reload_themes

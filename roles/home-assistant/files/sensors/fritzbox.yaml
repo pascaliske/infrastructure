@@ -1,6 +1,6 @@
 # netmonitor sensor
 - platform: fritzbox_netmonitor
-  host: !secret ip_fritzbox
+  host: !secret ip_router
   name: fritzbox_netmonitor
   scan_interval: 10
 
