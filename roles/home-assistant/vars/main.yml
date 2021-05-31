@@ -1,4 +1,6 @@
 ---
+controller_ip: "{{ lookup('env', 'CONTROLLER_IP') }}"
+home_assistant_access_token: "{{ lookup('env', 'HOME_ASSISTANT_ACCESS_TOKEN') }}"
 secrets:
   deutsche_bahn_from: "{{ lookup('env', 'HOME_ASSISTANT_DEUTSCHE_BAHN_FROM') }}"
   deutsche_bahn_to: "{{ lookup('env', 'HOME_ASSISTANT_DEUTSCHE_BAHN_TO') }}"

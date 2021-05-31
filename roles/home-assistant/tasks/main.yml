@@ -17,6 +17,7 @@
     - configuration
     - customize
     - ui-lovelace
+  notify: Reload Home Assistant Core
 
 - name: Copy Home Assistant config directories
   synchronize:
@@ -32,11 +33,13 @@
     - sensors
     - switches
     - views
+  notify: Reload Home Assistant Core
 
 - name: Copy Home Assistant secrets to config directory
   template:
     src: home-assistant/secrets.yml.j2
     dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
+  notify: Reload Home Assistant Core
 
 # themes
 - name: Download themes into theme directory
@@ -45,6 +48,7 @@
     dest: '{{ root_path }}/{{ role_name }}/themes/{{ item.name }}.yaml'
   loop:
     - { name: 'google-home', url: 'https://raw.githubusercontent.com/liri/lovelace-themes/master/themes/google-home.yaml' }
+  notify: Reload Home Assistant UI
 
 
 # cards
@@ -62,6 +66,7 @@
     - { user: 'thomasloven', repo: 'lovelace-slider-entity-row' }
     - { user: 'thomasloven', repo: 'lovelace-layout-card' }
     - { user: 'bramkragten', repo: 'swipe-card' }
+  notify: Reload Home Assistant UI
 
 - name: Download cards into www directory
   vars:
@@ -80,6 +85,7 @@
         url: 'https://github.com/{{ item.user }}/{{ item.repo }}/releases/latest/download/{{ item.file | default(item.repo) }}.js'
         dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}/'
       loop: '{{ cards }}'
+  notify: Reload Home Assistant UI
 
 # components
 - name: Download HACS components into custom_components directory
@@ -98,3 +104,4 @@
         dest: '{{ root_path }}/{{ role_name }}/custom_components/{{ item.repo }}'
         remote_src: yes
       loop: '{{ components }}'
+  notify: Reload Home Assistant UI

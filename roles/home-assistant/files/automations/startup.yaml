@@ -9,4 +9,4 @@ action:
   - service: notify.slack
     data:
       title: Home Assistant
-      message: Home Assistant has been started successfully!
+      message: System has been started successfully!
