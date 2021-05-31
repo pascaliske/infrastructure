@@ -4,7 +4,7 @@ homeassistant:
   latitude: !secret home_latitude
   longitude: !secret home_longitude
   unit_system: metric
-  time_zone: Europe/Berlin
+  time_zone: !secret home_timezone
 
 # enables configuration ui
 config:

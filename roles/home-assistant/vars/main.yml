@@ -16,6 +16,7 @@ secrets:
   glances_gitlab_username: "{{ lookup('env', 'HOME_ASSISTANT_GLANCES_GITLAB_USERNAME') }}"
   home_latitude: "{{ lookup('env', 'HOME_ASSISTANT_HOME_LATITUDE') }}"
   home_longitude: "{{ lookup('env', 'HOME_ASSISTANT_HOME_LONGITUDE') }}"
+  home_timezone: '{{ timezone }}'
   icloud_password: "{{ lookup('env', 'HOME_ASSISTANT_ICLOUD_PASSWORD') }}"
   icloud_username: "{{ lookup('env', 'HOME_ASSISTANT_ICLOUD_USERNAME') }}"
   ip_ffmmbp207: "{{ lookup('env', 'HOME_ASSISTANT_IP_FFMMBP207') }}"
