@@ -15,3 +15,6 @@ homekit:
     media_player.spotify_pascal_iske:
       feature_list:
         - feature: play_pause
+    media_player.ps4_pi:
+      feature_list:
+        - feature: on_off
