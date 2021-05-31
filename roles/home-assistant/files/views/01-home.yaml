@@ -50,6 +50,14 @@ cards:
               entity: weather.home
             - type: custom:sun-card
               darkMode: true
+              card_mod:
+                style: |
+                  .sun-card-header .sun-card-text-container:first-child {
+                    align-items: flex-start;
+                  }
+                  .sun-card-header .sun-card-text-container:last-child {
+                    align-items: flex-end;
+                  }
             - type: sensor
               entity: sensor.rodgau_nieder_roden_to_westend_frankfurt_a_m
               name: S1 → Westend
