@@ -30,13 +30,15 @@ jobs:
 
       # prepare
       - run: |
-          tail -n +3 roles/home-assistant/vars/main.yml | awk '{$1=$1};1' > roles/home-assistant/files/secrets.yaml
+          sed -E -i 's/!secret ([a-z0-9_]+)/"\1"/' roles/home-assistant/files/*.yaml
+          sed -E -i 's/!secret ([a-z0-9_]+)/"\1"/' roles/home-assistant/files/**/*.yaml
           sed -i 's/breaking_changes/# breaking_changes/g' roles/home-assistant/files/integrations/core.yaml
           mv roles/home-assistant/files/integrations/http.yaml{,.disabled}
           mv roles/home-assistant/files/integrations/withings.yaml{,.disabled}
           mv roles/home-assistant/files/automations/battery-check.yaml{,.disabled}
           mv roles/home-assistant/files/automations/bed-room-mini-switch.yaml{,.disabled}
           mv roles/home-assistant/files/automations/love-mini-switch.yaml{,.disabled}
+          git ls-files -m
 
       # check prometheus config
       - uses: addnab/docker-run-action@v3
