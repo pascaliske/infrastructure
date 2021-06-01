@@ -16,8 +16,8 @@
 
 [unifi.defaults]
   url = "https://unifi:8443"
-  user = "{{ unifi_username }}"
-  pass = "{{ unifi_password }}"
+  user = "{{ vault.unifi.username }}"
+  pass = "{{ vault.unifi.password }}"
   sites = ["all"]
   save_ids = false
   save_dpi = false
