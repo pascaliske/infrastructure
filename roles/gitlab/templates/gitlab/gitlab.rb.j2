@@ -34,28 +34,28 @@ gitlab_rails['impersonation_enabled'] = true
 
 # emails
 gitlab_rails['gitlab_email_enabled'] = true
-gitlab_rails['gitlab_email_from'] = '{{ smtp.accounts.gitlab.email }}'
-gitlab_rails['gitlab_email_reply_to'] = '{{ smtp.accounts.gitlab.email }}'
-gitlab_rails['gitlab_email_display_name'] = '{{ smtp.accounts.gitlab.name }}'
+gitlab_rails['gitlab_email_from'] = '{{ vault.smtp.accounts.gitlab.email }}'
+gitlab_rails['gitlab_email_reply_to'] = '{{ vault.smtp.accounts.gitlab.email }}'
+gitlab_rails['gitlab_email_display_name'] = '{{ vault.smtp.accounts.gitlab.name }}'
 gitlab_rails['gitlab_email_subject_suffix'] = ''
 gitlab_rails['smtp_enable'] = true
 gitlab_rails['smtp_domain'] = '{{ domain }}'
-gitlab_rails['smtp_address'] = '{{ smtp.host }}'
-gitlab_rails['smtp_user_name'] = '{{ smtp.accounts.gitlab.email }}'
-gitlab_rails['smtp_password'] = '{{ smtp.accounts.gitlab.password }}'
+gitlab_rails['smtp_address'] = '{{ vault.smtp.host }}'
+gitlab_rails['smtp_user_name'] = '{{ vault.smtp.accounts.gitlab.email }}'
+gitlab_rails['smtp_password'] = '{{ vault.smtp.accounts.gitlab.password }}'
 gitlab_rails['smtp_authentication'] = 'login'
 gitlab_rails['smtp_enable_starttls_auto'] = true
-gitlab_rails['smtp_port'] = {{ smtp.port }}
+gitlab_rails['smtp_port'] = {{ vault.smtp.port }}
 
 # disable integrated certificates
 letsencrypt['enable'] = false
 letsencrypt['auto_renew'] = false
 
-{% if sentry_dsn | length > 0 %}
+{% if vault.sentry.dsn | length > 0 %}
 # sentry error logging
 gitlab_rails['sentry_enabled'] = true
-gitlab_rails['sentry_dsn'] = '{{ sentry_dsn }}'
-gitlab_rails['sentry_clientside_dsn'] = '{{ sentry_dsn }}'
+gitlab_rails['sentry_dsn'] = '{{ vault.sentry.dsn }}'
+gitlab_rails['sentry_clientside_dsn'] = '{{ vault.sentry.dsn }}'
 gitlab_rails['sentry_environment'] = 'production'
 
 {% endif -%}
@@ -96,8 +96,8 @@ sidekiq['concurrency'] = 2
 puma['worker_processes'] = 2
 
 # grafana
-grafana['gitlab_application_id'] = '{{ grafana_app_id }}';
-grafana['gitlab_secret'] = '{{ grafana_app_secret }}';
+grafana['gitlab_application_id'] = '{{ vault.gitlab.grafana_app_id }}';
+grafana['gitlab_secret'] = '{{ vault.gitlab.grafana_app_secret }}';
 grafana['allow_user_sign_up'] = true
 grafana['disable_login_form'] = false
 grafana['env'] = {
