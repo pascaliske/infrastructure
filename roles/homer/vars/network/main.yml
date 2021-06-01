@@ -26,18 +26,18 @@ services:
       - name: FRITZ!Box
         subtitle: Gateway & Firewall
         logo: assets/logos/fritzbox.png
-        url: http://{{ lookup('env', 'ROUTER_IP') }}
+        url: http://{{ vault.ips.router }}
       - name: TP-Link Switch 8
         subtitle: 8 port core switch
         logo: assets/logos/tplink.png
-        url: http://{{ lookup('env', 'SWITCH_8P_IP') }}
+        url: http://{{ vault.ips.switch_8p }}
       - name: TP-Link Switch 5
         subtitle: 5 port distribution switch
         logo: assets/logos/tplink.png
-        url: http://{{ lookup('env', 'SWITCH_5P_IP') }}
+        url: http://{{ vault.ips.switch_5p }}
       - name: Gigaset GO
         subtitle: VoIP phone management
-        url: http://{{ lookup('env', 'GIGASET_IP') }}
+        url: http://{{ vault.ips.gigaset }}
   - name: Automation
     icon: fas fa-robot
     items:

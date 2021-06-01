@@ -1,10 +1,10 @@
 ---
-watchtower_schedule: '0 0 0 * * *'
-watchtower_slack_level: info
-watchtower_slack_url: "slack://watchtower@{{ lookup('env', 'WATCHTOWER_SLACK_TOKENS') }}"
-watchtower_slack_template: "{{ '{{range .}}[' ~ ansible_play_name ~ '] {{.Message}}{{println}}{{end}}' }}"
-watchtower_http_api_token: "{{ lookup('env', 'WATCHTOWER_HTTP_API_TOKEN') }}"
-watchtower_http_api_metrics: "true"
-watchtower_cleanup: "true"
-watchtower_debug: "false"
-digital_ocean_token: "{{ lookup('env', 'DIGITAL_OCEAN_TOKEN') }}"
+watchtower:
+  schedule: '0 0 0 * * *'
+  slack_level: info
+  slack_url: "slack://watchtower@{{ vault.watchtower.slack_tokens }}"
+  slack_template: "{{ '{{range .}}[' ~ ansible_play_name ~ '] {{.Message}}{{println}}{{end}}' }}"
+  http_api_token: "{{ vault.watchtower.http_api_token }}"
+  http_api_metrics: "true"
+  cleanup: "true"
+  debug: "false"

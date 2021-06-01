@@ -8,15 +8,15 @@ services:
     environment:
       TZ: '{{ timezone }}'
       DOCKER_HOST: tcp://docker-proxy:2375
-      WATCHTOWER_SCHEDULE: '{{ watchtower_schedule | default("0 0 0 * * *") }}'
+      WATCHTOWER_SCHEDULE: '{{ watchtower.schedule | default("0 0 0 * * *") }}'
       WATCHTOWER_NOTIFICATIONS: shoutrrr
-      WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower_slack_level }}'
-      WATCHTOWER_NOTIFICATION_URL: '{{ watchtower_slack_url }}'
-      WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower_slack_template }}'
-      WATCHTOWER_HTTP_API_TOKEN: '{{ watchtower_http_api_token }}'
-      WATCHTOWER_HTTP_API_METRICS: '{{ watchtower_http_api_metrics | default(true) }}'
-      WATCHTOWER_CLEANUP: '{{ watchtower_cleanup | default(true) }}'
-      WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
+      WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower.slack_level }}'
+      WATCHTOWER_NOTIFICATION_URL: '{{ watchtower.slack_url }}'
+      WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower.slack_template }}'
+      WATCHTOWER_HTTP_API_TOKEN: '{{ watchtower.http_api_token }}'
+      WATCHTOWER_HTTP_API_METRICS: '{{ watchtower.http_api_metrics | default(true) }}'
+      WATCHTOWER_CLEANUP: '{{ watchtower.cleanup | default(true) }}'
+      WATCHTOWER_DEBUG: '{{ watchtower.debug | default(false) }}'
     expose:
       - 8080
     networks:
@@ -90,11 +90,11 @@ services:
       F2B_LOG_TARGET: STDOUT
       F2B_LOG_LEVEL: INFO
       F2B_DB_PURGE_AGE: 1d
-      SSMTP_HOST: '{{ smtp.host }}'
-      SSMTP_PORT: '{{ smtp.port }}'
+      SSMTP_HOST: '{{ vault.smtp.host }}'
+      SSMTP_PORT: '{{ vault.smtp.port }}'
       # SSMTP_HOSTNAME: example.com
-      SSMTP_USER: '{{ smtp.accounts.auth.email }}'
-      SSMTP_PASSWORD: '{{ smtp.accounts.auth.password }}'
+      SSMTP_USER: '{{ vault.smtp.accounts.auth.email }}'
+      SSMTP_PASSWORD: '{{ vault.smtp.accounts.auth.password }}'
       SSMTP_TLS: 'YES'
     volumes:
       - /var/log:/var/log:ro
@@ -120,7 +120,7 @@ services:
       - 9000
     environment:
       TZ: '{{ timezone }}'
-      DO_AUTH_TOKEN: '{{ digital_ocean_token }}'
+      DO_AUTH_TOKEN: '{{ vault.digital_ocean.token }}'
     volumes:
       - /var/log/traefik:/var/log
       - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
@@ -250,8 +250,8 @@ services:
       - 3000
     environment:
       TZ: '{{ timezone }}'
-      GF_SECURITY_ADMIN_USER: '{{ network.grafana_user }}'
-      GF_SECURITY_ADMIN_PASSWORD: '{{ network.grafana_password }}'
+      GF_SECURITY_ADMIN_USER: '{{ vault.grafana.username }}'
+      GF_SECURITY_ADMIN_PASSWORD: '{{ vault.grafana.password }}'
       GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
       - grafana:/var/lib/grafana
@@ -322,7 +322,7 @@ services:
       - 9617
     environment:
       PIHOLE_HOSTNAME: pihole
-      PIHOLE_PASSWORD: '{{ network.pi_hole_password }}'
+      PIHOLE_PASSWORD: '{{ vault.pi_hole.password }}'
     networks:
       - monitoring
   fritzbox-exporter:
@@ -332,9 +332,9 @@ services:
     expose:
       - 8765
     environment:
-      FRITZ_HOST: '{{ network.router_ip }}'
-      FRITZ_USER: '{{ network.fritzbox_user }}'
-      FRITZ_PASS: '{{ network.fritzbox_password }}'
+      FRITZ_HOST: '{{ vault.ips.router }}'
+      FRITZ_USER: '{{ vault.fritzbox.username }}'
+      FRITZ_PASS: '{{ vault.fritzbox.password }}'
     networks:
       - monitoring
   speedtest-exporter:
@@ -434,10 +434,10 @@ services:
       VIRTUAL_PORT: 80
       PIHOLE_DNS_: 172.20.3.2#5053
       DNS_FQDN_REQUIRED: 'true'
-      WEBPASSWORD: '{{ network.pi_hole_password }}'
+      WEBPASSWORD: '{{ vault.pi_hole.password }}'
       REV_SERVER: 'true'
-      REV_SERVER_CIDR: '{{ network.network }}'
-      REV_SERVER_TARGET: '{{ network.router_ip }}'
+      REV_SERVER_CIDR: '{{ vault.network }}'
+      REV_SERVER_TARGET: '{{ vault.ips.router }}'
       REV_SERVER_DOMAIN: fritz.box
       PROXY_LOCATION: pihole
       SKIPGRAVITYONBOOT: 'true'
@@ -499,7 +499,7 @@ services:
     restart: unless-stopped
     environment:
       TZ: '{{ timezone }}'
-      DIGITALOCEAN_TOKEN: '{{ digital_ocean_token }}'
+      DIGITALOCEAN_TOKEN: '{{ vault.digital_ocean.token }}'
       DOMAIN: '{{ domain }}'
       NAME: vpn
     networks:

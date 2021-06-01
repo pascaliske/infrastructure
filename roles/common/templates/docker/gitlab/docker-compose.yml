@@ -8,13 +8,13 @@ services:
     environment:
       TZ: '{{ timezone }}'
       DOCKER_HOST: tcp://docker-proxy:2375
-      WATCHTOWER_SCHEDULE: '{{ watchtower_schedule | default("0 0 0 * * *") }}'
+      WATCHTOWER_SCHEDULE: '{{ watchtower.schedule | default("0 0 0 * * *") }}'
       WATCHTOWER_NOTIFICATIONS: shoutrrr
-      WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower_slack_level }}'
-      WATCHTOWER_NOTIFICATION_URL: '{{ watchtower_slack_url }}'
-      WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower_slack_template }}'
-      WATCHTOWER_CLEANUP: '{{ watchtower_cleanup | default(true) }}'
-      WATCHTOWER_DEBUG: '{{ watchtower_debug | default(false) }}'
+      WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower.slack_level }}'
+      WATCHTOWER_NOTIFICATION_URL: '{{ watchtower.slack_url }}'
+      WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower.slack_template }}'
+      WATCHTOWER_CLEANUP: '{{ watchtower.cleanup | default(true) }}'
+      WATCHTOWER_DEBUG: '{{ watchtower.debug | default(false) }}'
     networks:
       - docker
   dozzle:
@@ -109,11 +109,11 @@ services:
       F2B_LOG_TARGET: STDOUT
       F2B_LOG_LEVEL: INFO
       F2B_DB_PURGE_AGE: 1d
-      SSMTP_HOST: '{{ smtp.host }}'
-      SSMTP_PORT: '{{ smtp.port }}'
+      SSMTP_HOST: '{{ vault.smtp.host }}'
+      SSMTP_PORT: '{{ vault.smtp.port }}'
       # SSMTP_HOSTNAME: example.com
-      SSMTP_USER: '{{ smtp.accounts.auth.email }}'
-      SSMTP_PASSWORD: '{{ smtp.accounts.auth.password }}'
+      SSMTP_USER: '{{ vault.smtp.accounts.auth.email }}'
+      SSMTP_PASSWORD: '{{ vault.smtp.accounts.auth.password }}'
       SSMTP_TLS: 'YES'
     volumes:
       - /var/log:/var/log:ro
@@ -137,7 +137,7 @@ services:
       - '443:443'
     environment:
       TZ: '{{ timezone }}'
-      DO_AUTH_TOKEN: '{{ digital_ocean_token }}'
+      DO_AUTH_TOKEN: '{{ vault.digital_ocean.token }}'
     volumes:
       - /var/log/traefik:/var/log
       - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
@@ -312,7 +312,7 @@ services:
       TZ: '{{ timezone }}'
       PAPERLESS_REDIS: redis://redis:6379
       PAPERLESS_TIME_ZONE: '{{ timezone }}'
-      PAPERLESS_SECRET_KEY: '{{ paperless_secret_key }}'
+      PAPERLESS_SECRET_KEY: '{{ vault.paperless.secret_key }}'
       PAPERLESS_ENABLE_HTTP_REMOTE_USER: 'true'
       PAPERLESS_OCR_LANGUAGE: 'deu'
     volumes:
