@@ -1,7 +1,0 @@
----
-auth_email: "{{ lookup('env', 'AUTH_EMAIL') }}"
-auth_username: "{{ lookup('env', 'AUTH_USERNAME') }}"
-auth_password: "{{ lookup('env', 'AUTH_PASSWORD') }}"
-auth_display_name: "{{ lookup('env', 'AUTH_DISPLAY_NAME') }}"
-auth_jwt_secret: "{{ lookup('env', 'AUTH_JWT_SECRET') }}"
-auth_session_secret: "{{ lookup('env', 'AUTH_SESSION_SECRET') }}"
