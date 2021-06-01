@@ -3,14 +3,15 @@ on: push
 
 jobs:
   check_prometheus:
-    name: check prometheus config
+    name: Prometheus
     runs-on: ubuntu-latest
     steps:
       # checkout
       - uses: actions/checkout@v2.3.4
 
       # prepare
-      - run: |
+      - name: Prepare configuration files
+        run: |
           cp roles/monitoring/{templates/prometheus/alert.rules.j2,files/alert.rules}
           cp roles/monitoring/{templates/prometheus/prometheus.yml.j2,files/prometheus.yml}
 
@@ -22,14 +23,15 @@ jobs:
           run: promtool check config /tmp/prometheus.yml
 
   check_home_assistant:
-    name: check home-assistant config
+    name: Home Assistant
     runs-on: ubuntu-latest
     steps:
       # checkout
       - uses: actions/checkout@v2.3.4
 
       # prepare
-      - run: |
+      - name: Prepare configuration files
+        run: |
           sed -E -i 's/!secret ([a-z0-9_]+)/"\1"/' roles/home-assistant/files/*.yaml
           sed -E -i 's/!secret ([a-z0-9_]+)/"\1"/' roles/home-assistant/files/**/*.yaml
           sed -i 's/breaking_changes/# breaking_changes/g' roles/home-assistant/files/integrations/core.yaml
