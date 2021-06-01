@@ -16,9 +16,17 @@
   },
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "ssh:network": "ssh -t -i $ANSIBLE_PRIVATE_KEY_FILE $SSH_NETWORK",
     "ssh:gitlab": "ssh -t -i $ANSIBLE_PRIVATE_KEY_FILE $SSH_GITLAB",
     "ping": "ansible all --module-name=ping",
-    "play": "ansible-playbook --diff"
+    "play": "ansible-playbook --diff --ask-vault-pass --extra-vars @vars/vault.yml",
+    "vault:encrypt": "ansible-vault encrypt vars/vault.yml",
+    "vault:decrypt": "ansible-vault decrypt vars/vault.yml"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "husky": "^6.0.0"
   }
 }

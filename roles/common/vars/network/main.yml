@@ -1,9 +1,0 @@
----
-network: "{{ lookup('env', 'NETWORK') }}"
-router_ip: "{{ lookup('env', 'ROUTER_IP') }}"
-controller_ip: "{{ lookup('env', 'CONTROLLER_IP') }}"
-grafana_user: "{{ lookup('env', 'GRAFANA_USER') }}"
-grafana_password: "{{ lookup('env', 'GRAFANA_PASSWORD') }}"
-fritzbox_user: "{{ lookup('env', 'FRITZBOX_USER') }}"
-fritzbox_password: "{{ lookup('env', 'FRITZBOX_PASSWORD') }}"
-pi_hole_password: "{{ lookup('env', 'PI_HOLE_PASSWORD') }}"

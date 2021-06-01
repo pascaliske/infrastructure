@@ -1,2 +1,1 @@
 ---
-paperless_secret_key: "{{ lookup('env', 'PAPERLESS_SECRET_KEY') }}"

@@ -26,11 +26,11 @@ route:
 receivers:
   - name: slack
     slack_configs:
-      - channel: '{{ alertmanager_slack_channel }}'
-        username: '{{ alertmanager_slack_username }}'
-        api_url: '{{ alertmanager_slack_webhook }}'
+      - channel: '{{ vault.alertmanager.slack.channel }}'
+        username: '{{ vault.alertmanager.slack.username }}'
+        api_url: '{{ vault.alertmanager.slack.webhook }}'
         title: |
-          {{- __title | indent(width=10, indentfirst=True) }}
+          {{- __title | indent(width=10, first=True) }}
         text: |
-          {{- __text | indent(width=10, indentfirst=True) }}
+          {{- __text | indent(width=10, first=True) }}
         send_resolved: true

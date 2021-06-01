@@ -25,7 +25,7 @@ policy: {{ rule.policy -}}
 host: 0.0.0.0
 port: 9091
 theme: dark
-jwt_secret: '{{ auth_jwt_secret }}'
+jwt_secret: '{{ vault.auth.jwt_secret }}'
 default_redirection_url: 'https://{{ 'go.' if ansible_play_name == 'gitlab' }}{{ domain }}'
 totp:
   issuer: '{{ domain }}'
@@ -49,8 +49,8 @@ access_control:
     {% for rule in vars.rules -%}
     - domain:
       {{+ rule_domains(rule) | indent(6) -}}
-      {{+ rule_resources(rule) | indent(6, indentfirst=True) if rule.resources is defined -}}
-      {{+ rule_policy(rule) | indent(6, indentfirst=True) }}
+      {{+ rule_resources(rule) | indent(6, first=True) if rule.resources is defined -}}
+      {{+ rule_policy(rule) | indent(6, first=True) }}
     {% endfor -%}
   {%- else -%}
   rules: {{ '[]' -}}
@@ -59,7 +59,7 @@ access_control:
 session:
   name: authelia_session
   domain: '{{ domain }}'
-  secret: '{{ auth_session_secret }}'
+  secret: '{{ vault.auth.session_secret }}'
   expiration: 42h
   inactivity: 15m
 
@@ -74,14 +74,14 @@ storage:
 
 notifier:
   smtp:
-    host: '{{ smtp.host }}'
-    port: '{{ smtp.port }}'
-    username: '{{ smtp.accounts.auth.email }}'
-    password: '{{ smtp.accounts.auth.password }}'
-    sender: '{{ smtp.accounts.auth.email }}'
+    host: '{{ vault.smtp.host }}'
+    port: '{{ vault.smtp.port }}'
+    username: '{{ vault.smtp.accounts.auth.email }}'
+    password: '{{ vault.smtp.accounts.auth.password }}'
+    sender: '{{ vault.smtp.accounts.auth.email }}'
     identifier: localhost
     subject: "[auth@{{ ansible_play_name }}] {title}"
-    startup_check_address: '{{ auth_username }}'
+    startup_check_address: '{{ vault.auth.username }}'
     disable_require_tls: false
     disable_html_emails: false
     tls:

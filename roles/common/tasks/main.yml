@@ -1,9 +1,3 @@
-# variables
-- name: Load host specific variables
-  include_vars:
-    file: '{{ ansible_play_name }}/main.yml'
-    name: '{{ ansible_play_name }}'
-
 # directories
 - name: Ensure directories exist
   file:

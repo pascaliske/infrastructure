@@ -1,7 +1,7 @@
 concurrent = 2
 check_interval = 1
 log_level = "info"
-sentry_dsn = "{{ sentry_dsn_legacy }}"
+sentry_dsn = "{{ vault.sentry.dsn_legacy }}"
 
 [session_server]
   session_timeout = 1800
@@ -10,7 +10,7 @@ sentry_dsn = "{{ sentry_dsn_legacy }}"
   name = "BB-8"
   executor = "docker"
   url = "https://git.{{ domain }}"
-  token = "{{ ci_runner_token }}"
+  token = "{{ vault.gitlab.ci_runner_token }}"
   [runners.custom_build_dir]
   [runners.cache]
     [runners.cache.s3]

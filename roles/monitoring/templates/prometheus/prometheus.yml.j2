@@ -17,7 +17,7 @@ scrape_configs:
 
   - job_name: network/watchtower
     metrics_path: /v1/metrics
-    bearer_token: '{{ watchtower_access_token }}'
+    bearer_token: '{{ vault.watchtower.http_api_token }}'
     static_configs:
       - targets: ['watchtower:8080']
 
@@ -57,7 +57,7 @@ scrape_configs:
 
   - job_name: network/homeassistant
     metrics_path: /api/prometheus
-    bearer_token: '{{ home_assistant_access_token }}'
+    bearer_token: '{{ vault.home_assistant.access_token }}'
     scheme: https
     tls_config:
       insecure_skip_verify: true
