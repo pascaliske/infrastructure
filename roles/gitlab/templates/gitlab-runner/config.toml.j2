@@ -10,7 +10,7 @@ sentry_dsn = "{{ vault.sentry.dsn_legacy }}"
   name = "BB-8"
   executor = "docker"
   url = "https://git.{{ domain }}"
-  token = "{{ vault.gitlab.ci_runner_token }}"
+  token = "{{ vault.gitlab.ci.runner_token }}"
   [runners.custom_build_dir]
   [runners.cache]
     [runners.cache.s3]

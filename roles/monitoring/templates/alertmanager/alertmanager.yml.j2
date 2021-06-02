@@ -28,7 +28,7 @@ receivers:
     slack_configs:
       - channel: '{{ vault.alertmanager.slack.channel }}'
         username: '{{ vault.alertmanager.slack.username }}'
-        api_url: '{{ vault.alertmanager.slack.webhook }}'
+        api_url: 'https://hooks.slack.com/services/{{ vault.alertmanager.slack.tokens }}'
         title: |
           {{- __title | indent(width=10, first=True) }}
         text: |
