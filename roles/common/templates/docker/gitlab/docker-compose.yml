@@ -77,7 +77,7 @@ services:
       - traefik.http.routers.glances.entrypoints=https
       - traefik.http.routers.glances.tls=true
       - traefik.http.routers.glances.tls.certresolver=http
-      - traefik.http.routers.glances.middlewares=auth@file,rate-limit@file
+      - traefik.http.routers.glances.middlewares=auth-basic@file,rate-limit@file
       - traefik.http.services.glances-gitlab.loadbalancer.server.port=61208
 
   # security

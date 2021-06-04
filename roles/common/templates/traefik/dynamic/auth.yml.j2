@@ -9,3 +9,7 @@ http:
           - Remote-Groups
           - Remote-Name
           - Remote-Email
+    auth-basic:
+      basicAuth:
+        users:
+          - "{{ vault.basicAuth.username }}:{{ vault.basicAuth.password }}"

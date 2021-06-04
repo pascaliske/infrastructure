@@ -11,5 +11,4 @@ rules:
       - code
       - links
       - docs
-      - stats
       - logs
