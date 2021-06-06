@@ -7,6 +7,8 @@ homekit:
     include_entity_globs:
       - sensor.*_lumi_*
       - binary_sensor.*_lumi_*
+    include_entities:
+      - sensor.cpu_temperature
     exclude_entities:
       - switch.network_controller
     exclude_entity_globs:
