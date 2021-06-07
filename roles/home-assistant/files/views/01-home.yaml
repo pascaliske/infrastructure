@@ -165,6 +165,30 @@ cards:
                 state_color: true
                 show_header_toggle: true
               entities:
+                - entity: sensor.kitchen_lumi_temperature
+                  secondary_info: last-changed
+                  name: Temperature
+                - entity: sensor.kitchen_lumi_humidity
+                  secondary_info: last-changed
+                  name: Humidity
+                - entity: sensor.kitchen_lumi_power
+                  secondary_info: last-changed
+                  name: Battery
+                - type: custom:text-divider-row
+                  entity: sensor.time
+                  text: Lights
+                  card_mod:
+                    style: |
+                      h2.text-divider {
+                        margin: 0;
+                        font-weight: normal;
+                        letter-spacing: 0.5px;
+                        opacity: .5;
+                      }
+
+                      h2.text-divider span {
+                        padding: 10px 1em;
+                      }
                 - entity: switch.lichterkette
                   secondary_info: last-changed
         - type: vertical-stack

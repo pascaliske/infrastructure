@@ -15,6 +15,29 @@ cards:
         - type: vertical-stack
           cards:
             - type: entities
+              title: Climate
+              state_color: false
+              show_header_toggle: false
+              entities:
+                - entity: sensor.kitchen_lumi_temperature
+                  secondary_info: last-changed
+                  name: Temperature
+                - entity: sensor.kitchen_lumi_humidity
+                  secondary_info: last-changed
+                  name: Humidity
+                - entity: sensor.kitchen_lumi_pressure
+                  secondary_info: last-changed
+                  name: Pressure
+                - entity: sensor.kitchen_lumi_power
+                  secondary_info: last-changed
+                  name: Battery
+              footer:
+                type: graph
+                entity: sensor.kitchen_lumi_temperature
+                hours_to_show: 48
+        - type: vertical-stack
+          cards:
+            - type: entities
               title: Lights
               state_color: true
               show_header_toggle: true
