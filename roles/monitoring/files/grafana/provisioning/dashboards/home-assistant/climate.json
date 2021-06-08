@@ -16,6 +16,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 7,
+  "iteration": 1623127971428,
   "links": [],
   "panels": [
     {
@@ -58,7 +59,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -68,7 +69,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(homeassistant_temperature_c{friendly_name=~\"(.*) Climate Temperature\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Temperature\")",
+          "exemplar": true,
+          "expr": "label_replace(homeassistant_temperature_c{friendly_name=~\"$room Climate Temperature\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Temperature\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -157,7 +159,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -167,7 +169,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(homeassistant_humidity_percent{friendly_name=~\"(.*) Climate Humidity\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Humidity\")",
+          "exemplar": true,
+          "expr": "label_replace(homeassistant_humidity_percent{friendly_name=~\"$room Climate Humidity\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Humidity\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -265,7 +268,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -275,7 +278,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(homeassistant_pressure_hpa{friendly_name=~\"(.*) Climate Pressure\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Pressure\")",
+          "exemplar": true,
+          "expr": "label_replace(homeassistant_pressure_hpa{friendly_name=~\"$room Climate Pressure\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Pressure\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -329,7 +333,70 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": null,
+        "definition": "label_values(homeassistant_temperature_c{friendly_name=~\"(.*) Climate Temperature\"}, friendly_name)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Room",
+        "multi": false,
+        "name": "room",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Bathroom",
+            "value": "Bathroom"
+          },
+          {
+            "selected": false,
+            "text": "Bed Room",
+            "value": "Bed Room"
+          },
+          {
+            "selected": false,
+            "text": "Children's Room",
+            "value": "Children's Room"
+          },
+          {
+            "selected": false,
+            "text": "Kitchen",
+            "value": "Kitchen"
+          },
+          {
+            "selected": false,
+            "text": "Living Room",
+            "value": "Living Room"
+          }
+        ],
+        "query": {
+          "query": "label_values(homeassistant_temperature_c{friendly_name=~\"(.*) Climate Temperature\"}, friendly_name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 0,
+        "regex": "/(.+) Climate.*/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-24h",
@@ -339,5 +406,5 @@
   "timezone": "",
   "title": "Climate",
   "uid": "climate",
-  "version": 29
+  "version": 32
 }
