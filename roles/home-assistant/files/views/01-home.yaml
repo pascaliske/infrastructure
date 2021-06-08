@@ -228,7 +228,7 @@ cards:
                       h2.text-divider span {
                         padding: 10px 1em;
                       }
-                - entity: switch.licht
+                - entity: light.bedroom_closet
                   secondary_info: last-changed
             - type: entity-filter
               show_empty: false

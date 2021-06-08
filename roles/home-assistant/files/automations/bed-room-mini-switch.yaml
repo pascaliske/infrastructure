@@ -5,6 +5,9 @@ use_blueprint:
   input:
     aqara_mini_switch: f16c892cbe1ea75906a419aae6fb11fe
     button_single_press:
-      - service: switch.toggle
+      - service: light.toggle
         target:
-          entity_id: switch.licht
+          entity_id: light.bedroom_closet
+        data:
+          brightness_pct: 100
+          hs_color: [312, 100]

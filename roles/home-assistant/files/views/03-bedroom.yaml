@@ -42,7 +42,7 @@ cards:
               state_color: true
               show_header_toggle: true
               entities:
-                - entity: switch.licht
+                - entity: light.bedroom_closet
                   secondary_info: last-changed
     card_mod:
       style: |
