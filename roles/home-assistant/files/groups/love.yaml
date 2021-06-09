@@ -1,0 +1,7 @@
+love:
+  name: Love
+  icon: mdi:string-lights
+  all: yes
+  entities:
+    - switch.love
+    - switch.kugel
