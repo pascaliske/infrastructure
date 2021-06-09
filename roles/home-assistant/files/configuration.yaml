@@ -12,25 +12,36 @@ homeassistant:
 lovelace:
   mode: yaml
   resources:
-    - url: /local/lovelace-github-entity-row/github-entity-row.js?v=1
+    # https://github.com/benct/lovelace-github-entity-row
+    - url: /local/lovelace-github-entity-row/github-entity-row.js?v=1.0.0
       type: module
-    - url: /local/lovelace-multiple-entity-row/multiple-entity-row.js?v=3.4.0
+    # https://github.com/benct/lovelace-multiple-entity-row
+    - url: /local/lovelace-multiple-entity-row/multiple-entity-row.js?v=4.2.0
       type: module
-    - url: /local/lovelace-battery-entity/battery-entity.js?v=1
+    # https://github.com/cbulock/lovelace-battery-entity
+    - url: /local/lovelace-battery-entity/battery-entity.js?v=0.2
       type: module
-    - url: /local/mini-graph-card/mini-graph-card-bundle.js?v=1
+    # https://github.com/kalkih/mini-graph-card
+    - url: /local/mini-graph-card/mini-graph-card-bundle.js?v=0.10.0
       type: module
-    - url: /local/lovelace-card-mod/card-mod.js?v=1
+    # https://github.com/thomasloven/lovelace-card-mod
+    - url: /local/lovelace-card-mod/card-mod.js?v=3.0.12
       type: module
-    - url: /local/lovelace-slider-entity-row/slider-entity-row.js?v=1
+    # https://github.com/thomasloven/lovelace-slider-entity-row
+    - url: /local/lovelace-slider-entity-row/slider-entity-row.js?v=17.1.0
       type: module
-    - url: /local/text-divider-row/text-divider-row.js?v=1
+    # https://github.com/iantrich/text-divider-row
+    - url: /local/text-divider-row/text-divider-row.js?v=1.4.0
       type: module
-    - url: /local/lovelace-layout-card/layout-card.js?v=1
+    # https://github.com/thomasloven/lovelace-layout-card
+    - url: /local/lovelace-layout-card/layout-card.js?v=2.2.3
       type: module
-    - url: /local/swipe-card/dist/swipe-card.js?v=1
+    # https://github.com/bramkragten/swipe-card
+    - url: /local/swipe-card/dist/swipe-card.js?v=4.0.0
       type: module
-    - url: /local/home-assistant-sun-card/home-assistant-sun-card.js?v=1
+    # https://github.com/AitorDB/home-assistant-sun-card
+    - url: /local/home-assistant-sun-card/home-assistant-sun-card.js?v=0.1.4
       type: module
+    # https://github.com/bokub/rgb-light-card
     - url: /local/rgb-light-card/card.js?v=1.9.0
       type: module
