@@ -9,6 +9,8 @@
       Authorization: 'Bearer {{ vault.home_assistant.access_token }}'
   loop:
     - homeassistant.reload_core_config
+    - automation.reload
+    - group.reload
     - homekit.reload
 - name: Reload Home Assistant UI
   uri:
