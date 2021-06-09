@@ -230,6 +230,13 @@ cards:
                       }
                 - entity: light.bedroom_closet
                   secondary_info: last-changed
+                - type: custom:rgb-light-card
+                  entity: light.bedroom_closet
+                  justify: around
+                  colors:
+                    - hs_color: [323, 100]
+                    - hs_color: [68, 100]
+                    - hs_color: [212, 100]
             - type: entity-filter
               show_empty: false
               state_filter:

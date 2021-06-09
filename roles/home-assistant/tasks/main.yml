@@ -66,6 +66,7 @@
     - { user: 'thomasloven', repo: 'lovelace-slider-entity-row' }
     - { user: 'thomasloven', repo: 'lovelace-layout-card' }
     - { user: 'bramkragten', repo: 'swipe-card' }
+    - { user: 'bokub', repo: 'rgb-light-card' }
   notify: Reload Home Assistant UI
   diff: no
 
