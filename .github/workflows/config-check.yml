@@ -10,10 +10,27 @@ jobs:
       - uses: actions/checkout@v2.3.4
 
       # prepare
-      - name: Prepare configuration files
+      - name: Prepare variables file
         run: |
-          cp roles/monitoring/{templates/prometheus/alert.rules.j2,files/alert.rules}
-          cp roles/monitoring/{templates/prometheus/prometheus.yml.j2,files/prometheus.yml}
+          cat << EOF > variables.json
+          vault:
+            watchtower:
+              http_api_token: ''
+            home_assistant:
+              access_token: ''
+          EOF
+      - name: Prepare configuration file
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: roles/monitoring/templates/prometheus/prometheus.yml.j2
+          output_file: roles/monitoring/files/prometheus.yml
+          data_file: variables.json
+      - name: Prepare alert rules
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: roles/monitoring/templates/prometheus/alert.rules.j2
+          output_file: roles/monitoring/files/alert.rules
+          data_file: variables.json
 
       # check prometheus config
       - uses: addnab/docker-run-action@v3
