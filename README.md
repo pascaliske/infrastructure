@@ -18,6 +18,7 @@ This repository contains the configurations for most of my services:
 - [Home Assistant](https://home-assistant.io), an Home Automation platform
 - [Code Server](https://github.com/cdr/code-server), an in-browser VS Code instance
 - [Linkding](https://github.com/sissbruecker/linkding), an self-hosted bookmark service
+- [Paperless](https://github.com/jonaswinkler/paperless-ng) as document index and management platform
 
 It also includes the following maintenance containers:
 
@@ -35,9 +36,6 @@ It also includes the following maintenance containers:
 ```zsh
 # clone the repo to your local machine
 git clone https://github.com/pascaliske/infrastructure
-
-# setup secret env variables
-cp .env{.example,} && editor .env
 
 # provision target group using ansible
 yarn run play playbooks/{group}/configure.yml
@@ -70,7 +68,7 @@ docker-compose up --detach --remove-orphans
 ### The `gitlab-backup` command
 
 ```zsh
-docker exec -it gitlab gitlab-backup <task> # tasks: create | restore
+docker exec gitlab gitlab-backup <task> # tasks: create | restore
 ```
 
 For more information on the `gitlab-backup` command itself [visit their docs](https://docs.gitlab.com/ee/raketasks/backup_restore.html#back-up-gitlab).
@@ -78,7 +76,7 @@ For more information on the `gitlab-backup` command itself [visit their docs](ht
 ### The `pihole` command
 
 ```zsh
-docker exec -it pihole pihole <command>
+docker exec pihole pihole <command>
 ```
 
 For more information on the `pihole` command itself [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
@@ -86,7 +84,7 @@ For more information on the `pihole` command itself [visit their docs](https://d
 ### The `hass` command
 
 ```zsh
-docker exec -it homeassistant hass -h
+docker exec homeassistant hass -h
 ```
 
 For more information on the `hass` command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
