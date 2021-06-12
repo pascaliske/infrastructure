@@ -3,6 +3,10 @@ trigger:
   platform: numeric_state
   entity_id: sensor.disk_use_percent
   above: 90
+condition:
+  condition: template
+  value_template: >
+    {{ (as_timestamp(now()) - as_timestamp(state_attr('automation.disk_use_alarm', 'last_triggered') | default(0)) | int > 600)}}
 action:
   - service: notify.slack
     data_template:

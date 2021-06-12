@@ -3,6 +3,10 @@ trigger:
   platform: numeric_state
   entity_id: sensor.cpu_temperature
   above: 69
+condition:
+  condition: template
+  value_template: >
+    {{ (as_timestamp(now()) - as_timestamp(state_attr('automation.cpu_temperature_alarm', 'last_triggered') | default(0)) | int > 600)}}
 action:
   - service: notify.slack
     data:

@@ -3,6 +3,10 @@ trigger:
   platform: numeric_state
   entity_id: sensor.pi_hole_ads_percentage_blocked_today
   below: 10
+condition:
+  condition: template
+  value_template: >
+    {{ (as_timestamp(now()) - as_timestamp(state_attr('automation.ad_blocking_alarm', 'last_triggered') | default(0)) | int > 600)}}
 action:
   - service: notify.slack
     data_template:
