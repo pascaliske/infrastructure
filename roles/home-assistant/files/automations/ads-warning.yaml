@@ -8,4 +8,4 @@ action:
     data_template:
       title: Ad Blocking Alarm
       message: >
-        Ad Blocking percentage dropped below limit: {{ states('sensor.pi_hole_ads_percentage_blocked_today') }}%
+        :warning: Ad Blocking percentage dropped below limit: {{ states('sensor.pi_hole_ads_percentage_blocked_today') }}%

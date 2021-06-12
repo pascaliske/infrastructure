@@ -8,10 +8,17 @@ condition:
     {{ states('sensor.latest_version') > states('sensor.current_version') }}
 action:
   - service: notify.slack
-    data_template:
+    data:
       title: Update available
       message: >
-        New version of Home Assistant available: [{{ states('sensor.latest_version') }}](https://www.home-assistant.io/blog/categories/release-notes/)
+        New version of Home Assistant available: {{ states('sensor.latest_version') }}
+      data:
+        blocks:
+          - type: section
+            text:
+              type: mrkdwn
+              text: >
+                :tada: New version of Home Assistant available: <https://www.home-assistant.io/blog/categories/release-notes/|{{ states('sensor.latest_version') }}>
   - service: persistent_notification.create
     data_template:
       title: Update available

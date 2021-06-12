@@ -5,7 +5,7 @@ trigger:
   above: 69
 action:
   - service: notify.slack
-    data_template:
+    data:
       title: CPU Temperature Alarm
       message: >
-        Network Controller is getting too hot: {{ states('sensor.cpu_temperature') }}°C
+        :sweat: System is getting too hot: {{ states('sensor.cpu_temperature') }}°C

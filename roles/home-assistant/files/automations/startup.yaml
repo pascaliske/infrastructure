@@ -9,4 +9,5 @@ action:
   - service: notify.slack
     data:
       title: Home Assistant
-      message: System has been started successfully!
+      message: >
+        :white_check_mark: System has been started successfully!
