@@ -234,9 +234,10 @@ cards:
                   entity: light.bedroom_closet
                   justify: around
                   colors:
-                    - hs_color: [323, 100]
-                    - hs_color: [68, 100]
-                    - hs_color: [212, 100]
+                    - hs_color: [45, 100]
+                    - hs_color: [165, 100]
+                    - hs_color: [15, 100]
+                    - hs_color: [90, 0]
             - type: entity-filter
               show_empty: false
               state_filter:
