@@ -6,7 +6,7 @@ trigger:
 condition:
   condition: template
   value_template: >
-    {{ (as_timestamp(now()) - as_timestamp(state_attr('automation.cpu_temperature_alarm', 'last_triggered') | default(0)) | int > 600)}}
+    {{ (as_timestamp(now()) - as_timestamp(state_attr('automation.cpu_temperature_alarm', 'last_triggered') | default(0)) | int > 1800) }}
 action:
   - service: notify.slack
     data:
