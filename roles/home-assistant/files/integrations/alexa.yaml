@@ -1,0 +1,45 @@
+cloud:
+  alexa:
+    filter:
+      include_entities:
+        - sensor.childrens_room_lumi_temperature
+        - sensor.bed_room_lumi_temperature
+        - sensor.living_room_lumi_temperature
+        - sensor.bathroom_lumi_temperature
+        - sensor.kitchen_lumi_temperature
+        - sensor.cpu_temperature
+        - light.bedroom_closet
+        - switch.pi_hole
+        - switch.love
+      include_domains:
+        - sensor
+        - light
+        - switch
+    entity_config:
+      sensor.childrens_room_lumi_temperature:
+        name: Kinderzimmer Temperatur
+        display_categories: TEMPERATURE_SENSOR
+      sensor.bed_room_lumi_temperature:
+        name: Schlafzimmer Temperatur
+        display_categories: TEMPERATURE_SENSOR
+      sensor.living_room_lumi_temperature:
+        name: Wohnzimmer Temperatur
+        display_categories: TEMPERATURE_SENSOR
+      sensor.bathroom_lumi_temperature:
+        name: Badezimmer Temperatur
+        display_categories: TEMPERATURE_SENSOR
+      sensor.kitchen_lumi_temperature:
+        name: Küche Temperatur
+        display_categories: TEMPERATURE_SENSOR
+      sensor.cpu_temperature:
+        name: CPU Temperatur
+        display_categories: TEMPERATURE_SENSOR
+      light.bedroom_closet:
+        name: Licht
+        display_categories: LIGHT
+      switch.pi_hole:
+        name: Pi-Hole
+        display_categories: NETWORK_HARDWARE
+      switch.love:
+        name: Love
+        display_categories: LIGHT
