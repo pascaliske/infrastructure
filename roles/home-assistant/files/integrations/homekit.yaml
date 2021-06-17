@@ -1,4 +1,5 @@
 homekit:
+  name: Home Assistant
   filter:
     include_domains:
       - light
