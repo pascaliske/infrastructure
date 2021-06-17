@@ -44,6 +44,16 @@ cards:
               entities:
                 - entity: light.bedroom_closet
                   secondary_info: last-changed
+                - type: custom:rgb-light-card
+                  entity: light.bedroom_closet
+                  justify: around
+                  colors:
+                    - hs_color: [45, 100]
+                    - hs_color: [165, 100]
+                    - hs_color: [90, 0]
+                    - hs_color: [280, 27]
+                    - hs_color: [301, 24]
+                    - hs_color: [15, 100]
     card_mod:
       style: |
         ha-card {
