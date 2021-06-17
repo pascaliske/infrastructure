@@ -236,8 +236,10 @@ cards:
                   colors:
                     - hs_color: [45, 100]
                     - hs_color: [165, 100]
-                    - hs_color: [15, 100]
                     - hs_color: [90, 0]
+                    - hs_color: [280, 27]
+                    - hs_color: [301, 24]
+                    - hs_color: [15, 100]
             - type: entity-filter
               show_empty: false
               state_filter:
