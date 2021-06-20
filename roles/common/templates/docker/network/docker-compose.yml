@@ -297,6 +297,8 @@ services:
       - /dev/disk/:/dev/disk:ro
     command:
       - '--docker_only=true'
+      - '--allow_dynamic_housekeeping=false'
+      - '--housekeeping_interval=10s'
     networks:
       - monitoring
   unifi-exporter:
