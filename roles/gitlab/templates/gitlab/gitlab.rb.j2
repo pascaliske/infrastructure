@@ -5,6 +5,7 @@ gitlab_rails['time_zone'] = '{{ timezone }}'
 
 # backups
 gitlab_rails['backup_path'] = '/var/opt/gitlab-backups'
+gitlab_rails['backup_keep_time'] = 604800
 
 # default theme
 gitlab_rails['gitlab_default_theme'] = 2
