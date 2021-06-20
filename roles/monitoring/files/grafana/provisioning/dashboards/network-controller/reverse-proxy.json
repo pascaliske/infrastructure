@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 10,
-  "iteration": 1622189235708,
+  "iteration": 1623914643497,
   "links": [],
   "panels": [
     {
@@ -41,6 +41,12 @@
         },
         "overrides": []
       },
+      "gridPos": {
+        "h": 3,
+        "w": 11,
+        "x": 0,
+        "y": 0
+      },
       "id": 2,
       "options": {
         "colorMode": "value",
@@ -57,7 +63,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "targets": [
         {
           "exemplar": true,
@@ -93,8 +99,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 6,
+        "w": 3,
+        "x": 11,
         "y": 0
       },
       "id": 22,
@@ -113,7 +119,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "targets": [
         {
           "exemplar": true,
@@ -136,12 +142,12 @@
           },
           "mappings": [
             {
-              "from": "",
-              "id": 1,
-              "text": "Never",
-              "to": "",
-              "type": 1,
-              "value": "0"
+              "options": {
+                "0": {
+                  "text": "Never"
+                }
+              },
+              "type": "value"
             }
           ],
           "thresholds": {
@@ -163,8 +169,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 12,
+        "w": 5,
+        "x": 14,
         "y": 0
       },
       "id": 18,
@@ -183,7 +189,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "targets": [
         {
           "exemplar": true,
@@ -206,12 +212,12 @@
           },
           "mappings": [
             {
-              "from": "",
-              "id": 1,
-              "text": "Never",
-              "to": "",
-              "type": 1,
-              "value": "0"
+              "options": {
+                "0": {
+                  "text": "Never"
+                }
+              },
+              "type": "value"
             }
           ],
           "thresholds": {
@@ -233,8 +239,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 18,
+        "w": 5,
+        "x": 19,
         "y": 0
       },
       "id": 20,
@@ -253,7 +259,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "targets": [
         {
           "exemplar": true,
@@ -273,10 +279,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -303,7 +305,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -370,10 +372,6 @@
       "dashes": false,
       "datasource": null,
       "decimals": 0,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -397,12 +395,12 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -473,10 +471,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -498,12 +492,12 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -601,12 +595,12 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "pointradius": 0.5,
       "points": false,
       "renderer": "flot",
@@ -672,10 +666,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -702,7 +692,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -798,12 +788,12 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -841,6 +831,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:124",
           "format": "s",
           "label": null,
           "logBase": 1,
@@ -849,6 +840,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:125",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -904,7 +896,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -965,7 +957,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 27,
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -986,23 +978,16 @@
         "label": "Job",
         "multi": false,
         "name": "job",
-        "options": [
-          {
-            "selected": true,
-            "text": "network/proxy",
-            "value": "network/proxy"
-          }
-        ],
+        "options": [],
         "query": {
           "query": "label_values(job)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 0,
+        "refresh": 1,
         "regex": "/.*proxy.*/",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1023,68 +1008,16 @@
         "label": "Service",
         "multi": false,
         "name": "service",
-        "options": [
-          {
-            "selected": true,
-            "text": "All",
-            "value": "$__all"
-          },
-          {
-            "selected": false,
-            "text": "homeassistant-network@file",
-            "value": "homeassistant-network@file"
-          },
-          {
-            "selected": false,
-            "text": "authelia-network@docker",
-            "value": "authelia-network@docker"
-          },
-          {
-            "selected": false,
-            "text": "dozzle-network@docker",
-            "value": "dozzle-network@docker"
-          },
-          {
-            "selected": false,
-            "text": "grafana-network@docker",
-            "value": "grafana-network@docker"
-          },
-          {
-            "selected": false,
-            "text": "homer-network@docker",
-            "value": "homer-network@docker"
-          },
-          {
-            "selected": false,
-            "text": "pihole-network@docker",
-            "value": "pihole-network@docker"
-          },
-          {
-            "selected": false,
-            "text": "portainer-network@docker",
-            "value": "portainer-network@docker"
-          },
-          {
-            "selected": false,
-            "text": "prometheus-network@docker",
-            "value": "prometheus-network@docker"
-          },
-          {
-            "selected": false,
-            "text": "unifi-network@docker",
-            "value": "unifi-network@docker"
-          }
-        ],
+        "options": [],
         "query": {
           "query": "label_values(traefik_service_requests_total{job=~\"[[job]]\"},service)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1105,28 +1038,16 @@
         "label": "Protocol",
         "multi": false,
         "name": "protocol",
-        "options": [
-          {
-            "selected": true,
-            "text": "http",
-            "value": "http"
-          },
-          {
-            "selected": false,
-            "text": "websocket",
-            "value": "websocket"
-          }
-        ],
+        "options": [],
         "query": {
           "query": "label_values(traefik_service_requests_total, protocol)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1213,5 +1134,5 @@
   "timezone": "",
   "title": "Reverse Proxy",
   "uid": "reverse-proxy",
-  "version": 17
+  "version": 21
 }
