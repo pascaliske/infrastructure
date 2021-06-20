@@ -95,11 +95,6 @@ sidekiq['concurrency'] = 2
 # puma
 puma['worker_processes'] = 2
 
-# grafana
-grafana['gitlab_application_id'] = '{{ vault.gitlab.grafana.app_id }}';
-grafana['gitlab_secret'] = '{{ vault.gitlab.grafana.app_secret }}';
-grafana['allow_user_sign_up'] = true
-grafana['disable_login_form'] = false
-grafana['env'] = {
-    'GF_SERVER_SERVE_FROM_SUB_PATH' => "true"
-}
+# monitoring
+prometheus['enable'] = false
+grafana['enable'] = false
