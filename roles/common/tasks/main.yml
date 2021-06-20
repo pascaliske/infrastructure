@@ -18,7 +18,7 @@
 - name: Create traefik configuration file
   template:
     src: traefik/traefik.yml.j2
-    dest: '{{ root_path }}/traefik.yml'
+    dest: '{{ root_path }}/traefik/traefik.yml'
 
 - name: Create traefik dynamic configuration files
   template:

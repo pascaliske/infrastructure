@@ -140,7 +140,6 @@ services:
       DO_AUTH_TOKEN: '{{ vault.digital_ocean.token }}'
     volumes:
       - /var/log/traefik:/var/log
-      - '{{ root_path }}/traefik.yml:/etc/traefik/traefik.yml'
       - '{{ root_path }}/traefik:/etc/traefik'
     networks:
       - proxy
