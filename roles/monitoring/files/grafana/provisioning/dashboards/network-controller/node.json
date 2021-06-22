@@ -61,7 +61,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -184,7 +184,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -303,7 +303,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "exemplar": true,
@@ -326,6 +326,8 @@
         "defaults": {
           "decimals": 1,
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "noValue": "0",
           "thresholds": {
             "mode": "percentage",
@@ -366,7 +368,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "expr": "sum(node_load1) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -388,6 +390,8 @@
         "defaults": {
           "decimals": 1,
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "noValue": "0",
           "thresholds": {
             "mode": "percentage",
@@ -428,7 +432,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "expr": "sum(node_load5) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -450,6 +454,8 @@
         "defaults": {
           "decimals": 1,
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "noValue": "0",
           "thresholds": {
             "mode": "percentage",
@@ -490,7 +496,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "expr": "sum(node_load15) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
@@ -547,7 +553,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -666,7 +672,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "pointradius": 1,
       "points": false,
       "renderer": "flot",
@@ -739,7 +745,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "decimals": null,
       "fieldConfig": {
         "defaults": {
           "unit": "percent"
@@ -747,7 +752,7 @@
         "overrides": []
       },
       "fill": 1,
-      "fillGradient": 2,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
@@ -757,7 +762,6 @@
       "hiddenSeries": false,
       "id": 6,
       "legend": {
-        "alignAsTable": false,
         "avg": false,
         "current": false,
         "max": false,
@@ -768,26 +772,16 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Swap Usage",
-          "yaxis": 2,
-          "zindex": -1
-        },
-        {
-          "alias": "Disk Usage",
-          "zindex": 1
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
@@ -803,6 +797,7 @@
       ],
       "thresholds": [
         {
+          "$$hashKey": "object:721",
           "colorMode": "critical",
           "fill": true,
           "line": true,
@@ -811,11 +806,12 @@
           "yaxis": "left"
         },
         {
+          "$$hashKey": "object:727",
           "colorMode": "warning",
-          "fill": false,
+          "fill": true,
           "line": true,
           "op": "gt",
-          "value": 75,
+          "value": 80,
           "yaxis": "left"
         }
       ],
@@ -839,22 +835,23 @@
       },
       "yaxes": [
         {
-          "decimals": 1,
+          "$$hashKey": "object:700",
+          "decimals": 0,
           "format": "percent",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "decimals": null,
-          "format": "none",
+          "$$hashKey": "object:701",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -900,7 +897,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -972,7 +969,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 27,
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -986,5 +983,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "node",
-  "version": 84
+  "version": 89
 }
