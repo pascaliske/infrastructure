@@ -46,12 +46,20 @@ groups:
           description: Disk is almost full (< 10% left)
         labels:
           severity: warning
-      - alert: HostNodeOvertemperatureAlarm
-        expr: node_hwmon_temp_crit_alarm_celsius == 1
-        for: 0m
+      - alert: HostPhysicalComponentTooHot
+        expr: node_hwmon_temp_celsius > 70
+        for: 5m
         annotations:
-          title: Host node overtemperature alarm (instance {{ '{{ $labels.instance }}' }})
-          description: Physical node temperature alarm triggered
+          title: Host physical component too hot (instance {{ '{{ $labels.instance }}' }})
+          description: Physical hardware component too hot
+        labels:
+          severity: warning
+      - alert: HostPhysicalComponentTooHot
+        expr: node_hwmon_temp_celsius > 75
+        for: 2m
+        annotations:
+          title: Host physical component too hot (instance {{ '{{ $labels.instance }}' }})
+          description: Physical hardware component too hot
         labels:
           severity: critical
 
