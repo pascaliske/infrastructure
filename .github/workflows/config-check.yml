@@ -39,6 +39,38 @@ jobs:
           options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
           run: promtool check config /tmp/prometheus.yml
 
+  check_alertmanager:
+    name: Alertmanager
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v2.3.4
+
+      # prepare
+      - name: Prepare variables file
+        run: |
+          cat << EOF > variables.json
+          vault:
+            alertmanager:
+              slack:
+                channel: ''
+                username: ''
+                tokens: ''
+          EOF
+      - name: Prepare configuration file
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: roles/monitoring/templates/alertmanager/alertmanager.yml.j2
+          output_file: roles/monitoring/files/alertmanager.yml
+          data_file: variables.json
+
+      # check prometheus config
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: prom/alertmanager:latest
+          options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
+          run: /bin/amtool check-config /tmp/alertmanager.yml
+
   check_home_assistant:
     name: Home Assistant
     runs-on: ubuntu-latest
