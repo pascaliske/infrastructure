@@ -4,9 +4,6 @@ services:
   - name: Monitoring
     icon: fas fa-chart-area
     items:
-      - name: Grafana
-        subtitle: Metrics visualizer
-        url: https://git.{{ domain }}/-/grafana/
       - name: Dozzle
         subtitle: Container logs
         url: https://logs.{{ domain }}
