@@ -1,0 +1,19 @@
+name: Linting
+on: push
+
+jobs:
+  lint-ansible:
+    name: Ansible
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v2.3.4
+
+      # lint ansible
+      - uses: ansible/ansible-lint-action@master
+        with:
+          targets: |
+            playbooks/**/*.yml
+            roles/**/tasks/*.yml
+            roles/**/handlers/*.yml
+          args: -c .ansible-lint.yml
