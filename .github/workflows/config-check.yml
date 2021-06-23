@@ -2,7 +2,7 @@ name: Config Check
 on: push
 
 jobs:
-  check_prometheus:
+  check-prometheus:
     name: Prometheus
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +39,7 @@ jobs:
           options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
           run: promtool check config /tmp/prometheus.yml
 
-  check_alertmanager:
+  check-alertmanager:
     name: Alertmanager
     runs-on: ubuntu-latest
     steps:
@@ -71,7 +71,7 @@ jobs:
           options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
           run: /bin/amtool check-config /tmp/alertmanager.yml
 
-  check_home_assistant:
+  check-home-assistant:
     name: Home Assistant
     runs-on: ubuntu-latest
     steps:
