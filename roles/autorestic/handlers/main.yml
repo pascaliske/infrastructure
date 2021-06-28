@@ -1,0 +1,5 @@
+---
+- name: Check Autorestic Config
+  shell:
+    cmd: '{{ script }} check'
+    executable: /bin/bash

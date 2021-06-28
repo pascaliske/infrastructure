@@ -1,0 +1,6 @@
+backends:
+  local:
+    type: local
+    path: /root/backups
+forget: {}
+locations: {}

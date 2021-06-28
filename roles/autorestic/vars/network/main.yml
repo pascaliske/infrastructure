@@ -1,0 +1,6 @@
+backends:
+  local:
+    type: local
+    path: /home/pi/backups
+forget: {}
+locations: {}
