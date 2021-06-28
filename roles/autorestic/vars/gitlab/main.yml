@@ -3,4 +3,46 @@ backends:
     type: local
     path: /root/backups
 forget: {}
-locations: {}
+locations:
+  # folders
+  authelia:
+    from: '{{ root_path }}/authelia'
+    to:
+      - local
+  code-server:
+    from: '{{ root_path }}/code-server'
+    to:
+      - local
+  fail2ban:
+    from: '{{ root_path }}/fail2ban'
+    to:
+      - local
+  gitlab:
+    from: '{{ root_path }}/gitlab'
+    to:
+      - local
+    exclude:
+      - backups
+      - logs
+  gitlab-backups:
+    from: '{{ root_path }}/gitlab/backups'
+    to:
+      - local
+  linkding:
+    from: '{{ root_path }}/linkding'
+    to:
+      - local
+
+  # volumes
+  paperless_data:
+    from: volume:paperless_data
+    to:
+      - local
+  paperless_media:
+    from: volume:paperless_media
+    to:
+      - local
+  portainer:
+    from: volume:portainer
+    to:
+      - local
