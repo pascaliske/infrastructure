@@ -2,7 +2,10 @@ backends:
   local:
     type: local
     path: /root/backups
-forget: {}
+forget:
+  keep-daily: 7
+  keep-weekly: 4
+  keep-monthly: 2
 locations:
   # folders
   authelia:
@@ -28,6 +31,8 @@ locations:
     from: '{{ root_path }}/gitlab/backups'
     to:
       - local
+    forget:
+      keep-last: 2
   linkding:
     from: '{{ root_path }}/linkding'
     to:

@@ -2,7 +2,10 @@ backends:
   local:
     type: local
     path: /home/pi/backups
-forget: {}
+forget:
+  keep-daily: 7
+  keep-weekly: 4
+  keep-monthly: 2
 locations:
   # folders
   authelia:
