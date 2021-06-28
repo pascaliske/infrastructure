@@ -1,0 +1,46 @@
+backends:
+  local:
+    type: local
+    path: /home/pi/backups
+forget:
+  keep-daily: 7
+  keep-weekly: 4
+  keep-monthly: 2
+locations:
+  # folders
+  authelia:
+    from: '{{ root_path }}/authelia'
+    to:
+      - local
+  fail2ban:
+    from: '{{ root_path }}/fail2ban'
+    to:
+      - local
+  home-assistant:
+    from: '{{ root_path }}/home-assistant'
+    to:
+      - local
+  pihole:
+    from: '{{ root_path }}/pihole'
+    to:
+      - local
+  unifi:
+    from: '{{ root_path }}/unifi'
+    to:
+      - local
+    exclude:
+      - config/backup/autobackup
+  unifi-backups:
+    from: '{{ root_path }}/unifi/config/backup/autobackup'
+    to:
+      - local
+
+  # volumes
+  portainer:
+    from: volume:portainer
+    to:
+      - local
+  prometheus:
+    from: volume:prometheus
+    to:
+      - local

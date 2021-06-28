@@ -1,0 +1,7 @@
+---
+- name: network
+  hosts: network
+  roles:
+    - role: autorestic
+      tags:
+        - autorestic

@@ -1,0 +1,8 @@
+---
+- name: gitlab
+  hosts: gitlab
+  become: yes
+  roles:
+    - role: autorestic
+      tags:
+        - autorestic

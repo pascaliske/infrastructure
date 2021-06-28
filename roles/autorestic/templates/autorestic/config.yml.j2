@@ -1,0 +1,54 @@
+{# host specific vars #}
+{%- set vars = lookup('vars', ansible_play_name) -%}
+
+{% if vars.backends.items() | length > 0 %}
+backends:
+{% endif %}
+{% for name, backend in vars.backends.items() -%}
+  {#- prepare existing key -#}
+  {%- set key = namespace(value='') -%}
+  {%- for existing_name in existing.backends -%}
+    {%- if existing_name == name and existing.backends[name].key -%}
+      {%- set key.value = existing.backends[name].key -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {#- print backend -#}
+  {{- name | indent(2, True) -}}:
+    type: {{ backend.type }}
+    path: {{ '/var/lib/autorestic/backends/' ~ name if backend.type == 'local' else backend.path }}
+    {{- '\n' ~ ('key: ' ~ key.value) | indent(4, True) if key.value is defined and key.value | length > 0 else '' -}}
+    {{- '\n' -}}
+{% else %}
+{{- 'backends: []' ~ '\n' }}
+{%- endfor -%}
+{% if vars.locations.items() | length > 0 %}
+locations:
+{% endif %}
+{% for name, location in vars.locations.items() -%}
+  {#- prepare forget policies -#}
+  {%- set forget = location.forget if location.forget is defined else vars.forget -%}
+
+  {#- prepare backup target -#}
+  {%- set to = namespace(value='') -%}
+  {%- if location.to is string and location.to | length > 0 -%}
+    {%- set to.value = [location.to] -%}
+  {%- else -%}
+    {%- set to.value = location.to | default(vars.backends.keys()) -%}
+  {%- endif -%}
+
+  {#- print location -#}
+  {{- name | indent(2, True) -}}:
+    from: /var/lib/autorestic/locations/{{ name }}
+    to: [{{- to.value | default([]) | join(', ') -}}]
+    options:
+      backup:
+        exclude: {{ location.exclude if location.exclude is defined else [] }}
+      forget: {{- ' {}' if forget.items() | length == 0  -}}
+        {%- for policy, value in forget.items() -%}
+          {{- '\n' ~ (policy ~ ': ' ~ value) | indent(8, True) -}}
+        {%- endfor -%}
+    {{- '\n' -}}
+{% else %}
+{{- 'locations: []' ~ '\n' }}
+{%- endfor -%}

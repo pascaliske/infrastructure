@@ -11,6 +11,10 @@
             "name": "roles/common"
         },
         {
+            "path": "./roles/autorestic",
+            "name": "roles/autorestic"
+        },
+        {
             "path": "./roles/authelia",
             "name": "roles/authelia"
         },
@@ -57,6 +61,7 @@
     ],
     "settings": {
         "cSpell.words": [
+            "autorestic",
             "cloudflared",
             "dnsmasq",
             "homeassistant",

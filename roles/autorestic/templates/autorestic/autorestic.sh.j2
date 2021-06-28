@@ -1,0 +1,40 @@
+{# host specific vars #}
+{%- set vars = lookup('vars', ansible_play_name) -%}
+
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+# variables
+COMMAND="$1"
+VOLUMES=()
+
+# mount config file
+VOLUMES+=( "-v {{ root_path }}/{{ role_name }}/config.yml:/etc/autorestic/config.yml" )
+
+# mount backends
+{% for name, backend in vars.backends.items() %}
+{% if backend.type == 'local' %}
+VOLUMES+=( "-v {{ backend.path or '$(realpath "./' ~ name ~ '")' }}:/var/lib/autorestic/backends/{{ name }}" )
+{% endif %}
+{% endfor %}
+
+# mount locations
+{% for name, location in vars.locations.items() %}
+{% if location.from is string and 'volume:' in location.from %}
+VOLUMES+=( "-v {{ location.from | replace('volume:', ansible_play_name ~ '_') }}:/var/lib/autorestic/locations/{{ name }}" )
+{% else %}
+VOLUMES+=( "-v {{ location.from or '$(realpath "./' ~ name ~ '")' }}:/var/lib/autorestic/locations/{{ name }}" )
+{% endif %}
+{% endfor %}
+
+# mount target directoy, needed for restore command
+[[ "$COMMAND" == "restore" ]] && VOLUMES+=( "-v $(realpath "$4"):/tmp/$3/$2" )
+
+# run autorestic container
+if [[ "$COMMAND" == "shell" ]]; then
+    docker run -it --rm --entrypoint ash ${VOLUMES[@]} {{ image }} "${@:2}"
+elif [[ "$COMMAND" == "restore" ]]; then
+    docker run --rm ${VOLUMES[@]} {{ image }} "$COMMAND" --location "$2" --from "$3" --to "/tmp/$3/$2"
+else
+    docker run --rm ${VOLUMES[@]} {{ image }} "$@"
+fi
