@@ -165,8 +165,8 @@ services:
       - 9091
     environment:
       TZ: '{{ timezone }}'
-      PUID: 0
-      PGID: 0
+      PUID: {{ ansible_user_uid }}
+      PGID: {{ ansible_user_gid }}
     volumes:
       - /var/log/authelia:/var/log
       - '{{ root_path }}/authelia:/config'
@@ -198,8 +198,8 @@ services:
       - 8080
     environment:
       TZ: '{{ timezone }}'
-      UID: 0
-      GID: 0
+      UID: {{ ansible_user_uid }}
+      GID: {{ ansible_user_gid }}
     volumes:
       - '{{ root_path }}/homer/assets:/www/assets'
       - '{{ root_path }}/homer/config.yml:/www/assets/config.yml'
@@ -258,7 +258,7 @@ services:
     image: codercom/code-server
     container_name: code-server
     restart: unless-stopped
-    user: '${HOST_UID}:${HOST_GID}'
+    user: '{{ ansible_user_uid }}:{{ ansible_user_gid }}'
     working_dir: /home/coder/projects
     environment:
       TZ: '{{ timezone }}'
