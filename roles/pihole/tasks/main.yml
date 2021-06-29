@@ -1,7 +1,8 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ item }}'
+    path: '{{ root_path }}/{{ role_name }}/{{ item }}'
     state: directory
   loop:
-    - '{{ role_name }}'
+    - etc-pihole
+    - etc-dnsmasq.d
