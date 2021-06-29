@@ -11,7 +11,7 @@
 # docker
 - name: Create docker-compose file
   template:
-    src: docker/{{ ansible_play_name }}/docker-compose.yml
+    src: docker/{{ ansible_play_name }}/docker-compose.yml.j2
     dest: '{{ root_path }}/docker-compose.yml'
 
 # traefik
