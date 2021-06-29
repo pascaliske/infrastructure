@@ -456,6 +456,18 @@ services:
     dns:
       - 127.0.0.1
       - 1.1.1.1
+    extra_hosts:
+      - '{{ domain }}:{{ vault.ips.controller }}'
+      - 'alerts.{{ domain }}:{{ vault.ips.controller }}'
+      - 'auth.{{ domain }}:{{ vault.ips.controller }}'
+      - 'dozzle.{{ domain }}:{{ vault.ips.controller }}'
+      - 'grafana.{{ domain }}:{{ vault.ips.controller }}'
+      - 'homeassistant.{{ domain }}:{{ vault.ips.controller }}'
+      - 'pihole.{{ domain }}:{{ vault.ips.controller }}'
+      - 'portainer.{{ domain }}:{{ vault.ips.controller }}'
+      - 'prometheus.{{ domain }}:{{ vault.ips.controller }}'
+      - 'traefik.{{ domain }}:{{ vault.ips.controller }}'
+      - 'unifi.{{ domain }}:{{ vault.ips.controller }}'
     cap_add:
       - NET_ADMIN
     labels:
