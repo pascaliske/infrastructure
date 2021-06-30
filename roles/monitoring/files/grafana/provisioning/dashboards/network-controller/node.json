@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 2,
-  "iteration": 1624949276672,
+  "iteration": 1624951391749,
   "links": [],
   "panels": [
     {
@@ -211,8 +211,17 @@
           "expr": "node_hwmon_temp_celsius{sensor=\"temp0\"}",
           "interval": "",
           "intervalFactor": 3,
-          "legendFormat": "Temperature",
+          "legendFormat": "Actual",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "avg_over_time(node_hwmon_temp_celsius{sensor=\"temp0\"}[$interval])",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 3,
+          "legendFormat": "Average",
+          "refId": "B"
         }
       ],
       "timeFrom": null,
@@ -555,10 +564,18 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree_bytes[$interval]) + avg_over_time(node_memory_Cached_bytes[$interval]) + avg_over_time(node_memory_Buffers_bytes[$interval])) / avg_over_time(node_memory_MemTotal_bytes[$interval])))",
+          "expr": "100 * (1 - ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes))",
           "interval": "",
-          "legendFormat": "Memory Usage",
+          "legendFormat": "Actual",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree_bytes[$interval]) + avg_over_time(node_memory_Cached_bytes[$interval]) + avg_over_time(node_memory_Buffers_bytes[$interval])) / avg_over_time(node_memory_MemTotal_bytes[$interval])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Average",
+          "refId": "B"
         }
       ],
       "timeFrom": null,
@@ -646,17 +663,19 @@
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "exemplar": true,
           "expr": "node_procs_running",
           "interval": "",
           "intervalFactor": 3,
-          "legendFormat": "running",
+          "legendFormat": "Running",
           "refId": "A"
         },
         {
+          "exemplar": true,
           "expr": "node_procs_blocked",
           "interval": "",
           "intervalFactor": 3,
-          "legendFormat": "blocked by I/O",
+          "legendFormat": "Blocked by I/O",
           "refId": "B"
         }
       ],
@@ -958,5 +977,5 @@
   "timezone": "",
   "title": "Node",
   "uid": "node",
-  "version": 95
+  "version": 100
 }
