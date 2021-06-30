@@ -192,7 +192,7 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=2w'
       - '--web.enable-lifecycle'
-      - '--web.external-url=http://localhost:9090/'
+      - '--web.external-url=https://prometheus.{{ domain }}'
     networks:
       - proxy
       - monitoring
@@ -224,6 +224,7 @@ services:
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--storage.path=/alertmanager'
+      - '--web.external-url=https://alerts.{{ domain }}'
     networks:
       - proxy
       - monitoring
