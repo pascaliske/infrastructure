@@ -26,7 +26,7 @@ groups:
         expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
         for: 0m
         annotations:
-          title: Host high CPU load (instance {{ '{{ $labels.instance }}' }})
+          title: Host high CPU load
           description: CPU load is > 80%
         labels:
           severity: warning
@@ -34,7 +34,7 @@ groups:
         expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
         for: 2m
         annotations:
-          title: Host out of memory (instance {{ '{{ $labels.instance }}' }})
+          title: Host out of memory
           description: Node memory is filling up (< 10% left)
         labels:
           severity: warning
@@ -42,7 +42,7 @@ groups:
         expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
         for: 2m
         annotations:
-          title: Host out of disk space (instance {{ '{{ $labels.instance }}' }})
+          title: Host out of disk space
           description: Disk is almost full (< 10% left)
         labels:
           severity: warning
@@ -50,7 +50,7 @@ groups:
         expr: node_hwmon_temp_celsius > 70
         for: 5m
         annotations:
-          title: Host physical component too hot (instance {{ '{{ $labels.instance }}' }})
+          title: Host physical component too hot
           description: Physical hardware component too hot
         labels:
           severity: warning
@@ -58,7 +58,7 @@ groups:
         expr: node_hwmon_temp_celsius > 75
         for: 2m
         annotations:
-          title: Host physical component too hot (instance {{ '{{ $labels.instance }}' }})
+          title: Host physical component too hot
           description: Physical hardware component too hot
         labels:
           severity: critical
@@ -70,7 +70,7 @@ groups:
         expr: time() - container_last_seen > 60
         for: 0m
         annotations:
-          title: Container killed (instance {{ '{{ $labels.instance }}' }})
+          title: Container killed `{{ '{{ $labels.name }}' }}`
           description: A container has disappeared
         labels:
           severity: warning
