@@ -28,7 +28,7 @@ It also includes the following maintenance containers:
 
 ## Requirements
 
-- [Ansible](https://www.ansible.com)
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [Docker](https://docs.docker.com/install/) + [`docker-compose`](https://docs.docker.com/compose/install/)
 
 ## Install
