@@ -6,3 +6,12 @@
   loop:
     - etc-pihole
     - etc-dnsmasq.d
+
+# cronjob
+- name: Setup cron job
+  cron:
+    name: pihole
+    job: docker exec pihole pihole -g
+    state: present
+    minute: '0'
+    hour: '3'
