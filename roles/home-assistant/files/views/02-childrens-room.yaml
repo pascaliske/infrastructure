@@ -46,6 +46,20 @@ cards:
                   secondary_info: last-changed
                 - entity: switch.kugel
                   secondary_info: last-changed
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: '0.0'
+              card:
+                title: Power
+                icon: mdi:flash
+                state_color: false
+                show_header_toggle: false
+              entities:
+                - entity: sensor.kugel_power
+                  secondary_info: last-changed
+                  name: Kugel
     card_mod:
       style: |
         ha-card {
