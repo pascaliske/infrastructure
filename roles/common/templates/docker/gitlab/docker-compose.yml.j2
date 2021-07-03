@@ -34,7 +34,7 @@ services:
       - traefik.http.routers.dozzle.entrypoints=https
       - traefik.http.routers.dozzle.tls=true
       - traefik.http.routers.dozzle.tls.certresolver=http
-      - traefik.http.routers.dozzle.middlewares=auth@file,security@file
+      - traefik.http.routers.dozzle.middlewares=auth@file,security@file,error-pages@file
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
@@ -53,7 +53,7 @@ services:
       - traefik.http.routers.portainer.entrypoints=https
       - traefik.http.routers.portainer.tls=true
       - traefik.http.routers.portainer.tls.certresolver=http
-      - traefik.http.routers.portainer.middlewares=auth@file,security@file
+      - traefik.http.routers.portainer.middlewares=auth@file,security@file,error-pages@file
       - traefik.http.services.portainer-gitlab.loadbalancer.server.port=9000
   glances:
     image: nicolargo/glances:latest
@@ -77,7 +77,7 @@ services:
       - traefik.http.routers.glances.entrypoints=https
       - traefik.http.routers.glances.tls=true
       - traefik.http.routers.glances.tls.certresolver=http
-      - traefik.http.routers.glances.middlewares=auth-basic@file,security@file
+      - traefik.http.routers.glances.middlewares=auth-basic@file,security@file,error-pages@file
       - traefik.http.services.glances-gitlab.loadbalancer.server.port=61208
 
   # security
@@ -151,7 +151,7 @@ services:
       - traefik.http.routers.api.service=api@internal
       - traefik.http.routers.api.tls=true
       - traefik.http.routers.api.tls.certresolver=http
-      - traefik.http.routers.api.middlewares=auth@file,security@file
+      - traefik.http.routers.api.middlewares=auth@file,security@file,error-pages@file
   traefik-errors:
     image: pascaliske/traefik-errors:latest
     container_name: traefik-errors
@@ -197,7 +197,7 @@ services:
       - traefik.http.routers.authelia.entrypoints=https
       - traefik.http.routers.authelia.tls=true
       - traefik.http.routers.authelia.tls.certresolver=http
-      - traefik.http.routers.authelia.middlewares=security@file,authelia-headers
+      - traefik.http.routers.authelia.middlewares=security@file,error-pages@file,authelia-headers
       - traefik.http.middlewares.authelia-headers.headers.browserXssFilter=true
       - traefik.http.middlewares.authelia-headers.headers.customResponseHeaders.Cache-Control=no-store
       - traefik.http.middlewares.authelia-headers.headers.customResponseHeaders.Pragma=no-cache
@@ -230,7 +230,7 @@ services:
       - traefik.http.routers.homer.entrypoints=https
       - traefik.http.routers.homer.tls=true
       - traefik.http.routers.homer.tls.certresolver=http
-      - traefik.http.routers.homer.middlewares=security@file
+      - traefik.http.routers.homer.middlewares=security@file,error-pages@file
   gitlab:
     image: gitlab/gitlab-ce:latest
     container_name: gitlab
@@ -254,14 +254,14 @@ services:
       - traefik.http.routers.gitlab.service=gitlab-gitlab
       - traefik.http.routers.gitlab.tls=true
       - traefik.http.routers.gitlab.tls.certresolver=http
-      - traefik.http.routers.gitlab.middlewares=security@file
+      - traefik.http.routers.gitlab.middlewares=security@file,error-pages@file
       - traefik.http.services.gitlab-gitlab.loadbalancer.server.port=80
       - traefik.http.routers.registry.rule=Host(`registry.{{ domain }}`)
       - traefik.http.routers.registry.entrypoints=https
       - traefik.http.routers.registry.service=gitlab-registry
       - traefik.http.routers.registry.tls=true
       - traefik.http.routers.registry.tls.certresolver=http
-      - traefik.http.routers.registry.middlewares=security@file
+      - traefik.http.routers.registry.middlewares=security@file,error-pages@file
       - traefik.http.services.gitlab-registry.loadbalancer.server.port=80
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
@@ -296,7 +296,7 @@ services:
       - traefik.http.routers.code-server.entrypoints=https
       - traefik.http.routers.code-server.tls=true
       - traefik.http.routers.code-server.tls.certresolver=http
-      - traefik.http.routers.code-server.middlewares=auth@file,security@file
+      - traefik.http.routers.code-server.middlewares=auth@file,security@file,error-pages@file
   linkding:
     image: sissbruecker/linkding:latest
     container_name: linkding
@@ -313,7 +313,7 @@ services:
       - traefik.http.routers.linkding.entrypoints=https
       - traefik.http.routers.linkding.tls=true
       - traefik.http.routers.linkding.tls.certresolver=http
-      - traefik.http.routers.linkding.middlewares=auth@file,security@file
+      - traefik.http.routers.linkding.middlewares=auth@file,security@file,error-pages@file
       - traefik.http.services.linkding-gitlab.loadbalancer.server.port=9090
   paperless:
     image: jonaswinkler/paperless-ng:latest
@@ -347,7 +347,7 @@ services:
       - traefik.http.routers.paperless.entrypoints=https
       - traefik.http.routers.paperless.tls=true
       - traefik.http.routers.paperless.tls.certresolver=http
-      - traefik.http.routers.paperless.middlewares=auth@file,security@file
+      - traefik.http.routers.paperless.middlewares=auth@file,security@file,error-pages@file
       - traefik.http.services.paperless-gitlab.loadbalancer.server.port=8000
 
   # dependencies
