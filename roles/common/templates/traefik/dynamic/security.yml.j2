@@ -1,5 +1,9 @@
 http:
   middlewares:
+    security:
+      chain:
+        middlewares:
+          - rate-limit
     rate-limit:
       rateLimit:
         average: 100
