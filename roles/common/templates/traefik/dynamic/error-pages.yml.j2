@@ -1,0 +1,8 @@
+http:
+  middlewares:
+    error-pages:
+      errors:
+        service: errors-network@docker
+        query: "/{status}?home={{ domain }}"
+        status:
+          - 400-599
