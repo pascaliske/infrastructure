@@ -28,4 +28,5 @@
   loop:
     - auth
     - security
+    - error-pages
     - home-assistant
