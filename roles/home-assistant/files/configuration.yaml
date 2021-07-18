@@ -4,6 +4,7 @@ homeassistant:
   auth_providers:
     - type: trusted_networks
       trusted_networks:
+        - !secret ip_vpn
         - !secret ip_ffmmbp207
         - !secret ip_pascals_iphone
         - !secret ip_pascals_ipad
