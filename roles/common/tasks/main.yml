@@ -1,3 +1,28 @@
+# system dependencies
+- name: Install dependencies for Alpine 3.13
+  when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+  become: yes
+  block:
+    - name: Add signing keys
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: '{{ item }}'
+        state: present
+      loop:
+        - 04EE7237B7D453EC
+        - 648ACFD622F3D138
+    - name: Add buster backports repository
+      apt_repository:
+        repo: deb http://httpredir.debian.org/debian buster-backports main contrib non-free
+        filename: debian-backports
+        state: present
+    - name: Install dependencies
+      apt:
+        name: libseccomp2
+        default_release: buster-backports
+        update_cache: yes
+        state: latest
+
 # directories
 - name: Ensure directories exist
   file:
