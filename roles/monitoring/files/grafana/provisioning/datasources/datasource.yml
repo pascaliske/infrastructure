@@ -1,5 +1,4 @@
 apiVersion: 1
-
 datasources:
   - type: prometheus
     name: Prometheus
@@ -9,3 +8,9 @@ datasources:
     basicAuth: false
     isDefault: true
     editable: true
+  - type: loki
+    name: Loki
+    uid: loki
+    url: http://loki:3100
+    access: proxy
+    editable: false

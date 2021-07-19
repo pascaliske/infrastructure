@@ -286,6 +286,31 @@ services:
       - traefik.http.routers.grafana.tls=true
       - traefik.http.routers.grafana.tls.certresolver=digitalocean
       - traefik.http.routers.grafana.middlewares=auth@file,security@file,error-pages@file
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    restart: unless-stopped
+    expose:
+      - 3100
+    volumes:
+      - loki:/loki
+      - '{{ root_path }}/loki/config.yml:/etc/loki/config.yml'
+    command:
+      - '-config.file=/etc/loki/config.yml'
+      - '-config.expand-env=true'
+    networks:
+      - monitoring
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    restart: unless-stopped
+    volumes:
+      - /var/log:/var/log:ro
+      - '{{ root_path }}/promtail/config.yml:/etc/promtail/config.yml'
+    command:
+      - '-config.file=/etc/promtail/config.yml'
+    networks:
+      - monitoring
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
@@ -564,4 +589,5 @@ volumes:
   prometheus:
   alertmanager:
   grafana:
+  loki:
   portainer:
