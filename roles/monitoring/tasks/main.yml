@@ -46,8 +46,8 @@
   block:
     - name: Create Grafana config file
       template:
-        src: '{{ item }}/grafana.ini.j2'
-        dest: '{{ root_path }}/{{ item }}/grafana.ini'
+        src: '{{ item }}/{{ item }}.ini.j2'
+        dest: '{{ root_path }}/{{ item }}/{{ item }}.ini'
     - name: Copy Grafana Provisioning files to config directory
       synchronize:
         src: ../files/{{ item }}/provisioning
