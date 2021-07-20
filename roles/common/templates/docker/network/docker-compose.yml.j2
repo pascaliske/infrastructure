@@ -299,7 +299,15 @@ services:
       - '-config.file=/etc/loki/config.yml'
       - '-config.expand-env=true'
     networks:
+      - proxy
       - monitoring
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.loki.rule=Host(`loki.{{ domain }}`)
+      - traefik.http.routers.loki.entrypoints=https
+      - traefik.http.routers.loki.tls=true
+      - traefik.http.routers.loki.tls.certresolver=digitalocean
+      - traefik.http.routers.loki.middlewares=auth@file,security@file,error-pages@file
   promtail:
     image: grafana/promtail:latest
     container_name: promtail
@@ -508,6 +516,7 @@ services:
       - 'dozzle.{{ domain }}:{{ vault.ips.controller }}'
       - 'grafana.{{ domain }}:{{ vault.ips.controller }}'
       - 'homeassistant.{{ domain }}:{{ vault.ips.controller }}'
+      - 'loki.{{ domain }}:{{ vault.ips.controller }}'
       - 'pihole.{{ domain }}:{{ vault.ips.controller }}'
       - 'portainer.{{ domain }}:{{ vault.ips.controller }}'
       - 'prometheus.{{ domain }}:{{ vault.ips.controller }}'
