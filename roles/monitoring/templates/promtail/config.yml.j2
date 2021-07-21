@@ -1,0 +1,34 @@
+server:
+  disable: true
+
+positions:
+  filename: /tmp/positions.yml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: system
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: varlogs
+          __path__: /var/log/*log
+  - job_name: traefik
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: traefik
+          __path__: /var/log/traefik/*.log
+    pipeline_stages:
+      - regex:
+          expression: "^(?s)(?P<ip>[0-9.]{7,15}).+?\\[(?P<time>.+)\\].+?(?P<method>\\w{3,7}).+?(?P<status>\\d{3}).+?\\\"(?P<service>\\w+\\@docker)\\\".+?(?P<duration>\\d+ms)$"
+      - labels:
+          ip:
+          time:
+          method:
+          status:
+          service:
+          duration:

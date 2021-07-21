@@ -15,6 +15,12 @@ rules:
       - ^\/+api\.php
     services:
       - pihole
+  - policy: bypass
+    resources:
+      - /ready
+      - /loki/api/v1/push
+    services:
+      - loki
   - policy: two_factor
     services:
       - traefik

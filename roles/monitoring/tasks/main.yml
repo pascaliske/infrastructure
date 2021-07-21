@@ -8,6 +8,8 @@
     - alertmanager
     - grafana
     - grafana/provisioning
+    - loki
+    - promtail
     - unifi-exporter
 
 # prometheus
@@ -44,13 +46,33 @@
   block:
     - name: Create Grafana config file
       template:
-        src: '{{ item }}/grafana.ini.j2'
-        dest: '{{ root_path }}/{{ item }}/grafana.ini'
+        src: '{{ item }}/{{ item }}.ini.j2'
+        dest: '{{ root_path }}/{{ item }}/{{ item }}.ini'
     - name: Copy Grafana Provisioning files to config directory
       synchronize:
         src: ../files/{{ item }}/provisioning
         dest: '{{ root_path }}/{{ item }}'
         delete: yes
+
+# loki
+- name: Configure Loki
+  vars:
+    item: loki
+  block:
+    - name: Create Loki config file
+      template:
+        src: '{{ item }}/config.yml.j2'
+        dest: '{{ root_path }}/{{ item }}/config.yml'
+
+# promtail
+- name: Configure Promtail
+  vars:
+    item: promtail
+  block:
+    - name: Create Promtail config file
+      template:
+        src: '{{ item }}/config.yml.j2'
+        dest: '{{ root_path }}/{{ item }}/config.yml'
 
 # unifi-exporter
 - name: Configure UniFi Exporter
