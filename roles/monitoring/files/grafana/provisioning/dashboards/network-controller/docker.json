@@ -14,9 +14,9 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 1,
+  "graphTooltip": 0,
   "id": 4,
-  "iteration": 1624948959658,
+  "iteration": 1626857951318,
   "links": [],
   "panels": [
     {
@@ -93,9 +93,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (container_label_com_docker_compose_service) (irate(container_cpu_usage_seconds_total{container_label_com_docker_compose_project=\"network\",container_label_com_docker_compose_service=~\"$service\"}[5m])) * 100",
+          "expr": "sum by (name) (irate(container_cpu_usage_seconds_total{image!=\"\",name=~\"$service\"}[5m])) * 100",
           "interval": "",
-          "legendFormat": "{{ container_label_com_docker_compose_service }}",
+          "legendFormat": "{{ name }}",
           "refId": "A"
         }
       ],
@@ -159,7 +159,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 24,
         "x": 0,
         "y": 8
@@ -179,15 +179,94 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (container_label_com_docker_compose_service) (container_memory_usage_bytes{container_label_com_docker_compose_project=\"network\",container_label_com_docker_compose_service=~\"$service\"})",
+          "expr": "sum by (name) (container_memory_usage_bytes{image!=\"\",name=~\"$service\"})",
           "interval": "",
-          "legendFormat": "{{ container_label_com_docker_compose_service }}",
+          "legendFormat": "{{ name }}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Container Memory Usage",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": 3600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (name) (container_fs_usage_bytes{image!=\"\",name=~\"$service\"})",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Container Disk Usage",
       "transparent": true,
       "type": "timeseries"
     },
@@ -247,7 +326,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 24
       },
       "id": 6,
       "options": {
@@ -301,7 +380,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -338,5 +417,5 @@
   "timezone": "",
   "title": "Docker",
   "uid": "docker",
-  "version": 53
+  "version": 62
 }
