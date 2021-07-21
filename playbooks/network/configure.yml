@@ -5,6 +5,9 @@
     - role: common
       tags:
         - common
+    - role: autorestic
+      tags:
+        - autorestic
     - role: authelia
       tags:
         - authelia
