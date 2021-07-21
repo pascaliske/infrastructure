@@ -32,9 +32,9 @@ VOLUMES+=( "-v {{ location.from or '$(realpath "./' ~ name ~ '")' }}:/var/lib/au
 
 # run autorestic container
 if [[ "$COMMAND" == "shell" ]]; then
-    docker run -it --rm --entrypoint ash ${VOLUMES[@]} {{ image }} "${@:2}"
+    docker run -it --rm --name autorestic --entrypoint ash ${VOLUMES[@]} {{ image }} "${@:2}"
 elif [[ "$COMMAND" == "restore" ]]; then
-    docker run --rm ${VOLUMES[@]} {{ image }} "$COMMAND" --location "$2" --from "$3" --to "/tmp/$3/$2"
+    docker run --rm --name autorestic ${VOLUMES[@]} {{ image }} "$COMMAND" --location "$2" --from "$3" --to "/tmp/$3/$2"
 else
-    docker run --rm ${VOLUMES[@]} {{ image }} "$@"
+    docker run --rm --name autorestic ${VOLUMES[@]} {{ image }} "$@"
 fi
