@@ -15,30 +15,185 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 13,
-  "iteration": 1626937710874,
+  "id": 14,
+  "iteration": 1626942309214,
   "links": [],
   "panels": [
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "title": "Metrics",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "dash": [
+                0,
+                10
+              ],
+              "fill": "dot"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": 3600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "locale"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "info"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "info"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "warn"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "warn"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "error"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "8.0.6",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "log_messages_total",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ level }}",
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 4,
+      "panels": [],
+      "title": "Logs",
+      "type": "row"
+    },
     {
       "datasource": "Loki",
       "gridPos": {
         "h": 25,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 2,
       "options": {
-        "dedupStrategy": "none",
+        "dedupStrategy": "signature",
         "enableLogDetails": true,
         "showLabels": false,
-        "showTime": false,
-        "sortOrder": "Ascending",
+        "showTime": true,
+        "sortOrder": "Descending",
         "wrapLogMessage": true
       },
       "targets": [
         {
-          "expr": "{container_name=~\"$container\"}",
+          "expr": "{container_name=~\"$container\"} |~ \"$search\"",
           "refId": "A"
         }
       ],
@@ -53,9 +208,9 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": "",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -75,6 +230,28 @@
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "label": "Search",
+        "name": "search",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
       }
     ]
   },
@@ -86,5 +263,5 @@
   "timezone": "",
   "title": "Container Logs",
   "uid": "container-logs",
-  "version": 2
+  "version": 3
 }
