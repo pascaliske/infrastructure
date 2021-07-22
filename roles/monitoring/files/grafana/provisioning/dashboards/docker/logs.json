@@ -261,7 +261,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Container Logs",
-  "uid": "container-logs",
+  "title": "Logs",
+  "uid": "docker-logs",
   "version": 3
 }

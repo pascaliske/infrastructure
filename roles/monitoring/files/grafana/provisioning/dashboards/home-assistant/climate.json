@@ -340,6 +340,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Climate",
-  "uid": "climate",
+  "uid": "home-assistant-climate",
   "version": 37
 }
