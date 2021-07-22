@@ -22,13 +22,3 @@ scrape_configs:
         labels:
           job: traefik
           __path__: /var/log/traefik/*.log
-    pipeline_stages:
-      - regex:
-          expression: "^(?s)(?P<ip>[0-9.]{7,15}).+?\\[(?P<time>.+)\\].+?(?P<method>\\w{3,7}).+?(?P<status>\\d{3}).+?\\\"(?P<service>\\w+\\@docker)\\\".+?(?P<duration>\\d+ms)$"
-      - labels:
-          ip:
-          time:
-          method:
-          status:
-          service:
-          duration:
