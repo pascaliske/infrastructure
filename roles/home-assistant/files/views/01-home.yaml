@@ -112,7 +112,7 @@ cards:
                   secondary_info: last-changed
                   icon: mdi:door
                   name: Door
-                - entity: sensor.entrance_lumi_magnet_power
+                - entity: sensor.entrance_lumi_power
                   secondary_info: last-changed
                   name: Battery
             - type: entity-filter
