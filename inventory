@@ -6,5 +6,9 @@
 [gitlab]
 45.9.60.94 ansible_user=root
 
+# tempel
+[uberspace]
+185.26.156.63 ansible_user=pi
+
 [testing]
 127.0.0.1 ansible_user=vagrant ansible_port=2222
