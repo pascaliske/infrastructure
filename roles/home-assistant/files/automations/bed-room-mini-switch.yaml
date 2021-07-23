@@ -10,4 +10,4 @@ use_blueprint:
           entity_id: light.bedroom_closet
         data:
           brightness_pct: 100
-          hs_color: [45, 100]
+          hs_color: [90, 0]
