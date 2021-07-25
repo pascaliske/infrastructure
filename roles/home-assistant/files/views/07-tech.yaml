@@ -201,6 +201,14 @@ cards:
                     url_path: https://git.pascaliske.dev/pi-webdesign/jh-of/api
         - type: vertical-stack
           cards:
+            - type: horizontal-stack
+              cards:
+                - type: button
+                  name: Wake FFMMBP-207
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: script.wake_ffmmbp207
             - type: entities
               title: Certificates
               show_header_toggle: false

@@ -1,0 +1,6 @@
+wake_ffmmbp207:
+  alias: Wake FFMMBP-207
+  sequence:
+    - service: wake_on_lan.send_magic_packet
+      data:
+        mac: !secret mac_ffmmbp207
