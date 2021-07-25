@@ -1,0 +1,9 @@
+rest_command:
+  travel_log:
+    url: !secret travel_log_api_url
+    method: post
+    username: !secret travel_log_username
+    password: !secret travel_log_password
+    content_type: application/json
+    payload: >
+      {{ { latitude: latitude, longitude: longitude } | to_json }}
