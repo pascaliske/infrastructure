@@ -1,4 +1,4 @@
-alias: Bed Room Mini Switch
+alias: Bedroom Mini Switch
 mode: restart
 use_blueprint:
   path: SeanM/zha-aqara-wireless-mini-switch.yaml
