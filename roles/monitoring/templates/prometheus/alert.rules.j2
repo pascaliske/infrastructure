@@ -67,7 +67,7 @@ groups:
   - name: Cadvisor
     rules:
       - alert: ContainerKilled
-        expr: time() - container_last_seen > 60
+        expr: time() - (min by (name, image, job, instance, id) (container_last_seen{image!=""})) > 60
         for: 0m
         annotations:
           title: Container disappeared
