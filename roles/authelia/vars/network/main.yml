@@ -4,6 +4,7 @@ rules:
     services:
       - unifi
       - portainer
+      - vault
   - policy: bypass
     resources:
       - /-/reload
@@ -30,3 +31,8 @@ rules:
       - pihole
       - homeassistant
       - dozzle
+  - policy: two_factor
+    resources:
+      - /admin
+    services:
+      - vault
