@@ -323,19 +323,15 @@ services:
     image: prom/node-exporter:latest
     container_name: node-exporter
     restart: unless-stopped
-    expose:
-      - 9100
+    network_mode: host
+    pid: host
     volumes:
-      - /:/rootfs:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
+      - /:/host:ro,rslave
     command:
+      - '--path.rootfs=/host'
       - '--path.procfs=/host/proc'
-      - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
-    networks:
-      - monitoring
   cadvisor:
     image: budry/cadvisor-arm:latest
     container_name: cadvisor
