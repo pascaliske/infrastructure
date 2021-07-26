@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 2,
-  "id": 2,
-  "iteration": 1624951391749,
+  "id": 28,
+  "iteration": 1627301002799,
   "links": [],
   "panels": [
     {
@@ -272,7 +272,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
@@ -337,10 +337,12 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
-          "expr": "sum(node_load1) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
+          "exemplar": true,
+          "expr": "sum(node_load1) by (node) / count(node_cpu_seconds_total{mode=\"idle\"}) by (node) * 100",
+          "instant": true,
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "",
@@ -401,10 +403,12 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
-          "expr": "sum(node_load5) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
+          "exemplar": true,
+          "expr": "sum(node_load5) by (node) / count(node_cpu_seconds_total{mode=\"idle\"}) by (node) * 100",
+          "instant": true,
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "",
@@ -465,10 +469,12 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
-          "expr": "sum(node_load15) by (node) / count(node_cpu_seconds_total{mode=\"system\"}) by (node) * 100",
+          "exemplar": true,
+          "expr": "sum(node_load15) by (node) / count(node_cpu_seconds_total{mode=\"idle\"}) by (node) * 100",
+          "instant": true,
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "",
@@ -775,6 +781,7 @@
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "exemplar": true,
           "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\"})",
           "instant": false,
           "interval": "",
@@ -844,7 +851,7 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 24,
+        "w": 8,
         "x": 0,
         "y": 16
       },
@@ -863,14 +870,15 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[$interval]) * 8",
+          "expr": "sum by (node, device) (rate(node_network_receive_bytes_total{device=\"eth0\"}[$interval])) * 8",
           "interval": "",
+          "intervalFactor": 1,
           "legendFormat": "{{ device }}-in",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "irate(node_network_transmit_bytes_total{device!=\"lo\"}[$interval]) * 8",
+          "expr": "sum by (node, device) (rate(node_network_transmit_bytes_total{device=\"eth0\"}[$interval])) * 8",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ device }}-out",
@@ -880,6 +888,194 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Network I/O",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 16
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (node, device) (rate(node_network_receive_drop_total{device=\"eth0\"}[$interval]))",
+          "interval": "",
+          "legendFormat": "{{ device }}-in",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{device=\"eth0\"}[$interval]))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{ device }}-out",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Network Dropped Packets",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 16
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (node, device) (rate(node_network_receive_drop_total{device=\"eth0\"}[$interval]))",
+          "interval": "",
+          "legendFormat": "{{ device }}-in",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{device=\"eth0\"}[$interval]))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{ device }}-out",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Network Dropped Packets",
       "transparent": true,
       "type": "timeseries"
     }
@@ -977,5 +1173,5 @@
   "timezone": "",
   "title": "Resources",
   "uid": "node-resources",
-  "version": 100
+  "version": 4
 }
