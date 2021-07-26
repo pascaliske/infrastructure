@@ -1,19 +1,22 @@
 {# title template #}
 {%- set __title -%}
 {%- raw %}
-[{{ .Status | toLower }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}
+[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}
 {%- endraw %}
 {%- endset -%}
 
 {# text template #}
 {%- set __text -%}
 {%- raw %}
-{{ range .Alerts -}}
-*Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+{{ range $i, $e := .Alerts -}}
+{{ if $i $}}———{{ end }}
 
-*Description:* {{ .Annotations.description }}
+*{{ .Annotations.title }}*{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
 
-*Details:*
+*Description*
+{{ .Annotations.description }}
+
+*Labels*
 {{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`
 {{ end }}
 {{ end }}
