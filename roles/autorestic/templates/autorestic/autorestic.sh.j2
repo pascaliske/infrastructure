@@ -10,6 +10,7 @@ VOLUMES=()
 
 # mount config file
 VOLUMES+=( "-v {{ root_path }}/{{ role_name }}/config.yml:/etc/autorestic/config.yml" )
+VOLUMES+=( "-v {{ root_path }}/{{ role_name }}/cache:/etc/autorestic/cache" )
 
 # mount backends
 {% for name, backend in vars.backends.items() %}
