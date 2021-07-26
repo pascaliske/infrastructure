@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 14,
-  "iteration": 1626942309214,
+  "id": 16,
+  "iteration": 1627310197405,
   "links": [],
   "panels": [
     {
@@ -150,9 +150,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "log_messages_total",
+          "expr": "rate(log_messages_total[$__rate_interval])",
           "interval": "",
-          "intervalFactor": 1,
+          "intervalFactor": 4,
           "legendFormat": "{{ level }}",
           "refId": "A"
         }
@@ -263,5 +263,5 @@
   "timezone": "",
   "title": "Logs",
   "uid": "docker-logs",
-  "version": 3
+  "version": 5
 }
