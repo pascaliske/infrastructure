@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1626857951318,
+  "id": 29,
+  "iteration": 1627287840806,
   "links": [],
   "panels": [
     {
@@ -93,7 +93,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (name) (irate(container_cpu_usage_seconds_total{image!=\"\",name=~\"$service\"}[5m])) * 100",
+          "expr": "avg by (name) (irate(container_cpu_usage_seconds_total{image!=\"\",name=~\"$service\"}[5m])) * 100",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -179,7 +179,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (name) (container_memory_usage_bytes{image!=\"\",name=~\"$service\"})",
+          "expr": "avg by (name) (container_memory_usage_bytes{image!=\"\",name=~\"$service\"})",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -260,7 +260,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (name) (container_fs_usage_bytes{image!=\"\",name=~\"$service\"})",
+          "expr": "avg by (name) (container_fs_usage_bytes{image!=\"\",name=~\"$service\"})",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -417,5 +417,5 @@
   "timezone": "",
   "title": "Resources",
   "uid": "docker-resources",
-  "version": 62
+  "version": 4
 }
