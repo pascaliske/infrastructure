@@ -332,6 +332,7 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+      - '--no-collector.nvme'
   cadvisor:
     image: budry/cadvisor-arm:latest
     container_name: cadvisor
