@@ -6,16 +6,16 @@ groups:
         expr: up == 0
         for: 0m
         annotations:
-          title: Prometheus target `{{ '{{ $labels.job }}' }}` down
-          description: Target `{{ '{{ $labels.job }}' }}` @ `{{ '{{ $labels.instance }}' }}` is down.
+          title: Prometheus target down
+          description: Prometheus target `{{ '{{ $labels.job }}' }}` @ `{{ '{{ $labels.instance }}' }}` is down.
         labels:
           severity: critical
       - alert: ConfigurationReloadFailure
         expr: prometheus_config_last_reload_successful != 1
         for: 0m
         annotations:
-          title: Prometheus configuration reload failure
-          description: Configuration reload failed
+          title: Configuration reload failure
+          description: Prometheus configuration was not reloaded successfully!
         labels:
           severity: warning
 
@@ -27,7 +27,7 @@ groups:
         for: 0m
         annotations:
           title: Host high CPU load
-          description: CPU load is > 80%
+          description: Host CPU load is getting too high (> 80%)!
         labels:
           severity: warning
       - alert: HostOutOfMemory
@@ -35,7 +35,7 @@ groups:
         for: 2m
         annotations:
           title: Host out of memory
-          description: Node memory is filling up (< 10% left)
+          description: Host memory is filling up (< 10% left)!
         labels:
           severity: warning
       - alert: HostOutOfDiskSpace
@@ -43,23 +43,23 @@ groups:
         for: 2m
         annotations:
           title: Host out of disk space
-          description: Disk is almost full (< 10% left)
+          description: Host disk is almost full (< 10% left)!
         labels:
           severity: warning
       - alert: HostPhysicalComponentTooHot
         expr: node_hwmon_temp_celsius > 70
         for: 5m
         annotations:
-          title: Host physical component too hot
-          description: Physical hardware component too hot
+          title: Host high temperature
+          description: Physical hardware components are getting too hot (> 70°C)!
         labels:
           severity: warning
       - alert: HostPhysicalComponentTooHot
         expr: node_hwmon_temp_celsius > 75
         for: 2m
         annotations:
-          title: Host physical component too hot
-          description: Physical hardware component too hot
+          title: Host high temperature
+          description: Physical hardware components are getting too hot (> 75°C)!
         labels:
           severity: critical
 
@@ -70,7 +70,7 @@ groups:
         expr: time() - container_last_seen > 60
         for: 0m
         annotations:
-          title: Container killed `{{ '{{ $labels.name }}' }}`
-          description: A container has disappeared
+          title: Container disappeared
+          description: Container `{{ '{{ $labels.name }}' }}` was not seen in the last 60 seconds!
         labels:
           severity: warning
