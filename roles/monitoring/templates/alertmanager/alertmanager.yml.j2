@@ -9,7 +9,7 @@
 {%- set __text -%}
 {%- raw %}
 {{ range $i, $e := .Alerts -}}
-{{ if $i $}}———{{ end }}
+{{ if $i }}———{{ end }}
 
 *{{ .Annotations.title }}*{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
 
