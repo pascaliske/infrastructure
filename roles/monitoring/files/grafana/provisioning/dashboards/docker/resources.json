@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 29,
-  "iteration": 1627287840806,
+  "iteration": 1627370462159,
   "links": [],
   "panels": [
     {
@@ -45,7 +45,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -131,7 +131,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -417,5 +417,5 @@
   "timezone": "",
   "title": "Resources",
   "uid": "docker-resources",
-  "version": 4
+  "version": 7
 }
