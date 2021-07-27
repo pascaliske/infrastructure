@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 28,
-  "iteration": 1627301002799,
+  "iteration": 1627384675906,
   "links": [],
   "panels": [
     {
@@ -878,7 +878,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_bytes_total{device=\"eth0\"}[$interval])) * 8",
+          "expr": "sum by (node, device) (rate(node_network_transmit_bytes_total{device=\"eth0\"}[$interval])) * 8 * -1",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ device }}-out",
@@ -911,13 +911,16 @@
               "viz": false
             },
             "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
-            "spanNulls": true,
+            "showPoints": "auto",
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -965,23 +968,25 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_receive_drop_total{device=\"eth0\"}[$interval]))",
+          "expr": "sum by (node, device) (rate(node_network_receive_packets_total{device=\"eth0\"}[$interval]))",
           "interval": "",
+          "intervalFactor": 2,
           "legendFormat": "{{ device }}-in",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{device=\"eth0\"}[$interval]))",
+          "expr": "sum by (node, device) (rate(node_network_transmit_packets_total{device=\"eth0\"}[$interval])) * -1",
           "instant": false,
           "interval": "",
+          "intervalFactor": 2,
           "legendFormat": "{{ device }}-out",
           "refId": "B"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Network Dropped Packets",
+      "title": "Network Packets",
       "transparent": true,
       "type": "timeseries"
     },
@@ -1010,8 +1015,8 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
-            "spanNulls": true,
+            "showPoints": "auto",
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1066,7 +1071,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{device=\"eth0\"}[$interval]))",
+          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{device=\"eth0\"}[$interval])) * -1",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ device }}-out",
@@ -1173,5 +1178,5 @@
   "timezone": "",
   "title": "Resources",
   "uid": "node-resources",
-  "version": 4
+  "version": 6
 }
