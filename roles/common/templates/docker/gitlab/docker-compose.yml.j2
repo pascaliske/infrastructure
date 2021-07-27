@@ -56,7 +56,7 @@ services:
       - traefik.http.routers.portainer.middlewares=auth@file,security@file,error-pages@file
       - traefik.http.services.portainer-gitlab.loadbalancer.server.port=9000
   glances:
-    image: nicolargo/glances:latest
+    image: nicolargo/glances:alpine-latest
     container_name: glances
     restart: unless-stopped
     environment:
