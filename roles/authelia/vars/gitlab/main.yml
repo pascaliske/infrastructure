@@ -5,6 +5,11 @@ rules:
       - git
       - registry
       - portainer
+  - policy: bypass
+    resources:
+      - ^\/api
+    services:
+      - docs
   - policy: two_factor
     services:
       - traefik

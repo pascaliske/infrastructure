@@ -133,6 +133,9 @@ services:
         {% endif -%}
         logo: {{ service.logo|default('assets/logos/' ~ service.name|replace(' ', '-')|lower ~ '.png') }}
         url: {{ service.url|default('https://' ~ service.name|replace(' ', '-')|lower ~ '.' ~ domain) }}
+        {% if service.apikey -%}
+        apikey: {{ service.apikey }}
+        {% endif -%}
         <<: *{{ group.name|replace(' ', '-')|lower }}
 {% else %}
       {{- ' []' }}
