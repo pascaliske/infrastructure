@@ -128,12 +128,12 @@ services:
         {% if service.type|default(false) -%}
         type: {{ service.type }}
         {% endif -%}
-        {% if service.subtitle -%}
+        {% if service.subtitle|default(false) -%}
         subtitle: {{ service.subtitle }}
         {% endif -%}
         logo: {{ service.logo|default('assets/logos/' ~ service.name|replace(' ', '-')|lower ~ '.png') }}
         url: {{ service.url|default('https://' ~ service.name|replace(' ', '-')|lower ~ '.' ~ domain) }}
-        {% if service.apikey -%}
+        {% if service.apikey|default(false) -%}
         apikey: {{ service.apikey }}
         {% endif -%}
         <<: *{{ group.name|replace(' ', '-')|lower }}
