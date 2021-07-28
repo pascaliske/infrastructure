@@ -24,7 +24,6 @@ services:
         logo: assets/logos/unifi.png
         url: https://unifi.{{ domain }}
       - name: Pi-Hole
-        subtitle: DNS based ad blocker
         url: https://pihole.{{ domain }}
         type: PiHole
       - name: FRITZ!Box
