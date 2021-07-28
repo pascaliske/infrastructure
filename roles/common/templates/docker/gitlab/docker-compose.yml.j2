@@ -348,8 +348,9 @@ services:
       - traefik.http.routers.paperless.entrypoints=https
       - traefik.http.routers.paperless.tls=true
       - traefik.http.routers.paperless.tls.certresolver=http
-      - traefik.http.routers.paperless.middlewares=auth@file,security@file,error-pages@file
+      - traefik.http.routers.paperless.middlewares=auth@file,security@file,error-pages@file,paperless-cors
       - traefik.http.services.paperless-gitlab.loadbalancer.server.port=8000
+      - traefik.http.middlewares.paperless-cors.headers.accesscontrolalloworiginlist=https://go.{{ domain }}
 
   # dependencies
   redis:

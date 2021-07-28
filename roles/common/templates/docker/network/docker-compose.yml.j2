@@ -528,9 +528,10 @@ services:
       - traefik.http.routers.pihole.entrypoints=https
       - traefik.http.routers.pihole.tls=true
       - traefik.http.routers.pihole.tls.certresolver=digitalocean
-      - traefik.http.routers.pihole.middlewares=auth@file,security@file,error-pages@file,pihole-addprefix
+      - traefik.http.routers.pihole.middlewares=auth@file,security@file,error-pages@file,pihole-addprefix,pihole-cors
       - traefik.http.services.pihole-network.loadbalancer.server.port=80
       - traefik.http.middlewares.pihole-addprefix.addprefix.prefix=/admin
+      - traefik.http.middlewares.pihole-cors.headers.accesscontrolalloworiginlist=https://{{ domain }}
   cloudflared:
     image: crazymax/cloudflared:latest
     container_name: cloudflared
