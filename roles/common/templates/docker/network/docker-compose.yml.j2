@@ -143,9 +143,10 @@ services:
     container_name: traefik-errors
     restart: unless-stopped
     expose:
-      - 80
+      - 8080
     environment:
       TZ: '{{ timezone }}'
+      NGINX_PORT: 8080
     networks:
       - proxy
     labels:
@@ -156,7 +157,7 @@ services:
       - traefik.http.routers.errors.tls=true
       - traefik.http.routers.errors.tls.certresolver=digitalocean
       - traefik.http.routers.errors.middlewares=error-pages@file
-      - traefik.http.services.errors-network.loadbalancer.server.port=80
+      - traefik.http.services.errors-network.loadbalancer.server.port=8080
   authelia:
     image: authelia/authelia
     container_name: authelia
