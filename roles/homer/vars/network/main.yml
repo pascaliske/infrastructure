@@ -8,6 +8,10 @@ services:
         subtitle: Metrics collector
       - name: Grafana
         subtitle: Metrics visualizer
+      - name: Alertmanager
+        subtitle: Alert handling
+        logo: assets/logos/prometheus.png
+        url: https://alerts.{{ domain }}
       - name: Dozzle
         subtitle: Container logs
       - name: Portainer
