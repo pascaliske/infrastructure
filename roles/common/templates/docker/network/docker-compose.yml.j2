@@ -597,6 +597,8 @@ services:
     image: tunix/digitalocean-dyndns-armv7:latest
     container_name: dyndns
     restart: unless-stopped
+    depends_on:
+      - cloudflared
     environment:
       TZ: '{{ timezone }}'
       DIGITALOCEAN_TOKEN: '{{ vault.digital_ocean.token }}'
