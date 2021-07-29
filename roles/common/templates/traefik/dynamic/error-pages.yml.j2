@@ -5,4 +5,4 @@ http:
         service: errors-network@docker
         query: "/{status}?home={{ domain }}"
         status:
-          - 400-599
+          - 404,407,418,500-599
