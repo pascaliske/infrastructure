@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 7,
-  "iteration": 1624948728086,
+  "iteration": 1627589257068,
   "links": [],
   "panels": [
     {
@@ -44,8 +44,8 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
-            "spanNulls": true,
+            "showPoints": "auto",
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -137,7 +137,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -229,7 +229,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -295,7 +295,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -304,7 +304,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -341,5 +341,5 @@
   "timezone": "",
   "title": "Climate",
   "uid": "home-assistant-climate",
-  "version": 37
+  "version": 50
 }
