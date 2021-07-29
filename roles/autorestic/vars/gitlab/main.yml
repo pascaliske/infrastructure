@@ -1,11 +1,11 @@
 backends:
   local:
     type: local
-    path: '{{ home_path }}/backups'
+    path: '/mnt/backups'
 forget:
   keep-daily: 7
   keep-weekly: 4
-  keep-monthly: 2
+  keep-monthly: 1
 locations:
   # folders
   authelia:
