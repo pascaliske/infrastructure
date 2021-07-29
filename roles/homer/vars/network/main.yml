@@ -47,3 +47,9 @@ services:
       - name: Home Assistant
         subtitle: Central home automation hub
         url: https://homeassistant.{{ domain }}
+  - name: Secrets
+    icon: fas fa-key
+    items:
+      - name: Vaultwarden
+        subtitle: Password management
+        url: https://vault.{{ domain }}
