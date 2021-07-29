@@ -201,14 +201,36 @@ cards:
                     url_path: https://git.pascaliske.dev/pi-webdesign/jh-of/api
         - type: vertical-stack
           cards:
-            - type: horizontal-stack
-              cards:
+            - type: entities
+              title: Home Assistant
+              show_header_toggle: false
+              entities:
+                - entity: binary_sensor.remote_ui
+                  secondary_info: last-changed
+                - entity: sensor.current_version
+                  secondary_info: last-changed
+                - entity: sensor.latest_version
+                  secondary_info: last-changed
+            - type: entities
+              title: Wake Devices
+              show_header_toggle: false
+              entities:
                 - type: button
-                  name: Wake FFMMBP-207
+                  name: FFMMBP-207
+                  action_name: Wake
                   show_state: false
                   tap_action:
                     action: call-service
                     service: script.wake_ffmmbp207
+                - type: button
+                  name: PS4-PI
+                  action_name: Wake
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: media_player.turn_on
+                    service_data:
+                      entity_id: media_player.ps4_pi
             - type: entities
               title: Certificates
               show_header_toggle: false
