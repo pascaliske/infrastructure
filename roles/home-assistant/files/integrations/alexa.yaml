@@ -3,7 +3,7 @@ cloud:
     filter:
       include_entities:
         - sensor.childrens_room_lumi_temperature
-        - sensor.bed_room_lumi_temperature
+        - sensor.bedroom_lumi_temperature
         - sensor.living_room_lumi_temperature
         - sensor.bathroom_lumi_temperature
         - sensor.kitchen_lumi_temperature
@@ -19,7 +19,7 @@ cloud:
       sensor.childrens_room_lumi_temperature:
         name: Kinderzimmer Temperatur
         display_categories: TEMPERATURE_SENSOR
-      sensor.bed_room_lumi_temperature:
+      sensor.bedroom_lumi_temperature:
         name: Schlafzimmer Temperatur
         display_categories: TEMPERATURE_SENSOR
       sensor.living_room_lumi_temperature:
