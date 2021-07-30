@@ -67,6 +67,7 @@
             "homeassistant",
             "pihole",
             "portainer",
+            "traefik",
             "unifi"
         ],
         "files.associations": {
