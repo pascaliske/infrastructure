@@ -18,7 +18,6 @@
     - customize
     - ui-lovelace
   notify: Reload Home Assistant Core
-
 - name: Copy Home Assistant config directories
   synchronize:
     src: ../files/{{ item }}/
@@ -35,6 +34,7 @@
     - views
   notify: Reload Home Assistant Core
 
+# secrets
 - name: Copy Home Assistant secrets to config directory
   template:
     src: home-assistant/secrets.yml.j2
@@ -43,67 +43,52 @@
 
 # themes
 - name: Download themes into theme directory
-  get_url:
-    url: '{{ item.url }}'
-    dest: '{{ root_path }}/{{ role_name }}/themes/{{ item.name }}.yaml'
-  loop:
-    - { name: 'google-home', url: 'https://raw.githubusercontent.com/liri/lovelace-themes/master/themes/google-home.yaml' }
+  block:
+    - name: Download theme into theme directory
+      get_url:
+        url: '{{ item.url }}'
+        dest: '{{ root_path }}/{{ role_name }}/themes/{{ item.name }}.yaml'
+      loop: '{{ themes.url }}'
   notify: Reload Home Assistant UI
-
 
 # cards
 - name: Clone cards into www directory
-  git:
-    repo: 'https://github.com/{{ item.user }}/{{ item.repo }}.git'
-    version: master
-    dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}'
-    force: yes
-  loop:
-    - { user: 'benct', repo: 'lovelace-github-entity-row' }
-    - { user: 'benct', repo: 'lovelace-multiple-entity-row' }
-    - { user: 'cbulock', repo: 'lovelace-battery-entity' }
-    - { user: 'thomasloven', repo: 'lovelace-card-mod' }
-    - { user: 'thomasloven', repo: 'lovelace-slider-entity-row' }
-    - { user: 'thomasloven', repo: 'lovelace-layout-card' }
-    - { user: 'bramkragten', repo: 'swipe-card' }
-    - { user: 'bokub', repo: 'rgb-light-card' }
+  block:
+    - name: Clone card into www directory
+      git:
+        repo: 'https://github.com/{{ item.user }}/{{ item.repo }}.git'
+        version: master
+        dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}'
+        force: yes
+      loop: '{{ cards.git }}'
+      diff: no
   notify: Reload Home Assistant UI
-  diff: no
-
 - name: Download cards into www directory
-  vars:
-    cards:
-      - { user: 'kalkih', repo: 'mini-graph-card', file: 'mini-graph-card-bundle' }
-      - { user: 'iantrich', repo: 'text-divider-row' }
-      - { user: 'AitorDB', repo: 'home-assistant-sun-card' }
   block:
     - name: Ensure card folders exist
       file:
         path: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}'
         state: directory
-      loop: '{{ cards }}'
+      loop: '{{ cards.url }}'
     - name: Download card into card directory
       get_url:
         url: 'https://github.com/{{ item.user }}/{{ item.repo }}/releases/latest/download/{{ item.file | default(item.repo) }}.js'
         dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}/'
-      loop: '{{ cards }}'
+      loop: '{{ cards.url }}'
   notify: Reload Home Assistant UI
 
 # components
 - name: Download HACS components into custom_components directory
-  vars:
-    components:
-      - { user: 'custom-components', repo: 'breaking_changes' }
   block:
     - name: Ensure component folders exist
       file:
         path: '{{ root_path }}/{{ role_name }}/custom_components/{{ item.repo }}'
         state: directory
-      loop: '{{ components }}'
+      loop: '{{ components.url }}'
     - name: Download component into components directory
       unarchive:
         src: 'https://github.com/{{ item.user }}/{{ item.repo }}/releases/latest/download/{{ item.file | default(item.repo) }}.zip'
         dest: '{{ root_path }}/{{ role_name }}/custom_components/{{ item.repo }}'
         remote_src: yes
-      loop: '{{ components }}'
+      loop: '{{ components.url }}'
   notify: Reload Home Assistant UI
