@@ -78,7 +78,7 @@ cards:
                   value: 'unavailable'
               card:
                 type: entities
-                title: Printer
+                title: Epson ET-2750
                 icon: mdi:printer
                 show_header_toggle: false
                 entities: []
@@ -88,6 +88,21 @@ cards:
                 - entity: sensor.epson_et_2750_series_cyan_ink
                 - entity: sensor.epson_et_2750_series_magenta_ink
                 - entity: sensor.epson_et_2750_series_yellow_ink
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                type: entities
+                title: Canon MX-470
+                icon: mdi:printer
+                show_header_toggle: false
+                entities: []
+              entities:
+                - entity: sensor.canon_mx470_series
+                - entity: sensor.canon_mx470_series_black
+                - entity: sensor.canon_mx470_series_color
         - type: vertical-stack
           cards:
             - type: entity-filter
