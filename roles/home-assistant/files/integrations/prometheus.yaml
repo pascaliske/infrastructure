@@ -5,6 +5,7 @@ prometheus:
       - sensor.cert_*
       - sensor.fritzbox_*
       - sensor.tankerkoenig_*
+      - sensor.withings_weight_*
       - sensor.*_battery_state
       - sensor.*_switch_power
       - sensor.*_lumi_power
