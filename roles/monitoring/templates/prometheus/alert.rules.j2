@@ -10,12 +10,20 @@ groups:
           description: Prometheus target `{{ '{{ $labels.job }}' }}` @ `{{ '{{ $labels.instance }}' }}` is down for more than 5 minutes.
         labels:
           severity: critical
-      - alert: ConfigurationReloadFailure
+      - alert: PrometheusConfigurationReloadFailure
         expr: prometheus_config_last_reload_successful != 1
         for: 0m
         annotations:
           title: Configuration reload failure
           description: Prometheus configuration was not reloaded successfully!
+        labels:
+          severity: warning
+      - alert: AlertmanagerConfigurationReloadFailure
+        expr: alertmanager_config_last_reload_successful != 1
+        for: 0m
+        annotations:
+          title: Configuration reload failure
+          description: AlertManager configuration was not reloaded successfully!
         labels:
           severity: warning
 
