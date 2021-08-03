@@ -4,10 +4,10 @@ groups:
     rules:
       - alert: PrometheusTargetDown
         expr: up == 0
-        for: 0m
+        for: 5m
         annotations:
           title: Prometheus target down
-          description: Prometheus target `{{ '{{ $labels.job }}' }}` @ `{{ '{{ $labels.instance }}' }}` is down.
+          description: Prometheus target `{{ '{{ $labels.job }}' }}` @ `{{ '{{ $labels.instance }}' }}` is down for more than 5 minutes.
         labels:
           severity: critical
       - alert: ConfigurationReloadFailure
@@ -23,7 +23,7 @@ groups:
   - name: Node Exporter
     rules:
       - alert: HostHighCpuLoad
-        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
         for: 0m
         annotations:
           title: Host high CPU load
@@ -31,7 +31,7 @@ groups:
         labels:
           severity: warning
       - alert: HostOutOfMemory
-        expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
+        expr: 100 * (1 - ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes)) > 90
         for: 2m
         annotations:
           title: Host out of memory
