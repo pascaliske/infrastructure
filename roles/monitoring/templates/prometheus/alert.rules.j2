@@ -82,3 +82,23 @@ groups:
           description: Container `{{ '{{ $labels.name }}' }}` was not seen in the last 60 seconds!
         labels:
           severity: warning
+
+  # internet
+  - name: internet
+    rules:
+      - alert: InternetDownloadSlow
+        expr: avg_over_time(speedtest_download[20m]) < 20
+        for: 0m
+        annotations:
+          title: Internet download slow
+          description: Download speed is currently {{ '{{ humanize $value }}' }} Mbps.
+        labels:
+          severity: warning
+      - alert: InternetUploadSlow
+        expr: avg_over_time(speedtest_upload[20m]) < 10
+        for: 0m
+        annotations:
+          title: Internet upload slow
+          description: Upload speed is currently {{ '{{ humanize $value }}' }} Mbps.
+        labels:
+          severity: warning
