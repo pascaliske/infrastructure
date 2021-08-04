@@ -483,6 +483,7 @@ services:
       - 80
     environment:
       TZ: '{{ timezone }}'
+      VIRTUAL_HOST: 'pihole.{{ domain }}'
       VIRTUAL_PORT: 80
       PIHOLE_DNS_: 172.20.3.2#5053
       DNSSEC: 'true'
@@ -529,10 +530,9 @@ services:
       - traefik.http.routers.pihole.entrypoints=https
       - traefik.http.routers.pihole.tls=true
       - traefik.http.routers.pihole.tls.certresolver=digitalocean
-      - traefik.http.routers.pihole.middlewares=auth@file,security@file,error-pages@file,pihole-addprefix,pihole-cors
+      - traefik.http.routers.pihole.middlewares=auth@file,security@file,error-pages@file,pihole-addprefix
       - traefik.http.services.pihole-network.loadbalancer.server.port=80
       - traefik.http.middlewares.pihole-addprefix.addprefix.prefix=/admin
-      - traefik.http.middlewares.pihole-cors.headers.accesscontrolalloworiginlist=https://{{ domain }}
   cloudflared:
     image: crazymax/cloudflared:latest
     container_name: cloudflared
