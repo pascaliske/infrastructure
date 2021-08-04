@@ -236,7 +236,9 @@ cards:
                   show_state: false
                   tap_action:
                     action: call-service
-                    service: script.wake_ffmmbp207
+                    service: wake_on_lan.send_magic_packet
+                    service_data:
+                      mac: !secret mac_ffmmbp207
                 - type: button
                   name: PS4-PI
                   action_name: Wake
