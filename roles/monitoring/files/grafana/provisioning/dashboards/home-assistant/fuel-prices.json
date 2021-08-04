@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 12,
-  "iteration": 1625217819724,
+  "iteration": 1627638607807,
   "links": [],
   "panels": [
     {
@@ -62,11 +62,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_sensor_unit_u0x20ac{entity=~\"${station}_${type}\",friendly_name!~\".*((Tankstelle)|(Nieder-Roden)).*\"}, \"name\", \"$1\", \"friendly_name\", \"(.*) ${type:text}\") - 0.009",
+          "expr": "label_replace(homeassistant_sensor_unit_u0x20ac{entity=~\"${station}_${type}\", friendly_name!~\".*((Tankstelle)|(Nieder-Roden)).*\"}, \"name\", \"$1\", \"friendly_name\", \"(.*) ${type:text}\") - 0.009",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -123,11 +123,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_sensor_unit_u0x20ac{entity=~\"${station}_${type}\",friendly_name!~\".*((Tankstelle)|(Nieder-Roden)).*\"}, \"name\", \"$1\", \"friendly_name\", \"(.*) ${type:text}\") - 0.009",
+          "expr": "label_replace(homeassistant_sensor_unit_u0x20ac{entity=~\"${station}_${type}\", friendly_name!~\".*((Tankstelle)|(Nieder-Roden)).*\"}, \"name\", \"$1\", \"friendly_name\", \"(.*) ${type:text}\") - 0.009",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -223,7 +223,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_sensor_unit_u0x20ac{entity=~\"${station}_${type}\",friendly_name!~\".*((Tankstelle)|(Nieder-Roden)).*\"}, \"name\", \"$1\", \"friendly_name\", \"(.*) ${type:text}\") - 0.009",
+          "expr": "label_replace(homeassistant_sensor_unit_u0x20ac{entity=~\"${station}_${type}\", friendly_name!~\".*((Tankstelle)|(Nieder-Roden)).*\"}, \"name\", \"$1\", \"friendly_name\", \"(.*) ${type:text}\") - 0.009",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{ name }}",
@@ -309,5 +309,5 @@
   "timezone": "",
   "title": "Fuel Prices",
   "uid": "home-assistant-fuel-prices",
-  "version": 11
+  "version": 23
 }

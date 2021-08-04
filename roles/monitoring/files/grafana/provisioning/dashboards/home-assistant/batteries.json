@@ -14,8 +14,8 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
-  "id": 30,
+  "graphTooltip": 2,
+  "id": 31,
   "links": [],
   "panels": [
     {
@@ -95,7 +95,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_battery_percent{entity=~\".*_battery_state\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) battery state\")",
+          "expr": "label_replace(homeassistant_battery_percent{entity=~\".*_battery_state\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (B|b)attery (S|s)tate\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -182,7 +182,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_battery_percent{entity=~\".*_(lumi|switch)_power\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Power\")",
+          "expr": "label_replace(homeassistant_battery_percent{entity=~\".*_(lumi|switch)_power\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (P|p)ower\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -208,5 +208,5 @@
   "timezone": "",
   "title": "Batteries",
   "uid": "home-assistant-batteries",
-  "version": 2
+  "version": 7
 }

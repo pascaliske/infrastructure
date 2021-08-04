@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 7,
-  "iteration": 1627589257068,
+  "iteration": 1627638444409,
   "links": [],
   "panels": [
     {
@@ -99,7 +99,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_temperature_c{friendly_name=~\"$room Climate Temperature\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Temperature\")",
+          "expr": "label_replace(homeassistant_temperature_c{friendly_name=~\"$room Climate Temperature\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (T|t)emperature\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -191,7 +191,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_humidity_percent{friendly_name=~\"$room Climate Humidity\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Humidity\")",
+          "expr": "label_replace(homeassistant_humidity_percent{friendly_name=~\"$room Climate Humidity\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (H|h)umidity\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -282,7 +282,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_pressure_hpa{friendly_name=~\"$room Climate Pressure\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) Climate Pressure\")",
+          "expr": "label_replace(homeassistant_pressure_hpa{friendly_name=~\"$room Climate Pressure\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (P|p)ressure\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -309,7 +309,7 @@
           "value": "$__all"
         },
         "datasource": null,
-        "definition": "label_values(homeassistant_temperature_c{friendly_name=~\"(.*) Climate Temperature\"}, friendly_name)",
+        "definition": "label_values(homeassistant_temperature_c{friendly_name=~\"(.*) (C|c)limate (T|t)emperature\"}, friendly_name)",
         "description": null,
         "error": null,
         "hide": 0,
@@ -319,7 +319,7 @@
         "name": "room",
         "options": [],
         "query": {
-          "query": "label_values(homeassistant_temperature_c{friendly_name=~\"(.*) Climate Temperature\"}, friendly_name)",
+          "query": "label_values(homeassistant_temperature_c{friendly_name=~\"(.*) (C|c)limate (T|t)emperature\"}, friendly_name)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -341,5 +341,5 @@
   "timezone": "",
   "title": "Climate",
   "uid": "home-assistant-climate",
-  "version": 50
+  "version": 52
 }
