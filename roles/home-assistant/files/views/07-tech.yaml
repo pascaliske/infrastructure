@@ -231,6 +231,15 @@ cards:
               show_header_toggle: false
               entities:
                 - type: button
+                  name: Synology NAS
+                  action_name: Wake
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: wake_on_lan.send_magic_packet
+                    service_data:
+                      mac: !secret mac_synology_nas
+                - type: button
                   name: FFMMBP-207
                   action_name: Wake
                   show_state: false
