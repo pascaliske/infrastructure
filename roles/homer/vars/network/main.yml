@@ -38,6 +38,10 @@ services:
         subtitle: 5 port distribution switch
         logo: assets/logos/tplink.png
         url: http://{{ vault.ips.switch_5p }}
+      - name: Synology DS920+
+        subtitle: Network Attached Storage
+        url: https://{{ vault.ips.synology_nas }}:5001
+        logo: assets/logos/synology.png
       - name: Gigaset GO
         subtitle: VoIP phone management
         url: http://{{ vault.ips.gigaset }}
