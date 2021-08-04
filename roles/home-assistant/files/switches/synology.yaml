@@ -1,0 +1,11 @@
+- platform: template
+  switches:
+    synology_nas:
+      friendly_name: Synology NAS
+      value_template: "{{ not is_state('sensor.synologynas_temperature', 'unavailable') }}"
+      turn_on:
+        service: wake_on_lan.send_magic_packet
+        data:
+          mac: !secret mac_synology_nas
+      turn_off:
+        service: synology_dsm.shutdown
