@@ -36,12 +36,9 @@
     fritzbox_uptime:
       friendly_name: FRITZ!Box Connection Uptime
       value_template: >
-        {% set uptime = state_attr('sensor.fritzbox_netmonitor', 'uptime') %}
-        {% set diff = now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - uptime) %}
-        {{ diff.days }}
-      unit_of_measurement: days
+        {% set uptime = states('sensor.fritz_box_7590_uptime') %}
+        {{ relative_time(uptime | as_datetime) }}
     fritzbox_public_ip:
       friendly_name: FRITZ!Box Public IP
       value_template: >
-        {% set public_ip = state_attr('sensor.fritzbox_netmonitor', 'external_ip') %}
-        {{ public_ip }}
+        {{ states('sensor.fritz_box_7590_external_ip') }}
