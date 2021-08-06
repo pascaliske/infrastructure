@@ -1,5 +1,6 @@
 ---
 rules:
+  # exceptions
   - policy: bypass
     services:
       - unifi
@@ -22,6 +23,8 @@ rules:
       - /loki/api/v1/push
     services:
       - loki
+
+  # two factor
   - policy: two_factor
     services:
       - traefik
