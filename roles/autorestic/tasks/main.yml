@@ -84,3 +84,4 @@
     state: present
     minute: '0'
     hour: '4'
+    disabled: yes
