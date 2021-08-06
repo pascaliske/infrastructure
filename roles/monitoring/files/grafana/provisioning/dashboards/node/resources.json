@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -16,7 +22,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 28,
-  "iteration": 1627384675906,
+  "iteration": 1628239279265,
   "links": [],
   "panels": [
     {
@@ -272,7 +278,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.0",
       "targets": [
         {
           "exemplar": true,
@@ -337,7 +343,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.0",
       "targets": [
         {
           "exemplar": true,
@@ -403,7 +409,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.0",
       "targets": [
         {
           "exemplar": true,
@@ -469,7 +475,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.0",
       "targets": [
         {
           "exemplar": true,
@@ -872,15 +878,16 @@
           "exemplar": true,
           "expr": "sum by (node, device) (rate(node_network_receive_bytes_total{device=\"eth0\"}[$interval])) * 8",
           "interval": "",
-          "intervalFactor": 1,
+          "intervalFactor": 2,
           "legendFormat": "{{ device }}-in",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_bytes_total{device=\"eth0\"}[$interval])) * 8 * -1",
+          "expr": "sum by (node, device) (rate(node_network_transmit_bytes_total{device=\"eth0\"}[$interval])) * 8",
           "instant": false,
           "interval": "",
+          "intervalFactor": 2,
           "legendFormat": "{{ device }}-out",
           "refId": "B"
         }
@@ -976,7 +983,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_packets_total{device=\"eth0\"}[$interval])) * -1",
+          "expr": "sum by (node, device) (rate(node_network_transmit_packets_total{device=\"eth0\"}[$interval]))",
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
@@ -1071,7 +1078,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{device=\"eth0\"}[$interval])) * -1",
+          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{device=\"eth0\"}[$interval]))",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ device }}-out",
@@ -1178,5 +1185,5 @@
   "timezone": "",
   "title": "Resources",
   "uid": "node-resources",
-  "version": 6
+  "version": 15
 }
