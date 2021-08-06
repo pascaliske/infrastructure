@@ -23,6 +23,11 @@ rules:
       - /loki/api/v1/push
     services:
       - loki
+  - policy: bypass
+    resources:
+      - /api/websocket
+    services:
+      - homeassistant
 
   # two factor
   - policy: two_factor
