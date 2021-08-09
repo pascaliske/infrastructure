@@ -1,6 +1,6 @@
 ---
-- name: gitlab
-  hosts: gitlab
+- name: backup
+  hosts: remote
   tasks:
     - name: Load role variables
       include_vars: '{{ inventory_dir }}/roles/autorestic/vars/main.yml'

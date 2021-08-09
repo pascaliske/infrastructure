@@ -1,5 +1,5 @@
 {# host specific vars #}
-{%- set vars = lookup('vars', ansible_play_name) -%}
+{%- set vars = lookup('vars', inventory_hostname) -%}
 
 {% if vars.backends.items() | length > 0 %}
 backends:

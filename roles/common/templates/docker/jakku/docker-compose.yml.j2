@@ -54,7 +54,7 @@ services:
       - traefik.http.routers.portainer.tls=true
       - traefik.http.routers.portainer.tls.certresolver=http
       - traefik.http.routers.portainer.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.portainer-gitlab.loadbalancer.server.port=9000
+      - traefik.http.services.portainer-{{ inventory_hostname }}.loadbalancer.server.port=9000
   glances:
     image: nicolargo/glances:alpine-latest
     container_name: glances
@@ -78,7 +78,7 @@ services:
       - traefik.http.routers.glances.tls=true
       - traefik.http.routers.glances.tls.certresolver=http
       - traefik.http.routers.glances.middlewares=auth-basic@file,security@file,error-pages@file
-      - traefik.http.services.glances-gitlab.loadbalancer.server.port=61208
+      - traefik.http.services.glances-{{ inventory_hostname }}.loadbalancer.server.port=61208
 
   # security
   docker-proxy:
@@ -171,7 +171,7 @@ services:
       - traefik.http.routers.errors.tls=true
       - traefik.http.routers.errors.tls.certresolver=digitalocean
       - traefik.http.routers.errors.middlewares=error-pages@file
-      - traefik.http.services.errors-gitlab.loadbalancer.server.port=8080
+      - traefik.http.services.errors-{{ inventory_hostname }}.loadbalancer.server.port=8080
   authelia:
     image: authelia/authelia
     container_name: authelia
@@ -252,18 +252,18 @@ services:
       - traefik.enable=true
       - traefik.http.routers.gitlab.rule=Host(`git.{{ domain }}`)
       - traefik.http.routers.gitlab.entrypoints=https
-      - traefik.http.routers.gitlab.service=gitlab-gitlab
+      - traefik.http.routers.gitlab.service=gitlab-{{ inventory_hostname }}
       - traefik.http.routers.gitlab.tls=true
       - traefik.http.routers.gitlab.tls.certresolver=http
       - traefik.http.routers.gitlab.middlewares=security@file,error-pages@file
-      - traefik.http.services.gitlab-gitlab.loadbalancer.server.port=80
+      - traefik.http.services.gitlab-{{ inventory_hostname }}.loadbalancer.server.port=80
       - traefik.http.routers.registry.rule=Host(`registry.{{ domain }}`)
       - traefik.http.routers.registry.entrypoints=https
-      - traefik.http.routers.registry.service=registry-gitlab
+      - traefik.http.routers.registry.service=registry-{{ inventory_hostname }}
       - traefik.http.routers.registry.tls=true
       - traefik.http.routers.registry.tls.certresolver=http
       - traefik.http.routers.registry.middlewares=security@file,error-pages@file
-      - traefik.http.services.registry-gitlab.loadbalancer.server.port=80
+      - traefik.http.services.registry-{{ inventory_hostname }}.loadbalancer.server.port=80
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
     container_name: gitlab-runner
@@ -315,7 +315,7 @@ services:
       - traefik.http.routers.linkding.tls=true
       - traefik.http.routers.linkding.tls.certresolver=http
       - traefik.http.routers.linkding.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.linkding-gitlab.loadbalancer.server.port=9090
+      - traefik.http.services.linkding-{{ inventory_hostname }}.loadbalancer.server.port=9090
   paperless:
     image: jonaswinkler/paperless-ng:latest
     container_name: paperless
@@ -349,7 +349,7 @@ services:
       - traefik.http.routers.paperless.tls=true
       - traefik.http.routers.paperless.tls.certresolver=http
       - traefik.http.routers.paperless.middlewares=auth@file,security@file,error-pages@file,paperless-cors
-      - traefik.http.services.paperless-gitlab.loadbalancer.server.port=8000
+      - traefik.http.services.paperless-{{ inventory_hostname }}.loadbalancer.server.port=8000
       - traefik.http.middlewares.paperless-cors.headers.accesscontrolalloworiginlist=https://go.{{ domain }}
 
   # dependencies

@@ -1,10 +1,11 @@
-# coruscant
+# network
 [network]
-10.0.2.2 ansible_user=pi
+coruscant ansible_host=10.0.2.2 ansible_user=pi
 
-# jakku
-[gitlab]
-45.9.60.94 ansible_user=root
+# remote
+[remote]
+jakku ansible_host=45.9.60.94 ansible_user=root
 
+# testing
 [testing]
-127.0.0.1 ansible_user=vagrant ansible_port=2222
+localhost ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2222

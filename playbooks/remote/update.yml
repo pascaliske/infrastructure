@@ -1,6 +1,6 @@
 ---
-- name: gitlab
-  hosts: gitlab
+- name: update
+  hosts: remote
   become: yes
   tasks:
     - name: Update apt packages

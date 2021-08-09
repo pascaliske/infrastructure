@@ -4,7 +4,7 @@ http:
       rule: Host(`homeassistant.{{ domain }}`)
       entryPoints:
         - https
-      service: homeassistant-network
+      service: homeassistant-{{ inventory_hostname }}
       middlewares:
         - auth@file
         - security@file
@@ -12,7 +12,7 @@ http:
       tls:
         certResolver: digitalocean
   services:
-    homeassistant-network:
+    homeassistant-{{ inventory_hostname }}:
       loadBalancer:
         servers:
           - url: https://dockerhost:8123

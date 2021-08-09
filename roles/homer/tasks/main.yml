@@ -1,8 +1,8 @@
 # variables
 - name: Load host specific variables
   include_vars:
-    file: '{{ ansible_play_name }}/main.yml'
-    name: '{{ ansible_play_name }}'
+    file: '{{ inventory_hostname }}/main.yml'
+    name: '{{ inventory_hostname }}'
 
 # directories
 - name: Ensure directories exist

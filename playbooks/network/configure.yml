@@ -1,5 +1,5 @@
 ---
-- name: network
+- name: configure
   hosts: network
   roles:
     - role: common

@@ -49,10 +49,10 @@ providers:
     watch: true
   docker:
     endpoint: tcp://docker-proxy:2375
-    network: network_proxy
+    network: {{ inventory_hostname }}_proxy
     exposedByDefault: false
 
-{% if ansible_play_name == 'network' %}
+{% if inventory_hostname == 'coruscant' %}
 # prometheus metrics
 metrics:
   prometheus:
