@@ -1,7 +1,7 @@
 backends:
   local:
     type: local
-    path: '/mnt/backups'
+    path: '{{ home_path }}/backups'
 forget:
   keep-daily: 7
   keep-weekly: 4
