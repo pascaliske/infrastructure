@@ -32,7 +32,7 @@ groups:
     rules:
       - alert: HostHighCpuLoad
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
-        for: 0m
+        for: 2m
         annotations:
           title: Host high CPU load
           description: Host CPU load is getting too high (> 80%)!
