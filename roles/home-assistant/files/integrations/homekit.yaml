@@ -14,6 +14,7 @@ homekit:
       - switch.network_controller
     exclude_entity_globs:
       - switch.pi_hole_*
+      - switch.fritz_box_*
   entity_config:
     media_player.spotify_pascal_iske:
       feature_list:
