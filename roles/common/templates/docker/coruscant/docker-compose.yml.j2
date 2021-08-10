@@ -548,9 +548,9 @@ services:
       monitoring: {}
       dns:
         ipv4_address: 172.20.3.2
-  homeassistant:
+  home-assistant:
     image: homeassistant/home-assistant:2021.7
-    container_name: homeassistant
+    container_name: home-assistant
     restart: unless-stopped
     network_mode: host
     environment:
