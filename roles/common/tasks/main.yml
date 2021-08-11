@@ -31,6 +31,22 @@
         src: docker/{{ inventory_hostname }}/docker-compose.yml.j2
         dest: '{{ root_path }}/docker-compose.yml'
 
+    - name: Create docker alias
+      lineinfile:
+        path: '{{ home_path }}/.bashrc'
+        line: alias d="docker"
+        regexp: alias d="docker"$
+        insertafter: ^alias
+        create: yes
+
+    - name: Create docker compose alias
+      lineinfile:
+        path: '{{ home_path }}/.bashrc'
+        line: 'alias dc="docker-compose --file {{ root_path }}/docker-compose.yml"'
+        regexp: 'alias dc="docker-compose --file {{ root_path }}/docker-compose.yml"$'
+        insertafter: ^alias
+        create: yes
+
 # traefik
 - name: Configure traefik
   block:
