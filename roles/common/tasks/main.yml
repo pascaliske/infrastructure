@@ -23,35 +23,38 @@
         update_cache: yes
         state: latest
 
-# directories
-- name: Ensure directories exist
-  file:
-    path: '{{ root_path }}/{{ item }}'
-    state: directory
-  loop:
-    - traefik
-    - traefik/dynamic
-    - authelia
-
 # docker
-- name: Create docker-compose file
-  template:
-    src: docker/{{ inventory_hostname }}/docker-compose.yml.j2
-    dest: '{{ root_path }}/docker-compose.yml'
+- name: Configure docker
+  block:
+    - name: Create docker compose configuration
+      template:
+        src: docker/{{ inventory_hostname }}/docker-compose.yml.j2
+        dest: '{{ root_path }}/docker-compose.yml'
 
 # traefik
-- name: Create traefik configuration file
-  template:
-    src: traefik/traefik.yml.j2
-    dest: '{{ root_path }}/traefik/traefik.yml'
+- name: Configure traefik
+  block:
+    - name: Ensure directories exist
+      file:
+        path: '{{ root_path }}/{{ item }}'
+        state: directory
+      loop:
+        - traefik
+        - traefik/dynamic
+        - authelia
 
-- name: Create traefik dynamic configuration files
-  template:
-    src: traefik/dynamic/{{ item }}.yml.j2
-    dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
-  when: inventory_hostname == 'coruscant' or inventory_hostname != 'coruscant' and item != 'home-assistant'
-  loop:
-    - auth
-    - security
-    - error-pages
-    - home-assistant
+    - name: Create traefik configuration file
+      template:
+        src: traefik/traefik.yml.j2
+        dest: '{{ root_path }}/traefik/traefik.yml'
+
+    - name: Create traefik dynamic configuration files
+      template:
+        src: traefik/dynamic/{{ item }}.yml.j2
+        dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
+      when: inventory_hostname == 'coruscant' or inventory_hostname != 'coruscant' and item != 'home-assistant'
+      loop:
+        - auth
+        - security
+        - error-pages
+        - home-assistant
