@@ -7,3 +7,4 @@
       apt:
         upgrade: safe
         update_cache: yes
+        autoremove: yes
