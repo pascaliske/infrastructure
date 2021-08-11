@@ -2,7 +2,7 @@ http:
   middlewares:
     error-pages:
       errors:
-        service: errors-network@docker
+        service: errors-{{ inventory_hostname }}@docker
         query: "/{status}?home={{ domain }}"
         status:
           - 404,407,418,500-599

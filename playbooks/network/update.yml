@@ -1,5 +1,5 @@
 ---
-- name: network
+- name: update
   hosts: network
   become: yes
   tasks:

@@ -1,4 +1,5 @@
 ---
+default_redirection_url: 'https://go.{{ domain }}'
 rules:
   - policy: bypass
     services:

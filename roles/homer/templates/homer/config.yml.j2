@@ -1,4 +1,4 @@
-{%- set vars = lookup('vars', ansible_play_name) -%}
+{%- set vars = lookup('vars', inventory_hostname) -%}
 ---
 # general
 title: '{{ vars.dashboard }}'

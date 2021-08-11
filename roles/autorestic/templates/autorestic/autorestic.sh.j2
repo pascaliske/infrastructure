@@ -1,5 +1,5 @@
 {# host specific vars #}
-{%- set vars = lookup('vars', ansible_play_name) -%}
+{%- set vars = lookup('vars', inventory_hostname) -%}
 
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
@@ -22,7 +22,7 @@ VOLUMES+=( "-v {{ backend.path or '$(realpath "./' ~ name ~ '")' }}:/var/lib/aut
 # mount locations
 {% for name, location in vars.locations.items() %}
 {% if location.from is string and 'volume:' in location.from %}
-VOLUMES+=( "-v {{ location.from | replace('volume:', ansible_play_name ~ '_') }}:/var/lib/autorestic/locations/{{ name }}" )
+VOLUMES+=( "-v {{ location.from | replace('volume:', inventory_hostname ~ '_') }}:/var/lib/autorestic/locations/{{ name }}" )
 {% else %}
 VOLUMES+=( "-v {{ location.from or '$(realpath "./' ~ name ~ '")' }}:/var/lib/autorestic/locations/{{ name }}" )
 {% endif %}

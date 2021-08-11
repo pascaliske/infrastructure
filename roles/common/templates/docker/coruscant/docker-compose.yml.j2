@@ -59,7 +59,7 @@ services:
       - traefik.http.routers.portainer.tls=true
       - traefik.http.routers.portainer.tls.certresolver=digitalocean
       - traefik.http.routers.portainer.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.portainer-network.loadbalancer.server.port=9000
+      - traefik.http.services.portainer-{{ inventory_hostname }}.loadbalancer.server.port=9000
 
   # security
   docker-proxy:
@@ -157,7 +157,7 @@ services:
       - traefik.http.routers.errors.tls=true
       - traefik.http.routers.errors.tls.certresolver=digitalocean
       - traefik.http.routers.errors.middlewares=error-pages@file
-      - traefik.http.services.errors-network.loadbalancer.server.port=8080
+      - traefik.http.services.errors-{{ inventory_hostname }}.loadbalancer.server.port=8080
   authelia:
     image: authelia/authelia
     container_name: authelia
@@ -457,8 +457,8 @@ services:
       - traefik.http.routers.unifi.tls=true
       - traefik.http.routers.unifi.tls.certresolver=digitalocean
       - traefik.http.routers.unifi.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.unifi-network.loadbalancer.server.scheme=https
-      - traefik.http.services.unifi-network.loadbalancer.server.port=8443
+      - traefik.http.services.unifi-{{ inventory_hostname }}.loadbalancer.server.scheme=https
+      - traefik.http.services.unifi-{{ inventory_hostname }}.loadbalancer.server.port=8443
       - traefik.http.middlewares.unifi.headers.sslredirect=true
       - traefik.http.middlewares.unifi.headers.stsSeconds=315360000
       - traefik.http.middlewares.unifi.headers.browserXSSFilter=true
@@ -531,7 +531,7 @@ services:
       - traefik.http.routers.pihole.tls=true
       - traefik.http.routers.pihole.tls.certresolver=digitalocean
       - traefik.http.routers.pihole.middlewares=auth@file,security@file,error-pages@file,pihole-addprefix
-      - traefik.http.services.pihole-network.loadbalancer.server.port=80
+      - traefik.http.services.pihole-{{ inventory_hostname }}.loadbalancer.server.port=80
       - traefik.http.middlewares.pihole-addprefix.addprefix.prefix=/admin
   cloudflared:
     image: crazymax/cloudflared:latest
@@ -548,9 +548,9 @@ services:
       monitoring: {}
       dns:
         ipv4_address: 172.20.3.2
-  homeassistant:
+  home-assistant:
     image: homeassistant/home-assistant:2021.7
-    container_name: homeassistant
+    container_name: home-assistant
     restart: unless-stopped
     network_mode: host
     environment:
@@ -581,18 +581,18 @@ services:
       - traefik.enable=true
       - traefik.http.routers.vaultwarden.rule=Host(`vault.{{ domain }}`)
       - traefik.http.routers.vaultwarden.entrypoints=https
-      - traefik.http.routers.vaultwarden.service=vaultwarden-network
+      - traefik.http.routers.vaultwarden.service=vaultwarden-{{ inventory_hostname }}
       - traefik.http.routers.vaultwarden.tls=true
       - traefik.http.routers.vaultwarden.tls.certresolver=digitalocean
       - traefik.http.routers.vaultwarden.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.vaultwarden-network.loadbalancer.server.port=8080
+      - traefik.http.services.vaultwarden-{{ inventory_hostname }}.loadbalancer.server.port=8080
       - traefik.http.routers.vaultwarden-websocket.rule=Host(`vault.{{ domain }}`) && Path(`/notifications/hub`)
       - traefik.http.routers.vaultwarden-websocket.entrypoints=https
-      - traefik.http.routers.vaultwarden-websocket.service=vaultwarden-websocket-network
+      - traefik.http.routers.vaultwarden-websocket.service=vaultwarden-websocket-{{ inventory_hostname }}
       - traefik.http.routers.vaultwarden-websocket.tls=true
       - traefik.http.routers.vaultwarden-websocket.tls.certresolver=digitalocean
       - traefik.http.routers.vaultwarden-websocket.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.vaultwarden-websocket-network.loadbalancer.server.port=3012
+      - traefik.http.services.vaultwarden-websocket-{{ inventory_hostname }}.loadbalancer.server.port=3012
   dyndns:
     image: tunix/digitalocean-dyndns-armv7:latest
     container_name: dyndns

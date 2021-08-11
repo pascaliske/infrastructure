@@ -1,5 +1,5 @@
 {# host specific vars #}
-{%- set vars = lookup('vars', ansible_play_name) -%}
+{%- set vars = lookup('vars', inventory_hostname) -%}
 
 {# rule domains block #}
 {%- macro rule_domains(rule) %}
@@ -26,7 +26,7 @@ host: 0.0.0.0
 port: 9091
 theme: dark
 jwt_secret: '{{ vault.auth.jwt_secret }}'
-default_redirection_url: 'https://{{ 'go.' if ansible_play_name == 'gitlab' }}{{ domain }}'
+default_redirection_url: '{{ vars.default_redirection_url }}'
 totp:
   issuer: '{{ domain }}'
 log_file_path: /var/log/authelia.log
@@ -80,7 +80,7 @@ notifier:
     password: '{{ vault.smtp.accounts.auth.password }}'
     sender: '{{ vault.smtp.accounts.auth.email }}'
     identifier: localhost
-    subject: "[auth@{{ ansible_play_name }}] {title}"
+    subject: "[auth@{{ inventory_hostname }}] {title}"
     startup_check_address: '{{ vault.auth.username }}'
     disable_require_tls: false
     disable_html_emails: false
