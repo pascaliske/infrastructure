@@ -1,0 +1,1 @@
+{{ docker.all | combine(docker[inventory_hostname] | default({})) | to_nice_json(indent=2) }}

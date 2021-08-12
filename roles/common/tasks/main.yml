@@ -26,6 +26,13 @@
 # docker
 - name: Configure docker
   block:
+    - name: Create docker daemon configuration
+      become: yes
+      template:
+        src: docker/daemon.json.j2
+        dest: '/etc/docker/daemon.json'
+      notify: Restart Docker
+
     - name: Create docker compose configuration
       template:
         src: docker/{{ inventory_hostname }}/docker-compose.yml.j2

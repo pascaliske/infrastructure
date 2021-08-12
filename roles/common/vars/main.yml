@@ -1,4 +1,17 @@
 ---
+docker:
+  all:
+    experimental: true
+    live-restore: true
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+  coruscant:
+    metrics-addr: 0.0.0.0:9323
+    log-driver: loki
+    log-opts:
+      loki-url: 'https://loki.{{ domain }}/loki/api/v1/push'
+
 watchtower:
   schedule: '0 0 0 * * *'
   slack_level: info
