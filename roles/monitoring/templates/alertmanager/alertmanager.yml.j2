@@ -10,15 +10,20 @@
 {%- raw %}
 {{ range $i, $e := .Alerts -}}
 {{ if $i }}———{{ end }}
-
 *{{ .Annotations.title }}*{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
 
+{{ if and (eq .Status "resolved") .Annotations.resolved -}}
+*Resolved*
+{{ .Annotations.resolved }}
+{{- else -}}
 *Description*
 {{ .Annotations.description }}
+{{- end }}
 
 *Labels*
-{{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`
-{{ end }}
+{{- range .Labels.SortedPairs }}
+• {{ .Name }}: `{{ .Value }}`
+{{- end }}
 {{ end }}
 {%- endraw -%}
 {%- endset -%}

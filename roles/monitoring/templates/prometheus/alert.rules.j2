@@ -8,6 +8,7 @@ groups:
         annotations:
           title: Prometheus target down
           description: Prometheus target `{{ '{{ $labels.job }}' }}` @ `{{ '{{ $labels.instance }}' }}` is down for more than 5 minutes.
+          resolved: Prometheus target `{{ '{{ $labels.job }}' }}` @ `{{ '{{ $labels.instance }}' }}` is back up.
         labels:
           severity: critical
       - alert: PrometheusConfigurationReloadFailure
@@ -16,6 +17,7 @@ groups:
         annotations:
           title: Configuration reload failure
           description: Prometheus configuration was not reloaded successfully!
+          resolved: Prometheus configuration was reloaded successfully.
         labels:
           severity: warning
       - alert: AlertmanagerConfigurationReloadFailure
@@ -24,6 +26,7 @@ groups:
         annotations:
           title: Configuration reload failure
           description: AlertManager configuration was not reloaded successfully!
+          resolved: AlertManager configuration was reloaded successfully.
         labels:
           severity: warning
 
@@ -36,6 +39,7 @@ groups:
         annotations:
           title: Host high CPU load
           description: Host CPU load is getting too high (> 80%)!
+          resolved: Host CPU load is back to normal.
         labels:
           severity: warning
       - alert: HostOutOfMemory
@@ -44,6 +48,7 @@ groups:
         annotations:
           title: Host out of memory
           description: Host memory is filling up (< 10% left)!
+          resolved: Host memory is back to normal.
         labels:
           severity: warning
       - alert: HostOutOfDiskSpace
@@ -52,6 +57,7 @@ groups:
         annotations:
           title: Host out of disk space
           description: Host disk is almost full (< 10% left)!
+          resolved: Host disk is back to normal.
         labels:
           severity: warning
       - alert: HostPhysicalComponentTooHot
@@ -60,6 +66,7 @@ groups:
         annotations:
           title: Host high temperature
           description: Physical hardware components are getting too hot (> 70°C)!
+          resolved: Physical hardware temperature is back to normal.
         labels:
           severity: warning
       - alert: HostPhysicalComponentTooHot
@@ -68,6 +75,7 @@ groups:
         annotations:
           title: Host high temperature
           description: Physical hardware components are getting too hot (> 75°C)!
+          resolved: Physical hardware temperature is back to normal.
         labels:
           severity: critical
 
@@ -80,6 +88,7 @@ groups:
         annotations:
           title: Container disappeared
           description: Container `{{ '{{ $labels.name }}' }}` was not seen in the last 60 seconds!
+          resolved: Container `{{ '{{ $labels.name }}' }}` is back.
         labels:
           severity: warning
 
@@ -92,6 +101,7 @@ groups:
         annotations:
           title: High 4xx error rate by service
           description: Service error rate (4xx) is above 5% for at least 1 minute.
+          resolved: Service error rate (4xx) is back to normal.
         labels:
           severity: critical
       - alert: TraefikHigh5xxErrorRateService
@@ -100,6 +110,7 @@ groups:
         annotations:
           title: High 5xx error rate by service
           description: Service error rate (5xx) is above 5% for at least 1 minute.
+          resolved: Service error rate (5xx) is back to normal.
         labels:
           severity: critical
 
@@ -112,6 +123,7 @@ groups:
         annotations:
           title: Internet download slow
           description: Download speed is currently {{ '{{ humanize $value }}' }} Mbps.
+          resolved: Download speed is back to average.
         labels:
           severity: warning
       - alert: InternetUploadSlow
@@ -120,5 +132,6 @@ groups:
         annotations:
           title: Internet upload slow
           description: Upload speed is currently {{ '{{ humanize $value }}' }} Mbps.
+          resolved: Upload speed is back to average.
         labels:
           severity: warning
