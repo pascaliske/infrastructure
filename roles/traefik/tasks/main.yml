@@ -1,0 +1,19 @@
+- name: Ensure directories exist
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - traefik
+    - traefik/dynamic
+    - authelia
+
+- name: Create configuration file
+  template:
+    src: traefik/traefik.yml.j2
+    dest: '{{ root_path }}/traefik/traefik.yml'
+
+- name: Create dynamic configuration files
+  template:
+    src: traefik/dynamic/{{ item }}.yml.j2
+    dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
+  loop: '{{ middlewares.all + middlewares[inventory_hostname] | default([]) }}'

@@ -6,6 +6,12 @@
     - role: common
       tags:
         - common
+    - role: docker
+      tags:
+        - docker
+    - role: traefik
+      tags:
+        - traefik
     - role: autorestic
       tags:
         - autorestic

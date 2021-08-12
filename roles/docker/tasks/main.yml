@@ -1,0 +1,22 @@
+- name: Create daemon configuration
+  become: yes
+  template:
+    src: docker/daemon.json.j2
+    dest: '/etc/docker/daemon.json'
+  notify: Restart Docker
+
+- name: Create compose configuration
+  template:
+    src: docker/{{ inventory_hostname }}/docker-compose.yml.j2
+    dest: '{{ root_path }}/docker-compose.yml'
+
+- name: Create aliases
+  lineinfile:
+    path: '{{ home_path }}/.bashrc'
+    line: 'alias {{ item.alias }}="{{ item.command }}"'
+    regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
+    insertafter: ^alias
+    create: yes
+  loop:
+    - { alias: 'd', command: 'docker' }
+    - { alias: 'dc', command: 'docker-compose --file {{ root_path }}/docker-compose.yml' }

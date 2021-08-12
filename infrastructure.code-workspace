@@ -7,36 +7,32 @@
             "path": "./playbooks"
         },
         {
-            "path": "./roles/common",
-            "name": "roles/common"
+            "path": "./roles/authelia",
+            "name": "roles/authelia"
         },
         {
             "path": "./roles/autorestic",
             "name": "roles/autorestic"
         },
         {
-            "path": "./roles/authelia",
-            "name": "roles/authelia"
+            "path": "./roles/code-server",
+            "name": "roles/code-server"
+        },
+        {
+            "path": "./roles/common",
+            "name": "roles/common"
+        },
+        {
+            "path": "./roles/docker",
+            "name": "roles/docker"
         },
         {
             "path": "./roles/fail2ban",
             "name": "roles/fail2ban"
         },
         {
-            "path": "./roles/homer",
-            "name": "roles/homer"
-        },
-        {
-            "path": "./roles/monitoring",
-            "name": "roles/monitoring"
-        },
-        {
             "path": "./roles/gitlab",
             "name": "roles/gitlab"
-        },
-        {
-            "path": "./roles/pihole",
-            "name": "roles/pihole"
         },
         {
             "path": "./roles/glances",
@@ -47,26 +43,42 @@
             "name": "roles/home-assistant"
         },
         {
-            "path": "./roles/code-server",
-            "name": "roles/code-server"
+            "path": "./roles/homer",
+            "name": "roles/homer"
+        },
+        {
+            "path": "./roles/linkding",
+            "name": "roles/linkding"
+        },
+        {
+            "path": "./roles/monitoring",
+            "name": "roles/monitoring"
         },
         {
             "path": "./roles/paperless",
             "name": "roles/paperless"
         },
         {
-            "path": "./roles/linkding",
-            "name": "roles/linkding"
+            "path": "./roles/pihole",
+            "name": "roles/pihole"
+        },
+        {
+            "path": "./roles/traefik",
+            "name": "roles/traefik"
         }
     ],
     "settings": {
         "cSpell.words": [
             "autorestic",
             "cloudflared",
+            "coruscant",
             "dnsmasq",
             "homeassistant",
+            "jakku",
+            "middlewares",
             "pihole",
             "portainer",
+            "ryloth",
             "traefik",
             "unifi"
         ],
