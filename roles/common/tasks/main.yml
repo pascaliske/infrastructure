@@ -32,3 +32,20 @@
         default_release: buster-backports
         update_cache: yes
         state: latest
+
+# bash aliases
+- name: Create aliases
+  lineinfile:
+    path: '{{ home_path }}/.bashrc'
+    line: 'alias {{ item.alias }}="{{ item.command }}"'
+    regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
+    insertafter: ^alias
+    create: yes
+  loop:
+    - { alias: 'll', command: 'ls -lisahG' }
+
+# configure vim
+- name: Create vim configuration
+  template:
+    src: vim/.vimrc.j2
+    dest: '{{ home_path }}/.vimrc'
