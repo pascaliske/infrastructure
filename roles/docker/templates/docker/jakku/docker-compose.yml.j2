@@ -334,6 +334,7 @@ services:
       PAPERLESS_SECRET_KEY: '{{ vault.paperless.secret_key }}'
       PAPERLESS_ENABLE_HTTP_REMOTE_USER: 'true'
       PAPERLESS_OCR_LANGUAGE: 'deu'
+      PAPERLESS_IGNORE_DATES: '{{ vault.paperless.ignore_dates | join(",") }}'
     volumes:
       - paperless_data:/usr/src/paperless/data
       - paperless_media:/usr/src/paperless/media
