@@ -28,6 +28,17 @@
 {%- endraw -%}
 {%- endset -%}
 
+{# color template #}
+{%- set __color -%}
+{%- raw %}
+{{- if eq .Status "firing" -}}
+danger
+{{- else -}}
+good
+{{- end -}}
+{%- endraw -%}
+{%- endset -%}
+
 route:
   receiver: slack
 
@@ -41,4 +52,6 @@ receivers:
           {{- __title | indent(width=10, first=True) }}
         text: |
           {{- __text | indent(width=10, first=True) }}
+        color: |
+          {{- __color | indent(width=10, first=True) }}
         send_resolved: true
