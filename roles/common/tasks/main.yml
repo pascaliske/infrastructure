@@ -6,6 +6,8 @@
     update_cache: yes
     state: latest
   loop:
+    - curl
+    - git
     - vim
 
 # system dependencies for alpine 3.13
