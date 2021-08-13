@@ -1,4 +1,14 @@
-# system dependencies
+# common apt packages
+- name: Install common packages
+  become: yes
+  apt:
+    name: '{{ item }}'
+    update_cache: yes
+    state: latest
+  loop:
+    - vim
+
+# system dependencies for alpine 3.13
 - name: Install dependencies for Alpine 3.13
   when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
   become: yes
