@@ -89,6 +89,16 @@ docker exec homeassistant hass -h
 
 For more information on the `hass` command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
 
+### The `paperless` management utilities
+
+```zsh
+docker exec paperless document_exporter
+docker exec paperless document_importer
+docker exec paperless document_retagger
+```
+
+For more information on the commands itself [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#management-utilities).
+
 ## Hardware (Group Network)
 
 The network services are currently running inside Docker on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers it using the `802.3af` Power-over-Ethernet standard.
