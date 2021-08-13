@@ -20,9 +20,11 @@
 {{ .Annotations.description }}
 {{- end }}
 
+{{ if not .Annotations.minimal -}}
 *Labels*
 {{- range .Labels.SortedPairs }}
 • {{ .Name }}: `{{ .Value }}`
+{{- end }}
 {{- end }}
 {{ end }}
 {%- endraw -%}
