@@ -61,20 +61,20 @@ groups:
         labels:
           severity: warning
       - alert: HostPhysicalComponentTooHot
-        expr: node_hwmon_temp_celsius > 70
+        expr: avg by (instance) (node_hwmon_temp_celsius) > 75
         for: 5m
         annotations:
           title: Host high temperature
-          description: Physical hardware components are getting too hot (> 70°C)!
+          description: Physical hardware components are getting too hot (> 75°C)!
           resolved: Physical hardware temperature is back to normal.
         labels:
           severity: warning
       - alert: HostPhysicalComponentTooHot
-        expr: node_hwmon_temp_celsius > 75
+        expr: avg by (instance) (node_hwmon_temp_celsius) > 80
         for: 2m
         annotations:
           title: Host high temperature
-          description: Physical hardware components are getting too hot (> 75°C)!
+          description: Physical hardware components are getting too hot (> 80°C)!
           resolved: Physical hardware temperature is back to normal.
         labels:
           severity: critical
