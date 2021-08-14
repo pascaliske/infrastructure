@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -16,7 +22,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 7,
-  "iteration": 1627638444409,
+  "iteration": 1628934300716,
   "links": [],
   "panels": [
     {
@@ -99,7 +105,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_temperature_c{friendly_name=~\"$room Climate Temperature\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (T|t)emperature\")",
+          "expr": "label_replace(homeassistant_sensor_temperature_celsius{friendly_name=~\"$room Climate Temperature\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (T|t)emperature\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -191,7 +197,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_humidity_percent{friendly_name=~\"$room Climate Humidity\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (H|h)umidity\")",
+          "expr": "label_replace(homeassistant_sensor_humidity_percent{friendly_name=~\"$room Climate Humidity\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (H|h)umidity\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -282,7 +288,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_pressure_hpa{friendly_name=~\"$room Climate Pressure\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (P|p)ressure\")",
+          "expr": "label_replace(homeassistant_sensor_pressure_hpa{friendly_name=~\"$room Climate Pressure\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (C|c)limate (P|p)ressure\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -304,7 +310,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -341,5 +347,5 @@
   "timezone": "",
   "title": "Climate",
   "uid": "home-assistant-climate",
-  "version": 52
+  "version": 66
 }

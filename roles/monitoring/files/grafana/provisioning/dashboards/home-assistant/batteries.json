@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -95,7 +101,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_battery_percent{entity=~\".*_battery_state\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (B|b)attery (S|s)tate\")",
+          "expr": "label_replace(homeassistant_sensor_battery_percent{entity=~\".*_battery_state\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (B|b)attery (S|s)tate\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -182,7 +188,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_replace(homeassistant_battery_percent{entity=~\".*_(lumi|switch)_power\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (P|p)ower\")",
+          "expr": "label_replace(homeassistant_sensor_battery_percent{entity=~\".*_(lumi|switch)_power\"}, \"short_name\", \"$1\", \"friendly_name\", \"(.*) (P|p)ower\")",
           "interval": "",
           "legendFormat": "{{ short_name }}",
           "refId": "A"
@@ -208,5 +214,5 @@
   "timezone": "",
   "title": "Batteries",
   "uid": "home-assistant-batteries",
-  "version": 7
+  "version": 21
 }
