@@ -22,7 +22,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 28,
-  "iteration": 1628239279265,
+  "iteration": 1628934816996,
   "links": [],
   "panels": [
     {
@@ -214,7 +214,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{sensor=\"temp0\"}",
+          "expr": "avg by (instance) (node_hwmon_temp_celsius)",
           "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Actual",
@@ -222,7 +222,7 @@
         },
         {
           "exemplar": true,
-          "expr": "avg_over_time(node_hwmon_temp_celsius{sensor=\"temp0\"}[$interval])",
+          "expr": "avg by (instance) (avg_over_time(node_hwmon_temp_celsius[$interval]))",
           "hide": false,
           "interval": "",
           "intervalFactor": 3,
@@ -278,7 +278,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.0",
+      "pluginVersion": "8.1.1",
       "targets": [
         {
           "exemplar": true,
@@ -343,7 +343,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.0",
+      "pluginVersion": "8.1.1",
       "targets": [
         {
           "exemplar": true,
@@ -409,7 +409,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.0",
+      "pluginVersion": "8.1.1",
       "targets": [
         {
           "exemplar": true,
@@ -475,7 +475,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.0",
+      "pluginVersion": "8.1.1",
       "targets": [
         {
           "exemplar": true,
@@ -1185,5 +1185,5 @@
   "timezone": "",
   "title": "Resources",
   "uid": "node-resources",
-  "version": 15
+  "version": 24
 }
