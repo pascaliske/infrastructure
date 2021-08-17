@@ -126,15 +126,18 @@ cards:
                 state_color: true
                 show_header_toggle: true
               entities:
-                - entity: sensor.living_room_lumi_temperature
+                - type: custom:multiple-entity-row
+                  entity: sensor.living_room_lumi_temperature
+                  name: Climate
                   secondary_info: last-changed
-                  name: Temperature
-                - entity: sensor.living_room_lumi_humidity
-                  secondary_info: last-changed
-                  name: Humidity
-                - entity: sensor.living_room_lumi_power
-                  secondary_info: last-changed
-                  name: Battery
+                  show_state: false
+                  entities:
+                    - entity: sensor.living_room_lumi_temperature
+                      name: Temperature
+                    - entity: sensor.living_room_lumi_humidity
+                      name: Humidity
+                    - entity: sensor.living_room_lumi_power
+                      name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
                   text: Lights
@@ -165,15 +168,18 @@ cards:
                 state_color: true
                 show_header_toggle: true
               entities:
-                - entity: sensor.kitchen_lumi_temperature
+                - type: custom:multiple-entity-row
+                  entity: sensor.kitchen_lumi_temperature
+                  name: Climate
                   secondary_info: last-changed
-                  name: Temperature
-                - entity: sensor.kitchen_lumi_humidity
-                  secondary_info: last-changed
-                  name: Humidity
-                - entity: sensor.kitchen_lumi_power
-                  secondary_info: last-changed
-                  name: Battery
+                  show_state: false
+                  entities:
+                    - entity: sensor.kitchen_lumi_temperature
+                      name: Temperature
+                    - entity: sensor.kitchen_lumi_humidity
+                      name: Humidity
+                    - entity: sensor.kitchen_lumi_power
+                      name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
                   text: Lights
@@ -204,15 +210,18 @@ cards:
                 state_color: true
                 show_header_toggle: true
               entities:
-                - entity: sensor.bedroom_lumi_temperature
+                - type: custom:multiple-entity-row
+                  entity: sensor.bedroom_lumi_temperature
+                  name: Climate
                   secondary_info: last-changed
-                  name: Temperature
-                - entity: sensor.bedroom_lumi_humidity
-                  secondary_info: last-changed
-                  name: Humidity
-                - entity: sensor.bedroom_lumi_power
-                  secondary_info: last-changed
-                  name: Battery
+                  show_state: false
+                  entities:
+                    - entity: sensor.bedroom_lumi_temperature
+                      name: Temperature
+                    - entity: sensor.bedroom_lumi_humidity
+                      name: Humidity
+                    - entity: sensor.bedroom_lumi_power
+                      name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
                   text: Lights
@@ -251,15 +260,18 @@ cards:
                 state_color: true
                 show_header_toggle: true
               entities:
-                - entity: sensor.childrens_room_lumi_temperature
+                - type: custom:multiple-entity-row
+                  entity: sensor.childrens_room_lumi_temperature
+                  name: Climate
                   secondary_info: last-changed
-                  name: Temperature
-                - entity: sensor.childrens_room_lumi_humidity
-                  secondary_info: last-changed
-                  name: Humidity
-                - entity: sensor.childrens_room_lumi_power
-                  secondary_info: last-changed
-                  name: Battery
+                  show_state: false
+                  entities:
+                    - entity: sensor.childrens_room_lumi_temperature
+                      name: Temperature
+                    - entity: sensor.childrens_room_lumi_humidity
+                      name: Humidity
+                    - entity: sensor.childrens_room_lumi_power
+                      name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
                   text: Lights
@@ -290,15 +302,18 @@ cards:
                 state_color: true
                 show_header_toggle: true
               entities:
-                - entity: sensor.bathroom_lumi_temperature
+                - type: custom:multiple-entity-row
+                  entity: sensor.bathroom_lumi_temperature
+                  name: Climate
                   secondary_info: last-changed
-                  name: Temperature
-                - entity: sensor.bathroom_lumi_humidity
-                  secondary_info: last-changed
-                  name: Humidity
-                - entity: sensor.bathroom_lumi_power
-                  secondary_info: last-changed
-                  name: Battery
+                  show_state: false
+                  entities:
+                    - entity: sensor.bathroom_lumi_temperature
+                      name: Temperature
+                    - entity: sensor.bathroom_lumi_humidity
+                      name: Humidity
+                    - entity: sensor.bathroom_lumi_power
+                      name: Battery
     card_mod:
       style: |
         ha-card {
