@@ -86,7 +86,7 @@ groups:
     rules:
       - alert: ContainerKilled
         expr: time() - (max by (name, image, job, instance, id) (container_last_seen{image!=""})) > 60
-        for: 0m
+        for: 2m
         annotations:
           title: Container disappeared
           description: Container `{{ '{{ $labels.name }}' }}` was not seen in the last 60 seconds!
@@ -99,7 +99,7 @@ groups:
     rules:
       - alert: TraefikHigh4xxErrorRateService
         expr: sum(rate(traefik_service_requests_total{code=~"4.*"}[3m])) by (service) / sum(rate(traefik_service_requests_total[3m])) by (service) * 100 > 5
-        for: 1m
+        for: 2m
         annotations:
           title: High 4xx error rate by service
           description: Service error rate (4xx) is above 5% for at least 1 minute.
@@ -108,7 +108,7 @@ groups:
           severity: critical
       - alert: TraefikHigh5xxErrorRateService
         expr: sum(rate(traefik_service_requests_total{code=~"5.*"}[3m])) by (service) / sum(rate(traefik_service_requests_total[3m])) by (service) * 100 > 5
-        for: 1m
+        for: 2m
         annotations:
           title: High 5xx error rate by service
           description: Service error rate (5xx) is above 5% for at least 1 minute.
@@ -121,7 +121,7 @@ groups:
     rules:
       - alert: InternetDownloadSlow
         expr: avg_over_time(speedtest_download[20m]) < 20
-        for: 0m
+        for: 2m
         annotations:
           title: Internet download slow
           description: Download speed is currently {{ '{{ humanize $value }}' }} Mbps.
@@ -130,7 +130,7 @@ groups:
           severity: warning
       - alert: InternetUploadSlow
         expr: avg_over_time(speedtest_upload[20m]) < 10
-        for: 0m
+        for: 2m
         annotations:
           title: Internet upload slow
           description: Upload speed is currently {{ '{{ humanize $value }}' }} Mbps.
