@@ -22,7 +22,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 28,
-  "iteration": 1628934816996,
+  "iteration": 1628947360079,
   "links": [],
   "panels": [
     {
@@ -732,7 +732,6 @@
               "mode": "line+area"
             }
           },
-          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -792,8 +791,16 @@
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Disk Usage",
+          "legendFormat": "Root",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/var/log\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/var/log\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Logs",
+          "refId": "B"
         }
       ],
       "timeFrom": null,
@@ -1185,5 +1192,5 @@
   "timezone": "",
   "title": "Resources",
   "uid": "node-resources",
-  "version": 24
+  "version": 28
 }
