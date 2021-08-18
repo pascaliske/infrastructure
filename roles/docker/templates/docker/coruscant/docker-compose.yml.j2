@@ -26,6 +26,8 @@ services:
     image: amir20/dozzle:latest
     container_name: dozzle
     restart: always
+    depends_on:
+      - traefik
     expose:
       - 8080
     environment:
@@ -45,6 +47,8 @@ services:
     container_name: portainer
     restart: unless-stopped
     command: --host tcp://docker-proxy:2375
+    depends_on:
+      - traefik
     expose:
       - 9000
     volumes:
@@ -142,6 +146,8 @@ services:
     image: pascaliske/traefik-errors:latest
     container_name: traefik-errors
     restart: unless-stopped
+    depends_on:
+      - traefik
     expose:
       - 8080
     environment:
@@ -167,6 +173,8 @@ services:
       interval: 30s
       timeout: 3s
       retries: 30
+    depends_on:
+      - traefik
     expose:
       - 9091
     environment:
@@ -200,6 +208,8 @@ services:
       interval: 30s
       timeout: 3s
       retries: 30
+    depends_on:
+      - traefik
     expose:
       - 9090
     environment:
@@ -235,6 +245,7 @@ services:
       timeout: 3s
       retries: 30
     depends_on:
+      - traefik
       - prometheus
     expose:
       - 9093
@@ -265,6 +276,7 @@ services:
       timeout: 3s
       retries: 30
     depends_on:
+      - traefik
       - prometheus
     expose:
       - 3000
@@ -291,6 +303,8 @@ services:
     image: grafana/loki:latest
     container_name: loki
     restart: unless-stopped
+    depends_on:
+      - traefik
     expose:
       - 3100
     volumes:
@@ -408,6 +422,8 @@ services:
       interval: 30s
       timeout: 3s
       retries: 30
+    depends_on:
+      - traefik
     expose:
       - 8080
     environment:
@@ -431,6 +447,7 @@ services:
     container_name: unifi
     restart: unless-stopped
     depends_on:
+      - traefik
       - pihole
     ports:
       - '3478:3478/udp' # stun
@@ -475,6 +492,7 @@ services:
     hostname: pihole
     restart: unless-stopped
     depends_on:
+      - traefik
       - cloudflared
     ports:
       - '53:53'
@@ -567,6 +585,8 @@ services:
     container_name: vaultwarden
     restart: unless-stopped
     user: '{{ ansible_user_uid }}:{{ ansible_user_gid }}'
+    depends_on:
+      - traefik
     environment:
       TZ: '{{ timezone }}'
       ROCKET_PORT: 8080
