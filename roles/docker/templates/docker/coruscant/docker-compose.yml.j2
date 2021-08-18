@@ -327,6 +327,8 @@ services:
     image: grafana/promtail:latest
     container_name: promtail
     restart: unless-stopped
+    depends_on:
+      - loki
     volumes:
       - /var/log:/var/log:ro
       - '{{ root_path }}/promtail/config.yml:/etc/promtail/config.yml'
