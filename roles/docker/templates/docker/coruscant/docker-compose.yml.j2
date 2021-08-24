@@ -473,19 +473,6 @@ services:
       - traefik.http.routers.vaultwarden-websocket.tls.certresolver=digitalocean
       - traefik.http.routers.vaultwarden-websocket.middlewares=auth@file,security@file,error-pages@file
       - traefik.http.services.vaultwarden-websocket-{{ inventory_hostname }}.loadbalancer.server.port=3012
-  dyndns:
-    image: tunix/digitalocean-dyndns-armv7:latest
-    container_name: dyndns
-    restart: unless-stopped
-    depends_on:
-      - cloudflared
-    environment:
-      TZ: '{{ timezone }}'
-      DIGITALOCEAN_TOKEN: '{{ vault.digital_ocean.token }}'
-      DOMAIN: '{{ domain }}'
-      NAME: vpn
-    networks:
-      - dns
 networks:
   proxy:
     ipam:

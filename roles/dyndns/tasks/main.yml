@@ -1,0 +1,34 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ root_path }}/{{ item }}'
+    state: directory
+  loop:
+    - '{{ role_name }}'
+
+# namespace
+- name: Create a namespace
+  kubernetes.core.k8s:
+    kind: Namespace
+    name: '{{ role_name }}'
+    state: present
+
+# dyndns
+- name: Add helm repo
+  kubernetes.core.helm_repository:
+    name: k8s-at-home
+    repo_url: https://k8s-at-home.com/charts
+
+- name: Create chart values file
+  template:
+    src: '{{ role_name }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ role_name }}/values.yml'
+
+- name: Apply helm chart with values file
+  kubernetes.core.helm:
+    name: '{{ role_name }}'
+    chart_ref: 'k8s-at-home/digitalocean-dyndns'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ role_name }}/values.yml'

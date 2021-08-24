@@ -8,6 +8,9 @@
     - role: k3s
       tags:
         - k3s
+    - role: dyndns
+      tags:
+        - dyndns
     - role: traefik
       tags:
         - traefik

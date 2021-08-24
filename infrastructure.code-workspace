@@ -27,6 +27,10 @@
             "name": "roles/docker"
         },
         {
+            "path": "./roles/dyndns",
+            "name": "roles/dyndns"
+        },
+        {
             "path": "./roles/fail2ban",
             "name": "roles/fail2ban"
         },
