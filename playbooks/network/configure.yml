@@ -11,6 +11,9 @@
     - role: traefik
       tags:
         - traefik
+    - role: portainer
+      tags:
+        - portainer
     - role: autorestic
       tags:
         - autorestic

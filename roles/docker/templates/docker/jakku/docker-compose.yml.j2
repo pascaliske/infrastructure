@@ -35,26 +35,6 @@ services:
       - traefik.http.routers.dozzle.tls=true
       - traefik.http.routers.dozzle.tls.certresolver=http
       - traefik.http.routers.dozzle.middlewares=auth@file,security@file,error-pages@file
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    restart: unless-stopped
-    command: --host tcp://docker-proxy:2375
-    expose:
-      - 9000
-    volumes:
-      - portainer:/data
-    networks:
-      - proxy
-      - docker
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.portainer.rule=Host(`portainer.{{ domain }}`)
-      - traefik.http.routers.portainer.entrypoints=https
-      - traefik.http.routers.portainer.tls=true
-      - traefik.http.routers.portainer.tls.certresolver=http
-      - traefik.http.routers.portainer.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.portainer-{{ inventory_hostname }}.loadbalancer.server.port=9000
   glances:
     image: nicolargo/glances:alpine-latest
     container_name: glances
