@@ -79,6 +79,10 @@
             "name": "roles/traefik"
         },
         {
+            "path": "./roles/unifi",
+            "name": "roles/unifi"
+        },
+        {
             "path": "./roles/vaultwarden",
             "name": "roles/vaultwarden"
         }

@@ -38,6 +38,9 @@
     - role: home-assistant
       tags:
         - home-assistant
+    - role: unifi
+      tags:
+        - unifi
     - role: vaultwarden
       tags:
         - vaultwarden

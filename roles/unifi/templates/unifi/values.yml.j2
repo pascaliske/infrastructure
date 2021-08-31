@@ -1,0 +1,34 @@
+image:
+  repository: jacobalberty/unifi
+  tag: latest
+
+env:
+  TZ: '{{ timezone }}'
+  UNIFI_UID: '{{ ansible_user_uid }}'
+  UNIFI_GID: '{{ ansible_user_gid }}'
+
+service:
+  main:
+    ports:
+      portal-http:
+        enabled: true
+      portal-https:
+        enabled: true
+      controller:
+        enabled: false
+      syslog:
+        enabled: false
+  controller:
+    enabled: true
+    type: NodePort
+    ports:
+      controller-tcp:
+        enabled: true
+        port: 8080
+        nodePort: 8080
+
+persistence:
+  data:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 1Gi

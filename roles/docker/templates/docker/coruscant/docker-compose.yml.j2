@@ -302,50 +302,6 @@ services:
       - monitoring
 
   # services
-  unifi:
-    image: ryansch/unifi-rpi:latest
-    container_name: unifi
-    restart: unless-stopped
-    depends_on:
-      - traefik
-      - pihole
-    ports:
-      - '3478:3478/udp' # stun
-      - '8080:8080' # device <-> controller communication
-      - '8443:8443' # controller ui
-      - '8880:8880' # http portal redirect
-      - '8843:8843' # https portal redirect
-      - '6789:6789' # mobile speed test
-      - '10001:10001/udp' # device discovery
-    volumes:
-      - '{{ root_path }}/unifi/config:/var/lib/unifi'
-      - '{{ root_path }}/unifi/log:/usr/lib/unifi/logs'
-      - '{{ root_path }}/unifi/log2:/var/log/unifi'
-      - '{{ root_path }}/unifi/run:/usr/lib/unifi/run'
-      - '{{ root_path }}/unifi/run2:/run/unifi'
-      - '{{ root_path }}/unifi/work:/usr/lib/unifi/work'
-    networks:
-      - proxy
-      - monitoring
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.unifi.rule=Host(`unifi.{{ domain }}`)
-      - traefik.http.routers.unifi.entrypoints=https
-      - traefik.http.routers.unifi.tls=true
-      - traefik.http.routers.unifi.tls.certresolver=digitalocean
-      - traefik.http.routers.unifi.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.unifi-{{ inventory_hostname }}.loadbalancer.server.scheme=https
-      - traefik.http.services.unifi-{{ inventory_hostname }}.loadbalancer.server.port=8443
-      - traefik.http.middlewares.unifi.headers.sslredirect=true
-      - traefik.http.middlewares.unifi.headers.stsSeconds=315360000
-      - traefik.http.middlewares.unifi.headers.browserXSSFilter=true
-      - traefik.http.middlewares.unifi.headers.contentTypeNosniff=true
-      - traefik.http.middlewares.unifi.headers.forceSTSHeader=true
-      - traefik.http.middlewares.unifi.headers.STSIncludeSubdomains=true
-      - traefik.http.middlewares.unifi.headers.STSPreload=true
-      - traefik.http.middlewares.unifi.headers.frameDeny=true
-      - traefik.http.middlewares.unifi.headers.accessControlAllowCredentials=true
-      - traefik.http.middlewares.unifi.headers.SSLHost=unifi.{{ domain }}
   cloudflared:
     image: crazymax/cloudflared:latest
     container_name: cloudflared
