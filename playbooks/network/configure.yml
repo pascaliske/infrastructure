@@ -38,3 +38,6 @@
     - role: home-assistant
       tags:
         - home-assistant
+    - role: vaultwarden
+      tags:
+        - vaultwarden

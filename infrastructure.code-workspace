@@ -77,6 +77,10 @@
         {
             "path": "./roles/traefik",
             "name": "roles/traefik"
+        },
+        {
+            "path": "./roles/vaultwarden",
+            "name": "roles/vaultwarden"
         }
     ],
     "settings": {

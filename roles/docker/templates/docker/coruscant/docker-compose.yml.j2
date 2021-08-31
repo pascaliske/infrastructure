@@ -426,39 +426,6 @@ services:
       monitoring: {}
       dns:
         ipv4_address: 172.20.3.2
-  vaultwarden:
-    image: vaultwarden/server:alpine
-    container_name: vaultwarden
-    restart: unless-stopped
-    user: '{{ ansible_user_uid }}:{{ ansible_user_gid }}'
-    depends_on:
-      - traefik
-    environment:
-      TZ: '{{ timezone }}'
-      ROCKET_PORT: 8080
-      SIGNUPS_VERIFY: 'true'
-      SIGNUPS_DOMAINS_WHITELIST: '{{ domain }}'
-      DISABLE_ADMIN_TOKEN: 'true'
-    volumes:
-      - vaultwarden:/data
-    networks:
-      - proxy
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.vaultwarden.rule=Host(`vault.{{ domain }}`)
-      - traefik.http.routers.vaultwarden.entrypoints=https
-      - traefik.http.routers.vaultwarden.service=vaultwarden-{{ inventory_hostname }}
-      - traefik.http.routers.vaultwarden.tls=true
-      - traefik.http.routers.vaultwarden.tls.certresolver=digitalocean
-      - traefik.http.routers.vaultwarden.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.vaultwarden-{{ inventory_hostname }}.loadbalancer.server.port=8080
-      - traefik.http.routers.vaultwarden-websocket.rule=Host(`vault.{{ domain }}`) && Path(`/notifications/hub`)
-      - traefik.http.routers.vaultwarden-websocket.entrypoints=https
-      - traefik.http.routers.vaultwarden-websocket.service=vaultwarden-websocket-{{ inventory_hostname }}
-      - traefik.http.routers.vaultwarden-websocket.tls=true
-      - traefik.http.routers.vaultwarden-websocket.tls.certresolver=digitalocean
-      - traefik.http.routers.vaultwarden-websocket.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.vaultwarden-websocket-{{ inventory_hostname }}.loadbalancer.server.port=3012
 networks:
   proxy:
     ipam:
@@ -485,4 +452,3 @@ volumes:
   alertmanager:
   grafana:
   loki:
-  vaultwarden:
