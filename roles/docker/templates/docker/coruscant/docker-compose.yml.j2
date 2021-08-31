@@ -107,41 +107,6 @@ services:
       - NET_ADMIN
       - NET_RAW
 
-  # proxy
-  authelia:
-    image: authelia/authelia
-    container_name: authelia
-    restart: unless-stopped
-    healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:9091 || exit 1
-      interval: 30s
-      timeout: 3s
-      retries: 30
-    depends_on:
-      - traefik
-    expose:
-      - 9091
-    environment:
-      TZ: '{{ timezone }}'
-      PUID: {{ ansible_user_uid }}
-      PGID: {{ ansible_user_gid }}
-    volumes:
-      - /var/log/authelia:/var/log
-      - '{{ root_path }}/authelia:/config'
-    networks:
-      - proxy
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.authelia.rule=Host(`auth.{{ domain }}`)
-      - traefik.http.routers.authelia.entrypoints=https
-      - traefik.http.routers.authelia.tls=true
-      - traefik.http.routers.authelia.tls.certresolver=digitalocean
-      - traefik.http.routers.authelia.middlewares=security@file,error-pages@file,authelia-headers
-      - traefik.http.middlewares.authelia-headers.headers.browserXssFilter=true
-      - traefik.http.middlewares.authelia-headers.headers.customResponseHeaders.Cache-Control=no-store
-      - traefik.http.middlewares.authelia-headers.headers.customResponseHeaders.Pragma=no-cache
-      - traefik.http.middlewares.authelia-headers.headers.customFrameOptionsValue=SAMEORIGIN
-
   # monitoring
   prometheus:
     image: prom/prometheus:latest

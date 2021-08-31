@@ -1,0 +1,51 @@
+domain: '{{ domain }}'
+
+service:
+  port: 80
+
+ingress:
+  enabled: false
+
+configMap:
+  enabled: true
+  existingConfigMap: '{{ role_name }}-config'
+  authentication_backend:
+    ldap:
+      enabled: false
+  storage:
+    postgres:
+      enabled: false
+
+persistence:
+  enabled: true
+
+secret:
+  jwt:
+    filename: JWT_TOKEN
+    key: JWT_TOKEN
+    value: '{{ vault.auth.jwt_secret }}'
+  session:
+    filename: SESSION_ENCRYPTION_KEY
+    key: SESSION_ENCRYPTION_KEY
+    value: '{{ vault.auth.session_secret }}'
+  smtp:
+    filename: SMTP_PASSWORD
+    key: SMTP_PASSWORD
+    value: '{{ vault.smtp.accounts.auth.password }}'
+
+pod:
+  env:
+    - name: TZ
+      value: '{{ timezone }}'
+  extraVolumeMounts:
+    - name: users
+      mountPath: /users.yaml
+      subPath: users.yaml
+      readOnly: true
+  extraVolumes:
+    - name: users
+      configMap:
+        name: '{{ role_name }}-users'
+        items:
+          - key: users.yaml
+            path: users.yaml

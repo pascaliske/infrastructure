@@ -1,0 +1,75 @@
+{# host specific vars #}
+{%- set vars = lookup('vars', inventory_hostname) -%}
+
+{# rules block #}
+{%- macro rules(indent=2) -%}
+  {%- set output = { 'default_policy': 'one_factor', 'rules': [] } -%}
+
+  {# build rules #}
+  {%- if vars.rules is defined and vars.rules | length > 0 -%}
+    {%- for rule in vars.rules -%}
+      {%- set result = {} -%}
+      {%- set domains = [] -%}
+
+      {# modify domains #}
+      {%- for service in rule.services -%}
+        {{- domains.append(service ~ '.' ~ domain) -}}
+      {%- endfor -%}
+
+      {# update result #}
+      {%- if rule.resources is defined and rule.resources | length > 0 -%}
+        {%- set _ = result.update({ 'policy': rule.policy, 'domain': domains, 'resources': rule.resources, }) -%}
+      {%- else -%}
+        {%- set _ = result.update({ 'policy': rule.policy, 'domain': domains }) -%}
+      {%- endif -%}
+
+      {# append result to rules #}
+      {{- output.rules.append(result) -}}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {# return result #}
+  {{- output | to_nice_yaml(indent=indent) -}}
+{%- endmacro -%}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ role_name }}-config'
+  namespace: '{{ role_name }}'
+data:
+  configuration.yaml: |
+    theme: dark
+    default_redirection_url: '{{ vars.default_redirection_url }}'
+    server:
+      host: 0.0.0.0
+      port: 9091
+    # log:
+    #   file_path: /var/log/authelia.log
+    totp:
+      issuer: '{{ domain }}'
+    authentication_backend:
+      disable_reset_password: true
+      file:
+        path: /users.yaml
+        password:
+          algorithm: sha512
+          memory: 128
+    session:
+      domain: '{{ domain }}'
+      expiration: 42h
+      inactivity: 15m
+    storage:
+      local:
+        path: /config/db.sqlite3
+    notifier:
+      smtp:
+        host: '{{ vault.smtp.host }}'
+        port: '{{ vault.smtp.port }}'
+        username: '{{ vault.smtp.accounts.auth.email }}'
+        sender: '{{ vault.smtp.accounts.auth.email }}'
+        subject: "[auth@{{ inventory_hostname }}] {title}"
+        startup_check_address: '{{ vault.auth.username }}'
+    access_control:
+      {{+ rules(indent=2) | indent(6) }}
