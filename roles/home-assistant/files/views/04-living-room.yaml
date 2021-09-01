@@ -42,10 +42,20 @@ cards:
               state_color: true
               show_header_toggle: true
               entities:
-                - entity: switch.lampe
+                - type: custom:multiple-entity-row
+                  entity: switch.lampe
                   secondary_info: last-changed
-                - entity: switch.duftlampe
+                  toggle: true
+                  entities:
+                    - entity: sensor.lampe_power
+                      name: false
+                - type: custom:multiple-entity-row
+                  entity: switch.duftlampe
                   secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.duftlampe_power
+                      name: false
     card_mod:
       style: |
         ha-card {
