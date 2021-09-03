@@ -1,21 +1,134 @@
-# common apt packages
-- name: Install common packages
+# configure hostname
+- name: Configure hostname
+  become: yes
+  block:
+    - name: Set the hostname
+      command: hostnamectl set-hostname "{{ inventory_hostname }}"
+    - name: Update /etc/hosts with new hostname
+      lineinfile:
+        path: /etc/hosts
+        line: "127.0.0.1\t{{ inventory_hostname }}"
+        regexp: "^127.0.1.1\traspberrypi$"
+
+# configure static ip
+- name: Configure static ip
+  become: yes
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    line: '{{ item.line }}'
+    regexp: '{{ item.regex }}'
+  loop:
+    - { regex: '^interface eth[0-9]$', line: 'interface eth0' }
+    - { regex: '^static ip_address', line: 'static ip_address={{ vault.ips.controller }}' }
+    - { regex: '^static routers', line: 'static routers={{ vault.ips.router }}' }
+    - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ vault.ips.router }}' }
+  notify: Reboot
+
+# configure locale
+- name: Configure locale
+  become: yes
+  vars:
+    locale: en_US.UTF-8
+  block:
+    - name: Ensure the locale exists
+      locale_gen:
+        name: '{{ locale }}'
+        state: present
+    - name: Set locale as default
+      command: 'localectl set-locale {{ locale }}'
+
+# configure cgroup directives
+- name: Configure cgroup directives
+  become: yes
+  lineinfile:
+    path: /boot/cmdline.txt
+    line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
+    regexp: '((.)+?)(\scgroup_\w+=\w+)*$'
+    backrefs: yes
+  notify: Reboot
+
+# configure boot config
+- name: Configure boot config
+  become: yes
+  lineinfile:
+    path: /boot/config.txt
+    line: "{{ item.key }}{{ '=' ~ item.value if not item.value }}"
+    regexp: "^#?{{ item.key }}="
+  loop: '{{ boot_config | dict2items }}'
+  notify: Reboot
+
+# configure iptables-legacy
+- name: Configure iptables-legacy
+  become: yes
+  block:
+    - name: Flush iptables before changing to iptables-legacy
+      iptables:
+        flush: true
+      changed_when: false
+    - name: Changing to iptables-legacy
+      alternatives:
+        path: /usr/sbin/iptables-legacy
+        name: iptables
+      notify: Reboot
+    - name: Changing to ip6tables-legacy
+      alternatives:
+        path: /usr/sbin/ip6tables-legacy
+        name: ip6tables
+      notify: Reboot
+
+# expand filesystem
+- name: Expand filesystem to fill disk
+  become: yes
+  command: raspi-config --expand-rootfs
+
+# configure log2ram apt repository
+- name: Configure log2ram apt repository
+  become: yes
+  block:
+    - name: Add apt key for log2ram
+      apt_key:
+        url: https://azlux.fr/repo.gpg.key
+        state: present
+    - name: Add apt repository for log2ram
+      apt_repository:
+        repo: deb http://packages.azlux.fr/debian/ buster main
+        filename: azlux
+        state: present
+
+# install common apt packages
+- name: Install common apt packages
   become: yes
   apt:
     name: '{{ item }}'
     update_cache: yes
     state: latest
   loop:
+    - htop
     - curl
     - git
     - vim
+    - unzip
+    - log2ram
+    - python3
+    - python3-pip
+    - avahi-daemon
+  notify: Reboot
 
-# system dependencies for alpine 3.13
-- name: Install dependencies for Alpine 3.13
+# install common pip packages
+- name: Install python packages
+  pip:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - pyyaml
+    - kubernetes
+
+# install system dependencies for alpine 3.13
+- name: Install dependencies for alpine 3.13
   when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
   become: yes
   block:
-    - name: Add signing keys
+    - name: Add signing keys for buster backports
       apt_key:
         keyserver: keyserver.ubuntu.com
         id: '{{ item }}'
@@ -23,19 +136,19 @@
       loop:
         - 04EE7237B7D453EC
         - 648ACFD622F3D138
-    - name: Add buster backports repository
+    - name: Add apt repository for buster backports
       apt_repository:
         repo: deb http://httpredir.debian.org/debian buster-backports main contrib non-free
         filename: debian-backports
         state: present
-    - name: Install dependencies
+    - name: Install libseccomp2 for alpine 3.13
       apt:
         name: libseccomp2
         default_release: buster-backports
         update_cache: yes
         state: latest
 
-# bash aliases
+# setup bash aliases
 - name: Create aliases
   lineinfile:
     path: '{{ home_path }}/.bashrc'
@@ -51,3 +164,14 @@
   template:
     src: vim/.vimrc.j2
     dest: '{{ home_path }}/.vimrc'
+
+# configure avahi-daemon
+- name: Configure avahi-daemon
+  become: yes
+  lineinfile:
+    path: /etc/avahi/avahi-daemon.conf
+    line: '{{ item.line }}'
+    regexp: '{{ item.regex }}'
+  loop:
+    - { regex: '^#?enable-reflector', line: 'enable-reflector=yes' }
+    - { regex: '^#?reflect-ipv', line: 'enable-reflector=yes' }

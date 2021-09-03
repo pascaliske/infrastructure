@@ -47,6 +47,10 @@
             "name": "roles/homer"
         },
         {
+            "path": "./roles/k3s",
+            "name": "roles/k3s"
+        },
+        {
             "path": "./roles/linkding",
             "name": "roles/linkding"
         },
@@ -84,6 +88,7 @@
         ],
         "files.associations": {
             "*.j2": "nunjucks",
+            "*.yml.j2": "helm",
             "*.yaml": "home-assistant",
             "*.yaml.disabled": "home-assistant",
             "*.yaml.example": "home-assistant"

@@ -37,11 +37,14 @@ It also includes the following maintenance containers:
 # clone the repo to your local machine
 git clone https://github.com/pascaliske/infrastructure
 
+# install needed dependencies
+yarn install
+
 # provision target group using ansible
 yarn run play playbooks/{group}/configure.yml
 
-# ssh into target group
-yarn run ssh:{group}
+# ssh into target host
+yarn run ssh {hostname}
 
 # start up services
 docker-compose up --detach
@@ -53,8 +56,8 @@ The integrated watchtower container automatically checks for updates of all cont
 To manually update the containers you can use the following commands:
 
 ```zsh
-# ssh into target group
-yarn run ssh:{group}
+# ssh into target host
+yarn run ssh {hostname}
 
 # pull image updates
 docker-compose pull
