@@ -10,7 +10,7 @@ services:
         subtitle: Metrics visualizer
       - name: Alertmanager
         subtitle: Alert handling
-        logo: assets/logos/prometheus.png
+        logo: prometheus.png
         url: https://alerts.{{ domain }}
       - name: Dozzle
         subtitle: Container logs
@@ -21,27 +21,27 @@ services:
     items:
       - name: UniFi Controller
         subtitle: Network management controller
-        logo: assets/logos/unifi.png
+        logo: unifi.png
         url: https://unifi.{{ domain }}
       - name: Pi-Hole
         subtitle: DNS based ad blocker
         url: https://pihole.{{ domain }}
       - name: FRITZ!Box
         subtitle: Gateway & Firewall
-        logo: assets/logos/fritzbox.png
+        logo: fritzbox.png
         url: http://{{ vault.ips.router }}
       - name: TP-Link Switch 8
         subtitle: 8 port core switch
-        logo: assets/logos/tplink.png
+        logo: tplink.png
         url: http://{{ vault.ips.switch_8p }}
       - name: TP-Link Switch 5
         subtitle: 5 port distribution switch
-        logo: assets/logos/tplink.png
+        logo: tplink.png
         url: http://{{ vault.ips.switch_5p }}
       - name: Synology DS920+
         subtitle: Network Attached Storage
         url: https://{{ vault.ips.synology_nas }}:5001
-        logo: assets/logos/synology.png
+        logo: synology.png
       - name: Gigaset GO
         subtitle: VoIP phone management
         url: http://{{ vault.ips.gigaset }}

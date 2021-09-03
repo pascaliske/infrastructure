@@ -20,7 +20,7 @@ services:
         url: https://git.{{ domain }}
       - name: Code Server
         subtitle: Web based integrated development environment
-        logo: assets/logos/vscode.png
+        logo: vscode.png
         url: https://code.{{ domain }}
   - name: Self Hosted
     icon: fas fa-cloud
@@ -37,7 +37,7 @@ services:
     items:
       - name: UniFi Cloud
         subtitle: Network management controller
-        logo: assets/logos/unifi.png
+        logo: unifi.png
         url: https://network.unifi.ui.com
       - name: Slack
         subtitle: Chat & Notifications

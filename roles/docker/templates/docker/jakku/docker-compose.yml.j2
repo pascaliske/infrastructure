@@ -103,33 +103,6 @@ services:
       - NET_RAW
 
   # services
-  homer:
-    image: b4bz/homer:latest
-    container_name: homer
-    restart: always
-    healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:8080 || exit 1
-      interval: 30s
-      timeout: 3s
-      retries: 30
-    expose:
-      - 8080
-    environment:
-      TZ: '{{ timezone }}'
-      UID: {{ ansible_user_uid }}
-      GID: {{ ansible_user_gid }}
-    volumes:
-      - '{{ root_path }}/homer/assets:/www/assets'
-      - '{{ root_path }}/homer/config.yml:/www/assets/config.yml'
-    networks:
-      - proxy
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.homer.rule=Host(`go.{{ domain }}`)
-      - traefik.http.routers.homer.entrypoints=https
-      - traefik.http.routers.homer.tls=true
-      - traefik.http.routers.homer.tls.certresolver=http
-      - traefik.http.routers.homer.middlewares=security@file,error-pages@file
   gitlab:
     image: gitlab/gitlab-ce:latest
     container_name: gitlab
