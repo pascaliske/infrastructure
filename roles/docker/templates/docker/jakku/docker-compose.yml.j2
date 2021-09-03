@@ -1,22 +1,6 @@
 version: '3.7'
 services:
   # maintenance
-  watchtower:
-    image: containrrr/watchtower:latest
-    container_name: watchtower
-    restart: always
-    environment:
-      TZ: '{{ timezone }}'
-      DOCKER_HOST: tcp://docker-proxy:2375
-      WATCHTOWER_SCHEDULE: '{{ watchtower.schedule | default("0 0 0 * * *") }}'
-      WATCHTOWER_NOTIFICATIONS: shoutrrr
-      WATCHTOWER_NOTIFICATIONS_LEVEL: '{{ watchtower.slack_level }}'
-      WATCHTOWER_NOTIFICATION_URL: '{{ watchtower.slack_url }}'
-      WATCHTOWER_NOTIFICATION_TEMPLATE: '{{ watchtower.slack_template }}'
-      WATCHTOWER_CLEANUP: '{{ watchtower.cleanup | default(true) }}'
-      WATCHTOWER_DEBUG: '{{ watchtower.debug | default(false) }}'
-    networks:
-      - docker
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle

@@ -8,6 +8,9 @@
     - role: k3s
       tags:
         - k3s
+    - role: keel
+      tags:
+        - keel
     - role: dyndns
       tags:
         - dyndns

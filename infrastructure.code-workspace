@@ -55,6 +55,10 @@
             "name": "roles/k3s"
         },
         {
+            "path": "./roles/keel",
+            "name": "roles/keel"
+        },
+        {
             "path": "./roles/linkding",
             "name": "roles/linkding"
         },

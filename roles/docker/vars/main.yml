@@ -11,13 +11,3 @@ docker:
     log-driver: loki
     log-opts:
       loki-url: 'https://loki.{{ domain }}/loki/api/v1/push'
-
-watchtower:
-  schedule: '0 0 0 * * *'
-  slack_level: info
-  slack_url: "slack://watchtower@{{ vault.watchtower.slack.tokens }}"
-  slack_template: "{{ '{{range .}}[' ~ inventory_hostname ~ '] {{.Message}}{{println}}{{end}}' }}"
-  http_api_token: "{{ vault.watchtower.http_api_token }}"
-  http_api_metrics: "true"
-  cleanup: "true"
-  debug: "false"

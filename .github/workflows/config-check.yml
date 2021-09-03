@@ -14,8 +14,6 @@ jobs:
         run: |
           cat << EOF > variables.json
           vault:
-            watchtower:
-              http_api_token: ''
             home_assistant:
               access_token: ''
           EOF
