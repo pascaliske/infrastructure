@@ -1,14 +1,21 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ role_name }}/{{ item }}'
+    path: '{{ root_path }}/{{ item }}'
     state: directory
   loop:
-    - custom_components
-    - themes
-    - www
+    - '{{ role_name }}'
+    - '{{ role_name }}/themes'
+    - '{{ role_name }}/www'
 
-# config files
+# namespace
+- name: Create a namespace
+  kubernetes.core.k8s:
+    kind: Namespace
+    name: '{{ role_name }}'
+    state: present
+
+# configuration
 - name: Copy Home Assistant config files
   synchronize:
     src: ../files/{{ item }}.yaml
@@ -34,14 +41,14 @@
     - views
   notify: Reload Home Assistant Core
 
-# secrets
+# configuration / secrets
 - name: Copy Home Assistant secrets to config directory
   template:
     src: home-assistant/secrets.yml.j2
     dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
   notify: Reload Home Assistant Core
 
-# themes
+# configuration / themes
 - name: Download themes into theme directory
   block:
     - name: Download theme into theme directory
@@ -51,7 +58,7 @@
       loop: '{{ themes.url }}'
   notify: Reload Home Assistant UI
 
-# cards
+# configuration / cards
 - name: Clone cards into www directory
   block:
     - name: Clone card into www directory
@@ -77,18 +84,28 @@
       loop: '{{ cards.url }}'
   notify: Reload Home Assistant UI
 
-# components
-- name: Download HACS components into custom_components directory
-  block:
-    - name: Ensure component folders exist
-      file:
-        path: '{{ root_path }}/{{ role_name }}/custom_components/{{ item.repo }}'
-        state: directory
-      loop: '{{ components.url }}'
-    - name: Download component into components directory
-      unarchive:
-        src: 'https://github.com/{{ item.user }}/{{ item.repo }}/releases/latest/download/{{ item.file | default(item.repo) }}.zip'
-        dest: '{{ root_path }}/{{ role_name }}/custom_components/{{ item.repo }}'
-        remote_src: yes
-      loop: '{{ components.url }}'
-  notify: Reload Home Assistant UI
+# home-assistant
+- name: Add helm repo
+  kubernetes.core.helm_repository:
+    name: k8s-at-home
+    repo_url: https://k8s-at-home.com/charts
+
+- name: Create chart values file
+  template:
+    src: '{{ role_name }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ role_name }}/values.yml'
+
+- name: Apply helm chart with values file
+  kubernetes.core.helm:
+    name: '{{ role_name }}'
+    chart_ref: 'k8s-at-home/{{ role_name }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ role_name }}/values.yml'
+
+# route
+- name: Create ingress route
+  kubernetes.core.k8s:
+    state: present
+    template: '{{ role_name }}/route.yml.j2'

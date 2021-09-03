@@ -16,6 +16,3 @@ cards:
     - { user: 'AitorDB', repo: 'home-assistant-sun-card' }
     - { user: 'iantrich', repo: 'text-divider-row' }
     - { user: 'kalkih', repo: 'mini-graph-card', file: 'mini-graph-card-bundle' }
-components:
-  url:
-    - { user: 'custom-components', repo: 'breaking_changes' }

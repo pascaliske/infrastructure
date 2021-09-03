@@ -426,20 +426,6 @@ services:
       monitoring: {}
       dns:
         ipv4_address: 172.20.3.2
-  home-assistant:
-    image: homeassistant/home-assistant:2021.8
-    container_name: home-assistant
-    restart: unless-stopped
-    network_mode: host
-    environment:
-      TZ: '{{ timezone }}'
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - '{{ root_path }}/home-assistant:/config'
-    dns:
-      - 127.0.0.1
-    devices:
-      - /dev/ttyACM0:/dev/ttyACM0
   vaultwarden:
     image: vaultwarden/server:alpine
     container_name: vaultwarden

@@ -1,0 +1,37 @@
+image:
+  repository: homeassistant/home-assistant
+  tag: '2021.8'
+
+env:
+  TZ: '{{ timezone }}'
+
+service:
+  homekit:
+    enabled: true
+    type: NodePort
+    ports:
+      homekit-tcp:
+        enabled: true
+        port: 21063
+        nodePort: 21063
+        protocol: TCP
+      homekit-udp:
+        enabled: true
+        port: 5353
+        nodePort: 5353
+        protocol: UDP
+
+# needed for zigbee usb access
+securityContext:
+  privileged: true
+
+persistence:
+  config:
+    enabled: true
+    type: hostPath
+    hostPath: '{{ root_path }}/{{ role_name }}'
+    mountPath: /config
+  usb:
+    enabled: true
+    type: hostPath
+    hostPath: /dev/ttyACM0

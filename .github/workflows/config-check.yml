@@ -83,7 +83,7 @@ jobs:
         run: |
           sed -E -i 's/!secret ([a-z0-9_]+)/"\1"/' roles/home-assistant/files/*.yaml
           sed -E -i 's/!secret ([a-z0-9_]+)/"\1"/' roles/home-assistant/files/**/*.yaml
-          sed -i 's/breaking_changes/# breaking_changes/g' roles/home-assistant/files/integrations/core.yaml
+          mv roles/home-assistant/files/integrations/homekit.yaml{,.disabled}
           mv roles/home-assistant/files/integrations/http.yaml{,.disabled}
           mv roles/home-assistant/files/integrations/withings.yaml{,.disabled}
           mv roles/home-assistant/files/automations/battery-check.yaml{,.disabled}

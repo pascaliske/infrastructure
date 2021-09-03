@@ -26,6 +26,7 @@ rules:
       - loki
   - policy: bypass
     resources:
+      - /api/services
       - /api/websocket
     services:
       - homeassistant

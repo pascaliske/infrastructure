@@ -1,7 +1,7 @@
 ---
 - name: Reload Home Assistant Core
   uri:
-    url: 'https://{{ vault.ips.controller }}:8123/api/services/{{ item | replace(".", "/") }}'
+    url: 'https://homeassistant.{{ domain }}/api/services/{{ item | replace(".", "/") }}'
     method: POST
     body_format: json
     validate_certs: false
@@ -15,7 +15,7 @@
     - template.reload
 - name: Reload Home Assistant UI
   uri:
-    url: 'https://{{ vault.ips.controller }}:8123/api/services/{{ item | replace(".", "/") }}'
+    url: 'https://homeassistant.{{ domain }}/api/services/{{ item | replace(".", "/") }}'
     method: POST
     body_format: json
     validate_certs: false
