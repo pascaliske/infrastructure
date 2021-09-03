@@ -1092,7 +1092,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Reverse Proxy",
-  "uid": "network-reverse-proxy",
+  "title": "Ingress",
+  "uid": "ingress",
   "version": 26
 }

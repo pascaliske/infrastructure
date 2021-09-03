@@ -308,6 +308,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Fuel Prices",
-  "uid": "home-assistant-fuel-prices",
+  "uid": "fuel-prices",
   "version": 23
 }

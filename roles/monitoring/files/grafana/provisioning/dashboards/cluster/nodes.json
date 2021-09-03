@@ -21,8 +21,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 2,
-  "id": 28,
-  "iteration": 1628947360079,
+  "id": 17,
+  "iteration": 1630919571105,
   "links": [],
   "panels": [
     {
@@ -35,8 +35,6 @@
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
-            "axisSoftMax": 100,
-            "axisSoftMin": 0,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 20,
@@ -64,7 +62,7 @@
           },
           "mappings": [],
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
                 "color": "transparent",
@@ -110,7 +108,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[$interval])) * 100)",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}[$interval])) * 100)",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Usage",
@@ -118,7 +116,7 @@
         },
         {
           "exemplar": true,
-          "expr": "avg by (instance) (irate(node_cpu_seconds_total{mode=\"iowait\"}[$interval])) * 100",
+          "expr": "avg by (instance) (irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"iowait\"}[$interval])) * 100",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "IOwait",
@@ -214,7 +212,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg by (instance) (node_hwmon_temp_celsius)",
+          "expr": "avg by (instance) (node_hwmon_temp_celsius{instance=~\"$node\"})",
           "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Actual",
@@ -222,7 +220,7 @@
         },
         {
           "exemplar": true,
-          "expr": "avg by (instance) (avg_over_time(node_hwmon_temp_celsius[$interval]))",
+          "expr": "avg by (instance) (avg_over_time(node_hwmon_temp_celsius{instance=~\"$node\"}[$interval]))",
           "hide": false,
           "interval": "",
           "intervalFactor": 3,
@@ -278,11 +276,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.1",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "node_time_seconds - node_boot_time_seconds",
+          "expr": "node_time_seconds{instance=~\"$node\"} - node_boot_time_seconds{instance=~\"$node\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -343,11 +341,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.1",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(node_load1) by (node) / count(node_cpu_seconds_total{mode=\"idle\"}) by (node) * 100",
+          "expr": "sum(node_load1{instance=~\"$node\"}) by (node) / count(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}) by (node) * 100",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
@@ -409,11 +407,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.1",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(node_load5) by (node) / count(node_cpu_seconds_total{mode=\"idle\"}) by (node) * 100",
+          "expr": "sum(node_load5{instance=~\"$node\"}) by (node) / count(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}) by (node) * 100",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
@@ -475,11 +473,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.1",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(node_load15) by (node) / count(node_cpu_seconds_total{mode=\"idle\"}) by (node) * 100",
+          "expr": "sum(node_load15{instance=~\"$node\"}) by (node) / count(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}) by (node) * 100",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
@@ -576,14 +574,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "100 * (1 - ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes))",
+          "expr": "100 * (1 - ((node_memory_MemFree_bytes{instance=~\"$node\"} + node_memory_Cached_bytes{instance=~\"$node\"} + node_memory_Buffers_bytes{instance=~\"$node\"}) / node_memory_MemTotal_bytes{instance=~\"$node\"}))",
           "interval": "",
           "legendFormat": "Actual",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree_bytes[$interval]) + avg_over_time(node_memory_Cached_bytes[$interval]) + avg_over_time(node_memory_Buffers_bytes[$interval])) / avg_over_time(node_memory_MemTotal_bytes[$interval])))",
+          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree_bytes{instance=~\"$node\"}[$interval]) + avg_over_time(node_memory_Cached_bytes{instance=~\"$node\"}[$interval]) + avg_over_time(node_memory_Buffers_bytes{instance=~\"$node\"}[$interval])) / avg_over_time(node_memory_MemTotal_bytes{instance=~\"$node\"}[$interval])))",
           "hide": false,
           "interval": "",
           "legendFormat": "Average",
@@ -676,7 +674,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "node_procs_running",
+          "expr": "node_procs_running{instance=~\"$node\"}",
           "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Running",
@@ -684,7 +682,7 @@
         },
         {
           "exemplar": true,
-          "expr": "node_procs_blocked",
+          "expr": "node_procs_blocked{instance=~\"$node\"}",
           "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Blocked by I/O",
@@ -787,7 +785,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$node\",mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{instance=~\"$node\",mountpoint=\"/\"})",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
@@ -796,7 +794,7 @@
         },
         {
           "exemplar": true,
-          "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/var/log\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/var/log\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$node\",mountpoint=\"/var/log\"} * 100) / node_filesystem_size_bytes{instance=~\"$node\",mountpoint=\"/var/log\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "Logs",
@@ -883,7 +881,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_receive_bytes_total{device=\"eth0\"}[$interval])) * 8",
+          "expr": "sum by (node, device) (rate(node_network_receive_bytes_total{instance=~\"$node\",device=\"eth0\"}[$interval])) * 8",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{ device }}-in",
@@ -891,7 +889,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_bytes_total{device=\"eth0\"}[$interval])) * 8",
+          "expr": "sum by (node, device) (rate(node_network_transmit_bytes_total{instance=~\"$node\",device=\"eth0\"}[$interval])) * 8",
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
@@ -982,7 +980,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_receive_packets_total{device=\"eth0\"}[$interval]))",
+          "expr": "sum by (node, device) (rate(node_network_receive_packets_total{instance=~\"$node\",device=\"eth0\"}[$interval]))",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{ device }}-in",
@@ -990,7 +988,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_packets_total{device=\"eth0\"}[$interval]))",
+          "expr": "sum by (node, device) (rate(node_network_transmit_packets_total{instance=~\"$node\",device=\"eth0\"}[$interval]))",
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
@@ -1078,14 +1076,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_receive_drop_total{device=\"eth0\"}[$interval]))",
+          "expr": "sum by (node, device) (rate(node_network_receive_drop_total{instance=~\"$node\",device=\"eth0\"}[$interval]))",
           "interval": "",
           "legendFormat": "{{ device }}-in",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{device=\"eth0\"}[$interval]))",
+          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{instance=~\"$node\",device=\"eth0\"}[$interval]))",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ device }}-out",
@@ -1181,6 +1179,33 @@
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "10.0.2.2:9100",
+          "value": "10.0.2.2:9100"
+        },
+        "datasource": null,
+        "definition": "label_values(node_load1, instance)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Node",
+        "multi": false,
+        "name": "node",
+        "options": [],
+        "query": {
+          "query": "label_values(node_load1, instance)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
       }
     ]
   },
@@ -1190,7 +1215,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Resources",
-  "uid": "node-resources",
-  "version": 28
+  "title": "Nodes",
+  "uid": "nodes",
+  "version": 5
 }

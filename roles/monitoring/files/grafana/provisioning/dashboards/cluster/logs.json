@@ -262,6 +262,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Logs",
-  "uid": "docker-logs",
+  "uid": "logs",
   "version": 5
 }

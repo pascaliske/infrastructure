@@ -213,6 +213,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Batteries",
-  "uid": "home-assistant-batteries",
+  "uid": "batteries",
   "version": 21
 }

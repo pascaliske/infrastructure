@@ -499,7 +499,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Resources",
-  "uid": "docker-resources",
+  "title": "Containers",
+  "uid": "containers",
   "version": 10
 }
