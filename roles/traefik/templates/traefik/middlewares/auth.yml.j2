@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth
+  namespace: '{{ role_name }}'
+spec:
+  forwardAuth:
+    address: 'http://authelia.authelia.svc.cluster.local/api/verify?rd=https://auth.{{ domain }}'
+    trustForwardHeader: true
+    authResponseHeaders:
+      - Remote-User
+      - Remote-Groups
+      - Remote-Name
+      - Remote-Email
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth-basic
+  namespace: '{{ role_name }}'
+spec:
+  basicAuth:
+    secret: '{{ role_name }}-basic-auth-secret'

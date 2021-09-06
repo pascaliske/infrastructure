@@ -1,0 +1,106 @@
+# k3s specifics
+image:
+  name: traefik
+
+deployment:
+  enabled: true
+  kind: Deployment
+  replicas: 1
+
+service:
+  enabled: true
+  type: LoadBalancer
+
+ingressRoute:
+  dashboard:
+    enabled: false
+
+persistence:
+  enabled: true
+  path: /data
+  size: 128Mi
+
+# traefik specifics
+globalArguments:
+  - --global.checknewversion=false
+  - --global.sendanonymoususage=false
+
+additionalArguments:
+  # entry points
+  - '--entrypoints.https.http.tls.certresolver=digitalocean'
+
+  # certificates
+  - '--certificatesresolvers.digitalocean.acme.email={{ vault.auth.email }}'
+  - '--certificatesresolvers.digitalocean.acme.storage=/data/acme.json'
+  - '--certificatesresolvers.digitalocean.acme.dnschallenge.provider=digitalocean'
+  - '--certificatesresolvers.digitalocean.acme.dnschallenge.resolvers=1.1.1.1'
+
+  # misc
+  - '--providers.kubernetescrd.allowCrossNamespace=true'
+  - '--serverstransport.insecureskipverify'
+  - '--ping.entrypoint=traefik'
+
+providers:
+  kubernetesCRD:
+    enabled: true
+  kubernetesIngress:
+    enabled: true
+
+ports:
+  # services
+  http:
+    port: 9080
+    expose: true
+    exposedPort: 80
+    redirectTo: https
+  https:
+    port: 9443
+    expose: true
+    exposedPort: 443
+
+  # metrics
+  traefik:
+    port: 9000
+    expose: false
+    exposedPort: 9000
+
+  # dns
+  dns-tcp:
+    port: 5053
+    expose: true
+    exposedPort: 53
+    protocol: TCP
+  dns-udp:
+    port: 5553
+    expose: true
+    exposedPort: 53
+    protocol: UDP
+
+  # disable default entry points
+  web: null
+  websecure: null
+  metrics: null
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: DO_API_EMAIL
+    valueFrom:
+      secretKeyRef:
+        name: '{{ role_name }}-digital-ocean-secret'
+        key: email
+  - name: DO_AUTH_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: '{{ role_name }}-digital-ocean-secret'
+        key: authToken
+
+logs:
+  access:
+    enabled: true
+    filters:
+      statuscodes: 400-599
+
+metrics:
+  prometheus:
+    entryPoint: traefik

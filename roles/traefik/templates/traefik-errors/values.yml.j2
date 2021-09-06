@@ -1,0 +1,23 @@
+image:
+  repository: pascaliske/traefik-errors
+  tag: latest
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: NGINX_PORT
+    value: 8080
+
+ports:
+  http:
+    enabled: true
+    port: 8080
+    protocol: TCP
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi

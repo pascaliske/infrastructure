@@ -1,0 +1,22 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: '{{ role_name }}'
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`{{ role_name }}.{{ domain }}`)
+      services:
+        - kind: TraefikService
+          name: api@internal
+      middlewares:
+        - name: auth
+          namespace: '{{ role_name }}'
+        - name: security
+          namespace: '{{ role_name }}'
+        - name: error-pages
+          namespace: '{{ role_name }}'

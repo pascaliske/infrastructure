@@ -1,19 +1,76 @@
+# directories
 - name: Ensure directories exist
   file:
     path: '{{ root_path }}/{{ item }}'
     state: directory
   loop:
-    - traefik
-    - traefik/dynamic
-    - authelia
+    - '{{ role_name }}'
+    - '{{ role_name }}-errors'
 
-- name: Create configuration file
-  template:
-    src: traefik/traefik.yml.j2
-    dest: '{{ root_path }}/traefik/traefik.yml'
+# namespace
+- name: Create a namespace
+  kubernetes.core.k8s:
+    kind: Namespace
+    name: '{{ role_name }}'
+    state: present
 
-- name: Create dynamic configuration files
+# configuration
+- name: Create secret manifests
+  kubernetes.core.k8s:
+    state: present
+    template: '{{ role_name }}/{{ item }}.yml.j2'
+  loop:
+    - secrets/basic-auth
+    - secrets/digital-ocean
+
+# traefik + traefik-errors
+- name: Add helm repo
+  kubernetes.core.helm_repository:
+    name: '{{ item.name }}'
+    repo_url: '{{ item.url }}'
+  loop:
+    - { name: 'pascaliske', url: 'https://charts.pascaliske.dev' }
+    - { name: '{{ role_name }}', url: 'https://helm.traefik.io/traefik' }
+
+- name: Create chart values file
   template:
-    src: traefik/dynamic/{{ item }}.yml.j2
-    dest: '{{ root_path }}/traefik/dynamic/{{ item }}.yml'
-  loop: '{{ middlewares.all + middlewares[inventory_hostname] | default([]) }}'
+    src: '{{ item }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ item }}/values.yml'
+  loop:
+    - '{{ role_name }}-errors'
+    - '{{ role_name }}'
+
+- name: Apply helm chart with values file
+  kubernetes.core.helm:
+    name: '{{ item.name }}'
+    chart_ref: '{{ item.repo }}/{{ item.name }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ item.name }}/values.yml'
+  loop:
+    - { name: '{{ role_name }}-errors', repo: 'pascaliske' }
+    - { name: '{{ role_name }}', repo: '{{ role_name }}' }
+
+# create metrics service
+- name: Create metrics service
+  kubernetes.core.k8s:
+    state: present
+    template: '{{ role_name }}/service.yml.j2'
+
+# route
+- name: Create middleware manifests
+  kubernetes.core.k8s:
+    state: present
+    template: '{{ role_name }}/middlewares/{{ item }}.yml.j2'
+  loop:
+    - auth
+    - security
+    - error-pages
+- name: Create ingress routes
+  kubernetes.core.k8s:
+    state: present
+    template: '{{ item }}/route.yml.j2'
+  loop:
+    - '{{ role_name }}-errors'
+    - '{{ role_name }}'
