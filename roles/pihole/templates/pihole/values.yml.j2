@@ -36,8 +36,8 @@ extraEnvVars:
   WEBUIBOXEDLAYOUT: traditional
   TEMPERATUREUNIT: c
 
-# TODO: use local cloudflared deployment
-DNS1: 1.1.1.1 # cloudflared.cloudflared.svc.cluster.local#5053
+# use local cloudflared deployment on node port
+DNS1: '{{ vault.ips.controller }}#5053'
 DNS2: false
 
 dnsmasq:
