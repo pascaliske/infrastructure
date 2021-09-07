@@ -35,6 +35,9 @@
     - role: monitoring
       tags:
         - monitoring
+    - role: cloudflared
+      tags:
+        - cloudflared
     - role: pihole
       tags:
         - pihole

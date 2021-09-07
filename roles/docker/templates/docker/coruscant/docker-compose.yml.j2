@@ -279,23 +279,6 @@ services:
       - 9112
     networks:
       - monitoring
-
-  # services
-  cloudflared:
-    image: crazymax/cloudflared:latest
-    container_name: cloudflared
-    restart: unless-stopped
-    ports:
-      - '5053:5053/udp'
-    expose:
-      - 49312
-    environment:
-      TZ: '{{ timezone }}'
-      TUNNEL_DNS_UPSTREAM: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
-    networks:
-      monitoring: {}
-      dns:
-        ipv4_address: 172.20.3.2
 networks:
   proxy:
     ipam:
