@@ -3,83 +3,25 @@
   file:
     path: '{{ root_path }}/{{ item }}'
     state: directory
-  loop:
-    - prometheus
-    - alertmanager
-    - grafana
-    - grafana/provisioning
-    - loki
-    - promtail
-    - unifi-exporter
+  loop: '{{ services + exporters }}'
 
-# prometheus
-- name: Configure Prometheus
-  vars:
-    item: prometheus
-  block:
-    - name: Create Prometheus config
-      template:
-        src: '{{ item }}/{{ item }}.yml.j2'
-        dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
-      notify: Reload Prometheus
-    - name: Create alert rules config
-      template:
-        src: '{{ item }}/alert.rules.j2'
-        dest: '{{ root_path }}/{{ item }}/alert.rules'
-      notify: Reload Prometheus
+# namespace
+- name: Create a namespace
+  kubernetes.core.k8s:
+    kind: Namespace
+    name: '{{ role_name }}'
+    state: present
 
-# alertmanager
-- name: Configure Alertmanager
-  vars:
-    item: alertmanager
-  block:
-    - name: Create Alertmanager config
-      template:
-        src: '{{ item }}/{{ item }}.yml.j2'
-        dest: '{{ root_path }}/{{ item }}/{{ item }}.yml'
-      notify: Reload Alertmanager
+# services
+- name: Configure services
+  include_tasks: 'services/{{ service }}/main.yml'
+  loop: '{{ services }}'
+  loop_control:
+    loop_var: service
 
-# grafana
-- name: Configure Grafana
-  vars:
-    item: grafana
-  block:
-    - name: Create Grafana config file
-      template:
-        src: '{{ item }}/{{ item }}.ini.j2'
-        dest: '{{ root_path }}/{{ item }}/{{ item }}.ini'
-    - name: Copy Grafana Provisioning files to config directory
-      synchronize:
-        src: ../files/{{ item }}/provisioning
-        dest: '{{ root_path }}/{{ item }}'
-        delete: yes
-
-# loki
-- name: Configure Loki
-  vars:
-    item: loki
-  block:
-    - name: Create Loki config file
-      template:
-        src: '{{ item }}/config.yml.j2'
-        dest: '{{ root_path }}/{{ item }}/config.yml'
-
-# promtail
-- name: Configure Promtail
-  vars:
-    item: promtail
-  block:
-    - name: Create Promtail config file
-      template:
-        src: '{{ item }}/config.yml.j2'
-        dest: '{{ root_path }}/{{ item }}/config.yml'
-
-# unifi-exporter
-- name: Configure UniFi Exporter
-  vars:
-    item: unifi-exporter
-  block:
-    - name: Create UniFi Exporter config
-      template:
-        src: '{{ item }}/unifi-poller.conf.j2'
-        dest: '{{ root_path }}/{{ item }}/unifi-poller.conf'
+# exporters
+- name: Configure exporters
+  include_tasks: 'exporters/{{ exporter }}/main.yml'
+  loop: '{{ exporters }}'
+  loop_control:
+    loop_var: exporter

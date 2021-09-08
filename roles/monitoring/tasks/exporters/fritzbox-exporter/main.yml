@@ -1,0 +1,19 @@
+# fritzbox-exporter
+- name: '{{ exporter }} : Add helm repo'
+  kubernetes.core.helm_repository:
+    name: pascaliske
+    repo_url: https://charts.pascaliske.dev
+
+- name: '{{ exporter }} : Create chart values file'
+  template:
+    src: 'exporters/{{ exporter }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ exporter }}/values.yml'
+
+- name: '{{ exporter }} : Apply helm chart with values file'
+  kubernetes.core.helm:
+    name: '{{ exporter }}'
+    chart_ref: 'pascaliske/{{ exporter }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ exporter }}/values.yml'

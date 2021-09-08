@@ -1,0 +1,9 @@
+env:
+  TZ: '{{ timezone }}'
+  SPEEDTEST_PORT: 9112
+
+service:
+  main:
+    ports:
+      http:
+        port: 9112

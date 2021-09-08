@@ -1,0 +1,14 @@
+---
+services:
+  - prometheus
+  - alertmanager
+  - grafana
+  - loki
+  - promtail
+exporters:
+  - cadvisor
+  - fritzbox-exporter
+  - node-exporter
+  - pihole-exporter
+  - speedtest-exporter
+  - unifi-exporter

@@ -1,0 +1,27 @@
+#
+- name: '{{ exporter }} : Create secrets'
+  kubernetes.core.k8s:
+    state: present
+    template: 'exporters/{{ exporter }}/secrets/{{ item }}.yml.j2'
+  loop:
+    - auth
+
+# pihole-exporter
+- name: '{{ exporter }} : Add helm repo'
+  kubernetes.core.helm_repository:
+    name: '{{ exporter }}'
+    repo_url: https://helm.wyrihaximus.net
+
+- name: '{{ exporter }} : Create chart values file'
+  template:
+    src: 'exporters/{{ exporter }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ exporter }}/values.yml'
+
+- name: '{{ exporter }} : Apply helm chart with values file'
+  kubernetes.core.helm:
+    name: '{{ exporter }}'
+    chart_ref: '{{ exporter }}/pi-hole-exporter'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ exporter }}/values.yml'

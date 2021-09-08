@@ -1,0 +1,26 @@
+# alertmanager
+- name: '{{ service }} : Add helm repo'
+  kubernetes.core.helm_repository:
+    name: prometheus-community
+    repo_url: https://prometheus-community.github.io/helm-charts
+
+- name: '{{ service }} : Create chart values file'
+  template:
+    src: 'services/{{ service }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ service }}/values.yml'
+
+- name: '{{ service }} : Apply helm chart with values file'
+  kubernetes.core.helm:
+    name: '{{ service }}'
+    chart_ref: 'prometheus-community/{{ service }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ service }}/values.yml'
+  notify: Reload Alertmanager
+
+# route
+- name: '{{ service }} : Create ingress route'
+  kubernetes.core.k8s:
+    state: present
+    template: 'services/{{ service }}/route.yml.j2'

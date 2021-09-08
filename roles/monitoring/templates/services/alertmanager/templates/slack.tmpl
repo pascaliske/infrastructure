@@ -41,19 +41,7 @@ good
 {%- endraw -%}
 {%- endset -%}
 
-route:
-  receiver: slack
-
-receivers:
-  - name: slack
-    slack_configs:
-      - channel: '{{ vault.alertmanager.slack.channel }}'
-        username: '{{ vault.alertmanager.slack.username }}'
-        api_url: 'https://hooks.slack.com/services/{{ vault.alertmanager.slack.tokens }}'
-        title: |
-          {{- __title | indent(width=10, first=True) }}
-        text: |
-          {{- __text | indent(width=10, first=True) }}
-        color: |
-          {{- __color | indent(width=10, first=True) }}
-        send_resolved: true
+{# render templates #}
+{{ '{{ define "slack.iske.title" }}' }}{{- __title }}{{ '{{ end }}' }}
+{{ '{{ define "slack.iske.text" }}' }}{{- __text }}{{ '{{ end }}' }}
+{{ '{{ define "slack.iske.color" }}' }}{{- __color }}{{ '{{ end }}' }}

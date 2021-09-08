@@ -1,0 +1,52 @@
+rbac:
+  create: false
+
+serviceAccount:
+  create: false
+
+image:
+  repository: grafana/grafana
+  tag: latest
+
+testFramework:
+  enabled: false
+
+persistence:
+  enabled: true
+
+admin:
+  existingSecret: '{{ service }}-auth-secret'
+  userKey: user
+  passwordKey: password
+
+env:
+  TZ: '{{ timezone }}'
+
+extraVolumeMounts:
+  - name: '{{ service }}-provisioning'
+    mountPath: /etc/grafana/provisioning
+    hostPath: '{{ root_path }}/{{ service }}/provisioning'
+    readOnly: true
+
+plugins:
+  - grafana-piechart-panel
+
+grafana.ini:
+  server:
+    domain: '{{ service }}.{{ domain }}'
+    root_url: '%(protocol)s://%(domain)s:%(http_port)s'
+    serve_from_sub_path: false
+  users:
+    allow_sign_up: false
+    auto_assign_org: true
+    auto_assign_org_role: Viewer
+  auth:
+    disable_signout_menu: true
+  auth.proxy:
+    enabled: true
+    header_name: Remote-User
+    header_property: username
+    headers: 'Name:Remote-Name Email:Remote-Email Groups:Remote-Groups'
+    auto_sign_up: false
+    enable_login_token: true
+    sync_ttl: 60

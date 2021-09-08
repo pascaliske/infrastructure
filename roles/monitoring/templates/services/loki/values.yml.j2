@@ -1,0 +1,25 @@
+image:
+  repository: grafana/loki
+  tag: latest
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+
+config:
+  auth_enabled: false
+  server:
+    http_listen_port: 3100
+    grpc_listen_port: 9096
+
+extraArgs:
+  config.expand-env: true
+
+persistence:
+  enabled: true
+
+rbac:
+  create: false
+
+serviceAccount:
+  create: false

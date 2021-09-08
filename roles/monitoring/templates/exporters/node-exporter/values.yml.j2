@@ -1,0 +1,15 @@
+image:
+  repository: prom/node-exporter
+  tag: latest
+
+fullnameOverride: node-exporter
+
+extraArgs:
+  - --collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)
+  - --no-collector.nvme
+
+serviceAccount:
+  create: false
+
+rbac:
+  create: false

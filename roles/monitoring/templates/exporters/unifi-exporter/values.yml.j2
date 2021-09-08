@@ -1,0 +1,16 @@
+image:
+  repository: golift/unifi-poller
+  tag: latest
+
+global:
+  fullnameOverride: unifi-exporter
+
+env:
+  TZ: '{{ timezone }}'
+  UP_POLLER_DEBUG: false
+  UP_POLLER_QUIET: true
+  UP_UNIFI_DYNAMIC: false
+  UP_UNIFI_DEFAULT_URL: 'https://unifi.unifi.svc.cluster.local:8443'
+  UP_UNIFI_DEFAULT_USER: '{{ vault.unifi.username }}'
+  UP_UNIFI_DEFAULT_PASS: '{{ vault.unifi.password }}'
+  UP_INFLUXDB_DISABLE: true
