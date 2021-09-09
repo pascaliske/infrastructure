@@ -1,63 +1,18 @@
 global:
-  scrape_timeout: 20s
-  scrape_interval: 30s
-  evaluation_interval: 30s
+  scrape_interval: 1m
+  scrape_timeout: 45s
+  evaluation_interval: 1m
 
 rule_files:
   - 'alert.rules'
 
 scrape_configs:
+  # static
   - job_name: prometheus
     static_configs:
       - targets: ['prometheus.monitoring.svc.cluster.local:9090']
 
-  - job_name: network/proxy
-    static_configs:
-      - targets: ['traefik-metrics.traefik.svc.cluster.local:9000']
-
-  - job_name: network/node
-    kubernetes_sd_configs:
-      - role: endpoints
-    relabel_configs:
-      - source_labels: [__meta_kubernetes_endpoints_name]
-        regex: 'node-exporter'
-        action: keep
-
-  - job_name: network/loki
-    static_configs:
-      - targets: ['loki.monitoring.svc.cluster.local:3100']
-
-  # - job_name: network/dockerhost
-  #   static_configs:
-  #     - targets: ['dockerhost:9323']
-
-  - job_name: network/docker
-    static_configs:
-      - targets: ['cadvisor.monitoring.svc.cluster.local:8080']
-
-  - job_name: network/cloudflared
-    static_configs:
-      - targets: ['cloudflared.cloudflared.svc.cluster.local:49312']
-
-  - job_name: network/unifi
-    static_configs:
-      - targets: ['unifi-exporter.monitoring.svc.cluster.local:9130']
-
-  - job_name: network/pihole
-    static_configs:
-      - targets: ['pihole-exporter-pi-hole-exporter.monitoring.svc.cluster.local:9617']
-
-  - job_name: network/fritzbox
-    static_configs:
-      - targets: ['fritzbox-exporter.monitoring.svc.cluster.local:8765']
-
-  - job_name: network/speedtest
-    scrape_interval: 15m
-    scrape_timeout: 10m
-    static_configs:
-      - targets: ['speedtest-exporter.monitoring.svc.cluster.local:9112']
-
-  - job_name: network/homeassistant
+  - job_name: homeassistant
     metrics_path: /api/prometheus
     bearer_token: '{{ vault.home_assistant.access_token }}'
     scheme: https
@@ -65,6 +20,143 @@ scrape_configs:
       insecure_skip_verify: true
     static_configs:
       - targets: ['home-assistant.home-assistant.svc.cluster.local:8123']
+
+  # service discovery
+  - job_name: cluster/nodes
+    scrape_interval: 1m
+    scrape_timeout: 55s
+    kubernetes_sd_configs:
+      - role: node
+    scheme: https
+    tls_config:
+      ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      insecure_skip_verify: true
+    bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+    relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.+)
+      - target_label: __address__
+        replacement: kubernetes.default.svc:443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/$1/proxy/metrics
+
+  - job_name: cluster/nodes-cadvisor
+    kubernetes_sd_configs:
+      - role: node
+    scheme: https
+    tls_config:
+      ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      insecure_skip_verify: true
+    bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+    relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.+)
+      - target_label: __address__
+        replacement: kubernetes.default.svc:443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/$1/proxy/metrics/cadvisor
+
+  - job_name: cluster/service-endpoints
+    kubernetes_sd_configs:
+      - role: endpoints
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]
+        action: replace
+        target_label: __scheme__
+        regex: (https?)
+      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+        action: replace
+        target_label: __address__
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+      - action: labelmap
+        regex: __meta_kubernetes_service_label_(.+)
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_service_name]
+        action: replace
+        target_label: kubernetes_name
+      - source_labels: [__meta_kubernetes_pod_node_name]
+        action: replace
+        target_label: kubernetes_node
+
+  - job_name: cluster/pods
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scheme]
+        action: replace
+        regex: (https?)
+        target_label: __scheme__
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_(.+)
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+      - source_labels: [__meta_kubernetes_pod_phase]
+        regex: Pending|Succeeded|Failed|Completed
+        action: drop
+
+  - job_name: cluster/pods-slow
+    scrape_interval: 5m
+    scrape_timeout: 2m
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape_slow]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scheme]
+        action: replace
+        regex: (https?)
+        target_label: __scheme__
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_(.+)
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+      - source_labels: [__meta_kubernetes_pod_phase]
+        regex: Pending|Succeeded|Failed|Completed
+        action: drop
 
 alerting:
   alertmanagers:

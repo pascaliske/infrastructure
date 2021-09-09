@@ -6,7 +6,6 @@ services:
   - loki
   - promtail
 exporters:
-  - cadvisor
   - fritzbox-exporter
   - node-exporter
   - pihole-exporter

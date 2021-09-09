@@ -5,6 +5,10 @@ image:
 global:
   fullnameOverride: unifi-exporter
 
+podAnnotations:
+  prometheus.io/scrape: 'true'
+  prometheus.io/port: http
+
 env:
   TZ: '{{ timezone }}'
   UP_POLLER_DEBUG: false

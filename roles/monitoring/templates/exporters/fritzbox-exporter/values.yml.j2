@@ -2,6 +2,10 @@ image:
   repository: sealife/fritzbox-exporter
   tag: latest
 
+deployment:
+  annotations:
+    prometheus.io/scrape: 'true'
+
 env:
   - name: TZ
     value: '{{ timezone }}'
