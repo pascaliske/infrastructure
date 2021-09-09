@@ -26,9 +26,6 @@
     - role: authelia
       tags:
         - authelia
-    - role: fail2ban
-      tags:
-        - fail2ban
     - role: homer
       tags:
         - homer
