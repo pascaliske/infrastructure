@@ -16,6 +16,7 @@
   },
   "private": true,
   "scripts": {
+    "install": "ansible-galaxy install -r requirements.yml",
     "prepare": "husky install",
     "ssh": "sh scripts/ssh.sh",
     "ping": "ansible all --module-name=ping",

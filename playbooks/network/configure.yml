@@ -5,30 +5,45 @@
     - role: common
       tags:
         - common
-    - role: docker
+    - role: k3s
       tags:
-        - docker
+        - k3s
+    - role: keel
+      tags:
+        - keel
+    - role: dyndns
+      tags:
+        - dyndns
     - role: traefik
       tags:
         - traefik
+    - role: portainer
+      tags:
+        - portainer
     - role: autorestic
       tags:
         - autorestic
     - role: authelia
       tags:
         - authelia
-    - role: fail2ban
-      tags:
-        - fail2ban
     - role: homer
       tags:
         - homer
     - role: monitoring
       tags:
         - monitoring
+    - role: cloudflared
+      tags:
+        - cloudflared
     - role: pihole
       tags:
         - pihole
     - role: home-assistant
       tags:
         - home-assistant
+    - role: unifi
+      tags:
+        - unifi
+    - role: vaultwarden
+      tags:
+        - vaultwarden

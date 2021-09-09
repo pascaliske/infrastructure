@@ -1,0 +1,18 @@
+image:
+  repository: b4bz/homer
+  tag: latest
+
+env:
+  TZ: '{{ timezone }}'
+  UID: '{{ ansible_user_uid }}'
+  GID: '{{ ansible_user_gid }}'
+
+persistence:
+  config:
+    enabled: true
+    mountPath: /www/assets
+
+configmap:
+  enabled: true
+  config: |
+    {{ lookup('template', role_name ~ '/config.yml.j2') | indent(4) }}

@@ -1,0 +1,62 @@
+replicaCount: 1
+
+image:
+  repository: pihole/pihole
+  tag: latest
+
+serviceDhcp:
+  enabled: false
+
+serviceWeb:
+  https:
+    enabled: false
+
+virtualHost: 'pihole.{{ domain }}'
+
+persistentVolumeClaim:
+  enabled: true
+
+admin:
+  existingSecret: '{{ role_name }}-auth-secret'
+  passwordKey: password
+
+extraEnvVars:
+  TZ: '{{ timezone }}'
+  VIRTUAL_PORT: 80
+  DNSSEC: 'true'
+  DNS_FQDN_REQUIRED: 'true'
+  ADMIN_EMAIL: '{{ vault.auth.email }}'
+  REV_SERVER: 'true'
+  REV_SERVER_CIDR: '{{ vault.network }}'
+  REV_SERVER_TARGET: '{{ vault.ips.router }}'
+  REV_SERVER_DOMAIN: fritz.box
+  PROXY_LOCATION: pihole
+  SKIPGRAVITYONBOOT: 'true'
+  WEBTHEME: default-dark
+  WEBUIBOXEDLAYOUT: traditional
+  TEMPERATUREUNIT: c
+
+# use local cloudflared deployment on node port
+DNS1: '{{ vault.ips.controller }}#5053'
+DNS2: false
+
+dnsmasq:
+  additionalHostsEntries:
+    - '{{ vault.ips.controller }} {{ domain }}'
+    - '{{ vault.ips.controller }} alerts.{{ domain }}'
+    - '{{ vault.ips.controller }} auth.{{ domain }}'
+    - '{{ vault.ips.controller }} grafana.{{ domain }}'
+    - '{{ vault.ips.controller }} homeassistant.{{ domain }}'
+    - '{{ vault.ips.controller }} loki.{{ domain }}'
+    - '{{ vault.ips.controller }} pihole.{{ domain }}'
+    - '{{ vault.ips.controller }} portainer.{{ domain }}'
+    - '{{ vault.ips.controller }} prometheus.{{ domain }}'
+    - '{{ vault.ips.controller }} traefik.{{ domain }}'
+    - '{{ vault.ips.controller }} unifi.{{ domain }}'
+    - '{{ vault.ips.controller }} vault.{{ domain }}'
+
+podDnsConfig:
+  nameservers:
+    - 127.0.0.1
+    - 1.1.1.1
+

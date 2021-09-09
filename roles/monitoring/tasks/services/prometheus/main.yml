@@ -1,0 +1,26 @@
+# prometheus
+- name: '{{ service }} : Add helm repo'
+  kubernetes.core.helm_repository:
+    name: pascaliske
+    repo_url: https://charts.pascaliske.dev
+
+- name: '{{ service }} : Create chart values file'
+  template:
+    src: 'services/{{ service }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ service }}/values.yml'
+
+- name: '{{ service }} : Apply helm chart with values file'
+  kubernetes.core.helm:
+    name: '{{ service }}'
+    chart_ref: 'pascaliske/{{ service }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ service }}/values.yml'
+  notify: Reload Prometheus
+
+# route
+- name: '{{ service }} : Create ingress route'
+  kubernetes.core.k8s:
+    state: present
+    template: 'services/{{ service }}/route.yml.j2'

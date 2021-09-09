@@ -1,4 +1,5 @@
 http:
+  server_host: 0.0.0.0
   trusted_proxies:
     - !secret ip_proxy
   use_x_forwarded_for: true

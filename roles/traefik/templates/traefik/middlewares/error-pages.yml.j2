@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: error-pages
+  namespace: '{{ role_name }}'
+spec:
+  errors:
+    service:
+      name: traefik-errors@kubernetescrd
+      port: 8080
+    query: "/{status}?home={{ domain }}"
+    status:
+      # - 404,407,418,500-599 # TODO: parsing error with this
+      - 500-599

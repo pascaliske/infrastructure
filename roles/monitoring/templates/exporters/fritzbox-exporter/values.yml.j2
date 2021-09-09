@@ -1,0 +1,27 @@
+image:
+  repository: sealife/fritzbox-exporter
+  tag: latest
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: FRITZ_HOST
+    value: '{{ vault.ips.router }}'
+  - name: FRITZ_USER
+    value: '{{ vault.fritzbox.username }}'
+  - name: FRITZ_PASS
+    value: '{{ vault.fritzbox.password }}'
+
+ports:
+  metrics:
+    enabled: true
+    port: 8765
+    protocol: TCP
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi

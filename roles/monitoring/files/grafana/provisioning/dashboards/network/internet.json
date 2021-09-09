@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -15,8 +21,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 2,
-  "id": 6,
-  "iteration": 1625129837944,
+  "id": 14,
+  "iteration": 1630652631719,
   "links": [],
   "panels": [
     {
@@ -85,7 +91,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_downstream_percentage\"}",
@@ -139,7 +145,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -249,7 +255,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_upstream_percentage\"}",
@@ -303,7 +309,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -406,7 +412,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "expr": "fritzbox_ppp_connection_uptime",
@@ -488,7 +494,7 @@
               }
             ]
           },
-          "unit": "Mbits"
+          "unit": "bps"
         },
         "overrides": []
       },
@@ -513,7 +519,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg_over_time(speedtest_download[$interval])",
+          "expr": "avg_over_time(speedtest_download_bits_per_second[$interval])",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "Download",
@@ -542,7 +548,7 @@
               }
             ]
           },
-          "unit": "Mbits"
+          "unit": "bps"
         },
         "overrides": []
       },
@@ -568,10 +574,11 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "avg_over_time(speedtest_download[$__range])",
+          "exemplar": true,
+          "expr": "avg_over_time(speedtest_download_bits_per_second[$__range])",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -601,7 +608,7 @@
               }
             ]
           },
-          "unit": "Mbits"
+          "unit": "bps"
         },
         "overrides": []
       },
@@ -627,10 +634,11 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "speedtest_download",
+          "exemplar": true,
+          "expr": "speedtest_download_bits_per_second",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -693,7 +701,7 @@
               }
             ]
           },
-          "unit": "Mbits"
+          "unit": "bps"
         },
         "overrides": [
           {
@@ -734,7 +742,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg_over_time(speedtest_upload[$interval])",
+          "expr": "avg_over_time(speedtest_upload_bits_per_second[$interval])",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "Upload",
@@ -763,7 +771,7 @@
               }
             ]
           },
-          "unit": "Mbits"
+          "unit": "bps"
         },
         "overrides": []
       },
@@ -789,10 +797,11 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "avg_over_time(speedtest_upload[$__range])",
+          "exemplar": true,
+          "expr": "avg_over_time(speedtest_upload_bits_per_second[$__range])",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -821,7 +830,7 @@
               }
             ]
           },
-          "unit": "Mbits"
+          "unit": "bps"
         },
         "overrides": []
       },
@@ -847,10 +856,11 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "speedtest_upload",
+          "exemplar": true,
+          "expr": "speedtest_upload_bits_per_second",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -953,18 +963,27 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg_over_time(speedtest_ping[$interval])",
+          "expr": "avg_over_time(speedtest_ping_latency_milliseconds[$interval])",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "Ping",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "avg_over_time(speedtest_jitter_latency_milliseconds[$interval])",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 10,
+          "legendFormat": "Jitter",
+          "refId": "B"
         }
       ],
       "timeFrom": null,
@@ -1015,10 +1034,11 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "avg_over_time(speedtest_ping[$__range])",
+          "exemplar": true,
+          "expr": "avg_over_time(speedtest_ping_latency_milliseconds[$__range])",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -1073,10 +1093,11 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "speedtest_ping",
+          "exemplar": true,
+          "expr": "speedtest_ping_latency_milliseconds",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -1182,6 +1203,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Internet",
-  "uid": "network-internet",
-  "version": 67
+  "uid": "internet",
+  "version": 2
 }

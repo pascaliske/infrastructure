@@ -21,8 +21,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 2,
-  "id": 7,
-  "iteration": 1628934300716,
+  "id": 5,
+  "iteration": 1630652513785,
   "links": [],
   "panels": [
     {
@@ -310,12 +310,12 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
         "datasource": null,
-        "definition": "label_values(homeassistant_temperature_c{friendly_name=~\"(.*) (C|c)limate (T|t)emperature\"}, friendly_name)",
+        "definition": "label_values(homeassistant_sensor_temperature_celsius{friendly_name=~\"(.*) (C|c)limate (T|t)emperature\"}, friendly_name)",
         "description": null,
         "error": null,
         "hide": 0,
@@ -325,7 +325,7 @@
         "name": "room",
         "options": [],
         "query": {
-          "query": "label_values(homeassistant_temperature_c{friendly_name=~\"(.*) (C|c)limate (T|t)emperature\"}, friendly_name)",
+          "query": "label_values(homeassistant_sensor_temperature_celsius{friendly_name=~\"(.*) (C|c)limate (T|t)emperature\"}, friendly_name)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -346,6 +346,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Climate",
-  "uid": "home-assistant-climate",
-  "version": 66
+  "uid": "climate",
+  "version": 2
 }

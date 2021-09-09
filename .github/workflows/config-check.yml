@@ -9,35 +9,34 @@ jobs:
       # checkout
       - uses: actions/checkout@v2.3.4
 
-      # prepare
-      - name: Prepare variables file
-        run: |
-          cat << EOF > variables.json
-          vault:
-            watchtower:
-              http_api_token: ''
-            home_assistant:
-              access_token: ''
-          EOF
-      - name: Prepare configuration file
-        uses: cuchi/jinja2-action@v1.2.0
-        with:
-          template: roles/monitoring/templates/prometheus/prometheus.yml.j2
-          output_file: roles/monitoring/files/prometheus.yml
-          data_file: variables.json
-      - name: Prepare alert rules
-        uses: cuchi/jinja2-action@v1.2.0
-        with:
-          template: roles/monitoring/templates/prometheus/alert.rules.j2
-          output_file: roles/monitoring/files/alert.rules
-          data_file: variables.json
+      # TODO: implement config map check for prometheus
+      # # prepare
+      # - name: Prepare variables file
+      #   run: |
+      #     cat << EOF > variables.json
+      #     vault:
+      #       home_assistant:
+      #         access_token: ''
+      #     EOF
+      # - name: Prepare configuration file
+      #   uses: cuchi/jinja2-action@v1.2.0
+      #   with:
+      #     template: roles/monitoring/templates/prometheus/prometheus.yml.j2
+      #     output_file: roles/monitoring/files/prometheus.yml
+      #     data_file: variables.json
+      # - name: Prepare alert rules
+      #   uses: cuchi/jinja2-action@v1.2.0
+      #   with:
+      #     template: roles/monitoring/templates/prometheus/alert.rules.j2
+      #     output_file: roles/monitoring/files/alert.rules
+      #     data_file: variables.json
 
-      # check prometheus config
-      - uses: addnab/docker-run-action@v3
-        with:
-          image: dnanexus/promtool:2.9.2
-          options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
-          run: promtool check config /tmp/prometheus.yml
+      # # check prometheus config
+      # - uses: addnab/docker-run-action@v3
+      #   with:
+      #     image: dnanexus/promtool:2.9.2
+      #     options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
+      #     run: promtool check config /tmp/prometheus.yml
 
   check-alertmanager:
     name: Alertmanager
@@ -46,30 +45,31 @@ jobs:
       # checkout
       - uses: actions/checkout@v2.3.4
 
-      # prepare
-      - name: Prepare variables file
-        run: |
-          cat << EOF > variables.json
-          vault:
-            alertmanager:
-              slack:
-                channel: ''
-                username: ''
-                tokens: ''
-          EOF
-      - name: Prepare configuration file
-        uses: cuchi/jinja2-action@v1.2.0
-        with:
-          template: roles/monitoring/templates/alertmanager/alertmanager.yml.j2
-          output_file: roles/monitoring/files/alertmanager.yml
-          data_file: variables.json
+      # TODO: implement config map check for alertmanager
+      # # prepare
+      # - name: Prepare variables file
+      #   run: |
+      #     cat << EOF > variables.json
+      #     vault:
+      #       alertmanager:
+      #         slack:
+      #           channel: ''
+      #           username: ''
+      #           tokens: ''
+      #     EOF
+      # - name: Prepare configuration file
+      #   uses: cuchi/jinja2-action@v1.2.0
+      #   with:
+      #     template: roles/monitoring/templates/alertmanager/alertmanager.yml.j2
+      #     output_file: roles/monitoring/files/alertmanager.yml
+      #     data_file: variables.json
 
-      # check prometheus config
-      - uses: addnab/docker-run-action@v3
-        with:
-          image: prom/alertmanager:latest
-          options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
-          run: /bin/amtool check-config /tmp/alertmanager.yml
+      # # check alertmanager config
+      # - uses: addnab/docker-run-action@v3
+      #   with:
+      #     image: prom/alertmanager:latest
+      #     options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
+      #     run: /bin/amtool check-config /tmp/alertmanager.yml
 
   check-home-assistant:
     name: Home Assistant
@@ -83,7 +83,7 @@ jobs:
         run: |
           sed -E -i 's/!secret ([a-z0-9_]+)/"\1"/' roles/home-assistant/files/*.yaml
           sed -E -i 's/!secret ([a-z0-9_]+)/"\1"/' roles/home-assistant/files/**/*.yaml
-          sed -i 's/breaking_changes/# breaking_changes/g' roles/home-assistant/files/integrations/core.yaml
+          mv roles/home-assistant/files/integrations/homekit.yaml{,.disabled}
           mv roles/home-assistant/files/integrations/http.yaml{,.disabled}
           mv roles/home-assistant/files/integrations/withings.yaml{,.disabled}
           mv roles/home-assistant/files/automations/battery-check.yaml{,.disabled}

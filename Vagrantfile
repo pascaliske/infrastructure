@@ -8,17 +8,27 @@ Vagrant.configure("2") do |config|
     # check for update
     config.vm.box_check_update = false
 
+    # general settings
+    config.vm.hostname = "kamino"
+
+    # network
+    config.vm.network "forwarded_port", guest: 6443, host: 6443
+    config.vm.network "forwarded_port", guest: 443, host: 8443
+    config.vm.network "forwarded_port", guest: 80, host: 8080
+
     # configure vm
     config.vm.provider :virtualbox do |vb|
         vb.cpus = 2
         vb.memory = 2048
         vb.gui = false
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
 
     # provision
     config.vm.provision "file", source: "#{ENV["ANSIBLE_PRIVATE_KEY_FILE"]}.pub", destination: "/home/vagrant/.ssh/id_vagrant.pub"
     config.vm.provision "shell", inline: <<-SHELL
+        echo "nameserver 1.1.1.1" > /etc/resolv.conf
         cat /home/vagrant/.ssh/id_vagrant.pub >> /home/vagrant/.ssh/authorized_keys
     SHELL
 end

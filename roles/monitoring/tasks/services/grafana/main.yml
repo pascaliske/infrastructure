@@ -1,0 +1,47 @@
+# directories
+- name: '{{ service }} : Ensure directories exist'
+  file:
+    path: '{{ root_path }}/{{ service }}/{{ item }}'
+    state: directory
+  loop:
+    - provisioning
+
+# configure
+- name: '{{ service }} : Copy provisioning files'
+  synchronize:
+    src: ../files/{{ service }}/provisioning
+    dest: '{{ root_path }}/{{ service }}'
+    delete: yes
+
+# grafana
+- name: '{{ service }} : Create secret manifests'
+  kubernetes.core.k8s:
+    state: present
+    template: 'services/{{ service }}/secrets/{{ item }}.yml.j2'
+  loop:
+    - auth
+
+- name: '{{ service }} : Add helm repo'
+  kubernetes.core.helm_repository:
+    name: '{{ service }}'
+    repo_url: https://grafana.github.io/helm-charts
+
+- name: '{{ service }} : Create chart values file'
+  template:
+    src: 'services/{{ service }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ service }}/values.yml'
+
+- name: '{{ service }} : Apply helm chart with values file'
+  kubernetes.core.helm:
+    name: '{{ service }}'
+    chart_ref: '{{ service }}/{{ service }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ service }}/values.yml'
+
+# route
+- name: '{{ service }} : Create ingress route'
+  kubernetes.core.k8s:
+    state: present
+    template: 'services/{{ service }}/route.yml.j2'

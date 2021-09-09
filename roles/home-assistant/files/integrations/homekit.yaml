@@ -1,5 +1,7 @@
 homekit:
   name: Home Assistant
+  advertise_ip: !secret ip_controller
+  port: 21063
   filter:
     include_domains:
       - light

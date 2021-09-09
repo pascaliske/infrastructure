@@ -15,6 +15,10 @@
             "name": "roles/autorestic"
         },
         {
+            "path": "./roles/cloudflared",
+            "name": "roles/cloudflared"
+        },
+        {
             "path": "./roles/code-server",
             "name": "roles/code-server"
         },
@@ -25,6 +29,10 @@
         {
             "path": "./roles/docker",
             "name": "roles/docker"
+        },
+        {
+            "path": "./roles/dyndns",
+            "name": "roles/dyndns"
         },
         {
             "path": "./roles/fail2ban",
@@ -47,6 +55,14 @@
             "name": "roles/homer"
         },
         {
+            "path": "./roles/k3s",
+            "name": "roles/k3s"
+        },
+        {
+            "path": "./roles/keel",
+            "name": "roles/keel"
+        },
+        {
             "path": "./roles/linkding",
             "name": "roles/linkding"
         },
@@ -63,8 +79,20 @@
             "name": "roles/pihole"
         },
         {
+            "path": "./roles/portainer",
+            "name": "roles/portainer"
+        },
+        {
             "path": "./roles/traefik",
             "name": "roles/traefik"
+        },
+        {
+            "path": "./roles/unifi",
+            "name": "roles/unifi"
+        },
+        {
+            "path": "./roles/vaultwarden",
+            "name": "roles/vaultwarden"
         }
     ],
     "settings": {
@@ -84,6 +112,7 @@
         ],
         "files.associations": {
             "*.j2": "nunjucks",
+            "*.yml.j2": "helm",
             "*.yaml": "home-assistant",
             "*.yaml.disabled": "home-assistant",
             "*.yaml.example": "home-assistant"

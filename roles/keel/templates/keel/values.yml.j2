@@ -1,0 +1,18 @@
+image:
+  repository: keelhq/keel
+  tag: latest
+
+slack:
+  enabled: true
+  token: '{{ vault.keel.slack.token }}'
+  channel: '#infrastructure'
+  approvalsChannel: '#infrastructure'
+  botName: keel
+
+service:
+  enabled: true
+
+persistence:
+  enabled: false
+  storageClass: local-path
+  size: 128Mi

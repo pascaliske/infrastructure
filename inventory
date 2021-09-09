@@ -8,4 +8,4 @@ jakku ansible_host=45.9.60.94 ansible_user=root
 
 # testing
 [testing]
-localhost ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2222
+kamino ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2222

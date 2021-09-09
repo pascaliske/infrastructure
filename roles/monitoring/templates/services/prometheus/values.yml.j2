@@ -1,0 +1,37 @@
+image:
+  repository: prom/prometheus
+  tag: latest
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+
+extraArgs:
+  - --web.enable-lifecycle
+  - --web.external-url=https://{{ service }}.{{ domain }}
+  - --storage.tsdb.retention.time=2w
+
+ports:
+  http:
+    enabled: true
+    port: 9090
+
+configMap:
+  create: true
+  files:
+    prometheus.yml: |
+      {{ lookup('template', 'services/' ~ service ~ '/config.yml.j2') | indent(6) }}
+    alert.rules: |
+      {{ lookup('template', 'services/' ~ service ~ '/rules.yml.j2') | indent(6) }}
+
+persistentVolumeClaim:
+  create: false
+  existingPersistentVolumeClaim: '{{ service }}-storage'
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi

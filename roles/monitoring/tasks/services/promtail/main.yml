@@ -1,0 +1,19 @@
+# promtail
+- name: '{{ service }} : Add helm repo'
+  kubernetes.core.helm_repository:
+    name: grafana
+    repo_url: https://grafana.github.io/helm-charts
+
+- name: '{{ service }} : Create chart values file'
+  template:
+    src: 'services/{{ service }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ service }}/values.yml'
+
+- name: '{{ service }} : Apply helm chart with values file'
+  kubernetes.core.helm:
+    name: '{{ service }}'
+    chart_ref: 'grafana/{{ service }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ service }}/values.yml'

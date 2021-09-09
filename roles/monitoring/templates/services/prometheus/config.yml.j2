@@ -1,0 +1,73 @@
+global:
+  scrape_timeout: 20s
+  scrape_interval: 30s
+  evaluation_interval: 30s
+
+rule_files:
+  - 'alert.rules'
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['prometheus.monitoring.svc.cluster.local:9090']
+
+  - job_name: network/proxy
+    static_configs:
+      - targets: ['traefik-metrics.traefik.svc.cluster.local:9000']
+
+  - job_name: network/node
+    kubernetes_sd_configs:
+      - role: endpoints
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_endpoints_name]
+        regex: 'node-exporter'
+        action: keep
+
+  - job_name: network/loki
+    static_configs:
+      - targets: ['loki.monitoring.svc.cluster.local:3100']
+
+  # - job_name: network/dockerhost
+  #   static_configs:
+  #     - targets: ['dockerhost:9323']
+
+  - job_name: network/docker
+    static_configs:
+      - targets: ['cadvisor.monitoring.svc.cluster.local:8080']
+
+  - job_name: network/cloudflared
+    static_configs:
+      - targets: ['cloudflared.cloudflared.svc.cluster.local:49312']
+
+  - job_name: network/unifi
+    static_configs:
+      - targets: ['unifi-exporter.monitoring.svc.cluster.local:9130']
+
+  - job_name: network/pihole
+    static_configs:
+      - targets: ['pihole-exporter-pi-hole-exporter.monitoring.svc.cluster.local:9617']
+
+  - job_name: network/fritzbox
+    static_configs:
+      - targets: ['fritzbox-exporter.monitoring.svc.cluster.local:8765']
+
+  - job_name: network/speedtest
+    scrape_interval: 15m
+    scrape_timeout: 10m
+    static_configs:
+      - targets: ['speedtest-exporter.monitoring.svc.cluster.local:9112']
+
+  - job_name: network/homeassistant
+    metrics_path: /api/prometheus
+    bearer_token: '{{ vault.home_assistant.access_token }}'
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+      - targets: ['home-assistant.home-assistant.svc.cluster.local:8123']
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets: ['alertmanager.monitoring.svc.cluster.local:9093']

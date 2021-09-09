@@ -1,0 +1,14 @@
+image:
+  repository: vaultwarden/server
+  tag: alpine
+
+env:
+  TZ: '{{ timezone }}'
+  DATA_FOLDER: config
+  SIGNUPS_VERIFY: 'true'
+  SIGNUPS_DOMAINS_WHITELIST: "{{ vault.domains | dict2items | map(attribute='value') | join(',') }}"
+  DISABLE_ADMIN_TOKEN: 'true'
+
+persistence:
+  config:
+    enabled: true

@@ -1,0 +1,50 @@
+# configure cluster
+- name: Install binaries
+  shell:
+    cmd: '{{ item }}'
+  loop:
+    - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - --disable traefik
+    - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+- name: Create aliases
+  lineinfile:
+    path: '{{ home_path }}/.bashrc'
+    line: 'alias {{ item.alias }}="{{ item.command }}"'
+    regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
+    insertafter: ^alias
+    create: yes
+  loop:
+    - { alias: 'kubectl', command: 'kubectl --kubeconfig {{ kubeconfig.local }}' }
+    - { alias: 'helm', command: 'helm --kubeconfig {{ kubeconfig.local }}' }
+
+- name: Change ownership of local config file
+  become: yes
+  file:
+    path: '{{ kubeconfig.local }}'
+    owner: '{{ ansible_user }}'
+
+# configure remote access
+- name: Configure remote access
+  become: yes
+  block:
+    - name: Ensure directory exists
+      file:
+        path: '{{ kubeconfig.remote | dirname }}'
+        state: directory
+    - name: Duplicate config file for remote access
+      copy:
+        src: '{{ kubeconfig.local }}'
+        dest: '{{ kubeconfig.remote }}'
+        owner: '{{ ansible_user }}'
+        mode: 0600
+        remote_src: yes
+    - name: Replace server in config file
+      replace:
+        path: '{{ kubeconfig.remote }}'
+        regexp: '127\.0\.0\.1'
+        replace: '{{ ansible_host }}'
+    - name: Fetch config file for remote access
+      fetch:
+        src: '{{ kubeconfig.remote }}'
+        dest: "{{ lookup('env', 'HOME') }}/.kube/k3s-{{ inventory_hostname }}/config"
+        flat: yes

@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: '{{ service }}'
+  namespace: '{{ role_name }}'
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`alerts.{{ domain }}`)
+      services:
+        - kind: Service
+          name: '{{ service }}'
+          namespace: '{{ role_name }}'
+          port: 9093
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik

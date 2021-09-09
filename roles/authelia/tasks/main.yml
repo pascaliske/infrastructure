@@ -12,12 +12,50 @@
   loop:
     - '{{ role_name }}'
 
-- name: Create configuration file
-  template:
-    src: '{{ role_name }}/configuration.yml.j2'
-    dest: '{{ root_path }}/{{ role_name }}/configuration.yml'
+# namespace
+- name: Create a namespace
+  kubernetes.core.k8s:
+    kind: Namespace
+    name: '{{ role_name }}'
+    state: present
 
-- name: Create users file
+# configuration
+- name: Create config map manifest
+  kubernetes.core.k8s:
+    state: present
+    template: '{{ role_name }}/{{ item }}.yml.j2'
+  loop:
+    - config
+    - users
+
+# authelia
+- name: Add helm repo
+  kubernetes.core.helm_repository:
+    name: '{{ role_name }}'
+    repo_url: https://charts.authelia.com
+
+- name: Create chart values file
   template:
-    src: '{{ role_name }}/users.yml.j2'
-    dest: '{{ root_path }}/{{ role_name }}/users.yml'
+    src: '{{ role_name }}/values.yml.j2'
+    dest: '{{ root_path }}/{{ role_name }}/values.yml'
+
+- name: Apply helm chart with values file
+  kubernetes.core.helm:
+    name: '{{ role_name }}'
+    chart_ref: '{{ role_name }}/{{ role_name }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ root_path }}/{{ role_name }}/values.yml'
+
+# route
+- name: Create middleware manifests
+  kubernetes.core.k8s:
+    state: present
+    template: '{{ role_name }}/middlewares/{{ item }}.yml.j2'
+  loop:
+    - headers
+- name: Create ingress route
+  kubernetes.core.k8s:
+    state: present
+    template: '{{ role_name }}/route.yml.j2'

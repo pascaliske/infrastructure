@@ -1,7 +1,0 @@
-middlewares:
-  all:
-    - auth
-    - security
-    - error-pages
-  coruscant:
-    - home-assistant

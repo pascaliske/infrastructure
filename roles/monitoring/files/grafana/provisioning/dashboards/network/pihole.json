@@ -881,7 +881,7 @@
     "hidden": false
   },
   "timezone": "",
-  "title": "Pihole",
-  "uid": "network-pihole",
+  "title": "Pi-hole",
+  "uid": "pihole",
   "version": 86
 }

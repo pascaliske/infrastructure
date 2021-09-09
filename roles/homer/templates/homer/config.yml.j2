@@ -1,4 +1,19 @@
+{# host specific vars #}
 {%- set vars = lookup('vars', inventory_hostname) -%}
+
+{# service logo block #}
+{%- macro service_logo(service) -%}
+  {%- set url = 'https://raw.githubusercontent.com/pascaliske/infrastructure/master/roles/homer/files/logos' -%}
+  {%- set logo = service.logo | default(service.name | replace(' ', '-') | lower ~ '.png') -%}
+  {{- url ~ '/' ~ logo -}}
+{%- endmacro -%}
+
+{# service url block #}
+{%- macro service_url(service) -%}
+  {%- set defaultValue = 'https://' ~ service.name | replace(' ', '-') | lower ~ '.' ~ domain -%}
+  {{- service.url | default(defaultValue) -}}
+{%- endmacro -%}
+
 ---
 # general
 title: '{{ vars.dashboard }}'
@@ -112,8 +127,8 @@ links:
 
 # tags
 {% for group in vars.services %}
-.{{ group.name|replace(' ', '-')|lower }}: &{{ group.name|replace(' ', '-')|lower }}
-  tag: {{ group.name|replace(' ', '-')|lower }}
+.{{ group.name | replace(' ', '-') | lower }}: &{{ group.name | replace(' ', '-') | lower }}
+  tag: {{ group.name | replace(' ', '-') | lower }}
   target: _blank
 {% endfor %}
 
@@ -125,18 +140,18 @@ services:
     items:
 {% for service in group['items'] %}
       - name: {{ service.name }}
-        {% if service.type|default(false) -%}
+        {% if service.type | default(false) -%}
         type: {{ service.type }}
         {% endif -%}
-        {% if service.subtitle|default(false) -%}
+        {% if service.subtitle | default(false) -%}
         subtitle: {{ service.subtitle }}
         {% endif -%}
-        logo: {{ service.logo|default('assets/logos/' ~ service.name|replace(' ', '-')|lower ~ '.png') }}
-        url: {{ service.url|default('https://' ~ service.name|replace(' ', '-')|lower ~ '.' ~ domain) }}
-        {% if service.apikey|default(false) -%}
+        logo: {{ service_logo(service) }}
+        url: {{ service_url(service) }}
+        {% if service.apikey | default(false) -%}
         apikey: {{ service.apikey }}
         {% endif -%}
-        <<: *{{ group.name|replace(' ', '-')|lower }}
+        <<: *{{ group.name | replace(' ', '-') | lower }}
 {% else %}
       {{- ' []' }}
 {% endfor %}

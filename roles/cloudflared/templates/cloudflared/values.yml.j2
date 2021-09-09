@@ -1,0 +1,33 @@
+image:
+  repository: crazymax/cloudflared
+  tag: latest
+
+service:
+  enabled: true
+  type: NodePort
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: TUNNEL_DNS_UPSTREAM
+    value: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
+
+ports:
+  dns:
+    enabled: true
+    port: 5053
+    nodePort: 5053
+    protocol: UDP
+  metrics:
+    enabled: true
+    port: 49312
+    nodePort: 49312
+    protocol: TCP
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
