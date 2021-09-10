@@ -24,6 +24,12 @@ configMap:
     alert.rules: |
       {{ lookup('template', 'services/' ~ service ~ '/rules.yml.j2') | indent(6) }}
 
+configMapReload:
+  enabled: true
+  image:
+    repository: jimmidyson/configmap-reload
+    tag: latest
+
 persistentVolumeClaim:
   create: false
   existingPersistentVolumeClaim: '{{ service }}-storage'
