@@ -1,6 +1,0 @@
----
-- name: Reload Alertmanager
-  uri:
-    url: 'https://alerts.{{ domain }}/-/reload'
-    method: POST
-    validate_certs: false
