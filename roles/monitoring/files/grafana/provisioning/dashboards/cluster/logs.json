@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -16,7 +22,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 16,
-  "iteration": 1627310197405,
+  "iteration": 1631359764200,
   "links": [],
   "panels": [
     {
@@ -186,6 +192,8 @@
       "options": {
         "dedupStrategy": "signature",
         "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -193,7 +201,7 @@
       },
       "targets": [
         {
-          "expr": "{container_name=~\"$container\"} |~ \"$search\"",
+          "expr": "{container=~\"$container\"} |~ \"$search\"",
           "refId": "A"
         }
       ],
@@ -210,12 +218,12 @@
       {
         "allValue": "",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
         "datasource": "Loki",
-        "definition": "label_values({}, container_name)",
+        "definition": "label_values({}, container)",
         "description": null,
         "error": null,
         "hide": 0,
@@ -224,8 +232,8 @@
         "multi": false,
         "name": "container",
         "options": [],
-        "query": "label_values({}, container_name)",
-        "refresh": 1,
+        "query": "label_values({}, container)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -263,5 +271,5 @@
   "timezone": "",
   "title": "Logs",
   "uid": "logs",
-  "version": 5
+  "version": 3
 }

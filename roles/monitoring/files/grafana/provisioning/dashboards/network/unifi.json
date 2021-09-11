@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -15,8 +21,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 2,
-  "id": 5,
-  "iteration": 1624951152565,
+  "id": 9,
+  "iteration": 1631360164030,
   "links": [],
   "panels": [
     {
@@ -602,5 +608,5 @@
   "timezone": "",
   "title": "UniFi",
   "uid": "unifi",
-  "version": 49
+  "version": 3
 }

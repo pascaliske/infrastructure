@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -15,8 +21,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 2,
-  "id": 12,
-  "iteration": 1627638607807,
+  "id": 13,
+  "iteration": 1631359861285,
   "links": [],
   "panels": [
     {
@@ -62,7 +68,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
@@ -123,7 +129,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
@@ -309,5 +315,5 @@
   "timezone": "",
   "title": "Fuel Prices",
   "uid": "fuel-prices",
-  "version": 23
+  "version": 3
 }

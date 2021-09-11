@@ -22,7 +22,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 17,
-  "iteration": 1630919571105,
+  "iteration": 1631359825135,
   "links": [],
   "panels": [
     {
@@ -108,7 +108,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}[$interval])) * 100)",
+          "expr": "100 - (avg by (kubernetes_node) (irate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"idle\"}[$interval])) * 100)",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Usage",
@@ -116,7 +116,7 @@
         },
         {
           "exemplar": true,
-          "expr": "avg by (instance) (irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"iowait\"}[$interval])) * 100",
+          "expr": "avg by (kubernetes_node) (irate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"iowait\"}[$interval])) * 100",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "IOwait",
@@ -212,7 +212,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg by (instance) (node_hwmon_temp_celsius{instance=~\"$node\"})",
+          "expr": "avg by (kubernetes_node) (node_hwmon_temp_celsius{kubernetes_node=~\"$node\"})",
           "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Actual",
@@ -220,7 +220,7 @@
         },
         {
           "exemplar": true,
-          "expr": "avg by (instance) (avg_over_time(node_hwmon_temp_celsius{instance=~\"$node\"}[$interval]))",
+          "expr": "avg by (kubernetes_node) (avg_over_time(node_hwmon_temp_celsius{kubernetes_node=~\"$node\"}[$interval]))",
           "hide": false,
           "interval": "",
           "intervalFactor": 3,
@@ -280,7 +280,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "node_time_seconds{instance=~\"$node\"} - node_boot_time_seconds{instance=~\"$node\"}",
+          "expr": "node_time_seconds{kubernetes_node=~\"$node\"} - node_boot_time_seconds{kubernetes_node=~\"$node\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -303,7 +303,7 @@
           "min": 0,
           "noValue": "0",
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
                 "color": "green",
@@ -311,11 +311,11 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 0.8
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -345,7 +345,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(node_load1{instance=~\"$node\"}) by (node) / count(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}) by (node) * 100",
+          "expr": "sum by (kubernetes_node) (node_load1{kubernetes_node=~\"$node\"}) / count by (kubernetes_node) (rate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"idle\"}[$interval]))",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
@@ -369,7 +369,7 @@
           "min": 0,
           "noValue": "0",
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
                 "color": "green",
@@ -377,11 +377,11 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 0.8
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -411,7 +411,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(node_load5{instance=~\"$node\"}) by (node) / count(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}) by (node) * 100",
+          "expr": "sum by (kubernetes_node) (node_load5{kubernetes_node=~\"$node\"}) / count by (kubernetes_node) (rate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"idle\"}[$interval]))",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
@@ -435,7 +435,7 @@
           "min": 0,
           "noValue": "0",
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
                 "color": "green",
@@ -443,11 +443,11 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 0.8
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -477,7 +477,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(node_load15{instance=~\"$node\"}) by (node) / count(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}) by (node) * 100",
+          "expr": "sum by (kubernetes_node) (node_load15{kubernetes_node=~\"$node\"}) / count by (kubernetes_node) (rate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"idle\"}[$interval]))",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
@@ -574,14 +574,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "100 * (1 - ((node_memory_MemFree_bytes{instance=~\"$node\"} + node_memory_Cached_bytes{instance=~\"$node\"} + node_memory_Buffers_bytes{instance=~\"$node\"}) / node_memory_MemTotal_bytes{instance=~\"$node\"}))",
+          "expr": "100 * (1 - ((node_memory_MemFree_bytes{kubernetes_node=~\"$node\"} + node_memory_Cached_bytes{kubernetes_node=~\"$node\"} + node_memory_Buffers_bytes{kubernetes_node=~\"$node\"}) / node_memory_MemTotal_bytes{kubernetes_node=~\"$node\"}))",
           "interval": "",
           "legendFormat": "Actual",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree_bytes{instance=~\"$node\"}[$interval]) + avg_over_time(node_memory_Cached_bytes{instance=~\"$node\"}[$interval]) + avg_over_time(node_memory_Buffers_bytes{instance=~\"$node\"}[$interval])) / avg_over_time(node_memory_MemTotal_bytes{instance=~\"$node\"}[$interval])))",
+          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree_bytes{kubernetes_node=~\"$node\"}[$interval]) + avg_over_time(node_memory_Cached_bytes{kubernetes_node=~\"$node\"}[$interval]) + avg_over_time(node_memory_Buffers_bytes{kubernetes_node=~\"$node\"}[$interval])) / avg_over_time(node_memory_MemTotal_bytes{kubernetes_node=~\"$node\"}[$interval])))",
           "hide": false,
           "interval": "",
           "legendFormat": "Average",
@@ -674,7 +674,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "node_procs_running{instance=~\"$node\"}",
+          "expr": "node_procs_running{kubernetes_node=~\"$node\"}",
           "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Running",
@@ -682,7 +682,7 @@
         },
         {
           "exemplar": true,
-          "expr": "node_procs_blocked{instance=~\"$node\"}",
+          "expr": "node_procs_blocked{kubernetes_node=~\"$node\"}",
           "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Blocked by I/O",
@@ -785,7 +785,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$node\",mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{instance=~\"$node\",mountpoint=\"/\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{kubernetes_node=~\"$node\",mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{kubernetes_node=~\"$node\",mountpoint=\"/\"})",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
@@ -794,7 +794,7 @@
         },
         {
           "exemplar": true,
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$node\",mountpoint=\"/var/log\"} * 100) / node_filesystem_size_bytes{instance=~\"$node\",mountpoint=\"/var/log\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{kubernetes_node=~\"$node\",mountpoint=\"/var/log\"} * 100) / node_filesystem_size_bytes{kubernetes_node=~\"$node\",mountpoint=\"/var/log\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "Logs",
@@ -881,7 +881,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_receive_bytes_total{instance=~\"$node\",device=\"eth0\"}[$interval])) * 8",
+          "expr": "sum by (kubernetes_node, device) (rate(node_network_receive_bytes_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval])) * 8",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{ device }}-in",
@@ -889,7 +889,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_bytes_total{instance=~\"$node\",device=\"eth0\"}[$interval])) * 8",
+          "expr": "sum by (kubernetes_node, device) (rate(node_network_transmit_bytes_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval])) * 8",
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
@@ -980,7 +980,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_receive_packets_total{instance=~\"$node\",device=\"eth0\"}[$interval]))",
+          "expr": "sum by (kubernetes_node, device) (rate(node_network_receive_packets_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval]))",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{ device }}-in",
@@ -988,7 +988,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_packets_total{instance=~\"$node\",device=\"eth0\"}[$interval]))",
+          "expr": "sum by (kubernetes_node, device) (rate(node_network_transmit_packets_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval]))",
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
@@ -1076,14 +1076,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_receive_drop_total{instance=~\"$node\",device=\"eth0\"}[$interval]))",
+          "expr": "sum by (kubernetes_node, device) (rate(node_network_receive_drop_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval]))",
           "interval": "",
           "legendFormat": "{{ device }}-in",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum by (node, device) (rate(node_network_transmit_drop_total{instance=~\"$node\",device=\"eth0\"}[$interval]))",
+          "expr": "sum by (kubernetes_node, device) (rate(node_network_transmit_drop_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval]))",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ device }}-out",
@@ -1184,11 +1184,11 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "10.0.2.2:9100",
-          "value": "10.0.2.2:9100"
+          "text": "coruscant",
+          "value": "coruscant"
         },
         "datasource": null,
-        "definition": "label_values(node_load1, instance)",
+        "definition": "label_values(node_load1, kubernetes_node)",
         "description": null,
         "error": null,
         "hide": 0,
@@ -1198,7 +1198,7 @@
         "name": "node",
         "options": [],
         "query": {
-          "query": "label_values(node_load1, instance)",
+          "query": "label_values(node_load1, kubernetes_node)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -1217,5 +1217,5 @@
   "timezone": "",
   "title": "Nodes",
   "uid": "nodes",
-  "version": 5
+  "version": 8
 }
