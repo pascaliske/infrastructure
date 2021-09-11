@@ -2,7 +2,7 @@
 dashboard: Home Cloud
 services:
   - name: Monitoring
-    icon: fas fa-chart-area
+    icon: chart-area
     items:
       - name: Prometheus
         subtitle: Metrics collector
@@ -17,13 +17,13 @@ services:
       - name: Portainer
         subtitle: Container management
   - name: Network
-    icon: fas fa-network-wired
+    icon: network-wired
     items:
       - name: UniFi Controller
         subtitle: Network management controller
         logo: unifi.png
         url: https://unifi.{{ domain }}
-      - name: Pi-Hole
+      - name: Pi-hole
         subtitle: DNS based ad blocker
         url: https://pihole.{{ domain }}
       - name: FRITZ!Box
@@ -46,13 +46,13 @@ services:
         subtitle: VoIP phone management
         url: http://{{ vault.ips.gigaset }}
   - name: Automation
-    icon: fas fa-robot
+    icon: robot
     items:
       - name: Home Assistant
         subtitle: Central home automation hub
         url: https://homeassistant.{{ domain }}
   - name: Secrets
-    icon: fas fa-key
+    icon: key
     items:
       - name: Vaultwarden
         subtitle: Password management

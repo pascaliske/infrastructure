@@ -2,7 +2,7 @@
 dashboard: Server
 services:
   - name: Monitoring
-    icon: fas fa-chart-area
+    icon: chart-area
     items:
       - name: Dozzle
         subtitle: Container logs
@@ -13,7 +13,7 @@ services:
         subtitle: View general server stats
         url: https://stats.{{ domain }}
   - name: Development
-    icon: fas fa-code
+    icon: code
     items:
       - name: GitLab
         subtitle: Web based DevOps lifecycle platform
@@ -23,7 +23,7 @@ services:
         logo: vscode.png
         url: https://code.{{ domain }}
   - name: Self Hosted
-    icon: fas fa-cloud
+    icon: cloud
     items:
       - name: Linkding
         subtitle: Collect links and categorize them
@@ -33,7 +33,7 @@ services:
         type: PaperlessNG
         apikey: '{{ vault.paperless.api_token }}'
   - name: Cloud
-    icon: fas fa-cloud
+    icon: cloud
     items:
       - name: UniFi Cloud
         subtitle: Network management controller

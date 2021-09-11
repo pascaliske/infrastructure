@@ -1,11 +1,10 @@
 {# host specific vars #}
 {%- set vars = lookup('vars', inventory_hostname) -%}
+{%- set repo = 'https://raw.githubusercontent.com/pascaliske/infrastructure/master/roles/homer/files' -%}
 
 {# service logo block #}
 {%- macro service_logo(service) -%}
-  {%- set url = 'https://raw.githubusercontent.com/pascaliske/infrastructure/master/roles/homer/files/logos' -%}
-  {%- set logo = service.logo | default(service.name | replace(' ', '-') | lower ~ '.png') -%}
-  {{- url ~ '/' ~ logo -}}
+  {{- repo ~ '/logos/' ~ service.logo | default(service.name | replace(' ', '-') | lower ~ '.png') -}}
 {%- endmacro -%}
 
 {# service url block #}
@@ -17,93 +16,19 @@
 ---
 # general
 title: '{{ vars.dashboard }}'
+documentTitle: '{{ vars.dashboard }}'
 subtitle: Pascal Iske
 logo: logo.png
 columns: '{{ '4' if vars.services | length > 3 else '3' }}'
-header: true
+colors:
+  dark:
+    highlight-primary: '#2d333d'
+    highlight-secondary: '#2d333d'
+    highlight-hover: '#484d56'
+    card-background: '#212020'
+stylesheet:
+  - '{{ repo }}/stylesheets/main.css'
 footer: >
-  <style>
-    body #bighead {
-      position: sticky;
-      top: 0;
-      z-index: 99999;
-    }
-
-    body #bighead .first-line {
-      padding: 5px 10px;
-    }
-
-    body #bighead .first-line .logo img {
-      padding: 10px 10px 10px 0;
-    }
-
-    body #bighead .dashboard-title {
-      padding: 6px 0 0 70px;
-    }
-
-    body #bighead .first-line .headline {
-      margin-left: 2px;
-    }
-
-    body #bighead .navbar-menu a {
-      padding-bottom: 7px;
-    }
-
-    body #bighead .navbar-menu i {
-      margin-bottom: 2px;
-    }
-
-    body #bighead .navbar-end {
-      display: flex;
-      align-items: center;
-    }
-
-    body .search-bar {
-      max-width: 330px;
-      flex: 1;
-      order: -1;
-    }
-
-    body .search-bar input {
-      width: 100%;
-    }
-
-    body #main-section {
-      padding-bottom: 35px;
-    }
-
-    body #main-section .container {
-      padding: 10px;
-    }
-
-    body #main-section .group-title {
-      text-transform: capitalize;
-    }
-
-    body #main-section .group-title i {
-      width: 35px;
-    }
-
-    @media screen and (max-width: 768px) {
-      body {
-        overflow-x: hidden;
-      }
-    }
-
-    @media screen and (min-width: 1024px) {
-      body #main-section {
-        padding-bottom: 60px;
-      }
-
-      body #main-section .container {
-        padding: 0;
-      }
-
-      body .search-bar {
-        order: 1;
-      }
-    }
-  </style>
   <p>&copy; {{ ansible_date_time.year }} <a href="https://pascaliske.dev">Pascal Iske</a></p>
 
 # navbar
@@ -136,7 +61,7 @@ links:
 services:
 {% for group in vars.services %}
   - name: {{ group.name }}
-    icon: {{ group.icon }}
+    icon: fas fa-{{ group.icon }}
     items:
 {% for service in group['items'] %}
       - name: {{ service.name }}

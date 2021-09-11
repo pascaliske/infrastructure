@@ -1,0 +1,80 @@
+body #bighead {
+    position: sticky;
+    top: 0;
+    z-index: 99999;
+}
+
+body #bighead .first-line {
+    padding: 5px 10px;
+}
+
+body #bighead .first-line .logo img {
+    padding: 10px 10px 10px 0;
+}
+
+body #bighead .dashboard-title {
+    padding: 6px 0 0 70px;
+}
+
+body #bighead .first-line .headline {
+    margin-left: 2px;
+}
+
+body #bighead .navbar-menu a {
+    padding-bottom: 7px;
+}
+
+body #bighead .navbar-menu i {
+    margin-bottom: 2px;
+}
+
+body #bighead .navbar-end {
+    display: flex;
+    align-items: center;
+}
+
+body .search-bar {
+    max-width: 330px;
+    flex: 1;
+    order: -1;
+}
+
+body .search-bar input {
+    width: 100%;
+}
+
+body #main-section {
+    padding-bottom: 35px;
+}
+
+body #main-section .container {
+    padding: 10px;
+}
+
+body #main-section .group-title {
+    text-transform: capitalize;
+}
+
+body #main-section .group-title i {
+    width: 35px;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    body #main-section {
+        padding-bottom: 60px;
+    }
+
+    body #main-section .container {
+        padding: 0;
+    }
+
+    body .search-bar {
+        order: 1;
+    }
+}
