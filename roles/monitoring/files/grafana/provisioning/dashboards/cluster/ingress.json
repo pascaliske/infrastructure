@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -15,8 +21,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 10,
-  "iteration": 1624950631215,
+  "id": 19,
+  "iteration": 1631359662794,
   "links": [],
   "panels": [
     {
@@ -63,11 +69,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "time() - process_start_time_seconds{job=\"$job\"}",
+          "expr": "time() - process_start_time_seconds{instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -119,11 +125,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "traefik_config_reloads_total{job=\"$job\"}",
+          "expr": "traefik_config_reloads_total{instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -189,11 +195,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "traefik_config_last_reload_success{job=\"$job\"} <= 0 or time() - traefik_config_last_reload_success{job=\"$job\"}",
+          "expr": "traefik_config_last_reload_success{instance=\"$instance\"} <= 0 or time() - traefik_config_last_reload_success{instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -259,11 +265,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "traefik_config_last_reload_failure <= 0 or time() - traefik_config_last_reload_failure",
+          "expr": "traefik_config_last_reload_failure{instance=~\"$instance\"} <= 0 or time() - traefik_config_last_reload_failure{instance=~\"$instance\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -348,7 +354,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(increase(traefik_service_requests_total{code=~\"(2|3)\\\\d\\\\d\",job=~\"$job\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
+          "expr": "sum(increase(traefik_service_requests_total{code=~\"(2|3)\\\\d\\\\d\",instance=~\"$instance\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
           "interval": "",
           "legendFormat": "Successful Responses",
           "refId": "A"
@@ -451,7 +457,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(increase(traefik_service_requests_total{code=~\"5\\\\d\\\\d\",job=~\"$job\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
+          "expr": "sum(increase(traefik_service_requests_total{code=~\"5\\\\d\\\\d\",instance=~\"$instance\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
           "interval": "",
           "legendFormat": "Errors",
           "refId": "A"
@@ -554,7 +560,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(increase(traefik_service_requests_total{code=~\"4\\\\d\\\\d\",job=~\"$job\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
+          "expr": "sum(increase(traefik_service_requests_total{code=~\"4\\\\d\\\\d\",instance=~\"$instance\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
           "interval": "",
           "legendFormat": "Errors",
           "refId": "A"
@@ -640,7 +646,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(traefik_entrypoint_request_duration_seconds_sum{job=~\"$job\"}[$interval])) / sum(rate(traefik_entrypoint_requests_total{job=~\"$job\"}[$interval]))",
+          "expr": "sum(rate(traefik_entrypoint_request_duration_seconds_sum{instance=~\"$instance\"}[$interval])) / sum(rate(traefik_entrypoint_requests_total{instance=~\"$instance\"}[$interval]))",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Response Time",
@@ -727,7 +733,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(increase(traefik_service_requests_total{job=\"$job\", service=~\"$service\"}[$interval])) by (service)",
+          "expr": "sum(increase(traefik_service_requests_total{instance=~\"$instance\", service=~\"$service\"}[$interval])) by (service)",
           "interval": "",
           "legendFormat": "{{ service }}",
           "refId": "A"
@@ -812,7 +818,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(traefik_service_request_duration_seconds_sum{job=~\"$job\",service=~\"$service\",protocol=~\"$protocol\"}[$interval])) by (service) / sum(rate(traefik_service_request_duration_seconds_count{job=~\"$job\",service=~\"$service\",protocol=~\"$protocol\"}[$interval])) by (service)",
+          "expr": "sum(rate(traefik_service_request_duration_seconds_sum{instance=~\"$instance\",service=~\"$service\",protocol=~\"$protocol\"}[$interval])) by (service) / sum(rate(traefik_service_request_duration_seconds_count{instance=~\"$instance\",service=~\"$service\",protocol=~\"$protocol\"}[$interval])) by (service)",
           "interval": "",
           "legendFormat": "{{ service }}",
           "refId": "A"
@@ -898,7 +904,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(traefik_service_open_connections{job=~\"$job\", service=~\"$service\"}) by (method)",
+          "expr": "sum(traefik_service_open_connections{instance=~\"$instance\", service=~\"$service\"}) by (method)",
           "interval": "",
           "legendFormat": "{{ method }}",
           "refId": "A"
@@ -920,26 +926,26 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "network/proxy",
-          "value": "network/proxy"
+          "selected": true,
+          "text": "10.42.0.78:9000",
+          "value": "10.42.0.78:9000"
         },
         "datasource": null,
-        "definition": "label_values(job)",
+        "definition": "label_values(traefik_config_reloads_total, instance)",
         "description": null,
         "error": null,
         "hide": 0,
         "includeAll": false,
-        "label": "Job",
+        "label": "Instance",
         "multi": false,
-        "name": "job",
+        "name": "instance",
         "options": [],
         "query": {
-          "query": "label_values(job)",
+          "query": "label_values(traefik_config_reloads_total, instance)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "/.*proxy.*/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
@@ -950,7 +956,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "http",
           "value": "http"
         },
@@ -985,7 +991,7 @@
           "value": "$__all"
         },
         "datasource": null,
-        "definition": "label_values(traefik_service_requests_total{job=~\"[[job]]\"},service)",
+        "definition": "label_values(traefik_service_requests_total{instance=~\"[[instance]]\"},service)",
         "description": null,
         "error": null,
         "hide": 0,
@@ -995,7 +1001,7 @@
         "name": "service",
         "options": [],
         "query": {
-          "query": "label_values(traefik_service_requests_total{job=~\"[[job]]\"},service)",
+          "query": "label_values(traefik_service_requests_total{instance=~\"[[instance]]\"},service)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -1094,5 +1100,5 @@
   "timezone": "",
   "title": "Ingress",
   "uid": "ingress",
-  "version": 26
+  "version": 4
 }

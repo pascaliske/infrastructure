@@ -1,8 +1,8 @@
-# cadvisor
+# kube-state-metrics
 - name: '{{ exporter }} : Add helm repo'
   kubernetes.core.helm_repository:
-    name: '{{ exporter }}'
-    repo_url: https://ckotzbauer.github.io/helm-charts
+    name: prometheus-community
+    repo_url: https://prometheus-community.github.io/helm-charts
 
 - name: '{{ exporter }} : Create chart values file'
   template:
@@ -12,7 +12,7 @@
 - name: '{{ exporter }} : Apply helm chart with values file'
   kubernetes.core.helm:
     name: '{{ exporter }}'
-    chart_ref: '{{ exporter }}/{{ exporter }}'
+    chart_ref: 'prometheus-community/{{ exporter }}'
     namespace: '{{ role_name }}'
     update_repo_cache: yes
     values_files:

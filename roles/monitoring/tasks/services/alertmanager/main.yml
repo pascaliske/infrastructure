@@ -17,7 +17,6 @@
     update_repo_cache: yes
     values_files:
       - '{{ root_path }}/{{ service }}/values.yml'
-  notify: Reload Alertmanager
 
 # route
 - name: '{{ service }} : Create ingress route'

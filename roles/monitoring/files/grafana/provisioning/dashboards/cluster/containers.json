@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -15,8 +21,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 29,
-  "iteration": 1627389127545,
+  "id": 18,
+  "iteration": 1631359417278,
   "links": [],
   "panels": [
     {
@@ -93,9 +99,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg by (name) (irate(container_cpu_usage_seconds_total{image!=\"\",name=~\"$service\"}[5m])) * 100",
+          "expr": "avg by (container) (irate(container_cpu_usage_seconds_total{image!=\"\",container=~\"$container\"}[5m])) * 100",
           "interval": "",
-          "legendFormat": "{{ name }}",
+          "legendFormat": "{{ container }}",
           "refId": "A"
         }
       ],
@@ -179,9 +185,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg by (name) (container_memory_usage_bytes{image!=\"\",name=~\"$service\"})",
+          "expr": "avg by (container) (container_memory_usage_bytes{image!=\"\",container=~\"$container\"})",
           "interval": "",
-          "legendFormat": "{{ name }}",
+          "legendFormat": "{{ container }}",
           "refId": "A"
         }
       ],
@@ -260,7 +266,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg by (name) (container_fs_usage_bytes{image!=\"\",name=~\"$service\"})",
+          "expr": "avg by (name) (container_fs_usage_bytes{image!=\"\",container=~\"$container\"})",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -289,16 +295,61 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
           "unit": "dtdurations"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Pod"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 302
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Namespace"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 196
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "age"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 89
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Age"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 105
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 16,
@@ -312,27 +363,28 @@
         "sortBy": [
           {
             "desc": false,
-            "displayName": "Last Restart"
+            "displayName": "Age"
           }
         ]
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "exemplar": true,
-          "expr": "time() - min by (name, instance) (container_start_time_seconds{image!=\"\"})",
+          "expr": "time() - min by (container, namespace, instance) (container_start_time_seconds{image!=\"\",container!=\"\"})",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{ name }}",
+          "legendFormat": "{{ container }}",
           "refId": "A"
         }
       ],
-      "title": "Container Restarts",
+      "title": "Ages",
       "transformations": [
         {
           "id": "reduce",
           "options": {
             "includeTimeField": false,
+            "labelsToFields": true,
             "mode": "seriesToRows",
             "reducers": [
               "lastNotNull"
@@ -342,11 +394,25 @@
         {
           "id": "organize",
           "options": {
-            "excludeByName": {},
-            "indexByName": {},
+            "excludeByName": {
+              "Field": true,
+              "instance": true
+            },
+            "indexByName": {
+              "Field": 0,
+              "Last *": 4,
+              "container": 2,
+              "instance": 1,
+              "namespace": 3
+            },
             "renameByName": {
-              "Field": "Container",
-              "Last (not null)": "Last Restart"
+              "Field": "",
+              "Last (not null)": "Last Restart",
+              "Last *": "Age",
+              "container": "Container",
+              "instance": "",
+              "namespace": "Namespace",
+              "pod": "Pod"
             }
           }
         }
@@ -464,22 +530,22 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
         "datasource": null,
-        "definition": "label_values(container_memory_usage_bytes, container_label_com_docker_compose_service)",
+        "definition": "label_values(container_start_time_seconds, container)",
         "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": "Service",
+        "label": "Container",
         "multi": false,
-        "name": "service",
+        "name": "container",
         "options": [],
         "query": {
-          "query": "label_values(container_memory_usage_bytes, container_label_com_docker_compose_service)",
+          "query": "label_values(container_start_time_seconds, container)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -501,5 +567,5 @@
   "timezone": "",
   "title": "Containers",
   "uid": "containers",
-  "version": 10
+  "version": 7
 }

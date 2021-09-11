@@ -2,6 +2,11 @@ image:
   repository: crazymax/cloudflared
   tag: latest
 
+deployment:
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '49312'
+
 service:
   enabled: true
   type: NodePort
