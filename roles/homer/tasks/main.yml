@@ -1,9 +1,3 @@
-# variables
-- name: Load host specific variables
-  include_vars:
-    file: '{{ inventory_hostname }}/main.yml'
-    name: '{{ inventory_hostname }}'
-
 # directories
 - name: Ensure directories exist
   file:

@@ -8,6 +8,10 @@ body #bighead .first-line {
     padding: 5px 10px;
 }
 
+body #bighead .first-line .logo a {
+    display: block;
+}
+
 body #bighead .first-line .logo img {
     padding: 10px 10px 10px 0;
 }

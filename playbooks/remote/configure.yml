@@ -21,9 +21,6 @@
     - role: fail2ban
       tags:
         - fail2ban
-    - role: homer
-      tags:
-        - homer
     - role: gitlab
       tags:
         - gitlab

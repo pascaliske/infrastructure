@@ -1,21 +1,27 @@
 ---
-dashboard: Home Cloud
+title: Private Cloud
+subtitle: Pascal Iske
 services:
   - name: Monitoring
     icon: chart-area
     items:
       - name: Prometheus
         subtitle: Metrics collector
-      - name: Grafana
-        subtitle: Metrics visualizer
       - name: Alertmanager
         subtitle: Alert handling
         logo: prometheus.png
         url: https://alerts.{{ domain }}
+      - name: Grafana
+        subtitle: Metrics visualizer
+      - name: Portainer
+        subtitle: Container Management
+        url: https://portainer.{{ vault.domains.remote }}
       - name: Dozzle
         subtitle: Container logs
-      - name: Portainer
-        subtitle: Container management
+        url: https://logs.{{ vault.domains.remote }}
+      - name: Glances
+        subtitle: View general server stats
+        url: https://stats.{{ vault.domains.remote }}
   - name: Network
     icon: network-wired
     items:
@@ -51,9 +57,22 @@ services:
       - name: Home Assistant
         subtitle: Central home automation hub
         url: https://homeassistant.{{ domain }}
-  - name: Secrets
-    icon: key
+  - name: Self Hosted
+    icon: server
     items:
       - name: Vaultwarden
         subtitle: Password management
         url: https://vault.{{ domain }}
+      - name: GitLab
+        subtitle: Web based DevOps lifecycle platform
+        url: https://git.{{ vault.domains.remote }}
+      - name: Code Server
+        subtitle: Web based integrated development environment
+        logo: vscode.png
+        url: https://code.{{ vault.domains.remote }}
+      - name: Linkding
+        subtitle: Collect links and categorize them
+        url: https://links.{{ vault.domains.remote }}
+      - name: Paperless
+        subtitle: Online document management
+        url: https://docs.{{ vault.domains.remote }}

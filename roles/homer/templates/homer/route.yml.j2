@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`{{ 'go.' if inventory_hostname == 'jakku' }}{{ domain }}`)
+      match: Host(`{{ domain }}`)
       services:
         - kind: Service
           name: '{{ role_name }}'
