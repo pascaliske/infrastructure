@@ -63,6 +63,15 @@ body #main-section .group-title i {
     width: 35px;
 }
 
+body #main-section .card-content .status {
+    width: 7px;
+    color: transparent;
+}
+
+body #main-section .card-content .status::before {
+    box-shadow: none;
+}
+
 @media screen and (max-width: 768px) {
     body {
         overflow-x: hidden;

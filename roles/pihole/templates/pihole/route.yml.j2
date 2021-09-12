@@ -22,6 +22,8 @@ spec:
           namespace: traefik
         - name: error-pages
           namespace: traefik
+        - name: headers
+          namespace: '{{ role_name }}'
         - name: add-prefix
           namespace: '{{ role_name }}'
 ---

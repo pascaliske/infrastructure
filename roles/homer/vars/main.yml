@@ -30,7 +30,7 @@ services:
         logo: unifi.png
         url: https://unifi.{{ domain }}
       - name: Pi-hole
-        subtitle: DNS based ad blocker
+        type: PiHole
         url: https://pihole.{{ domain }}
       - name: FRITZ!Box
         subtitle: Gateway & Firewall

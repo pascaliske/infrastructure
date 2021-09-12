@@ -23,6 +23,7 @@ admin:
 extraEnvVars:
   TZ: '{{ timezone }}'
   VIRTUAL_PORT: 80
+  CORS_HOSTS: '{{ domain }},pihole.{{ domain }}'
   DNSSEC: 'true'
   DNS_FQDN_REQUIRED: 'true'
   ADMIN_EMAIL: '{{ vault.auth.email }}'

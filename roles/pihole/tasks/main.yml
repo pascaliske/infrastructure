@@ -47,6 +47,7 @@
     state: present
     template: '{{ role_name }}/middlewares/{{ item }}.yml.j2'
   loop:
+    - headers
     - prefix
 - name: Create ingress route
   kubernetes.core.k8s:
