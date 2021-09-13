@@ -5,21 +5,8 @@ image:
 env:
   TZ: '{{ timezone }}'
 
-service:
-  homekit:
-    enabled: true
-    type: NodePort
-    ports:
-      homekit-tcp:
-        enabled: true
-        port: 21063
-        nodePort: 21063
-        protocol: TCP
-      homekit-udp:
-        enabled: true
-        port: 5353
-        nodePort: 5353
-        protocol: UDP
+# needed for wake-on-lan and ps4 integrations
+hostNetwork: true
 
 # needed for zigbee usb access
 securityContext:
