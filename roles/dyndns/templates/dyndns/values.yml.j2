@@ -1,8 +1,29 @@
 image:
-  repository: tunix/digitalocean-dyndns-armv7
+  repository: pascaliske/alpine-curl-jq
   tag: latest
 
-digitialocean:
+fullnameOverride: dyndns
+
+cronJob:
+  enabled: true
+  schedule: '0 * * * *'
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: DOMAIN
+    value: '{{ domain }}'
+  - name: NAME
+    value: vpn
+
+secret:
+  create: true
   token: '{{ vault.digital_ocean.token }}'
-  domain: '{{ domain }}'
-  name: vpn
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi

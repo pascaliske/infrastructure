@@ -16,8 +16,8 @@
 # dyndns
 - name: Add helm repo
   kubernetes.core.helm_repository:
-    name: k8s-at-home
-    repo_url: https://k8s-at-home.com/charts
+    name: pascaliske
+    repo_url: https://charts.pascaliske.dev
 
 - name: Create chart values file
   template:
@@ -27,7 +27,7 @@
 - name: Apply helm chart with values file
   kubernetes.core.helm:
     name: '{{ role_name }}'
-    chart_ref: 'k8s-at-home/digitalocean-dyndns'
+    chart_ref: 'pascaliske/digitalocean-dyndns'
     namespace: '{{ role_name }}'
     update_repo_cache: yes
     values_files:
