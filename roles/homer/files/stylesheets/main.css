@@ -72,6 +72,14 @@ body #main-section .card-content .status::before {
     box-shadow: none;
 }
 
+body #app .footer {
+    background-color: var(--background);
+}
+
+body #app .footer .container .content p {
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 768px) {
     body {
         overflow-x: hidden;
