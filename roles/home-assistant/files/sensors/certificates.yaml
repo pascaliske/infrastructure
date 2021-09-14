@@ -5,21 +5,36 @@
       unit_of_measurement: Days
       value_template: >
         {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
+    cert_expiry_auth_pascaliske_dev:
+      friendly_name: auth.pascaliske.dev
+      unit_of_measurement: Days
+      value_template: >
+        {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_auth_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
+    cert_expiry_charts_pascaliske_dev:
+      friendly_name: charts.pascaliske.dev
+      unit_of_measurement: Days
+      value_template: >
+        {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_charts_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
     cert_expiry_code_pascaliske_dev:
       friendly_name: code.pascaliske.dev
       unit_of_measurement: Days
       value_template: >
         {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_code_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
+    cert_expiry_docs_pascaliske_dev:
+      friendly_name: docs.pascaliske.dev
+      unit_of_measurement: Days
+      value_template: >
+        {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_docs_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
     cert_expiry_git_pascaliske_dev:
       friendly_name: git.pascaliske.dev
       unit_of_measurement: Days
       value_template: >
         {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_git_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
-    cert_expiry_go_pascaliske_dev:
-      friendly_name: go.pascaliske.dev
+    cert_expiry_links_pascaliske_dev:
+      friendly_name: links.pascaliske.dev
       unit_of_measurement: Days
       value_template: >
-        {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_go_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
+        {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_links_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
     cert_expiry_logs_pascaliske_dev:
       friendly_name: logs.pascaliske.dev
       unit_of_measurement: Days
@@ -40,3 +55,18 @@
       unit_of_measurement: Days
       value_template: >
         {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_stats_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
+    cert_expiry_time_pascaliske_dev:
+      friendly_name: time.pascaliske.dev
+      unit_of_measurement: Days
+      value_template: >
+        {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_time_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
+    cert_expiry_traefik_pascaliske_dev:
+      friendly_name: traefik.pascaliske.dev
+      unit_of_measurement: Days
+      value_template: >
+        {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_traefik_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}
+    cert_expiry_travel_pascaliske_dev:
+      friendly_name: travel.pascaliske.dev
+      unit_of_measurement: Days
+      value_template: >
+        {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_travel_pascaliske_dev')) - as_timestamp(now())) | int / 60 / 1440) | round(0) }}

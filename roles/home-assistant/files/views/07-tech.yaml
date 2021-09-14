@@ -329,20 +329,32 @@ cards:
               entities:
                 - entity: sensor.cert_expiry_pascaliske_dev
                   name: pascaliske.dev
+                - entity: sensor.cert_expiry_auth_pascaliske_dev
+                  name: auth.pascaliske.dev
+                - entity: sensor.cert_expiry_charts_pascaliske_dev
+                  name: charts.pascaliske.dev
+                - entity: sensor.cert_expiry_code_pascaliske_dev
+                  name: code.pascaliske.dev
+                - entity: sensor.cert_expiry_docs_pascaliske_dev
+                  name: docs.pascaliske.dev
                 - entity: sensor.cert_expiry_git_pascaliske_dev
                   name: git.pascaliske.dev
+                - entity: sensor.cert_expiry_links_pascaliske_dev
+                  name: links.pascaliske.dev
+                - entity: sensor.cert_expiry_logs_pascaliske_dev
+                  name: logs.pascaliske.dev
+                - entity: sensor.cert_expiry_portainer_pascaliske_dev
+                  name: portainer.pascaliske.dev
                 - entity: sensor.cert_expiry_registry_pascaliske_dev
                   name: registry.pascaliske.dev
                 - entity: sensor.cert_expiry_stats_pascaliske_dev
                   name: stats.pascaliske.dev
-                - entity: sensor.cert_expiry_logs_pascaliske_dev
-                  name: logs.pascaliske.dev
-                - entity: sensor.cert_expiry_code_pascaliske_dev
-                  name: code.pascaliske.dev
-                - entity: sensor.cert_expiry_go_pascaliske_dev
-                  name: go.pascaliske.dev
-                - entity: sensor.cert_expiry_portainer_pascaliske_dev
-                  name: portainer.pascaliske.dev
+                - entity: sensor.cert_expiry_time_pascaliske_dev
+                  name: time.pascaliske.dev
+                - entity: sensor.cert_expiry_traefik_pascaliske_dev
+                  name: traefik.pascaliske.dev
+                - entity: sensor.cert_expiry_travel_pascaliske_dev
+                  name: travel.pascaliske.dev
     card_mod:
       style: |
         ha-card {
