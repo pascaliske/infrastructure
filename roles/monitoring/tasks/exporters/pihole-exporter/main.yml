@@ -1,4 +1,4 @@
-#
+# configuration
 - name: '{{ exporter }} : Create secrets'
   kubernetes.core.k8s:
     state: present
