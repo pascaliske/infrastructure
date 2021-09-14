@@ -4,23 +4,12 @@
 image:
   name: traefik
 
-deployment:
-  enabled: true
-  kind: Deployment
-  replicas: 1
-
-service:
-  enabled: true
-  type: LoadBalancer
-
 ingressRoute:
   dashboard:
     enabled: false
 
 persistence:
   enabled: true
-  path: /data
-  size: 128Mi
 
 # traefik specifics
 globalArguments:
@@ -41,12 +30,6 @@ additionalArguments:
   - '--providers.kubernetescrd.allowCrossNamespace=true'
   - '--serverstransport.insecureskipverify'
   - '--ping.entrypoint=traefik'
-
-providers:
-  kubernetesCRD:
-    enabled: true
-  kubernetesIngress:
-    enabled: true
 
 ports:
   # services
