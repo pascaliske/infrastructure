@@ -9,6 +9,8 @@ fullnameOverride: dyndns
 cronJob:
   enabled: true
   schedule: '0 * * * *'
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
 
 env:
   - name: TZ
