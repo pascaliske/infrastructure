@@ -13,7 +13,7 @@ serviceWeb:
   https:
     enabled: false
 
-virtualHost: 'pihole.{{ domain }}'
+virtualHost: '{{ role_name }}.{{ domain }}'
 
 persistentVolumeClaim:
   enabled: true
@@ -25,7 +25,7 @@ admin:
 extraEnvVars:
   TZ: '{{ timezone }}'
   VIRTUAL_PORT: 80
-  CORS_HOSTS: '{{ domain }},pihole.{{ domain }}'
+  CORS_HOSTS: '{{ domain }},{{ role_name }}.{{ domain }}'
   DNSSEC: 'true'
   DNS_FQDN_REQUIRED: 'true'
   ADMIN_EMAIL: '{{ vault.auth.email }}'
@@ -33,7 +33,7 @@ extraEnvVars:
   REV_SERVER_CIDR: '{{ vault.network }}'
   REV_SERVER_TARGET: '{{ vault.ips.router }}'
   REV_SERVER_DOMAIN: fritz.box
-  PROXY_LOCATION: pihole
+  PROXY_LOCATION: '{{ role_name }}'
   SKIPGRAVITYONBOOT: 'true'
   WEBTHEME: default-dark
   WEBUIBOXEDLAYOUT: traditional
