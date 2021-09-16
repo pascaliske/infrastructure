@@ -5,9 +5,12 @@ image:
   tag: latest
 
 env:
-  TZ: '{{ timezone }}'
-  UNIFI_UID: '{{ ansible_user_uid }}'
-  UNIFI_GID: '{{ ansible_user_gid }}'
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: UNIFI_UID
+    value: '{{ ansible_user_uid }}'
+  - name: UNIFI_GID
+    value: '{{ ansible_user_gid }}'
 
 service:
   main:

@@ -5,11 +5,16 @@ image:
   tag: alpine
 
 env:
-  TZ: '{{ timezone }}'
-  DATA_FOLDER: config
-  SIGNUPS_VERIFY: 'true'
-  SIGNUPS_DOMAINS_WHITELIST: "{{ vault.domains | dict2items | map(attribute='value') | join(',') }}"
-  DISABLE_ADMIN_TOKEN: 'true'
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: DATA_FOLDER
+    value: config
+  - name: SIGNUPS_VERIFY
+    value: 'true'
+  - name: SIGNUPS_DOMAINS_WHITELIST
+    value: "{{ vault.domains | dict2items | map(attribute='value') | join(',') }}"
+  - name: DISABLE_ADMIN_TOKEN
+    value: 'true'
 
 persistence:
   config:

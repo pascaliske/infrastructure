@@ -5,7 +5,8 @@ image:
   tag: '2021.9'
 
 env:
-  TZ: '{{ timezone }}'
+  - name: TZ
+    value: '{{ timezone }}'
 
 # needed for wake-on-lan and ps4 integrations
 hostNetwork: true
