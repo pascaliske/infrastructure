@@ -338,6 +338,28 @@ cards:
                       name: Humidity
                     - entity: sensor.bathroom_lumi_power
                       name: Battery
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Guest Bathroom
+                icon: mdi:shower
+                state_color: false
+                show_header_toggle: false
+              entities:
+                - type: custom:multiple-entity-row
+                  entity: binary_sensor.guest_bathroom_lumi_contact
+                  name: Window
+                  icon: mdi:window-closed
+                  secondary_info: last-changed
+                  show_state: false
+                  entities:
+                    - entity: binary_sensor.guest_bathroom_lumi_contact
+                      name: State
+                    - entity: sensor.guest_bathroom_lumi_power
+                      name: Battery
     card_mod:
       style: |
         ha-card {
