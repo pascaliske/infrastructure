@@ -5,7 +5,6 @@ rules:
     services:
       - git
       - registry
-      - portainer
   - policy: bypass
     resources:
       - ^\/api

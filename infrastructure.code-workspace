@@ -79,10 +79,6 @@
             "name": "roles/pihole"
         },
         {
-            "path": "./roles/portainer",
-            "name": "roles/portainer"
-        },
-        {
             "path": "./roles/traefik",
             "name": "roles/traefik"
         },
@@ -105,7 +101,6 @@
             "jakku",
             "middlewares",
             "pihole",
-            "portainer",
             "ryloth",
             "traefik",
             "unifi"

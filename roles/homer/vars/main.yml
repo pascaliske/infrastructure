@@ -13,9 +13,6 @@ services:
         url: https://alerts.{{ domain }}
       - name: Grafana
         subtitle: Metrics visualizer
-      - name: Portainer
-        subtitle: Container Management
-        url: https://portainer.{{ vault.domains.remote }}
       - name: Dozzle
         subtitle: Container logs
         url: https://logs.{{ vault.domains.remote }}

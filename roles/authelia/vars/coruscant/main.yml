@@ -5,7 +5,6 @@ rules:
   - policy: bypass
     services:
       - unifi
-      - portainer
       - vault
   - policy: bypass
     resources:

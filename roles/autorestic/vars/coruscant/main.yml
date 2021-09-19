@@ -36,10 +36,6 @@ locations:
       - local
 
   # volumes
-  portainer:
-    from: volume:portainer
-    to:
-      - local
   prometheus:
     from: volume:prometheus
     to:

@@ -47,7 +47,3 @@ locations:
     from: volume:paperless_media
     to:
       - local
-  portainer:
-    from: volume:portainer
-    to:
-      - local

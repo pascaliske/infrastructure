@@ -24,7 +24,6 @@ It also includes the following maintenance containers:
 
 - [Dozzle](https://github.com/amir20/dozzle) for viewing container logs
 - [Watchtower](https://github.com/containrrr/watchtower) for updating all services automatically
-- [Portainer](https://www.portainer.io) for managing all service containers
 
 ## Requirements
 

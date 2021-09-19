@@ -343,8 +343,6 @@ cards:
                   name: links.pascaliske.dev
                 - entity: sensor.cert_expiry_logs_pascaliske_dev
                   name: logs.pascaliske.dev
-                - entity: sensor.cert_expiry_portainer_pascaliske_dev
-                  name: portainer.pascaliske.dev
                 - entity: sensor.cert_expiry_registry_pascaliske_dev
                   name: registry.pascaliske.dev
                 - entity: sensor.cert_expiry_stats_pascaliske_dev
