@@ -7,6 +7,8 @@ image:
 env:
   - name: TZ
     value: '{{ timezone }}'
+  - name: DOMAIN
+    value: 'https://vault.{{ domain }}'
   - name: DATA_FOLDER
     value: config
   - name: SIGNUPS_VERIFY
@@ -15,6 +17,20 @@ env:
     value: "{{ domains | dict2items | map(attribute='value') | join(',') }}"
   - name: DISABLE_ADMIN_TOKEN
     value: 'true'
+  - name: SMTP_HOST
+    value: '{{ vault.smtp.host }}'
+  - name: SMTP_PORT
+    value: '{{ vault.smtp.port }}'
+  - name: SMTP_USERNAME
+    value: '{{ vault.smtp.accounts.vaultwarden.email }}'
+  - name: SMTP_PASSWORD
+    value: '{{ vault.smtp.accounts.vaultwarden.password }}'
+  - name: SMTP_SSL
+    value: true
+  - name: SMTP_FROM
+    value: '{{ vault.smtp.accounts.vaultwarden.email }}'
+  - name: SMTP_FROM_NAME
+    value: '{{ vault.smtp.accounts.vaultwarden.name }}'
 
 persistence:
   config:
