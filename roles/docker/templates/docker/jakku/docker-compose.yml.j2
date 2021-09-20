@@ -129,30 +129,6 @@ services:
       - '{{ root_path }}/gitlab-runner:/etc/gitlab-runner'
     networks:
       - docker
-  code-server:
-    image: codercom/code-server
-    container_name: code-server
-    restart: unless-stopped
-    user: '{{ ansible_user_uid }}:{{ ansible_user_gid }}'
-    working_dir: /home/coder/projects
-    environment:
-      TZ: '{{ timezone }}'
-      XDG_DATA_HOME: /home/coder
-      XDG_CONFIG_HOME: /home/coder/.config
-      PROXY_DOMAIN: 'code.{{ domain }}'
-    volumes:
-      - '{{ root_path }}/code-server/data:/home/coder/code-server'
-      - '{{ root_path }}/code-server/config.yml:/home/coder/.config/code-server/config.yaml'
-      - '{{ root_path }}/projects:/home/coder/projects'
-    networks:
-      - proxy
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.code-server.rule=Host(`code.{{ domain }}`)
-      - traefik.http.routers.code-server.entrypoints=https
-      - traefik.http.routers.code-server.tls=true
-      - traefik.http.routers.code-server.tls.certresolver=http
-      - traefik.http.routers.code-server.middlewares=auth@file,security@file,error-pages@file
   linkding:
     image: sissbruecker/linkding:latest
     container_name: linkding

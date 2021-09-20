@@ -1,4 +1,2 @@
 ---
 domain: pascaliske.dev
-projects:
-  - { user: 'pascaliske', repo: 'infrastructure', ref: 'master' }
