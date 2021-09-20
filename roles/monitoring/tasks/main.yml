@@ -6,11 +6,7 @@
   loop: '{{ services + exporters }}'
 
 # namespace
-- name: Create a namespace
-  kubernetes.core.k8s:
-    kind: Namespace
-    name: '{{ role_name }}'
-    state: present
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
 
 # services
 - name: Configure services
