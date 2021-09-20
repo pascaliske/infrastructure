@@ -11,11 +11,12 @@
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
 
 # configuration
-- name: Create secret manifests
+- name: Create extra manifests
   kubernetes.core.k8s:
     state: present
     template: '{{ role_name }}/{{ item }}.yml.j2'
   loop:
+    - tls-options
     - secrets/basic-auth
     - secrets/digital-ocean
 
