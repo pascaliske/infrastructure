@@ -19,7 +19,6 @@
       - '{{ paths.root }}/{{ service }}/values.yml'
 
 # route
-- name: '{{ service }} : Create ingress route'
-  kubernetes.core.k8s:
-    state: present
-    template: 'services/{{ service }}/route.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
+  vars:
+    service: 'services/{{ service }}'

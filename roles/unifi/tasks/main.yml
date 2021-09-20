@@ -30,13 +30,7 @@
       - '{{ paths.root }}/{{ role_name }}/values.yml'
 
 # route
-- name: Create middleware manifests
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ role_name }}/middlewares/{{ item }}.yml.j2'
-  loop:
-    - headers
-- name: Create ingress route
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ role_name }}/route.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
+  vars:
+    middlewares:
+      - headers

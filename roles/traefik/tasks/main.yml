@@ -55,18 +55,14 @@
     template: '{{ role_name }}/service.yml.j2'
 
 # route
-- name: Create middleware manifests
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ role_name }}/middlewares/{{ item }}.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
+  vars:
+    service: '{{ item.name }}'
+    middlewares: '{{ item.middlewares | default([]) }}'
   loop:
-    - auth
-    - security
-    - error-pages
-- name: Create ingress routes
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ item }}/route.yml.j2'
-  loop:
-    - '{{ role_name }}-errors'
-    - '{{ role_name }}'
+    - name: '{{ role_name }}-errors'
+    - name: '{{ role_name }}'
+      middlewares:
+        - auth
+        - security
+        - error-pages
