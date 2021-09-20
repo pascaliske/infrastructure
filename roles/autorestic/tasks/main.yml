@@ -7,7 +7,7 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ item }}'
+    path: '{{ paths.root }}/{{ item }}'
     state: directory
   loop:
     - '{{ role_name }}'
@@ -29,13 +29,13 @@
 # configuration
 - name: Check if configuration file already exists
   stat:
-    path: '{{ root_path }}/{{ role_name }}/config.yml'
+    path: '{{ paths.root }}/{{ role_name }}/config.yml'
   register: existing_config_file_check
 
 - name: Load existing keys, if any
   when: existing_config_file_check.stat.exists
   slurp:
-    src: '{{ root_path }}/{{ role_name }}/config.yml'
+    src: '{{ paths.root }}/{{ role_name }}/config.yml'
   register: existing_config_file
 
 - name: Decode existing keys
@@ -52,7 +52,7 @@
 - name: Create configuration file
   template:
     src: '{{ role_name }}/config.yml.j2'
-    dest: '{{ root_path }}/{{ role_name }}/config.yml'
+    dest: '{{ paths.root }}/{{ role_name }}/config.yml'
     mode: 0600
   notify: Check Autorestic Config
 
@@ -66,12 +66,12 @@
 - name: Create wrapper script
   template:
     src: '{{ role_name }}/autorestic.sh.j2'
-    dest: '{{ root_path }}/{{ role_name }}/autorestic.sh'
+    dest: '{{ paths.root }}/{{ role_name }}/autorestic.sh'
     mode: a+x
 
 - name: Make wrapper script globally available
   file:
-    src: '{{ root_path }}/{{ role_name }}/autorestic.sh'
+    src: '{{ paths.root }}/{{ role_name }}/autorestic.sh'
     dest: '{{ script }}'
     state: link
   become: yes

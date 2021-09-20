@@ -1,7 +1,7 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ item }}'
+    path: '{{ paths.root }}/{{ item }}'
     state: directory
   loop:
     - '{{ role_name }}'
@@ -19,7 +19,7 @@
 - name: Copy Home Assistant config files
   synchronize:
     src: ../files/{{ item }}.yaml
-    dest: '{{ root_path }}/{{ role_name }}/{{ item }}.yaml'
+    dest: '{{ paths.root }}/{{ role_name }}/{{ item }}.yaml'
   loop:
     - configuration
     - customize
@@ -28,7 +28,7 @@
 - name: Copy Home Assistant config directories
   synchronize:
     src: ../files/{{ item }}/
-    dest: '{{ root_path }}/{{ role_name }}/{{ item }}'
+    dest: '{{ paths.root }}/{{ role_name }}/{{ item }}'
     delete: yes
   loop:
     - automations
@@ -45,7 +45,7 @@
 - name: Copy Home Assistant secrets to config directory
   template:
     src: home-assistant/secrets.yml.j2
-    dest: '{{ root_path }}/{{ role_name }}/secrets.yaml'
+    dest: '{{ paths.root }}/{{ role_name }}/secrets.yaml'
   notify: Reload Home Assistant Core
 
 # configuration / themes
@@ -54,7 +54,7 @@
     - name: Download theme into theme directory
       get_url:
         url: '{{ item.url }}'
-        dest: '{{ root_path }}/{{ role_name }}/themes/{{ item.name }}.yaml'
+        dest: '{{ paths.root }}/{{ role_name }}/themes/{{ item.name }}.yaml'
       loop: '{{ themes.url }}'
   notify: Reload Home Assistant UI
 
@@ -65,7 +65,7 @@
       git:
         repo: 'https://github.com/{{ item.user }}/{{ item.repo }}.git'
         version: master
-        dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}'
+        dest: '{{ paths.root }}/{{ role_name }}/www/{{ item.repo }}'
         force: yes
       loop: '{{ cards.git }}'
       diff: no
@@ -74,13 +74,13 @@
   block:
     - name: Ensure card folders exist
       file:
-        path: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}'
+        path: '{{ paths.root }}/{{ role_name }}/www/{{ item.repo }}'
         state: directory
       loop: '{{ cards.url }}'
     - name: Download card into card directory
       get_url:
         url: 'https://github.com/{{ item.user }}/{{ item.repo }}/releases/latest/download/{{ item.file | default(item.repo) }}.js'
-        dest: '{{ root_path }}/{{ role_name }}/www/{{ item.repo }}/'
+        dest: '{{ paths.root }}/{{ role_name }}/www/{{ item.repo }}/'
       loop: '{{ cards.url }}'
   notify: Reload Home Assistant UI
 
@@ -93,7 +93,7 @@
 - name: Create chart values file
   template:
     src: '{{ role_name }}/values.yml.j2'
-    dest: '{{ root_path }}/{{ role_name }}/values.yml'
+    dest: '{{ paths.root }}/{{ role_name }}/values.yml'
 
 - name: Apply helm chart with values file
   kubernetes.core.helm:
@@ -102,7 +102,7 @@
     namespace: '{{ role_name }}'
     update_repo_cache: yes
     values_files:
-      - '{{ root_path }}/{{ role_name }}/values.yml'
+      - '{{ paths.root }}/{{ role_name }}/values.yml'
 
 # route
 - name: Create ingress route

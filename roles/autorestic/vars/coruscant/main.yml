@@ -9,29 +9,29 @@ forget:
 locations:
   # folders
   authelia:
-    from: '{{ root_path }}/authelia'
+    from: '{{ paths.root }}/authelia'
     to:
       - local
   fail2ban:
-    from: '{{ root_path }}/fail2ban'
+    from: '{{ paths.root }}/fail2ban'
     to:
       - local
   home-assistant:
-    from: '{{ root_path }}/home-assistant'
+    from: '{{ paths.root }}/home-assistant'
     to:
       - local
   pihole:
-    from: '{{ root_path }}/pihole'
+    from: '{{ paths.root }}/pihole'
     to:
       - local
   unifi:
-    from: '{{ root_path }}/unifi'
+    from: '{{ paths.root }}/unifi'
     to:
       - local
     exclude:
       - config/backup/autobackup
   unifi-backups:
-    from: '{{ root_path }}/unifi/config/backup/autobackup'
+    from: '{{ paths.root }}/unifi/config/backup/autobackup'
     to:
       - local
 

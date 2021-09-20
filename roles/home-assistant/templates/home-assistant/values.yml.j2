@@ -19,7 +19,7 @@ persistence:
   config:
     enabled: true
     type: hostPath
-    hostPath: '{{ root_path }}/{{ role_name }}'
+    hostPath: '{{ paths.root }}/{{ role_name }}'
     mountPath: /config
   usb:
     enabled: true

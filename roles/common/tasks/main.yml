@@ -151,7 +151,7 @@
 # setup bash aliases
 - name: Create aliases
   lineinfile:
-    path: '{{ home_path }}/.bashrc'
+    path: '{{ paths.home }}/.bashrc'
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
@@ -163,7 +163,7 @@
 - name: Create vim configuration
   template:
     src: vim/.vimrc.j2
-    dest: '{{ home_path }}/.vimrc'
+    dest: '{{ paths.home }}/.vimrc'
 
 # configure avahi-daemon
 - name: Configure avahi-daemon

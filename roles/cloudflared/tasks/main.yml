@@ -1,7 +1,7 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ item }}'
+    path: '{{ paths.root }}/{{ item }}'
     state: directory
   loop:
     - '{{ role_name }}'
@@ -22,7 +22,7 @@
 - name: Create chart values file
   template:
     src: '{{ role_name }}/values.yml.j2'
-    dest: '{{ root_path }}/{{ role_name }}/values.yml'
+    dest: '{{ paths.root }}/{{ role_name }}/values.yml'
 
 - name: Apply helm chart with values file
   kubernetes.core.helm:
@@ -31,4 +31,4 @@
     namespace: '{{ role_name }}'
     update_repo_cache: yes
     values_files:
-      - '{{ root_path }}/{{ role_name }}/values.yml'
+      - '{{ paths.root }}/{{ role_name }}/values.yml'

@@ -7,7 +7,7 @@
 - name: '{{ exporter }} : Create chart values file'
   template:
     src: 'exporters/{{ exporter }}/values.yml.j2'
-    dest: '{{ root_path }}/{{ exporter }}/values.yml'
+    dest: '{{ paths.root }}/{{ exporter }}/values.yml'
 
 - name: '{{ exporter }} : Apply helm chart with values file'
   kubernetes.core.helm:
@@ -16,4 +16,4 @@
     namespace: '{{ role_name }}'
     update_repo_cache: yes
     values_files:
-      - '{{ root_path }}/{{ exporter }}/values.yml'
+      - '{{ paths.root }}/{{ exporter }}/values.yml'

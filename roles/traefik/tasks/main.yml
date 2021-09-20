@@ -1,7 +1,7 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ item }}'
+    path: '{{ paths.root }}/{{ item }}'
     state: directory
   loop:
     - '{{ role_name }}'
@@ -35,7 +35,7 @@
 - name: Create chart values file
   template:
     src: '{{ item }}/values.yml.j2'
-    dest: '{{ root_path }}/{{ item }}/values.yml'
+    dest: '{{ paths.root }}/{{ item }}/values.yml'
   loop:
     - '{{ role_name }}-errors'
     - '{{ role_name }}'
@@ -47,7 +47,7 @@
     namespace: '{{ role_name }}'
     update_repo_cache: yes
     values_files:
-      - '{{ root_path }}/{{ item.name }}/values.yml'
+      - '{{ paths.root }}/{{ item.name }}/values.yml'
   loop:
     - { name: '{{ role_name }}-errors', repo: 'pascaliske' }
     - { name: '{{ role_name }}', repo: '{{ role_name }}' }

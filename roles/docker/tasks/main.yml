@@ -8,15 +8,15 @@
 - name: Create compose configuration
   template:
     src: docker/{{ inventory_hostname }}/docker-compose.yml.j2
-    dest: '{{ root_path }}/docker-compose.yml'
+    dest: '{{ paths.root }}/docker-compose.yml'
 
 - name: Create aliases
   lineinfile:
-    path: '{{ home_path }}/.bashrc'
+    path: '{{ paths.home }}/.bashrc'
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
     create: yes
   loop:
     - { alias: 'd', command: 'docker' }
-    - { alias: 'dc', command: 'docker-compose --file {{ root_path }}/docker-compose.yml' }
+    - { alias: 'dc', command: 'docker-compose --file {{ paths.root }}/docker-compose.yml' }

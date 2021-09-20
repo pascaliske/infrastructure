@@ -1,7 +1,7 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ item }}'
+    path: '{{ paths.root }}/{{ item }}'
     state: directory
   loop:
     - '{{ role_name }}'
@@ -15,16 +15,16 @@
 - name: Create configuration file
   template:
     src: '{{ role_name }}/gitlab.rb.j2'
-    dest: '{{ root_path }}/{{ role_name }}/config/gitlab.rb'
+    dest: '{{ paths.root }}/{{ role_name }}/config/gitlab.rb'
 
 # gitlab-backups
 - name: Ensure backups directory is not empty
   file:
-    path: '{{ root_path }}/{{ role_name }}/backups/.gitlab-backups'
+    path: '{{ paths.root }}/{{ role_name }}/backups/.gitlab-backups'
     state: touch
 
 # gitlab-runner
 - name: Create runner configuration file
   template:
     src: gitlab-runner/config.toml.j2
-    dest: '{{ root_path }}/gitlab-runner/config.toml'
+    dest: '{{ paths.root }}/gitlab-runner/config.toml'

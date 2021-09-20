@@ -1,4 +1,4 @@
 ---
 kubeconfig:
   local: /etc/rancher/k3s/k3s.yaml
-  remote: '{{ home_path }}/.kube/config'
+  remote: '{{ paths.home }}/.kube/config'

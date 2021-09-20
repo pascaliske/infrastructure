@@ -7,7 +7,7 @@
 - name: '{{ service }} : Create chart values file'
   template:
     src: 'services/{{ service }}/values.yml.j2'
-    dest: '{{ root_path }}/{{ service }}/values.yml'
+    dest: '{{ paths.root }}/{{ service }}/values.yml'
 
 - name: '{{ service }} : Apply helm chart with values file'
   kubernetes.core.helm:
@@ -16,7 +16,7 @@
     namespace: '{{ role_name }}'
     update_repo_cache: yes
     values_files:
-      - '{{ root_path }}/{{ service }}/values.yml'
+      - '{{ paths.root }}/{{ service }}/values.yml'
 
 # route
 - name: '{{ service }} : Create ingress route'

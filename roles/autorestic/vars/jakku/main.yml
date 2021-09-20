@@ -1,7 +1,7 @@
 backends:
   local:
     type: local
-    path: '{{ home_path }}/backups'
+    path: '{{ paths.home }}/backups'
 forget:
   keep-daily: 7
   keep-weekly: 4
@@ -9,32 +9,32 @@ forget:
 locations:
   # folders
   authelia:
-    from: '{{ root_path }}/authelia'
+    from: '{{ paths.root }}/authelia'
     to:
       - local
   code-server:
-    from: '{{ root_path }}/code-server'
+    from: '{{ paths.root }}/code-server'
     to:
       - local
   fail2ban:
-    from: '{{ root_path }}/fail2ban'
+    from: '{{ paths.root }}/fail2ban'
     to:
       - local
   gitlab:
-    from: '{{ root_path }}/gitlab'
+    from: '{{ paths.root }}/gitlab'
     to:
       - local
     exclude:
       - backups
       - logs
   gitlab-backups:
-    from: '{{ root_path }}/gitlab/backups'
+    from: '{{ paths.root }}/gitlab/backups'
     to:
       - local
     forget:
       keep-last: 2
   linkding:
-    from: '{{ root_path }}/linkding'
+    from: '{{ paths.root }}/linkding'
     to:
       - local
 

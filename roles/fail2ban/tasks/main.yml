@@ -1,7 +1,7 @@
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ root_path }}/{{ role_name }}/{{ item }}.d'
+    path: '{{ paths.root }}/{{ role_name }}/{{ item }}.d'
     state: directory
   loop:
     - jail
@@ -11,7 +11,7 @@
 - name: Copy config directories
   synchronize:
     src: ../files/{{ item }}/
-    dest: '{{ root_path }}/{{ role_name }}/{{ item }}.d'
+    dest: '{{ paths.root }}/{{ role_name }}/{{ item }}.d'
     delete: yes
   loop:
     - jail

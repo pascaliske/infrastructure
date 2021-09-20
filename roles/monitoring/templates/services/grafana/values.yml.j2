@@ -27,7 +27,7 @@ env:
 extraVolumeMounts:
   - name: '{{ service }}-provisioning'
     mountPath: /etc/grafana/provisioning
-    hostPath: '{{ root_path }}/{{ service }}/provisioning'
+    hostPath: '{{ paths.root }}/{{ service }}/provisioning'
     readOnly: true
 
 plugins:

@@ -31,7 +31,7 @@ services:
       - 61208
     volumes:
       - /:/rootfs:ro
-      - '{{ root_path }}/glances/glances.conf:/glances/conf/glances.conf'
+      - '{{ paths.root }}/glances/glances.conf:/glances/conf/glances.conf'
     networks:
       - proxy
       - docker
@@ -81,7 +81,7 @@ services:
       SSMTP_TLS: 'YES'
     volumes:
       - /var/log:/var/log:ro
-      - '{{ root_path }}/fail2ban:/data'
+      - '{{ paths.root }}/fail2ban:/data'
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -97,10 +97,10 @@ services:
     ports:
       - '2222:22'
     volumes:
-      - '{{ root_path }}/gitlab/config:/etc/gitlab'
-      - '{{ root_path }}/gitlab/data:/var/opt/gitlab'
-      - '{{ root_path }}/gitlab/backups:/var/opt/gitlab-backups'
-      - '{{ root_path }}/gitlab/logs:/var/log/gitlab'
+      - '{{ paths.root }}/gitlab/config:/etc/gitlab'
+      - '{{ paths.root }}/gitlab/data:/var/opt/gitlab'
+      - '{{ paths.root }}/gitlab/backups:/var/opt/gitlab-backups'
+      - '{{ paths.root }}/gitlab/logs:/var/log/gitlab'
     networks:
       - proxy
     labels:
@@ -126,7 +126,7 @@ services:
     environment:
       DOCKER_HOST: tcp://docker-proxy:2375
     volumes:
-      - '{{ root_path }}/gitlab-runner:/etc/gitlab-runner'
+      - '{{ paths.root }}/gitlab-runner:/etc/gitlab-runner'
     networks:
       - docker
   linkding:
@@ -136,7 +136,7 @@ services:
     environment:
       TZ: '{{ timezone }}'
     volumes:
-      - '{{ root_path }}/linkding:/etc/linkding/data'
+      - '{{ paths.root }}/linkding:/etc/linkding/data'
     networks:
       - proxy
     labels:
@@ -169,8 +169,8 @@ services:
     volumes:
       - paperless_data:/usr/src/paperless/data
       - paperless_media:/usr/src/paperless/media
-      - '{{ root_path }}/paperless/export:/usr/src/paperless/export'
-      - '{{ root_path }}/paperless/import:/usr/src/paperless/consume'
+      - '{{ paths.root }}/paperless/export:/usr/src/paperless/export'
+      - '{{ paths.root }}/paperless/import:/usr/src/paperless/consume'
     networks:
       - proxy
       - redis

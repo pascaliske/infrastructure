@@ -8,7 +8,7 @@
 
 - name: Create aliases
   lineinfile:
-    path: '{{ home_path }}/.bashrc'
+    path: '{{ paths.home }}/.bashrc'
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
