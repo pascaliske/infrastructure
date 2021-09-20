@@ -66,6 +66,10 @@ ports:
   websecure: null
   metrics: null
 
+service:
+  spec:
+    externalTrafficPolicy: Local
+
 env:
   - name: TZ
     value: '{{ timezone }}'
