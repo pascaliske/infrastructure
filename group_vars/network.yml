@@ -1,2 +1,2 @@
 ---
-domain: iske.cloud
+domain: '{{ domains.internal }}'

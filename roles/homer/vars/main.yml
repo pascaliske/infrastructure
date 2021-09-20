@@ -15,10 +15,10 @@ services:
         subtitle: Metrics visualizer
       - name: Dozzle
         subtitle: Container logs
-        url: https://logs.{{ vault.domains.remote }}
+        url: https://logs.{{ domains.external }}
       - name: Glances
         subtitle: View general server stats
-        url: https://stats.{{ vault.domains.remote }}
+        url: https://stats.{{ domains.external }}
   - name: Network
     icon: network-wired
     items:
@@ -62,14 +62,14 @@ services:
         url: https://vault.{{ domain }}
       - name: GitLab
         subtitle: Web based DevOps lifecycle platform
-        url: https://git.{{ vault.domains.remote }}
+        url: https://git.{{ domains.external }}
       - name: Code Server
         subtitle: Web based integrated development environment
         logo: vscode.png
-        url: https://code.{{ vault.domains.remote }}
+        url: https://code.{{ domains.external }}
       - name: Linkding
         subtitle: Collect links and categorize them
-        url: https://links.{{ vault.domains.remote }}
+        url: https://links.{{ domains.external }}
       - name: Paperless
         subtitle: Online document management
-        url: https://docs.{{ vault.domains.remote }}
+        url: https://docs.{{ domains.external }}

@@ -24,7 +24,7 @@ colors:
     highlight-hover: '#484d56'
     card-background: '#212020'
 footer: >
-  <p>&copy; {{ ansible_date_time.year }} <a href="https://pascaliske.dev">Pascal Iske</a></p>
+  <p>&copy; {{ ansible_date_time.year }} <a href="https://{{ domains.external }}">Pascal Iske</a></p>
   <style>
     {{ lookup('file', 'stylesheets/main.css') | indent(6) }}
   </style>
@@ -49,7 +49,7 @@ links:
     target: _blank
   - name: Configure
     icon: fas fa-wrench
-    url: https://code.pascaliske.dev/?workspace=/home/coder/projects/infrastructure/infrastructure.code-workspace
+    url: https://code.{{ domains.external }}/?workspace=/home/coder/projects/infrastructure/infrastructure.code-workspace
     target: _blank
 
 # tags

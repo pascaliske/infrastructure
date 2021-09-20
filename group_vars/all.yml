@@ -2,3 +2,6 @@
 timezone: Europe/Berlin
 home_path: '{{ ansible_env.HOME }}'
 root_path: '{{ ansible_env.HOME }}/{{ inventory_hostname }}'
+domains:
+  external: pascaliske.dev
+  internal: iske.cloud

@@ -12,7 +12,7 @@ env:
   - name: SIGNUPS_VERIFY
     value: 'true'
   - name: SIGNUPS_DOMAINS_WHITELIST
-    value: "{{ vault.domains | dict2items | map(attribute='value') | join(',') }}"
+    value: "{{ domains | dict2items | map(attribute='value') | join(',') }}"
   - name: DISABLE_ADMIN_TOKEN
     value: 'true'
 
