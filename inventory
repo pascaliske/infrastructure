@@ -4,7 +4,7 @@ coruscant ansible_host=10.0.2.2 ansible_user=pi
 
 # remote
 [remote]
-jakku ansible_host=45.9.60.94 ansible_user=root
+jakku ansible_host=202.61.207.160 ansible_user=pi
 
 # testing
 [testing]
