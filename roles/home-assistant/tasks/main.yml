@@ -34,6 +34,7 @@
     - scripts
     - sensors
     - switches
+    - templates
     - views
   notify: Reload Home Assistant Core
 

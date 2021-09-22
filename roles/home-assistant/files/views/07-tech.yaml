@@ -20,7 +20,7 @@ cards:
                   name: Public IP
                   graph: none
                   icon: mdi:web
-                  entity: sensor.fritzbox_public_ip
+                  entity: sensor.fritz_box_public_ip
                 - type: sensor
                   name: Last Boot
                   graph: none
@@ -32,17 +32,17 @@ cards:
                   name: Downstream
                   graph: none
                   icon: mdi:arrow-down
-                  entity: sensor.fritzbox_downstream_percentage
+                  entity: sensor.fritz_box_downstream_percentage
                 - type: sensor
                   name: Upstream
                   graph: none
                   icon: mdi:arrow-up
-                  entity: sensor.fritzbox_upstream_percentage
+                  entity: sensor.fritz_box_upstream_percentage
                 - type: sensor
                   name: Uptime
                   graph: none
                   icon: mdi:clock-outline
-                  entity: sensor.fritzbox_uptime
+                  entity: sensor.fritz_box_connection_uptime
             - type: entities
               title: Ad Blocker
               show_header_toggle: false

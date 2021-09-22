@@ -1,38 +1,41 @@
-# custom sensors
-- platform: template
-  sensors:
-    fritzbox_downstream:
-      friendly_name: FRITZ!Box Downstream
-      value_template: >
+- sensor:
+    # fritzbox downstream
+    - name: FRITZ!Box Downstream
+      unit_of_measurement: kbit/s
+      state: >
         {%- set downstream = states('sensor.fritz_box_7590_kb_s_received') | float -%}
         {{- (downstream * 8) | round(2) -}}
-      unit_of_measurement: kbit/s
-    fritzbox_downstream_percentage:
-      friendly_name: FRITZ!Box Downstream Percentage
-      value_template: >
+
+    # fritzbox downstream percentage
+    - name: FRITZ!Box Downstream Percentage
+      unit_of_measurement: '%'
+      state: >
         {%- set downstream = states('sensor.fritz_box_7590_kb_s_received') | float -%}
         {%- set maxDownstream = states('sensor.fritz_box_7590_max_kbit_s_received') | float -%}
         {{- ((downstream * 8) / maxDownstream * 100) | round(2) -}}
-      unit_of_measurement: '%'
-    fritzbox_upstream:
-      friendly_name: FRITZ!Box Upstream
-      value_template: >
+
+    # fritzbox upstream
+    - name: FRITZ!Box Upstream
+      unit_of_measurement: kbit/s
+      state: >
         {%- set upstream = states('sensor.fritz_box_7590_kb_s_sent') | float -%}
         {{- (upstream * 8) | round(2) -}}
-      unit_of_measurement: kbit/s
-    fritzbox_upstream_percentage:
-      friendly_name: FRITZ!Box Upstream Percentage
-      value_template: >
+
+    # fritzbox upstream percentage
+    - name: FRITZ!Box Upstream Percentage
+      unit_of_measurement: '%'
+      state: >
         {%- set upstream = states('sensor.fritz_box_7590_kb_s_sent') | float -%}
         {%- set maxUpstream = states('sensor.fritz_box_7590_max_kbit_s_sent') | float -%}
         {{- ((upstream * 8) / maxUpstream * 100) | round(2) -}}
-      unit_of_measurement: '%'
-    fritzbox_uptime:
-      friendly_name: FRITZ!Box Connection Uptime
-      value_template: >
+
+    # fritzbox uptime
+    - name: FRITZ!Box Connection Uptime
+      state: >
         {%- set uptime = states('sensor.fritz_box_7590_connection_uptime') -%}
         {{- relative_time(uptime | as_datetime) -}}
-    fritzbox_public_ip:
-      friendly_name: FRITZ!Box Public IP
-      value_template: >
+
+    # fritzbox public ip
+    - name: FRITZ!Box Public IP
+      state: >
         {{- states('sensor.fritz_box_7590_external_ip') -}}

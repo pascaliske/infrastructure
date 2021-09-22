@@ -22,7 +22,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 14,
-  "iteration": 1631360117515,
+  "iteration": 1632285902669,
   "links": [],
   "panels": [
     {
@@ -94,7 +94,8 @@
       "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_downstream_percentage\"}",
+          "exemplar": true,
+          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritz_box_downstream_percentage\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -155,7 +156,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_downstream_percentage\"}",
+          "exemplar": true,
+          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritz_box_downstream_percentage\"}",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "Downstream",
@@ -258,7 +260,8 @@
       "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_upstream_percentage\"}",
+          "exemplar": true,
+          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritz_box_upstream_percentage\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -319,7 +322,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritzbox_upstream_percentage\"}",
+          "exemplar": true,
+          "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.fritz_box_upstream_percentage\"}",
           "interval": "",
           "intervalFactor": 10,
           "legendFormat": "Upstream",
@@ -1204,5 +1208,5 @@
   "timezone": "",
   "title": "Internet",
   "uid": "internet",
-  "version": 6
+  "version": 9
 }
