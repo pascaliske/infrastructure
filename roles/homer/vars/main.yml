@@ -13,6 +13,9 @@ services:
         url: https://alerts.{{ domain }}
       - name: Grafana
         subtitle: Metrics visualizer
+      - name: Uptime Kuma
+        subtitle: Uptime monitoring
+        url: https://status.{{ domain }}
       - name: Dozzle
         subtitle: Container logs
         url: https://logs.{{ domains.external }}
