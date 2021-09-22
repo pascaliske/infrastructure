@@ -10,8 +10,8 @@ rules:
     resources:
       - /-/reload
     services:
-      - prometheus
       - alerts
+      - prometheus
   - policy: bypass
     resources:
       - ^\/+api\.php
@@ -33,14 +33,13 @@ rules:
   # two factor
   - policy: two_factor
     services:
-      - traefik
-      - prometheus
-      - grafana
       - alerts
-      - pihole
+      - grafana
       - homeassistant
-      - dozzle
+      - pihole
+      - prometheus
       - status
+      - traefik
   - policy: two_factor
     resources:
       - /admin
