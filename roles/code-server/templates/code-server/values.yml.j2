@@ -22,7 +22,6 @@ repositories:
   {{ projects | to_nice_yaml | indent(2) }}
 
 securityContext:
-  enabled: true
   fsGroup: {{ ansible_user_gid }}
   runAsNonRoot: true
   runAsGroup: {{ ansible_user_gid }}
