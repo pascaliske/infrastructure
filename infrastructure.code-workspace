@@ -87,6 +87,10 @@
             "name": "roles/unifi"
         },
         {
+            "path": "./roles/uptime-kuma",
+            "name": "roles/uptime-kuma"
+        },
+        {
             "path": "./roles/vaultwarden",
             "name": "roles/vaultwarden"
         }

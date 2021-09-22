@@ -41,6 +41,9 @@
     - role: unifi
       tags:
         - unifi
+    - role: uptime-kuma
+      tags:
+        - uptime-kuma
     - role: vaultwarden
       tags:
         - vaultwarden
