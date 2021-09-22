@@ -11,10 +11,7 @@
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
 
 # configuration
-- name: Create extra manifests
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ role_name }}/{{ item }}.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
   loop:
     - tls-options
     - secrets/basic-auth
@@ -50,10 +47,9 @@
     - { name: '{{ role_name }}', repo: '{{ role_name }}' }
 
 # create metrics service
-- name: Create metrics service
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ role_name }}/service.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
+  loop:
+    - service
 
 # route
 - include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'

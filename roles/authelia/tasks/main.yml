@@ -16,10 +16,7 @@
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
 
 # configuration
-- name: Create config map manifest
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ role_name }}/{{ item }}.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
   loop:
     - config
     - users

@@ -1,8 +1,7 @@
 # configuration
-- name: '{{ exporter }} : Create secrets'
-  kubernetes.core.k8s:
-    state: present
-    template: 'exporters/{{ exporter }}/secrets/{{ item }}.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
+  vars:
+    path: 'exporters/{{ exporter }}/secrets'
   loop:
     - auth
 

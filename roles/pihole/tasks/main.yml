@@ -10,12 +10,9 @@
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
 
 # configuration
-- name: Create secret manifests
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ role_name }}/secrets/{{ item }}.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
   loop:
-    - auth
+    - secrets/auth
 
 # pihole
 - name: Add helm repo

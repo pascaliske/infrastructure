@@ -12,15 +12,13 @@
     src: ../files/{{ service }}/provisioning
     dest: '{{ paths.root }}/{{ service }}'
     delete: yes
-
-# grafana
-- name: '{{ service }} : Create secret manifests'
-  kubernetes.core.k8s:
-    state: present
-    template: 'services/{{ service }}/secrets/{{ item }}.yml.j2'
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
+  vars:
+    path: 'services/{{ service }}/secrets'
   loop:
     - auth
 
+# grafana
 - name: '{{ service }} : Add helm repo'
   kubernetes.core.helm_repository:
     name: '{{ service }}'
