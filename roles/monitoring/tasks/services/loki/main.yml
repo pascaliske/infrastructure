@@ -21,4 +21,4 @@
 # route
 - include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
   vars:
-    service: 'services/{{ service }}'
+    path: 'services/{{ service }}'

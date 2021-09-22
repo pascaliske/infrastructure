@@ -58,7 +58,7 @@
 # route
 - include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
   vars:
-    service: '{{ item.name }}'
+    path: '{{ item.name }}'
     middlewares: '{{ item.middlewares | default([]) }}'
   loop:
     - name: '{{ role_name }}-errors'

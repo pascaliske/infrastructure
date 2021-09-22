@@ -1,10 +1,10 @@
 - name: Create ingress route
   kubernetes.core.k8s:
     state: present
-    template: '{{ service|default(role_name) }}/route.yml.j2'
+    template: '{{ path | default(role_name) }}/route.yml.j2'
 - name: Create middlewares
   kubernetes.core.k8s:
     state: present
-    template: '{{ service|default(role_name) }}/middlewares/{{ item }}.yml.j2'
+    template: '{{ path | default(role_name) }}/middlewares/{{ item }}.yml.j2'
   when: middlewares | default([]) | length > 0
   loop: '{{ middlewares | default([]) }}'
