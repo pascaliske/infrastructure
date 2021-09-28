@@ -1,3 +1,5 @@
+# pascaliske/uptime-kuma
+# https://github.com/pascaliske/helm-charts/blob/master/charts/uptime-kuma/values.yaml
 image:
   repository: louislam/uptime-kuma
   tag: alpine
@@ -5,12 +7,10 @@ image:
 env:
   - name: TZ
     value: '{{ timezone }}'
-
-securityContext:
-  fsGroup: {{ ansible_user_gid }}
-  runAsNonRoot: true
-  runAsGroup: {{ ansible_user_gid }}
-  runAsUser: {{ ansible_user_uid }}
+  - name: PGID
+    value: '{{ ansible_user_gid }}'
+  - name: PUID
+    value: '{{ ansible_user_uid }}'
 
 resources:
   limits:

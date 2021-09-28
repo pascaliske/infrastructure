@@ -29,6 +29,14 @@ rules:
       - /api/websocket
     services:
       - homeassistant
+  - policy: bypass
+    resources:
+      - ^\/assets
+      - ^\/icon
+      - ^\/manifest
+      - /status-page
+    services:
+      - status
 
   # two factor
   - policy: two_factor
