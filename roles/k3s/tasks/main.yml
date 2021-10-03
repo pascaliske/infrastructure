@@ -15,7 +15,9 @@
     create: yes
   loop:
     - { alias: 'kubectl', command: 'kubectl --kubeconfig {{ kubeconfig.local }}' }
+    - { alias: 'k', command: 'kubectl --kubeconfig {{ kubeconfig.local }}' }
     - { alias: 'helm', command: 'helm --kubeconfig {{ kubeconfig.local }}' }
+    - { alias: 'h', command: 'helm --kubeconfig {{ kubeconfig.local }}' }
 
 - name: Change ownership of local config file
   become: yes
