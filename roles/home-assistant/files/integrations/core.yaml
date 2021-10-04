@@ -56,3 +56,4 @@ script: !include_dir_merge_named ../scripts
 sensor: !include_dir_merge_list ../sensors
 switch: !include_dir_merge_list ../switches
 template: !include_dir_merge_list ../templates
+input_boolean: !include_dir_merge_named ../helpers/booleans

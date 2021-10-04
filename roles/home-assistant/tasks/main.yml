@@ -29,6 +29,7 @@
   loop:
     - automations
     - groups
+    - helpers
     - integrations
     - scenes
     - scripts

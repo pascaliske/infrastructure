@@ -119,6 +119,23 @@ cards:
                       name: State
                     - entity: sensor.entrance_lumi_power
                       name: Battery
+                - type: custom:text-divider-row
+                  entity: sensor.time
+                  text: Modes
+                  card_mod:
+                    style: |
+                      h2.text-divider {
+                        margin: 0;
+                        font-weight: normal;
+                        letter-spacing: 0.5px;
+                        opacity: .5;
+                      }
+
+                      h2.text-divider span {
+                        padding: 10px 1em;
+                      }
+                - entity: switch.vacation_mode
+                  secondary_info: last-changed
             - type: entity-filter
               show_empty: false
               state_filter:

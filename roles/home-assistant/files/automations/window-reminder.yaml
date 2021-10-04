@@ -7,10 +7,15 @@ trigger:
   for:
     minutes: 5
 condition:
-  - condition: numeric_state
-    entity_id: weather.home
-    attribute: temperature
-    below: 17
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+      - condition: numeric_state
+        entity_id: weather.home
+        attribute: temperature
+        below: 17
 action:
   service: notify.slack
   data_template:

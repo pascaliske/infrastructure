@@ -13,6 +13,7 @@
     - group.reload
     - homekit.reload
     - template.reload
+    - input_boolean.reload
 - name: Reload Home Assistant UI
   uri:
     url: 'https://homeassistant.{{ domain }}/api/services/{{ item | replace(".", "/") }}'
