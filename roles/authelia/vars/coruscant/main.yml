@@ -34,7 +34,7 @@ rules:
       - ^\/assets
       - ^\/icon
       - ^\/manifest
-      - /status-page
+      - /status
     services:
       - status
 
