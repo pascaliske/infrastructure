@@ -3,6 +3,7 @@
     netflix:
       friendly_name: Netflix
       value_template: "{{ is_state('media_player.ps4_pi', 'playing') }}"
+      icon_template: mdi:netflix
       turn_on:
         service: media_player.select_source
         target:

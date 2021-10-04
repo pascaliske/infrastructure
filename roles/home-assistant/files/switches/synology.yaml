@@ -3,6 +3,7 @@
     synology_nas:
       friendly_name: Synology NAS
       value_template: "{{ not is_state('sensor.synologynas_temperature', 'unavailable') }}"
+      icon_template: mdi:nas
       turn_on:
         service: wake_on_lan.send_magic_packet
         data:
