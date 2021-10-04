@@ -14,6 +14,9 @@
     - role: dyndns
       tags:
         - dyndns
+    - role: snapdrop
+      tags:
+        - snapdrop
     - role: traefik
       tags:
         - traefik

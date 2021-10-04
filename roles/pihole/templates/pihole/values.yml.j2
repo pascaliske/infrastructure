@@ -48,6 +48,7 @@ dnsmasq:
     - '{{ vault.ips.controller }} {{ domain }}'
     - '{{ vault.ips.controller }} alerts.{{ domain }}'
     - '{{ vault.ips.controller }} auth.{{ domain }}'
+    - '{{ vault.ips.controller }} drop.{{ domain }}'
     - '{{ vault.ips.controller }} grafana.{{ domain }}'
     - '{{ vault.ips.controller }} homeassistant.{{ domain }}'
     - '{{ vault.ips.controller }} loki.{{ domain }}'

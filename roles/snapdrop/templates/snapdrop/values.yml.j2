@@ -1,0 +1,21 @@
+# pascaliske/snapdrop
+# https://github.com/pascaliske/helm-charts/blob/master/charts/snapdrop/values.yaml
+image:
+  repository: linuxserver/snapdrop
+  tag: latest
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: PGID
+    value: '{{ ansible_user_gid }}'
+  - name: PUID
+    value: '{{ ansible_user_uid }}'
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

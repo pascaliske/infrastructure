@@ -79,6 +79,10 @@
             "name": "roles/pihole"
         },
         {
+            "path": "./roles/snapdrop",
+            "name": "roles/snapdrop"
+        },
+        {
             "path": "./roles/traefik",
             "name": "roles/traefik"
         },
