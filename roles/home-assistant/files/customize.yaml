@@ -4,8 +4,8 @@ switch.kugel:
   icon: mdi:string-lights
 switch.lampe:
   icon: mdi:lightbulb
-switch.duftlampe:
-  icon: mdi:lightbulb
+switch.vorhang:
+  icon: mdi:string-lights
 switch.love:
   icon: mdi:string-lights
 switch.lichterkette:

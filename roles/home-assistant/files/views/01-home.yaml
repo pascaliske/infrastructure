@@ -165,11 +165,11 @@ cards:
                     - entity: sensor.lampe_power
                       name: false
                 - type: custom:multiple-entity-row
-                  entity: switch.duftlampe
+                  entity: switch.vorhang
                   secondary_info: last-changed
                   toggle: true
                   entities:
-                    - entity: sensor.duftlampe_power
+                    - entity: sensor.vorhang_power
                       name: false
             - type: entity-filter
               show_empty: false
