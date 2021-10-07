@@ -2,20 +2,38 @@ cloud:
   alexa:
     filter:
       include_entities:
+        # sensors
         - sensor.childrens_room_climate_lumi_temperature
         - sensor.bedroom_climate_lumi_temperature
         - sensor.living_room_climate_lumi_temperature
         - sensor.bathroom_climate_lumi_temperature
         - sensor.kitchen_climate_lumi_temperature
         - sensor.cpu_temperature
+
+        # lights
         - light.bedroom_closet
-        - switch.pi_hole
+
+        # switches
+        - switch.lampe
+        - switch.vorhang
+        - switch.lichterkette
         - switch.love
+        - switch.kugel
+
+        # network
+        - switch.pi_hole
+        - switch.netflix
+        - switch.synology_nas
+        - switch.vacation_mode
       include_domains:
-        - sensor
         - light
         - switch
+      exclude_entities:
+        - switch.fritz_box_7590_wi_fi_easy_huggie_box
+        - switch.fritz_box_7590_wi_fi_easy_huggie_box_5ghz
+        - switch.fritz_box_7590_wi_fi_fritz_box_gastzugang
     entity_config:
+      # sensors
       sensor.childrens_room_climate_lumi_temperature:
         name: Kinderzimmer Temperatur
         display_categories: TEMPERATURE_SENSOR
@@ -34,12 +52,36 @@ cloud:
       sensor.cpu_temperature:
         name: CPU Temperatur
         display_categories: TEMPERATURE_SENSOR
+
+      # lights
       light.bedroom_closet:
         name: Licht
         display_categories: LIGHT
-      switch.pi_hole:
-        name: Pi-Hole
-        display_categories: NETWORK_HARDWARE
+
+      # switches
+      switch.lampe:
+        name: Lampe
+        display_categories: LIGHT
+      switch.vorhang:
+        name: Vorhang
+        display_categories: LIGHT
+      switch.lichterkette:
+        name: Lichterkette
+        display_categories: LIGHT
       switch.love:
         name: Love
         display_categories: LIGHT
+      switch.kugel:
+        name: Kugel
+        display_categories: LIGHT
+
+      # network
+      switch.pi_hole:
+        name: Pi-Hole
+        display_categories: NETWORK_HARDWARE
+      switch.netflix:
+        name: Netflix
+        display_categories: STREAMING_DEVICE
+      switch.synology_nas:
+        name: Synology NAS
+        display_categories: NETWORK_HARDWARE
