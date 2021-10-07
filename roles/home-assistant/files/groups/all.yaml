@@ -1,0 +1,22 @@
+all_switches:
+  name: All Switches
+  icon: mdi:toggle-switch
+  all: yes
+  entities:
+    # living room
+    - switch.lampe
+    - switch.vorhang
+
+    # kitchen
+    - switch.lichterkette
+
+    # childrens room
+    - switch.love
+    - switch.kugel
+all_lights:
+  name: All Lights
+  icon: mdi:lightbulb-group
+  all: yes
+  entities:
+    # bedroom
+    - light.bedroom_closet
