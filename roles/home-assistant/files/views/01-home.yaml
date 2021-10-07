@@ -109,15 +109,15 @@ cards:
                 show_header_toggle: false
               entities:
                 - type: custom:multiple-entity-row
-                  entity: binary_sensor.entrance_lumi_contact
+                  entity: binary_sensor.entrance_door_lumi_contact
                   name: Door
                   icon: mdi:door
                   secondary_info: last-changed
                   show_state: false
                   entities:
-                    - entity: binary_sensor.entrance_lumi_contact
+                    - entity: binary_sensor.entrance_door_lumi_contact
                       name: State
-                    - entity: sensor.entrance_lumi_power
+                    - entity: sensor.entrance_door_lumi_power
                       name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
@@ -148,16 +148,16 @@ cards:
                 show_header_toggle: true
               entities:
                 - type: custom:multiple-entity-row
-                  entity: sensor.living_room_lumi_temperature
+                  entity: sensor.living_room_climate_lumi_temperature
                   name: Climate
                   secondary_info: last-changed
                   show_state: false
                   entities:
-                    - entity: sensor.living_room_lumi_temperature
+                    - entity: sensor.living_room_climate_lumi_temperature
                       name: Temperature
-                    - entity: sensor.living_room_lumi_humidity
+                    - entity: sensor.living_room_climate_lumi_humidity
                       name: Humidity
-                    - entity: sensor.living_room_lumi_power
+                    - entity: sensor.living_room_climate_lumi_power
                       name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
@@ -200,16 +200,16 @@ cards:
                 show_header_toggle: true
               entities:
                 - type: custom:multiple-entity-row
-                  entity: sensor.kitchen_lumi_temperature
+                  entity: sensor.kitchen_climate_lumi_temperature
                   name: Climate
                   secondary_info: last-changed
                   show_state: false
                   entities:
-                    - entity: sensor.kitchen_lumi_temperature
+                    - entity: sensor.kitchen_climate_lumi_temperature
                       name: Temperature
-                    - entity: sensor.kitchen_lumi_humidity
+                    - entity: sensor.kitchen_climate_lumi_humidity
                       name: Humidity
-                    - entity: sensor.kitchen_lumi_power
+                    - entity: sensor.kitchen_climate_lumi_power
                       name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
@@ -247,16 +247,16 @@ cards:
                 show_header_toggle: true
               entities:
                 - type: custom:multiple-entity-row
-                  entity: sensor.bedroom_lumi_temperature
+                  entity: sensor.bedroom_climate_lumi_temperature
                   name: Climate
                   secondary_info: last-changed
                   show_state: false
                   entities:
-                    - entity: sensor.bedroom_lumi_temperature
+                    - entity: sensor.bedroom_climate_lumi_temperature
                       name: Temperature
-                    - entity: sensor.bedroom_lumi_humidity
+                    - entity: sensor.bedroom_climate_lumi_humidity
                       name: Humidity
-                    - entity: sensor.bedroom_lumi_power
+                    - entity: sensor.bedroom_climate_lumi_power
                       name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
@@ -297,16 +297,16 @@ cards:
                 show_header_toggle: true
               entities:
                 - type: custom:multiple-entity-row
-                  entity: sensor.childrens_room_lumi_temperature
+                  entity: sensor.childrens_room_climate_lumi_temperature
                   name: Climate
                   secondary_info: last-changed
                   show_state: false
                   entities:
-                    - entity: sensor.childrens_room_lumi_temperature
+                    - entity: sensor.childrens_room_climate_lumi_temperature
                       name: Temperature
-                    - entity: sensor.childrens_room_lumi_humidity
+                    - entity: sensor.childrens_room_climate_lumi_humidity
                       name: Humidity
-                    - entity: sensor.childrens_room_lumi_power
+                    - entity: sensor.childrens_room_climate_lumi_power
                       name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
@@ -344,16 +344,16 @@ cards:
                 show_header_toggle: true
               entities:
                 - type: custom:multiple-entity-row
-                  entity: sensor.bathroom_lumi_temperature
+                  entity: sensor.bathroom_climate_lumi_temperature
                   name: Climate
                   secondary_info: last-changed
                   show_state: false
                   entities:
-                    - entity: sensor.bathroom_lumi_temperature
+                    - entity: sensor.bathroom_climate_lumi_temperature
                       name: Temperature
-                    - entity: sensor.bathroom_lumi_humidity
+                    - entity: sensor.bathroom_climate_lumi_humidity
                       name: Humidity
-                    - entity: sensor.bathroom_lumi_power
+                    - entity: sensor.bathroom_climate_lumi_power
                       name: Battery
             - type: entity-filter
               show_empty: false
@@ -367,15 +367,15 @@ cards:
                 show_header_toggle: false
               entities:
                 - type: custom:multiple-entity-row
-                  entity: binary_sensor.guest_bathroom_lumi_contact
+                  entity: binary_sensor.guest_bathroom_window_lumi_contact
                   name: Window
                   icon: mdi:window-closed
                   secondary_info: last-changed
                   show_state: false
                   entities:
-                    - entity: binary_sensor.guest_bathroom_lumi_contact
+                    - entity: binary_sensor.guest_bathroom_window_lumi_contact
                       name: State
-                    - entity: sensor.guest_bathroom_lumi_power
+                    - entity: sensor.guest_bathroom_window_lumi_power
                       name: Battery
     card_mod:
       style: |

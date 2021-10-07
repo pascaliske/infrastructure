@@ -7,7 +7,6 @@ prometheus:
       - sensor.tankerkoenig_*
       - sensor.withings_weight_*
       - sensor.*_battery_state
-      - sensor.*_switch_power
       - sensor.*_lumi_power
       - sensor.*_lumi_temperature
       - sensor.*_lumi_humidity

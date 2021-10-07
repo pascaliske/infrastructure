@@ -19,21 +19,21 @@ cards:
               state_color: false
               show_header_toggle: false
               entities:
-                - entity: sensor.childrens_room_lumi_temperature
+                - entity: sensor.childrens_room_climate_lumi_temperature
                   secondary_info: last-changed
                   name: Temperature
-                - entity: sensor.childrens_room_lumi_humidity
+                - entity: sensor.childrens_room_climate_lumi_humidity
                   secondary_info: last-changed
                   name: Humidity
-                - entity: sensor.childrens_room_lumi_pressure
+                - entity: sensor.childrens_room_climate_lumi_pressure
                   secondary_info: last-changed
                   name: Pressure
-                - entity: sensor.childrens_room_lumi_power
+                - entity: sensor.childrens_room_climate_lumi_power
                   secondary_info: last-changed
                   name: Battery
               footer:
                 type: graph
-                entity: sensor.childrens_room_lumi_temperature
+                entity: sensor.childrens_room_climate_lumi_temperature
                 hours_to_show: 48
         - type: vertical-stack
           cards:
