@@ -1,0 +1,15 @@
+alias: Good Night
+trigger:
+  - platform: time
+    at: '00:00'
+  - platform: state
+    entity_id: input_boolean.vacation_mode
+    to: 'on'
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: group.all_switches
+  - service: light.turn_off
+    target:
+      entity_id: group.all_lights
+
