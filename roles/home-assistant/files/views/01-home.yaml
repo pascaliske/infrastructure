@@ -200,6 +200,17 @@ cards:
                 show_header_toggle: true
               entities:
                 - type: custom:multiple-entity-row
+                  entity: binary_sensor.kitchen_balcony_door_lumi_contact
+                  name: Balcony Door
+                  icon: mdi:door
+                  secondary_info: last-changed
+                  show_state: false
+                  entities:
+                    - entity: binary_sensor.kitchen_balcony_door_lumi_contact
+                      name: State
+                    - entity: sensor.kitchen_balcony_door_lumi_power
+                      name: Battery
+                - type: custom:multiple-entity-row
                   entity: sensor.kitchen_climate_lumi_temperature
                   name: Climate
                   secondary_info: last-changed
