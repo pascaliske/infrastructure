@@ -1,0 +1,27 @@
+# sensor.kugel_power
+- platform: integration
+  source: sensor.kugel_power
+  name: Kugel Energy
+  unit_prefix: k
+  round: 2
+
+# sensor.lampe_power
+- platform: integration
+  source: sensor.lampe_power
+  name: Lampe Energy
+  unit_prefix: k
+  round: 2
+
+# sensor.lichterkette_power
+- platform: integration
+  source: sensor.lichterkette_power
+  name: Lichterkette Energy
+  unit_prefix: k
+  round: 2
+
+# sensor.vorhang_power
+- platform: integration
+  source: sensor.vorhang_power
+  name: Vorhang Energy
+  unit_prefix: k
+  round: 2
