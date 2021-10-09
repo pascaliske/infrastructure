@@ -101,6 +101,7 @@
     update_repo_cache: yes
     values_files:
       - '{{ paths.root }}/{{ role_name }}/values.yml'
+  register: helm
 
 # route
 - include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
