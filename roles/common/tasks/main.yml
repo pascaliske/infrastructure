@@ -21,7 +21,7 @@
     - { regex: '^interface eth[0-9]$', line: 'interface eth0' }
     - { regex: '^static ip_address', line: 'static ip_address={{ vault.ips.controller }}' }
     - { regex: '^static routers', line: 'static routers={{ vault.ips.router }}' }
-    - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ vault.ips.router }}' }
+    - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ vault.ips.controller }}' }
   notify: Reboot
 
 # configure locale
