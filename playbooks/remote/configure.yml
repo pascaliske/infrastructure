@@ -5,9 +5,9 @@
     - role: common
       tags:
         - common
-    - role: docker
+    - role: k3s
       tags:
-        - docker
+        - k3s
     - role: traefik
       tags:
         - traefik
