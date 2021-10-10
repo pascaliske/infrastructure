@@ -5,6 +5,8 @@
 - name: Create middlewares
   kubernetes.core.k8s:
     state: present
-    template: '{{ path | default(role_name) }}/middlewares/{{ item }}.yml.j2'
+    template: '{{ path | default(role_name) }}/middlewares/{{ middleware }}.yml.j2'
   when: middlewares | default([]) | length > 0
   loop: '{{ middlewares | default([]) }}'
+  loop_control:
+    loop_var: middleware
