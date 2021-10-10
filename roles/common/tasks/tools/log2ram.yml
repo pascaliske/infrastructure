@@ -1,0 +1,17 @@
+- name: Install log2ram
+  become: yes
+  block:
+    - name: Add apt key for log2ram
+      apt_key:
+        url: https://azlux.fr/repo.gpg.key
+        state: present
+    - name: Add apt repository for log2ram
+      apt_repository:
+        repo: deb http://packages.azlux.fr/debian/ buster main
+        filename: azlux
+        state: present
+    - name: Install apt package for log2ram
+      apt:
+        name: log2ram
+        update_cache: yes
+        state: latest

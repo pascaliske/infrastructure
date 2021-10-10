@@ -1,0 +1,49 @@
+# install common apt packages
+- name: Install common apt packages
+  become: yes
+  apt:
+    name: '{{ item }}'
+    update_cache: yes
+    state: latest
+  loop:
+    - htop
+    - curl
+    - git
+    - vim
+    - unzip
+    - python3
+    - python3-pip
+
+# install common pip packages
+- name: Install python packages
+  pip:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - pyyaml
+    - kubernetes
+
+# install system dependencies for alpine 3.13
+- name: Install dependencies for alpine 3.13
+  when: arm
+  become: yes
+  block:
+    - name: Add signing keys for buster backports
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: '{{ item }}'
+        state: present
+      loop:
+        - 04EE7237B7D453EC
+        - 648ACFD622F3D138
+    - name: Add apt repository for buster backports
+      apt_repository:
+        repo: deb http://httpredir.debian.org/debian buster-backports main contrib non-free
+        filename: debian-backports
+        state: present
+    - name: Install libseccomp2 for alpine 3.13
+      apt:
+        name: libseccomp2
+        default_release: buster-backports
+        update_cache: yes
+        state: latest

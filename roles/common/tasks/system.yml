@@ -1,0 +1,105 @@
+# configure hostname
+- name: Configure hostname
+  become: yes
+  block:
+    - name: Set the hostname
+      command: hostnamectl set-hostname "{{ inventory_hostname }}"
+    - name: Update /etc/hosts with new hostname
+      when: arm
+      lineinfile:
+        path: /etc/hosts
+        line: "127.0.1.1\t\\1 {{ inventory_hostname }}"
+        regexp: "^127.0.1.1\t(.*)$"
+
+# configure static ip
+- name: Configure static ip
+  when: arm
+  become: yes
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    line: '{{ item.line }}'
+    regexp: '{{ item.regex }}'
+  loop:
+    - { regex: '^interface eth[0-9]$', line: 'interface eth0' }
+    - { regex: '^static ip_address', line: 'static ip_address={{ vault.ips.controller }}' }
+    - { regex: '^static routers', line: 'static routers={{ vault.ips.router }}' }
+    - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ vault.ips.controller }}' }
+  notify: Reboot
+
+# configure locale
+- name: Configure locale
+  become: yes
+  vars:
+    locale: en_US.UTF-8
+  block:
+    - name: Ensure the locale exists
+      locale_gen:
+        name: '{{ locale }}'
+        state: present
+    - name: Set locale as default
+      command: 'localectl set-locale {{ locale }}'
+
+# configure cgroup directives
+- name: Configure cgroup directives
+  when: arm
+  become: yes
+  lineinfile:
+    path: /boot/cmdline.txt
+    line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
+    regexp: '((.)+?)(\scgroup_\w+=\w+)*$'
+    backrefs: yes
+  notify: Reboot
+
+# configure boot config
+- name: Configure boot config
+  when: arm
+  become: yes
+  lineinfile:
+    path: /boot/config.txt
+    line: "{{ item.key }}{{ '=' ~ item.value if not item.value }}"
+    regexp: "^#?{{ item.key }}="
+  loop: '{{ boot_config | dict2items }}'
+  notify: Reboot
+
+# configure iptables-legacy
+- name: Configure iptables-legacy
+  when: arm
+  become: yes
+  block:
+    - name: Flush iptables before changing to iptables-legacy
+      iptables:
+        flush: true
+      changed_when: false
+    - name: Changing to iptables-legacy
+      alternatives:
+        path: /usr/sbin/iptables-legacy
+        name: iptables
+      notify: Reboot
+    - name: Changing to ip6tables-legacy
+      alternatives:
+        path: /usr/sbin/ip6tables-legacy
+        name: ip6tables
+      notify: Reboot
+
+# expand filesystem
+- name: Expand filesystem to fill disk
+  when: arm
+  become: yes
+  command: raspi-config --expand-rootfs
+
+# setup bash aliases
+- name: Create aliases
+  lineinfile:
+    path: '{{ paths.home }}/.bashrc'
+    line: 'alias {{ item.alias }}="{{ item.command }}"'
+    regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
+    insertafter: ^alias
+    create: yes
+  loop:
+    - { alias: 'll', command: 'ls -lisahG' }
+
+# configure vim
+- name: Create vim configuration
+  template:
+    src: vim/.vimrc.j2
+    dest: '{{ paths.home }}/.vimrc'
