@@ -1,0 +1,14 @@
+alias: Vacation Mode Tag
+mode: single
+trigger:
+  - platform: tag
+    tag_id: 598a8118-a5e4-4610-9078-ee90a1dda05b
+action:
+  - service: switch.toggle
+    data:
+      entity_id: switch.vacation_mode
+  - service: notify.slack
+    data:
+      title: Vacation Mode
+      message: >
+        :palm_tree: The Vacation Mode was {{ 'enabled' if is_state('switch.vacation_mode', 'on') else 'disabled' }}.
