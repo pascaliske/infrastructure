@@ -147,16 +147,6 @@ services:
       - traefik.http.routers.paperless.middlewares=auth@file,security@file,error-pages@file,paperless-cors
       - traefik.http.services.paperless-{{ inventory_hostname }}.loadbalancer.server.port=8000
       - traefik.http.middlewares.paperless-cors.headers.accesscontrolalloworiginlist=https://{{ domains.internal }}
-
-  # dependencies
-  redis:
-    image: redis:latest
-    container_name: redis
-    restart: unless-stopped
-    expose:
-      - 6379
-    networks:
-      - redis
 networks:
   proxy:
     ipam:
