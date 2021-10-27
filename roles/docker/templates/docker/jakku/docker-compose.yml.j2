@@ -129,24 +129,6 @@ services:
       - '{{ paths.root }}/gitlab-runner:/etc/gitlab-runner'
     networks:
       - docker
-  linkding:
-    image: sissbruecker/linkding:latest
-    container_name: linkding
-    restart: unless-stopped
-    environment:
-      TZ: '{{ timezone }}'
-    volumes:
-      - '{{ paths.root }}/linkding:/etc/linkding/data'
-    networks:
-      - proxy
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.linkding.rule=Host(`links.{{ domain }}`)
-      - traefik.http.routers.linkding.entrypoints=https
-      - traefik.http.routers.linkding.tls=true
-      - traefik.http.routers.linkding.tls.certresolver=http
-      - traefik.http.routers.linkding.middlewares=auth@file,security@file,error-pages@file
-      - traefik.http.services.linkding-{{ inventory_hostname }}.loadbalancer.server.port=9090
   paperless:
     image: jonaswinkler/paperless-ng:latest
     container_name: paperless
