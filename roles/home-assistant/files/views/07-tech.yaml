@@ -296,12 +296,12 @@ cards:
                   name: links.pascaliske.dev
                 - entity: sensor.cert_expiry_registry_pascaliske_dev
                   name: registry.pascaliske.dev
-                - entity: sensor.cert_expiry_time_pascaliske_dev
-                  name: time.pascaliske.dev
+                # - entity: sensor.cert_expiry_time_pascaliske_dev
+                #   name: time.pascaliske.dev
                 - entity: sensor.cert_expiry_traefik_pascaliske_dev
                   name: traefik.pascaliske.dev
-                - entity: sensor.cert_expiry_travel_pascaliske_dev
-                  name: travel.pascaliske.dev
+                # - entity: sensor.cert_expiry_travel_pascaliske_dev
+                #   name: travel.pascaliske.dev
     card_mod:
       style: |
         ha-card {
