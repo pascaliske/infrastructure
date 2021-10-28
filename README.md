@@ -20,14 +20,10 @@ This repository contains the configurations for most of my services:
 - [Linkding](https://github.com/sissbruecker/linkding), an self-hosted bookmark service
 - [Paperless](https://github.com/jonaswinkler/paperless-ng) as document index and management platform
 
-It also includes the following maintenance containers:
-
-- [Watchtower](https://github.com/containrrr/watchtower) for updating all services automatically
-
 ## Requirements
 
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
-- [Docker](https://docs.docker.com/install/) + [`docker-compose`](https://docs.docker.com/compose/install/)
+- [K3s](https://rancher.com/docs/k3s/latest/en/)
 
 ## Install
 
@@ -43,14 +39,11 @@ yarn run play playbooks/{group}/configure.yml
 
 # ssh into target host
 yarn run ssh {hostname}
-
-# start up services
-docker-compose up --detach
 ```
 
 ## Update
 
-The integrated watchtower container automatically checks for updates of all containers every night.
+The integrated keel container automatically checks for updates of all containers every night.
 To manually update the containers you can use the following commands:
 
 ```zsh
@@ -58,10 +51,10 @@ To manually update the containers you can use the following commands:
 yarn run ssh {hostname}
 
 # pull image updates
-docker-compose pull
+sudo ctr image pull {image} # e.g. docker.io/alpine:latest
 
-# re-create containers
-docker-compose up --detach --remove-orphans
+# restart pods
+kubectl rollout restart -n {namespace} deployment/{app}
 ```
 
 ## Service CLIs
@@ -86,7 +79,7 @@ For more information on the `gitlab-backup` command itself [visit their docs](ht
 ### The `pihole` command
 
 ```zsh
-docker exec pihole pihole <command>
+kubectl exec -it -n pihole deploy/pihole -- pihole <command>
 ```
 
 For more information on the `pihole` command itself [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
@@ -94,7 +87,7 @@ For more information on the `pihole` command itself [visit their docs](https://d
 ### The `hass` command
 
 ```zsh
-docker exec homeassistant hass -h
+kubectl exec -it -n home-assistant deploy/home-assistant -- hass -h
 ```
 
 For more information on the `hass` command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
@@ -111,7 +104,7 @@ For more information on the commands itself [visit their docs](https://paperless
 
 ## Hardware (Group Network)
 
-The network services are currently running inside Docker on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers it using the `802.3af` Power-over-Ethernet standard.
+The network services are currently running inside a K3s cluster on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers it using the `802.3af` Power-over-Ethernet standard.
 
 The fan of the PoE hat appears to be very noisy. Therefore I adjusted the temperature thresholds of the fan inside of `/boot/config.txt` to 70°C and 80°C:
 
