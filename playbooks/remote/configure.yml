@@ -29,9 +29,6 @@
     - role: code-server
       tags:
         - code-server
-    - role: glances
-      tags:
-        - glances
     - role: linkding
       tags:
         - linkding

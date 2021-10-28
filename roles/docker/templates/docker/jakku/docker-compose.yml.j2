@@ -1,31 +1,5 @@
 version: '3.7'
 services:
-  # maintenance
-  glances:
-    image: nicolargo/glances:alpine-latest
-    container_name: glances
-    restart: unless-stopped
-    environment:
-      TZ: '{{ timezone }}'
-      DOCKER_HOST: tcp://docker-proxy:2375
-      GLANCES_OPT: '-w'
-    expose:
-      - 61208
-    volumes:
-      - /:/rootfs:ro
-      - '{{ paths.root }}/glances/glances.conf:/glances/conf/glances.conf'
-    networks:
-      - proxy
-      - docker
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.glances.rule=Host(`stats.{{ domain }}`)
-      - traefik.http.routers.glances.entrypoints=https
-      - traefik.http.routers.glances.tls=true
-      - traefik.http.routers.glances.tls.certresolver=http
-      - traefik.http.routers.glances.middlewares=auth-basic@file,security@file,error-pages@file
-      - traefik.http.services.glances-{{ inventory_hostname }}.loadbalancer.server.port=61208
-
   # security
   docker-proxy:
     image: tecnativa/docker-socket-proxy:latest

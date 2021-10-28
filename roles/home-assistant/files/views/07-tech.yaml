@@ -219,53 +219,6 @@ cards:
                   tap_action:
                     action: url
                     url_path: !secret gitlab_admin_url
-                - entity: sensor.glances_gitlab_rootfs_used_percent
-                  name: Disk usage
-                - entity: sensor.glances_gitlab_rootfs_free
-                  name: Disk space left
-                - entity: sensor.glances_gitlab_cpu_load
-                  name: CPU Load
-                - entity: sensor.glances_gitlab_containers_active
-                  name: Containers
-                - entity: sensor.glances_gitlab_containers_cpu_used
-                  name: Docker CPU usage
-                - entity: sensor.glances_gitlab_containers_ram_used
-                  name: Docker Memory usage
-            - type: entity-filter
-              show_empty: false
-              state_filter:
-                - operator: '!='
-                  value: 'unavailable'
-              card:
-                type: custom:mini-graph-card
-                name: Metrics
-                aggregate_func: max
-                group_by: hour
-                animate: true
-                line_width: 3
-                align_state: center
-              card_mod:
-                style: |
-                  .header .name, .header .name .ellipsis {
-                    color: #d7d7d7;
-                    font-family: var(--ha-card-header-font-family, inherit);
-                    font-size: var(--ha-card-header-font-size, 24px);
-                    letter-spacing: -0.012em;
-                    line-height: 32px;
-                    opacity: 1;
-                  }
-              tap_action:
-                action: url
-                url_path: !secret glances_gitlab_url
-              entities:
-                - entity: sensor.glances_gitlab_cpu_used
-                  name: CPU usage
-                - entity: sensor.glances_gitlab_ram_used_percent
-                  name: Memory usage
-                  y_axis: secondary
-                - entity: sensor.glances_gitlab_swap_used_percent
-                  name: Swap usage
-                  y_axis: secondary
             - type: entities
               title: Pipelines
               show_header_toggle: false
@@ -343,8 +296,6 @@ cards:
                   name: links.pascaliske.dev
                 - entity: sensor.cert_expiry_registry_pascaliske_dev
                   name: registry.pascaliske.dev
-                - entity: sensor.cert_expiry_stats_pascaliske_dev
-                  name: stats.pascaliske.dev
                 - entity: sensor.cert_expiry_time_pascaliske_dev
                   name: time.pascaliske.dev
                 - entity: sensor.cert_expiry_traefik_pascaliske_dev
