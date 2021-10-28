@@ -93,9 +93,9 @@ For more information on the `hass` command itself [visit their docs](https://www
 ### The `paperless` management utilities
 
 ```zsh
-docker exec paperless document_exporter
-docker exec paperless document_importer
-docker exec paperless document_retagger
+kubectl exec -it -n paperless deploy/paperless -- document_exporter
+kubectl exec -it -n paperless deploy/paperless -- document_importer
+kubectl exec -it -n paperless deploy/paperless -- document_retagger
 ```
 
 For more information on the commands itself [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#management-utilities).

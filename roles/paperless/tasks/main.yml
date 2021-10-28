@@ -4,5 +4,35 @@
     path: '{{ paths.root }}/{{ item }}'
     state: directory
   loop:
+    - '{{ role_name }}'
     - '{{ role_name }}/import'
     - '{{ role_name }}/export'
+
+# namespace
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
+
+# paperless
+- name: Add helm repo
+  kubernetes.core.helm_repository:
+    name: pascaliske
+    repo_url: https://charts.pascaliske.dev
+
+- name: Create chart values file
+  template:
+    src: '{{ role_name }}/values.yml.j2'
+    dest: '{{ paths.root }}/{{ role_name }}/values.yml'
+
+- name: Apply helm chart with values file
+  kubernetes.core.helm:
+    name: '{{ role_name }}'
+    chart_ref: 'pascaliske/{{ role_name }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ paths.root }}/{{ role_name }}/values.yml'
+
+# route
+- include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
+  vars:
+    middlewares:
+      - headers
