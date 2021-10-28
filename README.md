@@ -66,6 +66,15 @@ docker-compose up --detach --remove-orphans
 
 ## Service CLIs
 
+### The `redis-cli` command
+
+```zsh
+kubectl exec -it -n redis deploy/redis -- redis-cli # interactive
+kubectl exec -it -n redis deploy/redis -- redis-cli <command> # one-off
+```
+
+For more information on the `redis-cli` command itself [visit their docs](https://redis.io/topics/rediscli).
+
 ### The `gitlab-backup` command
 
 ```zsh
