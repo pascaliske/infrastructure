@@ -341,8 +341,6 @@ cards:
                   name: git.pascaliske.dev
                 - entity: sensor.cert_expiry_links_pascaliske_dev
                   name: links.pascaliske.dev
-                - entity: sensor.cert_expiry_logs_pascaliske_dev
-                  name: logs.pascaliske.dev
                 - entity: sensor.cert_expiry_registry_pascaliske_dev
                   name: registry.pascaliske.dev
                 - entity: sensor.cert_expiry_stats_pascaliske_dev

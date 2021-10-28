@@ -55,14 +55,6 @@
         {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_links_pascaliske_dev'), as_timestamp(now())) - as_timestamp(now()) | int %}
         {{ (diff / 60 / 1440) | round(0) }}
 
-    # logs.pascaliske.dev
-    - name: cert_expiry_logs_pascaliske_dev
-      unit_of_measurement: Days
-      icon: mdi:certificate
-      state: >
-        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_logs_pascaliske_dev'), as_timestamp(now())) - as_timestamp(now()) | int %}
-        {{ (diff / 60 / 1440) | round(0) }}
-
     # registry.pascaliske.dev
     - name: cert_expiry_registry_pascaliske_dev
       unit_of_measurement: Days

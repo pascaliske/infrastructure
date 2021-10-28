@@ -22,7 +22,6 @@ This repository contains the configurations for most of my services:
 
 It also includes the following maintenance containers:
 
-- [Dozzle](https://github.com/amir20/dozzle) for viewing container logs
 - [Watchtower](https://github.com/containrrr/watchtower) for updating all services automatically
 
 ## Requirements

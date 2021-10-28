@@ -16,9 +16,6 @@ services:
       - name: Uptime Kuma
         subtitle: Uptime monitoring
         url: https://status.{{ domain }}
-      - name: Dozzle
-        subtitle: Container logs
-        url: https://logs.{{ domains.external }}
       - name: Glances
         subtitle: View general server stats
         url: https://stats.{{ domains.external }}

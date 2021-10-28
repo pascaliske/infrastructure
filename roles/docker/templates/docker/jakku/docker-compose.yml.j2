@@ -1,24 +1,6 @@
 version: '3.7'
 services:
   # maintenance
-  dozzle:
-    image: amir20/dozzle:latest
-    container_name: dozzle
-    restart: always
-    expose:
-      - 8080
-    environment:
-      DOCKER_HOST: tcp://docker-proxy:2375
-    networks:
-      - proxy
-      - docker
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.dozzle.rule=Host(`logs.{{ domain }}`)
-      - traefik.http.routers.dozzle.entrypoints=https
-      - traefik.http.routers.dozzle.tls=true
-      - traefik.http.routers.dozzle.tls.certresolver=http
-      - traefik.http.routers.dozzle.middlewares=auth@file,security@file,error-pages@file
   glances:
     image: nicolargo/glances:alpine-latest
     container_name: glances
