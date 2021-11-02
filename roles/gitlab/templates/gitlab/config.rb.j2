@@ -1,10 +1,11 @@
 # general
 external_url 'https://git.{{ domain }}'
-registry_external_url 'http://registry.{{ domain }}'
+registry_external_url 'https://registry.{{ domain }}'
+pages_external_url 'https://pages.{{ domain }}'
 gitlab_rails['time_zone'] = '{{ timezone }}'
 
 # backups
-gitlab_rails['backup_path'] = '/var/opt/gitlab-backups'
+gitlab_rails['backup_path'] = '/backups'
 gitlab_rails['backup_keep_time'] = 604800
 
 # default theme
@@ -61,9 +62,12 @@ gitlab_rails['sentry_environment'] = 'production'
 
 {% endif -%}
 
-{% if google_analytics_id | length > 0 %}
+# gitlab pages
+gitlab_pages['enable'] = false
+
+{% if vault.gitlab.google_analytics | length > 0 %}
 # google analytics
-gitlab_rails['extra_google_analytics_id'] = '{{ google_analytics_id }}'
+gitlab_rails['extra_google_analytics_id'] = '{{ vault.gitlab.google_analytics }}'
 
 {% endif -%}
 
@@ -82,13 +86,20 @@ nginx['proxy_set_headers'] = {
 }
 
 # registry nginx
+registry_nginx['listen_port'] = 5005
+registry_nginx['listen_https'] = false
 registry_nginx['proxy_set_headers'] = {
-    'Host' => '$http_host',
+    'Host' => 'registry.{{ domain }}',
+    'Upgrade' => '$http_upgrade',
+    'Connection' => '$connection_upgrade',
     'X-Forwarded-Proto' => 'https',
     'X-Forwarded-Ssl' => 'on',
     'X-Forwarded-For' => '$proxy_add_x_forwarded_for',
     'X-Real-IP' => '$remote_addr'
 }
+
+# pages nginx
+pages_nginx['listen_https'] = false
 
 # sidekiq
 sidekiq['concurrency'] = 2
@@ -98,4 +109,9 @@ puma['worker_processes'] = 2
 
 # monitoring
 prometheus['enable'] = false
+alertmanager['enable'] = false
+node_exporter['enable'] = false
+redis_exporter['enable'] = false
+postgres_exporter['enable'] = false
+gitlab_exporter['enable'] = false
 grafana['enable'] = false

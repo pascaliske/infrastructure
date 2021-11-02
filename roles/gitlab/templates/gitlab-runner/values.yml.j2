@@ -1,0 +1,44 @@
+fullnameOverride: '{{ role_name }}-runner'
+
+image: gitlab/gitlab-runner:alpine
+imagePullPolicy: IfNotPresent
+imagePullSecrets:
+  - name: '{{ role_name }}-registry-auth'
+replicas: 1
+
+gitlabUrl: 'https://git.{{ domain }}'
+runnerRegistrationToken: '{{ vault.gitlab.runner.registration_token }}'
+unregisterRunners: true
+concurrent: 2
+logLevel: info
+sentryDsn: '{{ vault.sentry.dsn_legacy }}'
+
+rbac:
+  create: true
+  imagePullSecrets:
+    - '{{ role_name }}-registry-auth'
+
+metrics:
+  enabled: false
+
+runners:
+  name: BB-8
+  executor: kubernetes
+  secret: '{{ role_name }}-runner-tokens'
+  config: |
+    [[runners]]
+      [runners.cache]
+        [runners.cache.s3]
+        [runners.cache.gcs]
+      [runners.kubernetes]
+        image = "alpine:latest"
+        namespace = "{{ role_name }}"
+        image_pull_secrets = ["{{ role_name }}-registry-auth"]
+
+resources: {}
+  # limits:
+  #   memory: 256Mi
+  #   cpu: 200m
+  # requests:
+  #   memory: 128Mi
+  #   cpu: 100m

@@ -71,7 +71,7 @@ For more information on the `redis-cli` command itself [visit their docs](https:
 ### The `gitlab-backup` command
 
 ```zsh
-docker exec gitlab gitlab-backup <task> # tasks: create | restore
+kubectl exec -it -n gitlab deploy/gitlab -- gitlab-backup <task> # tasks: create | restore
 ```
 
 For more information on the `gitlab-backup` command itself [visit their docs](https://docs.gitlab.com/ee/raketasks/backup_restore.html#back-up-gitlab).

@@ -5,26 +5,45 @@
     state: directory
   loop:
     - '{{ role_name }}'
-    - '{{ role_name }}/config'
-    - '{{ role_name }}/data'
     - '{{ role_name }}/backups'
-    - '{{ role_name }}/logs'
-    - gitlab-runner
+    - '{{ role_name }}-runner'
 
-# gitlab
-- name: Create configuration file
+# namespace
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
+
+# configuration
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
+  loop:
+    - secrets/registry-auth
+
+# gitlab + gitlab-runner
+- name: Add helm repo
+  kubernetes.core.helm_repository:
+    name: '{{ item.name }}'
+    repo_url: '{{ item.url }}'
+  loop:
+    - { name: 'pascaliske', url: 'https://charts.pascaliske.dev' }
+    - { name: '{{ role_name }}', url: 'https://charts.gitlab.io' }
+
+- name: Create chart values file
   template:
-    src: '{{ role_name }}/gitlab.rb.j2'
-    dest: '{{ paths.root }}/{{ role_name }}/config/gitlab.rb'
+    src: '{{ item }}/values.yml.j2'
+    dest: '{{ paths.root }}/{{ item }}/values.yml'
+  loop:
+    - '{{ role_name }}'
+    - '{{ role_name }}-runner'
 
-# gitlab-backups
-- name: Ensure backups directory is not empty
-  file:
-    path: '{{ paths.root }}/{{ role_name }}/backups/.gitlab-backups'
-    state: touch
+- name: Apply helm chart with values file
+  kubernetes.core.helm:
+    name: '{{ item.name }}'
+    chart_ref: '{{ item.repo }}/{{ item.name }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ paths.root }}/{{ item.name }}/values.yml'
+  loop:
+    - { name: '{{ role_name }}', repo: 'pascaliske' }
+    - { name: '{{ role_name }}-runner', repo: '{{ role_name }}' }
 
-# gitlab-runner
-- name: Create runner configuration file
-  template:
-    src: gitlab-runner/config.toml.j2
-    dest: '{{ paths.root }}/gitlab-runner/config.toml'
+# route
+- include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'

@@ -1,0 +1,44 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: '{{ role_name }}'
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`git.{{ domain }}`)
+      services:
+        - kind: Service
+          name: '{{ role_name }}'
+          namespace: '{{ role_name }}'
+          port: 80
+      middlewares:
+        - name: security
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: registry
+  namespace: '{{ role_name }}'
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`registry.{{ domain }}`)
+      services:
+        - kind: Service
+          name: '{{ role_name }}'
+          namespace: '{{ role_name }}'
+          port: 5005
+      middlewares:
+        - name: security
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik
