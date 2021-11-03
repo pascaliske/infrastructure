@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2.3.5
+      - uses: actions/checkout@v2.4.0
 
       # TODO: implement config map check for prometheus
       # # prepare
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2.3.5
+      - uses: actions/checkout@v2.4.0
 
       # TODO: implement config map check for alertmanager
       # # prepare
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2.3.5
+      - uses: actions/checkout@v2.4.0
 
       # prepare
       - name: Prepare configuration files
