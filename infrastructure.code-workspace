@@ -27,10 +27,6 @@
             "name": "roles/common"
         },
         {
-            "path": "./roles/docker",
-            "name": "roles/docker"
-        },
-        {
             "path": "./roles/dyndns",
             "name": "roles/dyndns"
         },
