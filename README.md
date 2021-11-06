@@ -18,10 +18,15 @@ This repository contains the configurations for most of my services:
 - [Home Assistant](https://home-assistant.io), an Home Automation platform
 - [Code Server](https://github.com/cdr/code-server), an in-browser VS Code instance
 - [Linkding](https://github.com/sissbruecker/linkding), an self-hosted bookmark service
-- [Paperless](https://github.com/jonaswinkler/paperless-ng) as document index and management platform
+- [Paperless](https://github.com/jonaswinkler/paperless-ng), an document index and management platform
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden), self-hosted password management tool
+- [Uptime Kuma](https://github.com/louislam/uptime-kuma), fancy self-hosted monitoring tool
+- [Snapdrop](https://github.com/RobinLinus/snapdrop), local file sharing inspired by Apple's AirDrop
+- [Keel](https://keel.sh) for auto updating all services
 
 ## Requirements
 
+- [Node.js](https://nodejs.org/) + [Yarn](https://yarnpkg.com)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [K3s](https://rancher.com/docs/k3s/latest/en/)
 
@@ -37,23 +42,23 @@ yarn install
 # provision target group using ansible
 yarn run play playbooks/{group}/configure.yml
 
-# ssh into target host
+# ssh into target host from inventory
 yarn run ssh {hostname}
 ```
 
 ## Update
 
-The integrated keel container automatically checks for updates of all containers every night.
-To manually update the containers you can use the following commands:
+Keel automatically checks for updates of all deployments every night.
+To manually update a deployment you can use the following commands:
 
 ```zsh
-# ssh into target host
+# ssh into target host from inventory
 yarn run ssh {hostname}
 
 # pull image updates
 sudo ctr image pull {image} # e.g. docker.io/alpine:latest
 
-# restart pods
+# restart deployment
 kubectl rollout restart -n {namespace} deployment/{app}
 ```
 
