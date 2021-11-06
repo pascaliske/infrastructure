@@ -18,17 +18,17 @@ This repository contains the configurations for most of my services:
 - [Home Assistant](https://home-assistant.io), an Home Automation platform
 - [Code Server](https://github.com/cdr/code-server), an in-browser VS Code instance
 - [Linkding](https://github.com/sissbruecker/linkding), an self-hosted bookmark service
-- [Paperless](https://github.com/jonaswinkler/paperless-ng) as document index and management platform
-
-It also includes the following maintenance containers:
-
-- [Dozzle](https://github.com/amir20/dozzle) for viewing container logs
-- [Watchtower](https://github.com/containrrr/watchtower) for updating all services automatically
+- [Paperless](https://github.com/jonaswinkler/paperless-ng), an document index and management platform
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden), self-hosted password management tool
+- [Uptime Kuma](https://github.com/louislam/uptime-kuma), fancy self-hosted monitoring tool
+- [Snapdrop](https://github.com/RobinLinus/snapdrop), local file sharing inspired by Apple's AirDrop
+- [Keel](https://keel.sh) for auto updating all services
 
 ## Requirements
 
+- [Node.js](https://nodejs.org/) + [Yarn](https://yarnpkg.com)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
-- [Docker](https://docs.docker.com/install/) + [`docker-compose`](https://docs.docker.com/compose/install/)
+- [K3s](https://rancher.com/docs/k3s/latest/en/)
 
 ## Install
 
@@ -42,35 +42,41 @@ yarn install
 # provision target group using ansible
 yarn run play playbooks/{group}/configure.yml
 
-# ssh into target host
+# ssh into target host from inventory
 yarn run ssh {hostname}
-
-# start up services
-docker-compose up --detach
 ```
 
 ## Update
 
-The integrated watchtower container automatically checks for updates of all containers every night.
-To manually update the containers you can use the following commands:
+Keel automatically checks for updates of all deployments every night.
+To manually update a deployment you can use the following commands:
 
 ```zsh
-# ssh into target host
+# ssh into target host from inventory
 yarn run ssh {hostname}
 
 # pull image updates
-docker-compose pull
+sudo ctr image pull {image} # e.g. docker.io/alpine:latest
 
-# re-create containers
-docker-compose up --detach --remove-orphans
+# restart deployment
+kubectl rollout restart -n {namespace} deployment/{app}
 ```
 
 ## Service CLIs
 
+### The `redis-cli` command
+
+```zsh
+kubectl exec -it -n redis deploy/redis -- redis-cli # interactive
+kubectl exec -it -n redis deploy/redis -- redis-cli <command> # one-off
+```
+
+For more information on the `redis-cli` command itself [visit their docs](https://redis.io/topics/rediscli).
+
 ### The `gitlab-backup` command
 
 ```zsh
-docker exec gitlab gitlab-backup <task> # tasks: create | restore
+kubectl exec -it -n gitlab deploy/gitlab -- gitlab-backup <task> # tasks: create | restore
 ```
 
 For more information on the `gitlab-backup` command itself [visit their docs](https://docs.gitlab.com/ee/raketasks/backup_restore.html#back-up-gitlab).
@@ -78,7 +84,7 @@ For more information on the `gitlab-backup` command itself [visit their docs](ht
 ### The `pihole` command
 
 ```zsh
-docker exec pihole pihole <command>
+kubectl exec -it -n pihole deploy/pihole -- pihole <command>
 ```
 
 For more information on the `pihole` command itself [visit their docs](https://docs.pi-hole.net/core/pihole-command/).
@@ -86,7 +92,7 @@ For more information on the `pihole` command itself [visit their docs](https://d
 ### The `hass` command
 
 ```zsh
-docker exec homeassistant hass -h
+kubectl exec -it -n home-assistant deploy/home-assistant -- hass -h
 ```
 
 For more information on the `hass` command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
@@ -94,16 +100,16 @@ For more information on the `hass` command itself [visit their docs](https://www
 ### The `paperless` management utilities
 
 ```zsh
-docker exec paperless document_exporter
-docker exec paperless document_importer
-docker exec paperless document_retagger
+kubectl exec -it -n paperless deploy/paperless -- document_exporter
+kubectl exec -it -n paperless deploy/paperless -- document_importer
+kubectl exec -it -n paperless deploy/paperless -- document_retagger
 ```
 
 For more information on the commands itself [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#management-utilities).
 
 ## Hardware (Group Network)
 
-The network services are currently running inside Docker on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers it using the `802.3af` Power-over-Ethernet standard.
+The network services are currently running inside a K3s cluster on a [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). It has the [official Raspberry Pi PoE-Hat](https://www.raspberrypi.org/products/poe-hat/) attached which powers it using the `802.3af` Power-over-Ethernet standard.
 
 The fan of the PoE hat appears to be very noisy. Therefore I adjusted the temperature thresholds of the fan inside of `/boot/config.txt` to 70°C and 80°C:
 

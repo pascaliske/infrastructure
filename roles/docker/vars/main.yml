@@ -1,8 +1,0 @@
----
-docker:
-  all:
-    experimental: true
-    live-restore: true
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1

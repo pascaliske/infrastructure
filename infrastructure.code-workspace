@@ -27,10 +27,6 @@
             "name": "roles/common"
         },
         {
-            "path": "./roles/docker",
-            "name": "roles/docker"
-        },
-        {
             "path": "./roles/dyndns",
             "name": "roles/dyndns"
         },
@@ -41,10 +37,6 @@
         {
             "path": "./roles/gitlab",
             "name": "roles/gitlab"
-        },
-        {
-            "path": "./roles/glances",
-            "name": "roles/glances"
         },
         {
             "path": "./roles/home-assistant",
@@ -77,6 +69,10 @@
         {
             "path": "./roles/pihole",
             "name": "roles/pihole"
+        },
+        {
+            "path": "./roles/redis",
+            "name": "roles/redis"
         },
         {
             "path": "./roles/snapdrop",

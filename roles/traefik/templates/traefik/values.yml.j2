@@ -49,18 +49,6 @@ ports:
     expose: false
     exposedPort: 9000
 
-  # dns
-  dns-tcp:
-    port: 5053
-    expose: true
-    exposedPort: 53
-    protocol: TCP
-  dns-udp:
-    port: 5553
-    expose: true
-    exposedPort: 53
-    protocol: UDP
-
   # disable default entry points
   web: null
   websecure: null

@@ -20,6 +20,9 @@
     - role: traefik
       tags:
         - traefik
+    - role: redis
+      tags:
+        - redis
     - role: autorestic
       tags:
         - autorestic

@@ -1,17 +1,19 @@
 ---
 - name: configure
   hosts: remote
-  become: yes
   roles:
     - role: common
       tags:
         - common
-    - role: docker
+    - role: k3s
       tags:
-        - docker
+        - k3s
     - role: traefik
       tags:
         - traefik
+    - role: redis
+      tags:
+        - redis
     - role: autorestic
       tags:
         - autorestic
@@ -27,9 +29,6 @@
     - role: code-server
       tags:
         - code-server
-    - role: glances
-      tags:
-        - glances
     - role: linkding
       tags:
         - linkding

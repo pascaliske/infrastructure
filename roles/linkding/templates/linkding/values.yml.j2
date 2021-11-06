@@ -1,0 +1,9 @@
+# pascaliske/linkding
+# https://github.com/pascaliske/helm-charts/blob/master/charts/linkding/values.yaml
+image:
+  repository: sissbruecker/linkding
+  tag: latest
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'

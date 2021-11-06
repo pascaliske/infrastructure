@@ -6,6 +6,10 @@ image:
   repository: pihole/pihole
   tag: '2021.10'
 
+serviceDns:
+  type: LoadBalancer
+  port: 53
+
 serviceDhcp:
   enabled: false
 

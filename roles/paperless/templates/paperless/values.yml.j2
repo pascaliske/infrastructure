@@ -1,0 +1,25 @@
+# pascaliske/paperless
+# https://github.com/pascaliske/helm-charts/blob/master/charts/paperless/values.yaml
+image:
+  repository: jonaswinkler/paperless-ng
+  tag: latest
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: PAPERLESS_REDIS
+    value: redis://redis.redis.svc.cluster.local:6379
+  - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
+    value: 'true'
+  - name: PAPERLESS_OCR_LANGUAGE
+    value: deu
+  - name: PAPERLESS_IGNORE_DATES
+    value: '{{ vault.paperless.ignore_dates | join(",") }}'
+
+secret:
+  create: true
+  secretKey: '{{ vault.paperless.secret_key }}'
+
+consumption:
+  enabled: true
+  hostPath: '{{ paths.root }}/{{ role_name }}/import'

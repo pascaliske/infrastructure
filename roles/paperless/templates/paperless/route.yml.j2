@@ -9,12 +9,12 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`{{ role_name }}.{{ domain }}`)
+      match: Host(`docs.{{ domain }}`)
       services:
         - kind: Service
-          name: '{{ role_name }}-web'
+          name: '{{ role_name }}'
           namespace: '{{ role_name }}'
-          port: 80
+          port: 8000
       middlewares:
         - name: auth
           namespace: traefik
@@ -23,6 +23,4 @@ spec:
         - name: error-pages
           namespace: traefik
         - name: headers
-          namespace: '{{ role_name }}'
-        - name: add-prefix
           namespace: '{{ role_name }}'

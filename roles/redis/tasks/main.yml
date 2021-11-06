@@ -9,7 +9,7 @@
 # namespace
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
 
-# linkding
+# redis
 - name: Add helm repo
   kubernetes.core.helm_repository:
     name: pascaliske
@@ -28,6 +28,3 @@
     update_repo_cache: yes
     values_files:
       - '{{ paths.root }}/{{ role_name }}/values.yml'
-
-# route
-- include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'

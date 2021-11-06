@@ -1,2 +1,7 @@
----
-google_analytics_id: 'UA-77052352-2'
+registries:
+  - key: 'registry.{{ domain }}'
+    value:
+      email: '{{ vault.gitlab.registry.email }}'
+      username: '{{ vault.gitlab.registry.username }}'
+      password: '{{ vault.gitlab.registry.password }}'
+      auth: "{{ (vault.gitlab.registry.username ~ ':' ~ vault.gitlab.registry.password) | b64encode }}"

@@ -60,6 +60,9 @@ data:
       domain: '{{ domain }}'
       expiration: 42h
       inactivity: 15m
+      redis:
+        host: redis.redis.svc.cluster.local
+        port: 6379
     storage:
       local:
         path: /config/db.sqlite3
