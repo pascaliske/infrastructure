@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: 'go.{{ domain }}'
+  namespace: '{{ role_name }}'
+spec:
+  secretName: 'go.{{ domain }}'
+  dnsNames:
+    - 'go.{{ domain }}'
+  issuerRef:
+    kind: ClusterIssuer
+    name: cert-manager-lets-encrypt
