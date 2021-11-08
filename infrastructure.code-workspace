@@ -15,6 +15,10 @@
             "name": "roles/autorestic"
         },
         {
+            "path": "./roles/cert-manager",
+            "name": "roles/cert-manager"
+        },
+        {
             "path": "./roles/cloudflared",
             "name": "roles/cloudflared"
         },

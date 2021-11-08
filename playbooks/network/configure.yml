@@ -8,6 +8,9 @@
     - role: k3s
       tags:
         - k3s
+    - role: cert-manager
+      tags:
+        - cert-manager
     - role: keel
       tags:
         - keel

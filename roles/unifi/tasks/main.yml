@@ -29,6 +29,9 @@
     values_files:
       - '{{ paths.root }}/{{ role_name }}/values.yml'
 
+# certificate
+- include_tasks: '{{ inventory_dir }}/roles/cert-manager/tasks/certificate.yml'
+
 # route
 - include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
   vars:

@@ -25,3 +25,5 @@ spec:
           namespace: traefik
         - name: headers
           namespace: '{{ role_name }}'
+  tls:
+    secretName: '{{ role_name }}.{{ domain }}'

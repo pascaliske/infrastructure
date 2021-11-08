@@ -8,24 +8,12 @@ ingressRoute:
   dashboard:
     enabled: false
 
-persistence:
-  enabled: true
-
 # traefik specifics
 globalArguments:
   - --global.checknewversion=false
   - --global.sendanonymoususage=false
 
 additionalArguments:
-  # entry points
-  - '--entrypoints.https.http.tls.certresolver=digitalocean'
-
-  # certificates
-  - '--certificatesresolvers.digitalocean.acme.email={{ vault.auth.email }}'
-  - '--certificatesresolvers.digitalocean.acme.storage=/data/acme.json'
-  - '--certificatesresolvers.digitalocean.acme.dnschallenge.provider=digitalocean'
-  - '--certificatesresolvers.digitalocean.acme.dnschallenge.resolvers=1.1.1.1'
-
   # misc
   - '--providers.kubernetescrd.allowCrossNamespace=true'
   - '--serverstransport.insecureskipverify'
@@ -61,16 +49,6 @@ service:
 env:
   - name: TZ
     value: '{{ timezone }}'
-  - name: DO_API_EMAIL
-    valueFrom:
-      secretKeyRef:
-        name: '{{ role_name }}-digital-ocean-secret'
-        key: email
-  - name: DO_AUTH_TOKEN
-    valueFrom:
-      secretKeyRef:
-        name: '{{ role_name }}-digital-ocean-secret'
-        key: authToken
 
 logs:
   access:

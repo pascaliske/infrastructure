@@ -26,3 +26,5 @@ spec:
           namespace: '{{ role_name }}'
         - name: add-prefix
           namespace: '{{ role_name }}'
+  tls:
+    secretName: '{{ role_name }}.{{ domain }}'

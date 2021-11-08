@@ -103,5 +103,8 @@
       - '{{ paths.root }}/{{ role_name }}/values.yml'
   register: helm
 
+# certificate
+- include_tasks: '{{ inventory_dir }}/roles/cert-manager/tasks/certificate.yml'
+
 # route
 - include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
