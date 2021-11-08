@@ -20,3 +20,5 @@ spec:
           namespace: '{{ role_name }}'
         - name: error-pages
           namespace: '{{ role_name }}'
+  tls:
+    secretName: '{{ role_name }}.{{ domain }}'

@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: '{{ role_name }}.{{ domain }}'
+  namespace: '{{ role_name }}'
+spec:
+  secretName: '{{ role_name }}.{{ domain }}'
+  dnsNames:
+    - '{{ role_name }}.{{ domain }}'
+  issuerRef:
+    kind: ClusterIssuer
+    name: cert-manager-lets-encrypt

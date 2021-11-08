@@ -15,7 +15,6 @@
   loop:
     - tls-options
     - secrets/basic-auth
-    - secrets/digital-ocean
 
 # traefik + traefik-errors
 - name: Add helm repo
@@ -50,6 +49,9 @@
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
   loop:
     - service
+
+# certificate
+- include_tasks: '{{ inventory_dir }}/roles/cert-manager/tasks/certificate.yml'
 
 # route
 - include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
