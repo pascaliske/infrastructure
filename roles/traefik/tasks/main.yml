@@ -13,7 +13,6 @@
 # configuration
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
   loop:
-    - tls-options
     - secrets/basic-auth
 
 # traefik + traefik-errors

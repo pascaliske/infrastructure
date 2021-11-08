@@ -1,6 +1,5 @@
 # traefik/traefik
 # https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
-# k3s specifics
 image:
   name: traefik
 
@@ -8,16 +7,31 @@ ingressRoute:
   dashboard:
     enabled: false
 
-# traefik specifics
+providers:
+  kubernetesCRD:
+    allowCrossNamespace: true
+
+logs:
+  access:
+    enabled: true
+    filters:
+      statuscodes: 400-599
+
+metrics:
+  prometheus:
+    entryPoint: traefik
+
 globalArguments:
   - --global.checknewversion=false
   - --global.sendanonymoususage=false
 
 additionalArguments:
-  # misc
-  - '--providers.kubernetescrd.allowCrossNamespace=true'
-  - '--serverstransport.insecureskipverify'
   - '--ping.entrypoint=traefik'
+  - '--serverstransport.insecureskipverify'
+
+env:
+  - name: TZ
+    value: '{{ timezone }}'
 
 ports:
   # services
@@ -42,20 +56,11 @@ ports:
   websecure: null
   metrics: null
 
+tlsOptions:
+  default:
+    minVersion: VersionTLS12
+    sniStrict: true
+
 service:
   spec:
     externalTrafficPolicy: Local
-
-env:
-  - name: TZ
-    value: '{{ timezone }}'
-
-logs:
-  access:
-    enabled: true
-    filters:
-      statuscodes: 400-599
-
-metrics:
-  prometheus:
-    entryPoint: traefik
