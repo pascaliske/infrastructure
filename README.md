@@ -7,6 +7,7 @@
 This repository contains the configurations for most of my services:
 
 - [Traefik](https://traefik.io) reverse proxy for all services
+- [cert-manager](https://cert-manager.io) as automated certificate management tool
 - [Authelia](https://www.authelia.com) as SSO platform for all services
 - [Homer](https://github.com/bastienwirtz/homer) as service dashboard
 - [Prometheus](https://prometheus.io) for collecting service metrics
