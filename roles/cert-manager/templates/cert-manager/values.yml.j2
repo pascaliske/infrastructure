@@ -1,0 +1,11 @@
+# cert-manager/cert-manager
+# https://github.com/jetstack/cert-manager/blob/master/deploy/charts/cert-manager/values.yaml
+installCRDs: true
+
+extraArgs:
+  - --dns01-recursive-nameservers-only
+  - --dns01-recursive-nameservers="1.1.1.1:53"
+
+extraEnv:
+  - name: TZ
+    value: '{{ timezone }}'
