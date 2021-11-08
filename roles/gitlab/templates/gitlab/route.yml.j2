@@ -20,6 +20,8 @@ spec:
           namespace: traefik
         - name: error-pages
           namespace: traefik
+  tls:
+    secretName: 'git.{{ domain }}'
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -42,3 +44,5 @@ spec:
           namespace: traefik
         - name: error-pages
           namespace: traefik
+  tls:
+    secretName: 'registry.{{ domain }}'

@@ -45,5 +45,8 @@
     - { name: '{{ role_name }}', repo: 'pascaliske' }
     - { name: '{{ role_name }}-runner', repo: '{{ role_name }}' }
 
+# certificate
+- include_tasks: '{{ inventory_dir }}/roles/cert-manager/tasks/certificate.yml'
+
 # route
 - include_tasks: '{{ inventory_dir }}/roles/traefik/tasks/route.yml'
