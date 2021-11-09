@@ -38,3 +38,6 @@
     - role: paperless
       tags:
         - paperless
+    - role: shlink
+      tags:
+        - shlink

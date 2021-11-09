@@ -79,6 +79,10 @@
             "name": "roles/redis"
         },
         {
+            "path": "./roles/shlink",
+            "name": "roles/shlink"
+        },
+        {
             "path": "./roles/snapdrop",
             "name": "roles/snapdrop"
         },

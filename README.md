@@ -23,6 +23,7 @@ This repository contains the configurations for most of my services:
 - [Vaultwarden](https://github.com/dani-garcia/vaultwarden), self-hosted password management tool
 - [Uptime Kuma](https://github.com/louislam/uptime-kuma), fancy self-hosted monitoring tool
 - [Snapdrop](https://github.com/RobinLinus/snapdrop), local file sharing inspired by Apple's AirDrop
+- [Shlink](https://shlink.io), a self-hosted link shortener
 - [Keel](https://keel.sh) for auto updating all services
 
 ## Requirements
@@ -107,6 +108,16 @@ kubectl exec -it -n paperless deploy/paperless -- document_retagger
 ```
 
 For more information on the commands itself [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#management-utilities).
+
+### The `shlink` command
+
+```zsh
+kubectl exec -it -n shlink deploy/shlink -- shlink short-url:list [--tags=<tag1>,<tag2>]
+kubectl exec -it -n shlink deploy/shlink -- shlink short-url:generate <url> [--custom-slug=<slug>]
+kubectl exec -it -n shlink deploy/shlink -- shlink short-url:import <source>
+```
+
+For more information on the commands itself [visit their docs](https://shlink.io/documentation/command-line-interface/).
 
 ## Hardware (Group Network)
 
