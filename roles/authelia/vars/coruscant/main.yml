@@ -44,6 +44,7 @@ rules:
       - alerts
       - grafana
       - homeassistant
+      - keel
       - pihole
       - prometheus
       - status

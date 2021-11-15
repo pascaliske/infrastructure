@@ -11,6 +11,9 @@
     - role: cert-manager
       tags:
         - cert-manager
+    - role: keel
+      tags:
+        - keel
     - role: traefik
       tags:
         - traefik

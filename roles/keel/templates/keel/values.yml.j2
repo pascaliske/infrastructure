@@ -1,8 +1,12 @@
 # keel/keel
 # https://github.com/keel-hq/keel/blob/master/chart/keel/values.yaml
 image:
-  repository: keelhq/keel
+  repository: pascaliske/keel
   tag: latest
+
+helmProvider:
+  enabled: true
+  version: v3
 
 slack:
   enabled: true
@@ -11,8 +15,25 @@ slack:
   approvalsChannel: '#infrastructure'
   botName: keel
 
+mail:
+  enabled: true
+  from: '{{ vault.smtp.accounts.keel.email }}'
+  to: '{{ vault.auth.email }}'
+  smtp:
+    server: '{{ vault.smtp.host }}'
+    port: {{ vault.smtp.port }}
+    user: '{{ vault.smtp.accounts.keel.email }}'
+    pass: '{{ vault.smtp.accounts.keel.password }}'
+
+basicauth:
+  enabled: true
+  user: '{{ vault.keel.auth.username }}'
+  password: '{{ vault.keel.auth.password }}'
+
 service:
   enabled: true
+  type: ClusterIP
+  externalPort: 9300
 
 persistence:
   enabled: false
