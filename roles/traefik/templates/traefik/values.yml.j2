@@ -2,6 +2,7 @@
 # https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
 image:
   name: traefik
+  tag: '2.5'
 
 ingressRoute:
   dashboard:
@@ -64,3 +65,9 @@ tlsOptions:
 service:
   spec:
     externalTrafficPolicy: Local
+
+keel:
+  policy: minor
+  images:
+    - repository: image.name
+      tag: image.tag
