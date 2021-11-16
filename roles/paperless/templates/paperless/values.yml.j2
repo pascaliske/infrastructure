@@ -23,3 +23,9 @@ secret:
 consumption:
   enabled: true
   hostPath: '{{ paths.root }}/{{ role_name }}/import'
+
+keel:
+  policy: force
+  images:
+    - repository: image.repository
+      tag: image.tag
