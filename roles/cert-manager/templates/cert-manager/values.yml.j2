@@ -9,3 +9,9 @@ extraArgs:
 extraEnv:
   - name: TZ
     value: '{{ timezone }}'
+
+keel:
+  policy: force
+  images:
+    - repository: image.repository
+      tag: image.tag

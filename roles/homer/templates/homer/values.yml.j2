@@ -21,3 +21,9 @@ configmap:
   enabled: true
   config: |
     {{ lookup('template', role_name ~ '/config.yml.j2') | indent(4) }}
+
+keel:
+  policy: force
+  images:
+    - repository: image.repository
+      tag: image.tag

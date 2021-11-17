@@ -7,3 +7,9 @@ env:
 podAnnotations:
   prometheus.io/scrape-slow: 'true'
   prometheus.io/port: '9798'
+
+keel:
+  policy: force
+  images:
+    - repository: image.repository
+      tag: image.tag
