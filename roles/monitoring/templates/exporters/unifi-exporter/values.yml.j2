@@ -28,3 +28,9 @@ env:
     value: '{{ vault.unifi.password }}'
   - name: UP_INFLUXDB_DISABLE
     value: true
+
+keel:
+  policy: force
+  images:
+    - repository: image.repository
+      tag: image.tag
