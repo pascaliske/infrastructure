@@ -12,7 +12,7 @@ spec:
       match: Host(`status.{{ domain }}`)
       services:
         - kind: Service
-          name: '{{ role_name }}'
+          name: '{{ role_name }}-web'
           namespace: '{{ role_name }}'
           port: 3001
       middlewares:
