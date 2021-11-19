@@ -15,3 +15,12 @@
         name: log2ram
         update_cache: yes
         state: latest
+    - name: Update size of log2ram
+      lineinfile:
+        path: '{{ log2ram.config }}'
+        line: 'SIZE={{ log2ram.size }}'
+        regexp: '^SIZE='
+    - name: Restart log2ram
+      systemd:
+        name: log2ram
+        state: restarted

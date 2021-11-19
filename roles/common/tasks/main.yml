@@ -12,5 +12,6 @@
 
 # install tools
 - include_tasks: tools/vim.yml
+- include_tasks: tools/logrotate.yml
 - include_tasks: tools/log2ram.yml
   when: arm

@@ -1,0 +1,13 @@
+- name: Configure logrotate
+  become: yes
+  block:
+    - name: Set daily log rotation
+      lineinfile:
+        path: /etc/logrotate.conf
+        line: daily
+        regexp: '^weekly'
+    - name: Compress rotated logs
+      lineinfile:
+        path: /etc/logrotate.conf
+        line: compress
+        regexp: '^#compress'
