@@ -8,27 +8,11 @@ extraArgs:
   web.external-url: 'https://alerts.{{ domain }}'
 
 config:
-  templates:
-    - /etc/alertmanager/*.tmpl
-  route:
-    receiver: slack
-  receivers:
-    - name: slack
-      slack_configs:
-        - channel: '{{ vault.alertmanager.slack.channel }}'
-          username: '{{ vault.alertmanager.slack.username }}'
-          api_url: 'https://hooks.slack.com/services/{{ vault.alertmanager.slack.tokens }}'
-          title: >-
-            {{ '{{ template "slack.iske.title" . }}' }}
-          text: >-
-            {{ '{{ template "slack.iske.text" . }}' }}
-          color: >-
-            {{ '{{ template "slack.iske.color" . }}' }}
-          send_resolved: true
+  {{ lookup('template', 'services/' ~ service ~ '/config.yml.j2') | indent(2) }}
 
 templates:
   slack.tmpl: |-
-    {{ lookup('template', 'services/' ~ service ~ '/templates/slack.tmpl') | indent(4) }}
+    {{ lookup('template', 'services/' ~ service ~ '/templates/slack.tmpl.j2') | indent(4) }}
 
 configmapReload:
   enabled: true

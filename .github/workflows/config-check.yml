@@ -9,34 +9,37 @@ jobs:
       # checkout
       - uses: actions/checkout@v2.4.0
 
-      # TODO: implement config map check for prometheus
-      # # prepare
-      # - name: Prepare variables file
-      #   run: |
-      #     cat << EOF > variables.json
-      #     vault:
-      #       home_assistant:
-      #         access_token: ''
-      #     EOF
-      # - name: Prepare configuration file
-      #   uses: cuchi/jinja2-action@v1.2.0
-      #   with:
-      #     template: roles/monitoring/templates/prometheus/prometheus.yml.j2
-      #     output_file: roles/monitoring/files/prometheus.yml
-      #     data_file: variables.json
-      # - name: Prepare alert rules
-      #   uses: cuchi/jinja2-action@v1.2.0
-      #   with:
-      #     template: roles/monitoring/templates/prometheus/alert.rules.j2
-      #     output_file: roles/monitoring/files/alert.rules
-      #     data_file: variables.json
+      # prepare
+      - name: Prepare variables file
+        run: |
+          cat << EOF > ${{ github.workspace }}/data.yml
+          vault:
+            home_assistant:
+              access_token: ''
+          EOF
+      - name: Prepare configuration file
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: roles/monitoring/templates/services/prometheus/config.yml.j2
+          output_file: ${{ github.workspace }}/prometheus.yml
+          data_file: ${{ github.workspace }}/data.yml
+      - name: Prepare alert rules
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: roles/monitoring/templates/services/prometheus/rules.yml.j2
+          output_file: ${{ github.workspace }}/alert.rules
+          data_file: ${{ github.workspace }}/data.yml
+      - name: Remove k8s certificate references
+        run: |
+          sed -E -i 's/ca_file/# ca_file/' ${{ github.workspace }}/prometheus.yml
+          sed -E -i 's/bearer_token_file/# bearer_token_file/' ${{ github.workspace }}/prometheus.yml
 
-      # # check prometheus config
-      # - uses: addnab/docker-run-action@v3
-      #   with:
-      #     image: dnanexus/promtool:2.9.2
-      #     options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
-      #     run: promtool check config /tmp/prometheus.yml
+      # check prometheus config
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: dnanexus/promtool:2.9.2
+          options: -v ${{ github.workspace }}:/tmp
+          run: promtool check config /tmp/prometheus.yml
 
   check-alertmanager:
     name: Alertmanager
@@ -45,31 +48,36 @@ jobs:
       # checkout
       - uses: actions/checkout@v2.4.0
 
-      # TODO: implement config map check for alertmanager
-      # # prepare
-      # - name: Prepare variables file
-      #   run: |
-      #     cat << EOF > variables.json
-      #     vault:
-      #       alertmanager:
-      #         slack:
-      #           channel: ''
-      #           username: ''
-      #           tokens: ''
-      #     EOF
-      # - name: Prepare configuration file
-      #   uses: cuchi/jinja2-action@v1.2.0
-      #   with:
-      #     template: roles/monitoring/templates/alertmanager/alertmanager.yml.j2
-      #     output_file: roles/monitoring/files/alertmanager.yml
-      #     data_file: variables.json
+      # prepare
+      - name: Prepare variables file
+        run: |
+          cat << EOF > ${{ github.workspace }}/data.yml
+          vault:
+            alertmanager:
+              slack:
+                channel: ''
+                username: ''
+                tokens: ''
+          EOF
+      - name: Prepare configuration file
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: roles/monitoring/templates/services/alertmanager/config.yml.j2
+          output_file: ${{ github.workspace }}/alertmanager.yml
+          data_file: ${{ github.workspace }}/data.yml
+      - name: Prepare template file
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: roles/monitoring/templates/services/alertmanager/templates/slack.tmpl.j2
+          output_file: ${{ github.workspace }}/slack.tmpl
+          data_file: ${{ github.workspace }}/data.yml
 
-      # # check alertmanager config
-      # - uses: addnab/docker-run-action@v3
-      #   with:
-      #     image: prom/alertmanager:latest
-      #     options: -v ${{ github.workspace }}/roles/monitoring/files:/tmp
-      #     run: /bin/amtool check-config /tmp/alertmanager.yml
+      # check alertmanager config
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: prom/alertmanager:latest
+          options: -v ${{ github.workspace }}:/etc/alertmanager
+          run: /bin/amtool check-config /etc/alertmanager/alertmanager.yml
 
   check-home-assistant:
     name: Home Assistant

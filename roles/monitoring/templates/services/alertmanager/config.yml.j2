@@ -1,0 +1,17 @@
+templates:
+  - /etc/alertmanager/*.tmpl
+route:
+  receiver: slack
+receivers:
+  - name: slack
+    slack_configs:
+      - channel: '{{ vault.alertmanager.slack.channel }}'
+        username: '{{ vault.alertmanager.slack.username }}'
+        api_url: 'https://hooks.slack.com/services/{{ vault.alertmanager.slack.tokens }}'
+        title: >-
+          {{ '{{ template "slack.iske.title" . }}' }}
+        text: >-
+          {{ '{{ template "slack.iske.text" . }}' }}
+        color: >-
+          {{ '{{ template "slack.iske.color" . }}' }}
+        send_resolved: true
