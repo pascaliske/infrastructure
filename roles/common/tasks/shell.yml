@@ -1,0 +1,10 @@
+# setup bash aliases
+- name: Create aliases
+  lineinfile:
+    path: '{{ paths.home }}/.bashrc'
+    line: 'alias {{ item.alias }}="{{ item.command }}"'
+    regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
+    insertafter: ^alias
+    create: yes
+  loop:
+    - { alias: 'll', command: 'ls -lisahG' }

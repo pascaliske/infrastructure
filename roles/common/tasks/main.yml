@@ -5,10 +5,12 @@
 
 # configure system
 - include_tasks: system.yml
+- include_tasks: shell.yml
 
 # install common packages
 - include_tasks: packages.yml
 
-# install log2ram package
+# install tools
+- include_tasks: tools/vim.yml
 - include_tasks: tools/log2ram.yml
   when: arm

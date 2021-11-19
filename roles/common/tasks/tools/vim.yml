@@ -1,0 +1,13 @@
+# configure vim
+- name: Install vim
+  block:
+    - name: Install apt package for vim
+      become: yes
+      apt:
+        name: vim
+        update_cache: yes
+        state: latest
+    - name: Configure vim
+      template:
+        src: vim/.vimrc.j2
+        dest: '{{ paths.home }}/.vimrc'
