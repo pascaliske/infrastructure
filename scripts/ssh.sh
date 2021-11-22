@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # fetch connection details
-HOST=$(ansible-inventory --host "$1" | jq -r '.ansible_host')
+HOST=$(ansible-inventory --list | jq -r ".$1.hosts[0]")
 USER=$(ansible-inventory --host "$1" | jq -r '.ansible_user')
 
 # enter ssh session
