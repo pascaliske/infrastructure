@@ -97,6 +97,10 @@
         {
             "path": "./roles/vaultwarden",
             "name": "roles/vaultwarden"
+        },
+        {
+            "path": "./roles/velero",
+            "name": "roles/velero"
         }
     ],
     "settings": {
