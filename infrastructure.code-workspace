@@ -11,10 +11,6 @@
             "name": "roles/authelia"
         },
         {
-            "path": "./roles/autorestic",
-            "name": "roles/autorestic"
-        },
-        {
             "path": "./roles/cert-manager",
             "name": "roles/cert-manager"
         },
@@ -105,7 +101,6 @@
     ],
     "settings": {
         "cSpell.words": [
-            "autorestic",
             "cloudflared",
             "coruscant",
             "dnsmasq",

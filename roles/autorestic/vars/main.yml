@@ -1,3 +1,0 @@
----
-image: pascaliske/autorestic:latest
-script: /usr/local/bin/autorestic

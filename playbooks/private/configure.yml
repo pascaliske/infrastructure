@@ -20,9 +20,6 @@
     - role: redis
       tags:
         - redis
-    - role: autorestic
-      tags:
-        - autorestic
     - role: authelia
       tags:
         - authelia
