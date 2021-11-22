@@ -14,12 +14,6 @@
     - role: keel
       tags:
         - keel
-    - role: dyndns
-      tags:
-        - dyndns
-    - role: snapdrop
-      tags:
-        - snapdrop
     - role: traefik
       tags:
         - traefik
@@ -35,6 +29,9 @@
     - role: homer
       tags:
         - homer
+    - role: dyndns
+      tags:
+        - dyndns
     - role: monitoring
       tags:
         - monitoring
@@ -56,3 +53,6 @@
     - role: vaultwarden
       tags:
         - vaultwarden
+    - role: snapdrop
+      tags:
+        - snapdrop
