@@ -1,6 +1,6 @@
 ---
 - name: backup
-  hosts: network
+  hosts: private
   tasks:
     - name: Load role variables
       include_vars: '{{ inventory_dir }}/roles/autorestic/vars/main.yml'

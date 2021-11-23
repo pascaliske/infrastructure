@@ -1,6 +1,6 @@
 ---
 - name: configure
-  hosts: remote
+  hosts: private
   roles:
     - role: common
       tags:
@@ -26,21 +26,33 @@
     - role: authelia
       tags:
         - authelia
-    - role: fail2ban
+    - role: homer
       tags:
-        - fail2ban
-    - role: gitlab
+        - homer
+    - role: dyndns
       tags:
-        - gitlab
-    - role: code-server
+        - dyndns
+    - role: monitoring
       tags:
-        - code-server
-    - role: linkding
+        - monitoring
+    - role: cloudflared
       tags:
-        - linkding
-    - role: paperless
+        - cloudflared
+    - role: pihole
       tags:
-        - paperless
-    - role: shlink
+        - pihole
+    - role: home-assistant
       tags:
-        - shlink
+        - home-assistant
+    - role: unifi
+      tags:
+        - unifi
+    - role: uptime-kuma
+      tags:
+        - uptime-kuma
+    - role: vaultwarden
+      tags:
+        - vaultwarden
+    - role: snapdrop
+      tags:
+        - snapdrop

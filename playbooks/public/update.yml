@@ -1,6 +1,6 @@
 ---
 - name: update
-  hosts: network
+  hosts: public
   become: yes
   tasks:
     - name: Update apt packages

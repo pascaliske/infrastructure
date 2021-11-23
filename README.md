@@ -41,11 +41,11 @@ git clone https://github.com/pascaliske/infrastructure
 # install needed dependencies
 yarn install
 
-# provision target group using ansible
-yarn run play playbooks/{group}/configure.yml
+# provision target zone using ansible
+yarn run play playbooks/{zone}/configure.yml
 
 # ssh into target host from inventory
-yarn run ssh {hostname}
+yarn run ssh {host}
 ```
 
 ## Update
@@ -55,7 +55,7 @@ To manually update a deployment you can use the following commands:
 
 ```zsh
 # ssh into target host from inventory
-yarn run ssh {hostname}
+yarn run ssh {host}
 
 # pull image updates
 sudo ctr image pull {image} # e.g. docker.io/alpine:latest

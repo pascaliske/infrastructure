@@ -1,6 +1,6 @@
 ---
 - name: update
-  hosts: remote
+  hosts: private
   become: yes
   tasks:
     - name: Update apt packages

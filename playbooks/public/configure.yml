@@ -1,6 +1,6 @@
 ---
 - name: configure
-  hosts: network
+  hosts: public
   roles:
     - role: common
       tags:
@@ -26,33 +26,21 @@
     - role: authelia
       tags:
         - authelia
-    - role: homer
+    - role: fail2ban
       tags:
-        - homer
-    - role: dyndns
+        - fail2ban
+    - role: gitlab
       tags:
-        - dyndns
-    - role: monitoring
+        - gitlab
+    - role: code-server
       tags:
-        - monitoring
-    - role: cloudflared
+        - code-server
+    - role: linkding
       tags:
-        - cloudflared
-    - role: pihole
+        - linkding
+    - role: paperless
       tags:
-        - pihole
-    - role: home-assistant
+        - paperless
+    - role: shlink
       tags:
-        - home-assistant
-    - role: unifi
-      tags:
-        - unifi
-    - role: uptime-kuma
-      tags:
-        - uptime-kuma
-    - role: vaultwarden
-      tags:
-        - vaultwarden
-    - role: snapdrop
-      tags:
-        - snapdrop
+        - shlink
