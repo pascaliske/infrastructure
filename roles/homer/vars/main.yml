@@ -51,6 +51,9 @@ services:
       - name: Home Assistant
         subtitle: Central home automation hub
         url: https://homeassistant.{{ domain }}
+      - name: Keel
+        subtitle: Automated deployment updates
+        url: https://keel.{{ domain }}
   - name: Self Hosted
     icon: server
     items:
@@ -70,3 +73,6 @@ services:
       - name: Paperless
         subtitle: Online document management
         url: https://docs.{{ domains.external }}
+      - name: Snapdrop
+        subtitle: Local file sharing
+        url: https://drop.{{ domain }}
