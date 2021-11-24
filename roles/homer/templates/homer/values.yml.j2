@@ -18,9 +18,11 @@ persistence:
     mountPath: /www/assets
 
 configmap:
-  enabled: true
-  config: |
-    {{ lookup('template', role_name ~ '/config.yml.j2') | indent(4) }}
+  config:
+    enabled: true
+    data:
+      config.yml: |
+        {{ lookup('template', role_name ~ '/config.yml.j2') | indent(8) }}
 
 keel:
   policy: force
