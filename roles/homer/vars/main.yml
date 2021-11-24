@@ -42,6 +42,10 @@ services:
         subtitle: Network Attached Storage
         url: https://{{ vault.ips.synology_nas }}:5001
         logo: synology.png
+      - name: EPSON ET-2750
+        subtitle: Printer
+        url: https://{{ vault.ips.epson_printer }}
+        logo: epson.png
       - name: Gigaset GO
         subtitle: VoIP phone management
         url: http://{{ vault.ips.gigaset }}
