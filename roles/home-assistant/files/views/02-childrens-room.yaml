@@ -51,6 +51,13 @@ cards:
                   entities:
                     - entity: sensor.kugel_power
                       name: false
+                - type: custom:multiple-entity-row
+                  entity: switch.fenster
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.fenster_power
+                      name: false
     card_mod:
       style: |
         ha-card {

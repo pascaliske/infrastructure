@@ -49,6 +49,13 @@ cards:
                   entities:
                     - entity: sensor.lichterkette_power
                       name: false
+                - type: custom:multiple-entity-row
+                  entity: switch.sideboard
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.sideboard_power
+                      name: false
     card_mod:
       style: |
         ha-card {

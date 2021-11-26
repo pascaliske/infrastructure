@@ -244,6 +244,13 @@ cards:
                   entities:
                     - entity: sensor.lichterkette_power
                       name: false
+                - type: custom:multiple-entity-row
+                  entity: switch.sideboard
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.sideboard_power
+                      name: false
         - type: vertical-stack
           cards:
             - type: entity-filter
@@ -342,6 +349,13 @@ cards:
                   toggle: true
                   entities:
                     - entity: sensor.kugel_power
+                      name: false
+                - type: custom:multiple-entity-row
+                  entity: switch.fenster
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.fenster_power
                       name: false
             - type: entity-filter
               show_empty: false

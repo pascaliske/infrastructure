@@ -2,6 +2,10 @@ light.bedroom_closet:
   icon: mdi:string-lights
 switch.kugel:
   icon: mdi:string-lights
+switch.sideboard:
+  icon: mdi:string-lights
+switch.fenster:
+  icon: mdi:string-lights
 switch.lampe:
   icon: mdi:lightbulb
 switch.vorhang:
