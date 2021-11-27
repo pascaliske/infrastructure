@@ -251,13 +251,6 @@ cards:
                   entities:
                     - entity: sensor.lichterkette_power
                       name: false
-                - type: custom:multiple-entity-row
-                  entity: switch.sideboard
-                  secondary_info: last-changed
-                  toggle: true
-                  entities:
-                    - entity: sensor.sideboard_power
-                      name: false
         - type: vertical-stack
           cards:
             - type: entity-filter
@@ -298,6 +291,13 @@ cards:
                       h2.text-divider span {
                         padding: 10px 1em;
                       }
+                - type: custom:multiple-entity-row
+                  entity: switch.sideboard
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.sideboard_power
+                      name: false
                 - entity: light.bedroom_closet
                   secondary_info: last-changed
                 - type: custom:rgb-light-card
