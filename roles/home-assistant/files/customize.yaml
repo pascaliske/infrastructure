@@ -4,6 +4,8 @@ switch.kugel:
   icon: mdi:string-lights
 switch.sideboard:
   icon: mdi:string-lights
+switch.baum:
+  icon: mdi:string-lights
 switch.fenster:
   icon: mdi:string-lights
 switch.lampe:

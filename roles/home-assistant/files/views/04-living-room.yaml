@@ -56,6 +56,13 @@ cards:
                   entities:
                     - entity: sensor.vorhang_power
                       name: false
+                - type: custom:multiple-entity-row
+                  entity: switch.baum
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.baum_power
+                      name: false
     card_mod:
       style: |
         ha-card {
