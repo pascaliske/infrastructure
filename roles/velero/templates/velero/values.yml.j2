@@ -19,10 +19,10 @@ configuration:
   backupStorageLocation:
     name: default
     provider: aws
-    bucket: velero
+    bucket: 'velero-{{ inventory_hostname }}'
     config:
       region: minio
-      s3Url: http://{{ vault.ips.synology_nas }}:9000
+      s3Url: http://{{ vault.ips.tailscale.ryloth }}:9000
       s3ForcePathStyle: true
 
 credentials:
