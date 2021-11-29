@@ -1,0 +1,26 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ paths.root }}/{{ item }}'
+    state: directory
+  loop:
+    - '{{ role_name }}'
+    - '{{ role_name }}/data'
+
+# minio
+- name: Create container
+  docker_container:
+    name: '{{ role_name }}'
+    image: '{{ role_name }}/{{ role_name }}'
+    restart_policy: unless-stopped
+    detach: yes
+    command: server /data --console-address ":9001"
+    user: '{{ ansible_user_uid }}:{{ ansible_user_gid }}'
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    env:
+      MINIO_ROOT_USER: '{{ vault.minio.username }}'
+      MINIO_ROOT_PASSWORD: '{{ vault.minio.password }}'
+    volumes:
+      - '{{ paths.root }}/{{ role_name }}/data:/data'

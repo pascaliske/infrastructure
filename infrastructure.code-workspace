@@ -59,6 +59,10 @@
             "name": "roles/linkding"
         },
         {
+            "path": "./roles/minio",
+            "name": "roles/minio"
+        },
+        {
             "path": "./roles/monitoring",
             "name": "roles/monitoring"
         },
