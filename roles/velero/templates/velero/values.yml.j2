@@ -35,3 +35,11 @@ credentials:
 backupsEnabled: true
 snapshotsEnabled: false
 deployRestic: true
+
+schedules:
+  # every sunday at 3am
+  weekly:
+    schedule: '0 3 * * 0'
+    template:
+      includedNamespaces:
+        - '*'
