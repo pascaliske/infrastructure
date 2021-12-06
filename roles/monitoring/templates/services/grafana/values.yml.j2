@@ -38,6 +38,8 @@ grafana.ini:
     domain: '{{ service }}.{{ domain }}'
     root_url: '%(protocol)s://%(domain)s:%(http_port)s'
     serve_from_sub_path: false
+  log:
+    level: warn
   users:
     allow_sign_up: false
     auto_assign_org: true
