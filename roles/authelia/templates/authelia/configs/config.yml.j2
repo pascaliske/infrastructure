@@ -69,12 +69,15 @@ data:
       local:
         path: /config/db.sqlite3
     notifier:
-      smtp:
-        host: '{{ vault.smtp.host }}'
-        port: '{{ vault.smtp.port }}'
-        username: '{{ vault.smtp.accounts.auth.email }}'
-        sender: '{{ vault.smtp.accounts.auth.email }}'
-        subject: "[auth@{{ inventory_hostname }}] {title}"
-        startup_check_address: '{{ vault.auth.username }}'
+      disable_startup_check: false
+      filesystem:
+        filename: /config/notification.txt
+      # smtp:
+      #   host: '{{ vault.smtp.host }}'
+      #   port: '{{ vault.smtp.port }}'
+      #   username: '{{ vault.smtp.accounts.auth.email }}'
+      #   sender: '{{ vault.smtp.accounts.auth.email }}'
+      #   subject: "[auth@{{ inventory_hostname }}] {title}"
+      #   startup_check_address: '{{ vault.auth.username }}'
     access_control:
       {{+ rules(indent=2) | indent(6) }}

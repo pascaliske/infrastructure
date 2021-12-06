@@ -3,7 +3,7 @@
 image:
   registry: ghcr.io
   repository: authelia/authelia
-  tag: latest
+  tag: '4.33'
 
 domain: '{{ domain }}'
 
@@ -31,6 +31,10 @@ secret:
     filename: JWT_TOKEN
     key: JWT_TOKEN
     value: '{{ vault.auth.jwt_secret }}'
+  storageEncryptionKey:
+    filename: STORAGE_ENCRYPTION_KEY
+    key: STORAGE_ENCRYPTION_KEY
+    value: '{{ vault.auth.storage_secret }}'
   session:
     filename: SESSION_ENCRYPTION_KEY
     key: SESSION_ENCRYPTION_KEY
