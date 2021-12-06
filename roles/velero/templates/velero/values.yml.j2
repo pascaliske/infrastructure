@@ -1,0 +1,45 @@
+# vmware-tanzu/velero
+# https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
+image:
+  repository: velero/velero
+  tag: latest
+
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:latest
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+
+metrics:
+  enabled: false
+
+configuration:
+  provider: aws
+  backupStorageLocation:
+    name: default
+    provider: aws
+    bucket: 'velero-{{ inventory_hostname }}'
+    config:
+      region: minio
+      s3Url: http://{{ vault.ips.tailscale.ryloth }}:9000
+      s3ForcePathStyle: true
+
+credentials:
+  secretContents:
+    cloud: |
+      [default]
+      aws_access_key_id={{ vault.velero.access_key }}
+      aws_secret_access_key={{ vault.velero.secret_key }}
+
+backupsEnabled: true
+snapshotsEnabled: false
+deployRestic: true
+
+schedules:
+  # every sunday at 3am
+  weekly:
+    schedule: '0 3 * * 0'
+    template:
+      includedNamespaces:
+        - '*'

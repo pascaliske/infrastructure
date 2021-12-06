@@ -1,0 +1,30 @@
+# directories
+- name: Ensure directories exist
+  file:
+    path: '{{ paths.root }}/{{ item }}'
+    state: directory
+  loop:
+    - '{{ role_name }}'
+
+# namespace
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
+
+# velero
+- name: Add helm repo
+  kubernetes.core.helm_repository:
+    name: vmware-tanzu
+    repo_url: https://vmware-tanzu.github.io/helm-charts
+
+- name: Create chart values file
+  template:
+    src: '{{ role_name }}/values.yml.j2'
+    dest: '{{ paths.root }}/{{ role_name }}/values.yml'
+
+- name: Apply helm chart with values file
+  kubernetes.core.helm:
+    name: '{{ role_name }}'
+    chart_ref: 'vmware-tanzu/{{ role_name }}'
+    namespace: '{{ role_name }}'
+    update_repo_cache: yes
+    values_files:
+      - '{{ paths.root }}/{{ role_name }}/values.yml'

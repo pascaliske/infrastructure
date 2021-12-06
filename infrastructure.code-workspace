@@ -11,10 +11,6 @@
             "name": "roles/authelia"
         },
         {
-            "path": "./roles/autorestic",
-            "name": "roles/autorestic"
-        },
-        {
             "path": "./roles/cert-manager",
             "name": "roles/cert-manager"
         },
@@ -63,6 +59,10 @@
             "name": "roles/linkding"
         },
         {
+            "path": "./roles/minio",
+            "name": "roles/minio"
+        },
+        {
             "path": "./roles/monitoring",
             "name": "roles/monitoring"
         },
@@ -101,11 +101,14 @@
         {
             "path": "./roles/vaultwarden",
             "name": "roles/vaultwarden"
+        },
+        {
+            "path": "./roles/velero",
+            "name": "roles/velero"
         }
     ],
     "settings": {
         "cSpell.words": [
-            "autorestic",
             "cloudflared",
             "coruscant",
             "dnsmasq",
