@@ -26,6 +26,7 @@ logger:
     homeassistant.components.ipp: warn
     homeassistant.components.pi_hole: warn
     pyhap.hap_server: warn
+    fritzconnection: info
     hole: warn
 
 # database recorder
