@@ -45,8 +45,10 @@ data:
     server:
       host: 0.0.0.0
       port: 9091
-    # log:
-    #   file_path: /var/log/authelia.log
+    log:
+      level: warn
+      # file_path: /var/log/authelia.log
+      # keep_stdout: true
     totp:
       issuer: '{{ domain }}'
     authentication_backend:
