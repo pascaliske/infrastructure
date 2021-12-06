@@ -22,7 +22,7 @@ configuration:
     bucket: 'velero-{{ inventory_hostname }}'
     config:
       region: minio
-      s3Url: http://{{ vault.ips.tailscale.ryloth }}:9000
+      s3Url: http://{{ vault.ips.tailscale_ryloth }}:9000
       s3ForcePathStyle: true
 
 credentials:
