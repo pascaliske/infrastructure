@@ -24,6 +24,9 @@ configuration:
       region: minio
       s3Url: http://{{ vault.ips.tailscale_ryloth }}:9000
       s3ForcePathStyle: true
+  extraEnvVars:
+    TZ: '{{ timezone }}'
+  logLevel: warning
 
 credentials:
   secretContents:
