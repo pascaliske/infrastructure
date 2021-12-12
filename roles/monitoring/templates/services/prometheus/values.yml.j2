@@ -12,6 +12,7 @@ extraArgs:
   - --web.enable-lifecycle
   - --web.external-url=https://{{ service }}.{{ domain }}
   - --storage.tsdb.retention.time=2w
+  - --log.level=warn
 
 ports:
   http:

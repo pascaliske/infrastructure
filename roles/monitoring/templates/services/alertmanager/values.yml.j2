@@ -6,6 +6,7 @@ image:
 
 extraArgs:
   web.external-url: 'https://alerts.{{ domain }}'
+  log.level: warn
 
 config:
   {{ lookup('template', 'services/' ~ service ~ '/config.yml.j2') | indent(2) }}
