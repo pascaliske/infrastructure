@@ -289,10 +289,14 @@ cards:
               entities:
                 - entity: binary_sensor.remote_ui
                   secondary_info: last-changed
-                - entity: sensor.current_version
+                - type: custom:multiple-entity-row
+                  entity: sensor.latest_version
+                  name: Versions
+                  state_header: Latest
                   secondary_info: last-changed
-                - entity: sensor.latest_version
-                  secondary_info: last-changed
+                  entities:
+                    - entity: sensor.current_version
+                      name: Current
             - type: entities
               title: Wake Devices
               show_header_toggle: false
