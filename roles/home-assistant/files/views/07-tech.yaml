@@ -71,6 +71,54 @@ cards:
                 type: graph
                 entity: sensor.pi_hole_ads_percentage_blocked_today
                 hours_to_show: 168
+            - type: entities
+              title: Tailscale
+              entities:
+                - type: custom:multiple-entity-row
+                  entity: sensor.coruscant_last_seen
+                  name: Coruscant
+                  icon: mdi:server
+                  state_header: Last Seen
+                  format: total
+                  secondary_info:
+                    entity: sensor.coruscant_ip_address
+                    name: false
+                  entities:
+                    - entity: binary_sensor.coruscant_client
+                      name: Client
+                    - entity: sensor.coruscant_expires
+                      name: Expires
+                      format: total
+                - type: custom:multiple-entity-row
+                  entity: sensor.jakku_last_seen
+                  name: Jakku
+                  icon: mdi:server
+                  state_header: Last Seen
+                  format: total
+                  secondary_info:
+                    entity: sensor.jakku_ip_address
+                    name: false
+                  entities:
+                    - entity: binary_sensor.jakku_client
+                      name: Client
+                    - entity: sensor.jakku_expires
+                      name: Expires
+                      format: total
+                - type: custom:multiple-entity-row
+                  entity: sensor.ryloth_last_seen
+                  name: Ryloth
+                  icon: mdi:server
+                  state_header: Last Seen
+                  format: total
+                  secondary_info:
+                    entity: sensor.ryloth_ip_address
+                    name: false
+                  entities:
+                    - entity: binary_sensor.ryloth_client
+                      name: Client
+                    - entity: sensor.ryloth_expires
+                      name: Expires
+                      format: total
             - type: entity-filter
               show_empty: false
               state_filter:
@@ -137,38 +185,6 @@ cards:
                       name: Used
                     - entity: sensor.synologynas_volume_1_volume_used
                       name: Percent
-            - type: entity-filter
-              show_empty: false
-              state_filter:
-                - operator: '!='
-                  value: 'unavailable'
-              card:
-                type: entities
-                title: Epson ET-2750
-                icon: mdi:printer
-                show_header_toggle: false
-                entities: []
-              entities:
-                - entity: sensor.epson_et_2750_series
-                - entity: sensor.epson_et_2750_series_black_ink
-                - entity: sensor.epson_et_2750_series_cyan_ink
-                - entity: sensor.epson_et_2750_series_magenta_ink
-                - entity: sensor.epson_et_2750_series_yellow_ink
-            - type: entity-filter
-              show_empty: false
-              state_filter:
-                - operator: '!='
-                  value: 'unavailable'
-              card:
-                type: entities
-                title: Canon MX-470
-                icon: mdi:printer
-                show_header_toggle: false
-                entities: []
-              entities:
-                - entity: sensor.canon_mx470_series
-                - entity: sensor.canon_mx470_series_black
-                - entity: sensor.canon_mx470_series_color
         - type: vertical-stack
           cards:
             - type: entity-filter
@@ -233,6 +249,38 @@ cards:
                   tap_action:
                     action: url
                     url_path: https://git.pascaliske.dev/pi-webdesign/jh-of/api
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                type: entities
+                title: Epson ET-2750
+                icon: mdi:printer
+                show_header_toggle: false
+                entities: []
+              entities:
+                - entity: sensor.epson_et_2750_series
+                - entity: sensor.epson_et_2750_series_black_ink
+                - entity: sensor.epson_et_2750_series_cyan_ink
+                - entity: sensor.epson_et_2750_series_magenta_ink
+                - entity: sensor.epson_et_2750_series_yellow_ink
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                type: entities
+                title: Canon MX-470
+                icon: mdi:printer
+                show_header_toggle: false
+                entities: []
+              entities:
+                - entity: sensor.canon_mx470_series
+                - entity: sensor.canon_mx470_series_black
+                - entity: sensor.canon_mx470_series_color
         - type: vertical-stack
           cards:
             - type: entities
