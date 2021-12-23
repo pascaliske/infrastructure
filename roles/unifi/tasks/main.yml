@@ -9,7 +9,7 @@
 # namespace
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/namespace.yml'
 
-# homer
+# unifi
 - name: Add helm repo
   kubernetes.core.helm_repository:
     name: k8s-at-home
