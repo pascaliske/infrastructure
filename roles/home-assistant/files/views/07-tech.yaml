@@ -218,6 +218,28 @@ cards:
                       tap_action:
                         action: url
                         url_path: https://github.com/pascaliske/infrastructure/pulls
+                - type: custom:multiple-entity-row
+                  entity: sensor.helm_charts
+                  name: pascaliske/helm-charts
+                  state_header: Commit
+                  secondary_info:
+                    entity: sensor.helm_charts
+                    attribute: latest_commit_message
+                    name: false
+                  tap_action:
+                    action: url
+                    url_path: https://github.com/pascaliske/helm-charts
+                  entities:
+                    - entity: sensor.helm_charts_open_issues
+                      name: Issues
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/helm-charts/issues
+                    - entity: sensor.helm_charts_open_pull_requests
+                      name: PRs
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/helm-charts/pulls
             - type: entity-filter
               state_filter:
                 - operator: '!='
