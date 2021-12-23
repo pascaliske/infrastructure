@@ -85,10 +85,9 @@ cards:
                     name: false
                   entities:
                     - entity: binary_sensor.coruscant_client
-                      name: Client
-                    - entity: sensor.coruscant_expires
-                      name: Expires
-                      format: total
+                      name: false
+                      hide_unavailable: true
+                      hide_if: 'off'
                 - type: custom:multiple-entity-row
                   entity: sensor.jakku_last_seen
                   name: Jakku
@@ -100,10 +99,9 @@ cards:
                     name: false
                   entities:
                     - entity: binary_sensor.jakku_client
-                      name: Client
-                    - entity: sensor.jakku_expires
-                      name: Expires
-                      format: total
+                      name: false
+                      hide_unavailable: true
+                      hide_if: 'off'
                 - type: custom:multiple-entity-row
                   entity: sensor.ryloth_last_seen
                   name: Ryloth
@@ -115,10 +113,9 @@ cards:
                     name: false
                   entities:
                     - entity: binary_sensor.ryloth_client
-                      name: Client
-                    - entity: sensor.ryloth_expires
-                      name: Expires
-                      format: total
+                      name: false
+                      hide_unavailable: true
+                      hide_if: 'off'
             - type: entity-filter
               show_empty: false
               state_filter:
