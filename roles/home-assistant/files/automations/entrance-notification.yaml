@@ -2,7 +2,7 @@ alias: Entrance Notification
 trigger:
   platform: state
   entity_id:
-    - binary_sensor.entrance_lumi_contact
+    - binary_sensor.entrance_door_lumi_contact
   from: 'off'
   to: 'on'
 condition:
