@@ -1,4 +1,8 @@
 ---
+# system
+arm: '{{ ansible_architecture == "armhf" or ansible_architecture == "armv7l" }}'
+
+# services
 timezone: Europe/Berlin
 domains:
   external: pascaliske.dev
