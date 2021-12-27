@@ -4,15 +4,20 @@ all_switches:
   all: yes
   entities:
     # living room
+    - switch.baum
     - switch.lampe
     - switch.vorhang
 
     # kitchen
     - switch.lichterkette
 
+    # bedroom
+    - switch.sideboard
+
     # childrens room
-    - switch.love
+    - switch.fenster
     - switch.kugel
+    - switch.love
 all_lights:
   name: All Lights
   icon: mdi:lightbulb-group
@@ -20,3 +25,6 @@ all_lights:
   entities:
     # bedroom
     - light.bedroom_closet
+
+    # office
+    - light.office_desk
