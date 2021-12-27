@@ -23,6 +23,9 @@ all_lights:
   icon: mdi:lightbulb-group
   all: yes
   entities:
+    # living room
+    - light.living_room_tv_leds
+
     # bedroom
     - light.bedroom_closet
 

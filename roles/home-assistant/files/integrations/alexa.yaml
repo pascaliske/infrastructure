@@ -57,6 +57,9 @@ cloud:
       light.bedroom_closet:
         name: Licht
         display_categories: LIGHT
+      light.living_room_tv_leds:
+        name: LEDs
+        display_categories: LIGHT
 
       # switches
       switch.lampe:

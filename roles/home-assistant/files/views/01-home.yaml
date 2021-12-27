@@ -198,6 +198,20 @@ cards:
                   entities:
                     - entity: sensor.baum_power
                       name: false
+                - entity: light.living_room_tv_leds
+                  secondary_info: last-changed
+                - type: custom:rgb-light-card
+                  entity: light.living_room_tv_leds
+                  justify: around
+                  colors:
+                    - color_temp: 360
+                      brightness_pct: 5
+                    - color_temp: 360
+                      brightness_pct: 75
+                    - hs_color: [90, 0]
+                    - hs_color: [280, 27]
+                    - hs_color: [165, 100]
+                    - hs_color: [15, 100]
 
             # kitchen
             - type: entity-filter
