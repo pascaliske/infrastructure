@@ -97,27 +97,28 @@ cards:
                       name: Diesel
         - type: vertical-stack
           cards:
+            # hallway
             - type: entity-filter
               show_empty: false
               state_filter:
                 - operator: '!='
                   value: 'unavailable'
               card:
-                title: Entrance
+                title: Hallway
                 icon: mdi:door
                 state_color: false
                 show_header_toggle: false
               entities:
                 - type: custom:multiple-entity-row
-                  entity: binary_sensor.entrance_door_lumi_contact
+                  entity: binary_sensor.hallway_entrance_door_lumi_contact
                   name: Door
                   icon: mdi:door
                   secondary_info: last-changed
                   show_state: false
                   entities:
-                    - entity: binary_sensor.entrance_door_lumi_contact
+                    - entity: binary_sensor.hallway_entrance_door_lumi_contact
                       name: State
-                    - entity: sensor.entrance_door_lumi_power
+                    - entity: sensor.hallway_entrance_door_lumi_power
                       name: Battery
                 - type: custom:text-divider-row
                   entity: sensor.time
@@ -136,6 +137,8 @@ cards:
                       }
                 - entity: switch.vacation_mode
                   secondary_info: last-changed
+
+            # living room
             - type: entity-filter
               show_empty: false
               state_filter:
@@ -195,6 +198,8 @@ cards:
                   entities:
                     - entity: sensor.baum_power
                       name: false
+
+            # kitchen
             - type: entity-filter
               show_empty: false
               state_filter:
@@ -253,6 +258,7 @@ cards:
                       name: false
         - type: vertical-stack
           cards:
+            # bedroom
             - type: entity-filter
               show_empty: false
               state_filter:
@@ -310,6 +316,8 @@ cards:
                     - hs_color: [280, 27]
                     - hs_color: [301, 24]
                     - hs_color: [15, 100]
+
+            # childrens room
             - type: entity-filter
               show_empty: false
               state_filter:
@@ -364,6 +372,8 @@ cards:
                   entities:
                     - entity: sensor.fenster_power
                       name: false
+
+            # bathroom
             - type: entity-filter
               show_empty: false
               state_filter:
@@ -387,6 +397,8 @@ cards:
                       name: Humidity
                     - entity: sensor.bathroom_climate_lumi_power
                       name: Battery
+
+            # guest bathroom
             - type: entity-filter
               show_empty: false
               state_filter:

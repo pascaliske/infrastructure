@@ -1,21 +1,43 @@
-light.bedroom_closet:
-  icon: mdi:string-lights
-switch.kugel:
-  icon: mdi:string-lights
-switch.sideboard:
-  icon: mdi:string-lights
+# living room
 switch.baum:
-  icon: mdi:string-lights
-switch.fenster:
   icon: mdi:string-lights
 switch.lampe:
   icon: mdi:lightbulb
 switch.vorhang:
   icon: mdi:string-lights
-switch.love:
-  icon: mdi:string-lights
+
+# kitchen
 switch.lichterkette:
   icon: mdi:string-lights
+
+# bathroom
+sensor.withings_weight_kg_pascal_iske:
+  friendly_name: Pascals Weight
+sensor.withings_weight_kg_sarah_iske:
+  friendly_name: Sarahs Weight
+
+# bedroom
+light.bedroom_closet:
+  icon: mdi:string-lights
+switch.sideboard:
+  icon: mdi:string-lights
+
+# childrens room
+switch.fenster:
+  icon: mdi:string-lights
+switch.kugel:
+  icon: mdi:string-lights
+switch.love:
+  icon: mdi:string-lights
+
+# office
+sensor.canon_mx470_series:
+  friendly_name: State
+  icon: mdi:flash
+sensor.canon_mx470_series_black:
+  friendly_name: Black Ink
+sensor.canon_mx470_series_color:
+  friendly_name: Color Ink
 sensor.pi_hole_ads_blocked_today:
   friendly_name: Blocked Today
   icon: mdi:counter
@@ -25,10 +47,8 @@ sensor.pi_hole_ads_percentage_blocked_today:
 sensor.pi_hole_domains_blocked:
   friendly_name: Blocklist
   icon: mdi:playlist-remove
-sensor.withings_weight_kg_pascal_iske:
-  friendly_name: Pascals Weight
-sensor.withings_weight_kg_sarah_iske:
-  friendly_name: Sarahs Weight
+
+# other
 sensor.epson_et_2750_series:
   friendly_name: State
   icon: mdi:flash
@@ -40,22 +60,15 @@ sensor.epson_et_2750_series_magenta_ink:
   friendly_name: Magenta Ink
 sensor.epson_et_2750_series_yellow_ink:
   friendly_name: Yellow Ink
-sensor.canon_mx470_series:
-  friendly_name: State
-  icon: mdi:flash
-sensor.canon_mx470_series_black:
-  friendly_name: Black Ink
-sensor.canon_mx470_series_color:
-  friendly_name: Color Ink
-sensor.tankerkoenig_car_tank_24_e5:
-  friendly_name: Neumann E5
 sensor.tankerkoenig_car_tank_24_diesel:
   friendly_name: Neumann Diesel
-sensor.tankerkoenig_tankcenter_rodgau_e5:
-  friendly_name: Tankcenter E5
-sensor.tankerkoenig_tankcenter_rodgau_diesel:
-  friendly_name: Tankcenter Diesel
+sensor.tankerkoenig_car_tank_24_e5:
+  friendly_name: Neumann E5
 sensor.tankerkoenig_shell_rodgau_3_niederroden_frankfurter_str_97_diesel:
   friendly_name: Shell Diesel
 sensor.tankerkoenig_shell_rodgau_3_niederroden_frankfurter_str_97_e5:
   friendly_name: Shell E5
+sensor.tankerkoenig_tankcenter_rodgau_diesel:
+  friendly_name: Tankcenter Diesel
+sensor.tankerkoenig_tankcenter_rodgau_e5:
+  friendly_name: Tankcenter E5
