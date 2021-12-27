@@ -11,6 +11,9 @@ initContainers:
       - mountPath: /target
         name: plugins
 
+# upgrade job fails on arm due to invalid arm images for kubectl
+upgradeCRDs: {{ 'false' if arm else 'true' }}
+
 configuration:
   provider: aws
   backupStorageLocation:
