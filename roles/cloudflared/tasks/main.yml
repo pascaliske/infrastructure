@@ -28,3 +28,8 @@
     update_repo_cache: yes
     values_files:
       - '{{ paths.root }}/{{ role_name }}/values.yml'
+
+# create node port service (for legacy pihole)
+- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
+  loop:
+    - service

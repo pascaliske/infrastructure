@@ -6,7 +6,7 @@ logFormat: text
 
 upstream:
   default:
-    - {{ vault.ips.controller }}:5053
+    - cloudflared.cloudflared.svc.cluster.local:5053
 
 customDNS:
   mapping:
