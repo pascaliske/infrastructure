@@ -42,13 +42,6 @@ cards:
               state_color: true
               show_header_toggle: true
               entities:
-                - type: custom:multiple-entity-row
-                  entity: switch.sideboard
-                  secondary_info: last-changed
-                  toggle: true
-                  entities:
-                    - entity: sensor.sideboard_power
-                      name: false
                 - entity: light.bedroom_closet
                   secondary_info: last-changed
                 - type: custom:rgb-light-card

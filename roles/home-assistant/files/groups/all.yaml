@@ -6,16 +6,11 @@ all_switches:
     # living room
     - switch.baum
     - switch.lampe
-    - switch.vorhang
 
     # kitchen
     - switch.lichterkette
 
-    # bedroom
-    - switch.sideboard
-
     # childrens room
-    - switch.fenster
     - switch.kugel
     - switch.love
 all_lights:

@@ -19,9 +19,9 @@
   unit_prefix: k
   round: 2
 
-# sensor.vorhang_power
+# sensor.baum_power
 - platform: integration
-  source: sensor.vorhang_power
-  name: Vorhang Energy
+  source: sensor.baum_power
+  name: Baum Energy
   unit_prefix: k
   round: 2

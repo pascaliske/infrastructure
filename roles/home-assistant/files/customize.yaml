@@ -3,8 +3,6 @@ switch.baum:
   icon: mdi:string-lights
 switch.lampe:
   icon: mdi:lightbulb
-switch.vorhang:
-  icon: mdi:string-lights
 
 # kitchen
 switch.lichterkette:
@@ -19,12 +17,8 @@ sensor.withings_weight_kg_sarah_iske:
 # bedroom
 light.bedroom_closet:
   icon: mdi:string-lights
-switch.sideboard:
-  icon: mdi:string-lights
 
 # childrens room
-switch.fenster:
-  icon: mdi:string-lights
 switch.kugel:
   icon: mdi:string-lights
 switch.love:

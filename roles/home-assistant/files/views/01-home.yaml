@@ -185,13 +185,6 @@ cards:
                     - entity: sensor.lampe_power
                       name: false
                 - type: custom:multiple-entity-row
-                  entity: switch.vorhang
-                  secondary_info: last-changed
-                  toggle: true
-                  entities:
-                    - entity: sensor.vorhang_power
-                      name: false
-                - type: custom:multiple-entity-row
                   entity: switch.baum
                   secondary_info: last-changed
                   toggle: true
@@ -311,13 +304,6 @@ cards:
                       h2.text-divider span {
                         padding: 10px 1em;
                       }
-                - type: custom:multiple-entity-row
-                  entity: switch.sideboard
-                  secondary_info: last-changed
-                  toggle: true
-                  entities:
-                    - entity: sensor.sideboard_power
-                      name: false
                 - entity: light.bedroom_closet
                   secondary_info: last-changed
                 - type: custom:rgb-light-card
@@ -378,13 +364,6 @@ cards:
                   toggle: true
                   entities:
                     - entity: sensor.kugel_power
-                      name: false
-                - type: custom:multiple-entity-row
-                  entity: switch.fenster
-                  secondary_info: last-changed
-                  toggle: true
-                  entities:
-                    - entity: sensor.fenster_power
                       name: false
 
             # bathroom

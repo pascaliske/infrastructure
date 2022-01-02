@@ -14,8 +14,8 @@ cloud:
         - light.bedroom_closet
 
         # switches
+        - switch.baum
         - switch.lampe
-        - switch.vorhang
         - switch.lichterkette
         - switch.love
         - switch.kugel
@@ -62,11 +62,11 @@ cloud:
         display_categories: LIGHT
 
       # switches
+      switch.baum:
+        name: Baum
+        display_categories: LIGHT
       switch.lampe:
         name: Lampe
-        display_categories: LIGHT
-      switch.vorhang:
-        name: Vorhang
         display_categories: LIGHT
       switch.lichterkette:
         name: Lichterkette
