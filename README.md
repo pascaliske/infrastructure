@@ -133,4 +133,4 @@ dtparam=poe_fan_temp1=80000,poe_fan_temp1_hyst=2000
 
 ## License
 
-[MIT](LICENSE.md) – © 2021 [Pascal Iske](https://pascaliske.dev)
+[MIT](LICENSE.md) – © 2022 [Pascal Iske](https://pascaliske.dev)
