@@ -243,6 +243,81 @@ cards:
                       tap_action:
                         action: url
                         url_path: https://github.com/pascaliske/helm-charts/pulls
+                - type: custom:multiple-entity-row
+                  entity: sensor.pascaliske_docker_alpine_curl_jq_stars
+                  name: pascaliske/docker-alpine-curl-jq
+                  state_header: Stars
+                  unit: false
+                  icon: mdi:github
+                  secondary_info:
+                    entity: sensor.pascaliske_docker_alpine_curl_jq_latest_commit
+                    name: false
+                  tap_action:
+                    action: url
+                    url_path: https://github.com/pascaliske/docker-alpine-curl-jq
+                  entities:
+                    - entity: sensor.pascaliske_docker_alpine_curl_jq_issues
+                      name: Issues
+                      unit: false
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/docker-alpine-curl-jq/issues
+                    - entity: sensor.pascaliske_docker_alpine_curl_jq_pull_requests
+                      name: PRs
+                      unit: false
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/docker-alpine-curl-jq/pulls
+                - type: custom:multiple-entity-row
+                  entity: sensor.pascaliske_docker_autorestic_stars
+                  name: pascaliske/docker-autorestic
+                  state_header: Stars
+                  unit: false
+                  icon: mdi:github
+                  secondary_info:
+                    entity: sensor.pascaliske_docker_autorestic_latest_commit
+                    name: false
+                  tap_action:
+                    action: url
+                    url_path: https://github.com/pascaliske/docker-autorestic
+                  entities:
+                    - entity: sensor.pascaliske_docker_autorestic_issues
+                      name: Issues
+                      unit: false
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/docker-autorestic/issues
+                    - entity: sensor.pascaliske_docker_autorestic_pull_requests
+                      name: PRs
+                      unit: false
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/docker-autorestic/pulls
+                - type: custom:multiple-entity-row
+                  entity: sensor.pascaliske_docker_traefik_errors_stars
+                  name: pascaliske/docker-traefik-errors
+                  state_header: Stars
+                  unit: false
+                  icon: mdi:github
+                  secondary_info:
+                    entity: sensor.pascaliske_docker_traefik_errors_latest_commit
+                    name: false
+                  tap_action:
+                    action: url
+                    url_path: https://github.com/pascaliske/docker-traefik-errors
+                  entities:
+                    - entity: sensor.pascaliske_docker_traefik_errors_issues
+                      name: Issues
+                      unit: false
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/docker-traefik-errors/issues
+                    - entity: sensor.pascaliske_docker_traefik_errors_pull_requests
+                      name: PRs
+                      unit: false
+                      tap_action:
+                        action: url
+                        url_path: https://github.com/pascaliske/docker-traefik-errors/pulls
             - type: entity-filter
               state_filter:
                 - operator: '!='
