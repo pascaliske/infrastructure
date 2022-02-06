@@ -1,6 +1,8 @@
 # living room
 switch.baum:
   icon: mdi:string-lights
+switch.duftlampe:
+  icon: mdi:lightbulb
 switch.lampe:
   icon: mdi:lightbulb
 

@@ -50,6 +50,13 @@ cards:
                     - entity: sensor.lampe_power
                       name: false
                 - type: custom:multiple-entity-row
+                  entity: switch.duftlampe
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.duftlampe_power
+                      name: false
+                - type: custom:multiple-entity-row
                   entity: switch.baum
                   secondary_info: last-changed
                   toggle: true
