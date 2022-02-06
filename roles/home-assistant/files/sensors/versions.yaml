@@ -1,7 +1,0 @@
-# current version
-- platform: version
-  source: local
-
-# latest version
-- platform: version
-  source: docker

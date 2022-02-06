@@ -9,4 +9,6 @@
         data:
           mac: !secret mac_synology_nas
       turn_off:
-        service: synology_dsm.shutdown
+        service: button.press
+        target:
+          entity_id: button.ryloth_shutdown

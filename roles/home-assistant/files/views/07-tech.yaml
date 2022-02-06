@@ -194,46 +194,52 @@ cards:
                 show_header_toggle: false
               entities:
                 - type: custom:multiple-entity-row
-                  entity: sensor.infrastructure
+                  entity: sensor.pascaliske_infrastructure_stars
                   name: pascaliske/infrastructure
-                  state_header: Commit
+                  state_header: Stars
+                  unit: false
+                  icon: mdi:github
                   secondary_info:
-                    entity: sensor.infrastructure
-                    attribute: latest_commit_message
+                    entity: sensor.pascaliske_infrastructure_latest_commit
                     name: false
                   tap_action:
                     action: url
                     url_path: https://github.com/pascaliske/infrastructure
                   entities:
-                    - entity: sensor.infrastructure_open_issues
+                    - entity: sensor.pascaliske_infrastructure_issues
                       name: Issues
+                      unit: false
                       tap_action:
                         action: url
                         url_path: https://github.com/pascaliske/infrastructure/issues
-                    - entity: sensor.infrastructure_open_pull_requests
+                    - entity: sensor.pascaliske_infrastructure_pull_requests
                       name: PRs
+                      unit: false
                       tap_action:
                         action: url
                         url_path: https://github.com/pascaliske/infrastructure/pulls
                 - type: custom:multiple-entity-row
-                  entity: sensor.helm_charts
+                  entity: sensor.pascaliske_helm_charts_stars
                   name: pascaliske/helm-charts
-                  state_header: Commit
+                  state_header: Stars
+                  unit: false
+                  icon: mdi:github
                   secondary_info:
-                    entity: sensor.helm_charts
-                    attribute: latest_commit_message
+                    entity: sensor.pascaliske_helm_charts_latest_commit
                     name: false
                   tap_action:
                     action: url
                     url_path: https://github.com/pascaliske/helm-charts
                   entities:
-                    - entity: sensor.helm_charts_open_issues
+                    - entity: sensor.pascaliske_helm_charts_issues
                       name: Issues
+                      unit: false
                       tap_action:
                         action: url
                         url_path: https://github.com/pascaliske/helm-charts/issues
-                    - entity: sensor.helm_charts_open_pull_requests
+                    - entity: sensor.pascaliske_helm_charts_pull_requests
                       name: PRs
+                      unit: false
                       tap_action:
                         action: url
                         url_path: https://github.com/pascaliske/helm-charts/pulls
