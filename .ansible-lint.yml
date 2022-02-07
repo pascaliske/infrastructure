@@ -1,3 +1,6 @@
 quiet: true
 skip_list:
-  - '106' # role-name
+  - command-instead-of-shell
+  - package-latest
+  - risky-file-permissions
+  - role-name
