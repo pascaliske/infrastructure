@@ -1,6 +1,8 @@
 quiet: true
 skip_list:
   - command-instead-of-shell
+  - no-changed-when
+  - no-tabs
   - package-latest
   - risky-file-permissions
   - role-name
