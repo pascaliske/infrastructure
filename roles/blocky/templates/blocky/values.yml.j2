@@ -1,7 +1,7 @@
 # k8s-at-home/blocky
 # https://github.com/k8s-at-home/charts/blob/master/charts/stable/blocky/values.yaml
 image:
-  repository: spx01/blocky
+  repository: ghcr.io/0xerr0r/blocky
   tag: v0.17
 
 controller:
@@ -23,23 +23,9 @@ service:
   dns-tcp:
     enabled: true
     type: LoadBalancer
-    externalTrafficPolicy: Local
-    ports:
-      dns-tcp:
-        enabled: true
-        port: 9053
-        protocol: TCP
-        targetPort: 53
   dns-udp:
     enabled: true
     type: LoadBalancer
-    externalTrafficPolicy: Local
-    ports:
-      dns-udp:
-        enabled: true
-        port: 9053
-        protocol: UDP
-        targetPort: 53
 
 persistence:
   logs:

@@ -8,7 +8,7 @@ image:
 
 serviceDns:
   type: LoadBalancer
-  port: 53
+  port: 5053
 
 serviceDhcp:
   enabled: false
@@ -44,7 +44,7 @@ extraEnvVars:
   TEMPERATUREUNIT: c
 
 # use local cloudflared deployment on node port
-DNS1: '{{ vault.ips.controller }}#31234'
+DNS1: '{{ vault.ips.controller }}#53'
 DNS2: false
 
 dnsmasq:
