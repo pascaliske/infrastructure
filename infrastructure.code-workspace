@@ -11,6 +11,10 @@
             "name": "roles/authelia"
         },
         {
+            "path": "./roles/blocky",
+            "name": "roles/blocky"
+        },
+        {
             "path": "./roles/cert-manager",
             "name": "roles/cert-manager"
         },

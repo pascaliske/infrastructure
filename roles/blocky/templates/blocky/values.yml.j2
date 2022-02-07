@@ -1,0 +1,44 @@
+# k8s-at-home/blocky
+# https://github.com/k8s-at-home/charts/blob/master/charts/stable/blocky/values.yaml
+image:
+  repository: ghcr.io/0xerr0r/blocky
+  tag: v0.17
+
+controller:
+  strategy: RollingUpdate
+  replicas: 2
+
+env:
+  TZ: '{{ timezone }}'
+
+podAnnotations:
+  prometheus.io/scrape: 'true'
+  prometheus.io/port: '4000'
+
+service:
+  main:
+    ports:
+      http:
+        port: 4000
+  dns-tcp:
+    enabled: true
+    type: LoadBalancer
+  dns-udp:
+    enabled: true
+    type: LoadBalancer
+
+persistence:
+  logs:
+    enabled: true
+    mountPath: /logs
+    accessMode: ReadWriteOnce
+    size: 512Mi
+
+config: |
+  {{ lookup('template', role_name ~ '/config.yml.j2') | indent(2) }}
+
+keel:
+  policy: force
+  images:
+    - repository: image.repository
+      tag: image.tag

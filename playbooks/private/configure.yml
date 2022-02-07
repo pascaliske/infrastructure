@@ -38,6 +38,9 @@
     - role: cloudflared
       tags:
         - cloudflared
+    - role: blocky
+      tags:
+        - blocky
     - role: pihole
       tags:
         - pihole
