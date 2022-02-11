@@ -116,6 +116,20 @@ cards:
                       name: false
                       hide_unavailable: true
                       hide_if: 'off'
+                - type: custom:multiple-entity-row
+                  entity: sensor.ilum_last_seen
+                  name: Ilum
+                  icon: mdi:server
+                  state_header: Last Seen
+                  format: total
+                  secondary_info:
+                    entity: sensor.ilum_ip_address
+                    name: false
+                  entities:
+                    - entity: binary_sensor.ilum_client
+                      name: false
+                      hide_unavailable: true
+                      hide_if: 'off'
             - type: entity-filter
               show_empty: false
               state_filter:
