@@ -5,8 +5,11 @@ image:
   tag: v0.17
 
 controller:
-  strategy: RollingUpdate
   replicas: 2
+  strategy: RollingUpdate
+  rollingUpdate:
+    surge: 1
+    unavailable: 0
 
 env:
   TZ: '{{ timezone }}'
