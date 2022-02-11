@@ -1,0 +1,35 @@
+# configure apt
+- name: Add signing key
+  become: yes
+  apt_key:
+    url: https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}.gpg
+    state: present
+- name: Add repository
+  become: yes
+  apt_repository:
+    repo: deb https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main
+    filename: tailscale
+    state: present
+
+# install tailscale
+- name: Install apt package
+  become: yes
+  apt:
+    name: tailscale
+    update_cache: yes
+    state: latest
+
+- name: Check connection
+  command: tailscale status
+  changed_when: false
+  register: tailscale_status
+  failed_when:
+    - tailscale_status.rc != 0
+    - "'Logged out.' not in tailscale_status.stdout"
+
+- name: Start tailscale
+  become: true
+  no_log: true
+  command: tailscale up --authkey={{ vault.tailscale.auth_key }}
+  when:
+    - "'Logged out.' in tailscale_status.stdout"

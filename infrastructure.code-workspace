@@ -91,6 +91,10 @@
             "name": "roles/snapdrop"
         },
         {
+            "path": "./roles/tailscale",
+            "name": "roles/tailscale"
+        },
+        {
             "path": "./roles/traefik",
             "name": "roles/traefik"
         },

@@ -8,6 +8,9 @@
     - role: k3s
       tags:
         - k3s
+    - role: tailscale
+      tags:
+        - tailscale
     - role: velero
       tags:
         - velero

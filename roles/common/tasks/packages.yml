@@ -6,6 +6,7 @@
     update_cache: yes
     state: latest
   loop:
+    - apt-transport-https
     - htop
     - curl
     - git
