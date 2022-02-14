@@ -24,6 +24,9 @@ healthCheck:
 
 backups:
   hostPath: '{{ paths.root }}/{{ role_name }}/backups'
+  cronJob:
+    enabled: true
+    schedule: '0 3 * * 1'
 
 resources: {}
   # limits:
