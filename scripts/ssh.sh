@@ -6,4 +6,4 @@ HOST=$(ansible-inventory --host "$1" | jq -r '.ansible_host')
 USER=$(ansible-inventory --host "$1" | jq -r '.ansible_user')
 
 # enter ssh session
-ssh -t -i "$ANSIBLE_PRIVATE_KEY_FILE" "$USER@$HOST"
+ssh -t -i "$ANSIBLE_PRIVATE_KEY_FILE" "$USER@$HOST" "${@:2}"
