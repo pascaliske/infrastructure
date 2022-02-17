@@ -5,6 +5,7 @@ services:
   - grafana
   - loki
   - promtail
+  - vector
 exporters:
   - kube-state-metrics
   - fritzbox-exporter
