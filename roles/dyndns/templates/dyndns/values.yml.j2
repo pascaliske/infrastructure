@@ -1,7 +1,7 @@
-# pascaliske/digitalocean-dyndns
-# https://github.com/pascaliske/helm-charts/blob/master/charts/digitalocean-dyndns/values.yaml
+# pascaliske/cloudflare-dyndns
+# https://github.com/pascaliske/helm-charts/blob/master/charts/cloudflare-dyndns/values.yaml
 image:
-  repository: pascaliske/digitalocean-dyndns
+  repository: pascaliske/cloudflare-dyndns
   tag: latest
 
 fullnameOverride: dyndns
@@ -22,7 +22,7 @@ env:
 
 secret:
   create: true
-  token: '{{ vault.digital_ocean.token }}'
+  token: '{{ vault.cloudflare.token }}'
 
 resources:
   requests:

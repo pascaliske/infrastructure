@@ -10,7 +10,8 @@ spec:
       name: '{{ role_name }}-issuer-account-key'
     solvers:
       - dns01:
-          digitalocean:
-            tokenSecretRef:
-              name: '{{ role_name }}-digital-ocean-secret'
-              key: access-token
+          cloudflare:
+            email: '{{ vault.auth.email }}'
+            apiTokenSecretRef:
+              name: '{{ role_name }}-cloudflare-secret'
+              key: api-token

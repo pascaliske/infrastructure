@@ -23,7 +23,7 @@
 - name: Apply helm chart with values file
   kubernetes.core.helm:
     name: '{{ role_name }}'
-    chart_ref: 'pascaliske/digitalocean-dyndns'
+    chart_ref: 'pascaliske/cloudflare-dyndns'
     namespace: '{{ role_name }}'
     update_repo_cache: yes
     values_files:
