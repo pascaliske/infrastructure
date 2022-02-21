@@ -14,11 +14,6 @@ rules:
       - prometheus
   - policy: bypass
     resources:
-      - ^\/+api\.php
-    services:
-      - pihole
-  - policy: bypass
-    resources:
       - /ready
       - /loki/api/v1/push
     services:
@@ -45,7 +40,6 @@ rules:
       - grafana
       - homeassistant
       - keel
-      - pihole
       - prometheus
       - status
       - traefik

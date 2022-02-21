@@ -44,9 +44,6 @@
     - role: blocky
       tags:
         - blocky
-    - role: pihole
-      tags:
-        - pihole
     - role: home-assistant
       tags:
         - home-assistant

@@ -24,7 +24,6 @@ logger:
     homeassistant.components.discovery: warn
     homeassistant.components.upnp: warn
     homeassistant.components.ipp: warn
-    homeassistant.components.pi_hole: warn
     pyhap.hap_server: warn
     fritzconnection: info
     hole: warn

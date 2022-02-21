@@ -44,34 +44,6 @@ cards:
                   icon: mdi:clock-outline
                   entity: sensor.fritz_box_connection_uptime
             - type: entities
-              title: Ad Blocker
-              show_header_toggle: false
-              entities:
-                - entity: switch.pi_hole
-                  type: custom:multiple-entity-row
-                  name: Enabled
-                  secondary_info: last-changed
-                  toggle: true
-                  tap_action:
-                    action: url
-                    url_path: !secret pi_hole_url
-                  entities:
-                    - entity: sensor.pi_hole_ads_percentage_blocked_today
-                      name: Percentage
-                    - entity: sensor.pi_hole_ads_blocked_today
-                      name: Queries
-                      unit: false
-                    - entity: sensor.pi_hole_domains_blocked
-                      name: Blocklist
-                      unit: false
-                - type: divider
-                  style:
-                    height: 10px;
-              footer:
-                type: graph
-                entity: sensor.pi_hole_ads_percentage_blocked_today
-                hours_to_show: 168
-            - type: entities
               title: Tailscale
               entities:
                 - type: custom:multiple-entity-row

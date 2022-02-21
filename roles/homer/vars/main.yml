@@ -23,9 +23,6 @@ services:
         subtitle: Network management controller
         logo: unifi.png
         url: https://unifi.{{ domain }}
-      - name: Pi-hole
-        type: PiHole
-        url: https://pihole.{{ domain }}
       - name: FRITZ!Box
         subtitle: Gateway & Firewall
         logo: fritzbox.png

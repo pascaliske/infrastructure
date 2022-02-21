@@ -9,6 +9,5 @@ exporters:
   - kube-state-metrics
   - fritzbox-exporter
   - node-exporter
-  - pihole-exporter
   - speedtest-exporter
   - unifi-exporter

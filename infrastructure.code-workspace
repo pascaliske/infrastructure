@@ -75,10 +75,6 @@
             "name": "roles/paperless"
         },
         {
-            "path": "./roles/pihole",
-            "name": "roles/pihole"
-        },
-        {
             "path": "./roles/redis",
             "name": "roles/redis"
         },
@@ -123,7 +119,6 @@
             "homeassistant",
             "jakku",
             "middlewares",
-            "pihole",
             "ryloth",
             "traefik",
             "unifi"

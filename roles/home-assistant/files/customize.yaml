@@ -34,15 +34,6 @@ sensor.canon_mx470_series_black:
   friendly_name: Black Ink
 sensor.canon_mx470_series_color:
   friendly_name: Color Ink
-sensor.pi_hole_ads_blocked_today:
-  friendly_name: Blocked Today
-  icon: mdi:counter
-sensor.pi_hole_ads_percentage_blocked_today:
-  friendly_name: Percentage Today
-  icon: mdi:percent
-sensor.pi_hole_domains_blocked:
-  friendly_name: Blocklist
-  icon: mdi:playlist-remove
 
 # other
 sensor.epson_et_2750_series:

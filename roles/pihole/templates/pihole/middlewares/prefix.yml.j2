@@ -1,9 +1,0 @@
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: add-prefix
-  namespace: '{{ role_name }}'
-spec:
-  addPrefix:
-    prefix: /admin

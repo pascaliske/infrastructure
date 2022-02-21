@@ -22,7 +22,6 @@ cloud:
         - switch.kugel
 
         # network
-        - switch.pi_hole
         - switch.netflix
         - switch.synology_nas
         - switch.vacation_mode
@@ -80,9 +79,6 @@ cloud:
         display_categories: LIGHT
 
       # network
-      switch.pi_hole:
-        name: Pi-Hole
-        display_categories: NETWORK_HARDWARE
       switch.netflix:
         name: Netflix
         display_categories: STREAMING_DEVICE
