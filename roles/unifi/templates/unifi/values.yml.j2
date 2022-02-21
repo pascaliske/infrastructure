@@ -11,6 +11,8 @@ env:
     value: '{{ ansible_user_uid }}'
   - name: UNIFI_GID
     value: '{{ ansible_user_gid }}'
+  - name: LOTSOFDEVICES
+    value: 'true'
 
 service:
   main:
