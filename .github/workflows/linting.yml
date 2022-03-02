@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
 
       # lint ansible
       - uses: ansible/ansible-lint-action@master
