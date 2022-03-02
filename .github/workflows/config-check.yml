@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
 
       # prepare
       - name: Prepare variables file
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
 
       # prepare
       - name: Prepare variables file
@@ -84,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
 
       # prepare
       - name: Prepare configuration files
