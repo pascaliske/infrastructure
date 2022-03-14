@@ -28,7 +28,6 @@ blocking:
     all:
       - http://sysctl.org/cameleon/hosts
       - https://adaway.org/hosts.txt
-      - https://blocklist.cyberthreatcoalition.org/vetted/url.txt
       - https://blocklistproject.github.io/Lists/ads.txt
       - https://blocklistproject.github.io/Lists/drugs.txt
       - https://blocklistproject.github.io/Lists/fraud.txt
@@ -73,3 +72,6 @@ queryLog:
   type: csv-client
   target: /logs
   logRetentionDays: 7
+
+redis:
+  address: redis.redis.svc.cluster.local:6379
