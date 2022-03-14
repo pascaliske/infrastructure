@@ -18,8 +18,8 @@
 # configuration
 - include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
   loop:
-    - configs/config
     - configs/users
+    - secrets/rules
 
 # authelia
 - name: Add helm repo

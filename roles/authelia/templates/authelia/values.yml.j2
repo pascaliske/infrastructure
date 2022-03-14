@@ -3,46 +3,9 @@
 image:
   registry: ghcr.io
   repository: authelia/authelia
-  tag: '4.33'
+  tag: '4.34'
 
 domain: '{{ domain }}'
-
-service:
-  port: 80
-
-ingress:
-  enabled: false
-
-configMap:
-  enabled: true
-  existingConfigMap: '{{ role_name }}-config'
-  authentication_backend:
-    ldap:
-      enabled: false
-  storage:
-    postgres:
-      enabled: false
-
-persistence:
-  enabled: true
-
-secret:
-  jwt:
-    filename: JWT_TOKEN
-    key: JWT_TOKEN
-    value: '{{ vault.auth.jwt_secret }}'
-  storageEncryptionKey:
-    filename: STORAGE_ENCRYPTION_KEY
-    key: STORAGE_ENCRYPTION_KEY
-    value: '{{ vault.auth.storage_secret }}'
-  session:
-    filename: SESSION_ENCRYPTION_KEY
-    key: SESSION_ENCRYPTION_KEY
-    value: '{{ vault.auth.session_secret }}'
-  smtp:
-    filename: SMTP_PASSWORD
-    key: SMTP_PASSWORD
-    value: '{{ vault.smtp.accounts.auth.password }}'
 
 pod:
   kind: Deployment
@@ -61,6 +24,67 @@ pod:
         items:
           - key: users.yaml
             path: users.yaml
+
+configMap:
+  log:
+    level: info
+
+  default_redirection_url: 'https://{{ domains.internal }}'
+
+  theme: dark
+
+  webauthn:
+    display_name: 'auth@{{ inventory_hostname }}'
+
+  authentication_backend:
+    disable_reset_password: true
+    ldap:
+      enabled: false
+    file:
+      enabled: true
+      path: /users.yaml
+      password:
+        algorithm: sha512
+        memory: 128
+
+  access_control:
+    secret:
+      key: rules.yml
+      existingSecret: '{{ role_name }}-rules'
+
+  session:
+    inactivity: 10m
+    redis:
+      host: redis.redis.svc.cluster.local
+
+  storage:
+    local:
+      enabled: true
+      path: /config/db.sqlite3
+    postgres:
+      enabled: false
+
+  notifier:
+    smtp:
+      enabledSecret: true
+      host: '{{ vault.smtp.host }}'
+      port: '{{ vault.smtp.port }}'
+      username: '{{ vault.smtp.accounts.auth.email }}'
+      sender: '{{ vault.smtp.accounts.auth.email }}'
+      subject: '[auth@{{ inventory_hostname }}] {title}'
+
+secret:
+  jwt:
+    value: '{{ vault.auth.jwt_secret }}'
+  storageEncryptionKey:
+    value: '{{ vault.auth.storage_secret }}'
+  session:
+    value: '{{ vault.auth.session_secret }}'
+  smtp:
+    value: '{{ vault.smtp.accounts.auth.password }}'
+
+persistence:
+  enabled: true
 
 keel:
   policy: force

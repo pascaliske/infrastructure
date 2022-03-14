@@ -1,5 +1,4 @@
 ---
-default_redirection_url: 'https://{{ domains.internal }}'
 rules:
   - policy: bypass
     services:

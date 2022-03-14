@@ -1,5 +1,4 @@
 ---
-default_redirection_url: 'https://{{ domain }}'
 rules:
   # exceptions
   - policy: bypass
