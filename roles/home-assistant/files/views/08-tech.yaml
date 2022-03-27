@@ -43,65 +43,6 @@ cards:
                   graph: none
                   icon: mdi:clock-outline
                   entity: sensor.fritz_box_connection_uptime
-            - type: entities
-              title: Tailscale
-              entities:
-                - type: custom:multiple-entity-row
-                  entity: sensor.coruscant_last_seen
-                  name: Coruscant
-                  icon: mdi:server
-                  state_header: Last Seen
-                  format: total
-                  secondary_info:
-                    entity: sensor.coruscant_ip_address
-                    name: false
-                  entities:
-                    - entity: binary_sensor.coruscant_client
-                      name: false
-                      hide_unavailable: true
-                      hide_if: 'off'
-                - type: custom:multiple-entity-row
-                  entity: sensor.jakku_last_seen
-                  name: Jakku
-                  icon: mdi:server
-                  state_header: Last Seen
-                  format: total
-                  secondary_info:
-                    entity: sensor.jakku_ip_address
-                    name: false
-                  entities:
-                    - entity: binary_sensor.jakku_client
-                      name: false
-                      hide_unavailable: true
-                      hide_if: 'off'
-                - type: custom:multiple-entity-row
-                  entity: sensor.ryloth_last_seen
-                  name: Ryloth
-                  icon: mdi:server
-                  state_header: Last Seen
-                  format: total
-                  secondary_info:
-                    entity: sensor.ryloth_ip_address
-                    name: false
-                  entities:
-                    - entity: binary_sensor.ryloth_client
-                      name: false
-                      hide_unavailable: true
-                      hide_if: 'off'
-                - type: custom:multiple-entity-row
-                  entity: sensor.ilum_last_seen
-                  name: Ilum
-                  icon: mdi:server
-                  state_header: Last Seen
-                  format: total
-                  secondary_info:
-                    entity: sensor.ilum_ip_address
-                    name: false
-                  entities:
-                    - entity: binary_sensor.ilum_client
-                      name: false
-                      hide_unavailable: true
-                      hide_if: 'off'
             - type: entity-filter
               show_empty: false
               state_filter:
@@ -168,6 +109,38 @@ cards:
                       name: Used
                     - entity: sensor.synologynas_volume_1_volume_used
                       name: Percent
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                type: entities
+                title: Epson ET-2750
+                icon: mdi:printer
+                show_header_toggle: false
+                entities: []
+              entities:
+                - entity: sensor.epson_et_2750_series
+                - entity: sensor.epson_et_2750_series_black_ink
+                - entity: sensor.epson_et_2750_series_cyan_ink
+                - entity: sensor.epson_et_2750_series_magenta_ink
+                - entity: sensor.epson_et_2750_series_yellow_ink
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                type: entities
+                title: Canon MX-470
+                icon: mdi:printer
+                show_header_toggle: false
+                entities: []
+              entities:
+                - entity: sensor.canon_mx470_series
+                - entity: sensor.canon_mx470_series_black
+                - entity: sensor.canon_mx470_series_color
         - type: vertical-stack
           cards:
             - type: entity-filter
@@ -335,38 +308,6 @@ cards:
                   tap_action:
                     action: url
                     url_path: https://git.pascaliske.dev/pi-webdesign/jh-of/api
-            - type: entity-filter
-              show_empty: false
-              state_filter:
-                - operator: '!='
-                  value: 'unavailable'
-              card:
-                type: entities
-                title: Epson ET-2750
-                icon: mdi:printer
-                show_header_toggle: false
-                entities: []
-              entities:
-                - entity: sensor.epson_et_2750_series
-                - entity: sensor.epson_et_2750_series_black_ink
-                - entity: sensor.epson_et_2750_series_cyan_ink
-                - entity: sensor.epson_et_2750_series_magenta_ink
-                - entity: sensor.epson_et_2750_series_yellow_ink
-            - type: entity-filter
-              show_empty: false
-              state_filter:
-                - operator: '!='
-                  value: 'unavailable'
-              card:
-                type: entities
-                title: Canon MX-470
-                icon: mdi:printer
-                show_header_toggle: false
-                entities: []
-              entities:
-                - entity: sensor.canon_mx470_series
-                - entity: sensor.canon_mx470_series_black
-                - entity: sensor.canon_mx470_series_color
         - type: vertical-stack
           cards:
             - type: entities
@@ -383,6 +324,65 @@ cards:
                   entities:
                     - entity: sensor.current_version
                       name: Current
+            - type: entities
+              title: Tailscale
+              entities:
+                - type: custom:multiple-entity-row
+                  entity: sensor.coruscant_last_seen
+                  name: Coruscant
+                  icon: mdi:server
+                  state_header: Last Seen
+                  format: total
+                  secondary_info:
+                    entity: sensor.coruscant_ip_address
+                    name: false
+                  entities:
+                    - entity: binary_sensor.coruscant_client
+                      name: false
+                      hide_unavailable: true
+                      hide_if: 'off'
+                - type: custom:multiple-entity-row
+                  entity: sensor.jakku_last_seen
+                  name: Jakku
+                  icon: mdi:server
+                  state_header: Last Seen
+                  format: total
+                  secondary_info:
+                    entity: sensor.jakku_ip_address
+                    name: false
+                  entities:
+                    - entity: binary_sensor.jakku_client
+                      name: false
+                      hide_unavailable: true
+                      hide_if: 'off'
+                - type: custom:multiple-entity-row
+                  entity: sensor.ryloth_last_seen
+                  name: Ryloth
+                  icon: mdi:server
+                  state_header: Last Seen
+                  format: total
+                  secondary_info:
+                    entity: sensor.ryloth_ip_address
+                    name: false
+                  entities:
+                    - entity: binary_sensor.ryloth_client
+                      name: false
+                      hide_unavailable: true
+                      hide_if: 'off'
+                - type: custom:multiple-entity-row
+                  entity: sensor.ilum_last_seen
+                  name: Ilum
+                  icon: mdi:server
+                  state_header: Last Seen
+                  format: total
+                  secondary_info:
+                    entity: sensor.ilum_ip_address
+                    name: false
+                  entities:
+                    - entity: binary_sensor.ilum_client
+                      name: false
+                      hide_unavailable: true
+                      hide_if: 'off'
             - type: entities
               title: Wake Devices
               show_header_toggle: false
