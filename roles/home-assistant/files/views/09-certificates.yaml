@@ -1,0 +1,82 @@
+title: Certificates
+path: certs
+icon: mdi:certificate
+theme: Google - Dark
+panel: true
+badges: []
+cards:
+  - type: custom:mod-card
+    card:
+      type: custom:layout-card
+      layout_type: custom:horizontal-layout
+      layout:
+        max_width: 1000
+      cards:
+        - type: vertical-stack
+          cards:
+            - type: entities
+              title: Private Cluster
+              show_header_toggle: false
+              entities:
+                - entity: sensor.cert_expiry_iske_cloud
+                  name: iske.cloud
+                - entity: sensor.cert_expiry_alerts_iske_cloud
+                  name: alerts.iske.cloud
+                - entity: sensor.cert_expiry_drop_iske_cloud
+                  name: drop.iske.cloud
+                - entity: sensor.cert_expiry_grafana_iske_cloud
+                  name: grafana.iske.cloud
+                - entity: sensor.cert_expiry_homeassistant_iske_cloud
+                  name: homeassistant.iske.cloud
+                - entity: sensor.cert_expiry_keel_iske_cloud
+                  name: keel.iske.cloud
+                - entity: sensor.cert_expiry_prometheus_iske_cloud
+                  name: prometheus.iske.cloud
+                - entity: sensor.cert_expiry_status_iske_cloud
+                  name: status.iske.cloud
+                - entity: sensor.cert_expiry_traefik_iske_cloud
+                  name: traefik.iske.cloud
+                - entity: sensor.cert_expiry_unifi_iske_cloud
+                  name: unifi.iske.cloud
+                - entity: sensor.cert_expiry_vault_iske_cloud
+                  name: vault.iske.cloud
+        - type: vertical-stack
+          cards:
+            - type: entities
+              title: Public Cluster
+              show_header_toggle: false
+              entities:
+                - entity: sensor.cert_expiry_pascaliske_dev
+                  name: pascaliske.dev
+                - entity: sensor.cert_expiry_auth_pascaliske_dev
+                  name: auth.pascaliske.dev
+                - entity: sensor.cert_expiry_charts_pascaliske_dev
+                  name: charts.pascaliske.dev
+                - entity: sensor.cert_expiry_code_pascaliske_dev
+                  name: code.pascaliske.dev
+                - entity: sensor.cert_expiry_docs_pascaliske_dev
+                  name: docs.pascaliske.dev
+                - entity: sensor.cert_expiry_git_pascaliske_dev
+                  name: git.pascaliske.dev
+                - entity: sensor.cert_expiry_go_pascaliske_dev
+                  name: go.pascaliske.dev
+                - entity: sensor.cert_expiry_keel_pascaliske_dev
+                  name: keel.pascaliske.dev
+                - entity: sensor.cert_expiry_links_pascaliske_dev
+                  name: links.pascaliske.dev
+                - entity: sensor.cert_expiry_registry_pascaliske_dev
+                  name: registry.pascaliske.dev
+                # - entity: sensor.cert_expiry_time_pascaliske_dev
+                #   name: time.pascaliske.dev
+                - entity: sensor.cert_expiry_traefik_pascaliske_dev
+                  name: traefik.pascaliske.dev
+                # - entity: sensor.cert_expiry_travel_pascaliske_dev
+                #   name: travel.pascaliske.dev
+        - type: vertical-stack
+          cards:
+            - type: entities
+              title: Miscellaneous
+              show_header_toggle: false
+              entities:
+                - entity: sensor.cert_expiry_tonies_me
+                  name: tonies.me

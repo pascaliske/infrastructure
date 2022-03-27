@@ -102,3 +102,99 @@
     #   state: >
     #     {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_travel_pascaliske_dev'), as_timestamp(now())) - as_timestamp(now()) | int %}
     #     {{ (diff / 60 / 1440) | round(0) }}
+
+    # iske.cloud
+    - name: cert_expiry_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # alerts.iske.cloud
+    - name: cert_expiry_alerts_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_alerts_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # drop.iske.cloud
+    - name: cert_expiry_drop_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_drop_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # grafana.iske.cloud
+    - name: cert_expiry_grafana_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_grafana_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # homeassistant.iske.cloud
+    - name: cert_expiry_homeassistant_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_homeassistant_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # keel.iske.cloud
+    - name: cert_expiry_keel_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_keel_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # prometheus.iske.cloud
+    - name: cert_expiry_prometheus_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_prometheus_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # status.iske.cloud
+    - name: cert_expiry_status_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_status_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # traefik.iske.cloud
+    - name: cert_expiry_traefik_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_traefik_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # unifi.iske.cloud
+    - name: cert_expiry_unifi_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_unifi_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # vault.iske.cloud
+    - name: cert_expiry_vault_iske_cloud
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_vault_iske_cloud'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
+
+    # tonies.me
+    - name: cert_expiry_tonies_me
+      unit_of_measurement: Days
+      icon: mdi:certificate
+      state: >
+        {% set diff = as_timestamp(states('sensor.cert_expiry_timestamp_tonies_me'), as_timestamp(now())) - as_timestamp(now()) | int %}
+        {{ (diff / 60 / 1440) | round(0) }}
