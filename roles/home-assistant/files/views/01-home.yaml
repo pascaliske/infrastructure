@@ -14,38 +14,17 @@ cards:
       cards:
         - type: vertical-stack
           cards:
-            - type: custom:swipe-card
-              parameters:
-                pagination:
-                  type: bullets
-                mousewheel:
-                  forceToAxis: true
-                keyboard:
-                  enabled: true
-                  onlyInViewport: true
-              cards:
-                - type: media-control
-                  entity: media_player.spotify_pascal_iske
-                  card_mod:
-                    style: |
-                      .player, .type-media-control {
-                        min-height: 196px;
-                      }
+            - type: media-control
+              entity: media_player.spotify_pascal_iske
+              card_mod:
+                style: |
+                  .player, .type-media-control {
+                    min-height: 196px;
+                  }
 
-                      .background .color-block, .background .no-img, .background .image {
-                        background: inherit;
-                      }
-                - type: media-control
-                  entity: media_player.ps4_pi
-                  card_mod:
-                    style: |
-                      .player, .type-media-control {
-                        min-height: 196px;
-                      }
-
-                      .background .color-block, .background .no-img, .background .image {
-                        background: inherit;
-                      }
+                  .background .color-block, .background .no-img, .background .image {
+                    background: inherit;
+                  }
             - type: weather-forecast
               entity: weather.home
             - type: custom:sun-card
@@ -138,6 +117,107 @@ cards:
                 - entity: switch.vacation_mode
                   secondary_info: last-changed
 
+            # childrens room
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Childrens Room
+                icon: mdi:baby-face
+                state_color: true
+                show_header_toggle: true
+              entities:
+                - type: custom:multiple-entity-row
+                  entity: sensor.childrens_room_climate_lumi_temperature
+                  name: Climate
+                  secondary_info: last-changed
+                  show_state: false
+                  entities:
+                    - entity: sensor.childrens_room_climate_lumi_temperature
+                      name: Temperature
+                    - entity: sensor.childrens_room_climate_lumi_humidity
+                      name: Humidity
+                    - entity: sensor.childrens_room_climate_lumi_power
+                      name: Battery
+                - type: custom:text-divider-row
+                  entity: sensor.time
+                  text: Lights
+                  card_mod:
+                    style: |
+                      h2.text-divider {
+                        margin: 0;
+                        font-weight: normal;
+                        letter-spacing: 0.5px;
+                        opacity: .5;
+                      }
+
+                      h2.text-divider span {
+                        padding: 10px 1em;
+                      }
+                - entity: switch.love
+                  secondary_info: last-changed
+                - type: custom:multiple-entity-row
+                  entity: switch.kugel
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.kugel_power
+                      name: false
+
+            # bedroom
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Bedroom
+                icon: mdi:bed
+                state_color: true
+                show_header_toggle: true
+              entities:
+                - type: custom:multiple-entity-row
+                  entity: sensor.bedroom_climate_lumi_temperature
+                  name: Climate
+                  secondary_info: last-changed
+                  show_state: false
+                  entities:
+                    - entity: sensor.bedroom_climate_lumi_temperature
+                      name: Temperature
+                    - entity: sensor.bedroom_climate_lumi_humidity
+                      name: Humidity
+                    - entity: sensor.bedroom_climate_lumi_power
+                      name: Battery
+                - type: custom:text-divider-row
+                  entity: sensor.time
+                  text: Lights
+                  card_mod:
+                    style: |
+                      h2.text-divider {
+                        margin: 0;
+                        font-weight: normal;
+                        letter-spacing: 0.5px;
+                        opacity: .5;
+                      }
+
+                      h2.text-divider span {
+                        padding: 10px 1em;
+                      }
+                - entity: light.bedroom_closet
+                  secondary_info: last-changed
+                - type: custom:rgb-light-card
+                  entity: light.bedroom_closet
+                  justify: around
+                  colors:
+                    - hs_color: [45, 100]
+                    - hs_color: [165, 100]
+                    - hs_color: [90, 0]
+                    - hs_color: [280, 27]
+                    - hs_color: [301, 24]
+                    - hs_color: [15, 100]
+
             # living room
             - type: entity-filter
               show_empty: false
@@ -212,7 +292,8 @@ cards:
                     - hs_color: [280, 27]
                     - hs_color: [165, 100]
                     - hs_color: [15, 100]
-
+        - type: vertical-stack
+          cards:
             # kitchen
             - type: entity-filter
               show_empty: false
@@ -269,108 +350,6 @@ cards:
                   toggle: true
                   entities:
                     - entity: sensor.lichterkette_power
-                      name: false
-        - type: vertical-stack
-          cards:
-            # bedroom
-            - type: entity-filter
-              show_empty: false
-              state_filter:
-                - operator: '!='
-                  value: 'unavailable'
-              card:
-                title: Bedroom
-                icon: mdi:bed
-                state_color: true
-                show_header_toggle: true
-              entities:
-                - type: custom:multiple-entity-row
-                  entity: sensor.bedroom_climate_lumi_temperature
-                  name: Climate
-                  secondary_info: last-changed
-                  show_state: false
-                  entities:
-                    - entity: sensor.bedroom_climate_lumi_temperature
-                      name: Temperature
-                    - entity: sensor.bedroom_climate_lumi_humidity
-                      name: Humidity
-                    - entity: sensor.bedroom_climate_lumi_power
-                      name: Battery
-                - type: custom:text-divider-row
-                  entity: sensor.time
-                  text: Lights
-                  card_mod:
-                    style: |
-                      h2.text-divider {
-                        margin: 0;
-                        font-weight: normal;
-                        letter-spacing: 0.5px;
-                        opacity: .5;
-                      }
-
-                      h2.text-divider span {
-                        padding: 10px 1em;
-                      }
-                - entity: light.bedroom_closet
-                  secondary_info: last-changed
-                - type: custom:rgb-light-card
-                  entity: light.bedroom_closet
-                  justify: around
-                  colors:
-                    - hs_color: [45, 100]
-                    - hs_color: [165, 100]
-                    - hs_color: [90, 0]
-                    - hs_color: [280, 27]
-                    - hs_color: [301, 24]
-                    - hs_color: [15, 100]
-
-            # childrens room
-            - type: entity-filter
-              show_empty: false
-              state_filter:
-                - operator: '!='
-                  value: 'unavailable'
-              card:
-                title: Childrens Room
-                icon: mdi:baby-face
-                state_color: true
-                show_header_toggle: true
-              entities:
-                - type: custom:multiple-entity-row
-                  entity: sensor.childrens_room_climate_lumi_temperature
-                  name: Climate
-                  secondary_info: last-changed
-                  show_state: false
-                  entities:
-                    - entity: sensor.childrens_room_climate_lumi_temperature
-                      name: Temperature
-                    - entity: sensor.childrens_room_climate_lumi_humidity
-                      name: Humidity
-                    - entity: sensor.childrens_room_climate_lumi_power
-                      name: Battery
-                - type: custom:text-divider-row
-                  entity: sensor.time
-                  text: Lights
-                  card_mod:
-                    style: |
-                      h2.text-divider {
-                        margin: 0;
-                        font-weight: normal;
-                        letter-spacing: 0.5px;
-                        opacity: .5;
-                      }
-
-                      h2.text-divider span {
-                        padding: 10px 1em;
-                      }
-                - entity: switch.love
-                  secondary_info: last-changed
-                - type: custom:multiple-entity-row
-                  entity: switch.kugel
-                  secondary_info: last-changed
-                  toggle: true
-                  entities:
-                    - entity: sensor.kugel_power
                       name: false
 
             # bathroom
