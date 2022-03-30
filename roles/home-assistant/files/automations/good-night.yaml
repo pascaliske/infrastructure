@@ -2,6 +2,10 @@ alias: Good Night
 trigger:
   - platform: time
     at: '00:00'
+  - platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Good Night
   - platform: state
     entity_id: input_boolean.vacation_mode
     to: 'on'
