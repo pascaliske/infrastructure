@@ -12,6 +12,7 @@ customDNS:
   mapping:
     {{ domain }}: {{ vault.ips.controller }}
     mirror.{{ domain }}: {{ vault.ips.magicmirror }}
+    unifi: {{ vault.ips.controller }} # simplifies unifi layer 2 device adoption
 
 conditional:
   mapping:
