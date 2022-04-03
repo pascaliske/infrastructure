@@ -203,6 +203,7 @@ cards:
                 - type: custom:rgb-light-card
                   entity: light.bedroom_closet
                   justify: around
+                  hide_when_off: true
                   colors:
                     - hs_color: [45, 100]
                     - hs_color: [165, 100]
