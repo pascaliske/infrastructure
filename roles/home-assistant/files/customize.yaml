@@ -7,6 +7,8 @@ switch.lampe:
   icon: mdi:lightbulb
 switch.kugel:
   icon: mdi:string-lights
+light.living_room_tv_leds:
+  icon: mdi:string-lights
 
 # kitchen
 switch.lichterkette:
