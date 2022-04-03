@@ -44,13 +44,6 @@ cards:
               entities:
                 - entity: switch.love
                   secondary_info: last-changed
-                - type: custom:multiple-entity-row
-                  entity: switch.kugel
-                  secondary_info: last-changed
-                  toggle: true
-                  entities:
-                    - entity: sensor.kugel_power
-                      name: false
     card_mod:
       style: |
         ha-card {

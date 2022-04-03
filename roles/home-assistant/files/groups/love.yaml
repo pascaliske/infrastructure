@@ -4,4 +4,3 @@ love:
   all: yes
   entities:
     - switch.love
-    - switch.kugel

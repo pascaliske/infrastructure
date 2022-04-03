@@ -5,6 +5,8 @@ switch.duftlampe:
   icon: mdi:lightbulb
 switch.lampe:
   icon: mdi:lightbulb
+switch.kugel:
+  icon: mdi:string-lights
 
 # kitchen
 switch.lichterkette:
@@ -21,8 +23,6 @@ light.bedroom_closet:
   icon: mdi:string-lights
 
 # childrens room
-switch.kugel:
-  icon: mdi:string-lights
 switch.love:
   icon: mdi:string-lights
 

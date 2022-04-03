@@ -6,12 +6,12 @@ all_switches:
     # living room
     - switch.baum
     - switch.lampe
+    - switch.kugel
 
     # kitchen
     - switch.lichterkette
 
     # childrens room
-    - switch.kugel
     - switch.love
 all_lights:
   name: All Lights
