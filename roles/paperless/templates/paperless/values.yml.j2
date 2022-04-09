@@ -24,6 +24,10 @@ consumption:
   enabled: true
   hostPath: '{{ paths.root }}/{{ role_name }}/import'
 
+export:
+  enabled: true
+  hostPath: '{{ paths.root }}/{{ role_name }}/export'
+
 keel:
   policy: force
   images:
