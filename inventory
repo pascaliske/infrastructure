@@ -1,13 +1,13 @@
 # zones
 [private]
-coruscant ansible_host=10.0.2.2 ansible_user=pi
+coruscant ansible_host=coruscant.iske.cloud ansible_user=pi
 
 [public]
-jakku ansible_host=202.61.207.160 ansible_user=pi
+jakku ansible_host=jakku.iske.cloud ansible_user=pi
 
 # backup
 [backup]
-ryloth ansible_host=10.0.2.5 ansible_user=pascaliske
+ryloth ansible_host=ryloth.iske.cloud ansible_user=pascaliske
 
 # testing
 [testing]

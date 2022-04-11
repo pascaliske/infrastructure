@@ -13,9 +13,18 @@ upstream:
 
 customDNS:
   mapping:
-    {{ domain }}: {{ vault.ips.controller }}
-    mirror.{{ domain }}: {{ vault.ips.magicmirror }}
-    unifi: {{ vault.ips.controller }} # simplifies unifi layer 2 device adoption
+    # general
+    {{ domain }}: {{ vault.ips.coruscant }}
+    mirror.{{ domain }}: {{ vault.ips.ilum }}
+
+    # servers
+    corsucant.{{ domain }}: {{ vault.ips.coruscant }}
+    jakku.{{ domain }}: {{ vault.ips.jakku }}
+    ryloth.{{ domain }}: {{ vault.ips.ryloth }}
+    ilum.{{ domain }}: {{ vault.ips.ilum }}
+
+    # misc
+    unifi: {{ vault.ips.coruscant }} # simplifies unifi layer 2 device adoption
 
 conditional:
   mapping:
