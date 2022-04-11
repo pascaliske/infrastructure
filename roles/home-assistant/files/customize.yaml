@@ -36,6 +36,10 @@ sensor.canon_mx470_series_black:
   friendly_name: Black Ink
 sensor.canon_mx470_series_color:
   friendly_name: Color Ink
+switch.office_desk_lamp:
+  icon: mdi:lightbulb
+light.office_desk_background:
+  icon: mdi:string-lights
 
 # other
 sensor.epson_et_2750_series:

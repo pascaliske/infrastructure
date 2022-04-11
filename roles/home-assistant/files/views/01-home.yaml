@@ -295,6 +295,65 @@ cards:
                     - hs_color: [15, 100]
         - type: vertical-stack
           cards:
+            # office
+            - type: entity-filter
+              show_empty: false
+              state_filter:
+                - operator: '!='
+                  value: 'unavailable'
+              card:
+                title: Office
+                icon: mdi:desk-lamp
+                state_color: true
+                show_header_toggle: true
+              entities:
+                - type: custom:multiple-entity-row
+                  entity: sensor.office_climate_lumi_temperature
+                  name: Climate
+                  secondary_info: last-changed
+                  show_state: false
+                  entities:
+                    - entity: sensor.office_climate_lumi_temperature
+                      name: Temperature
+                    - entity: sensor.office_climate_lumi_humidity
+                      name: Humidity
+                    - entity: sensor.office_climate_lumi_power
+                      name: Battery
+                - type: custom:text-divider-row
+                  entity: sensor.time
+                  text: Lights
+                  card_mod:
+                    style: |
+                      h2.text-divider {
+                        margin: 0;
+                        font-weight: normal;
+                        letter-spacing: 0.5px;
+                        opacity: .5;
+                      }
+
+                      h2.text-divider span {
+                        padding: 10px 1em;
+                      }
+                - type: custom:multiple-entity-row
+                  entity: switch.office_desk_lamp
+                  secondary_info: last-changed
+                  toggle: true
+                  entities:
+                    - entity: sensor.office_desk_lamp_power
+                      name: false
+                - entity: light.office_desk_background
+                  secondary_info: last-changed
+                - type: custom:rgb-light-card
+                  entity: light.office_desk
+                  justify: around
+                  colors:
+                    - hs_color: [30, 95] #
+                    - hs_color: [165, 100] #
+                    - hs_color: [90, 0] #
+                    - hs_color: [280, 27] #
+                    - hs_color: [301, 24] #
+                    - hs_color: [15, 100] #
+
             # kitchen
             - type: entity-filter
               show_empty: false
