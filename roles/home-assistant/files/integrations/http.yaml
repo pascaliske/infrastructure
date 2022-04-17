@@ -1,7 +1,7 @@
 http:
   server_host: 0.0.0.0
   trusted_proxies:
-    - !secret network_local
+    - !secret network_cluster
   use_x_forwarded_for: true
   ssl_certificate: /config/fullchain.pem
   ssl_key: /config/privkey.pem
