@@ -1,9 +1,9 @@
+# install dependencies
+- include_tasks: packages.yml
+
 # configure system
 - include_tasks: system.yml
 - include_tasks: shell.yml
-
-# install common packages
-- include_tasks: packages.yml
 
 # install tools
 - include_tasks: tools/vim.yml

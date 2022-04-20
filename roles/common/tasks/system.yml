@@ -9,7 +9,8 @@
       lineinfile:
         path: /etc/hosts
         line: "127.0.1.1\t\\1 {{ inventory_hostname }}"
-        regexp: "^127.0.1.1\t(.*)$"
+        regexp: "^127.0.1.1\t(.*)( {{ inventory_hostname }})?$"
+        backrefs: yes
 
 # configure static ip
 - name: Configure static ip
