@@ -1,6 +1,6 @@
 ---
 # system
-arm: '{{ ansible_architecture == "armhf" or ansible_architecture == "armv7l" }}'
+arm: '{{ ansible_architecture in ["aarch64", "armhf", "armv7l"] }}'
 
 # services
 timezone: Europe/Berlin
