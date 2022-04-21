@@ -94,3 +94,24 @@
   when: arm
   become: yes
   command: raspi-config --expand-rootfs
+
+# disable swap
+- name: Disable swap
+  when: arm
+  become: yes
+  block:
+    - name: Clear swap
+      command: swapoff -a
+    - name: Stop swap service
+      service:
+        name: dphys-swapfile
+        state: stopped
+    - name: Disable swap service
+      systemd:
+        name: dphys-swapfile
+        enabled: no
+    - name: Uninstall swap service
+      apt:
+        name: dphys-swapfile
+        state: absent
+        purge: yes
