@@ -1,4 +1,6 @@
 ---
+ssh:
+  authorized_key: id_infrastructure.pub
 boot_config:
   dtoverlay=disable-bt: yes
   dtoverlay=disable-wifi: yes
