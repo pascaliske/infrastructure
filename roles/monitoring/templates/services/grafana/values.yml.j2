@@ -1,20 +1,21 @@
 # grafana/grafana
 # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
-rbac:
-  create: false
-
-serviceAccount:
-  create: false
-
 image:
   repository: grafana/grafana
-  tag: latest
+  tag: 8.4.7 # latest / 8.5.0 is broken: https://github.com/grafana/grafana/issues/48130
 
 testFramework:
   enabled: false
 
+securityContext:
+  fsGroup: {{ ansible_user_gid }}
+  runAsNonRoot: true
+  runAsGroup: {{ ansible_user_gid }}
+  runAsUser: {{ ansible_user_uid }}
+
 persistence:
   enabled: true
+  size: 1Gi
 
 adminUser: '{{ vault.grafana.username }}'
 adminPassword: '{{ vault.grafana.password }}'
