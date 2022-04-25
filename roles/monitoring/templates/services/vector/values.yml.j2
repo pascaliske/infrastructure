@@ -1,10 +1,47 @@
 # vector/vector
 # https://github.com/vectordotdev/helm-charts/blob/master/charts/vector/values.yaml
+role: Agent
+
 image:
   repository: timberio/vector
   tag: latest-alpine
 
-role: Agent
+env:
+  - name: TZ
+    value: '{{ timezone }}'
+  - name: VECTOR_WATCH_CONFIG
+    value: 'true'
+
+customConfig:
+  data_dir: /vector-data-dir
+  api:
+    enabled: true
+    address: 127.0.0.1:8686
+    playground: false
+  sources:
+    kubernetes_logs:
+      type: kubernetes_logs
+  sinks:
+    loki:
+      type: loki
+      inputs:
+        - kubernetes_logs
+      endpoint: http://loki.monitoring.svc.cluster.local:3100
+      encoding:
+        codec: logfmt
+      labels:
+        app: >-
+          {{ '{{ print "{{ kubernetes.pod_labels.app\\\.kubernetes\\\.io/name }}" }}' }}
+        node: >-
+          {{ '{{ print "{{ kubernetes.pod_node_name }}" }}' }}
+        namespace: >-
+          {{ '{{ print "{{ kubernetes.pod_namespace }}" }}' }}
+        pod: >-
+          {{ '{{ print "{{ kubernetes.pod_name }}" }}' }}
+        container: >-
+          {{ '{{ print "{{ kubernetes.container_name }}" }}' }}
+        image: >-
+          {{ '{{ print "{{ kubernetes.container_image }}" }}' }}
 
 persistence:
   enabled: true
