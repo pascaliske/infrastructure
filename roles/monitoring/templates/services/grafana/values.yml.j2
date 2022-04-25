@@ -16,10 +16,8 @@ testFramework:
 persistence:
   enabled: true
 
-admin:
-  existingSecret: '{{ service }}-auth-secret'
-  userKey: user
-  passwordKey: password
+adminUser: '{{ vault.grafana.username }}'
+adminPassword: '{{ vault.grafana.password }}'
 
 env:
   TZ: '{{ timezone }}'

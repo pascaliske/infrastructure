@@ -12,11 +12,6 @@
     src: ../files/{{ service }}/provisioning
     dest: '{{ paths.root }}/{{ service }}'
     delete: yes
-- include_tasks: '{{ inventory_dir }}/roles/k3s/tasks/manifests.yml'
-  vars:
-    path: 'services/{{ service }}/secrets'
-  loop:
-    - auth
 
 # grafana
 - name: '{{ service }} : Add helm repo'
