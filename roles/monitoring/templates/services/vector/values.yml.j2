@@ -28,8 +28,14 @@ customConfig:
         - kubernetes_logs
       endpoint: http://loki.monitoring.svc.cluster.local:3100
       encoding:
-        codec: logfmt
+        codec: text
+      remove_label_fields: true
+      remove_timestamp: true
       labels:
+        stream: >-
+          {{ '{{ print "{{ stream }}" }}' }}
+        file: >-
+          {{ '{{ print "{{ file }}" }}' }}
         app: >-
           {{ '{{ print "{{ kubernetes.pod_labels.app\\\.kubernetes\\\.io/name }}" }}' }}
         node: >-
