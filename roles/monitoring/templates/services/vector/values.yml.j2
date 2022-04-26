@@ -6,6 +6,10 @@ image:
   repository: timberio/vector
   tag: latest-alpine
 
+podAnnotations:
+  prometheus.io/scrape: 'true'
+  prometheus.io/port: '9090'
+
 env:
   - name: TZ
     value: '{{ timezone }}'
@@ -23,6 +27,8 @@ customConfig:
       type: kubernetes_logs
     vector_logs:
       type: internal_logs
+    internal_metrics:
+      type: internal_metrics
   sinks:
     loki:
       type: loki
@@ -53,6 +59,11 @@ customConfig:
           {{ '{{ print "{{ kubernetes.container_name }}" }}' }}
         image: >-
           {{ '{{ print "{{ kubernetes.container_image }}" }}' }}
+    prometheus_exporter:
+      type: prometheus_exporter
+      inputs:
+        - internal_metrics
+      address: 0.0.0.0:9090
 
 persistence:
   enabled: true
