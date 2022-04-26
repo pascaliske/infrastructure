@@ -37,6 +37,7 @@ grafana.ini:
     domain: '{{ service }}.{{ domain }}'
     root_url: '%(protocol)s://%(domain)s:%(http_port)s'
     serve_from_sub_path: false
+    enable_gzip: true
   log:
     level: warn
   users:
@@ -53,6 +54,14 @@ grafana.ini:
     auto_sign_up: false
     enable_login_token: true
     sync_ttl: 60
+  remote_cache:
+    type: redis
+    connstr: addr=redis.redis.svc.cluster.local:6379
+  dashboards:
+    default_home_dashboard_path: /etc/grafana/provisioning/dashboards/cluster/nodes.json
+  analytics:
+    reporting_enabled: false
+    check_for_updates: true
 
 keel:
   policy: force
