@@ -19,13 +19,13 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 22,
+  "id": 4,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -68,12 +68,48 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dtdurations"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 604800
+                    },
+                    {
+                      "color": "green",
+                      "value": 1209600
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
       "gridPos": {
-        "h": 4,
-        "w": 12,
+        "h": 8,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -93,18 +129,32 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.4.7",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
           "expr": "sum by (condition) (certmanager_certificate_ready_status)",
           "interval": "",
           "legendFormat": "{{ condition }}",
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "exemplar": true,
+          "expr": "min(certmanager_certificate_expiration_timestamp_seconds > 0) - time()",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Next Expiration",
+          "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "transformations": [
         {
           "id": "renameByRegex",
@@ -125,85 +175,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 1,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 604800
-              },
-              {
-                "color": "green",
-                "value": 1209600
-              }
-            ]
-          },
-          "unit": "dtdurations"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 4,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "value"
-      },
-      "pluginVersion": "8.1.2",
-      "targets": [
-        {
-          "expr": "min(certmanager_certificate_expiration_timestamp_seconds > 0) - time()",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        },
-        {
-          "expr": "vector(1250000)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "B"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Next Expiration",
-      "transparent": true,
-      "type": "stat"
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -217,7 +192,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 4
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 6,
@@ -241,7 +216,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -259,9 +234,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "ACME Requests / second",
       "tooltip": {
         "shared": true,
@@ -271,42 +244,32 @@
       "transparent": true,
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "reqps",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
             "displayMode": "auto",
             "filterable": false
           },
@@ -370,10 +333,17 @@
         "h": 15,
         "w": 12,
         "x": 12,
-        "y": 4
+        "y": 8
       },
       "id": 9,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -382,7 +352,7 @@
           }
         ]
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.4.7",
       "targets": [
         {
           "expr": "label_join(avg by (name, namespace, condition, exported_namespace) (certmanager_certificate_ready_status == 1), \"namespaced_name\", \"-\", \"namespace\", \"exported_namespace\", \"name\")",
@@ -401,8 +371,6 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "transformations": [
         {
           "id": "seriesToColumns",
@@ -464,7 +432,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -478,7 +445,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 12
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 10,
@@ -502,7 +469,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -520,9 +487,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "ACME Request average duration",
       "tooltip": {
         "shared": true,
@@ -532,33 +497,25 @@
       "transparent": true,
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "s",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -568,7 +525,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -582,7 +538,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 19
+        "y": 23
       },
       "hiddenSeries": false,
       "id": 12,
@@ -605,7 +561,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -659,9 +615,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "CPU",
       "tooltip": {
         "shared": true,
@@ -671,33 +625,25 @@
       "transparent": true,
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percentunit",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -707,7 +653,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -721,7 +666,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 19
+        "y": 23
       },
       "hiddenSeries": false,
       "id": 16,
@@ -744,7 +689,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -799,9 +744,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Memory",
       "tooltip": {
         "shared": true,
@@ -811,9 +754,7 @@
       "transparent": true,
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -821,25 +762,19 @@
         {
           "$$hashKey": "object:94",
           "format": "bytes",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         },
         {
           "$$hashKey": "object:95",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -849,7 +784,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -863,7 +797,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 19
+        "y": 23
       },
       "hiddenSeries": false,
       "id": 18,
@@ -885,7 +819,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -900,6 +834,11 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "exemplar": true,
           "expr": "avg(\n  sum without (interface) (\n    rate(container_network_receive_bytes_total{namespace=\"cert-manager\"}[$__rate_interval])\n  )\n)",
           "format": "time_series",
           "hide": false,
@@ -909,6 +848,11 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "exemplar": true,
           "expr": "avg(\n  sum without (interface) (\n    rate(container_network_transmit_bytes_total{namespace=\"cert-manager\"}[$__rate_interval])\n  )\n)",
           "format": "time_series",
           "hide": false,
@@ -919,9 +863,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Network",
       "tooltip": {
         "shared": true,
@@ -931,37 +873,28 @@
       "transparent": true,
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "Bps",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
-  "schemaVersion": 30,
+  "schemaVersion": 35,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -975,5 +908,6 @@
   "timezone": "",
   "title": "Certificates",
   "uid": "certificates",
-  "version": 4
+  "version": 5,
+  "weekStart": ""
 }
