@@ -21,17 +21,22 @@ customConfig:
   sources:
     kubernetes_logs:
       type: kubernetes_logs
+    vector_logs:
+      type: internal_logs
   sinks:
     loki:
       type: loki
       inputs:
         - kubernetes_logs
+        - vector_logs
       endpoint: http://loki.monitoring.svc.cluster.local:3100
       encoding:
         codec: text
       remove_label_fields: true
       remove_timestamp: true
       labels:
+        source: >-
+          {{ '{{ print "{{ source_type }}" }}' }}
         stream: >-
           {{ '{{ print "{{ stream }}" }}' }}
         file: >-
