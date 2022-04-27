@@ -19,14 +19,14 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 16,
-  "iteration": 1631359764200,
+  "id": 10,
+  "iteration": 1651068315507,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -38,7 +38,6 @@
       "type": "row"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -65,7 +64,7 @@
               "fill": "dot"
             },
             "lineWidth": 2,
-            "pointSize": 5,
+            "pointSize": 3,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -149,26 +148,31 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.6",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
-          "expr": "rate(log_messages_total[$__rate_interval])",
+          "expr": "sum(rate(vector_events_in_total{component_kind=\"source\"}[5m])) by (component_name)",
           "interval": "",
-          "intervalFactor": 4,
-          "legendFormat": "{{ level }}",
+          "intervalFactor": 1,
+          "legendFormat": "{{ component_name }}",
           "refId": "A"
         }
       ],
+      "title": "Events by source",
       "transparent": true,
       "type": "timeseries"
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -181,7 +185,10 @@
       "type": "row"
     },
     {
-      "datasource": "Loki",
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
       "gridPos": {
         "h": 25,
         "w": 24,
@@ -196,12 +203,16 @@
         "showCommonLabels": false,
         "showLabels": false,
         "showTime": true,
-        "sortOrder": "Descending",
+        "sortOrder": "Ascending",
         "wrapLogMessage": true
       },
       "targets": [
         {
-          "expr": "{container=~\"$container\"} |~ \"$search\"",
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "expr": "{namespace=~\"$namespace\", pod=~\"$pod\", container=~\"$container\"} |~ \"$search\"",
           "refId": "A"
         }
       ],
@@ -210,11 +221,57 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 30,
+  "schemaVersion": 35,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "label_values(kube_pod_info, namespace)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Namespace",
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "query": "label_values(kube_pod_info, namespace)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "label_values(container_last_seen{namespace=~\"$namespace\"},pod)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Pod",
+        "multi": false,
+        "name": "pod",
+        "options": [],
+        "query": {
+          "query": "label_values(container_last_seen{namespace=~\"$namespace\"},pod)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
       {
         "allValue": "",
         "current": {
@@ -222,17 +279,17 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "Loki",
-        "definition": "label_values({}, container)",
-        "description": null,
-        "error": null,
+        "definition": "label_values(container_last_seen{namespace=~\"$namespace\",pod=~\"$pod\"},container)",
         "hide": 0,
         "includeAll": true,
         "label": "Container",
         "multi": false,
         "name": "container",
         "options": [],
-        "query": "label_values({}, container)",
+        "query": {
+          "query": "label_values(container_last_seen{namespace=~\"$namespace\",pod=~\"$pod\"},container)",
+          "refId": "StandardVariableQuery"
+        },
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -245,8 +302,6 @@
           "text": "",
           "value": ""
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "label": "Search",
         "name": "search",
@@ -271,5 +326,6 @@
   "timezone": "",
   "title": "Logs",
   "uid": "logs",
-  "version": 3
+  "version": 5,
+  "weekStart": ""
 }
