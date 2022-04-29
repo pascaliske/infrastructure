@@ -21,6 +21,10 @@ scrape_configs:
     static_configs:
       - targets: ['home-assistant.home-assistant.svc.cluster.local:8123']
 
+  - job_name: magicmirror
+    static_configs:
+      - targets: ['{{ vault.ips.ilum }}:9000']
+
   # service discovery
   - job_name: cluster/nodes
     scrape_interval: 1m
