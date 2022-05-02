@@ -82,9 +82,7 @@ prometheus:
   enable: true
 
 queryLog:
-  type: csv-client
-  target: /logs
-  logRetentionDays: 7
+  type: console
 
 redis:
   address: redis.redis.svc.cluster.local:6379
