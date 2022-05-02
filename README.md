@@ -45,6 +45,14 @@ yarn install
 # provision target zone using ansible
 yarn run play playbooks/{zone}/configure.yml
 
+# bootstrap flux
+flux bootstrap github \
+    --owner=pascaliske \
+    --repository=infrastructure \
+    --branch=feature/flux \
+    --path=./cluster/base \
+    --personal
+
 # ssh into target host from inventory
 yarn run ssh {host}
 ```
