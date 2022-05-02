@@ -12,6 +12,13 @@ scrape_configs:
     static_configs:
       - targets: ['prometheus.monitoring.svc.cluster.local:9090']
 
+  - job_name: minio
+    metrics_path: /minio/v2/metrics/cluster
+    bearer_token: '{{ vault.minio.metricsToken }}'
+    scheme: http
+    static_configs:
+      - targets: ['{{ vault.ips.ryloth }}:9000']
+
   - job_name: homeassistant
     metrics_path: /api/prometheus
     bearer_token: '{{ vault.home_assistant.access_token }}'
