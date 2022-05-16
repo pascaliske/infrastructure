@@ -1,0 +1,24 @@
+- name: bug
+  color: d73a4a
+  description: Something isn't working
+- name: dependencies
+  color: 0366d6
+  description: Dependency related things
+- name: documentation
+  color: 7057ff 
+  description: Improvements or additions to documentation
+- name: duplicate
+  color: cfd3d7
+  description: This item already exists
+- name: enhancement
+  color: 008672
+  description: New feature or request
+- name: invalid
+  color: e4e669
+  description: This doesn't seem right
+- name: todo
+  color: 00b0d8
+  description: This will be worked on
+- name: wontfix
+  color: ffffff
+  description: This will not be worked on
