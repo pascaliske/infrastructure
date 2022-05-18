@@ -16,6 +16,9 @@ jobs:
           vault:
             ips:
               ilum: ''
+              ryloth: ''
+            minio:
+              metricsToken: ''
             home_assistant:
               access_token: ''
           EOF
