@@ -8,6 +8,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: core
+    - name: charts
   path: ./cluster/services
   prune: true
   sourceRef:
