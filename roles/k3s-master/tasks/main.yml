@@ -7,6 +7,22 @@
     - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - --disable traefik
     - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
+# fetch node register token
+- name: Fetch node-token
+  become: true
+  block:
+    - name: Wait for node-token file
+      wait_for:
+        path: /var/lib/rancher/k3s/server/node-token
+    - name: Read node-token file
+      slurp:
+        path: /var/lib/rancher/k3s/server/node-token
+      register: node_token_file
+    - name: Store node-token
+      set_fact:
+        node_token: "{{ node_token_file.content | b64decode | regex_replace('\n', '') }}"
+        cacheable: yes
+
 - name: Create aliases
   lineinfile:
     path: '{{ paths.home }}/.bashrc'
@@ -20,16 +36,14 @@
     - { alias: 'helm', command: 'helm --kubeconfig {{ kubeconfig.local }}' }
     - { alias: 'h', command: 'helm --kubeconfig {{ kubeconfig.local }}' }
 
-- name: Change ownership of local config file
-  become: yes
-  file:
-    path: '{{ kubeconfig.local }}'
-    owner: '{{ ansible_user }}'
-
 # configure remote access
 - name: Configure remote access
-  become: yes
+  become: true
   block:
+    - name: Change ownership of local config file
+      file:
+        path: '{{ kubeconfig.local }}'
+        owner: '{{ ansible_user }}'
     - name: Ensure directory exists
       file:
         path: '{{ kubeconfig.remote | dirname }}'
@@ -49,5 +63,5 @@
     - name: Fetch config file for remote access
       fetch:
         src: '{{ kubeconfig.remote }}'
-        dest: "{{ lookup('env', 'HOME') }}/.kube/k3s-{{ inventory_hostname }}/config"
+        dest: "{{ lookup('env', 'HOME') }}/.kube/infrastructure/config"
         flat: yes

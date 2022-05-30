@@ -1,5 +1,0 @@
-- name: Create namespace
-  kubernetes.core.k8s:
-    state: present
-    kind: Namespace
-    name: '{{ role_name }}'

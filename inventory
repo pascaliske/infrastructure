@@ -1,9 +1,13 @@
-# zones
-[private]
-coruscant ansible_host=coruscant.iske.cloud ansible_user=pi
+# cluster
+[masters]
+coruscant.iske.cloud ansible_user=pi
 
-[public]
-jakku ansible_host=jakku.iske.cloud ansible_user=pi
+[workers]
+dathomir.iske.cloud ansible_user=pi
+
+[cluster:children]
+masters
+workers
 
 # backup
 [backup]

@@ -51,8 +51,12 @@
             "name": "roles/homer"
         },
         {
-            "path": "./roles/k3s",
-            "name": "roles/k3s"
+            "path": "./roles/k3s-master",
+            "name": "roles/k3s-master"
+        },
+        {
+            "path": "./roles/k3s-worker",
+            "name": "roles/k3s-worker"
         },
         {
             "path": "./roles/keel",

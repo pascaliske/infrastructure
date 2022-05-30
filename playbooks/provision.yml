@@ -1,0 +1,31 @@
+- name: Provision Masters
+  hosts: masters
+  roles:
+    - role: common
+      tags:
+        - masters
+        - common
+    - role: tailscale
+      tags:
+        - masters
+        - tailscale
+    - role: k3s-master
+      tags:
+        - masters
+        - k3s
+
+- name: Provision Workers
+  hosts: workers
+  roles:
+    - role: common
+      tags:
+        - workers
+        - common
+    - role: tailscale
+      tags:
+        - workers
+        - tailscale
+    - role: k3s-worker
+      tags:
+        - workers
+        - k3s

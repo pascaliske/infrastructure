@@ -7,7 +7,7 @@
 
 # configure hostname
 - name: Configure hostname
-  become: yes
+  become: true
   block:
     - name: Set the hostname
       command: hostnamectl set-hostname "{{ inventory_hostname }}"
@@ -16,13 +16,13 @@
       lineinfile:
         path: /etc/hosts
         line: "127.0.1.1\t\\1 {{ inventory_hostname }}"
-        regexp: "^127.0.1.1\t(.*)( {{ inventory_hostname }})?$"
+        regexp: "^127.0.1.1\t(.*)({{ inventory_hostname }})?$"
         backrefs: yes
 
 # configure static ip
 - name: Configure static ip
   when: arm
-  become: yes
+  become: true
   lineinfile:
     path: /etc/dhcpcd.conf
     line: '{{ item.line }}'
@@ -36,7 +36,7 @@
 
 # configure locale
 - name: Configure locale
-  become: yes
+  become: true
   vars:
     locale: en_US.UTF-8
   block:
@@ -50,7 +50,7 @@
 # configure cgroup directives
 - name: Configure cgroup directives
   when: arm
-  become: yes
+  become: true
   lineinfile:
     path: /boot/cmdline.txt
     line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
@@ -61,7 +61,7 @@
 # configure boot config
 - name: Configure boot config
   when: arm
-  become: yes
+  become: true
   lineinfile:
     path: /boot/config.txt
     line: "{{ item.key }}{{ '=' ~ item.value if not item.value }}"
@@ -72,7 +72,7 @@
 # configure iptables-legacy
 - name: Configure iptables-legacy
   when: arm
-  become: yes
+  become: true
   block:
     - name: Flush iptables before changing to iptables-legacy
       iptables:
@@ -92,13 +92,13 @@
 # expand filesystem
 - name: Expand filesystem to fill disk
   when: arm
-  become: yes
+  become: true
   command: raspi-config --expand-rootfs
 
 # disable swap
 - name: Disable swap
   when: arm
-  become: yes
+  become: true
   block:
     - name: Clear swap
       command: swapoff -a
@@ -106,10 +106,12 @@
       service:
         name: dphys-swapfile
         state: stopped
+      ignore_errors: true
     - name: Disable swap service
       systemd:
         name: dphys-swapfile
         enabled: no
+      ignore_errors: true
     - name: Uninstall swap service
       apt:
         name: dphys-swapfile

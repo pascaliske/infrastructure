@@ -1,0 +1,7 @@
+# configure cluster
+- name: Install binaries
+  shell:
+    cmd: '{{ item }}'
+  changed_when: true
+  loop:
+    - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL=https://{{ master_ip }}:6443 K3S_TOKEN={{ node_token }} sh -
