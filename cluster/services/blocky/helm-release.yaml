@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: blocky
+  namespace: blocky
+spec:
+  chart:
+    spec:
+      chart: blocky
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/0xerr0r/blocky
+      tag: v0.18
+    controller:
+      replicas: 2
+      strategy: RollingUpdate
+      rollingUpdate:
+        surge: 1
+        unavailable: 0
+    env:
+      TZ: Europe/Berlin # variable
+    podAnnotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port: '4000'
+    service:
+      main:
+        ports:
+          http:
+            port: 4000
+      dns-tcp:
+        enabled: true
+        type: LoadBalancer
+      dns-udp:
+        enabled: true
+        type: LoadBalancer
+    persistence:
+      logs:
+        enabled: false
+        mountPath: /logs
+        accessMode: ReadWriteOnce
+        size: 512Mi
+  valuesFrom:
+    - kind: ConfigMap
+      name: blocky-config
+      valuesKey: config.yml
+      targetPath: config
+  interval: 10m0s
+
