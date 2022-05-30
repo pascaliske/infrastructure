@@ -26,7 +26,7 @@ spec:
         prometheus.io/port: '49312'
     env:
       - name: TZ
-        value: Europe/Berlin # variable
+        value: ${TIMEZONE}
       - name: TUNNEL_DNS_UPSTREAM
         value: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
       - name: TUNNEL_DNS_MAX_UPSTREAM_CONNS

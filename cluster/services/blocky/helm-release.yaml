@@ -26,7 +26,7 @@ spec:
         surge: 1
         unavailable: 0
     env:
-      TZ: Europe/Berlin # variable
+      TZ: ${TIMEZONE}
     podAnnotations:
       prometheus.io/scrape: 'true'
       prometheus.io/port: '4000'

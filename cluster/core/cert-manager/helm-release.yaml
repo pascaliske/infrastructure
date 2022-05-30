@@ -22,6 +22,6 @@ spec:
       - --dns01-recursive-nameservers="1.1.1.1:53"
     extraEnv:
       - name: TZ
-        value: Europe/Berlin # variable
+        value: ${TIMEZONE}
   interval: 10m0s
 
