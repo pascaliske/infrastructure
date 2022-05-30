@@ -1,0 +1,42 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cloudflared
+  namespace: cloudflared
+spec:
+  chart:
+    spec:
+      chart: cloudflared
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/crazy-max/cloudflared
+      tag: '2022.5.0'
+    deployment:
+      replicas: 2
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '49312'
+    env:
+      - name: TZ
+        value: Europe/Berlin # variable
+      - name: TUNNEL_DNS_UPSTREAM
+        value: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
+      - name: TUNNEL_DNS_MAX_UPSTREAM_CONNS
+        value: 5
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+  interval: 10m0s
+
