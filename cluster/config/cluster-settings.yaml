@@ -6,3 +6,4 @@ metadata:
   name: cluster-settings
 data:
   TIMEZONE: Europe/Berlin
+  DOMAIN: iske.cloud
