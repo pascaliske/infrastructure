@@ -6,6 +6,7 @@ resources:
   - jetstack.yaml
   - k8s-at-home.yaml
   - keel.yaml
+  - kured.yaml
   - pascaliske.yaml
   - traefik.yaml
   - vmware-tanzu.yaml
