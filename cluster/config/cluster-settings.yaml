@@ -7,3 +7,5 @@ metadata:
 data:
   TIMEZONE: Europe/Berlin
   DOMAIN: iske.cloud
+  UID: '1000'
+  GID: '1000'
