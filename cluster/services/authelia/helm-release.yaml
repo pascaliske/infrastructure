@@ -61,8 +61,15 @@ spec:
         rules:
           - policy: bypass
             domain:
+              - git.${DOMAIN}
+              - registry.${DOMAIN}
               - unifi.${DOMAIN}
               - vault.${DOMAIN}
+          - policy: bypass
+            domain:
+              - docs.${DOMAIN}
+            resources:
+              - ^\/api
           - policy: bypass
             domain: loki.${DOMAIN}
             resources:
