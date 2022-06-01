@@ -14,7 +14,7 @@ upstream:
 customDNS:
   mapping:
     # general
-    iske.cloud: ${IP_CORUSCANT},${IP_DATHOMIR}
+    iske.cloud: ${IP_CORUSCANT}
 
     # servers
     corsucant.iske.cloud: ${IP_CORUSCANT}
@@ -24,7 +24,7 @@ customDNS:
     ilum.iske.cloud: ${IP_ILUM}
 
     # misc
-    unifi: ${IP_CORUSCANT},${IP_DATHOMIR} # simplifies unifi layer 2 device adoption
+    unifi: ${IP_CORUSCANT} # simplifies unifi layer 2 device adoption
 
 conditional:
   mapping:
