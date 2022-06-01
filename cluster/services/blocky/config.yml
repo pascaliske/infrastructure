@@ -11,6 +11,31 @@ upstream:
   default:
     - cloudflared-dns-udp.cloudflared.svc.cluster.local:5053
 
+customDNS:
+  mapping:
+    # general
+    iske.cloud: ${IP_CORUSCANT},${IP_DATHOMIR}
+
+    # servers
+    corsucant.iske.cloud: ${IP_CORUSCANT}
+    dathomir.iske.cloud: ${IP_DATHOMIR}
+    jakku.iske.cloud: ${IP_JAKKU}
+    ryloth.iske.cloud: ${IP_RYLOTH}
+    ilum.iske.cloud: ${IP_ILUM}
+
+    # misc
+    unifi: ${IP_CORUSCANT},${IP_DATHOMIR} # simplifies unifi layer 2 device adoption
+
+conditional:
+  mapping:
+    fritz.box: ${IP_ROUTER}
+
+clientLookup:
+  upstream: ${IP_ROUTER}
+  singleNameOrder:
+    - 2
+    - 1
+
 blocking:
   blackLists:
     all:
@@ -30,7 +55,7 @@ blocking:
       - https://raw.githubusercontent.com/Dawsey21/Lists/master/main-blacklist.txt
       - https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
       - https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt
-      - https://raw.githubusercontent.com/pascaliske/infrastructure/master/roles/blocky/files/blocklist.txt
+      - https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/blocky/blocklist.txt
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Risk/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/UncheckyAds/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
@@ -43,7 +68,7 @@ blocking:
       - https://v.firebog.net/hosts/Easylist.txt
   whiteLists:
     all:
-      - https://raw.githubusercontent.com/pascaliske/infrastructure/master/roles/blocky/files/whitelist.txt
+      - https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/blocky/allowlist.txt
   clientGroupsBlock:
     default:
       - all
