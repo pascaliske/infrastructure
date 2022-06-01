@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+spec:
+  chart:
+    spec:
+      chart: uptime-kuma
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: louislam/uptime-kuma
+      tag: 1-alpine
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: PGID
+        value: ${GID}
+      - name: PUID
+        value: ${UID}
+    resources:
+      limits:
+        cpu: 256m
+        memory: 1Gi
+      requests:
+        cpu: 128m
+        memory: 512Mi
+  interval: 10m0s
