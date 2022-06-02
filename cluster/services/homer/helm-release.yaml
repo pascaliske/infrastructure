@@ -1,0 +1,41 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: homer
+  namespace: homer
+spec:
+  chart:
+    spec:
+      chart: homer
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: b4bz/homer
+      tag: latest
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: UID
+        value: ${UID}
+      - name: GID
+        value: ${GID}
+    persistence:
+      config:
+        enabled: true
+        mountPath: /www/assets
+    configmap:
+      config:
+        enabled: true
+  valuesFrom:
+    - kind: ConfigMap
+      name: homer-config
+      valuesKey: config.yml
+      targetPath: configmap.config.data['config.yml']
+  interval: 10m0s

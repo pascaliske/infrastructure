@@ -7,5 +7,6 @@ metadata:
 data:
   TIMEZONE: Europe/Berlin
   DOMAIN: iske.cloud
+  DOMAIN_EXTERNAL: pascaliske.dev
   UID: '1000'
   GID: '1000'
