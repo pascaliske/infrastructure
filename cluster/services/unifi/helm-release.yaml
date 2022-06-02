@@ -39,12 +39,11 @@ spec:
             enabled: false
       controller:
         enabled: true
-        type: NodePort
+        type: LoadBalancer
         ports:
           controller-tcp:
             enabled: true
             port: 8080
-            nodePort: 8080
     persistence:
       data:
         enabled: true
