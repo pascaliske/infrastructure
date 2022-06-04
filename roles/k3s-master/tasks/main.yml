@@ -4,7 +4,7 @@
     cmd: '{{ item }}'
   changed_when: true
   loop:
-    - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - --disable traefik
+    - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - --node-ip {{ master_ip }} --advertise-address {{ master_ip }} --disable traefik
     - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 # fetch node register token

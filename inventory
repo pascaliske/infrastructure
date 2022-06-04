@@ -4,6 +4,7 @@ coruscant.iske.cloud ansible_user=pi
 
 [workers]
 dathomir.iske.cloud ansible_user=pi
+jakku.iske.cloud ansible_user=pi
 
 [cluster:children]
 masters
