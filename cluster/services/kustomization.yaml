@@ -10,3 +10,4 @@ resources:
   - unifi
   - uptime-kuma
   - homer
+  - dyndns
