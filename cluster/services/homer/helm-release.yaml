@@ -33,6 +33,7 @@ spec:
     configmap:
       config:
         enabled: true
+        data:
   valuesFrom:
     - kind: ConfigMap
       name: homer-config
