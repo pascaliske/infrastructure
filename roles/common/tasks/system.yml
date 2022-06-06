@@ -1,3 +1,34 @@
+# configure motd
+- name: Configure motd
+  become: true
+  block:
+    - name: Remove default motd
+      file:
+        path: /etc/motd
+        state: absent
+    - name: Remove additional motd files
+      file:
+        path: '/etc/update-motd.d/{{ item }}'
+        state: absent
+      loop:
+        - 10-help-text
+        - 50-motd-news
+        - 50-landscape-sysinfo
+        - 88-esm-announce
+    - name: Configure motd file
+      template:
+        src: motd/motd.j2
+        dest: /etc/update-motd.d/89-infrastructure-header
+        owner: root
+        group: root
+        mode: '755'
+
+# configure timezone
+- name: Configure timezone
+  become: true
+  timezone:
+    name: '{{ timezone }}'
+
 # configure ssh key
 - name: Configure ssh key
   authorized_key:
