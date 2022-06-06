@@ -46,8 +46,8 @@
       when: arm
       lineinfile:
         path: /etc/hosts
-        line: "127.0.1.1\t\\1 {{ inventory_hostname }}"
-        regexp: "^127.0.1.1\t(.*)({{ inventory_hostname }})?$"
+        line: "127.0.1.1\t\traspberrypi {{ inventory_hostname }}"
+        regexp: "^127.0.1.1"
         backrefs: yes
 
 # configure static ip
