@@ -38,5 +38,5 @@ spec:
     - kind: ConfigMap
       name: homer-config
       valuesKey: config.yml
-      targetPath: configmap.config.data.config\.yml
+      targetPath: configmap.config.data.[config.yml]
   interval: 10m0s
