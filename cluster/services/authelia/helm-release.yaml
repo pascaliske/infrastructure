@@ -107,7 +107,7 @@ spec:
         smtp:
           enabledSecret: true
           host: ${SMTP_HOST}
-          port: ${SMTP_PORT}
+          port: 587
           username: ${SMTP_ACCOUNT_AUTH_EMAIL}
           sender: ${SMTP_ACCOUNT_AUTH_EMAIL}
           subject: '[auth@infrastructure] {title}'
