@@ -46,6 +46,8 @@ spec:
         value: '${SMTP_ACCOUNT_VAULTWARDEN_EMAIL}'
       - name: SMTP_FROM_NAME
         value: '${SMTP_ACCOUNT_VAULTWARDEN_NAME}'
+      - name: IP_HEADER
+        value: X-Forwarded-For
     persistence:
       config:
         enabled: true
