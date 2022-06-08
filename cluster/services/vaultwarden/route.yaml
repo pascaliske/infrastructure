@@ -1,0 +1,44 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: vaultwarden
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`vault.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: vaultwarden
+          namespace: vaultwarden
+          port: 80
+      middlewares:
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: vault.${DOMAIN}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-websocket
+  namespace: vaultwarden
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`vault.${DOMAIN}`) && Path(`/notifications/hub`)
+      services:
+        - kind: Service
+          name: vaultwarden
+          namespace: vaultwarden
+          port: 3012
+      middlewares:
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: vault.${DOMAIN}

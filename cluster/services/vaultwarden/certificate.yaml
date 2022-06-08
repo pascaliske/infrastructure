@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vault.${DOMAIN}
+  namespace: vaultwarden
+spec:
+  secretName: vault.${DOMAIN}
+  dnsNames:
+    - vault.${DOMAIN}
+  issuerRef:
+    kind: ClusterIssuer
+    name: lets-encrypt-production

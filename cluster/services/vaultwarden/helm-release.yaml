@@ -1,0 +1,52 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vaultwarden
+  namespace: vaultwarden
+spec:
+  chart:
+    spec:
+      chart: vaultwarden
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: vaultwarden/server
+      tag: alpine
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: DOMAIN
+        value: https://vault.${DOMAIN}
+      - name: DATA_FOLDER
+        value: config
+      - name: SIGNUPS_VERIFY
+        value: 'true'
+      - name: SIGNUPS_DOMAINS_WHITELIST
+        value: '${DOMAIN},${DOMAIN_EXTERNAL}'
+      - name: DISABLE_ADMIN_TOKEN
+        value: 'true'
+      - name: SMTP_HOST
+        value: '${SMTP_HOST}'
+      - name: SMTP_PORT
+        value: '465'
+      - name: SMTP_USERNAME
+        value: '${SMTP_ACCOUNT_VAULTWARDEN_EMAIL}'
+      - name: SMTP_PASSWORD
+        value: '${SMTP_ACCOUNT_VAULTWARDEN_PASSWORD}'
+      - name: SMTP_SECURITY
+        value: force_tls
+      - name: SMTP_FROM
+        value: '${SMTP_ACCOUNT_VAULTWARDEN_EMAIL}'
+      - name: SMTP_FROM_NAME
+        value: '${SMTP_ACCOUNT_VAULTWARDEN_NAME}'
+    persistence:
+      config:
+        enabled: true
+  interval: 10m0s
