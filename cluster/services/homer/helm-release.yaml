@@ -11,14 +11,14 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: pascaliske
         namespace: flux-system
   install:
     createNamespace: true
   values:
     image:
       repository: b4bz/homer
-      tag: latest
+      tag: 22.02.2
     env:
       - name: TZ
         value: ${TIMEZONE}
@@ -26,17 +26,9 @@ spec:
         value: ${UID}
       - name: GID
         value: ${GID}
-    persistence:
-      config:
-        enabled: true
-        mountPath: /www/assets
-    configmap:
-      config:
-        enabled: true
-        data:
   valuesFrom:
     - kind: ConfigMap
       name: homer-config
       valuesKey: config.yml
-      targetPath: configmap.config.data.[config.yml]
+      targetPath: configMap.config
   interval: 10m0s
