@@ -61,12 +61,12 @@ spec:
         rules:
           - policy: bypass
             domain:
-              - git.${DOMAIN}
-              - registry.${DOMAIN}
+              - git.${DOMAIN_EXTERNAL}
+              - registry.${DOMAIN_EXTERNAL}
               - unifi.${DOMAIN}
               - vault.${DOMAIN}
           - policy: bypass
-            domain: docs.${DOMAIN}
+            domain: docs.${DOMAIN_EXTERNAL}
             resources:
               - ^\/api
           - policy: bypass
