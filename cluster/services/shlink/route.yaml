@@ -1,0 +1,22 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: shlink
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`go.${DOMAIN_EXTERNAL}`)
+      services:
+        - kind: Service
+          name: shlink
+          namespace: shlink
+          port: 8080
+      middlewares:
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: go.${DOMAIN_EXTERNAL}

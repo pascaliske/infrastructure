@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: go.${DOMAIN_EXTERNAL}
+  namespace: shlink
+spec:
+  secretName: go.${DOMAIN_EXTERNAL}
+  dnsNames:
+    - go.${DOMAIN_EXTERNAL}
+  issuerRef:
+    kind: ClusterIssuer
+    name: lets-encrypt-production
