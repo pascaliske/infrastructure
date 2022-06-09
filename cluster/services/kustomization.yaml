@@ -13,5 +13,6 @@ resources:
   - dyndns
   - shlink
   - gitlab
+  - code-server
   - linkding
   - vaultwarden
