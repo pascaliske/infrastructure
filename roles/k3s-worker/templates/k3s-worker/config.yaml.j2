@@ -1,0 +1,9 @@
+flannel-iface: tailscale0
+node-ip: {{ worker_ip_tailscale }}
+node-external-ip: {{ worker_ip }}
+{% if node_location == 'public' %}
+node-label:
+  - k8s.pascaliske.dev/location=public
+node-taint:
+  - k8s.pascaliske.dev/location=public:NoSchedule
+{% endif %}

@@ -1,10 +1,23 @@
-# configure cluster
+# configure k3s
+- name: Configure k3s
+  become: true
+  block:
+    - name: Ensure configuration directory exists
+      file:
+        path: /etc/rancher/k3s
+        state: directory
+    - name: Create configuration file
+      template:
+        src: '{{ role_name }}/config.yaml.j2'
+        dest: /etc/rancher/k3s/config.yaml
+
+# install k3s
 - name: Install binaries
   shell:
     cmd: '{{ item }}'
   changed_when: true
   loop:
-    - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - --node-ip {{ master_ip }} --advertise-address {{ master_ip }} --disable traefik
+    - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -
     - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 # fetch node register token

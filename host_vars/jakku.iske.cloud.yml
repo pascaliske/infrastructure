@@ -1,0 +1,3 @@
+---
+domain: '{{ domains.public }}'
+node_location: public
