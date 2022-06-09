@@ -17,6 +17,8 @@ spec:
           scheme: https
           port: 8443
       middlewares:
+        - name: auth
+          namespace: traefik
         - name: security
           namespace: traefik
         - name: headers

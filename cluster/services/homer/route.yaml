@@ -16,6 +16,8 @@ spec:
           namespace: homer
           port: 8080
       middlewares:
+        - name: auth
+          namespace: traefik
         - name: security
           namespace: traefik
   tls:

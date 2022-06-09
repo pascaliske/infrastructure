@@ -16,6 +16,8 @@ spec:
           namespace: uptime-kuma
           port: 3001
       middlewares:
+        - name: auth
+          namespace: traefik
         - name: security
           namespace: traefik
   tls:
