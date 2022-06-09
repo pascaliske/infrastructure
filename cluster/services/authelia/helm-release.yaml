@@ -66,8 +66,7 @@ spec:
               - unifi.${DOMAIN}
               - vault.${DOMAIN}
           - policy: bypass
-            domain:
-              - docs.${DOMAIN}
+            domain: docs.${DOMAIN}
             resources:
               - ^\/api
           - policy: bypass
@@ -92,7 +91,9 @@ spec:
             resources:
               - /admin
           - policy: two_factor
-            domain: '*.${DOMAIN}'
+            domain:
+              - '*.${DOMAIN}'
+              - '*.${DOMAIN_EXTERNAL}'
       session:
         inactivity: 10m
         redis:
