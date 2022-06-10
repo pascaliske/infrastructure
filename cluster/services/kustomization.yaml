@@ -12,5 +12,6 @@ resources:
   - homer
   - dyndns
   - shlink
+  - gitlab
   - linkding
   - vaultwarden

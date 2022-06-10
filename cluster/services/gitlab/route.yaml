@@ -1,0 +1,44 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: gitlab
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`git.${DOMAIN_EXTERNAL}`)
+      services:
+        - kind: Service
+          name: gitlab
+          namespace: gitlab
+          port: 80
+      middlewares:
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: git.${DOMAIN_EXTERNAL}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: registry
+  namespace: gitlab
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`registry.${DOMAIN_EXTERNAL}`)
+      services:
+        - kind: Service
+          name: gitlab
+          namespace: gitlab
+          port: 5005
+      middlewares:
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: registry.${DOMAIN_EXTERNAL}

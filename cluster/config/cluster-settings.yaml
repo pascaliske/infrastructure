@@ -8,5 +8,6 @@ data:
   TIMEZONE: Europe/Berlin
   DOMAIN: iske.cloud
   DOMAIN_EXTERNAL: pascaliske.dev
+  PATH_HOME: /home/pi
   UID: '1000'
   GID: '1000'
