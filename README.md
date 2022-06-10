@@ -43,15 +43,7 @@ git clone https://github.com/pascaliske/infrastructure
 yarn install
 
 # provision target zone using ansible
-yarn run play playbooks/{zone}/configure.yml
-
-# bootstrap flux
-flux bootstrap github \
-    --owner=pascaliske \
-    --repository=infrastructure \
-    --branch=feature/flux \
-    --path=./cluster/base \
-    --personal
+yarn run play playbooks/provision.yml
 
 # ssh into target host from inventory
 yarn run ssh {host}
@@ -59,7 +51,7 @@ yarn run ssh {host}
 
 ## Update
 
-Keel automatically checks for updates of all deployments every night.
+Flux automatically checks for updates of all deployments.
 To manually update a deployment you can use the following commands:
 
 ```zsh
@@ -70,7 +62,7 @@ yarn run ssh {host}
 sudo ctr image pull {image} # e.g. docker.io/alpine:latest
 
 # restart deployment
-kubectl rollout restart -n {namespace} deployment/{app}
+kubectl rollout restart --namespace {namespace} deployment/{app}
 ```
 
 ## Service CLIs
@@ -78,8 +70,8 @@ kubectl rollout restart -n {namespace} deployment/{app}
 ### The `redis-cli` command
 
 ```zsh
-kubectl exec -it -n redis deploy/redis -- redis-cli # interactive
-kubectl exec -it -n redis deploy/redis -- redis-cli <command> # one-off
+kubectl exec -it --namespace redis deploy/redis -- redis-cli # interactive
+kubectl exec -it --namespace redis deploy/redis -- redis-cli <command> # one-off
 ```
 
 For more information on the `redis-cli` command itself [visit their docs](https://redis.io/topics/rediscli).
@@ -87,7 +79,7 @@ For more information on the `redis-cli` command itself [visit their docs](https:
 ### The `gitlab-backup` command
 
 ```zsh
-kubectl exec -it -n gitlab deploy/gitlab -- gitlab-backup <task> # tasks: create | restore
+kubectl exec -it --namespace gitlab deploy/gitlab -- gitlab-backup <task> # tasks: create | restore
 ```
 
 For more information on the `gitlab-backup` command itself [visit their docs](https://docs.gitlab.com/ee/raketasks/backup_restore.html#back-up-gitlab).
@@ -95,7 +87,7 @@ For more information on the `gitlab-backup` command itself [visit their docs](ht
 ### The `blocky` command
 
 ```zsh
-kubectl exec -it -n blocky deploy/blocky -- ./blocky <command>
+kubectl exec -it --namespace blocky deploy/blocky -- ./blocky <command>
 ```
 
 For more information on the `blocky` command itself [visit their docs](https://0xerr0r.github.io/blocky/interfaces/).
@@ -103,7 +95,7 @@ For more information on the `blocky` command itself [visit their docs](https://0
 ### The `hass` command
 
 ```zsh
-kubectl exec -it -n home-assistant deploy/home-assistant -- hass -h
+kubectl exec -it --namespace home-assistant deploy/home-assistant -- hass -h
 ```
 
 For more information on the `hass` command itself [visit their docs](https://www.home-assistant.io/docs/tools/hass/).
@@ -111,9 +103,9 @@ For more information on the `hass` command itself [visit their docs](https://www
 ### The `paperless` management utilities
 
 ```zsh
-kubectl exec -it -n paperless deploy/paperless -- document_exporter
-kubectl exec -it -n paperless deploy/paperless -- document_importer
-kubectl exec -it -n paperless deploy/paperless -- document_retagger
+kubectl exec -it --namespace paperless deploy/paperless -- document_exporter
+kubectl exec -it --namespace paperless deploy/paperless -- document_importer
+kubectl exec -it --namespace paperless deploy/paperless -- document_retagger
 ```
 
 For more information on the commands itself [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#management-utilities).
@@ -121,9 +113,9 @@ For more information on the commands itself [visit their docs](https://paperless
 ### The `shlink` command
 
 ```zsh
-kubectl exec -it -n shlink deploy/shlink -- shlink short-url:list [--tags=<tag1>,<tag2>]
-kubectl exec -it -n shlink deploy/shlink -- shlink short-url:generate <url> [--custom-slug=<slug>]
-kubectl exec -it -n shlink deploy/shlink -- shlink short-url:import <source>
+kubectl exec -it --namespace shlink deploy/shlink -- shlink short-url:list [--tags=<tag1>,<tag2>]
+kubectl exec -it --namespace shlink deploy/shlink -- shlink short-url:generate <url> [--custom-slug=<slug>]
+kubectl exec -it --namespace shlink deploy/shlink -- shlink short-url:import <source>
 ```
 
 For more information on the commands itself [visit their docs](https://shlink.io/documentation/command-line-interface/).
