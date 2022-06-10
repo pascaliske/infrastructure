@@ -1,0 +1,60 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  chart:
+    spec:
+      chart: velero
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: vmware-tanzu
+        namespace: flux-system
+  install:
+    createNamespace: true
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    image:
+      repository: velero/velero
+      tag: latest
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:latest
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    upgradeCRDs: false
+    configuration:
+      provider: aws
+      backupStorageLocation:
+        name: default
+        provider: aws
+        bucket: velero-infrastructure
+        config:
+          region: minio
+          s3Url: http://${IP_RYLOTH_TAILSCALE}:9000
+          s3ForcePathStyle: true
+      extraEnvVars:
+        TZ: ${TIMEZONE}
+      logLevel: warning
+    credentials:
+      secretContents:
+        cloud: |
+          [default]
+          aws_access_key_id=${VELERO_ACCESS_KEY}
+          aws_secret_access_key=${VELERO_SECRET_KEY}
+    backupsEnabled: true
+    snapshotsEnabled: false
+    deployRestic: true
+    schedules:
+      weekly:
+        schedule: '0 3 * * 0' # every sunday at 3am
+        template:
+          includedNamespaces:
+            - '*'
+  interval: 10m0s
