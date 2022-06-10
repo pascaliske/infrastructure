@@ -1,0 +1,22 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: snapdrop
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`drop.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: snapdrop
+          namespace: snapdrop
+          port: 80
+      middlewares:
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: drop.${DOMAIN}

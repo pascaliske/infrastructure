@@ -15,4 +15,5 @@ resources:
   - gitlab
   - code-server
   - linkding
+  - snapdrop
   - vaultwarden

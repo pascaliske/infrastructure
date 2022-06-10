@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: snapdrop
+  namespace: snapdrop
+spec:
+  chart:
+    spec:
+      chart: snapdrop
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: linuxserver/snapdrop
+      tag: latest
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: PGID
+        value: ${GID}
+      - name: PUID
+        value: ${UID}
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+  interval: 10m0s
