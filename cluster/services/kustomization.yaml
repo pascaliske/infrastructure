@@ -16,4 +16,5 @@ resources:
   - code-server
   - linkding
   - snapdrop
+  - paperless
   - vaultwarden

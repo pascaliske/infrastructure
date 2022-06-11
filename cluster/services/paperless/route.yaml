@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: paperless
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`docs.${DOMAIN_EXTERNAL}`)
+      services:
+        - kind: Service
+          name: paperless
+          namespace: paperless
+          port: 8000
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: docs.${DOMAIN_EXTERNAL}
