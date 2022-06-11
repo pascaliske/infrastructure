@@ -85,7 +85,10 @@ spec:
               - ^\/assets
               - ^\/icon
               - ^\/manifest
-              - /status
+              - ^\/status
+              - ^\/api\/entry-page
+              - ^\/api\/status-page
+              - ^\/$
           - policy: two_factor
             domain: vault.${DOMAIN}
             resources:
