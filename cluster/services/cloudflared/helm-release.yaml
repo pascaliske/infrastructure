@@ -38,5 +38,21 @@ spec:
       limits:
         cpu: 100m
         memory: 128Mi
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - cloudflared
+            topologyKey: kubernetes.io/hostname
+
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
   interval: 10m0s
 
