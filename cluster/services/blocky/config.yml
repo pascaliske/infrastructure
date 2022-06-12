@@ -1,9 +1,6 @@
 port: 53
 httpPort: 4000
 
-# disabled until https://github.com/0xERR0R/blocky/issues/454 is resolved with v0.19
-# bootstrapDns: 1.1.1.1
-
 logLevel: info
 logFormat: text
 
@@ -72,6 +69,7 @@ blocking:
   clientGroupsBlock:
     default:
       - all
+  processingConcurrency: 10
 
 caching:
   minTime: 5m
