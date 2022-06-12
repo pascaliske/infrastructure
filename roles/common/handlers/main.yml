@@ -1,5 +1,10 @@
 ---
 - name: Reboot
-  become: yes
+  become: true
   reboot:
     reboot_timeout: 3600
+- name: Restart dhcpcd
+  become: true
+  service:
+    name: dhcpcd
+    state: restarted

@@ -52,7 +52,7 @@
 
 # configure static ip
 - name: Configure static ip
-  when: arm
+  when: node_location == private
   become: true
   lineinfile:
     path: /etc/dhcpcd.conf
@@ -60,10 +60,10 @@
     regexp: '{{ item.regex }}'
   loop:
     - { regex: '^interface eth[0-9]$', line: 'interface eth0' }
-    - { regex: '^static ip_address', line: "static ip_address={{ vault.ips[inventory_hostname | replace('.' ~ domains.internal, '')] }}" }
+    - { regex: '^static ip_address', line: "static ip_address={{ vault.ips[inventory_hostname | replace('.' ~ domain, '')] }}" }
     - { regex: '^static routers', line: 'static routers={{ vault.ips.router }}' }
-    - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ vault.ips.coruscant }}' }
-  notify: Reboot
+    - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ vault.ips.router }}' }
+  notify: Restart dhcpcd
 
 # configure locale
 - name: Configure locale
