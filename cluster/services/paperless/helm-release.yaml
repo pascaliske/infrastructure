@@ -18,10 +18,12 @@ spec:
   values:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 1.6.0
+      tag: 1.7
     env:
       - name: TZ
         value: ${TIMEZONE}
+      - name: PAPERLESS_URL
+        value: https://docs.${DOMAIN_EXTERNAL}
       - name: PAPERLESS_REDIS
         value: redis://redis.redis.svc.cluster.local:6379
       - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
