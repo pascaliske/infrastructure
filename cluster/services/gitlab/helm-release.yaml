@@ -25,7 +25,7 @@ spec:
     healthCheck:
       whitelist:
         - 127.0.0.1
-        - 10.42.0.1
+        - 10.42.2.1
     backups:
       hostPath: ${PATH_HOME}/gitlab/backups
       cronJob:
