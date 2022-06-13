@@ -24,6 +24,8 @@ spec:
         value: ${TIMEZONE}
       - name: PAPERLESS_URL
         value: https://docs.${DOMAIN_EXTERNAL}
+      - name: PAPERLESS_ALLOWED_HOSTS
+        value: '*'
       - name: PAPERLESS_REDIS
         value: redis://redis.redis.svc.cluster.local:6379
       - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
