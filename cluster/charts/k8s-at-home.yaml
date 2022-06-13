@@ -7,4 +7,3 @@ metadata:
 spec:
   interval: 10m0s
   url: https://k8s-at-home.com/charts
-
