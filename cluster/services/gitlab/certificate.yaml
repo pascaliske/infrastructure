@@ -1,3 +1,4 @@
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -7,6 +8,19 @@ spec:
   secretName: git.${DOMAIN_EXTERNAL}
   dnsNames:
     - git.${DOMAIN_EXTERNAL}
+  issuerRef:
+    kind: ClusterIssuer
+    name: lets-encrypt-production
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: registry.${DOMAIN_EXTERNAL}
+  namespace: gitlab
+spec:
+  secretName: registry.${DOMAIN_EXTERNAL}
+  dnsNames:
+    - registry.${DOMAIN_EXTERNAL}
   issuerRef:
     kind: ClusterIssuer
     name: lets-encrypt-production
