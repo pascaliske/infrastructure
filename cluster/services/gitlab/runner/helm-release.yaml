@@ -44,6 +44,17 @@ spec:
             namespace = "gitlab"
             image = "alpine:latest"
             image_pull_secrets = ["gitlab-registry-auth"]
+            [runners.kubernetes.affinity]
+              [runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution]
+                [[runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms]]
+                  [[runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions]]
+                    key = "k8s.pascaliske.dev/location"
+                    operator = "In"
+                    values = [
+                      "public"
+                    ]
+            [runners.kubernetes.node_tolerations]
+              "k8s.pascaliske.dev/location=public" = "NoSchedule"
     resources: {}
       # limits:
       #   memory: 256Mi
