@@ -4,34 +4,13 @@
             "path": "."
         },
         {
-            "path": "./cluster"
-        },
-        {
             "path": "./playbooks"
         },
         {
-            "path": "./roles/common",
-            "name": "roles/common"
+            "path": "./roles"
         },
         {
-            "path": "./roles/fail2ban",
-            "name": "roles/fail2ban"
-        },
-        {
-            "path": "./roles/k3s-master",
-            "name": "roles/k3s-master"
-        },
-        {
-            "path": "./roles/k3s-worker",
-            "name": "roles/k3s-worker"
-        },
-        {
-            "path": "./roles/minio",
-            "name": "roles/minio"
-        },
-        {
-            "path": "./roles/tailscale",
-            "name": "roles/tailscale"
+            "path": "./cluster"
         }
     ],
     "settings": {
