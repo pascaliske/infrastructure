@@ -27,6 +27,8 @@ spec:
       schedule: '0 * * * *'
       successfulJobsHistoryLimit: 1
       failedJobsHistoryLimit: 1
+      nameservers:
+        - 1.1.1.1
 
     env:
       - name: TZ
