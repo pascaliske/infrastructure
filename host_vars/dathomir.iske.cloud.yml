@@ -1,0 +1,4 @@
+---
+node:
+  labels:
+    - k8s.pascaliske.dev/hardware=zigbee

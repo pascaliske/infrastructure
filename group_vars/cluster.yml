@@ -1,3 +1,4 @@
 ---
 domain: '{{ domains.private }}'
-node_location: private
+node:
+  location: private

@@ -1,9 +1,15 @@
 flannel-iface: tailscale0
 node-ip: {{ worker_ip_tailscale }}
 node-external-ip: {{ worker_ip }}
-{% if node_location == 'public' %}
+{% if node.labels | default([]) | length > 0 %}
 node-label:
-  - k8s.pascaliske.dev/location=public
+{% for label in node.labels %}
+  - {{ label }}
+{% endfor %}
+{% endif %}
+{% if node.taints | default([]) | length > 0 %}
 node-taint:
-  - k8s.pascaliske.dev/location=public:NoSchedule
+{% for taint in node.taints %}
+  - {{ taint }}
+{% endfor %}
 {% endif %}
