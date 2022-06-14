@@ -1,0 +1,55 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  chart:
+    spec:
+      chart: home-assistant
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: homeassistant/home-assistant
+      tag: '2022.5'
+
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+
+    # needed for wake-on-lan and ps4 integrations
+    hostNetwork: true
+
+    # needed for zigbee usb access
+    securityContext:
+      privileged: true
+
+    persistence:
+      config:
+        enabled: true
+        type: hostPath
+        hostPath: ${PATH_HOME}/home-assistant
+        mountPath: /config
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/ttyACM0
+
+    # ensure pod runs on node with conbee stick attached
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: k8s.pascaliske.dev/hardware
+                  operator: In
+                  values:
+                    - zigbee
+  interval: 10m0s

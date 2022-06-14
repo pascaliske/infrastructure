@@ -1,0 +1,25 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: home-assistant
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`homeassistant.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: home-assistant
+          namespace: home-assistant
+          scheme: https
+          port: 8123
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: homeassistant.${DOMAIN}
