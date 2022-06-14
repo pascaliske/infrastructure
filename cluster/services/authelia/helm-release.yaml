@@ -95,6 +95,7 @@ spec:
               - /admin
           - policy: two_factor
             domain:
+              - ${DOMAIN}
               - '*.${DOMAIN}'
               - '*.${DOMAIN_EXTERNAL}'
       session:
