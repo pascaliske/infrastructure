@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/0xerr0r/blocky
-      tag: v0.19
+      tag: v0.18 # pinned to previous version due to high cpu usage
     controller:
       replicas: 2
       strategy: RollingUpdate
@@ -30,10 +30,6 @@ spec:
     podAnnotations:
       prometheus.io/scrape: 'true'
       prometheus.io/port: '4000'
-    probes:
-      startup:
-        spec:
-          failureThreshold: 120 # workaround for v0.19 - startup time dramatically increased due to slow list downloads
     service:
       main:
         ports:

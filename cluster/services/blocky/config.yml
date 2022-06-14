@@ -70,7 +70,6 @@ blocking:
   clientGroupsBlock:
     default:
       - all
-  processingConcurrency: 10
 
 caching:
   minTime: 5m
