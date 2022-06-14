@@ -12,7 +12,7 @@ workers
 
 # backup
 [backup]
-ryloth ansible_host=ryloth.iske.cloud ansible_user=pascaliske
+ryloth.iske.cloud ansible_user=pascaliske
 
 # testing
 [testing]
