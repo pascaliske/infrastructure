@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-external
+  namespace: authelia
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`auth.${DOMAIN_EXTERNAL}`)
+      services:
+        - kind: Service
+          name: authelia-external
+          namespace: authelia
+          port: 80
+      middlewares:
+        - name: security
+          namespace: traefik
+        - name: headers
+          namespace: authelia
+  tls:
+    secretName: auth.${DOMAIN_EXTERNAL}

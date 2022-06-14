@@ -16,7 +16,7 @@ spec:
           namespace: paperless
           port: 8000
       middlewares:
-        - name: auth
+        - name: auth-external
           namespace: traefik
         - name: security
           namespace: traefik

@@ -16,7 +16,7 @@ spec:
           namespace: code-server
           port: 8080
       middlewares:
-        - name: auth
+        - name: auth-external
           namespace: traefik
         - name: security
           namespace: traefik

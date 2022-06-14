@@ -4,7 +4,10 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - helm-release.yaml
+  - helm-release-external.yaml
   - certificate.yaml
+  - certificate-external.yaml
   - route.yaml
+  - route-external.yaml
   - users.yaml
   - middlewares
