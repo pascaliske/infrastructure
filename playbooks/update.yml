@@ -1,3 +1,4 @@
+# masters
 - name: Update Masters
   hosts: masters
   become: true
@@ -10,6 +11,7 @@
       tags:
         - masters
 
+# workers
 - name: Update Workers
   hosts: workers
   become: true

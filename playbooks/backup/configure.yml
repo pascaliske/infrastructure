@@ -1,8 +1,0 @@
----
-- name: configure
-  hosts: backup
-  become: yes
-  roles:
-    - role: minio
-      tags:
-        - minio
