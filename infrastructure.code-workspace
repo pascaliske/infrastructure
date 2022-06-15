@@ -36,6 +36,9 @@
             "**/node_modules": true,
             "**/bower_components": true,
             "**/.env": true
+        },
+        "yaml.schemas": {
+            "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-vars.json": "/*_vars/*.yml"
         }
     }
 }
