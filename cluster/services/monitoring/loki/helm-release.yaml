@@ -1,0 +1,45 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: loki
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: grafana/loki
+      tag: latest
+
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+
+    config:
+      auth_enabled: false
+      server:
+        http_listen_port: 3100
+        grpc_listen_port: 9096
+
+    extraArgs:
+      config.expand-env: true
+      log.level: warn
+
+    persistence:
+      enabled: true
+
+    rbac:
+      create: false
+
+    serviceAccount:
+      create: false
+  interval: 10m0s

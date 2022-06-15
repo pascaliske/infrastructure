@@ -4,10 +4,13 @@ kind: Kustomization
 resources:
   - authelia.yaml
   - gitlab.yaml
+  - grafana.yaml
   - jetstack.yaml
   - k8s-at-home.yaml
   - keel.yaml
   - kured.yaml
   - pascaliske.yaml
+  - prometheus-community.yaml
   - traefik.yaml
+  - vector.yaml
   - vmware-tanzu.yaml

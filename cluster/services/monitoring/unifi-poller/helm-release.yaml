@@ -1,0 +1,45 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: unifi-poller
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: unifi-poller
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: golift/unifi-poller
+      tag: latest
+
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: UP_POLLER_DEBUG
+        value: false
+      - name: UP_POLLER_QUIET
+        value: true
+      - name: UP_UNIFI_DYNAMIC
+        value: false
+      - name: UP_UNIFI_DEFAULT_URL
+        value: https://unifi.unifi.svc.cluster.local:8443
+      - name: UP_UNIFI_DEFAULT_USER
+        value: ${UNIFI_POLLER_USERNAME}
+      - name: UP_UNIFI_DEFAULT_PASS
+        value: ${UNIFI_POLLER_PASSWORD}
+      - name: UP_INFLUXDB_DISABLE
+        value: true
+
+    metrics:
+      enabled: true
+      prometheusRule:
+        enabled: true
+  interval: 10m0s

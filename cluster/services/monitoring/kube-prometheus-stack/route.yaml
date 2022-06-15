@@ -1,0 +1,72 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-prometheus
+  namespace: monitoring
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`prometheus.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: prometheus-operated
+          namespace: monitoring
+          port: 9090
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: prometheus.${DOMAIN}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-alertmanager
+  namespace: monitoring
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`alerts.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: alertmanager-operated
+          namespace: monitoring
+          port: 9093
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: alerts.${DOMAIN}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-grafana
+  namespace: monitoring
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`grafana.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: kube-prometheus-stack-grafana
+          namespace: monitoring
+          port: 80
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: grafana.${DOMAIN}

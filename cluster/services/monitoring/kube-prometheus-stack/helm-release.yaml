@@ -1,0 +1,185 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    defaultRules:
+      rules:
+        etcd: false
+        kubeApiserverBurnrate: false
+        kubeApiserverHistogram: false
+        kubeApiserverSlos: false
+        kubeProxy: false
+        kubeScheduler: false
+
+    alertmanager:
+      config:
+        inhibit_rules:
+          - source_matchers:
+              - 'severity = critical'
+            target_matchers:
+              - 'severity =~ warning|info'
+            equal:
+              - 'namespace'
+              - 'alertname'
+          - source_matchers:
+              - 'severity = warning'
+            target_matchers:
+              - 'severity = info'
+            equal:
+              - 'namespace'
+              - 'alertname'
+          - source_matchers:
+              - 'alertname = InfoInhibitor'
+            target_matchers:
+              - 'severity = info'
+            equal:
+              - 'namespace'
+        route:
+          group_by: ['namespace']
+          receiver: slack
+          routes:
+            - receiver: nowhere
+              matchers:
+                - alertname =~ "InfoInhibitor|Watchdog"
+        receivers:
+          - name: nowhere
+          - name: slack
+            slack_configs:
+              - channel: ${ALERTMANAGER_SLACK_CHANNEL}
+                username: ${ALERTMANAGER_SLACK_USERNAME}
+                api_url: ${ALERTMANAGER_SLACK_URL}
+                title: >-
+                  {{ template "slack.iske.title" . }}
+                text: >-
+                  {{ template "slack.iske.text" . }}
+                color: >-
+                  {{ template "slack.iske.color" . }}
+                send_resolved: true
+        templates:
+          - /etc/alertmanager/config/*.tmpl
+      templateFiles:
+        slack.tmpl: |-
+          {{ define "slack.iske.title" }}
+          [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }}{{ end }}
+          {{ define "slack.iske.text" }}
+          {{ range $i, $e := .Alerts -}}
+          {{ if $i }}———{{ end }}
+          *{{ .CommonLabels.alertname }}*{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+
+          {{ if and (eq .Status "resolved") .Annotations.resolved -}}
+          *Resolved*
+          {{ .Annotations.resolved }}
+          {{- else -}}
+          *Description*
+          {{ .Annotations.description }}
+          {{- end }}
+
+          {{ if not .Annotations.minimal -}}
+          *Labels*
+          {{- range .Labels.SortedPairs }}
+          • {{ .Name }}: `{{ .Value }}`
+          {{- end }}
+          {{- end }}
+          {{ end }}{{ end }}
+          {{ define "slack.iske.color" }}
+          {{- if eq .Status "firing" -}}
+          danger
+          {{- else -}}
+          good
+          {{- end -}}{{ end }}
+
+      alertmanagerSpec:
+        logLevel: info # before: warn
+        externalUrl: https://alerts.${DOMAIN}
+
+    grafana:
+      defaultDashboardsEnabled: false
+      adminUser: ${GRAFANA_USERNAME}
+      adminPassword: ${GRAFANA_PASSWORD}
+      plugins:
+        - grafana-piechart-panel
+      grafana.ini:
+        server:
+          domain: grafana.${DOMAIN}
+          root_url: '%(protocol)s://%(domain)s:%(http_port)s'
+          serve_from_sub_path: false
+          enable_gzip: true
+        log:
+          level: info # before: warn
+        users:
+          allow_sign_up: false
+          auto_assign_org: true
+          auto_assign_org_role: Viewer
+        auth:
+          disable_signout_menu: true
+        auth.proxy:
+          enabled: true
+          header_name: Remote-User
+          header_property: username
+          headers: 'Name:Remote-Name Email:Remote-Email Groups:Remote-Groups'
+          auto_sign_up: false
+          enable_login_token: true
+          sync_ttl: 60
+        remote_cache:
+          type: redis
+          connstr: addr=redis.redis.svc.cluster.local:6379
+        analytics:
+          reporting_enabled: false
+          check_for_updates: true
+      sidecar:
+        dashboards:
+          enabled: true
+          label: grafana_dashboard
+          labelValue: '1'
+        datasources:
+          enabled: true
+      additionalDataSources: []
+
+    kubeControllerManager:
+      enabled: false
+
+    kubeEtcd:
+      enabled: false
+
+    kubeScheduler:
+      enabled: false
+
+    kubeProxy:
+      enabled: false
+
+    prometheus-node-exporter:
+      extraArgs:
+        - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
+        - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
+        - --no-collector.nvme
+
+    prometheus:
+      prometheusSpec:
+        externalUrl: https://prometheus.${DOMAIN}
+        retention: 2w
+        logLevel: info # before: warn
+        additionalScrapeConfigs:
+          - job_name: minio
+            metrics_path: /minio/v2/metrics/cluster
+            bearer_token: ${MINIO_METRICS_TOKEN}
+            scheme: http
+            static_configs:
+              - targets: ['${IP_RYLOTH_TAILSCALE}:9000']
+          - job_name: magicmirror
+            static_configs:
+              - targets: ['${IP_ILUM_TAILSCALE}:9000']
+  interval: 10m0s

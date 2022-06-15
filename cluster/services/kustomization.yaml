@@ -18,4 +18,5 @@ resources:
   - linkding
   - snapdrop
   - paperless
+  - monitoring
   - vaultwarden

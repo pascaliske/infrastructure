@@ -1,0 +1,85 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vector
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: vector
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: vector
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    role: Agent
+
+    image:
+      repository: timberio/vector
+      tag: latest-alpine
+
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: VECTOR_WATCH_CONFIG
+        value: 'true'
+
+    customConfig:
+      data_dir: /vector-data-dir
+      api:
+        enabled: true
+        address: 127.0.0.1:8686
+        playground: false
+      sources:
+        kubernetes_logs:
+          type: kubernetes_logs
+        vector_logs:
+          type: internal_logs
+        internal_metrics:
+          type: internal_metrics
+      sinks:
+        loki:
+          type: loki
+          inputs:
+            - kubernetes_logs
+            - vector_logs
+          endpoint: http://loki.monitoring.svc.cluster.local:3100
+          encoding:
+            codec: text
+          remove_label_fields: true
+          remove_timestamp: true
+          labels:
+            source: >-
+              {{ print "{{ source_type }}" }}
+            stream: >-
+              {{ print "{{ stream }}" }}
+            file: >-
+              {{ print "{{ file }}" }}
+            app: >-
+              {{ print "{{ kubernetes.pod_labels.app\\.kubernetes\\.io/name }}" }}
+            node: >-
+              {{ print "{{ kubernetes.pod_node_name }}" }}
+            namespace: >-
+              {{ print "{{ kubernetes.pod_namespace }}" }}
+            pod: >-
+              {{ print "{{ kubernetes.pod_name }}" }}
+            container: >-
+              {{ print "{{ kubernetes.container_name }}" }}
+            image: >-
+              {{ print "{{ kubernetes.container_image }}" }}
+        prometheus_exporter:
+          type: prometheus_exporter
+          inputs:
+            - internal_metrics
+          address: 0.0.0.0:9090
+
+    persistence:
+      enabled: true
+
+    podMonitor:
+      enabled: true
+  interval: 10m0s
