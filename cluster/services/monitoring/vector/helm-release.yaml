@@ -54,23 +54,23 @@ spec:
           remove_timestamp: true
           labels:
             source: >-
-              {{ print "{{ source_type }}" }}
+              {{` {{ source_type }} `}}
             stream: >-
-              {{ print "{{ stream }}" }}
+              {{` {{ stream }} `}}
             file: >-
-              {{ print "{{ file }}" }}
+              {{` {{ file }} `}}
             app: >-
-              {{ print "{{ kubernetes.pod_labels.app\\.kubernetes\\.io/name }}" }}
+              {{` {{ kubernetes.pod_labels.app\.kubernetes\.io/name }} `}}
             node: >-
-              {{ print "{{ kubernetes.pod_node_name }}" }}
+              {{` {{ kubernetes.pod_node_name }} `}}
             namespace: >-
-              {{ print "{{ kubernetes.pod_namespace }}" }}
+              {{` {{ kubernetes.pod_namespace }} `}}
             pod: >-
-              {{ print "{{ kubernetes.pod_name }}" }}
+              {{` {{ kubernetes.pod_name }} `}}
             container: >-
-              {{ print "{{ kubernetes.container_name }}" }}
+              {{` {{ kubernetes.container_name }} `}}
             image: >-
-              {{ print "{{ kubernetes.container_image }}" }}
+              {{` {{ kubernetes.container_image }} `}}
         prometheus_exporter:
           type: prometheus_exporter
           inputs:
