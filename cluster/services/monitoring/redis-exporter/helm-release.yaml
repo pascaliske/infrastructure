@@ -27,5 +27,13 @@ spec:
       enabled: true
     prometheusRule:
       enabled: true
-      rules: []
+      rules:
+        - alert: RedisExporterAbsent
+          annotations:
+            description: Redis Exporter has disappeared from Prometheus target discovery.
+            summary: Redis Exporter is down.
+          expr: absent(up{service="{{ template "prometheus-redis-exporter.fullname" . }}"} == 1)
+          for: 2m
+          labels:
+            severity: critical
   interval: 10m0s
