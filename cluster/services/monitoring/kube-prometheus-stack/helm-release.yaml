@@ -78,7 +78,7 @@ spec:
           {{ define "slack.iske.text" }}
           {{ range $i, $e := .Alerts -}}
           {{ if $i }}———{{ end }}
-          *{{ .CommonLabels.alertname }}*{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+          {{ if .Labels.severity }}`{{ .Labels.severity }}`{{ end }}
 
           {{ if and (eq .Status "resolved") .Annotations.resolved -}}
           *Resolved*
