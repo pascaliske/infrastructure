@@ -1,0 +1,32 @@
+name: Build Docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  docs:
+    name: Build Docs
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v3
+
+      # create pages for docs
+      - name: Create pages for docs
+        run: |
+          cat README.md > docs/index.md
+
+          echo "---" > docs/LICENSE.md
+          echo "hide:" >> docs/LICENSE.md
+          echo "  - navigation" >> docs/LICENSE.md
+          echo "---" >> docs/LICENSE.md
+          cat LICENSE.md >> docs/LICENSE.md
+
+          for file in cluster/**/README.md; do mkdir -p docs/$(dirname $file) && cp $file docs/$(dirname $file)/index.md; done
+
+      # deploy docs
+      - uses: mhausenblas/mkdocs-deploy-gh-pages@1.24
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

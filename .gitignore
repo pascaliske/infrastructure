@@ -3,7 +3,9 @@
 *pem*
 *p12*
 *env*
-cluster/**/*.secret.yaml
+docs/cluster
+docs/index.md
+docs/LICENSE.md
 
 # exceptions
 !*/.gitkeep
