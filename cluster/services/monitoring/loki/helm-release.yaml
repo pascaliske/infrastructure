@@ -37,6 +37,11 @@ spec:
     persistence:
       enabled: true
 
+    serviceMonitor:
+      enabled: true
+      prometheusRule:
+        enabled: true
+
     rbac:
       create: false
 
