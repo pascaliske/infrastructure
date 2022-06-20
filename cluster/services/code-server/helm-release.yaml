@@ -39,6 +39,9 @@ spec:
       runAsNonRoot: true
       runAsGroup: ${GID}
       runAsUser: ${UID}
+    dnsConfig:
+      nameservers:
+        - 1.1.1.1
     resources: {}
       # limits:
       #   cpu: 100m
