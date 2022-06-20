@@ -27,9 +27,6 @@ spec:
         unavailable: 0
     env:
       TZ: ${TIMEZONE}
-    podAnnotations:
-      prometheus.io/scrape: 'true'
-      prometheus.io/port: '4000'
     service:
       main:
         ports:
@@ -47,6 +44,10 @@ spec:
         mountPath: /logs
         accessMode: ReadWriteOnce
         size: 512Mi
+    metrics:
+      enabled: true
+      prometheusRule:
+        enabled: true
   valuesFrom:
     - kind: ConfigMap
       name: blocky-config
