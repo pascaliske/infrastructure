@@ -112,6 +112,55 @@ spec:
       adminPassword: ${GRAFANA_PASSWORD}
       plugins:
         - grafana-piechart-panel
+      dashboardProviders:
+        dashboardproviders.yaml:
+          apiVersion: 1
+          providers:
+            - type: file
+              name: cluster
+              folder: cluster
+              editable: true
+              allowUiUpdates: true
+              disableDeletion: false
+              options:
+                path: /tmp/dashboards/cluster
+                foldersFromFilesStructure: true
+            - type: file
+              name: network
+              folder: network
+              editable: true
+              allowUiUpdates: true
+              disableDeletion: false
+              options:
+                path: /tmp/dashboards/network
+                foldersFromFilesStructure: true
+            - type: file
+              name: storage
+              folder: storage
+              editable: true
+              allowUiUpdates: true
+              disableDeletion: false
+              options:
+                path: /tmp/dashboards/storage
+                foldersFromFilesStructure: true
+            - type: file
+              name: home-assistant
+              folder: home-assistant
+              editable: true
+              allowUiUpdates: true
+              disableDeletion: false
+              options:
+                path: /tmp/dashboards/home-assistant
+                foldersFromFilesStructure: true
+            - type: file
+              name: home
+              folder: home
+              editable: true
+              allowUiUpdates: true
+              disableDeletion: false
+              options:
+                path: /tmp/dashboards/home
+                foldersFromFilesStructure: true
       grafana.ini:
         server:
           domain: grafana.${DOMAIN}
@@ -143,10 +192,14 @@ spec:
       sidecar:
         dashboards:
           enabled: true
-          label: grafana_dashboard
-          labelValue: '1'
+          searchNamespace: ALL
+          label: grafana-dashboard
+          labelValue: 'true'
         datasources:
           enabled: true
+          searchNamespace: ALL
+          label: grafana-datasource
+          labelValue: 'true'
       additionalDataSources: []
 
     kubeControllerManager:
