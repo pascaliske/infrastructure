@@ -21,6 +21,8 @@ spec:
         value: ${TIMEZONE}
     metrics:
       enabled: true
+      serviceMonitor:
+        interval: 5m
       prometheusRule:
         enabled: true
   interval: 10m0s
