@@ -170,7 +170,10 @@ spec:
     prometheus:
       prometheusSpec:
         externalUrl: https://prometheus.${DOMAIN}
-        serviceMonitorSelector: {} # TODO: implement label for selection, enable all service monitors for now
+        # TODO: implement label for selection, enable all service monitors for now
+        serviceMonitorSelector: {}
+        serviceMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorNamespaceSelector: {}
         retention: 2w
         logLevel: info # before: warn
         additionalScrapeConfigs:
