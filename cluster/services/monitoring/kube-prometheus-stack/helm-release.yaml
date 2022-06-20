@@ -173,13 +173,13 @@ spec:
         retention: 2w
         logLevel: info # before: warn
         additionalScrapeConfigs:
-          - job_name: minio
+          - job_name: custom/minio
             metrics_path: /minio/v2/metrics/cluster
             bearer_token: ${MINIO_METRICS_TOKEN}
             scheme: http
             static_configs:
               - targets: ['${IP_RYLOTH_TAILSCALE}:9000']
-          - job_name: magicmirror
+          - job_name: custom/magicmirror
             static_configs:
               - targets: ['${IP_ILUM_TAILSCALE}:9000']
   interval: 10m0s
