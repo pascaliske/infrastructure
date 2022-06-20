@@ -2,21 +2,21 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - redis
   - authelia
-  - traefik
-  - cloudflared
   - blocky
+  - cloudflared
+  - code-server
+  - dyndns
+  - gitlab
+  - home-assistant
+  - homer
+  - linkding
+  - monitoring
+  - paperless
+  - redis
+  - shlink
+  - snapdrop
+  - traefik
   - unifi
   - uptime-kuma
-  - homer
-  - home-assistant
-  - dyndns
-  - shlink
-  - gitlab
-  - code-server
-  - linkding
-  - snapdrop
-  - paperless
-  - monitoring
   - vaultwarden
