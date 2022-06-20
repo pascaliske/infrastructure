@@ -5,6 +5,7 @@ namespace: blocky
 resources:
   - namespace.yaml
   - helm-release.yaml
+  - dashboard
 configMapGenerator:
   - name: blocky-config
     files:
