@@ -21,9 +21,11 @@ spec:
       tag: '2022.5.0'
     deployment:
       replicas: 2
-      annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/port: '49312'
+    service:
+      metrics:
+        enabled: true
+    serviceMonitor:
+      enabled: true
     env:
       - name: TZ
         value: ${TIMEZONE}
