@@ -5,6 +5,7 @@ metadata:
   namespace: traefik
   labels:
     app.kubernetes.io/name: traefik
+    service: traefik-metrics
 spec:
   type: ClusterIP
   selector:
