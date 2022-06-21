@@ -1,5 +1,0 @@
----
-folder: projects
-projects:
-  - https://github.com/pascaliske/infrastructure
-  - https://github.com/pascaliske/helm-charts

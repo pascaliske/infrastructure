@@ -1,2 +1,0 @@
-digital_ocean:
-  access_token: !secret digital_ocean_token
