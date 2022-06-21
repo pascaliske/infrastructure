@@ -10,3 +10,4 @@ resources:
   - redis-exporter
   - fritzbox-exporter
   - speedtest-exporter
+  - magicmirror
