@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+configMapGenerator:
+  - name: grafana-dashboard-minio
+    files:
+      - minio.json
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana-dashboard: 'true'
+  annotations:
+    k8s-sidecar-target-directory: /tmp/dashboards/storage

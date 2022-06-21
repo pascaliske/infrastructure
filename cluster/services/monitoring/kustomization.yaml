@@ -11,3 +11,4 @@ resources:
   - fritzbox-exporter
   - speedtest-exporter
   - magicmirror
+  - minio
