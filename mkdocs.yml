@@ -64,21 +64,21 @@ nav:
         - authelia: cluster/services/authelia/index.md
         - blocky: cluster/services/blocky/index.md
         - cloudflared: cluster/services/cloudflared/index.md
-        - code-server: cluster/services/code-server/index.md
+        # - code-server: cluster/services/code-server/index.md
         - dyndns: cluster/services/dyndns/index.md
-        - gitlab: cluster/services/gitlab/index.md
+        # - gitlab: cluster/services/gitlab/index.md
         - home-assistant: cluster/services/home-assistant/index.md
         - homer: cluster/services/homer/index.md
-        - linkding: cluster/services/linkding/index.md
-        - monitoring: cluster/services/monitoring/index.md
-        - paperless: cluster/services/paperless/index.md
+        # - linkding: cluster/services/linkding/index.md
+        # - monitoring: cluster/services/monitoring/index.md
+        # - paperless: cluster/services/paperless/index.md
         - redis: cluster/services/redis/index.md
-        - shlink: cluster/services/shlink/index.md
-        - snapdrop: cluster/services/snapdrop/index.md
-        - traefik: cluster/services/traefik/index.md
-        - unifi: cluster/services/unifi/index.md
-        - uptime-kuma: cluster/services/uptime-kuma/index.md
-        - vaultwarden: cluster/services/vaultwarden/index.md
+        # - shlink: cluster/services/shlink/index.md
+        # - snapdrop: cluster/services/snapdrop/index.md
+        # - traefik: cluster/services/traefik/index.md
+        # - unifi: cluster/services/unifi/index.md
+        # - uptime-kuma: cluster/services/uptime-kuma/index.md
+        # - vaultwarden: cluster/services/vaultwarden/index.md
 
 # socials
 extra:

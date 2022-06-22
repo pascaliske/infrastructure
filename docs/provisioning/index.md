@@ -1,6 +1,6 @@
 # Provisioning
 
-The hardware is provisioned and managed using Ansible. Mainly the provisioning and update procedures are automated using two separate playbooks.
+The hardware in the cluster is provisioned and managed using Ansible. Specifically the [provisioning](/provisioning/#provisionyml) and [updating](/provisioning/#updateyml) procedures of all nodes are automated using two separate playbooks.
 
 ## Inventory
 

@@ -24,7 +24,7 @@ The following hardware components are used:
 
 - [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit)
 - [Ansible](https://www.ansible.com) from RedHat
-- [K3s](https://k3s.io) from Rancher
+- [K3s](https://k3s.io) originally from Rancher, now a CNCF project
 - [Flux](https://fluxcd.io) originally from Weaveworks, now a CNCF project
 - [SOPS](https://github.com/mozilla/sops) from Mozilla
 - [GitHub Actions](https://docs.github.com/actions)

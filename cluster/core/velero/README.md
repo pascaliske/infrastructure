@@ -6,6 +6,18 @@
 
 Currently I've scheduled Velero to create a backup automatically every Sunday at 3am. As [`BackupStorageLocation`](https://velero.io/docs/v1.9/api-types/backupstoragelocation/) I configured a completely separate and self-hosted instance of [Minio](https://min.io) running on my Synology NAS.
 
+## Created Resources
+
+| Kind                              | Name     |
+| --------------------------------- | -------- |
+| [`Namespace`][ref-namespace]      | `velero` |
+| [`HelmRelease`][ref-helm-release] | `velero` |
+
+[ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
+[ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/
+
+## CLI
+
 Velero has a great CLI tool to interact with the controller running inside the cluster. The installation guide can be found [here](https://velero.io/docs/v1.9/basic-install/#install-the-cli).
 
 ??? example "Example usage of Velero CLI"
@@ -27,16 +39,6 @@ Velero has a great CLI tool to interact with the controller running inside the c
         ```shell
         $ velero restore create <name> --from-backup <backup>
         ```
-
-## Created Resources
-
-| Kind                              | Name     |
-| --------------------------------- | -------- |
-| [`Namespace`][ref-namespace]      | `velero` |
-| [`HelmRelease`][ref-helm-release] | `velero` |
-
-[ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
-[ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/
 
 ## Links
 

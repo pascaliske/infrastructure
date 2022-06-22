@@ -2,7 +2,7 @@
 
 All [services](/cluster/services/) inside the cluster are deployed by Flux using [Helm charts](https://helm.sh/docs/topics/charts/). To ensure the existence of all chart repositories before the service reconciliation they're grouped together and applied as a [`Kustomization`](https://fluxcd.io/docs/components/kustomize/kustomization/) dependency for all services.
 
-The following chart repositories will be created as [`HelmRepository` declarations](https://fluxcd.io/docs/components/source/helmrepositories/):
+The following chart repositories will be created as [`HelmRepository` declarations](https://fluxcd.io/docs/components/source/helmrepositories/) by this section:
 
 - `authelia` → <https://charts.authelia.com>
 - `gitlab` → <https://charts.gitlab.io>

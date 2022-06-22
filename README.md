@@ -2,9 +2,7 @@
 
 > Flux based GitOps repository for my home lab infrastructure.
 
-![GitHub branch checks state](https://img.shields.io/github/checks-status/pascaliske/infrastructure/master?style=flat-square) [![Pipeline (linting)](https://img.shields.io/github/workflow/status/pascaliske/infrastructure/Linting/master?label=linting&style=flat-square)](https://github.com/pascaliske/infrastructure/actions) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-
-This repository contains the configurations for most of my services:
+![GitHub branch checks state](https://img.shields.io/github/checks-status/pascaliske/infrastructure/master?style=flat-square) [![Pipeline (linting)](https://img.shields.io/github/workflow/status/pascaliske/infrastructure/Linting/master?label=linting&style=flat-square)](https://github.com/pascaliske/infrastructure/actions) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pascaliske/infrastructure?style=flat-square) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure) ![GitHub repo size](https://img.shields.io/github/repo-size/pascaliske/infrastructure?style=flat-square) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 ## Requirements
 
@@ -32,13 +30,14 @@ flux bootstrap github \
     --repository=$GITHUB_REPO \ # (3)
     --branch=master \
     --path=./cluster/base \
-    --components-extra=image-reflector-controller,image-automation-controller \
+    --components-extra=image-reflector-controller,image-automation-controller \ # (4)
     --personal
 ```
 
 1. More information on this command can be found in the [provisioning section](/provisioning/#provisionyml).
 2. Ensure you either fill in your GitHub username of you make it available as environment variable.
 3. Name of the repository to hold the declarative cluster state. If it does not exists yet, it will automatically be created by Flux.
+4. Enable optional [image updating capabilities](https://fluxcd.io/docs/guides/image-update/) of Flux.
 
 ## Updates
 

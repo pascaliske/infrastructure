@@ -14,11 +14,11 @@ For clients to resolve domains using Blocky. Their DNS server setting needs to b
 
 ## Created Resources
 
-| Kind                              | Name            |
-| --------------------------------- | --------------- |
-| [`Namespace`][ref-namespace]      | `blocky`        |
-| [`HelmRelease`][ref-helm-release] | `blocky`        |
-| [`ConfigMap`][ref-config-map]     | `blocky-config` |
+| Kind                              | Name                                     |
+| --------------------------------- | ---------------------------------------- |
+| [`Namespace`][ref-namespace]      | `blocky`                                 |
+| [`HelmRelease`][ref-helm-release] | `blocky`                                 |
+| [`ConfigMap`][ref-config-map]     | `blocky-config`, `grafana-dashboard-dns` |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
 [ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/
