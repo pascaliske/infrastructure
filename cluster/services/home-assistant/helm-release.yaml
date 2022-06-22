@@ -41,6 +41,14 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /dev/ttyACM0
+    metrics:
+      enabled: true
+      serviceMonitor:
+        bearerTokenSecret:
+          name: monitoring-auth
+          key: token
+      prometheusRule:
+        enabled: true
 
     # ensure pod runs on node with conbee stick attached
     affinity:
