@@ -2,7 +2,7 @@
 
 > Flux based GitOps repository for my home lab infrastructure.
 
-![GitHub branch checks state](https://img.shields.io/github/checks-status/pascaliske/infrastructure/master?style=flat-square) [![Pipeline (config-check)](https://img.shields.io/github/workflow/status/pascaliske/infrastructure/Config%20Check/master?label=config-check&style=flat-square)](https://github.com/pascaliske/infrastructure/actions) [![Pipeline (linting)](https://img.shields.io/github/workflow/status/pascaliske/infrastructure/Linting/master?label=linting&style=flat-square)](https://github.com/pascaliske/infrastructure/actions) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/pascaliske/infrastructure/master?style=flat-square) [![Pipeline (linting)](https://img.shields.io/github/workflow/status/pascaliske/infrastructure/Linting/master?label=linting&style=flat-square)](https://github.com/pascaliske/infrastructure/actions) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 This repository contains the configurations for most of my services:
 
