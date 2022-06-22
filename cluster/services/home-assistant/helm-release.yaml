@@ -37,6 +37,11 @@ spec:
         type: hostPath
         hostPath: ${PATH_HOME}/home-assistant
         mountPath: /config
+      secrets:
+        enabled: true
+        type: secret
+        mountPath: /config
+        name: secrets
       usb:
         enabled: true
         type: hostPath
