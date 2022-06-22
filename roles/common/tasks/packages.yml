@@ -8,6 +8,7 @@
   loop:
     - apt-transport-https
     - iptables
+    - dnsutils
     - htop
     - curl
     - git
