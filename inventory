@@ -14,7 +14,3 @@ workers
 # backup
 [backup]
 ryloth.iske.cloud ansible_user=pascaliske
-
-# testing
-[testing]
-kamino ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2222
