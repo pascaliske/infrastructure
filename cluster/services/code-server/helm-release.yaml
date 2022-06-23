@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: code-server
+  namespace: code-server
+spec:
+  chart:
+    spec:
+      chart: code-server
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: codercom/code-server
+      tag: 4.4.0
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+    extraArgs:
+      - --disable-telemetry
+    secret:
+      create: false
+    persistentVolumeClaim:
+      mountPath: /home/coder
+      projectsPath: /home/coder/projects
+    repositories:
+      - url: https://github.com/pascaliske/infrastructure
+        name: infrastructure
+      - url: https://github.com/pascaliske/helm-charts
+        name: helm-charts
+    securityContext:
+      fsGroup: ${GID}
+      runAsNonRoot: true
+      runAsGroup: ${GID}
+      runAsUser: ${UID}
+    dnsConfig:
+      nameservers:
+        - 1.1.1.1
+    resources: {}
+      # limits:
+      #   cpu: 100m
+      #   memory: 128Mi
+      # requests:
+      #   cpu: 100m
+      #   memory: 128Mi
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: k8s.pascaliske.dev/location
+                  operator: In
+                  values:
+                    - public
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
+  interval: 10m0s

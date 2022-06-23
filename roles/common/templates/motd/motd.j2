@@ -1,0 +1,24 @@
+#!/bin/sh
+
+MESSAGE="
+    .___        _____                        __                        __
+    |   | _____/ ____\___________    _______/  |________ __ __   _____/  |_ __ _________   ____
+    |   |/    \   __\\\\_  __ \__  \  /  ___/\   __\_  __ \  |  \_/ ___\   __\  |  \_  __ \_/ __ \\\\
+    |   |   |  \  |   |  | \// __ \_\___ \  |  |  |  | \/  |  /\  \___|  | |  |  /|  | \/\  ___/
+    |___|___|  /__|   |__|  (____  /____  > |__|  |__|  |____/  \___  >__| |____/ |__|    \___  >
+            \/                  \/     \/                          \/                        \/
+
+
+    Hostname:       {{ inventory_hostname }}
+    IP:             {{ ansible_default_ipv4.address }}
+
+    Architecture:   {{ ansible_architecture }}
+    Kernel:         {{ ansible_kernel }}
+    OS:             {{ ansible_distribution }} {{ ansible_distribution_version }}
+    CPUs:           {{ ansible_processor_vcpus }} Cores
+    Memory:         {{ (ansible_memtotal_mb / 1024) | round }} GB
+
+    Timezone:       {{ ansible_date_time.tz }}({{ ansible_date_time.tz_offset }})
+"
+
+printf "%s" "$MESSAGE"

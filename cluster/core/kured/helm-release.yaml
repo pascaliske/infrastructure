@@ -1,0 +1,22 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kured
+  namespace: kured
+spec:
+  chart:
+    spec:
+      chart: kured
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: kured
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    extraEnvVars:
+      - name: TZ
+        value: ${TIMEZONE}
+  interval: 10m0s

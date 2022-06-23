@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: gitlab-registry-auth
+    namespace: gitlab
+type: kubernetes.io/dockerconfigjson
+data:
+    .dockerconfigjson: ENC[AES256_GCM,data:j24AefputA9phzbTtsLs8AdTRienHFND54hvqANAkCrnq1xvIFRCnkO99lKlQ3mCk69wRL84YWnpuKmZn2tHU5L8IB+Ywj66PfAmX11t+l8ClQpeGeUbDst0Mx0N7KTMyN4aoJ53axeWhwp3k2xlfOwAvCb7zRLJvsFvnzVwrHXxrWav2J99LydE4LLCwM8+zi8kkKvpa1GnJ2Sg+cSLHcwxGOVX6hdIfBNhtV1CWtDZ6zDMOiykTUl6ueDR5Hjmc8hz/5/gIEkSv8kogxtX4kZkLfNx+ewZIhcW5zm7IDEpXibeCHd9fYq9SLuZm+kQNxTuLQ==,iv:7P1GiKnGjHkkRUvZ9u24y2iYa2dFKMt1nyrqqUbxWDI=,tag:R3SEWDmpqEwgqik9KxYY5g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBRTG1zZE5QNThvb0VMeUFR
+            S3prWHFjQzJDRExMZk1aZTlCTTQxc3B2VXdNCjZpOXBGVHV3Q3kvU0huMW80Um5v
+            VVFZRWYrMHllMmZhZElCcXRwVmlEN00KLS0tIDBmUDkrQ0E4SW1sUFZkNlk1VXhx
+            TU1OYVFsZS9sWFZ4R2hnZVk5bC84SUUKSxji8J848aCpMPnfCRgpuz4pbFbhO5oQ
+            2rZ7yCPResWm+8HyYJoHOUkAYEWBVWlyP737EpH/1EMaBUQU5QAR0Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-06-13T21:55:11Z"
+    mac: ENC[AES256_GCM,data:hFPNohoRPYAYjHW8uq+kxkBRvG4gxf2Ny/thTFg6ask1L4yNa6ewKEiZ/1WlaAGe0Lt26rwlBF8q5Jay+itRiMV3trHz9MBgkcInmxMvUnACEC+XWBk+eemIpi+MnIBVsVdjF0bS2Y7rcpJhgnUQZhDnjnigKM02YREYPq1Fics=,iv:gHq27hlo2ZbeVm3jPXb9/e8C4mZM+CpkoeCAed7B19U=,tag:zFbmpUmrHgd9kdzQF1uxTA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

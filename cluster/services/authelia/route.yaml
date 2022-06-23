@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: authelia
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`auth.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: authelia
+          namespace: authelia
+          port: 80
+      middlewares:
+        - name: security
+          namespace: traefik
+        - name: headers
+          namespace: authelia
+  tls:
+    secretName: auth.${DOMAIN}

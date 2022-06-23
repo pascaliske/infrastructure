@@ -1,0 +1,269 @@
+# general
+title: Infrastructure
+documentTitle: Infrastructure
+subtitle: Pascal Iske
+logo: logo.png
+columns: 4
+colors:
+  dark:
+    highlight-primary: '#2d333d'
+    highlight-secondary: '#2d333d'
+    highlight-hover: '#484d56'
+    card-background: '#212020'
+footer: >
+  <p>&copy; <span id="year"></span> <a href="https://${DOMAIN_EXTERNAL}">Pascal Iske</a></p>
+  <script>document.querySelector('#year').innerText = new Date().getFullYear();</script>
+  <style>
+    body #bighead {
+          position: sticky;
+          top: 0;
+          z-index: 99999;
+      }
+
+      body #bighead .first-line {
+          padding: 5px 10px;
+      }
+
+      body #bighead .first-line .logo a {
+          display: block;
+      }
+
+      body #bighead .first-line .logo img {
+          padding: 10px 10px 10px 0;
+      }
+
+      body #bighead .dashboard-title {
+          padding: 6px 0 0 70px;
+      }
+
+      body #bighead .first-line .headline {
+          margin-left: 2px;
+      }
+
+      body #bighead .navbar-menu a {
+          padding-bottom: 7px;
+      }
+
+      body #bighead .navbar-menu i {
+          margin-bottom: 2px;
+      }
+
+      body #bighead .navbar-end {
+          display: flex;
+          align-items: center;
+      }
+
+      body .search-bar {
+          max-width: 330px;
+          flex: 1;
+          order: -1;
+      }
+
+      body .search-bar input {
+          width: 100%;
+      }
+
+      body #main-section {
+          padding-bottom: 35px;
+      }
+
+      body #main-section .container {
+          padding: 10px;
+      }
+
+      body #main-section .group-title {
+          text-transform: capitalize;
+      }
+
+      body #main-section .group-title i {
+          width: 35px;
+      }
+
+      body #main-section .card-content .status {
+          width: 7px;
+          color: transparent;
+      }
+
+      body #main-section .card-content .status::before {
+          box-shadow: none;
+      }
+
+      body #app .footer {
+          background-color: var(--background);
+      }
+
+      body #app .footer .container .content p {
+          margin-bottom: 0;
+      }
+
+      @media screen and (max-width: 768px) {
+          body {
+              overflow-x: hidden;
+          }
+      }
+
+      @media screen and (min-width: 1024px) {
+          body #main-section {
+              padding-bottom: 60px;
+          }
+
+          body #main-section .container {
+              padding: 0;
+          }
+
+          body .search-bar {
+              order: 1;
+          }
+      }
+  </style>
+
+# navbar
+links:
+  - name: Status
+    icon: fas fa-stream
+    url: https://status.${DOMAIN}
+    target: _blank
+  - name: Proxy
+    icon: fas fa-shield-alt
+    url: https://traefik.${DOMAIN}
+    target: _blank
+  - name: Auth
+    icon: fas fa-lock
+    url: https://auth.${DOMAIN}
+    target: _blank
+  - name: GitHub
+    icon: fab fa-github
+    url: https://github.com/pascaliske/infrastructure
+    target: _blank
+  - name: Slack
+    icon: fab fa-slack
+    url: https://pascaliske.slack.com
+    target: _blank
+  - name: Configure
+    icon: fas fa-wrench
+    url: https://code.${DOMAIN_EXTERNAL}/?workspace=/home/coder/projects/infrastructure/infrastructure.code-workspace
+    target: _blank
+
+# tags
+.monitoring: &monitoring
+  tag: monitoring
+  target: _blank
+.network: &network
+  tag: network
+  target: _blank
+.automation: &automation
+  tag: automation
+  target: _blank
+.self-hosted: &self-hosted
+  tag: self-hosted
+  target: _blank
+
+# services
+services:
+  - name: Monitoring
+    icon: fas fa-chart-area
+    items:
+      - name: Prometheus
+        subtitle: Metrics collector
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/prometheus.png
+        url: https://prometheus.${DOMAIN}
+        <<: *monitoring
+      - name: Alertmanager
+        subtitle: Alert handling
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/prometheus.png
+        url: https://alerts.${DOMAIN}
+        <<: *monitoring
+      - name: Grafana
+        subtitle: Metrics visualizer
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/grafana.png
+        url: https://grafana.${DOMAIN}
+        <<: *monitoring
+      - name: Uptime Kuma
+        subtitle: Uptime monitoring
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/uptime-kuma.png
+        url: https://status.${DOMAIN}
+        <<: *monitoring
+  - name: Network
+    icon: fas fa-network-wired
+    items:
+      - name: UniFi Controller
+        subtitle: Network management controller
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/unifi.png
+        url: https://unifi.${DOMAIN}
+        <<: *network
+      - name: FRITZ!Box
+        subtitle: Gateway & Firewall
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/fritzbox.png
+        url: http://${IP_ROUTER}
+        <<: *network
+      - name: TP-Link Switch 8
+        subtitle: 8 port core switch
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/tplink.png
+        url: http://10.0.2.20
+        <<: *network
+      - name: TP-Link Switch 5
+        subtitle: 5 port distribution switch
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/tplink.png
+        url: http://10.0.2.21
+        <<: *network
+      - name: Synology DS920+
+        subtitle: Network Attached Storage
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/synology.png
+        url: https://${IP_RYLOTH}:5001
+        <<: *network
+      - name: Gigaset GO
+        subtitle: VoIP phone management
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gigaset-go.png
+        url: http://10.0.2.30
+        <<: *network
+      - name: EPSON ET-2750
+        subtitle: Printer
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/epson.png
+        url: https://10.0.2.35
+        <<: *network
+  - name: Automation
+    icon: fas fa-robot
+    items:
+      - name: Home Assistant
+        subtitle: Central home automation hub
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/home-assistant.png
+        url: https://homeassistant.${DOMAIN}
+        <<: *automation
+      - name: Keel
+        subtitle: Automated deployment updates
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/keel.png
+        url: https://keel.${DOMAIN}
+        <<: *automation
+  - name: Self Hosted
+    icon: fas fa-server
+    items:
+      - name: Vaultwarden
+        subtitle: Password management
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vaultwarden.png
+        url: https://vault.${DOMAIN}
+        <<: *self-hosted
+      - name: GitLab
+        subtitle: Web based DevOps lifecycle platform
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gitlab.png
+        url: https://git.${DOMAIN_EXTERNAL}
+        <<: *self-hosted
+      - name: Code Server
+        subtitle: Web based integrated development environment
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vscode.png
+        url: https://code.${DOMAIN_EXTERNAL}
+        <<: *self-hosted
+      - name: Linkding
+        subtitle: Collect links and categorize them
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/linkding.png
+        url: https://links.${DOMAIN_EXTERNAL}
+        <<: *self-hosted
+      - name: Paperless
+        subtitle: Online document management
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/paperless.png
+        url: https://docs.${DOMAIN_EXTERNAL}
+        <<: *self-hosted
+      - name: Snapdrop
+        subtitle: Local file sharing
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/snapdrop.png
+        url: https://drop.${DOMAIN}
+        <<: *self-hosted

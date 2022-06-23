@@ -1,3 +1,0 @@
-[Init]
-table = f2b-table-docker
-chain_hook = forward

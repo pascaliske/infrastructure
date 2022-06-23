@@ -1,0 +1,27 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: unifi
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`unifi.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: unifi
+          namespace: unifi
+          scheme: https
+          port: 8443
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: headers
+          namespace: unifi
+  tls:
+    secretName: 'unifi.${DOMAIN}'

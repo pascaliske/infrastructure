@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: monitoring-auth
+    namespace: home-assistant
+type: Opaque
+stringData:
+    token: ENC[AES256_GCM,data:ccRH80PEm8OF4rNKhhJEaCDRV/ewROvsJ7ta/kGmKRNF7nPwQkme7yRs73ztxvZ/uLqogsDyjly2O9CfdqjkjyTvZChvRBmOFby5AzGjMjO+QxficUAoqdpX2e4+HZC8l1VuOVnuIAL0XMy387Y+Zd/HvlD/0VDwpeQJp9Bh7Uy/RsjKcJaaC1wsNaDebiWdflI+npn1V54yYDPO28nro9Eb6IYuYUqMVTveGHpy5ZIyelIWLTgk,iv:0G97WgxQMrkHaHfV8uSOIDLGmLxKa5Gve8/paNlnzPw=,tag:wm/JFt3pHIhCTS4mnq4n2g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBSMDdZUnBLTFVYMXZlTUo2
+            cytPbXI2SUNRZHowZFhTS0F5L2RxcTFmM1JRCi9PM3lxY2Fub3BvV0RwTjJYRlZW
+            SUs2TmpFWklzZWxIMm5jMm02WlE5OHMKLS0tIERuVG9zUEhBUCt0QTcwSzdtUDNN
+            YkZPSXdKVVFtblFQSC90ZmVpOEdmblEKjsdTjx6w7GwBwSxh1peKTQyuDzqZVmEt
+            8/YmPbguCFcGULYnst3wWLmd2dad9fRGnGHi6A/6HSXn0DIhZ+qQmQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-06-22T04:54:07Z"
+    mac: ENC[AES256_GCM,data:1+IcAT/35w6PGYYLPV1Se7BTe5Na2gVQ7OvDBi2jFvyugbs4cN//lSFEzreTg4X5zj7gVaK6JF7UuMxG7TlqressEdfBtEGjQwiE85Z2XNnVrLvgqDC2sSOWyOzcz0xnsTSN8XjOEOQDlJZy091rOq88nBFv+Coachrb8kahbHc=,iv:tBbubMNHQiWy9cGwvK/t2wTqqbbX2f2ZyGhRAOc2qzg=,tag:0Dou87T7D9D2stzIjfJ41w==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

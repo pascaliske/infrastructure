@@ -1,0 +1,79 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitlab-runner
+  namespace: gitlab
+spec:
+  chart:
+    spec:
+      chart: gitlab-runner
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    fullnameOverride: gitlab-runner
+    imagePullSecrets:
+      - name: gitlab-registry-auth
+    replicas: 1
+    gitlabUrl: https://git.${DOMAIN_EXTERNAL}
+    runnerRegistrationToken: ${GITLAB_RUNNER_REGISTRATION_TOKEN}
+    unregisterRunner: false
+    unregisterRunners: true
+    concurrent: 2
+    logLevel: info
+    sentryDsn: ${SENTRY_DSN_LEGACY}
+    rbac:
+      create: true
+      imagePullSecrets:
+        - gitlab-registry-auth
+    runners:
+      name: BB-8
+      executor: kubernetes
+      secret: gitlab-runner-tokens
+      config: |
+        [[runners]]
+          [runners.cache]
+            [runners.cache.s3]
+            [runners.cache.gcs]
+          [runners.kubernetes]
+            namespace = "gitlab"
+            image = "alpine:latest"
+            image_pull_secrets = ["gitlab-registry-auth"]
+            [runners.kubernetes.affinity]
+              [runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution]
+                [[runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms]]
+                  [[runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions]]
+                    key = "k8s.pascaliske.dev/location"
+                    operator = "In"
+                    values = [
+                      "public"
+                    ]
+            [runners.kubernetes.node_tolerations]
+              "k8s.pascaliske.dev/location=public" = "NoSchedule"
+    resources: {}
+      # limits:
+      #   memory: 256Mi
+      #   cpu: 200m
+      # requests:
+      #   memory: 128Mi
+      #   cpu: 100m
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: k8s.pascaliske.dev/location
+                  operator: In
+                  values:
+                    - public
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
+  interval: 10m0s

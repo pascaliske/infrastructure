@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: auth.${DOMAIN_EXTERNAL}
+  namespace: authelia
+spec:
+  secretName: auth.${DOMAIN_EXTERNAL}
+  dnsNames:
+    - auth.${DOMAIN_EXTERNAL}
+  issuerRef:
+    kind: ClusterIssuer
+    name: lets-encrypt-production

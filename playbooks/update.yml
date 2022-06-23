@@ -1,0 +1,25 @@
+# masters
+- name: Update Masters
+  hosts: masters
+  become: true
+  tasks:
+    - name: Update apt packages
+      apt:
+        upgrade: safe
+        update_cache: yes
+        autoremove: yes
+      tags:
+        - masters
+
+# workers
+- name: Update Workers
+  hosts: workers
+  become: true
+  tasks:
+    - name: Update apt packages
+      apt:
+        upgrade: safe
+        update_cache: yes
+        autoremove: yes
+      tags:
+        - workers

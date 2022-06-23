@@ -1,0 +1,39 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-redis-exporter
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: prometheus-redis-exporter
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: oliver006/redis_exporter
+      tag: latest
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+    redisAddress: redis://redis.redis.svc.cluster.local:6379
+    serviceMonitor:
+      enabled: true
+    prometheusRule:
+      enabled: true
+      rules:
+        - alert: RedisExporterAbsent
+          annotations:
+            description: Redis Exporter has disappeared from Prometheus target discovery.
+            summary: Redis Exporter is down.
+          expr: absent(up{service="{{ template "prometheus-redis-exporter.fullname" . }}"} == 1)
+          for: 2m
+          labels:
+            severity: critical
+  interval: 10m0s

@@ -1,5 +1,5 @@
 ---
-domain: '{{ domains.internal }}'
+domain: '{{ domains.private }}'
 paths:
   home: '/var/services/homes/{{ ansible_user }}'
   root: '/volume1/docker/{{ inventory_hostname }}'

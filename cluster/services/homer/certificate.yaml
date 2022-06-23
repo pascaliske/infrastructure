@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ${DOMAIN}
+  namespace: homer
+spec:
+  secretName: ${DOMAIN}
+  dnsNames:
+    - ${DOMAIN}
+  issuerRef:
+    kind: ClusterIssuer
+    name: lets-encrypt-production

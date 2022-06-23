@@ -1,0 +1,103 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authelia-external
+  namespace: authelia
+spec:
+  chart:
+    spec:
+      chart: authelia
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: authelia
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      registry: ghcr.io
+      repository: authelia/authelia
+      tag: '4.35'
+    domain: ${DOMAIN_EXTERNAL}
+    pod:
+      kind: Deployment
+      env:
+        - name: TZ
+          value: ${TIMEZONE}
+      extraVolumeMounts:
+        - name: users
+          mountPath: /users.yaml
+          subPath: users.yaml
+          readOnly: true
+      extraVolumes:
+        - name: users
+          configMap:
+            name: authelia-users
+            items:
+              - key: users.yaml
+                path: users.yaml
+    configMap:
+      log:
+        level: info
+      default_redirection_url: https://${DOMAIN_EXTERNAL}
+      theme: dark
+      webauthn:
+        display_name: auth-external@infrastructure
+      authentication_backend:
+        disable_reset_password: true
+        ldap:
+          enabled: false
+        file:
+          enabled: true
+          path: /users.yaml
+          password:
+            algorithm: sha512
+            memory: 128
+      access_control:
+        secret:
+          enabled: true
+        rules:
+          - policy: bypass
+            domain:
+              - git.${DOMAIN_EXTERNAL}
+              - registry.${DOMAIN_EXTERNAL}
+          - policy: bypass
+            domain: docs.${DOMAIN_EXTERNAL}
+            resources:
+              - ^\/api
+          - policy: two_factor
+            domain:
+              - '*.${DOMAIN_EXTERNAL}'
+      session:
+        inactivity: 10m
+        redis:
+          host: redis.redis.svc.cluster.local
+      storage:
+        local:
+          enabled: true
+          path: /config/db.sqlite3
+        postgres:
+          enabled: false
+      notifier:
+        smtp:
+          enabledSecret: true
+          host: ${SMTP_HOST}
+          port: 587
+          username: ${SMTP_ACCOUNT_AUTH_EMAIL}
+          sender: ${SMTP_ACCOUNT_AUTH_EMAIL}
+          subject: '[auth@infrastructure] {title}'
+    secret:
+      jwt:
+        value: ${AUTH_JWT_SECRET}
+      storageEncryptionKey:
+        value: ${AUTH_STORAGE_SECRET}
+      session:
+        value: ${AUTH_SESSION_SECRET}
+      smtp:
+        value: ${SMTP_ACCOUNT_AUTH_PASSWORD}
+    persistence:
+      enabled: true
+  interval: 10m0s
+

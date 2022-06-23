@@ -7,108 +7,10 @@
             "path": "./playbooks"
         },
         {
-            "path": "./roles/authelia",
-            "name": "roles/authelia"
+            "path": "./roles"
         },
         {
-            "path": "./roles/blocky",
-            "name": "roles/blocky"
-        },
-        {
-            "path": "./roles/cert-manager",
-            "name": "roles/cert-manager"
-        },
-        {
-            "path": "./roles/cloudflared",
-            "name": "roles/cloudflared"
-        },
-        {
-            "path": "./roles/code-server",
-            "name": "roles/code-server"
-        },
-        {
-            "path": "./roles/common",
-            "name": "roles/common"
-        },
-        {
-            "path": "./roles/dyndns",
-            "name": "roles/dyndns"
-        },
-        {
-            "path": "./roles/fail2ban",
-            "name": "roles/fail2ban"
-        },
-        {
-            "path": "./roles/gitlab",
-            "name": "roles/gitlab"
-        },
-        {
-            "path": "./roles/home-assistant",
-            "name": "roles/home-assistant"
-        },
-        {
-            "path": "./roles/homer",
-            "name": "roles/homer"
-        },
-        {
-            "path": "./roles/k3s",
-            "name": "roles/k3s"
-        },
-        {
-            "path": "./roles/keel",
-            "name": "roles/keel"
-        },
-        {
-            "path": "./roles/linkding",
-            "name": "roles/linkding"
-        },
-        {
-            "path": "./roles/minio",
-            "name": "roles/minio"
-        },
-        {
-            "path": "./roles/monitoring",
-            "name": "roles/monitoring"
-        },
-        {
-            "path": "./roles/paperless",
-            "name": "roles/paperless"
-        },
-        {
-            "path": "./roles/redis",
-            "name": "roles/redis"
-        },
-        {
-            "path": "./roles/shlink",
-            "name": "roles/shlink"
-        },
-        {
-            "path": "./roles/snapdrop",
-            "name": "roles/snapdrop"
-        },
-        {
-            "path": "./roles/tailscale",
-            "name": "roles/tailscale"
-        },
-        {
-            "path": "./roles/traefik",
-            "name": "roles/traefik"
-        },
-        {
-            "path": "./roles/unifi",
-            "name": "roles/unifi"
-        },
-        {
-            "path": "./roles/uptime-kuma",
-            "name": "roles/uptime-kuma"
-        },
-        {
-            "path": "./roles/vaultwarden",
-            "name": "roles/vaultwarden"
-        },
-        {
-            "path": "./roles/velero",
-            "name": "roles/velero"
+            "path": "./cluster"
         }
     ],
     "settings": {
@@ -134,6 +36,9 @@
             "**/node_modules": true,
             "**/bower_components": true,
             "**/.env": true
+        },
+        "yaml.schemas": {
+            "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-vars.json": "/*_vars/*.yml"
         }
     }
 }

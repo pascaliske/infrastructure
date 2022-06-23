@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dyndns
+  namespace: dyndns
+spec:
+  chart:
+    spec:
+      chart: cloudflare-dyndns
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/pascaliske/cloudflare-dyndns
+      tag: latest
+
+    fullnameOverride: dyndns
+
+    cronJob:
+      enabled: true
+      schedule: '0 * * * *'
+      successfulJobsHistoryLimit: 1
+      failedJobsHistoryLimit: 1
+      nameservers:
+        - 1.1.1.1
+
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: DOMAIN
+        value: ${DOMAIN}
+      - name: NAME
+        value: vpn
+
+    secret:
+      create: true
+      token: ${CLOUDFLARE_API_TOKEN}
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+  interval: 10m0s
+

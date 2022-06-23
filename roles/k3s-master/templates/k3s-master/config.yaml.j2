@@ -1,0 +1,8 @@
+flannel-iface: tailscale0
+advertise-address: {{ master_ip_tailscale }}
+node-ip: {{ master_ip_tailscale }}
+node-external-ip: {{ master_ip }}
+node-taint:
+  - node-role.kubernetes.io/control-plane:NoSchedule
+disable:
+  - traefik

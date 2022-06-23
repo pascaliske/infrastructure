@@ -3,6 +3,9 @@
 *pem*
 *p12*
 *env*
+docs/cluster
+docs/index.md
+docs/LICENSE.md
 
 # exceptions
 !*/.gitkeep

@@ -1,0 +1,109 @@
+# project
+site_name: pascaliske/infrastructure
+site_description: Flux based GitOps repository for my homelab infrastructure.
+site_author: Pascal Iske
+site_url: https://pascaliske.dev
+
+# repository
+repo_name: pascaliske/infrastructure
+repo_url: https://github.com/pascaliske/infrastructure
+
+# theme
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.png
+  language: en
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+    - scheme: slate
+      primary: lime
+      accent: lime
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+  font:
+    text: Lato
+    code: Source Code Pro
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - toc.integrate
+    - content.code.annotate
+    - content.tabs.link
+
+# navigation
+nav:
+  - Home: index.md
+  - Specs: specs/index.md
+  - Provisioning: provisioning/index.md
+  - Cluster:
+      - Overview: cluster/base/index.md
+      - Config: cluster/config/index.md
+      - Charts: cluster/charts/index.md
+      - Core:
+        - Overview: cluster/core/index.md
+        - flux-system: cluster/core/flux-system/index.md
+        - kured: cluster/core/kured/index.md
+        - traefik: cluster/core/traefik/index.md
+        - cert-manager: cluster/core/cert-manager/index.md
+        - velero: cluster/core/velero/index.md
+      - Services:
+        - Overview: cluster/services/index.md
+        - authelia: cluster/services/authelia/index.md
+        - blocky: cluster/services/blocky/index.md
+        - cloudflared: cluster/services/cloudflared/index.md
+        # - code-server: cluster/services/code-server/index.md
+        - dyndns: cluster/services/dyndns/index.md
+        # - gitlab: cluster/services/gitlab/index.md
+        - home-assistant: cluster/services/home-assistant/index.md
+        - homer: cluster/services/homer/index.md
+        # - linkding: cluster/services/linkding/index.md
+        # - monitoring: cluster/services/monitoring/index.md
+        # - paperless: cluster/services/paperless/index.md
+        - redis: cluster/services/redis/index.md
+        # - shlink: cluster/services/shlink/index.md
+        # - snapdrop: cluster/services/snapdrop/index.md
+        # - traefik: cluster/services/traefik/index.md
+        # - unifi: cluster/services/unifi/index.md
+        # - uptime-kuma: cluster/services/uptime-kuma/index.md
+        # - vaultwarden: cluster/services/vaultwarden/index.md
+
+# socials
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/pascaliske
+    - icon: fontawesome/brands/github
+      link: https://github.com/pascaliske
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/pascaliske
+
+# code highlighting
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+
+# customizations
+extra_css:
+  - styles/custom.css

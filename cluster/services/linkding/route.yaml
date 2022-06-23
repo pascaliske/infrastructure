@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: linkding
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`links.${DOMAIN_EXTERNAL}`)
+      services:
+        - kind: Service
+          name: linkding
+          namespace: linkding
+          port: 9090
+      middlewares:
+        - name: auth-external
+          namespace: traefik
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: links.${DOMAIN_EXTERNAL}

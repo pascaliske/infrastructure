@@ -1,0 +1,60 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cloudflared
+  namespace: cloudflared
+spec:
+  chart:
+    spec:
+      chart: cloudflared
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/crazy-max/cloudflared
+      tag: '2022.5.0'
+    deployment:
+      replicas: 2
+    service:
+      metrics:
+        enabled: true
+    serviceMonitor:
+      enabled: true
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: TUNNEL_DNS_UPSTREAM
+        value: https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
+      - name: TUNNEL_DNS_MAX_UPSTREAM_CONNS
+        value: 5
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - cloudflared
+            topologyKey: kubernetes.io/hostname
+
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
+  interval: 10m0s
+

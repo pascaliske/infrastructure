@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: speedtest-exporter
+spec:
+  endpoints:
+    - interval: 5m
+      path: /metrics
+      port: metrics
+      scrapeTimeout: 1m
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: traefik
+      service: traefik-metrics

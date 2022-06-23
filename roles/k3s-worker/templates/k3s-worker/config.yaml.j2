@@ -1,0 +1,15 @@
+flannel-iface: tailscale0
+node-ip: {{ worker_ip_tailscale }}
+node-external-ip: {{ worker_ip }}
+{% if node.labels | default([]) | length > 0 %}
+node-label:
+{% for label in node.labels %}
+  - {{ label }}
+{% endfor %}
+{% endif %}
+{% if node.taints | default([]) | length > 0 %}
+node-taint:
+{% for taint in node.taints %}
+  - {{ taint }}
+{% endfor %}
+{% endif %}

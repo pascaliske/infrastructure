@@ -1,11 +1,11 @@
 # configure apt
 - name: Add signing key
-  become: yes
+  become: true
   apt_key:
     url: https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}.gpg
     state: present
 - name: Add repository
-  become: yes
+  become: true
   apt_repository:
     repo: deb https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main
     filename: tailscale
@@ -13,7 +13,7 @@
 
 # install tailscale
 - name: Install apt package
-  become: yes
+  become: true
   apt:
     name: tailscale
     update_cache: yes

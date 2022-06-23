@@ -1,6 +1,6 @@
 # install common apt packages
 - name: Install common apt packages
-  become: yes
+  become: true
   apt:
     name: '{{ item }}'
     update_cache: yes
@@ -8,6 +8,7 @@
   loop:
     - apt-transport-https
     - iptables
+    - dnsutils
     - htop
     - curl
     - git
@@ -27,7 +28,7 @@
 # install system dependencies for alpine 3.13
 - name: Install dependencies for alpine 3.13
   when: arm
-  become: yes
+  become: true
   block:
     - name: Add signing keys for buster backports
       apt_key:

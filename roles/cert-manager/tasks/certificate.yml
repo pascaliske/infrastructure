@@ -1,4 +1,0 @@
-- name: Create certificate
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ path | default(role_name) }}/certificate.yml.j2'

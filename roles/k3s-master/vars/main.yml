@@ -1,0 +1,6 @@
+---
+master_ip: '{{ vault.ips.coruscant }}'
+master_ip_tailscale: '{{ vault.ips.tailscale_coruscant }}'
+kubeconfig:
+  local: /etc/rancher/k3s/k3s.yaml
+  remote: '{{ paths.home }}/.kube/config'

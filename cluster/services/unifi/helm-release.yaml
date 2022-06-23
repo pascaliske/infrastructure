@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: unifi
+  namespace: unifi
+spec:
+  chart:
+    spec:
+      chart: unifi
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: jacobalberty/unifi
+      tag: 'v7.0'
+    env:
+      - name: TZ
+        value: '${TIMEZONE}'
+      - name: UNIFI_UID
+        value: '${UID}'
+      - name: UNIFI_GID
+        value: '${GID}'
+      - name: LOTSOFDEVICES
+        value: 'true'
+    service:
+      main:
+        ports:
+          portal-http:
+            enabled: true
+          portal-https:
+            enabled: true
+          syslog:
+            enabled: false
+      controller:
+        enabled: true
+        type: LoadBalancer
+        ports:
+          controller-tcp:
+            enabled: true
+            port: 8080
+    persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 1Gi
+  interval: 10m0s
+

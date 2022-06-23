@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: loki
+  namespace: monitoring
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`loki.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: loki
+          namespace: monitoring
+          port: 3100
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: loki.${DOMAIN}

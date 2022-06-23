@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: homer
+  namespace: homer
+spec:
+  chart:
+    spec:
+      chart: homer
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: b4bz/homer
+      tag: 22.02.2
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: UID
+        value: ${UID}
+      - name: GID
+        value: ${GID}
+  valuesFrom:
+    - kind: ConfigMap
+      name: homer-config
+      valuesKey: config.yml
+      targetPath: configMap.config
+  interval: 10m0s

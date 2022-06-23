@@ -1,4 +1,0 @@
-- name: Create manifest files
-  kubernetes.core.k8s:
-    state: present
-    template: '{{ path | default(role_name) }}/{{ item | default(file) }}.yml.j2'

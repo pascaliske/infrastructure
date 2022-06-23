@@ -21,6 +21,10 @@
     "ssh": "sh scripts/ssh.sh",
     "ping": "ansible all --module-name=ping",
     "play": "ansible-playbook --diff --ask-vault-pass --extra-vars @vars/vault.yml",
+    "sops:encrypt": "sops --age $AGE_PUBLIC_KEY --encrypt --encrypted-regex '^(data|stringData)$' --in-place",
+    "sops:decrypt": "sops --age $AGE_PUBLIC_KEY --decrypt --encrypted-regex '^(data|stringData)$' --in-place",
+    "sops:encrypt-file": "sops --age $AGE_PUBLIC_KEY --encrypt --in-place",
+    "sops:decrypt-file": "sops --age $AGE_PUBLIC_KEY --decrypt --in-place",
     "vault:encrypt": "ansible-vault encrypt vars/vault.yml",
     "vault:decrypt": "ansible-vault decrypt vars/vault.yml"
   },

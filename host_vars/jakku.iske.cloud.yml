@@ -1,0 +1,8 @@
+---
+domain: '{{ domains.public }}'
+node:
+  location: public
+  labels:
+    - k8s.pascaliske.dev/location=public
+  taints:
+    - k8s.pascaliske.dev/location=public:NoSchedule

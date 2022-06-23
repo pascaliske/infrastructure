@@ -1,0 +1,83 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  chart:
+    spec:
+      chart: traefik
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      name: traefik
+      tag: '2.6'
+    ingressRoute:
+      dashboard:
+        enabled: false
+    providers:
+      kubernetesCRD:
+        allowCrossNamespace: true
+    logs:
+      access:
+        enabled: true
+        filters:
+          statuscodes: 400-599
+    metrics:
+      prometheus:
+        entryPoint: traefik
+    globalArguments:
+      - --global.checknewversion=false
+      - --global.sendanonymoususage=false
+    additionalArguments:
+      - '--ping.entrypoint=traefik'
+      - '--serverstransport.insecureskipverify'
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+    ports:
+      # services
+      http:
+        port: 9080
+        expose: true
+        exposedPort: 80
+        redirectTo: https
+      https:
+        port: 9443
+        expose: true
+        exposedPort: 443
+      # metrics
+      traefik:
+        port: 9000
+        expose: false
+        exposedPort: 9000
+      # disable default entry points
+      web: null
+      websecure: null
+      metrics: null
+    tlsOptions:
+      default:
+        minVersion: VersionTLS12
+        sniStrict: true
+    service:
+      spec:
+        externalTrafficPolicy: Local
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists
+    tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+  interval: 10m0s

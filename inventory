@@ -1,14 +1,16 @@
-# zones
-[private]
-coruscant ansible_host=coruscant.iske.cloud ansible_user=pi
+# cluster
+[masters]
+coruscant.iske.cloud ansible_user=pi
 
-[public]
-jakku ansible_host=jakku.iske.cloud ansible_user=pi
+[workers]
+dathomir.iske.cloud ansible_user=pi
+mustafar.iske.cloud ansible_user=pi
+jakku.iske.cloud ansible_user=pi
+
+[cluster:children]
+masters
+workers
 
 # backup
 [backup]
-ryloth ansible_host=ryloth.iske.cloud ansible_user=pascaliske
-
-# testing
-[testing]
-kamino ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2222
+ryloth.iske.cloud ansible_user=pascaliske

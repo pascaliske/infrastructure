@@ -1,4 +1,0 @@
----
-kubeconfig:
-  local: /etc/rancher/k3s/k3s.yaml
-  remote: '{{ paths.home }}/.kube/config'

@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: shlink
+  namespace: shlink
+spec:
+  chart:
+    spec:
+      chart: shlink
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: shlinkio/shlink
+      tag: latest
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: DEFAULT_DOMAIN
+        value: go.${DOMAIN_EXTERNAL}
+      - name: USE_HTTPS
+        value: 'true'
+      - name: VALIDATE_URLS
+        value: 'true'
+      - name: INVALID_SHORT_URL_REDIRECT_TO
+        value: https://${DOMAIN_EXTERNAL}
+      - name: REGULAR_404_REDIRECT_TO
+        value: https://${DOMAIN_EXTERNAL}
+      - name: BASE_URL_REDIRECT_TO
+        value: https://${DOMAIN_EXTERNAL}
+      - name: REDIS_SERVERS
+        value: redis://redis.redis.svc.cluster.local:6379
+      - name: REDIRECT_APPEND_EXTRA_PATH
+        value: 'true'
+      - name: AUTO_RESOLVE_TITLES
+        value: 'true'
+      - name: ENABLE_PERIODIC_VISIT_LOCATE
+        value: 'false'
+    persistence:
+      data:
+        enabled: true
+        mountPath: /etc/shlink/data/database.sqlite
+        subPath: database.sqlite
+        accessMode: ReadWriteOnce
+        size: 1Gi
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: k8s.pascaliske.dev/location
+                  operator: In
+                  values:
+                    - public
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
+  interval: 10m0s

@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: home-assistant
+resources:
+  - namespace.yaml
+  - monitoring-auth.sops.yaml
+  - helm-release.yaml
+  - certificate.yaml
+  - route.yaml
+  - dashboard
+secretGenerator:
+  - name: secrets
+    files:
+      - secrets.yaml=secrets.sops.yaml
+generatorOptions:
+  disableNameSuffixHash: true

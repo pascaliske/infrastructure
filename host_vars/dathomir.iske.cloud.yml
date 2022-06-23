@@ -1,0 +1,5 @@
+---
+node:
+  location: private
+  labels:
+    - k8s.pascaliske.dev/hardware=zigbee

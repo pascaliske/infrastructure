@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: uptime-kuma
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`status.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: uptime-kuma-web
+          namespace: uptime-kuma
+          port: 3001
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+  tls:
+    secretName: status.${DOMAIN}

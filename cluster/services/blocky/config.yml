@@ -1,0 +1,86 @@
+port: 53
+httpPort: 4000
+
+logLevel: info
+logFormat: text
+
+upstream:
+  default:
+    - cloudflared-dns-udp.cloudflared.svc.cluster.local:5053
+
+customDNS:
+  mapping:
+    # general
+    iske.cloud: ${IP_CORUSCANT}
+
+    # servers
+    corsucant.iske.cloud: ${IP_CORUSCANT}
+    dathomir.iske.cloud: ${IP_DATHOMIR}
+    mustafar.iske.cloud: ${IP_MUSTAFAR}
+    jakku.iske.cloud: ${IP_JAKKU}
+    ryloth.iske.cloud: ${IP_RYLOTH}
+    ilum.iske.cloud: ${IP_ILUM}
+
+    # misc
+    unifi: ${IP_CORUSCANT} # simplifies unifi layer 2 device adoption
+
+conditional:
+  mapping:
+    fritz.box: ${IP_ROUTER}
+
+clientLookup:
+  upstream: ${IP_ROUTER}
+  singleNameOrder:
+    - 2
+    - 1
+
+blocking:
+  blackLists:
+    all:
+      - http://sysctl.org/cameleon/hosts
+      - https://adaway.org/hosts.txt
+      - https://blocklistproject.github.io/Lists/ads.txt
+      - https://blocklistproject.github.io/Lists/drugs.txt
+      - https://blocklistproject.github.io/Lists/fraud.txt
+      - https://blocklistproject.github.io/Lists/malware.txt
+      - https://blocklistproject.github.io/Lists/phishing.txt
+      - https://blocklistproject.github.io/Lists/porn.txt
+      - https://blocklistproject.github.io/Lists/scam.txt
+      - https://blocklistproject.github.io/Lists/tiktok.txt
+      - https://github.com/chadmayfield/pihole-blocklists/raw/master/lists/pi_blocklist_porn_all.list
+      - https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
+      - https://raw.githubusercontent.com/d43m0nhLInt3r/socialblocklists/master/TikTok/tiktokblocklist.txt
+      - https://raw.githubusercontent.com/Dawsey21/Lists/master/main-blacklist.txt
+      - https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
+      - https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt
+      - https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/blocky/blocklist.txt
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Risk/hosts
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/UncheckyAds/hosts
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      - https://raw.githubusercontent.com/vokins/yhosts/master/hosts
+      - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+      - https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
+      - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+      - https://someonewhocares.org/hosts/zero/hosts
+      - https://v.firebog.net/hosts/AdguardDNS.txt
+      - https://v.firebog.net/hosts/Easylist.txt
+  whiteLists:
+    all:
+      - https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/blocky/allowlist.txt
+  clientGroupsBlock:
+    default:
+      - all
+
+caching:
+  minTime: 5m
+  maxTime: 20m
+  prefetching: true
+
+prometheus:
+  enable: true
+
+queryLog:
+  type: console
+
+redis:
+  address: redis.redis.svc.cluster.local:6379
