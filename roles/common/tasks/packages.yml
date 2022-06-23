@@ -16,6 +16,7 @@
     - unzip
     - python3
     - python3-pip
+    - open-iscsi
 
 # install common pip packages
 - name: Install python packages

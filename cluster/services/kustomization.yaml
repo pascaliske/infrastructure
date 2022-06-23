@@ -11,6 +11,7 @@ resources:
   - home-assistant
   - homer
   - linkding
+  - longhorn
   - monitoring
   - paperless
   - redis
