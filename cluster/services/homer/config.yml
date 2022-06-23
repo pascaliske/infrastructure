@@ -121,7 +121,7 @@ footer: >
 links:
   - name: Status
     icon: fas fa-stream
-    url: https://status.${DOMAIN}/status
+    url: https://status.${DOMAIN}
     target: _blank
   - name: Proxy
     icon: fas fa-shield-alt
