@@ -120,6 +120,17 @@
         name: ip6tables
       notify: Reboot
 
+# configure unattended upgrades
+- name: Configure unattended-upgrades
+  become: true
+  template:
+    src: unattended-upgrades/{{ item }}.j2
+    dest: /etc/apt/apt.conf.d/{{ item }}
+    mode: 0644
+  loop:
+    - 10periodic
+    - 50unattended-upgrades
+
 # expand filesystem
 - name: Expand filesystem to fill disk
   when: arm
