@@ -18,6 +18,7 @@ MESSAGE="
     CPUs:           {{ ansible_processor_vcpus }} Cores
     Memory:         {{ (ansible_memtotal_mb / 1024) | round }} GB
 
+    Uptime:         $(uptime -p | sed 's/up //g')
     Timezone:       {{ ansible_date_time.tz }}({{ ansible_date_time.tz_offset }})
 "
 
