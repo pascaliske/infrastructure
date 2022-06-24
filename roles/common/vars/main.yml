@@ -12,4 +12,4 @@ boot_config:
   gpu_mem: 16
 log2ram:
   config: /etc/log2ram.conf
-  size: 200M
+  size: 350M

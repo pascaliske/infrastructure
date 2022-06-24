@@ -20,9 +20,9 @@
         path: '{{ log2ram.config }}'
         line: 'SIZE={{ log2ram.size }}'
         regexp: '^SIZE='
-      register: update_size
+      register: size
     - name: Restart log2ram
       systemd:
         name: log2ram
         state: restarted
-      when: update_size.changed
+      when: size.changed
