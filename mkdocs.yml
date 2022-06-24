@@ -53,32 +53,42 @@ nav:
       - Config: cluster/config/index.md
       - Charts: cluster/charts/index.md
       - Core:
-        - Overview: cluster/core/index.md
-        - flux-system: cluster/core/flux-system/index.md
-        - kured: cluster/core/kured/index.md
-        - traefik: cluster/core/traefik/index.md
-        - cert-manager: cluster/core/cert-manager/index.md
-        - velero: cluster/core/velero/index.md
+          - Overview: cluster/core/index.md
+          - flux-system: cluster/core/flux-system/index.md
+          - kured: cluster/core/kured/index.md
+          - traefik: cluster/core/traefik/index.md
+          - cert-manager: cluster/core/cert-manager/index.md
+          - velero: cluster/core/velero/index.md
       - Services:
-        - Overview: cluster/services/index.md
-        - authelia: cluster/services/authelia/index.md
-        - blocky: cluster/services/blocky/index.md
-        - cloudflared: cluster/services/cloudflared/index.md
-        - code-server: cluster/services/code-server/index.md
-        - dyndns: cluster/services/dyndns/index.md
-        - gitlab: cluster/services/gitlab/index.md
-        - home-assistant: cluster/services/home-assistant/index.md
-        - homer: cluster/services/homer/index.md
-        - linkding: cluster/services/linkding/index.md
-        # - monitoring: cluster/services/monitoring/index.md
-        - paperless: cluster/services/paperless/index.md
-        - redis: cluster/services/redis/index.md
-        - shlink: cluster/services/shlink/index.md
-        - snapdrop: cluster/services/snapdrop/index.md
-        - traefik: cluster/services/traefik/index.md
-        - unifi: cluster/services/unifi/index.md
-        - uptime-kuma: cluster/services/uptime-kuma/index.md
-        - vaultwarden: cluster/services/vaultwarden/index.md
+          - Overview: cluster/services/index.md
+          - authelia: cluster/services/authelia/index.md
+          - blocky: cluster/services/blocky/index.md
+          - cloudflared: cluster/services/cloudflared/index.md
+          - code-server: cluster/services/code-server/index.md
+          - dyndns: cluster/services/dyndns/index.md
+          - gitlab: cluster/services/gitlab/index.md
+          - home-assistant: cluster/services/home-assistant/index.md
+          - homer: cluster/services/homer/index.md
+          - linkding: cluster/services/linkding/index.md
+          - monitoring:
+              - Overview: cluster/services/monitoring/index.md
+              - fritzbox-exporter: cluster/services/monitoring/fritzbox-exporter/index.md
+              - kube-prometheus-stack: cluster/services/monitoring/kube-prometheus-stack/index.md
+              - loki: cluster/services/monitoring/loki/index.md
+              - magicmirror: cluster/services/monitoring/magicmirror/index.md
+              - minio: cluster/services/monitoring/minio/index.md
+              - redis-exporter: cluster/services/monitoring/redis-exporter/index.md
+              - speedtest-exporter: cluster/services/monitoring/speedtest-exporter/index.md
+              - unifi-poller: cluster/services/monitoring/unifi-poller/index.md
+              - vector: cluster/services/monitoring/vector/index.md
+          - paperless: cluster/services/paperless/index.md
+          - redis: cluster/services/redis/index.md
+          - shlink: cluster/services/shlink/index.md
+          - snapdrop: cluster/services/snapdrop/index.md
+          - traefik: cluster/services/traefik/index.md
+          - unifi: cluster/services/unifi/index.md
+          - uptime-kuma: cluster/services/uptime-kuma/index.md
+          - vaultwarden: cluster/services/vaultwarden/index.md
 
 # socials
 extra:
