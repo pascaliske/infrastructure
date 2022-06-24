@@ -66,15 +66,3 @@ spec:
                   values:
                     - zigbee
   interval: 10m0s
-  postRenderers:
-    - kustomize:
-        patchesStrategicMerge:
-          - kind: ServiceMonitor
-            apiVersion: monitoring.coreos.com/v1
-            metadata:
-              name: home-assistant
-            spec:
-              endpoints:
-                - scheme: https
-                  tlsConfig:
-                    insecureSkipVerify: true

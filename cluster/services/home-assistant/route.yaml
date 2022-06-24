@@ -14,7 +14,6 @@ spec:
         - kind: Service
           name: home-assistant
           namespace: home-assistant
-          scheme: https
           port: 8123
       middlewares:
         - name: auth
