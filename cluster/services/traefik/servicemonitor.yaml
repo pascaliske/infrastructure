@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: speedtest-exporter
+  name: traefik
 spec:
   endpoints:
     - interval: 5m

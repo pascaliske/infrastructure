@@ -3,12 +3,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
+  - fritzbox-exporter
   - kube-prometheus-stack
   - loki
-  - vector
-  - unifi-poller
-  - redis-exporter
-  - fritzbox-exporter
-  - speedtest-exporter
   - magicmirror
   - minio
+  - redis-exporter
+  - speedtest-exporter
+  - unifi-poller
+  - vector
