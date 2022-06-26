@@ -22,6 +22,10 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
+      - name: USERMAP_UID
+        value: ${UID}
+      - name: USERMAP_GID
+        value: ${GID}
       - name: PAPERLESS_URL
         value: https://docs.${DOMAIN_EXTERNAL}
       - name: PAPERLESS_ALLOWED_HOSTS
