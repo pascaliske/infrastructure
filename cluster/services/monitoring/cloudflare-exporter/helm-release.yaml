@@ -25,4 +25,18 @@ spec:
         value: 'true'
     serviceMonitor:
       enabled: true
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: k8s.pascaliske.dev/location
+                  operator: In
+                  values:
+                    - public
   interval: 10m0s
