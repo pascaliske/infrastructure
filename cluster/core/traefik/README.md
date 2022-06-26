@@ -2,7 +2,14 @@
 
 ## Introduction
 
-[Traefik](https://traefik.io/traefik/) is used as ingress controller for the cluster. I disabled the default installation and installed it separately to enable more flexible configurations. Traefik provides a custom resource definition [`IngressRoute`](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-ingressroute) for routing ingress traffic from the outside world to [`Service`](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/) objects inside the cluster. Additionally Traefik provides a custom resource definition to implement [`Middleware`](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-middleware) objects which allow you to modify the requests and responses of your ingress objects.
+[Traefik](https://traefik.io/traefik/) is used as ingress controller for the cluster. To allow more flexible configurations I disabled the built-in Traefik installation of K3s using their configuration file (which is [provisioned using Ansible](/provisioning/)) and installed it separately with a custom `HelmRelease` found in this `Namespace`.
+
+```yaml title="/etc/rancher/k3s/config.yaml"
+disable:
+  - traefik
+```
+
+Traefik provides a custom resource definition [`IngressRoute`](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-ingressroute) for routing ingress traffic from the outside world to [`Service`](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/) objects inside the cluster. Additionally Traefik provides a custom resource definition to implement [`Middleware`](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-middleware) objects which allow you to modify the requests and responses of your ingress objects.
 
 ??? example "Example of kind `IngressRoute`"
 
