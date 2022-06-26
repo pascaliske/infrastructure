@@ -72,6 +72,7 @@ nav:
           - linkding: cluster/services/linkding/index.md
           - monitoring:
               - Overview: cluster/services/monitoring/index.md
+              - cloudflare-exporter: cluster/services/monitoring/cloudflare-exporter/index.md
               - fritzbox-exporter: cluster/services/monitoring/fritzbox-exporter/index.md
               - kube-prometheus-stack: cluster/services/monitoring/kube-prometheus-stack/index.md
               - loki: cluster/services/monitoring/loki/index.md
