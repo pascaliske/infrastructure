@@ -16,11 +16,16 @@ spec:
   install:
     createNamespace: true
   values:
+    image:
+      repository: ghcr.io/lablabs/cloudflare_exporter
+      tag: 0.0.10
     env:
       - name: TZ
         value: ${TIMEZONE}
       - name: CF_API_TOKEN
         value: ${CLOUDFLARE_API_TOKEN_METRICS}
+      - name: CF_ZONES
+        value: ${CLOUDFLARE_ZONES}
       - name: FREE_TIER
         value: 'true'
     serviceMonitor:
