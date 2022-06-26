@@ -1,6 +1,6 @@
 # Provisioning
 
-The hardware in the cluster is provisioned and managed using Ansible. Specifically the [provisioning](/provisioning/#provisionyml) and [updating](/provisioning/#updateyml) procedures of all nodes are automated using two separate playbooks.
+The hardware in the cluster is fully provisioned and managed using Ansible. Specifically the [provisioning](/provisioning/#provisionyml) and [updating](/provisioning/#updateyml) procedures of all cluster nodes are automated using two separate playbooks.
 
 ## Inventory
 
@@ -72,8 +72,7 @@ The following tags are available for usage with `--tags`:
 All playbooks can be executed on a limited set of hosts using the `--limit` flag:
 
 ```shell
-$ yarn run play playbooks/provision.yml --limit <host1>[,<host2>]
-$ yarn run play playbooks/update.yml --limit <host1>[,<host2>]
+$ yarn run play playbooks/<playbook>.yml --limit <host1>[,<host2>]
 ```
 
 Any hosts from the inventory can be used with this flag.
