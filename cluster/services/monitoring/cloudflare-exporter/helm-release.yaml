@@ -1,0 +1,28 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cloudflare-exporter
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: cloudflare-exporter
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: cloudflare-exporter
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: CF_API_TOKEN
+        value: ${CLOUDFLARE_API_TOKEN_METRICS}
+      - name: FREE_TIER
+        value: 'true'
+    serviceMonitor:
+      enabled: true
+  interval: 10m0s
