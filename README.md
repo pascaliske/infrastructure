@@ -37,15 +37,15 @@ flux bootstrap github \
 1. More information on this command can be found in the [provisioning section](/provisioning/#provisionyml).
 2. Ensure you either fill in your GitHub username of you make it available as environment variable.
 3. Name of the repository to hold the declarative cluster state. If it does not exists yet, it will automatically be created by Flux.
-4. Enable optional [image updating capabilities](https://fluxcd.io/docs/guides/image-update/) of Flux.
+4. You can enable the optional [image updating capabilities](https://fluxcd.io/docs/guides/image-update/) of Flux using this line.
 
 ## Updates
 
-Flux automatically checks for updates of all services.
-The nodes an be updated using the following command:
+Flux is configured to take care of automatic updates of all images.
+
+The underlying cluster nodes can be updated using the following Ansible playbook:
 
 ```zsh
-# update nodes using ansible
 yarn run play playbooks/update.yml # (1)
 ```
 
@@ -53,13 +53,13 @@ yarn run play playbooks/update.yml # (1)
 
 ## Thanks
 
-A big thank you goes to these awesome people who inspired me to do this project:
+A big thank you goes to these awesome people and their projects who inspired me to do this project:
 
 - [onedr0p/home-ops](https://github.com/onedr0p/home-ops)
 - [nicholaswilde/home-cluster](https://github.com/nicholaswilde/home-cluster)
 - [billimek/k8s-gitops](https://github.com/billimek/k8s-gitops)
 
-Also I want to thank you the awesome [k8s-at-home community](https://github.com/k8s-at-home/) for all their work which helped me a lot.
+Also I want to thank you the awesome [`k8s-at-home` community](https://github.com/k8s-at-home/) for all their work on [their Helm Charts](https://github.com/k8s-at-home/charts) which helped me a lot.
 
 ## License
 
