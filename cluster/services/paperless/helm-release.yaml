@@ -38,6 +38,8 @@ spec:
         value: deu
       - name: PAPERLESS_IGNORE_DATES
         value: ${PAPERLESS_IGNORE_DATES}
+      - name: PAPERLESS_ENABLE_UPDATE_CHECK
+        value: 'true'
     secret:
       create: true
       secretKey: ${PAPERLESS_SECRET_KEY}
