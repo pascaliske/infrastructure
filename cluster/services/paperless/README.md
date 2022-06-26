@@ -18,15 +18,39 @@
 
 ## CLI
 
-Paperless provides several CLI tools to interact with the instance. The following commands can be used to access them inside the cluster:
+Paperless provides [several CLI tools](https://paperless-ng.readthedocs.io/en/latest/administration.html#management-utilities) to interact with the instance. These are the most important ones:
 
-```zsh
-kubectl exec -it --namespace paperless deploy/paperless -- document_exporter
-kubectl exec -it --namespace paperless deploy/paperless -- document_importer
-kubectl exec -it --namespace paperless deploy/paperless -- document_retagger
-```
+=== "Exporting documents"
 
-For more information on the commands itself [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#management-utilities).
+    ```zsh
+    kubectl exec -it --namespace paperless deploy/paperless -- document_exporter
+    ```
+
+    For more information on the `document_exporter` command [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#document-exporter).
+
+=== "Importing documents"
+
+    ```zsh
+    kubectl exec -it --namespace paperless deploy/paperless -- document_importer
+    ```
+
+    For more information on the `document_importer` command [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#document-importer).
+
+=== "Re-tag documents"
+
+    ```zsh
+    kubectl exec -it --namespace paperless deploy/paperless -- document_retagger
+    ```
+
+    For more information on the `document_retagger` command [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#document-retagger).
+
+=== "Fetching e-mails"
+
+    ```zsh
+    kubectl exec -it --namespace paperless deploy/paperless -- mail_fetcher
+    ```
+
+    For more information on the `mail_fetcher` command [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#fetching-e-mail).
 
 ## Links
 
