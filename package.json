@@ -29,7 +29,7 @@
     "vault:decrypt": "ansible-vault decrypt vars/vault.yml"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.2",
+    "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "husky": "^8.0.1"
   }
