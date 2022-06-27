@@ -51,4 +51,5 @@ spec:
     persistence:
       config:
         enabled: true
+        storageClass: longhorn
   interval: 10m0s
