@@ -23,6 +23,8 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
+    persistentVolumeClaim:
+      storageClassName: longhorn
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
