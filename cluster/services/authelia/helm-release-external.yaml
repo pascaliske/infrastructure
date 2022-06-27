@@ -99,5 +99,6 @@ spec:
         value: ${SMTP_ACCOUNT_AUTH_PASSWORD}
     persistence:
       enabled: true
+      storageClass: longhorn
   interval: 10m0s
 
