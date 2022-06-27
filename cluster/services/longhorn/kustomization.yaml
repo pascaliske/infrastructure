@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - certificate.yaml
   - route.yaml
+  - servicemonitor.yaml
