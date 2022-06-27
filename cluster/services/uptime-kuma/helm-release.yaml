@@ -26,6 +26,8 @@ spec:
         value: ${GID}
       - name: PUID
         value: ${UID}
+    persistentVolumeClaim:
+      storageClassName: longhorn
     resources:
       limits:
         cpu: 256m
