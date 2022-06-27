@@ -16,7 +16,15 @@ spec:
   install:
     createNamespace: true
   values:
+    defaultSettings:
+      taintToleration: k8s.pascaliske.dev/location=public:NoSchedule
     longhornManager:
+      tolerations:
+        - key: k8s.pascaliske.dev/location
+          operator: Equal
+          value: public
+          effect: NoSchedule
+    longhornDriver:
       tolerations:
         - key: k8s.pascaliske.dev/location
           operator: Equal
