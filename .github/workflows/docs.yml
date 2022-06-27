@@ -29,6 +29,6 @@ jobs:
           for file in cluster/**/**/**/README.md; do mkdir -p docs/$(dirname $file) && cp $file docs/$(dirname $file)/index.md; done
 
       # deploy docs
-      - uses: mhausenblas/mkdocs-deploy-gh-pages@master
+      - uses: mhausenblas/mkdocs-deploy-gh-pages@1.24
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
