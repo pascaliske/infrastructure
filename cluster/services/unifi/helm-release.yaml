@@ -47,6 +47,7 @@ spec:
     persistence:
       data:
         enabled: true
+        storageClass: longhorn
         accessMode: ReadWriteOnce
         size: 1Gi
   interval: 10m0s
