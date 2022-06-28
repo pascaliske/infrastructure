@@ -19,7 +19,7 @@ spec:
     image:
       registry: ghcr.io
       repository: authelia/authelia
-      tag: '4.35'
+      tag: '4.36'
     domain: ${DOMAIN}
     pod:
       kind: Deployment
