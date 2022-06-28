@@ -2,6 +2,8 @@
 
 ## Introduction
 
+![Infrastructure status page](https://k8s.pascaliske.dev/assets/status-page.png){ loading=lazy }
+
 ## Created Resources
 
 | Kind                                | Name               |
