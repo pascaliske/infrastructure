@@ -36,6 +36,7 @@ spec:
 
     persistence:
       enabled: true
+      storageClassName: longhorn
 
     serviceMonitor:
       enabled: true
