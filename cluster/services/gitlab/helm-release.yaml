@@ -22,6 +22,11 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
+    persistentVolumeClaims:
+      secrets:
+        storageClassName: local-path
+      storage:
+        storageClassName: local-path
     healthCheck:
       whitelist:
         - 127.0.0.1
