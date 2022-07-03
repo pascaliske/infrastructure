@@ -80,7 +80,7 @@ prometheus:
   enable: true
 
 queryLog:
-  type: console
+  type: none
 
 redis:
   address: redis.redis.svc.cluster.local:6379
