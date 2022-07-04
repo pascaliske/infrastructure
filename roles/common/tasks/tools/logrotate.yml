@@ -18,9 +18,9 @@
         name: logrotate
         state: restarted
       when: frequency.changed or compress.changed
-    - name: Force logrotation every night
+    - name: Force log rotation every night
       cron:
-        name: Force logrotation every night
+        name: Force log rotation every night
         job: logrotate -f /etc/logrotate.conf > /dev/null
         user: root
         minute: '0'
