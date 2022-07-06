@@ -26,6 +26,10 @@ spec:
         value: https://vault.${DOMAIN}
       - name: DATA_FOLDER
         value: config
+      - name: LOG_LEVEL
+        value: warn
+      - name: EXTENDED_LOGGING
+        value: 'true'
       - name: SIGNUPS_VERIFY
         value: 'true'
       - name: SIGNUPS_DOMAINS_WHITELIST
