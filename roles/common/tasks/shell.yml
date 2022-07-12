@@ -1,10 +1,20 @@
-# setup bash aliases
-- name: Create aliases
+# setup bash aliases for regular user
+- name: Create aliases for regular user
   lineinfile:
     path: '{{ paths.home }}/.bashrc'
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
     create: yes
-  loop:
-    - { alias: 'll', command: 'ls -lisahG' }
+  loop: '{{ shell.aliases }}'
+
+# setup bash aliases for root user
+- name: Create aliases for root user
+  become: true
+  lineinfile:
+    path: '/root/.bashrc'
+    line: 'alias {{ item.alias }}="{{ item.command }}"'
+    regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
+    insertafter: ^alias
+    create: yes
+  loop: '{{ shell.aliases }}'
