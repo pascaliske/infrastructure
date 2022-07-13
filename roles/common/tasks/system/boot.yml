@@ -1,0 +1,21 @@
+# configure cgroup directives
+- name: Configure cgroup directives
+  when: arm
+  become: true
+  lineinfile:
+    path: /boot/cmdline.txt
+    line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
+    regexp: '((.)+?)(\scgroup_\w+=\w+)*$'
+    backrefs: yes
+  notify: Reboot
+
+# configure boot config
+- name: Configure boot config
+  when: arm
+  become: true
+  lineinfile:
+    path: /boot/config.txt
+    line: "{{ item.key }}{{ '=' ~ item.value if not item.value }}"
+    regexp: "^#?{{ item.key }}="
+  loop: '{{ boot_config | dict2items }}'
+  notify: Reboot

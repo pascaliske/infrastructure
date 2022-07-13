@@ -2,11 +2,17 @@
 - include_tasks: packages.yml
 
 # configure system
-- include_tasks: system.yml
-- include_tasks: shell.yml
+- include_tasks: system/boot.yml
+- include_tasks: system/network.yml
+- include_tasks: system/filesystem.yml
+- include_tasks: system/swap.yml
+- include_tasks: system/localization.yml
+- include_tasks: system/motd.yml
+- include_tasks: system/shell.yml
 
 # install tools
 - include_tasks: tools/vim.yml
+- include_tasks: tools/unattended-upgrades.yml
 - include_tasks: tools/journal.yml
 - include_tasks: tools/logrotate.yml
 - include_tasks: tools/log2ram.yml

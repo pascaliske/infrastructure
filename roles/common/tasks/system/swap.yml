@@ -1,0 +1,22 @@
+# disable swap
+- name: Disable swap
+  when: arm
+  become: true
+  block:
+    - name: Clear swap
+      command: swapoff -a
+    - name: Stop swap service
+      service:
+        name: dphys-swapfile
+        state: stopped
+      ignore_errors: true
+    - name: Disable swap service
+      systemd:
+        name: dphys-swapfile
+        enabled: no
+      ignore_errors: true
+    - name: Uninstall swap service
+      apt:
+        name: dphys-swapfile
+        state: absent
+        purge: yes

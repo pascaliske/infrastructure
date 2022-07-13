@@ -17,3 +17,19 @@ shell:
 log2ram:
   config: /etc/log2ram.conf
   size: 350M
+packages:
+  apt:
+    - apt-transport-https
+    - unattended-upgrades
+    - iptables
+    - dnsutils
+    - htop
+    - curl
+    - git
+    - unzip
+    - python3
+    - python3-pip
+    - open-iscsi
+  pip:
+    - pyyaml
+    - kubernetes

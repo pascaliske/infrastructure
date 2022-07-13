@@ -1,0 +1,5 @@
+# expand filesystem
+- name: Expand filesystem to fill disk
+  when: arm
+  become: true
+  command: raspi-config --expand-rootfs

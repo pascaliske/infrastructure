@@ -5,27 +5,14 @@
     name: '{{ item }}'
     update_cache: yes
     state: latest
-  loop:
-    - apt-transport-https
-    - unattended-upgrades
-    - iptables
-    - dnsutils
-    - htop
-    - curl
-    - git
-    - unzip
-    - python3
-    - python3-pip
-    - open-iscsi
+  loop: '{{ packages.apt }}'
 
 # install common pip packages
 - name: Install python packages
   pip:
     name: '{{ item }}'
     state: latest
-  loop:
-    - pyyaml
-    - kubernetes
+  loop: '{{ packages.pip }}'
 
 # install system dependencies for alpine 3.13
 - name: Install dependencies for alpine 3.13

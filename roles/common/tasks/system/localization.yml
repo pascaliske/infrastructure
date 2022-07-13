@@ -1,0 +1,18 @@
+# configure timezone
+- name: Configure timezone
+  become: true
+  timezone:
+    name: '{{ timezone }}'
+
+# configure locale
+- name: Configure locale
+  become: true
+  vars:
+    locale: en_US.UTF-8
+  block:
+    - name: Ensure the locale exists
+      locale_gen:
+        name: '{{ locale }}'
+        state: present
+    - name: Set locale as default
+      command: 'localectl set-locale {{ locale }}'

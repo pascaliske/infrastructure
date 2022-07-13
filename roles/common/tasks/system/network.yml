@@ -1,0 +1,55 @@
+# configure hostname
+- name: Configure hostname
+  become: true
+  block:
+    - name: Set the hostname
+      command: hostnamectl set-hostname "{{ inventory_hostname }}"
+    - name: Update /etc/hosts with new hostname
+      when: arm
+      lineinfile:
+        path: /etc/hosts
+        line: "127.0.1.1\t\traspberrypi {{ inventory_hostname }}"
+        regexp: "^127.0.1.1"
+        backrefs: yes
+
+# configure static ip
+- name: Configure static ip
+  when: node.location == 'private'
+  become: true
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    line: '{{ item.line }}'
+    regexp: '{{ item.regex }}'
+  loop:
+    - { regex: '^interface eth[0-9]$', line: 'interface eth0' }
+    - { regex: '^static ip_address', line: "static ip_address={{ vault.ips[inventory_hostname | replace('.' ~ domain, '')] }}" }
+    - { regex: '^static routers', line: 'static routers={{ vault.ips.router }}' }
+    - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ vault.ips.router }}' }
+  notify: Restart dhcpcd
+
+# configure iptables-legacy
+- name: Configure iptables-legacy
+  when: arm
+  become: true
+  block:
+    - name: Flush iptables before changing to iptables-legacy
+      iptables:
+        flush: true
+      changed_when: false
+    - name: Changing to iptables-legacy
+      alternatives:
+        path: /usr/sbin/iptables-legacy
+        name: iptables
+      notify: Reboot
+    - name: Changing to ip6tables-legacy
+      alternatives:
+        path: /usr/sbin/ip6tables-legacy
+        name: ip6tables
+      notify: Reboot
+
+# configure ssh key
+- name: Configure ssh key
+  authorized_key:
+    state: present
+    user: '{{ ansible_user }}'
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/' + ssh.authorized_key) }}"
