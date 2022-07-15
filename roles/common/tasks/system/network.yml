@@ -29,7 +29,6 @@
 
 # configure iptables-legacy
 - name: Configure iptables-legacy
-  when: arm
   become: true
   block:
     - name: Flush iptables before changing to iptables-legacy
