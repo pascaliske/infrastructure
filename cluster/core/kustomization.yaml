@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - flux-system
   - system-upgrade
+  - metallb-system
   - cert-manager
   - cloudnative-pg
   - crowdsec
