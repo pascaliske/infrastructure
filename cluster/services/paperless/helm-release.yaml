@@ -19,6 +19,23 @@ spec:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
       tag: 1.7
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`docs.${DOMAIN_EXTERNAL}`)
+      middlewares:
+        - name: auth-external
+          namespace: traefik
+        - name: security
+          namespace: traefik
+    certificate:
+      create: true
+      dnsNames:
+        - docs.${DOMAIN_EXTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
     env:
       - name: TZ
         value: ${TIMEZONE}
