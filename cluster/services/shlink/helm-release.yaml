@@ -45,7 +45,7 @@ spec:
     persistence:
       data:
         enabled: true
-        storageClass: longhorn
+        storageClass: local-path
         mountPath: /etc/shlink/data/database.sqlite
         subPath: database.sqlite
         accessMode: ReadWriteOnce
