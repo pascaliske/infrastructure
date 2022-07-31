@@ -24,7 +24,7 @@ spec:
       - name: TZ
         value: ${TIMEZONE}
     persistentVolumeClaim:
-      storageClassName: longhorn
+      storageClassName: local-path
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
