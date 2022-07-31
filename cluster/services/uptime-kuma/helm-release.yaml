@@ -27,7 +27,7 @@ spec:
       - name: PUID
         value: ${UID}
     persistentVolumeClaim:
-      storageClassName: longhorn
+      storageClassName: local-path
     resources:
       limits:
         cpu: 256m
