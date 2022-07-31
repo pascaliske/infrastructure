@@ -29,7 +29,7 @@ spec:
     persistentVolumeClaim:
       mountPath: /home/coder
       projectsPath: /home/coder/projects
-      storageClassName: longhorn
+      storageClassName: local-path
     repositories:
       - url: https://github.com/pascaliske/infrastructure
         name: infrastructure
