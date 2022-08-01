@@ -2,6 +2,8 @@
 
 ## Introduction
 
+![Paperless screenshot](https://k8s.pascaliske.dev/assets/paperless.png){ loading=lazy }
+
 ## Created Resources
 
 | Kind                                | Name                       |
