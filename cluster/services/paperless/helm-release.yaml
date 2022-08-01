@@ -45,12 +45,18 @@ spec:
         value: ${GID}
       - name: PAPERLESS_URL
         value: https://docs.${DOMAIN_EXTERNAL}
-      - name: PAPERLESS_ALLOWED_HOSTS
-        value: '*'
-      - name: PAPERLESS_REDIS
-        value: redis://redis.redis.svc.cluster.local:6379
+      - name: PAPERLESS_ADMIN_USER
+        value: ${PAPERLESS_ADMIN_USER}
+      - name: PAPERLESS_ADMIN_MAIL
+        value: ${PAPERLESS_ADMIN_EMAIL}
+      - name: PAPERLESS_ADMIN_PASSWORD
+        value: ${PAPERLESS_ADMIN_PASSWORD}
       - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
         value: 'true'
+      - name: PAPERLESS_REDIS
+        value: redis://redis.redis.svc.cluster.local:6379
+      - name: PAPERLESS_ALLOWED_HOSTS
+        value: '*'
       - name: PAPERLESS_OCR_LANGUAGE
         value: deu
       - name: PAPERLESS_IGNORE_DATES
