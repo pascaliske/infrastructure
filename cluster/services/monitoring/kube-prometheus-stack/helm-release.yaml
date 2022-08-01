@@ -101,7 +101,14 @@ spec:
           {{- else -}}
           good
           {{- end -}}{{ end }}
-
+      serviceMonitor:
+        relabelings:
+          - sourceLabels: [__meta_kubernetes_pod_node_name]
+            separator: ;
+            regex: ^(.*)$
+            targetLabel: nodename
+            replacement: $1
+            action: replace
       alertmanagerSpec:
         logLevel: info # before: warn
         externalUrl: https://alerts.${DOMAIN}
@@ -203,9 +210,27 @@ spec:
           label: grafana-datasource
           labelValue: 'true'
       additionalDataSources: []
+      serviceMonitor:
+        relabelings:
+          - sourceLabels: [__meta_kubernetes_pod_node_name]
+            separator: ;
+            regex: ^(.*)$
+            targetLabel: nodename
+            replacement: $1
+            action: replace
 
     kubeControllerManager:
       enabled: false
+
+    coreDns:
+      serviceMonitor:
+        relabelings:
+          - sourceLabels: [__meta_kubernetes_pod_node_name]
+            separator: ;
+            regex: ^(.*)$
+            targetLabel: nodename
+            replacement: $1
+            action: replace
 
     kubeEtcd:
       enabled: false
@@ -216,11 +241,31 @@ spec:
     kubeProxy:
       enabled: false
 
+    kube-state-metrics:
+      prometheus:
+        monitor:
+          relabelings:
+            - sourceLabels: [__meta_kubernetes_pod_node_name]
+              separator: ;
+              regex: ^(.*)$
+              targetLabel: nodename
+              replacement: $1
+              action: replace
+
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
         - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
         - --no-collector.nvme
+      prometheus:
+        monitor:
+          relabelings:
+            - sourceLabels: [__meta_kubernetes_pod_node_name]
+              separator: ;
+              regex: ^(.*)$
+              targetLabel: nodename
+              replacement: $1
+              action: replace
 
     prometheus:
       prometheusSpec:
@@ -230,6 +275,7 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         serviceMonitorNamespaceSelector: {}
         retention: 2w
+        replicas: 1
         logLevel: info # before: warn
         additionalScrapeConfigs:
           - job_name: custom/minio
