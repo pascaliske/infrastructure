@@ -8,7 +8,6 @@ resources:
   - grafana.yaml
   - jetstack.yaml
   - k8s-at-home.yaml
-  - keel.yaml
   - kured.yaml
   - pascaliske.yaml
   - prometheus-community.yaml

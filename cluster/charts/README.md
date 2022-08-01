@@ -5,11 +5,11 @@ All [services](/cluster/services/) inside the cluster are deployed by Flux using
 The following chart repositories will be created as [`HelmRepository` declarations](https://fluxcd.io/docs/components/source/helmrepositories/) by this section:
 
 - `authelia` → <https://charts.authelia.com>
+- `cloudflare-exporter` → <https://lablabs.github.io/cloudflare-exporter>
 - `gitlab` → <https://charts.gitlab.io>
 - `grafana` → <https://grafana.github.io/helm-charts>
 - `jetstack` → <https://charts.jetstack.io>
 - `k8s-at-home` → <https://k8s-at-home.com/charts>
-- `keel` → <https://charts.keel.sh>
 - `kured` → <https://weaveworks.github.io/kured>
 - `pascaliske` → <https://charts.pascaliske.dev>
 - `prometheus-community` → <https://prometheus-community.github.io/helm-charts>
