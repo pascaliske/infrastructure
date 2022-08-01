@@ -181,7 +181,7 @@ services:
       - name: Uptime Kuma
         subtitle: Uptime monitoring
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/uptime-kuma.png
-        url: https://status.${DOMAIN}
+        url: https://status.${DOMAIN}/dashboard
         <<: *monitoring
   - name: Network
     icon: fas fa-network-wired
@@ -228,11 +228,6 @@ services:
         subtitle: Central home automation hub
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/home-assistant.png
         url: https://homeassistant.${DOMAIN}
-        <<: *automation
-      - name: Keel
-        subtitle: Automated deployment updates
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/keel.png
-        url: https://keel.${DOMAIN}
         <<: *automation
   - name: Self Hosted
     icon: fas fa-server
