@@ -29,9 +29,7 @@ spec:
       TZ: ${TIMEZONE}
     service:
       main:
-        ports:
-          http:
-            port: 4000
+        enabled: true
       dns-tcp:
         enabled: true
         type: LoadBalancer
