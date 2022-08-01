@@ -59,7 +59,7 @@ Since I don't have a static IP address allocated from my ISP, my IP address can 
 
 ## Storage
 
-Currently I'm not using anything special as a storage solution for my cluster. The built-in [`local-path-provisioner`](https://github.com/rancher/local-path-provisioner) of K3s is fulfilling any [`PersistentVolumeClaim`](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/) object but I'm [planning to switch to Longhorn](https://github.com/pascaliske/infrastructure/issues/107).
+Currently I'm not using anything special as a storage solution for my cluster. The built-in [`local-path-provisioner`](https://github.com/rancher/local-path-provisioner) of K3s is fulfilling any [`PersistentVolumeClaim`](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/) objects ~~but I'm [planning to switch to Longhorn](https://github.com/pascaliske/infrastructure/issues/107)~~.
 
 ## Hostnames
 

@@ -10,7 +10,6 @@ resources:
   - k8s-at-home.yaml
   - keel.yaml
   - kured.yaml
-  - longhorn.yaml
   - pascaliske.yaml
   - prometheus-community.yaml
   - traefik.yaml

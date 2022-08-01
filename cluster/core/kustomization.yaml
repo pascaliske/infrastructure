@@ -5,6 +5,5 @@ resources:
   - flux-system
   - cert-manager
   - kured
-  - longhorn
   - traefik
   - velero
