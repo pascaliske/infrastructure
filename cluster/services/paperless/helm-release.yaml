@@ -61,7 +61,7 @@ spec:
       create: true
       secretKey: ${PAPERLESS_SECRET_KEY}
     persistentVolumeClaim:
-      storageClassName: longhorn
+      storageClassName: local-path
     consumption:
       enabled: true
       hostPath: ${PATH_HOME}/paperless/import
