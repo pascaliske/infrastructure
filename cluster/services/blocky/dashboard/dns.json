@@ -24,8 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 17,
-  "iteration": 1651214912936,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -73,7 +72,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
           "datasource": {
@@ -81,7 +80,7 @@
             "uid": "prometheus"
           },
           "exemplar": false,
-          "expr": "blocky_build_info{kubernetes_pod_name=~\"$pod\"}",
+          "expr": "blocky_build_info{pod=~\"$pod\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -154,7 +153,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
           "datasource": {
@@ -162,7 +161,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "ceil(sum(increase(blocky_prefetch_count{kubernetes_pod_name=~\"$pod\"}[$__range])))",
+          "expr": "ceil(sum(increase(blocky_prefetch_count{pod=~\"$pod\"}[$__range])))",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -227,7 +226,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
           "datasource": {
@@ -235,7 +234,7 @@
             "uid": "prometheus"
           },
           "exemplar": false,
-          "expr": "time() - blocky_last_list_group_refresh{kubernetes_pod_name=~\"$pod\"}",
+          "expr": "time() - blocky_last_list_group_refresh{pod=~\"$pod\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -342,7 +341,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "sum(rate(blocky_query_total{kubernetes_pod_name=~\"$pod\"}[$__range])) by (kubernetes_pod_name)",
+          "expr": "sum(rate(blocky_query_total{pod=~\"$pod\"}[$__range])) by (pod)",
           "interval": "",
           "legendFormat": "{{ kubernetes_pod_name }}",
           "refId": "A"
@@ -432,7 +431,7 @@
             "uid": "prometheus"
           },
           "exemplar": false,
-          "expr": "sum(rate(blocky_response_total{response_type=\"BLOCKED\",kubernetes_pod_name=~\"$pod\"}[$__range])) by (kubernetes_pod_name)",
+          "expr": "sum(rate(blocky_response_total{response_type=\"BLOCKED\",pod=~\"$pod\"}[$__range])) by (pod)",
           "format": "time_series",
           "interval": "",
           "legendFormat": "{{ kubernetes_pod_name }}",
@@ -525,7 +524,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "sum(rate(blocky_request_duration_ms_sum{kubernetes_pod_name=~\"$pod\"}[$__range])) / sum(rate(blocky_request_duration_ms_count{kubernetes_pod_name=~\"$pod\"}[$__range]))",
+          "expr": "sum(rate(blocky_request_duration_ms_sum{pod=~\"$pod\"}[$__range])) / sum(rate(blocky_request_duration_ms_count{pod=~\"$pod\"}[$__range]))",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -616,7 +615,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "sum(increase(blocky_cache_hit_count{kubernetes_pod_name=~\"$pod\"}[$__range])) / (sum(increase(blocky_cache_hit_count{kubernetes_pod_name=~\"$pod\"}[$__range])) + sum(increase(blocky_cache_miss_count{kubernetes_pod_name=~\"$pod\"}[$__range])))",
+          "expr": "sum(increase(blocky_cache_hit_count{pod=~\"$pod\"}[$__range])) / (sum(increase(blocky_cache_hit_count{pod=~\"$pod\"}[$__range])) + sum(increase(blocky_cache_miss_count{pod=~\"$pod\"}[$__range])))",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -643,7 +642,7 @@
           "type": "prometheus",
           "uid": "prometheus"
         },
-        "definition": "label_values(blocky_build_info, kubernetes_pod_name)",
+        "definition": "label_values(blocky_build_info, pod)",
         "hide": 0,
         "includeAll": true,
         "label": "Pod",
@@ -651,7 +650,7 @@
         "name": "pod",
         "options": [],
         "query": {
-          "query": "label_values(blocky_build_info, kubernetes_pod_name)",
+          "query": "label_values(blocky_build_info, pod)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
