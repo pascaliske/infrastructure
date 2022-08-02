@@ -23,4 +23,8 @@ spec:
     extraEnv:
       - name: TZ
         value: ${TIMEZONE}
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: true
   interval: 10m0s
