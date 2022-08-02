@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -19,14 +22,17 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
-  "graphTooltip": 2,
-  "id": 17,
-  "iteration": 1631359825135,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 5,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -101,36 +107,50 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "100 - (avg by (kubernetes_node) (irate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"idle\"}[$interval])) * 100)",
+          "expr": "100 - (avg by (nodename) (irate(node_cpu_seconds_total{nodename=~\"$node\",mode=\"idle\"}[$interval])) * 100)",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Usage",
+          "legendFormat": "Usage – {{ nodename }}",
+          "range": true,
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (kubernetes_node) (irate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"iowait\"}[$interval])) * 100",
+          "expr": "avg by (nodename) (irate(node_cpu_seconds_total{nodename=~\"$node\",mode=\"iowait\"}[$interval])) * 100",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "IOwait",
+          "legendFormat": "IOwait – {{ nodename }}",
+          "range": true,
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "CPU Usage",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -205,37 +225,51 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (kubernetes_node) (node_hwmon_temp_celsius{kubernetes_node=~\"$node\"})",
+          "expr": "avg by (nodename) (node_hwmon_temp_celsius{nodename=~\"$node\"})",
           "interval": "",
           "intervalFactor": 3,
-          "legendFormat": "Actual",
+          "legendFormat": "Actual – {{ nodename }}",
+          "range": true,
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (kubernetes_node) (avg_over_time(node_hwmon_temp_celsius{kubernetes_node=~\"$node\"}[$interval]))",
+          "expr": "avg by (nodename) (avg_over_time(node_hwmon_temp_celsius{nodename=~\"$node\"}[$interval]))",
           "hide": false,
           "interval": "",
           "intervalFactor": 3,
-          "legendFormat": "Average",
+          "legendFormat": "Average – {{ nodename }}",
+          "range": true,
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Temperature",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
@@ -276,25 +310,31 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "node_time_seconds{kubernetes_node=~\"$node\"} - node_boot_time_seconds{kubernetes_node=~\"$node\"}",
+          "expr": "node_time_seconds{nodename=~\"$node\"} - node_boot_time_seconds{nodename=~\"$node\"}",
           "instant": true,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "{{ nodename }}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Uptime",
       "transparent": true,
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
@@ -341,26 +381,32 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node) (node_load1{kubernetes_node=~\"$node\"}) / count by (kubernetes_node) (rate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"idle\"}[$interval]))",
+          "expr": "sum by (nodename) (node_load1{nodename=~\"$node\"}) / count by (nodename) (rate(node_cpu_seconds_total{nodename=~\"$node\",mode=\"idle\"}[$interval]))",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
-          "legendFormat": "",
+          "legendFormat": "{{ nodename }}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Load 1",
       "transparent": true,
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
@@ -407,26 +453,32 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node) (node_load5{kubernetes_node=~\"$node\"}) / count by (kubernetes_node) (rate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"idle\"}[$interval]))",
+          "expr": "sum by (nodename) (node_load5{nodename=~\"$node\"}) / count by (nodename) (rate(node_cpu_seconds_total{nodename=~\"$node\",mode=\"idle\"}[$interval]))",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
-          "legendFormat": "",
+          "legendFormat": "{{ nodename }}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Load 5",
       "transparent": true,
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
@@ -473,26 +525,32 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node) (node_load15{kubernetes_node=~\"$node\"}) / count by (kubernetes_node) (rate(node_cpu_seconds_total{kubernetes_node=~\"$node\",mode=\"idle\"}[$interval]))",
+          "expr": "sum by (nodename) (node_load15{nodename=~\"$node\"}) / count by (nodename) (rate(node_cpu_seconds_total{nodename=~\"$node\",mode=\"idle\"}[$interval]))",
           "instant": true,
           "interval": "",
           "intervalFactor": 10,
-          "legendFormat": "",
+          "legendFormat": "{{ nodename }}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Load 15",
       "transparent": true,
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -567,35 +625,49 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "100 * (1 - ((node_memory_MemFree_bytes{kubernetes_node=~\"$node\"} + node_memory_Cached_bytes{kubernetes_node=~\"$node\"} + node_memory_Buffers_bytes{kubernetes_node=~\"$node\"}) / node_memory_MemTotal_bytes{kubernetes_node=~\"$node\"}))",
+          "expr": "100 * (1 - ((node_memory_MemFree_bytes{nodename=~\"$node\"} + node_memory_Cached_bytes{nodename=~\"$node\"} + node_memory_Buffers_bytes{nodename=~\"$node\"}) / node_memory_MemTotal_bytes{nodename=~\"$node\"}))",
           "interval": "",
-          "legendFormat": "Actual",
+          "legendFormat": "Actual – {{ nodename }}",
+          "range": true,
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree_bytes{kubernetes_node=~\"$node\"}[$interval]) + avg_over_time(node_memory_Cached_bytes{kubernetes_node=~\"$node\"}[$interval]) + avg_over_time(node_memory_Buffers_bytes{kubernetes_node=~\"$node\"}[$interval])) / avg_over_time(node_memory_MemTotal_bytes{kubernetes_node=~\"$node\"}[$interval])))",
+          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree_bytes{nodename=~\"$node\"}[$interval]) + avg_over_time(node_memory_Cached_bytes{nodename=~\"$node\"}[$interval]) + avg_over_time(node_memory_Buffers_bytes{nodename=~\"$node\"}[$interval])) / avg_over_time(node_memory_MemTotal_bytes{nodename=~\"$node\"}[$interval])))",
           "hide": false,
           "interval": "",
-          "legendFormat": "Average",
+          "legendFormat": "Average – {{ nodename }}",
+          "range": true,
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Memory Usage",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -667,36 +739,50 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "node_procs_running{kubernetes_node=~\"$node\"}",
+          "expr": "node_procs_running{nodename=~\"$node\"}",
           "interval": "",
           "intervalFactor": 3,
-          "legendFormat": "Running",
+          "legendFormat": "Running – {{ nodename }}",
+          "range": true,
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "node_procs_blocked{kubernetes_node=~\"$node\"}",
+          "expr": "node_procs_blocked{nodename=~\"$node\"}",
           "interval": "",
           "intervalFactor": 3,
-          "legendFormat": "Blocked by I/O",
+          "legendFormat": "Blocked by I/O – {{ nodename }}",
+          "range": true,
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Processes",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -778,37 +864,50 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "100 - ((node_filesystem_avail_bytes{kubernetes_node=~\"$node\",mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{kubernetes_node=~\"$node\",mountpoint=\"/\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{nodename=~\"$node\",mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{nodename=~\"$node\",mountpoint=\"/\"})",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Root",
+          "legendFormat": "Root – {{ nodename }}",
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "100 - ((node_filesystem_avail_bytes{kubernetes_node=~\"$node\",mountpoint=\"/var/log\"} * 100) / node_filesystem_size_bytes{kubernetes_node=~\"$node\",mountpoint=\"/var/log\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{nodename=~\"$node\",mountpoint=\"/var/log\"} * 100) / node_filesystem_size_bytes{nodename=~\"$node\",mountpoint=\"/var/log\"})",
           "hide": false,
           "interval": "",
-          "legendFormat": "Logs",
+          "legendFormat": "Logs – {{ nodename }}",
+          "range": true,
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Disk Usage",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -874,37 +973,50 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node, device) (rate(node_network_receive_bytes_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval])) * 8",
+          "expr": "sum by (nodename, device) (rate(node_network_receive_bytes_total{nodename=~\"$node\",device=\"eth0\"}[$interval])) * 8",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{ device }}-in",
+          "legendFormat": "{{ device }}-in – {{ nodename }}",
+          "range": true,
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node, device) (rate(node_network_transmit_bytes_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval])) * 8",
+          "expr": "sum by (nodename, device) (rate(node_network_transmit_bytes_total{nodename=~\"$node\",device=\"eth0\"}[$interval])) * 8",
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{ device }}-out",
+          "legendFormat": "{{ device }}-out – {{ nodename }}",
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network I/O",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -973,37 +1085,50 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node, device) (rate(node_network_receive_packets_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval]))",
+          "expr": "sum by (nodename, device) (rate(node_network_receive_packets_total{nodename=~\"$node\",device=\"eth0\"}[$interval]))",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{ device }}-in",
+          "legendFormat": "{{ device }}-in – {{ nodename }}",
+          "range": true,
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node, device) (rate(node_network_transmit_packets_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval]))",
+          "expr": "sum by (nodename, device) (rate(node_network_transmit_packets_total{nodename=~\"$node\",device=\"eth0\"}[$interval]))",
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{ device }}-out",
+          "legendFormat": "{{ device }}-out – {{ nodename }}",
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network Packets",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1069,36 +1194,46 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node, device) (rate(node_network_receive_drop_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval]))",
+          "expr": "sum by (nodename, device) (rate(node_network_receive_drop_total{nodename=~\"$node\",device=\"eth0\"}[$interval]))",
           "interval": "",
-          "legendFormat": "{{ device }}-in",
+          "legendFormat": "{{ device }}-in – {{ nodename }}",
+          "range": true,
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (kubernetes_node, device) (rate(node_network_transmit_drop_total{kubernetes_node=~\"$node\",device=\"eth0\"}[$interval]))",
+          "expr": "sum by (nodename, device) (rate(node_network_transmit_drop_total{nodename=~\"$node\",device=\"eth0\"}[$interval]))",
           "instant": false,
           "interval": "",
-          "legendFormat": "{{ device }}-out",
+          "legendFormat": "{{ device }}-out – {{ nodename }}",
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network Dropped Packets",
       "transparent": true,
       "type": "timeseries"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 30,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1112,8 +1247,6 @@
           "text": "auto",
           "value": "$__auto_interval_interval"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "label": "Interval",
         "name": "interval",
@@ -1181,24 +1314,24 @@
         "type": "interval"
       },
       {
-        "allValue": null,
         "current": {
-          "selected": false,
-          "text": "coruscant",
-          "value": "coruscant"
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
         },
-        "datasource": null,
-        "definition": "label_values(node_load1, kubernetes_node)",
-        "description": null,
-        "error": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(node_load1, nodename)",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": "Node",
         "multi": false,
         "name": "node",
         "options": [],
         "query": {
-          "query": "label_values(node_load1, kubernetes_node)",
+          "query": "label_values(node_load1, nodename)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -1217,5 +1350,6 @@
   "timezone": "",
   "title": "Nodes",
   "uid": "nodes",
-  "version": 8
+  "version": 4,
+  "weekStart": ""
 }

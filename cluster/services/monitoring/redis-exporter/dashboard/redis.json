@@ -24,6 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -75,7 +76,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
           "datasource": {
@@ -141,7 +142,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
           "datasource": {
@@ -209,7 +210,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
           "datasource": {
@@ -234,7 +235,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 2,
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -270,7 +271,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "9.0.4",
       "targets": [
         {
           "datasource": {
@@ -971,6 +972,6 @@
   "timezone": "",
   "title": "Redis",
   "uid": "redis",
-  "version": 0,
+  "version": 3,
   "weekStart": ""
 }
