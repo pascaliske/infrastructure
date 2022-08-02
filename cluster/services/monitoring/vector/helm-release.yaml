@@ -17,17 +17,22 @@ spec:
     createNamespace: true
   values:
     role: Agent
-
     image:
       repository: timberio/vector
       tag: latest-alpine
-
     env:
       - name: TZ
         value: ${TIMEZONE}
       - name: VECTOR_WATCH_CONFIG
         value: 'true'
-
+    tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
     customConfig:
       data_dir: /vector-data-dir
       api:
@@ -76,10 +81,8 @@ spec:
           inputs:
             - internal_metrics
           address: 0.0.0.0:9090
-
     persistence:
       enabled: true
-
     podMonitor:
       enabled: true
   interval: 10m0s
