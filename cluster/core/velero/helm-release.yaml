@@ -51,6 +51,12 @@ spec:
     backupsEnabled: true
     snapshotsEnabled: false
     deployRestic: true
+    restic:
+      tolerations:
+        - key: k8s.pascaliske.dev/location
+          operator: Equal
+          value: public
+          effect: NoSchedule
     schedules:
       weekly:
         schedule: '0 3 * * 0' # every sunday at 3am
