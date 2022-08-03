@@ -6,9 +6,9 @@ configMapGenerator:
   - name: grafana-dashboard-nodes
     files:
       - nodes.json
-  - name: grafana-dashboard-containers
+  - name: grafana-dashboard-pods
     files:
-      - containers.json
+      - pods.json
 generatorOptions:
   disableNameSuffixHash: true
   labels:

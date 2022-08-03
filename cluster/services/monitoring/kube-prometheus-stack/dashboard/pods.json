@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -19,14 +22,17 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 18,
-  "iteration": 1631359417278,
+  "id": 2,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -92,27 +98,35 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (container) (irate(container_cpu_usage_seconds_total{image!=\"\",container=~\"$container\"}[5m])) * 100",
+          "expr": "avg by (pod) (irate(container_cpu_usage_seconds_total{pod=~\"$pod\"}[5m])) * 100",
           "interval": "",
-          "legendFormat": "{{ container }}",
+          "legendFormat": "__auto",
+          "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Container CPU Usage",
+      "title": "CPU Usage",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -178,27 +192,35 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (container) (container_memory_usage_bytes{image!=\"\",container=~\"$container\"})",
+          "expr": "avg by (pod) (container_memory_usage_bytes{pod=~\"$pod\"})",
           "interval": "",
-          "legendFormat": "{{ container }}",
+          "legendFormat": "__auto",
+          "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Container Memory Usage",
+      "title": "Memory Usage",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -260,24 +282,34 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (name) (container_fs_usage_bytes{image!=\"\",container=~\"$container\"})",
+          "expr": "sum by (pod) (rate(container_fs_reads_bytes_total{pod=~\"$pod\"}[$__rate_interval]))",
           "interval": "",
-          "legendFormat": "{{ name }}",
+          "legendFormat": "{{ pod }}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Container Disk Usage",
+      "title": "Disk Reads",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -286,7 +318,8 @@
           "custom": {
             "align": "auto",
             "displayMode": "auto",
-            "filterable": true
+            "filterable": true,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -359,6 +392,13 @@
       },
       "id": 10,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -367,14 +407,19 @@
           }
         ]
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "time() - min by (container, namespace, instance) (container_start_time_seconds{image!=\"\",container!=\"\"})",
+          "expr": "time() - min by (pod, namespace, instance) (container_start_time_seconds{pod!=\"\"})",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{ container }}",
+          "legendFormat": "__auto",
           "refId": "A"
         }
       ],
@@ -421,7 +466,10 @@
       "type": "table"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -432,8 +480,8 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 20,
-            "gradientMode": "opacity",
+            "fillOpacity": 0,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -445,8 +493,8 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
-            "spanNulls": true,
+            "showPoints": "auto",
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -462,13 +510,10 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
-          }
+          },
+          "unit": "decbytes"
         },
         "overrides": []
       },
@@ -478,7 +523,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 6,
+      "id": 11,
       "options": {
         "legend": {
           "calcs": [],
@@ -486,66 +531,85 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
-      "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "watchtower_containers_scanned",
-          "instant": false,
+          "expr": "sum by (pod) (rate(container_fs_writes_bytes_total{pod=~\"$pod\"}[$__rate_interval]))",
           "interval": "",
-          "legendFormat": "Scanned",
+          "legendFormat": "{{ pod }}",
+          "range": true,
           "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "watchtower_containers_updated",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "Updated",
-          "refId": "B"
-        },
-        {
-          "expr": "watchtower_containers_failed",
-          "interval": "",
-          "legendFormat": "Failed",
-          "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Container Updates",
+      "title": "Disk Writes",
       "transparent": true,
       "type": "timeseries"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 30,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": "All",
           "value": "$__all"
         },
-        "datasource": null,
-        "definition": "label_values(container_start_time_seconds, container)",
-        "description": null,
-        "error": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
         "hide": 0,
         "includeAll": true,
-        "label": "Container",
+        "label": "Pod",
         "multi": false,
-        "name": "container",
+        "name": "pod",
         "options": [],
         "query": {
-          "query": "label_values(container_start_time_seconds, container)",
+          "query": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(container_start_time_seconds, namespace)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Namespace",
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "query": "label_values(container_start_time_seconds, namespace)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -565,7 +629,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Containers",
-  "uid": "containers",
-  "version": 7
+  "title": "Pods",
+  "uid": "pods",
+  "version": 4,
+  "weekStart": ""
 }
