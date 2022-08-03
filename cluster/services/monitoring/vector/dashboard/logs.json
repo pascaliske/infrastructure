@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -21,12 +24,15 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 10,
-  "iteration": 1651068315507,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -34,10 +40,23 @@
         "y": 0
       },
       "id": 6,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Metrics",
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -173,6 +192,10 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -181,6 +204,15 @@
       },
       "id": 4,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Logs",
       "type": "row"
     },
@@ -212,7 +244,7 @@
             "type": "loki",
             "uid": "loki"
           },
-          "expr": "{namespace=~\"$namespace\", pod=~\"$pod\", container=~\"$container\"} |~ \"$search\"",
+          "expr": "{namespace=~\" $namespace \", pod=~\" $pod \"} |~ \"$search\"",
           "refId": "A"
         }
       ],
@@ -221,7 +253,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 35,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -231,6 +263,10 @@
           "selected": false,
           "text": "All",
           "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
         },
         "definition": "label_values(kube_pod_info, namespace)",
         "hide": 0,
@@ -255,6 +291,10 @@
           "text": "All",
           "value": "$__all"
         },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
         "definition": "label_values(container_last_seen{namespace=~\"$namespace\"},pod)",
         "hide": 0,
         "includeAll": true,
@@ -273,32 +313,8 @@
         "type": "query"
       },
       {
-        "allValue": "",
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "definition": "label_values(container_last_seen{namespace=~\"$namespace\",pod=~\"$pod\"},container)",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Container",
-        "multi": false,
-        "name": "container",
-        "options": [],
-        "query": {
-          "query": "label_values(container_last_seen{namespace=~\"$namespace\",pod=~\"$pod\"},container)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false,
+          "selected": true,
           "text": "",
           "value": ""
         },
@@ -326,6 +342,6 @@
   "timezone": "",
   "title": "Logs",
   "uid": "logs",
-  "version": 5,
+  "version": 4,
   "weekStart": ""
 }
