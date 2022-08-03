@@ -19,6 +19,8 @@ spec:
     image:
       repository: louislam/uptime-kuma
       tag: 1-alpine
+    serviceMonitor:
+      enabled: true
     env:
       - name: TZ
         value: ${TIMEZONE}
