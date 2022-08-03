@@ -274,6 +274,10 @@ spec:
         serviceMonitorSelector: {}
         serviceMonitorSelectorNilUsesHelmValues: false
         serviceMonitorNamespaceSelector: {}
+        # TODO: implement label for selection, enable all pod monitors for now
+        podMonitorSelector: {}
+        podMonitorSelectorNilUsesHelmValues: false
+        podMonitorNamespaceSelector: {}
         retention: 2w
         replicas: 1
         logLevel: info # before: warn
