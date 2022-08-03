@@ -115,6 +115,7 @@ spec:
 
     grafana:
       defaultDashboardsEnabled: false
+      defaultDashboardsTimezone: ${TIMEZONE}
       adminUser: ${GRAFANA_USERNAME}
       adminPassword: ${GRAFANA_PASSWORD}
       plugins:
