@@ -25,6 +25,13 @@ spec:
         value: ${TIMEZONE}
       - name: VECTOR_WATCH_CONFIG
         value: 'true'
+    containerPorts:
+      - name: api
+        containerPort: 8686
+        protocol: TCP
+      - name: prom-exporter
+        containerPort: 9090
+        protocol: TCP
     tolerations:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
@@ -85,4 +92,5 @@ spec:
       enabled: true
     podMonitor:
       enabled: true
+      port: prom-exporter
   interval: 10m0s
