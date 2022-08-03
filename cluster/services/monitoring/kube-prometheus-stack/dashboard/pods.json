@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -99,7 +98,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.0.3",
@@ -193,7 +192,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.0.3",
@@ -283,7 +282,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "targets": [
@@ -446,9 +445,9 @@
             "indexByName": {
               "Field": 0,
               "Last *": 4,
-              "container": 2,
               "instance": 1,
-              "namespace": 3
+              "namespace": 2,
+              "pod": 3
             },
             "renameByName": {
               "Field": "",
@@ -532,7 +531,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "targets": [
@@ -631,6 +630,6 @@
   "timezone": "",
   "title": "Pods",
   "uid": "pods",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }
