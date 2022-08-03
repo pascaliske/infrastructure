@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -19,14 +22,17 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 19,
-  "iteration": 1631359662794,
+  "id": 3,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -69,9 +75,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
           "expr": "time() - process_start_time_seconds{instance=\"$instance\"}",
           "interval": "",
@@ -84,7 +94,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -125,9 +138,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
           "expr": "traefik_config_reloads_total{instance=\"$instance\"}",
           "interval": "",
@@ -140,7 +157,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -195,9 +215,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
           "expr": "traefik_config_last_reload_success{instance=\"$instance\"} <= 0 or time() - traefik_config_last_reload_success{instance=\"$instance\"}",
           "interval": "",
@@ -210,7 +234,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -265,9 +292,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
           "expr": "traefik_config_last_reload_failure{instance=~\"$instance\"} <= 0 or time() - traefik_config_last_reload_failure{instance=~\"$instance\"}",
           "interval": "",
@@ -280,7 +311,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -343,31 +377,37 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
-          "expr": "sum(increase(traefik_service_requests_total{code=~\"(2|3)\\\\d\\\\d\",instance=~\"$instance\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
+          "expr": "sum(increase(traefik_service_requests_total{code=~\"(2|3)[0-9]{2}\",instance=~\"$instance\", exported_service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
           "interval": "",
           "legendFormat": "Successful Responses",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Successful Responses",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -450,27 +490,33 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
-          "expr": "sum(increase(traefik_service_requests_total{code=~\"5\\\\d\\\\d\",instance=~\"$instance\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
+          "expr": "sum(increase(traefik_service_requests_total{code=~\"5[0-9]{2}\",instance=~\"$instance\", exported_service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
           "interval": "",
           "legendFormat": "Errors",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Server Errors",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -553,27 +599,33 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
-          "expr": "sum(increase(traefik_service_requests_total{code=~\"4\\\\d\\\\d\",instance=~\"$instance\", service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
+          "expr": "sum(increase(traefik_service_requests_total{code=~\"4[0-9]{2}\",instance=~\"$instance\", exported_service=~\"$service\", protocol=~\"$protocol\"}[$interval]))",
           "interval": "",
           "legendFormat": "Errors",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Client Errors",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -639,12 +691,17 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
           "expr": "sum(rate(traefik_entrypoint_request_duration_seconds_sum{instance=~\"$instance\"}[$interval])) / sum(rate(traefik_entrypoint_requests_total{instance=~\"$instance\"}[$interval]))",
           "interval": "",
@@ -653,14 +710,15 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Average Response Time",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -726,27 +784,33 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
-          "expr": "sum(increase(traefik_service_requests_total{instance=~\"$instance\", service=~\"$service\"}[$interval])) by (service)",
+          "expr": "sum(increase(traefik_service_requests_total{instance=~\"$instance\", exported_service=~\"$service\"}[$interval])) by (exported_service)",
           "interval": "",
           "legendFormat": "{{ service }}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Total requests by service",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -811,27 +875,33 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
-          "expr": "sum(rate(traefik_service_request_duration_seconds_sum{instance=~\"$instance\",service=~\"$service\",protocol=~\"$protocol\"}[$interval])) by (service) / sum(rate(traefik_service_request_duration_seconds_count{instance=~\"$instance\",service=~\"$service\",protocol=~\"$protocol\"}[$interval])) by (service)",
+          "expr": "sum(rate(traefik_service_request_duration_seconds_sum{instance=~\"$instance\",exported_service=~\"$service\",protocol=~\"$protocol\"}[$interval])) by (exported_service) / sum(rate(traefik_service_request_duration_seconds_count{instance=~\"$instance\",exported_service=~\"$service\",protocol=~\"$protocol\"}[$interval])) by (exported_service)",
           "interval": "",
           "legendFormat": "{{ service }}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Avg. response time by service",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -897,43 +967,46 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
-          "expr": "sum(traefik_service_open_connections{instance=~\"$instance\", service=~\"$service\"}) by (method)",
+          "expr": "sum(traefik_service_open_connections{instance=~\"$instance\", exported_service=~\"$service\"}) by (method)",
           "interval": "",
           "legendFormat": "{{ method }}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Open Connections",
       "transparent": true,
       "type": "timeseries"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 30,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
-          "selected": true,
-          "text": "10.42.0.78:9000",
-          "value": "10.42.0.78:9000"
+          "selected": false,
+          "text": "10.42.0.176:9000",
+          "value": "10.42.0.176:9000"
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
         "definition": "label_values(traefik_config_reloads_total, instance)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Instance",
@@ -954,16 +1027,16 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": "http",
           "value": "http"
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
         "definition": "label_values(traefik_service_requests_total, protocol)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Protocol",
@@ -984,16 +1057,16 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
-        "datasource": null,
-        "definition": "label_values(traefik_service_requests_total{instance=~\"[[instance]]\"},service)",
-        "description": null,
-        "error": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(traefik_service_requests_total{instance=~\"[[instance]]\"}, exported_service)",
         "hide": 0,
         "includeAll": true,
         "label": "Service",
@@ -1001,7 +1074,7 @@
         "name": "service",
         "options": [],
         "query": {
-          "query": "label_values(traefik_service_requests_total{instance=~\"[[instance]]\"},service)",
+          "query": "label_values(traefik_service_requests_total{instance=~\"[[instance]]\"}, exported_service)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -1022,8 +1095,6 @@
           "text": "auto",
           "value": "$__auto_interval_interval"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "label": "Interval",
         "name": "interval",
@@ -1100,5 +1171,6 @@
   "timezone": "",
   "title": "Ingress",
   "uid": "ingress",
-  "version": 4
+  "version": 3,
+  "weekStart": ""
 }
