@@ -36,6 +36,8 @@ spec:
       cronJob:
         enabled: true
         schedule: '0 3 * * 1'
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
     resources: {}
       # limits:
       #   cpu: 100m
