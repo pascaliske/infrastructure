@@ -35,6 +35,9 @@ spec:
         name: infrastructure
       - url: https://github.com/pascaliske/helm-charts
         name: helm-charts
+    cronJob:
+      successfulJobsHistoryLimit: 1
+      failedJobsHistoryLimit: 1
     securityContext:
       fsGroup: ${GID}
       runAsNonRoot: true
