@@ -68,12 +68,12 @@ nginx['listen_https'] = false
 nginx['worker_processes'] = 2
 nginx['proxy_set_headers'] = {
     'Host' => 'git.${DOMAIN_EXTERNAL}',
-    'Upgrade' => '$$http_upgrade',
-    'Connection' => '$$connection_upgrade',
+    'Upgrade' => '$http_upgrade',
+    'Connection' => '$connection_upgrade',
     'X-Forwarded-Proto' => 'https',
     'X-Forwarded-Ssl' => 'on',
-    'X-Forwarded-For' => '$$proxy_add_x_forwarded_for',
-    'X-Real-IP' => '$$remote_addr'
+    'X-Forwarded-For' => '$proxy_add_x_forwarded_for',
+    'X-Real-IP' => '$remote_addr'
 }
 
 # registry nginx
@@ -81,12 +81,12 @@ registry_nginx['listen_port'] = 5005
 registry_nginx['listen_https'] = false
 registry_nginx['proxy_set_headers'] = {
     'Host' => 'registry.${DOMAIN_EXTERNAL}',
-    'Upgrade' => '$$http_upgrade',
-    'Connection' => '$$connection_upgrade',
+    'Upgrade' => '$http_upgrade',
+    'Connection' => '$connection_upgrade',
     'X-Forwarded-Proto' => 'https',
     'X-Forwarded-Ssl' => 'on',
-    'X-Forwarded-For' => '$$proxy_add_x_forwarded_for',
-    'X-Real-IP' => '$$remote_addr'
+    'X-Forwarded-For' => '$proxy_add_x_forwarded_for',
+    'X-Real-IP' => '$remote_addr'
 }
 
 # pages nginx
@@ -106,3 +106,9 @@ redis_exporter['enable'] = false
 postgres_exporter['enable'] = false
 gitlab_exporter['enable'] = false
 grafana['enable'] = false
+
+# ensure kubelet probes are whitelisted
+gitlab_rails['monitoring_whitelist'] = [
+  '127.0.0.1',
+  '10.42.2.1',
+]

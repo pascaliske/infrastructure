@@ -22,6 +22,9 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
+    configMap:
+      create: false
+      existingConfigMap: gitlab-config
     persistentVolumeClaims:
       secrets:
         storageClassName: local-path
@@ -59,9 +62,4 @@ spec:
         operator: Equal
         value: public
         effect: NoSchedule
-  valuesFrom:
-    - kind: ConfigMap
-      name: gitlab-config
-      valuesKey: config.rb
-      targetPath: configMap.config
   interval: 10m0s
