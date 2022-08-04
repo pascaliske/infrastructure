@@ -17,4 +17,4 @@ generatorOptions:
   labels:
     grafana-dashboard: 'true'
   annotations:
-    k8s-sidecar-target-directory: /tmp/dashboards/home-assistant
+    k8s-sidecar-target-directory: /tmp/dashboards/Home

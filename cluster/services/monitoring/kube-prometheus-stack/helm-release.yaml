@@ -125,49 +125,40 @@ spec:
           apiVersion: 1
           providers:
             - type: file
-              name: cluster
-              folder: cluster
+              name: Cluster
+              folder: Cluster
               editable: true
               allowUiUpdates: true
               disableDeletion: false
               options:
-                path: /tmp/dashboards/cluster
+                path: /tmp/dashboards/Cluster
                 foldersFromFilesStructure: true
             - type: file
-              name: network
-              folder: network
+              name: Network
+              folder: Network
               editable: true
               allowUiUpdates: true
               disableDeletion: false
               options:
-                path: /tmp/dashboards/network
+                path: /tmp/dashboards/Network
                 foldersFromFilesStructure: true
             - type: file
-              name: storage
-              folder: storage
+              name: Storage
+              folder: Storage
               editable: true
               allowUiUpdates: true
               disableDeletion: false
               options:
-                path: /tmp/dashboards/storage
+                path: /tmp/dashboards/Storage
                 foldersFromFilesStructure: true
             - type: file
-              name: home-assistant
-              folder: home-assistant
+              name: Home
+              folder: Home
               editable: true
               allowUiUpdates: true
               disableDeletion: false
               options:
-                path: /tmp/dashboards/home-assistant
-                foldersFromFilesStructure: true
-            - type: file
-              name: home
-              folder: home
-              editable: true
-              allowUiUpdates: true
-              disableDeletion: false
-              options:
-                path: /tmp/dashboards/home
+                path: /tmp/dashboards/Home
                 foldersFromFilesStructure: true
       grafana.ini:
         server:
