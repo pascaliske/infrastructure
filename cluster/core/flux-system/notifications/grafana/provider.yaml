@@ -1,0 +1,11 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: grafana
+  namespace: flux-system
+spec:
+  type: grafana
+  address: "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local/api/annotations"
+  secretRef:
+    name: grafana-auth
