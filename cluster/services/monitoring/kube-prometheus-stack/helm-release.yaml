@@ -160,6 +160,15 @@ spec:
               options:
                 path: /tmp/dashboards/Home
                 foldersFromFilesStructure: true
+            - type: file
+              name: External
+              folder: External
+              editable: true
+              allowUiUpdates: true
+              disableDeletion: false
+              options:
+                path: /tmp/dashboards/External
+                foldersFromFilesStructure: true
       grafana.ini:
         server:
           domain: grafana.${DOMAIN}
