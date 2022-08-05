@@ -19,6 +19,23 @@ spec:
     image:
       repository: codercom/code-server
       tag: 4.4.0
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`code.${DOMAIN_EXTERNAL}`)
+      middlewares:
+        - name: auth-external
+          namespace: traefik
+        - name: security
+          namespace: traefik
+    certificate:
+      create: true
+      dnsNames:
+        - code.${DOMAIN_EXTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
     env:
       - name: TZ
         value: ${TIMEZONE}
