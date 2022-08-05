@@ -19,6 +19,21 @@ spec:
     image:
       repository: linuxserver/snapdrop
       tag: latest
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`drop.${DOMAIN}`)
+      middlewares:
+        - name: security
+          namespace: traefik
+    certificate:
+      create: true
+      dnsNames:
+        - drop.${DOMAIN}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
     env:
       - name: TZ
         value: ${TIMEZONE}
