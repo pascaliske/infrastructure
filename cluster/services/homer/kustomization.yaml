@@ -5,8 +5,6 @@ namespace: homer
 resources:
   - namespace.yaml
   - helm-release.yaml
-  - certificate.yaml
-  - route.yaml
 configMapGenerator:
   - name: homer-config
     files:

@@ -19,6 +19,23 @@ spec:
     image:
       repository: b4bz/homer
       tag: 22.02.2
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`${DOMAIN}`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+    certificate:
+      create: true
+      dnsNames:
+        - ${DOMAIN}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
     env:
       - name: TZ
         value: ${TIMEZONE}

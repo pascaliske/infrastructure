@@ -12,14 +12,10 @@ Every homelab needs its own dashboard! I chose `homer` because it has a clean an
 | ----------------------------------- | -------------- |
 | [`Namespace`][ref-namespace]        | `homer`        |
 | [`HelmRelease`][ref-helm-release]   | `homer`        |
-| [`Certificate`][ref-certificate]    | `${DOMAIN}`    |
-| [`IngressRoute`][ref-ingress-route] | `dashboard`    |
 | [`ConfigMap`][ref-config-map]       | `homer-config` |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
 [ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/
-[ref-certificate]: https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.Certificate
-[ref-ingress-route]: https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-ingressroute
 [ref-config-map]: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/config-map-v1/
 
 ## Links
