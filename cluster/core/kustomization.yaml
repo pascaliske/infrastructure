@@ -6,4 +6,5 @@ resources:
   - cert-manager
   - kured
   - traefik
+  - traefik-errors
   - velero
