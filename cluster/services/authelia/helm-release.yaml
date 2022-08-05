@@ -85,12 +85,16 @@ spec:
               - ^\/$
           - policy: two_factor
             domain: vault.${DOMAIN}
+            subject:
+              - group:admins
             resources:
               - /admin
           - policy: two_factor
             domain:
               - ${DOMAIN}
               - '*.${DOMAIN}'
+            subject:
+              - group:admins
       session:
         inactivity: 10m
         redis:

@@ -67,9 +67,14 @@ spec:
             domain: docs.${DOMAIN_EXTERNAL}
             resources:
               - ^\/api
+          - policy: one_factor
+            domain: docs.${DOMAIN_EXTERNAL}
+            subject:
+              - user:${AUTH_SARAH_USERNAME}
           - policy: two_factor
-            domain:
-              - '*.${DOMAIN_EXTERNAL}'
+            domain: '*.${DOMAIN_EXTERNAL}'
+            subject:
+              - group:admins
       session:
         inactivity: 10m
         redis:
