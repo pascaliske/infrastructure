@@ -4,6 +4,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - helm-release.yaml
-  - certificate.yaml
-  - route.yaml
   - dashboard

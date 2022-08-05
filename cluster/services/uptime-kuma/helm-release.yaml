@@ -21,6 +21,23 @@ spec:
       tag: 1-alpine
     serviceMonitor:
       enabled: true
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`status.${DOMAIN}`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+    certificate:
+      create: true
+      dnsNames:
+        - status.${DOMAIN}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
     env:
       - name: TZ
         value: ${TIMEZONE}
