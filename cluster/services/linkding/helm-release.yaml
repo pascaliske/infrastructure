@@ -19,7 +19,23 @@ spec:
     image:
       repository: sissbruecker/linkding
       tag: 1.11.0
-
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`links.${DOMAIN_EXTERNAL}`)
+      middlewares:
+        - name: auth-external
+          namespace: traefik
+        - name: security
+          namespace: traefik
+    certificate:
+      create: true
+      dnsNames:
+        - links.${DOMAIN_EXTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
     env:
       - name: TZ
         value: ${TIMEZONE}
