@@ -9,5 +9,5 @@ resources:
   - certificate-external.yaml
   - route.yaml
   - route-external.yaml
-  - users.yaml
+  - config
   - middlewares

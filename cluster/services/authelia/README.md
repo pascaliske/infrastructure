@@ -45,7 +45,7 @@ Currently Authelia [does not support multi-domain usage](https://github.com/auth
 | [`HelmRelease`][ref-helm-release]   | `authelia`, `authelia-external`             |
 | [`Certificate`][ref-certificate]    | `auth.${DOMAIN}`, `auth.${DOMAIN_EXTERNAL}` |
 | [`IngressRoute`][ref-ingress-route] | `dashboard`, `dashboard-external`           |
-| [`ConfigMap`][ref-config-map]       | `users`                                     |
+| [`ConfigMap`][ref-config-map]       | `authelia-users`                            |
 | [`Middleware`][ref-middleware]      | `headers`                                   |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
