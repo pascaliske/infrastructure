@@ -18,6 +18,8 @@ spec:
       middlewares:
         - name: security
           namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
   tls:
     secretName: git.${DOMAIN_EXTERNAL}
 ---
@@ -40,5 +42,7 @@ spec:
       middlewares:
         - name: security
           namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
   tls:
     secretName: registry.${DOMAIN_EXTERNAL}
