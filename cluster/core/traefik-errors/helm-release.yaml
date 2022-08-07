@@ -29,7 +29,7 @@ spec:
           namespace: traefik
         - name: error-pages
           namespace: traefik-errors
-    middlewares:
+    middleware:
       create: true
       name: error-pages
       homeUrl: https://${DOMAIN}
