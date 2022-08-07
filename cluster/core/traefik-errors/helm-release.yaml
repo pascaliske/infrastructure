@@ -22,6 +22,7 @@ spec:
     ingressRoute:
       create: true
       entryPoints:
+        - http
         - https
       rule: HostRegexp(`{host:.+}`)
       middlewares:
