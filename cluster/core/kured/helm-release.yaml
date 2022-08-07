@@ -16,7 +16,20 @@ spec:
   install:
     createNamespace: true
   values:
+    image:
+      repository: weaveworks/kured
+      tag: 1.10.1
+    configuration: {}
     extraEnvVars:
       - name: TZ
         value: ${TIMEZONE}
+    metrics:
+      create: true
+    service:
+      create: true
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
   interval: 10m0s

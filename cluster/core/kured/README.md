@@ -2,7 +2,7 @@
 
 ## Introduction
 
-[Kured](https://github.com/weaveworks/kured) is a Kubernetes daemonset that performs safe automatic node reboots when the need to do so is indicated by the package management system of the underlying OS.
+[Kured](https://github.com/weaveworks/kured) is a Kubernetes `DaemonSet` that performs safe automatic node reboots when the need to do so is indicated by the package management system of the underlying OS.
 
 - Watches for the presence of a reboot sentinel file e.g. /var/run/reboot-required or the successful run of a sentinel command.
 - Utilizes a lock in the API server to ensure only one node reboots at a time
