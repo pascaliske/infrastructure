@@ -29,6 +29,8 @@ spec:
           namespace: traefik
         - name: security
           namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
     certificate:
       create: true
       dnsNames:
