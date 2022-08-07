@@ -29,6 +29,10 @@ spec:
           namespace: traefik
         - name: error-pages
           namespace: traefik-errors
+    middlewares:
+      create: true
+      name: error-pages
+      homeUrl: https://${DOMAIN}
     env:
       - name: TZ
         value: ${TIMEZONE}
