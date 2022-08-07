@@ -10,11 +10,11 @@ For a complete guide of how to setup this notifications [visit their documentati
 
 ## Created Resources
 
-| Kind                       | Name                                |
-| -------------------------- | ----------------------------------- |
-| [`Provider`][ref-provider] | `github`, `slack`                   |
-| [`Alert`][ref-alert]       | `github`, `infrastructure`          |
-| [`Secret`][ref-secret]     | `github-token`, `slack-webhook-url` |
+| Kind                       | Name                                                |
+| -------------------------- | --------------------------------------------------- |
+| [`Provider`][ref-provider] | `github`, `slack`, `grafana`                        |
+| [`Alert`][ref-alert]       | `github`, `infrastructure`, `grafana`               |
+| [`Secret`][ref-secret]     | `github-token`, `slack-webhook-url`, `grafana-auth` |
 
 [ref-provider]: https://fluxcd.io/docs/components/notification/provider/
 [ref-alert]: https://fluxcd.io/docs/components/notification/alert/
