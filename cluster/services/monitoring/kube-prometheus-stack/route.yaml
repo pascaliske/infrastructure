@@ -20,6 +20,8 @@ spec:
           namespace: traefik
         - name: security
           namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
   tls:
     secretName: prometheus.${DOMAIN}
 ---
@@ -44,6 +46,8 @@ spec:
           namespace: traefik
         - name: security
           namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
   tls:
     secretName: alerts.${DOMAIN}
 ---
@@ -68,5 +72,7 @@ spec:
           namespace: traefik
         - name: security
           namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
   tls:
     secretName: grafana.${DOMAIN}
