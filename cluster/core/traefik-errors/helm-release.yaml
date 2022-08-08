@@ -33,6 +33,9 @@ spec:
     middleware:
       create: true
       name: error-pages
+      statusCodes:
+        - '404'
+        - '410-599'
       homeUrl: https://${DOMAIN}
     env:
       - name: TZ
