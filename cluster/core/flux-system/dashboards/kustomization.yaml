@@ -9,9 +9,6 @@ configMapGenerator:
   - name: grafana-dashboard-flux-cluster
     files:
       - flux-cluster.json
-  - name: grafana-dashboard-flux-logs
-    files:
-      - flux-logs.json
 generatorOptions:
   disableNameSuffixHash: true
   labels:
