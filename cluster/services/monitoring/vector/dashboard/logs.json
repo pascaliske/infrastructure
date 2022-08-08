@@ -244,7 +244,7 @@
             "type": "loki",
             "uid": "loki"
           },
-          "expr": "{namespace=~\" $namespace \", pod=~\" $pod \"} |~ \"$search\"",
+          "expr": "{namespace=~\"$namespace\", pod=~\"$pod\"} |~ \"$search\"",
           "refId": "A"
         }
       ],
@@ -342,6 +342,6 @@
   "timezone": "",
   "title": "Logs",
   "uid": "logs",
-  "version": 4,
+  "version": 3,
   "weekStart": ""
 }
