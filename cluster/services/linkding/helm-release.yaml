@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: sissbruecker/linkding
-      tag: 1.13.0
+      tag: 1.14.0
     ingressRoute:
       create: true
       entryPoints:
@@ -41,6 +41,12 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
+      - name: LD_ENABLE_AUTH_PROXY
+        value: 'true'
+      - name: LD_AUTH_PROXY_USERNAME_HEADER
+        value: HTTP_REMOTE_USER
+      - name: LD_AUTH_PROXY_LOGOUT_URL
+        value: https://auth.${DOMAIN_EXTERNAL}
     persistentVolumeClaim:
       storageClassName: local-path
     affinity:
