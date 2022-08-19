@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: b4bz/homer
-      tag: 22.02.2
+      tag: v22.07.2
     ingressRoute:
       create: true
       entryPoints:
@@ -41,10 +41,6 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
-      - name: UID
-        value: ${UID}
-      - name: GID
-        value: ${GID}
   valuesFrom:
     - kind: ConfigMap
       name: homer-config
