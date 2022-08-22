@@ -198,6 +198,7 @@ spec:
           reporting_enabled: false
           check_for_updates: true
       sidecar:
+        logLevel: WARN
         dashboards:
           enabled: true
           searchNamespace: ALL
