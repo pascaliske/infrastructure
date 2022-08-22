@@ -31,16 +31,41 @@ spec:
     securityContext:
       privileged: true
 
+    initContainers:
+      init-config:
+        image: ghcr.io/pascaliske/home-assistant:master
+        env:
+          - name: GIT_SYNC_ONE_TIME
+            value: 'true'
+        volumeMounts:
+          - name: config
+            mountPath: /config
+          - name: config-sync
+            mountPath: /config-sync
+    additionalContainers:
+      sync-config:
+        image: ghcr.io/pascaliske/home-assistant:master
+        volumeMounts:
+          - name: config
+            mountPath: /config
+          - name: config-sync
+            mountPath: /config-sync
+
     persistence:
       config:
         enabled: true
         type: hostPath
         hostPath: ${PATH_HOME}/home-assistant
         mountPath: /config
+      config-sync:
+        enabled: true
+        type: emptyDir
+        mountPath: /config-sync
       secrets:
         enabled: true
         type: secret
-        mountPath: /config
+        mountPath: /config/secrets.yaml
+        subPath: secrets.yaml
         name: secrets
       usb:
         enabled: true
