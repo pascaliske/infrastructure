@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: home-assistant
 resources:
   - namespace.yaml
+  - registry-auth.sops.yaml
   - monitoring-auth.sops.yaml
   - helm-release.yaml
   - certificate.yaml

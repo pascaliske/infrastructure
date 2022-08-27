@@ -20,6 +20,9 @@ spec:
       repository: homeassistant/home-assistant
       tag: '2022.8'
 
+    imagePullSecrets:
+      - name: github-registry
+
     env:
       - name: TZ
         value: ${TIMEZONE}

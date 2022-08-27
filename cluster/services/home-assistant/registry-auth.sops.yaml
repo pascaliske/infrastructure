@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: github-registry
+    namespace: home-assistant
+type: kubernetes.io/dockerconfigjson
+data:
+    .dockerconfigjson: ENC[AES256_GCM,data:BMOECV75vM0pPHVZhGH+kTg6kqTewxZrTlKUAkOi5X3vqzmDmM2y7Q/Uw+Plrwn8cyGJFaS9eYElZzDbHUKZxf81HWCYysukThobEwZlEd86xQiXbIkAB62t0hyVVGlFQNRLxzPnwXWff1XzBjxjo6xQz9iy+BhbRLnerSlGSTPhjJDTnoWnyQIABDfzjixk1X6QW1HD4zVkDtmSlHGBszCW7ueoFVXziU4aNZmPHWgWbP7RGq9jnhHejoPYmEpzLvoJ/eq2LJnE07cfy8fSNtp5gNh9xY7NcEEfY7Qzn30yQTM4i5Ix0h06s7eytKuZghsWCYpkuwR/LSy5gt9kAfVcxuFfaV6thvNvjCyJQs7WojDx36iuxQ==,iv:pg4Y9PZJuPVWJl4LhMU7men8GPfQ4sYeBssQtdaDVPw=,tag:cWFqG6YlP4qnFgplIOvGew==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1UXFxa1d2VEZkQ3lFRisz
+            aHRSM25ISFVvTVlGY1JnZHAxVVFJdWQ1SUJnClh6a0tJdXVKaFc5VTltbGxYNlNi
+            OG9wT3BsRWJNVEhzSllzRmdHYlVLSlEKLS0tIHQ3azdzTmZUR2dzMjJLZG5yS0p5
+            S3J3VGYzRitpWUI3RnQ3VklhQTEwVFkKWB7BfRL3Fw/tAYOcmpd5SOHv55DN4AGw
+            jbfPLG2WR64Qyhj3Qv3BkyhGJYWU1q4Gsdr4psj5CV13rX1Fyi6v9g==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-08-27T09:01:56Z"
+    mac: ENC[AES256_GCM,data:BthyShP29wkJySez1BnuovuM4UOh0brX50NOroEI0I74ysIQDR1Q+/A1+xBZFoJqkIh+1FflaVic06/Qgl0G3KXXDl80wI8WI1SxduJT+LFgeNbISiiQ5/U8veAeNw0KOwoiWvPOROQejPlEXHoSB+OGA+Xgjx5LW+rET+5Qz28=,iv:F64cppcDD3BLKmV0GPL/S5evKQ/b3kPGjCdwnaJgybU=,tag:3qArDxxvFlpRGPJnWeglyQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
