@@ -41,6 +41,10 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
+    securityContext:
+      runAsNonRoot: true
+      runAsGroup: ${GID}
+      runAsUser: ${UID}
   valuesFrom:
     - kind: ConfigMap
       name: homer-config
