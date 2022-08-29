@@ -16,6 +16,9 @@ spec:
   install:
     createNamespace: true
   values:
+    image:
+      repository: ghcr.io/miguelndecarvalho/speedtest-exporter
+      tag: v3.5.2
     env:
       - name: TZ
         value: ${TIMEZONE}
