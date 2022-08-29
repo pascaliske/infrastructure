@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
-  "id": 9,
+  "id": 13,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -51,7 +51,7 @@
           "refId": "A"
         }
       ],
-      "title": "General",
+      "title": "Connection",
       "type": "row"
     },
     {
@@ -326,7 +326,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -368,7 +368,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "asc"
         }
       },
       "pluginVersion": "8.0.3",
@@ -549,7 +549,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
