@@ -38,7 +38,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -844,8 +844,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1009,7 +1008,7 @@
   },
   "timezone": "",
   "title": "Flux Cluster Stats",
-  "uid": "flux-cluster",
-  "version": 3,
+  "uid": "flux-cluster-stats",
+  "version": 5,
   "weekStart": ""
 }
