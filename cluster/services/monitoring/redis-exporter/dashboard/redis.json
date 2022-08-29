@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -76,7 +76,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
           "datasource": {
@@ -142,7 +142,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
           "datasource": {
@@ -208,16 +208,16 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "value"
       },
-      "pluginVersion": "9.0.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "redis_blocked_clients",
+          "expr": "avg(redis_blocked_clients) by (job)",
           "refId": "A"
         }
       ],
@@ -271,7 +271,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
           "datasource": {
