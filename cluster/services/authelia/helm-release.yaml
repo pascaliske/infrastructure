@@ -64,6 +64,10 @@ spec:
               - unifi.${DOMAIN}
               - vault.${DOMAIN}
           - policy: bypass
+            domain: blocky.${DOMAIN}
+            resources:
+              - /dns-query
+          - policy: bypass
             domain: loki.${DOMAIN}
             resources:
               - /ready
