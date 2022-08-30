@@ -6,22 +6,32 @@
 
 For clients to resolve domains using Blocky. Their DNS server setting needs to be set to the IP of one of the cluster nodes. This can be done via DHCP or manually. Alternatively the routers upstream DNS servers can be set to one nodes IP address.
 
-??? example "Example DNS query"
+??? example "Example DNS queries"
 
     ```shell
+    # regular dns using dig
     $ dig @<node-ip> pascaliske.dev
+
+    # dns-over-https using dog cli (1)
+    $ dog @https://blocky.<domain>/dns-query pascaliske.dev
     ```
+
+    1. Check ouf the `dog` cli tool [here](https://github.com/ogham/dog).
 
 ## Created Resources
 
-| Kind                              | Name                                     |
-| --------------------------------- | ---------------------------------------- |
-| [`Namespace`][ref-namespace]      | `blocky`                                 |
-| [`HelmRelease`][ref-helm-release] | `blocky`                                 |
-| [`ConfigMap`][ref-config-map]     | `blocky-config`, `grafana-dashboard-dns` |
+| Kind                                | Name                                     |
+| ----------------------------------- | ---------------------------------------- |
+| [`Namespace`][ref-namespace]        | `blocky`                                 |
+| [`HelmRelease`][ref-helm-release]   | `blocky`                                 |
+| [`Certificate`][ref-certificate]    | `blocky.${DOMAIN}`                       |
+| [`IngressRoute`][ref-ingress-route] | `api`                                    |
+| [`ConfigMap`][ref-config-map]       | `blocky-config`, `grafana-dashboard-dns` |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
 [ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/
+[ref-certificate]: https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.Certificate
+[ref-ingress-route]: https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-ingressroute
 [ref-config-map]: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/config-map-v1/
 
 ## CLI

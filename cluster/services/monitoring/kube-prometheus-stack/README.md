@@ -21,10 +21,10 @@ The Prometheus Operator looks for `ServiceMonitor` and `PodMonitor` objects in a
           interval: 30s
       selector:
         matchLabels:
-          app.kubernetes.io/name: cloudflared # (1)
+          app.kubernetes.io/name: cloudflared # references the target object (1)
     ```
 
-    1. Selector to select the `Service` object to monitor
+    1. Selector label which references the target `Service` object to monitor.
 
 === "Example of kind `PodMonitor`"
 
@@ -39,10 +39,10 @@ The Prometheus Operator looks for `ServiceMonitor` and `PodMonitor` objects in a
         - port: http
       selector:
         matchLabels:
-          app.kubernetes.io/name: cloudflared # (1)
+          app.kubernetes.io/name: cloudflared # references the target object (1)
     ```
 
-    1. Selector to select the `Pod` object to monitor
+    1. Selector label which references the target `Pod` object to monitor.
 
 ## Created Resources
 

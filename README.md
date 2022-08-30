@@ -16,28 +16,28 @@ The cluster can be set up using the following commands:
 
 ```zsh
 # clone the repo to your local machine
-git clone https://github.com/pascaliske/infrastructure
+$ git clone https://github.com/pascaliske/infrastructure
 
 # install needed dependencies
-yarn install
+$ yarn install
 
-# provision nodes using ansible
-yarn run play playbooks/provision.yml # (1)
+# provision nodes using ansible (1)
+$ yarn run play playbooks/provision.yml
 
 # bootstrap flux cluster
-flux bootstrap github \
-    --owner=$GITHUB_USER \ # (2)
-    --repository=$GITHUB_REPO \ # (3)
+$ flux bootstrap github \
+    --owner=$GITHUB_USER \ # required flag (2)
+    --repository=$GITHUB_REPO \ # required flag (3)
     --branch=master \
     --path=./cluster/base \
-    --components-extra=image-reflector-controller,image-automation-controller \ # (4)
+    --components-extra=image-reflector-controller,image-automation-controller \ # optional flag (4)
     --personal
 ```
 
-1. More information on this command can be found in the [provisioning section](/provisioning/#provisionyml).
+1. More information on the following command can be found in the [provisioning section](/provisioning/#provisionyml).
 2. Ensure you either fill in your GitHub username of you make it available as environment variable.
 3. Name of the repository to hold the declarative cluster state. If it does not exists yet, it will automatically be created by Flux.
-4. You can enable the optional [image updating capabilities](https://fluxcd.io/docs/guides/image-update/) of Flux using this line.
+4. Optionally you can enable the [image updating capabilities](https://fluxcd.io/docs/guides/image-update/) of Flux using this flag.
 
 ## Updates
 
@@ -46,7 +46,8 @@ Flux is configured to take care of automatic updates of all images.
 The underlying cluster nodes can be updated using the following Ansible playbook:
 
 ```zsh
-yarn run play playbooks/update.yml # (1)
+# update nodes using ansible (1)
+$ yarn run play playbooks/update.yml
 ```
 
 1. More information on this command can be found in the [provisioning section](/provisioning/#updateyml).
