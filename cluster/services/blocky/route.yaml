@@ -1,0 +1,26 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: api
+  namespace: blocky
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`blocky.${DOMAIN}`)
+      services:
+        - kind: Service
+          name: blocky
+          namespace: blocky
+          port: 4000
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+  tls:
+    secretName: blocky.${DOMAIN}
