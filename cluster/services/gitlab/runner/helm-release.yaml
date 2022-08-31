@@ -31,9 +31,16 @@ spec:
       create: true
       imagePullSecrets:
         - gitlab-registry-auth
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    service:
+      enabled: true
     runners:
       name: BB-8
       executor: kubernetes
+      tags: kubernetes,internal
       secret: gitlab-runner-tokens
       config: |
         [[runners]]
@@ -55,6 +62,7 @@ spec:
                     ]
             [runners.kubernetes.node_tolerations]
               "k8s.pascaliske.dev/location=public" = "NoSchedule"
+      runUntagged: true
     resources: {}
       # limits:
       #   memory: 256Mi
