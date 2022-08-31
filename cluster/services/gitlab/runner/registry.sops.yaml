@@ -5,7 +5,7 @@ metadata:
     namespace: gitlab
 type: kubernetes.io/dockerconfigjson
 data:
-    .dockerconfigjson: ENC[AES256_GCM,data:j24AefputA9phzbTtsLs8AdTRienHFND54hvqANAkCrnq1xvIFRCnkO99lKlQ3mCk69wRL84YWnpuKmZn2tHU5L8IB+Ywj66PfAmX11t+l8ClQpeGeUbDst0Mx0N7KTMyN4aoJ53axeWhwp3k2xlfOwAvCb7zRLJvsFvnzVwrHXxrWav2J99LydE4LLCwM8+zi8kkKvpa1GnJ2Sg+cSLHcwxGOVX6hdIfBNhtV1CWtDZ6zDMOiykTUl6ueDR5Hjmc8hz/5/gIEkSv8kogxtX4kZkLfNx+ewZIhcW5zm7IDEpXibeCHd9fYq9SLuZm+kQNxTuLQ==,iv:7P1GiKnGjHkkRUvZ9u24y2iYa2dFKMt1nyrqqUbxWDI=,tag:R3SEWDmpqEwgqik9KxYY5g==,type:str]
+    .dockerconfigjson: ENC[AES256_GCM,data:yFXDEzIyB1GgYrzNayUotzzDJD1VTRv+HCRyVobfc6791uR5Rjos5/4XSEDWfZZ7pAfw2YfaIDtmE6Rn1Sd4uANe04dlHWVwBg7yszTVuhzPwBdEtYVi1Yt/vaK1qo+/TAv3QQz4cc0F8SN4AiIm8kxos1E37xqwqYgG6pkKUZIDl75xOn++p2xahJRnOthvO/cXDnNb4HU1phRb6xuwHAm3zM3nXY+HvbWw8564f0WCamCyPRvMHyqmlj6Pnp+3wdDGKz6H6kjqHrqVmQ+DjKmi1wbdaroHEIM9jVy7OOKevB0c42SGG1YKYd2+nMiIY7jT31EBA5RoGV5jUcPDgR+lrgs=,iv:I5SazPXSSPIm83L5ezpeHO/12xY4I1crthna8ZCoEFE=,tag:5ThVwwpuhPbPdvDud2mcRw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -15,14 +15,14 @@ sops:
         - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBRTG1zZE5QNThvb0VMeUFR
-            S3prWHFjQzJDRExMZk1aZTlCTTQxc3B2VXdNCjZpOXBGVHV3Q3kvU0huMW80Um5v
-            VVFZRWYrMHllMmZhZElCcXRwVmlEN00KLS0tIDBmUDkrQ0E4SW1sUFZkNlk1VXhx
-            TU1OYVFsZS9sWFZ4R2hnZVk5bC84SUUKSxji8J848aCpMPnfCRgpuz4pbFbhO5oQ
-            2rZ7yCPResWm+8HyYJoHOUkAYEWBVWlyP737EpH/1EMaBUQU5QAR0Q==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkMlZFeFludkhyQ1dFeXBQ
+            YWhiQThBbSthTkpGbURQcUxndld2ZC9ielc0Ck1sakU1U0gveEhYUVp2OWR1ajAx
+            MEYzanNycGlZbkR5c2xmR01xZFhQZlUKLS0tIHpLOHk1TDMyZU11QnNsYm1VN1Bh
+            UWtraUhzZjVISUthSm1sNnN4Rm1UZTgKSeB8wk0+EKbMD4cPb4eNibszOHvlyXXI
+            L9MI+CdzM1Q+VbaWT8+Kw1uPp9L6dRVbV66JtjNFGxND+ia+s+67Ww==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-06-13T21:55:11Z"
-    mac: ENC[AES256_GCM,data:hFPNohoRPYAYjHW8uq+kxkBRvG4gxf2Ny/thTFg6ask1L4yNa6ewKEiZ/1WlaAGe0Lt26rwlBF8q5Jay+itRiMV3trHz9MBgkcInmxMvUnACEC+XWBk+eemIpi+MnIBVsVdjF0bS2Y7rcpJhgnUQZhDnjnigKM02YREYPq1Fics=,iv:gHq27hlo2ZbeVm3jPXb9/e8C4mZM+CpkoeCAed7B19U=,tag:zFbmpUmrHgd9kdzQF1uxTA==,type:str]
+    lastmodified: "2022-08-31T08:48:04Z"
+    mac: ENC[AES256_GCM,data:Ng5koloGH8kJgxmD0sYPzzbtm4bx0BsTWPkzKOFjtjxA/WddlSvTrm9mOHZQGXCxePfoW30+EA3lV8+7gIdwpNolO03C6AmblrRpAtP9n55XzIAdgHiUnYGwKYJDygwxjWT5fHINAXFWuPpR7Pa8zDusVY+YEFh3lO2lkbmNLGw=,iv:0V3M9andXWPf8PGFBFhZvRWd6rJOJgJCUg6ne3Pygwc=,tag:2xsS8djM48gBefgfKl/YcA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
