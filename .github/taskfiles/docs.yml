@@ -1,0 +1,16 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - task: default-pages
+
+  # prepare default documentation pages
+  default-pages:
+    cmds:
+      - cat README.md >> docs/index.md
+      - echo "---" > docs/LICENSE.md
+      - echo "hide:" >> docs/LICENSE.md
+      - echo "  - navigation" >> docs/LICENSE.md
+      - echo "---" >> docs/LICENSE.md
+      - cat LICENSE.md >> docs/LICENSE.md

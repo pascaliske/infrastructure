@@ -13,20 +13,12 @@ jobs:
       # checkout
       - uses: actions/checkout@v3
 
+      # setup taskfile
+      - uses: arduino/setup-task@v1
+
       # create pages for docs
       - name: Create pages for docs
-        run: |
-          cat README.md > docs/index.md
-
-          echo "---" > docs/LICENSE.md
-          echo "hide:" >> docs/LICENSE.md
-          echo "  - navigation" >> docs/LICENSE.md
-          echo "---" >> docs/LICENSE.md
-          cat LICENSE.md >> docs/LICENSE.md
-
-          for file in cluster/**/README.md; do mkdir -p docs/$(dirname $file) && cp $file docs/$(dirname $file)/index.md; done
-          for file in cluster/**/**/README.md; do mkdir -p docs/$(dirname $file) && cp $file docs/$(dirname $file)/index.md; done
-          for file in cluster/**/**/**/README.md; do mkdir -p docs/$(dirname $file) && cp $file docs/$(dirname $file)/index.md; done
+        run: task docs
 
       # deploy docs
       - uses: mhausenblas/mkdocs-deploy-gh-pages@1.25
