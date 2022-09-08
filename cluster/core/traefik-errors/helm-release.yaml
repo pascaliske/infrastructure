@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/pascaliske/traefik-errors
-      tag: 1.0.3
+      tag: 1.0.4
     ingressRoute:
       create: true
       entryPoints:
