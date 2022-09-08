@@ -16,69 +16,29 @@ spec:
   install:
     createNamespace: true
   values:
-    image:
-      repository: grafana/loki
-      tag: latest
-
-    env:
-      - name: TZ
-        value: ${TIMEZONE}
-
-    config:
+    loki:
+      image:
+        repository: grafana/loki
+        tag: latest
       auth_enabled: false
-      server:
-        http_listen_port: 3100
-        grpc_listen_port: 9096
-
-    extraArgs:
-      config.expand-env: true
-      log.level: warn
-
-    persistence:
-      enabled: true
-      storageClassName: local-path
-
-    serviceMonitor:
-      enabled: true
-      prometheusRule:
-        enabled: true
-        rules:
-          - alert: LokiProcessTooManyRestarts
-            expr: changes(process_start_time_seconds{job=~"loki"}[15m]) > 2
-            for: 0m
-            labels:
-              severity: warning
-            annotations:
-              summary: Loki process too many restarts (instance {{ $labels.instance }})
-              description: "A loki process had too many restarts (target {{ $labels.instance }})\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-          - alert: LokiRequestErrors
-            expr: 100 * sum(rate(loki_request_duration_seconds_count{status_code=~"5.."}[1m])) by (namespace, job, route) / sum(rate(loki_request_duration_seconds_count[1m])) by (namespace, job, route) > 10
-            for: 15m
-            labels:
-              severity: critical
-            annotations:
-              summary: Loki request errors (instance {{ $labels.instance }})
-              description: "The {{ $labels.job }} and {{ $labels.route }} are experiencing errors\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-          - alert: LokiRequestPanic
-            expr: sum(increase(loki_panic_total[10m])) by (namespace, job) > 0
-            for: 5m
-            labels:
-              severity: critical
-            annotations:
-              summary: Loki request panic (instance {{ $labels.instance }})
-              description: "The {{ $labels.job }} is experiencing {{ printf \"%.2f\" $value }}% increase of panics\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-          - alert: LokiRequestLatency
-            expr: (histogram_quantile(0.99, sum(rate(loki_request_duration_seconds_bucket{route!~"(?i).*tail.*"}[5m])) by (le)))  > 1
-            for: 5m
-            labels:
-              severity: critical
-            annotations:
-              summary: Loki request latency (instance {{ $labels.instance }})
-              description: "The {{ $labels.job }} {{ $labels.route }} is experiencing {{ printf \"%.2f\" $value }}s 99th percentile latency\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-    rbac:
-      create: false
-
-    serviceAccount:
-      create: false
+      commonConfig:
+        replication_factor: 1
+      storage:
+        type: filesystem
+    monitoring:
+      selfMonitoring:
+        enabled: false
+        grafanaAgent:
+          installOperator: false
+    singleBinary:
+      extraArgs:
+        - config.expand-env=true
+        - log.level=warn
+      extraEnv:
+        - name: TZ
+          value: ${TIMEZONE}
+      persistence:
+        storageClass: local-path
+    gateway:
+      enabled: false
   interval: 10m0s
