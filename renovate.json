@@ -3,6 +3,46 @@
   "extends": ["config:base", ":preserveSemverRanges"],
   "assigneesFromCodeOwners": true,
   "labels": ["dependencies"],
+  "flux": {
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
+  },
+  "helm-values": {
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
+  },
+  "kubernetes": {
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
+  },
+  "regexManagers": [
+    {
+      "description": "Process CRD dependencies",
+      "fileMatch": ["cluster/.+\\.ya?ml$"],
+      "matchStrings": [
+        // GitRepository where 'Git release/tag' matches 'Helm' version
+        "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
+        // Kustomization where 'GitHub release artifact URL' matches 'Docker image' version
+        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)\/(?<currentValue>[^/]+)\/[^/]+\n"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}"
+    },
+    {
+      "description": "Process various dependencies",
+      "fileMatch": ["ansible/.+\\.ya?ml$", "cluster/.+\\.ya?ml$"],
+      "matchStrings": [
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    },
+    {
+      "description": "Process raw GitHub URLs",
+      "fileMatch": ["cluster/.+\\.ya?ml$"],
+      "matchStrings": [
+        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
+      ],
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
+    }
+  ],
   "packageRules": [
     {
       "matchPackagePatterns": ["commitlint"],
