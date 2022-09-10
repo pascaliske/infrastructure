@@ -17,7 +17,7 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: homeassistant/home-assistant
+      repository: ghcr.io/home-assistant/home-assistant
       tag: '2022.9'
 
     imagePullSecrets:
