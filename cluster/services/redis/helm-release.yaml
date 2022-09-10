@@ -18,5 +18,5 @@ spec:
   values:
     image:
       repository: redis
-      tag: alpine
+      tag: 7.0.4-alpine
   interval: 10m0s
