@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: oliver006/redis_exporter
-      tag: latest
+      tag: v1.44.0
     env:
       - name: TZ
         value: ${TIMEZONE}

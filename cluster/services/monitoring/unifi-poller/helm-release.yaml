@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: golift/unifi-poller
-      tag: latest
+      tag: '2.1.3'
 
     env:
       - name: TZ

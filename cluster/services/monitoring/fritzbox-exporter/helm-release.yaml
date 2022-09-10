@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: sealife/fritzbox-exporter
-      tag: latest
+      tag: '1.0'
     env:
       - name: TZ
         value: ${TIMEZONE}
