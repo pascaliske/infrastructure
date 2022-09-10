@@ -46,7 +46,7 @@ spec:
       - name: LD_AUTH_PROXY_USERNAME_HEADER
         value: HTTP_REMOTE_USER
       - name: LD_AUTH_PROXY_LOGOUT_URL
-        value: https://auth.${DOMAIN_EXTERNAL}
+        value: https://auth.${DOMAIN_EXTERNAL}/logout?rd=https://links.${DOMAIN_EXTERNAL}
     persistentVolumeClaim:
       storageClassName: local-path
     affinity:
