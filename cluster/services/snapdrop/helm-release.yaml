@@ -17,7 +17,7 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: linuxserver/snapdrop
+      repository: ghcr.io/linuxserver/snapdrop
       tag: latest
     ingressRoute:
       create: true
