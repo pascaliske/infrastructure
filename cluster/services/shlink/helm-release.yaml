@@ -17,7 +17,7 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: shlinkio/shlink
+      repository: ghcr.io/shlinkio/shlink
       tag: latest
     env:
       - name: TZ
