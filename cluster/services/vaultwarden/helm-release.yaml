@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: vaultwarden/server
-      tag: alpine
+      tag: 1.25.2-alpine
     env:
       - name: TZ
         value: ${TIMEZONE}
