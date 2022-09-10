@@ -18,7 +18,7 @@ spec:
   values:
     image:
       name: traefik
-      tag: '2.6'
+      tag: 'v2.8.4'
     ingressRoute:
       dashboard:
         enabled: false
