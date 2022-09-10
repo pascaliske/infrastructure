@@ -55,6 +55,8 @@ spec:
         value: ${PAPERLESS_ADMIN_PASSWORD}
       - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
         value: 'true'
+      - name: PAPERLESS_LOGOUT_REDIRECT_URL
+        value: https://auth.${DOMAIN_EXTERNAL}/logout?rd=https://docs.${DOMAIN_EXTERNAL}
       - name: PAPERLESS_REDIS
         value: redis://redis.redis.svc.cluster.local:6379
       - name: PAPERLESS_ALLOWED_HOSTS
