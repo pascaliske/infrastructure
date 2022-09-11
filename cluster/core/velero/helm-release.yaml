@@ -42,6 +42,7 @@ spec:
       extraEnvVars:
         TZ: ${TIMEZONE}
       logLevel: warning
+      defaultVolumesToRestic: true
     credentials:
       secretContents:
         cloud: |
