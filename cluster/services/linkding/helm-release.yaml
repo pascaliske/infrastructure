@@ -43,6 +43,10 @@ spec:
         value: ${TIMEZONE}
       - name: LD_ENABLE_AUTH_PROXY
         value: 'True'
+      - name: LD_SUPERUSER_NAME
+        value: ${LINKDING_ADMIN_USER}
+      - name: LD_SUPERUSER_PASSWORD
+        value: ${LINKDING_ADMIN_PASSWORD}
       - name: LD_AUTH_PROXY_USERNAME_HEADER
         value: HTTP_REMOTE_USER
       - name: LD_AUTH_PROXY_LOGOUT_URL
