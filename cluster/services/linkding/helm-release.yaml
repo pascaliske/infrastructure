@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: sissbruecker/linkding
-      tag: 1.14.0
+      tag: 1.15.0
     ingressRoute:
       create: true
       entryPoints:
