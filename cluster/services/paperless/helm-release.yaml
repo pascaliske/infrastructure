@@ -78,6 +78,14 @@ spec:
     export:
       enabled: true
       hostPath: ${PATH_HOME}/paperless/export
+      cronJob:
+        enabled: true
+        schedule: '0 4 * * 1'
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
+    trash:
+      enabled: true
+      hostPath: ${PATH_HOME}/paperless/trash
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
