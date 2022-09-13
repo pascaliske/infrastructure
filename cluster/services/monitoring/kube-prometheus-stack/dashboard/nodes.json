@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 7,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -83,7 +83,7 @@
             "text": {},
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.0.5",
+          "pluginVersion": "9.1.2",
           "targets": [
             {
               "datasource": {
@@ -150,7 +150,7 @@
             "h": 10,
             "w": 8,
             "x": 0,
-            "y": 8
+            "y": 2
           },
           "id": 16,
           "options": {
@@ -168,7 +168,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "9.0.5",
+          "pluginVersion": "9.1.2",
           "targets": [
             {
               "datasource": {
@@ -221,7 +221,7 @@
             "h": 10,
             "w": 8,
             "x": 8,
-            "y": 8
+            "y": 2
           },
           "id": 18,
           "options": {
@@ -239,7 +239,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "9.0.5",
+          "pluginVersion": "9.1.2",
           "targets": [
             {
               "datasource": {
@@ -292,7 +292,7 @@
             "h": 10,
             "w": 8,
             "x": 16,
-            "y": 8
+            "y": 2
           },
           "id": 20,
           "options": {
@@ -310,7 +310,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "9.0.5",
+          "pluginVersion": "9.1.2",
           "targets": [
             {
               "datasource": {
@@ -358,6 +358,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -423,8 +425,9 @@
             "max",
             "min"
           ],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -477,6 +480,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -541,8 +546,9 @@
             "max",
             "min"
           ],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -594,6 +600,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -655,8 +663,9 @@
             "max",
             "min"
           ],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -709,6 +718,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -746,11 +757,11 @@
               },
               {
                 "color": "orange",
-                "value": 65
+                "value": 75
               },
               {
                 "color": "red",
-                "value": 70
+                "value": 80
               }
             ]
           },
@@ -773,8 +784,9 @@
             "max",
             "min"
           ],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -828,6 +840,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -899,8 +913,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -953,6 +968,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1008,8 +1025,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -1062,6 +1080,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1120,8 +1140,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -1174,6 +1195,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1229,8 +1252,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -1272,7 +1296,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1354,7 +1378,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -1389,6 +1413,6 @@
   "timezone": "",
   "title": "Nodes",
   "uid": "nodes",
-  "version": 6,
+  "version": 2,
   "weekStart": ""
 }
