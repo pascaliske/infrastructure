@@ -24,6 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 17,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -38,6 +39,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -93,8 +96,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -110,14 +114,14 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (pod) (irate(container_cpu_usage_seconds_total{pod=~\"$pod\"}[5m])) * 100",
+          "expr": "avg by (pod) (irate(container_cpu_usage_seconds_total{pod=~\"$pod\",node=~\"$node\"}[5m])) * 100",
           "interval": "",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "CPU Usage",
+      "title": "CPU Usage ($node)",
       "transparent": true,
       "type": "timeseries"
     },
@@ -132,6 +136,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -187,8 +193,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -204,14 +211,14 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (pod) (container_memory_usage_bytes{pod=~\"$pod\"})",
+          "expr": "avg by (pod) (container_memory_usage_bytes{pod=~\"$pod\",node=~\"$node\"})",
           "interval": "",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Memory Usage",
+      "title": "Memory Usage ($node)",
       "transparent": true,
       "type": "timeseries"
     },
@@ -226,6 +233,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -277,8 +286,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -293,14 +303,14 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (pod) (rate(container_fs_reads_bytes_total{pod=~\"$pod\"}[$__rate_interval]))",
+          "expr": "sum by (pod) (rate(container_fs_reads_bytes_total{pod=~\"$pod\",node=~\"$node\"}[$__rate_interval]))",
           "interval": "",
           "legendFormat": "{{ pod }}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Disk Reads",
+      "title": "Disk Reads ($node)",
       "transparent": true,
       "type": "timeseries"
     },
@@ -406,7 +416,7 @@
           }
         ]
       },
-      "pluginVersion": "9.0.5",
+      "pluginVersion": "9.1.4",
       "targets": [
         {
           "datasource": {
@@ -415,14 +425,14 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "time() - min by (pod, namespace, instance) (container_start_time_seconds{pod!=\"\"})",
+          "expr": "time() - min by (pod, namespace, instance) (container_start_time_seconds{pod!=\"\",node=~\"$node\"})",
           "instant": true,
           "interval": "",
           "legendFormat": "__auto",
           "refId": "A"
         }
       ],
-      "title": "Ages",
+      "title": "Ages ($node)",
       "transformations": [
         {
           "id": "reduce",
@@ -475,6 +485,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -526,8 +538,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -542,53 +555,46 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (pod) (rate(container_fs_writes_bytes_total{pod=~\"$pod\"}[$__rate_interval]))",
+          "expr": "sum by (pod) (rate(container_fs_writes_bytes_total{pod=~\"$pod\",node=~\"$node\"}[$__rate_interval]))",
           "interval": "",
           "legendFormat": "{{ pod }}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Disk Writes",
+      "title": "Disk Writes ($node)",
       "transparent": true,
       "type": "timeseries"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "prometheus"
-        },
-        "definition": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
+        "definition": "label_values(kube_node_info, node)",
         "hide": 0,
         "includeAll": true,
-        "label": "Pod",
+        "label": "Node",
         "multi": false,
-        "name": "pod",
+        "name": "node",
         "options": [],
         "query": {
-          "query": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
+          "query": "label_values(kube_node_info, node)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
@@ -619,6 +625,36 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Pod",
+        "multi": false,
+        "name": "pod",
+        "options": [],
+        "query": {
+          "query": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
@@ -630,6 +666,6 @@
   "timezone": "",
   "title": "Pods",
   "uid": "pods",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
