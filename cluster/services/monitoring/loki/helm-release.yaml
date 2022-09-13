@@ -32,8 +32,8 @@ spec:
           installOperator: false
     singleBinary:
       extraArgs:
-        - config.expand-env=true
-        - log.level=warn
+        - -config.expand-env=true
+        - -log.level=warn
       extraEnv:
         - name: TZ
           value: ${TIMEZONE}
