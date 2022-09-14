@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 17,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -575,9 +575,13 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
         },
         "definition": "label_values(kube_node_info, node)",
         "hide": 0,
@@ -590,7 +594,7 @@
           "query": "label_values(kube_node_info, node)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -599,8 +603,8 @@
       {
         "current": {
           "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "text": "blocky",
+          "value": "blocky"
         },
         "datasource": {
           "type": "prometheus",
@@ -617,7 +621,7 @@
           "query": "label_values(container_start_time_seconds, namespace)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -647,7 +651,7 @@
           "query": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -659,13 +663,13 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Pods",
   "uid": "pods",
-  "version": 3,
+  "version": 5,
   "weekStart": ""
 }
