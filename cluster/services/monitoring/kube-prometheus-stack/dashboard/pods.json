@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -603,8 +603,8 @@
       {
         "current": {
           "selected": false,
-          "text": "blocky",
-          "value": "blocky"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
@@ -670,6 +670,6 @@
   "timezone": "",
   "title": "Pods",
   "uid": "pods",
-  "version": 5,
+  "version": 3,
   "weekStart": ""
 }
