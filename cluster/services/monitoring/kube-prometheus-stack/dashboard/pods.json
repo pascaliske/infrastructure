@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 11,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -425,7 +425,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "time() - min by (pod, namespace, instance) (container_start_time_seconds{pod!=\"\",node=~\"$node\"})",
+          "expr": "time() - min by (pod, namespace, instance) (container_start_time_seconds{pod!=\"\",node=~\"$node\",namespace=~\"$namespace\"})",
           "instant": true,
           "interval": "",
           "legendFormat": "__auto",
@@ -610,7 +610,7 @@
           "type": "prometheus",
           "uid": "prometheus"
         },
-        "definition": "label_values(container_start_time_seconds, namespace)",
+        "definition": "label_values(container_start_time_seconds{node=~\"[[node]]\"}, namespace)",
         "hide": 0,
         "includeAll": true,
         "label": "Namespace",
@@ -618,7 +618,7 @@
         "name": "namespace",
         "options": [],
         "query": {
-          "query": "label_values(container_start_time_seconds, namespace)",
+          "query": "label_values(container_start_time_seconds{node=~\"[[node]]\"}, namespace)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
@@ -640,7 +640,7 @@
           "type": "prometheus",
           "uid": "prometheus"
         },
-        "definition": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
+        "definition": "label_values(container_start_time_seconds{node=~\"[[node]]\",namespace=~\"[[namespace]]\"}, pod)",
         "hide": 0,
         "includeAll": true,
         "label": "Pod",
@@ -648,7 +648,7 @@
         "name": "pod",
         "options": [],
         "query": {
-          "query": "label_values(container_start_time_seconds{namespace=~\"[[namespace]]\"}, pod)",
+          "query": "label_values(container_start_time_seconds{node=~\"[[node]]\",namespace=~\"[[namespace]]\"}, pod)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
@@ -663,13 +663,13 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Pods",
   "uid": "pods",
-  "version": 3,
+  "version": 5,
   "weekStart": ""
 }
