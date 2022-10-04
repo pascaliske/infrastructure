@@ -25,6 +25,10 @@ spec:
         replication_factor: 1
       storage:
         type: filesystem
+      # workaround to fix invalid ruler config error
+      rulerConfig:
+        storage:
+          type: local
     monitoring:
       selfMonitoring:
         enabled: false
