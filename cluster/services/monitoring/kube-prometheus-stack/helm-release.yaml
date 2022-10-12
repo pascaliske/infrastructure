@@ -112,6 +112,15 @@ spec:
       alertmanagerSpec:
         logLevel: info # before: warn
         externalUrl: https://alerts.${DOMAIN}
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-path
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 50Gi
 
     grafana:
       defaultDashboardsEnabled: false
@@ -282,6 +291,15 @@ spec:
         retention: 2w
         replicas: 1
         logLevel: info # before: warn
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-path
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 50Gi
         additionalScrapeConfigs:
           - job_name: custom/minio
             metrics_path: /minio/v2/metrics/cluster
