@@ -14,3 +14,8 @@ tasks:
       - echo "  - navigation" >> docs/LICENSE.md
       - echo "---" >> docs/LICENSE.md
       - cat LICENSE.md >> docs/LICENSE.md
+
+  # serve documentation for development purposes
+  serve:
+    cmds:
+      - docker run --rm -it -p 8000:8000 -v $(pwd):/docs squidfunk/mkdocs-material
