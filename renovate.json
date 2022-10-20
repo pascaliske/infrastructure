@@ -43,6 +43,11 @@
   ],
   "packageRules": [
     {
+      "matchManagers": ["kubernetes"],
+      "matchDatasources": ["kubernetes-api"],
+      "enabled": false
+    },
+    {
       "matchPackagePatterns": ["commitlint"],
       "groupName": "commitlint"
     }
