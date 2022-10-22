@@ -8070,7 +8070,7 @@ spec:
               fieldPath: metadata.namespace
         - name: TUF_ROOT
           value: /tmp/.sigstore
-        image: ghcr.io/fluxcd/source-controller:v0.30.1
+        image: ghcr.io/fluxcd/source-controller:v0.31.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
