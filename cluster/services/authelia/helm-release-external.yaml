@@ -53,6 +53,8 @@ spec:
         file:
           enabled: true
           path: /users.yaml
+          search:
+            email: true
           password:
             algorithm: argon2
       access_control:
