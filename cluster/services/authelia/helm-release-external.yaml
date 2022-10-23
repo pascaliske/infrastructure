@@ -41,6 +41,11 @@ spec:
     configMap:
       log:
         level: info
+      telemetry:
+        metrics:
+          enabled: true
+          serviceMonitor:
+            enabled: true
       default_redirection_url: https://${DOMAIN_EXTERNAL}
       theme: dark
       webauthn:
