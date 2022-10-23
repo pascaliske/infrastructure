@@ -46,15 +46,15 @@ spec:
       webauthn:
         display_name: auth-external@infrastructure
       authentication_backend:
-        disable_reset_password: true
+        password_reset:
+          disable: true
         ldap:
           enabled: false
         file:
           enabled: true
           path: /users.yaml
           password:
-            algorithm: sha512
-            memory: 128
+            algorithm: argon2
       access_control:
         secret:
           enabled: true
