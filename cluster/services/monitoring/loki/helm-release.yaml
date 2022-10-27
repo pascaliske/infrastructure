@@ -29,6 +29,8 @@ spec:
       rulerConfig:
         storage:
           type: local
+    test:
+      enabled: false
     monitoring:
       selfMonitoring:
         enabled: false
