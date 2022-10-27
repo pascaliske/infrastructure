@@ -19,13 +19,13 @@ spec:
     image:
       repository: sissbruecker/linkding
       tag: 1.15.1
-    deployment:
-      annotations:
-        backup.velero.io/backup-volumes: storage-volume
-        pre.hook.backup.velero.io/container: fsfreeze
-        pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/etc/linkding/data"]'
-        post.hook.backup.velero.io/container: fsfreeze
-        post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/etc/linkding/data"]'
+    # deployment:
+    #   annotations:
+    #     backup.velero.io/backup-volumes: storage-volume
+    #     pre.hook.backup.velero.io/container: fsfreeze
+    #     pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/etc/linkding/data"]'
+    #     post.hook.backup.velero.io/container: fsfreeze
+    #     post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/etc/linkding/data"]'
     ingressRoute:
       create: true
       entryPoints:
@@ -60,15 +60,15 @@ spec:
         value: https://auth.${DOMAIN_EXTERNAL}/logout?rd=https://links.${DOMAIN_EXTERNAL}
     persistentVolumeClaim:
       storageClassName: local-path
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/pascaliske/fsfreeze:0.1.0
-        volumeMounts:
-          - name: storage-volume
-            mountPath: /etc/linkding/data
-        securityContext:
-          privileged: true
+    # additionalContainers:
+    #   fsfreeze:
+    #     name: fsfreeze
+    #     image: ghcr.io/pascaliske/fsfreeze:0.1.0
+    #     volumeMounts:
+    #       - name: storage-volume
+    #         mountPath: /etc/linkding/data
+    #     securityContext:
+    #       privileged: true
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
