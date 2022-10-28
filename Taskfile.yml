@@ -16,6 +16,10 @@ tasks:
     dir: terraform
     cmds:
       - terraform apply {{.CLI_ARGS}}
+  tf:validate:
+    dir: terraform
+    cmds:
+      - terraform validate {{.CLI_ARGS}}
   tf:lint:
     dir: terraform
     cmds:

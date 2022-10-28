@@ -12,8 +12,19 @@ jobs:
       # setup taskfile
       - uses: arduino/setup-task@v1
 
+      # setup terraform
+      - uses: hashicorp/setup-terraform@v2
+
       # setup tflint
       - uses: terraform-linters/setup-tflint@v2
+
+      # init terraform
+      - name: Init Terraform
+        run: task tf:init -- -backend=false
+
+      # validate terraform
+      - name: Validate Terraform
+        run: task tf:validate
 
       # lint terraform
       - name: Lint Terraform
