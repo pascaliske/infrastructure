@@ -3,6 +3,10 @@
 *pem*
 *p12*
 *env*
+terraform/.terraform
+terraform/.terraform.lock.hcl
+terraform/terraform.plan
+terraform/terraform.tfstate
 docs/cluster
 docs/index.md
 docs/LICENSE.md
