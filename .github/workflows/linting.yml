@@ -2,6 +2,23 @@ name: Linting
 on: push
 
 jobs:
+  lint-terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v3
+
+      # setup taskfile
+      - uses: arduino/setup-task@v1
+
+      # setup tflint
+      - uses: terraform-linters/setup-tflint@v2
+
+      # lint terraform
+      - name: Lint Terraform
+        run: task tf:lint
+
   lint-ansible:
     name: Ansible
     runs-on: ubuntu-latest
