@@ -4,11 +4,11 @@ data "http" "ipv4" {
 
 # zones
 data "cloudflare_zone" "zone_private" {
-  name = data.sops_file.secrets.data["cloudflare_domain_private"]
+  name = var.domain_private
 }
 
 data "cloudflare_zone" "zone_public" {
-  name = data.sops_file.secrets.data["cloudflare_domain_public"]
+  name = var.domain_public
 }
 
 # vpn, will be updated frequently using a K8s CronJob
@@ -24,7 +24,7 @@ resource "cloudflare_record" "dmarc" {
   zone_id = data.cloudflare_zone.zone_private.id
   type = "TXT"
   name = "_dmarc"
-  value = "v=DMARC1; p=quarantine; rua=mailto:${data.sops_file.secrets.data["cloudflare_email"]}"
+  value = "v=DMARC1; p=quarantine; rua=mailto:info@pascaliske.dev"
 }
 
 # dkim
@@ -39,7 +39,7 @@ resource "cloudflare_record" "dkim" {
 resource "cloudflare_record" "spf" {
   zone_id = data.cloudflare_zone.zone_private.id
   type = "TXT"
-  name = data.sops_file.secrets.data["cloudflare_domain_private"]
+  name = var.domain_private
   value = "v=spf1 ~all"
 }
 
@@ -47,8 +47,8 @@ resource "cloudflare_record" "spf" {
 resource "cloudflare_record" "google" {
   zone_id = data.cloudflare_zone.zone_private.id
   type = "TXT"
-  name = data.sops_file.secrets.data["cloudflare_domain_private"]
-  value = "google-site-verification=${data.sops_file.secrets.data["google_verification_token"]}"
+  name = var.domain_private
+  value = "google-site-verification=${var.google_verification_token}"
 }
 
 # public
@@ -56,7 +56,7 @@ resource "cloudflare_record" "public" {
   zone_id = data.cloudflare_zone.zone_public.id
   type = "A"
   name = "*"
-  value = data.sops_file.secrets.data["public_ip_jakku"]
+  value = var.public_ip_jakku
 }
 
 # docs
