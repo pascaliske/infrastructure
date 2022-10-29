@@ -3,6 +3,7 @@
 *pem*
 *p12*
 *env*
+terraform/.terraform
 docs/cluster
 docs/index.md
 docs/LICENSE.md

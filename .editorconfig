@@ -12,8 +12,8 @@ trim_trailing_whitespace = true
 [.*rc]
 indent_size = 2
 
-[*.{yml,yaml,toml,json,lock,rules}]
+[*.{yml,yaml,tf,tfvars,toml,json,lock,rules}]
 indent_size = 2
 
-[*.{yml,yaml,toml,json,lock,rules}.j2]
+[*.{yml,yaml,tf,tfvars,toml,json,lock,rules}.j2]
 indent_size = 2

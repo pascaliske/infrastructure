@@ -4,6 +4,26 @@ includes:
   docs: ./.github/taskfiles/docs.yml
 
 tasks:
+  tf:init:
+    dir: terraform
+    cmds:
+      - terraform init {{.CLI_ARGS}}
+  tf:plan:
+    dir: terraform
+    cmds:
+      - terraform plan {{.CLI_ARGS}}
+  tf:apply:
+    dir: terraform
+    cmds:
+      - terraform apply {{.CLI_ARGS}}
+  tf:validate:
+    dir: terraform
+    cmds:
+      - terraform validate {{.CLI_ARGS}}
+  tf:lint:
+    dir: terraform
+    cmds:
+      - tflint --format compact .
   docs:
     summary: Documentation specific tasks.
     cmds:
