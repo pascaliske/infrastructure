@@ -32,6 +32,9 @@ spec:
     test:
       enabled: false
     monitoring:
+      serviceMonitor:
+        # disabled due to requirement of grafana operator: https://github.com/grafana/loki/issues/7546
+        enabled: false
       selfMonitoring:
         enabled: false
         grafanaAgent:
