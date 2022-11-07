@@ -1,5 +1,2 @@
-provider "http" {
-}
-
 provider "cloudflare" {
 }

@@ -10,13 +10,17 @@ terraform {
   required_version = ">= 1.3.3"
 
   required_providers {
-    http = {
-      source  = "hashicorp/http"
-      version = "3.2.0"
-    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "3.27.0"
     }
   }
+}
+
+# local variables
+locals {
+  domain_private  = "iske.cloud"
+  domain_public   = "pascaliske.dev"
+  domain_github   = "pascaliske.github.io"
+  public_ip_jakku = "89.58.45.252"
 }
