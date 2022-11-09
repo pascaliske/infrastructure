@@ -51,6 +51,7 @@ spec:
             namespace = "gitlab"
             image = "alpine:latest"
             image_pull_secrets = ["gitlab-registry-auth"]
+            pull_policy = ["always", "if-not-present"]
             [runners.kubernetes.affinity]
               [runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution]
                 [[runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms]]
