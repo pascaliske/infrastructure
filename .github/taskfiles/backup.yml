@@ -1,0 +1,12 @@
+version: '3'
+
+tasks:
+  gitlab:
+    desc: Download a GitLab backup archive from the Kubernetes node.
+    summary: |
+      This task downloads the specified GitLab backup archive from the Kubernetes node using rsync.
+      Execute this task as follows:
+
+      task backup:gitlab -- <gitlab-archive-file>
+    cmds:
+      - rsync -azvhPn -e "ssh -i $ANSIBLE_PRIVATE_KEY_FILE" pi@jakku.iske.cloud:/home/pi/{{.CLI_ARGS}} "$GITLAB_BACKUP_TARGET_DIR"

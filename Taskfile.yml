@@ -2,6 +2,7 @@ version: '3'
 
 includes:
   tf: ./.github/taskfiles/terraform.yml
+  backup: ./.github/taskfiles/backup.yml
   docs: ./.github/taskfiles/docs.yml
 
 tasks:
