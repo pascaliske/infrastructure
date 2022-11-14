@@ -1,0 +1,23 @@
+version: '3'
+
+tasks:
+  init:
+    dir: terraform
+    cmds:
+      - terraform init {{.CLI_ARGS}}
+  plan:
+    dir: terraform
+    cmds:
+      - terraform plan {{.CLI_ARGS}}
+  apply:
+    dir: terraform
+    cmds:
+      - terraform apply {{.CLI_ARGS}}
+  validate:
+    dir: terraform
+    cmds:
+      - terraform validate {{.CLI_ARGS}}
+  lint:
+    dir: terraform
+    cmds:
+      - tflint --format compact .
