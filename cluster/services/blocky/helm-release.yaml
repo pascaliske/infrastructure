@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/0xerr0r/blocky
-      tag: v0.20 # pinned to previous version due to high cpu usage
+      tag: v0.20
     controller:
       replicas: 2
       strategy: RollingUpdate

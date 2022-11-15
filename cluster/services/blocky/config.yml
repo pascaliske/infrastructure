@@ -70,17 +70,18 @@ blocking:
   clientGroupsBlock:
     default:
       - all
+  startStrategy: fast
 
 caching:
   minTime: 5m
   maxTime: 20m
   prefetching: true
 
+redis:
+  address: redis.redis.svc.cluster.local:6379
+
 prometheus:
   enable: true
 
 queryLog:
   type: none
-
-redis:
-  address: redis.redis.svc.cluster.local:6379
