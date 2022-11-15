@@ -37,8 +37,6 @@ clientLookup:
 blocking:
   blackLists:
     all:
-      - http://sysctl.org/cameleon/hosts
-      - https://adaway.org/hosts.txt
       - https://blocklistproject.github.io/Lists/ads.txt
       - https://blocklistproject.github.io/Lists/drugs.txt
       - https://blocklistproject.github.io/Lists/fraud.txt
@@ -47,21 +45,16 @@ blocking:
       - https://blocklistproject.github.io/Lists/porn.txt
       - https://blocklistproject.github.io/Lists/scam.txt
       - https://blocklistproject.github.io/Lists/tiktok.txt
-      - https://github.com/chadmayfield/pihole-blocklists/raw/master/lists/pi_blocklist_porn_all.list
       - https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
       - https://raw.githubusercontent.com/d43m0nhLInt3r/socialblocklists/master/TikTok/tiktokblocklist.txt
-      - https://raw.githubusercontent.com/Dawsey21/Lists/master/main-blacklist.txt
-      - https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
       - https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt
       - https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/blocky/blocklist.txt
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Risk/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/UncheckyAds/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-      - https://raw.githubusercontent.com/vokins/yhosts/master/hosts
       - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
       - https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
       - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-      - https://someonewhocares.org/hosts/zero/hosts
       - https://v.firebog.net/hosts/AdguardDNS.txt
       - https://v.firebog.net/hosts/Easylist.txt
   whiteLists:
