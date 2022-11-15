@@ -6,5 +6,4 @@ node-external-ip: {{ master_ip }}
 node-taint:
   - node-role.kubernetes.io/control-plane:NoSchedule
 disable:
-  - local-storage
   - traefik
