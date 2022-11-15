@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env sh
+# -*- coding: utf-8 -*-
+# {{ ansible_managed }}
 
-MESSAGE="
+read -r '' MESSAGE <<EOF
     .___        _____                        __                        __
     |   | _____/ ____\___________    _______/  |________ __ __   _____/  |_ __ _________   ____
     |   |/    \   __\\\\_  __ \__  \  /  ___/\   __\_  __ \  |  \_/ ___\   __\  |  \_  __ \_/ __ \\\\
@@ -23,6 +25,6 @@ MESSAGE="
 
     Uptime:         $(uptime -p | sed 's/up //g')
     Timezone:       {{ ansible_date_time.tz }}({{ ansible_date_time.tz_offset }})
-"
+EOF
 
 printf "%s" "$MESSAGE"
