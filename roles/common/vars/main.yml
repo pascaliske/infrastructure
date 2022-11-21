@@ -23,6 +23,7 @@ packages:
     - unattended-upgrades
     - iptables
     - dnsutils
+    - tmux
     - htop
     - curl
     - git
