@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # {{ ansible_managed }}
 
-read -r '' MESSAGE <<EOF
+MESSAGE="
     .___        _____                        __                        __
     |   | _____/ ____\___________    _______/  |________ __ __   _____/  |_ __ _________   ____
     |   |/    \   __\\\\_  __ \__  \  /  ___/\   __\_  __ \  |  \_/ ___\   __\  |  \_  __ \_/ __ \\\\
@@ -25,6 +25,6 @@ read -r '' MESSAGE <<EOF
 
     Uptime:         $(uptime -p | sed 's/up //g')
     Timezone:       {{ ansible_date_time.tz }}({{ ansible_date_time.tz_offset }})
-EOF
+"
 
 printf "%s" "$MESSAGE"
