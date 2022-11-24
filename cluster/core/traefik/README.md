@@ -54,17 +54,25 @@ Traefik provides a custom resource definition [`IngressRoute`](https://doc.traef
           Pragma: no-cache
     ```
 
+The dashboard of Traefik is enabled and needs to be accessible by domain. This `Kustomization` creates the required resources for that. It also creates a `ServiceMonitor` for the prometheus operator to pick up and monitor the traefik instance.
+
 ## Created Resources
 
-| Kind                              | Name              |
-| --------------------------------- | ----------------- |
-| [`Namespace`][ref-namespace]      | `traefik`         |
-| [`HelmRelease`][ref-helm-release] | `traefik`         |
-| [`Service`][ref-service]          | `traefik-metrics` |
+| Kind                                    | Name                |
+| --------------------------------------- | ------------------- |
+| [`Namespace`][ref-namespace]            | `traefik`           |
+| [`HelmRelease`][ref-helm-release]       | `traefik`           |
+| [`Service`][ref-service]                | `traefik-metrics`   |
+| [`Certificate`][ref-certificate]        | `traefik.${DOMAIN}` |
+| [`IngressRoute`][ref-ingress-route]     | `dashboard`         |
+| [`ServiceMonitor`][ref-service-monitor] | `traefik`           |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
 [ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/
 [ref-service]: https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/
+[ref-certificate]: https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.Certificate
+[ref-ingress-route]: https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-ingressroute
+[ref-service-monitor]: https://prometheus-operator.dev/docs/operator/api/#servicemonitor
 
 ## Links
 

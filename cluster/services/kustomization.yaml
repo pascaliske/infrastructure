@@ -16,7 +16,6 @@ resources:
   - redis
   - shlink
   - snapdrop
-  - traefik
   - unifi
   - uptime-kuma
   - vaultwarden
