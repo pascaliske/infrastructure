@@ -52,6 +52,7 @@ nav:
       - Overview: cluster/base/index.md
       - Config: cluster/config/index.md
       - Charts: cluster/charts/index.md
+      - CRDs: cluster/crds/index.md
       - Core:
           - Overview: cluster/core/index.md
           - flux-system: cluster/core/flux-system/index.md

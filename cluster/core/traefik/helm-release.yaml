@@ -16,33 +16,44 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
+    crds: Skip
+  upgrade:
+    crds: Skip
   values:
     image:
       name: traefik
       tag: 'v2.9.1'
+
     ingressRoute:
       dashboard:
         enabled: false
+
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
+
     logs:
       access:
         enabled: true
         filters:
           statuscodes: 400-599
+
     metrics:
       prometheus:
         entryPoint: traefik
+
     globalArguments:
-      - --global.checknewversion=false
+      - --global.checknewversion=true
       - --global.sendanonymoususage=false
+
     additionalArguments:
       - '--ping.entrypoint=traefik'
       - '--serverstransport.insecureskipverify'
+
     env:
       - name: TZ
         value: ${TIMEZONE}
+
     ports:
       # services
       http:
@@ -54,11 +65,13 @@ spec:
         port: 9443
         expose: true
         exposedPort: 443
-      # metrics
+
+      # dashboard
       traefik:
         port: 9000
         expose: false
         exposedPort: 9000
+
       # disable default entry points
       web: null
       websecure: null
@@ -67,9 +80,12 @@ spec:
       default:
         minVersion: VersionTLS12
         sniStrict: true
+
     service:
+      single: true
       spec:
         externalTrafficPolicy: Local
+
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -77,6 +93,7 @@ spec:
             - matchExpressions:
                 - key: node-role.kubernetes.io/control-plane
                   operator: Exists
+
     tolerations:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists

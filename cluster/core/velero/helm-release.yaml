@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: velero
+      version: '2.32.3'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -15,9 +16,9 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
-    crds: CreateReplace
+    crds: Skip
   upgrade:
-    crds: CreateReplace
+    crds: Skip
   values:
     image:
       repository: velero/velero

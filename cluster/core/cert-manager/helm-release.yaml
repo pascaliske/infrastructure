@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: cert-manager
+      version: '1.10.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -16,7 +17,7 @@ spec:
   install:
     createNamespace: true
   values:
-    installCRDs: true
+    installCRDs: false
     extraArgs:
       - --dns01-recursive-nameservers-only
       - --dns01-recursive-nameservers="1.1.1.1:53"
