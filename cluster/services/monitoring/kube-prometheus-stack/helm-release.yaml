@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
+      version: '42.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -15,6 +16,9 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
+    crds: Skip
+  upgrade:
+    crds: Skip
   values:
     defaultRules:
       rules:
