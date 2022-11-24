@@ -40,14 +40,20 @@ spec:
 
     metrics:
       prometheus:
-        entryPoint: traefik
+        entryPoint: metrics
+        service:
+          enabled: true
+        serviceMonitor:
+          namespace: traefik
+        prometheusRule:
+          namespace: traefik
 
     globalArguments:
       - --global.checknewversion=true
       - --global.sendanonymoususage=false
 
     additionalArguments:
-      - '--ping.entrypoint=traefik'
+      - '--ping.entrypoint=metrics'
       - '--serverstransport.insecureskipverify'
 
     env:
@@ -69,13 +75,20 @@ spec:
       # dashboard
       traefik:
         port: 9000
+        healthchecksPort: 9100
         expose: false
         exposedPort: 9000
+
+      # metrics
+      metrics:
+        port: 9100
+        expose: false
+        exposedPort: 9100
 
       # disable default entry points
       web: null
       websecure: null
-      metrics: null
+
     tlsOptions:
       default:
         minVersion: VersionTLS12
