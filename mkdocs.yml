@@ -56,6 +56,7 @@ nav:
       - Core:
           - Overview: cluster/core/index.md
           - flux-system: cluster/core/flux-system/index.md
+          - system-upgrade: cluster/core/system-upgrade/index.md
           - kured: cluster/core/kured/index.md
           - traefik: cluster/core/traefik/index.md
           - cert-manager: cluster/core/cert-manager/index.md
