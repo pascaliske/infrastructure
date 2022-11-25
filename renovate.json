@@ -48,6 +48,10 @@
       "enabled": false
     },
     {
+      "matchPackagePatterns": ["traefik"],
+      "groupName": "traefik"
+    },
+    {
       "matchPackagePatterns": ["commitlint"],
       "groupName": "commitlint"
     }
