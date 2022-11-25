@@ -17,4 +17,5 @@
     cmd: '{{ item }}'
   changed_when: true
   loop:
-    - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL=https://{{ master_ip_tailscale }}:6443 K3S_TOKEN={{ node_token }} sh -
+    # renovate: datasource=github-releases depName=k3s-io/k3s
+    - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.25.4+k3s1 K3S_URL=https://{{ master_ip_tailscale }}:6443 K3S_TOKEN={{ node_token }} sh -

@@ -17,7 +17,8 @@
     cmd: '{{ item }}'
   changed_when: true
   loop:
-    - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -
+    # renovate: datasource=github-releases depName=k3s-io/k3s
+    - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.25.4+k3s1 sh -
     - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 # fetch node register token
