@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - cert-manager
   - kube-prometheus-stack
+  - system-upgrade-controller
   - traefik
   - velero

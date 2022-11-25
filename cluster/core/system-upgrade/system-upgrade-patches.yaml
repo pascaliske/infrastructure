@@ -1,0 +1,7 @@
+---
+# namespace should already exist - delete the system-upgrade namespace from the Kustomization
+$patch: delete
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: system-upgrade
