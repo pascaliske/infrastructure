@@ -28,7 +28,7 @@ spec:
         value: ${TIMEZONE}
 
     # needed for wake-on-lan and ps4 integrations
-    hostNetwork: true
+    hostNetwork: false
 
     # needed for zigbee usb access
     securityContext:
