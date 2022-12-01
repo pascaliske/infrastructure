@@ -38,10 +38,12 @@ spec:
       # needed for homekit integration
       homekit:
         enabled: true
+        type: NodePort
         ports:
           tcp:
             enabled: true
             port: 21063
+            nodePort: 31063
 
     # needed for wake-on-lan and ps4 integrations
     hostNetwork: false
