@@ -27,6 +27,22 @@ spec:
       - name: TZ
         value: ${TIMEZONE}
 
+    # expose required ports
+    service:
+      # main UI port
+      main:
+        ports:
+          http:
+            port: 8123
+
+      # needed for homekit integration
+      homekit:
+        enabled: true
+        ports:
+          tcp:
+            enabled: true
+            port: 21063
+
     # needed for wake-on-lan and ps4 integrations
     hostNetwork: false
 
