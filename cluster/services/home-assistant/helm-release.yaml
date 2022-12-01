@@ -30,6 +30,9 @@ spec:
     # needed for homekit, wake-on-lan and ps4 integrations
     hostNetwork: true
 
+    # needed as workaround for dns issues with host network
+    dnsPolicy: ClusterFirst
+
     # needed for zigbee usb access
     securityContext:
       privileged: true
