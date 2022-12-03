@@ -9,4 +9,4 @@ tasks:
 
       task backup:gitlab -- <gitlab-archive-file>
     cmds:
-      - rsync -azvhPn -e "ssh -i $ANSIBLE_PRIVATE_KEY_FILE" pi@jakku.iske.cloud:/home/pi/{{.CLI_ARGS}} "$GITLAB_BACKUP_TARGET_DIR"
+      - rsync -azvhP -e "ssh -i $ANSIBLE_PRIVATE_KEY_FILE" pi@jakku.iske.cloud:/home/pi/{{.CLI_ARGS}} "$GITLAB_BACKUP_TARGET_DIR"
