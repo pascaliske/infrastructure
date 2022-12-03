@@ -211,10 +211,15 @@ services:
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/synology.png
         url: https://${IP_RYLOTH}:5001
         <<: *network
-      - name: Gigaset GO
+      - name: Gigaset S850A GO
         subtitle: VoIP phone management
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gigaset-go.png
         url: http://10.0.2.30
+        <<: *network
+      - name: Gigaset C430A GO
+        subtitle: VoIP phone management
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gigaset-go.png
+        url: http://10.0.2.31
         <<: *network
       - name: EPSON ET-2750
         subtitle: Printer
