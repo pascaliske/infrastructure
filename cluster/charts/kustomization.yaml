@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - authelia.yaml
   - cloudflare-exporter.yaml
+  - cloudnative-pg-charts.yaml
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml

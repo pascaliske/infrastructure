@@ -13,6 +13,7 @@ resources:
   - linkding
   - monitoring
   - paperless
+  - postgresql
   - redis
   - shlink
   - snapdrop
