@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: postgresql
-  namespace: postgresql
+  name: cloudnative-pg
+  namespace: cloudnative-pg
 spec:
   chart:
     spec:

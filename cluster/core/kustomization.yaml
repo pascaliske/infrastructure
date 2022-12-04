@@ -5,6 +5,7 @@ resources:
   - flux-system
   - system-upgrade
   - cert-manager
+  - cloudnative-pg
   - kured
   - traefik
   - traefik-errors

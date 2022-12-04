@@ -2,11 +2,10 @@
 
 ## Introduction
 
-The [`CloudNativePG`](https://cloudnative-pg.io) controller is leveraged to deploy a single-node PostgreSQL cluster inside Kubernetes which is used as a database for various services within the cluster.
+This service provides a single node [`PostgreSQL`](https://www.postgresql.org) cluster which is used as a database for various services within the cluster.
+It is deployed using the [`cloudnative-pg`](/cluster/core/cloudnative-pg/) controller.
 
-> It’s entirely declarative, and directly integrates with the Kubernetes API server to update the state of the cluster — for this reason, it does not require an external failover management tool. — <https://cloudnative-pg.io>
-
-??? example "Example of kind `Cluster`"
+!!! example "Definition of `Cluster` resource"
 
     ```yaml
     apiVersion: postgresql.cnpg.io/v1
@@ -23,15 +22,15 @@ The [`CloudNativePG`](https://cloudnative-pg.io) controller is leveraged to depl
 
 ## Created Resources
 
-| Kind                              | Name         |
-| --------------------------------- | ------------ |
-| [`Namespace`][ref-namespace]      | `postgresql` |
-| [`HelmRelease`][ref-helm-release] | `postgresql` |
-| [`Cluster`][ref-cluster]          | `postgresql` |
+| Kind                         | Name                   |
+| ---------------------------- | ---------------------- |
+| [`Namespace`][ref-namespace] | `postgresql`           |
+| [`Cluster`][ref-cluster]     | `postgresql`           |
+| [`Secret`][ref-secret]       | `postgresql-superuser` |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
-[ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/
 [ref-cluster]: https://cloudnative-pg.io/documentation/current/api_reference/#cluster
+[ref-secret]: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/secret-v1/
 
 ## Links
 
