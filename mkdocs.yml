@@ -104,6 +104,10 @@ extra:
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/u/pascaliske
 
+# extra plugins
+plugins:
+  - meta
+
 # code highlighting
 markdown_extensions:
   - admonition
