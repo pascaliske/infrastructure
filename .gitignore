@@ -1,4 +1,5 @@
 # ignores
+.cache
 .vagrant
 *pem*
 *p12*

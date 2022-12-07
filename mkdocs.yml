@@ -108,6 +108,11 @@ extra:
 extra_css:
   - styles/custom.css
 
+# additional plugins
+plugins:
+  - search
+  - social
+
 # code highlighting
 markdown_extensions:
   - admonition

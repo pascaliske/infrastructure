@@ -15,11 +15,17 @@ jobs:
       # setup taskfile
       - uses: arduino/setup-task@v1
 
+      # setup cache for social cards
+      - uses: actions/cache@v3
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+
       # create pages for docs
       - name: Create pages for docs
         run: task docs
 
       # deploy docs
-      - uses: mhausenblas/mkdocs-deploy-gh-pages@1.25
+      - uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
