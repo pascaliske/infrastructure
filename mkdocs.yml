@@ -104,6 +104,10 @@ extra:
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/u/pascaliske
 
+# customizations
+extra_css:
+  - styles/custom.css
+
 # code highlighting
 markdown_extensions:
   - admonition
@@ -122,7 +126,3 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.tabbed:
       alternate_style: true
-
-# customizations
-extra_css:
-  - styles/custom.css
