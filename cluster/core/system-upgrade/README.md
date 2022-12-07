@@ -6,30 +6,12 @@ Rancher's [`system-upgrade-controller`](https://github.com/rancher/system-upgrad
 
 !!! example "Example of kind `Plan`"
 
-    ```yaml
-    apiVersion: upgrade.cattle.io/v1
-    kind: Plan
-    metadata:
-      name: master
-      namespace: system-upgrade
-    spec:
-      # renovate: datasource=github-releases depName=k3s-io/k3s (1)
-      version: "v1.25.3+k3s1" # target version (2)
-      serviceAccountName: system-upgrade
-      concurrency: 1
-      cordon: true
-      nodeSelector:
-        matchExpressions:
-          # only control-plane nodes (3)
-          - key: node-role.kubernetes.io/control-plane
-            operator: Exists
-      upgrade:
-        image: rancher/k3s-upgrade
+    ```yaml title="Plan/system-upgrade/master" linenums="1"
+    --8<-- "cluster/core/system-upgrade/plans/master.yaml"
     ```
 
     1. You can use Renovate Bot to automate upgrades of K3s using plans
-    2. Choose any version from the official K3s repository here
-    3. A node label is used here to differentiate between control-plane nodes and regular ones
+    2. Labels and selectors are used to differentiate between control-plane nodes and worker ones
 
 The controller then picks up any `Plan` resource and performs the defined upgrades accordingly inside the cluster. For more information you can check out the [official K3s docs](https://docs.k3s.io/upgrades/automated) or the [GitHub Repository](https://github.com/rancher/system-upgrade-controller).
 

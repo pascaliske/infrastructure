@@ -5,22 +5,7 @@ The hardware in the cluster is fully provisioned and managed using Ansible. Spec
 ## Inventory
 
 ```ini
-# cluster
-[masters]
-coruscant.iske.cloud ansible_user=pi
-
-[workers]
-dathomir.iske.cloud ansible_user=pi
-mustafar.iske.cloud ansible_user=pi
-jakku.iske.cloud ansible_user=pi
-
-[cluster:children]
-masters
-workers
-
-# backup
-[backup]
-ryloth.iske.cloud ansible_user=pascaliske
+--8<-- "inventory"
 ```
 
 ## Playbooks

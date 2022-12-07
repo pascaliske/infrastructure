@@ -5,13 +5,14 @@ metadata:
   name: master
   namespace: system-upgrade
 spec:
-  # renovate: datasource=github-releases depName=k3s-io/k3s
+  # renovate: datasource=github-releases depName=k3s-io/k3s (1)
   version: "v1.25.4+k3s1"
   serviceAccountName: system-upgrade
   concurrency: 1
   cordon: true
   nodeSelector:
     matchExpressions:
+      # only control-plane nodes (2)
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
   tolerations:

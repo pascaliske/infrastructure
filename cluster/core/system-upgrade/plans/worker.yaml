@@ -10,6 +10,7 @@ spec:
   serviceAccountName: system-upgrade
   concurrency: 1
   nodeSelector:
+    # only worker nodes
     matchExpressions:
       - key: node-role.kubernetes.io/control-plane
         operator: DoesNotExist
