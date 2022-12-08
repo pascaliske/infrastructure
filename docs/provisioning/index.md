@@ -12,6 +12,12 @@ The hardware in the cluster is fully provisioned and managed using Ansible. Spec
 
 ### `provision.yml`
 
+??? abstract "Contents of `playbooks/provision.yml`"
+
+    ```yaml linenums="1"
+    --8<-- "playbooks/provision.yml"
+    ```
+
 For a initial and complete provisioning of all nodes the following command can be used:
 
 ```shell
@@ -34,6 +40,12 @@ The following tags are available for usage with `--tags`:
 - `minio`
 
 ### `update.yml`
+
+??? abstract "Contents of `playbooks/update.yml`"
+
+    ```yaml linenums="1"
+    --8<-- "playbooks/update.yml"
+    ```
 
 The update playbook allows me to simply update / patch all nodes:
 
