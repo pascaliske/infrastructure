@@ -49,11 +49,34 @@ The following IPs and CIDRs are configured inside K3s:
 
 ## DNS
 
-### Internal DNS
+### Internal
 
 All services with a UI running in my cluster have a dedicated subdomain configured. Those domains are managed by [Blocky](/cluster/services/blocky/) which is configured as the main DNS server in my home network. It also performs network-wide ad blocking based on some block lists.
 
-### Dynamic DNS
+### External
+
+Services that need to be reachable externally have dedicated public DNS records. These are configured using [Terraform](https://terraform.io).
+
+??? example "Example of a DNS Terraform resource"
+
+    ```terraform
+    data "cloudflare_zone" "zone_public" {
+      name = "my-domain.com" # target DNS zone (1)
+    }
+
+    resource "cloudflare_record" "public" {
+      zone_id = data.cloudflare_zone.zone_public.id
+      type    = "A"
+      name    = "*" # record name (2)
+      value   = "1.2.3.4" # record value (3)
+    }
+    ```
+
+    1. This block references the target DNS zone
+    2. Record name (a.k.a subdomain) to be configured
+    3. Record value to be configured
+
+### Dynamic
 
 Since I don't have a static IP address allocated from my ISP, my IP address can change at any point in time. To bypass this circumstance I configured a Kubernetes [`CronJob`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/cron-job-v1/) object which performs an DynDNS update for my domain at Cloudflare. The configuration can be found [in the `dyndns` section](/cluster/services/dyndns/).
 
