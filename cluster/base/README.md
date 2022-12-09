@@ -8,7 +8,8 @@ The cluster state is managed by [Flux](https://fluxcd.io) in a [GitOps](https://
 
 The `base` directory serves as an entrypoint from which all other sections are executed. It manages all Flux related components and afterwards reconciles the following [`Kustomization`](https://fluxcd.io/docs/components/kustomize/kustomization/) files in exactly this order:
 
-- [Config](/cluster/config/) – Cluster-wide configuration values
-- [Charts](/cluster/charts/) – Helm chart repositories for all applications
-- [Core](/cluster/core/) – Crucial core applications – depends on [Charts](/cluster/charts/) & [Config](/cluster/config/)
-- [Services](/cluster/services/) – Regular applications – depends on [Charts](/cluster/charts/), [Config](/cluster/config/) & [Core](/cluster/core/)
+- [Config](/cluster/config/) — Cluster-wide configuration values
+- [CRDs](/cluster/crds/) — Custom Resource Definitions for specific applications
+- [Charts](/cluster/charts/) — Helm chart repositories for all applications
+- [Core](/cluster/core/) — Crucial core applications which depend on [Config](/cluster/config/), [Charts](/cluster/charts/) & [CRDs](/cluster/crds/)
+- [Services](/cluster/services/) — Regular applications which depend on [Config](/cluster/config/), [Charts](/cluster/charts/), [CRDs](/cluster/crds/) & [Core](/cluster/core/)

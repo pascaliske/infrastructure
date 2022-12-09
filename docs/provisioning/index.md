@@ -4,6 +4,8 @@ The hardware in the cluster is fully provisioned and managed using Ansible. Spec
 
 ## Inventory
 
+Inside this file all hosts for the cluster and their connection details are defined.
+
 ```ini
 --8<-- "inventory"
 ```
@@ -12,7 +14,7 @@ The hardware in the cluster is fully provisioned and managed using Ansible. Spec
 
 ### `provision.yml`
 
-??? abstract "Contents of `playbooks/provision.yml`"
+??? abstract "TL;DR — `playbooks/provision.yml`"
 
     ```yaml linenums="1"
     --8<-- "playbooks/provision.yml"
@@ -41,7 +43,7 @@ The following tags are available for usage with `--tags`:
 
 ### `update.yml`
 
-??? abstract "Contents of `playbooks/update.yml`"
+??? abstract "TL;DR — `playbooks/update.yml`"
 
     ```yaml linenums="1"
     --8<-- "playbooks/update.yml"
@@ -72,7 +74,7 @@ All playbooks can be executed on a limited set of hosts using the `--limit` flag
 $ yarn run play playbooks/<playbook>.yml --limit <host1>[,<host2>]
 ```
 
-Any hosts from the inventory can be used with this flag.
+Any hosts from the [inventory](#inventory) can be used with this flag.
 
 ## Vault
 

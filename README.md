@@ -8,6 +8,7 @@
 
 - [Node.js](https://nodejs.org/) + [Yarn](https://yarnpkg.com) (for local repository management only)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) to provision the cluster nodes with common settings, Tailscale and K3s
+- [Terraform](https://www.terraform.io/) to deploy all external DNS records
 - [Flux](https://fluxcd.io/docs/installation/) which manages and updates the cluster state
 
 ## Installation
