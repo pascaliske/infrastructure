@@ -31,14 +31,12 @@ $ flux bootstrap github \
     --repository=$GITHUB_REPO \ # required flag (3)
     --branch=master \
     --path=./cluster/base \
-    --components-extra=image-reflector-controller,image-automation-controller \ # optional flag (4)
     --personal
 ```
 
 1. More information on the following command can be found in the [provisioning section](/provisioning/#provisionyml).
 2. Ensure you either fill in your GitHub username or you make it available as an environment variable.
 3. Name of the repository to hold the declarative cluster state. If it does not exists yet, it will automatically be created by Flux.
-4. Optionally you can enable the [image updating capabilities](https://fluxcd.io/docs/guides/image-update/) of Flux using this flag.
 
 ## Updates
 
