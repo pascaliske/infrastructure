@@ -292,7 +292,7 @@ spec:
         podMonitorSelector: {}
         podMonitorSelectorNilUsesHelmValues: false
         podMonitorNamespaceSelector: {}
-        retention: 2w
+        retention: 4w
         replicas: 1
         logLevel: info # before: warn
         storageSpec:
