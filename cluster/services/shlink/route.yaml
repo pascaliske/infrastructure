@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`go.${DOMAIN_EXTERNAL}/admin`)
+      match: Host(`go.${DOMAIN_EXTERNAL}`) && Path(`/admin`)
       services:
         - kind: Service
           name: shlink-admin
@@ -20,6 +20,8 @@ spec:
           namespace: traefik
         - name: security
           namespace: traefik
+        - name: strip-prefix
+          namespace: shlink
     - kind: Rule
       match: Host(`go.${DOMAIN_EXTERNAL}`)
       services:
