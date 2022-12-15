@@ -5,4 +5,5 @@ resources:
   - namespace.yaml
   - helm-release.yaml
   - certificate.yaml
+  - service.yaml
   - route.yaml
