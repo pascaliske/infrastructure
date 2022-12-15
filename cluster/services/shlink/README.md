@@ -4,16 +4,18 @@
 
 ## Created Resources
 
-| Kind                                | Name                       |
-| ----------------------------------- | -------------------------- |
-| [`Namespace`][ref-namespace]        | `shlink`                   |
-| [`HelmRelease`][ref-helm-release]   | `shlink`                   |
-| [`Certificate`][ref-certificate]    | `go.${DOMAINS_EXTERNAL}`   |
-| [`IngressRoute`][ref-ingress-route] | `dashboard`                |
+| Kind                                | Name                     |
+| ----------------------------------- | ------------------------ |
+| [`Namespace`][ref-namespace]        | `shlink`                 |
+| [`HelmRelease`][ref-helm-release]   | `shlink`                 |
+| [`Certificate`][ref-certificate]    | `go.${DOMAINS_EXTERNAL}` |
+| [`Service`][ref-service]            | `shlink-admin`           |
+| [`IngressRoute`][ref-ingress-route] | `dashboard`              |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/
 [ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/
 [ref-certificate]: https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.Certificate
+[ref-service]: https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/
 [ref-ingress-route]: https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-ingressroute
 
 ## CLI

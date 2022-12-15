@@ -42,6 +42,18 @@ spec:
         value: 'true'
       - name: ENABLE_PERIODIC_VISIT_LOCATE
         value: 'false'
+    additionalContainers:
+      admin:
+        image: ghcr.io/shlinkio/shlink-web-client:3.8.1
+        ports:
+          - name: admin-http
+            containerPort: 80
+            protocol: TCP
+        env:
+          - name: SHLINK_SERVER_URL
+            value: https://go.${DOMAIN_EXTERNAL}
+          - name: SHLINK_SERVER_API_KEY
+            value: ${SHLINK_API_KEY}
     persistence:
       data:
         enabled: true
