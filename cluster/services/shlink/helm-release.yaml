@@ -44,7 +44,7 @@ spec:
         value: 'false'
     additionalContainers:
       admin:
-        image: ghcr.io/shlinkio/shlink-web-client:3.8.1
+        image: ghcr.io/shlinkio/shlink-web-client:3.8.2
         ports:
           - name: admin-http
             containerPort: 80
