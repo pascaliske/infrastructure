@@ -90,6 +90,7 @@ nav:
           - redis: cluster/services/redis/index.md
           - shlink: cluster/services/shlink/index.md
           - snapdrop: cluster/services/snapdrop/index.md
+          - unbound: cluster/services/unbound/index.md
           - unifi: cluster/services/unifi/index.md
           - uptime-kuma: cluster/services/uptime-kuma/index.md
           - vaultwarden: cluster/services/vaultwarden/index.md

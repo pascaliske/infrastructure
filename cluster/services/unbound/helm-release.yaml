@@ -1,0 +1,52 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: unbound
+  namespace: unbound
+spec:
+  chart:
+    spec:
+      chart: unbound
+      version: '0.0.1'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/pascaliske/unbound
+      tag: '0.1.0'
+    deployment:
+      replicas: 2
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - unbound
+            topologyKey: kubernetes.io/hostname
+
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
+  interval: 10m0s
+

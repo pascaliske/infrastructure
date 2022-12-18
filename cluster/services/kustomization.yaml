@@ -17,6 +17,7 @@ resources:
   - redis
   - shlink
   - snapdrop
+  - unbound
   - unifi
   - uptime-kuma
   - vaultwarden
