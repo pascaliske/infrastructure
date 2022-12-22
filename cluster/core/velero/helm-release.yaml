@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: velero/velero
-      tag: v1.9.4
+      tag: v1.10.0
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:latest
@@ -40,10 +40,11 @@ spec:
           region: minio
           s3Url: http://${IP_RYLOTH_TAILSCALE}:9000
           s3ForcePathStyle: true
+      uploaderType: restic
+      logLevel: warning
       extraEnvVars:
         TZ: ${TIMEZONE}
-      logLevel: warning
-      defaultVolumesToRestic: true
+      defaultVolumesToFsBackup: true
     credentials:
       secretContents:
         cloud: |
@@ -52,8 +53,8 @@ spec:
           aws_secret_access_key=${VELERO_SECRET_KEY}
     backupsEnabled: true
     snapshotsEnabled: false
-    deployRestic: true
-    restic:
+    deployNodeAgent: true
+    nodeAgent:
       tolerations:
         - key: k8s.pascaliske.dev/location
           operator: Equal
