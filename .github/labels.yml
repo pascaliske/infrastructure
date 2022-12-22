@@ -22,3 +22,6 @@
 - name: wontfix
   color: 'ffffff'
   description: This will not be worked on
+- name: blocked
+  color: 'd93f0b'
+  description: This item is blocked due to some bug/incompatibility
