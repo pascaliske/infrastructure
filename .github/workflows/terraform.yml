@@ -31,6 +31,8 @@ jobs:
 
       # setup taskfile
       - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       # setup terraform
       - uses: hashicorp/setup-terraform@v2

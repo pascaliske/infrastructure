@@ -14,6 +14,8 @@ jobs:
 
       # setup taskfile
       - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       # setup cache for social cards
       - uses: actions/cache@v3
