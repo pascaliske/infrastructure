@@ -6,6 +6,7 @@ resources:
   - system-upgrade
   - cert-manager
   - cloudnative-pg
+  - trivy-operator
   - kured
   - traefik
   - traefik-errors

@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: trivy-operator-source
+  namespace: flux-system
+spec:
+  url: https://github.com/aquasecurity/trivy-operator
+  ref:
+    # renovate: datasource=github-releases depName=aquasecurity/trivy-operator
+    tag: v0.9.1
+  interval: 15m
+  ignore: |
+    # exclude all
+    /*
+    # include crds directory
+    !/deploy/crd

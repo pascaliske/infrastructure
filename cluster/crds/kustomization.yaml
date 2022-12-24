@@ -6,4 +6,5 @@ resources:
   - kube-prometheus-stack
   - system-upgrade
   - traefik
+  - trivy-operator
   - velero
