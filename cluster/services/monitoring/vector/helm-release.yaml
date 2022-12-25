@@ -72,7 +72,7 @@ spec:
             file: >-
               {{`{{ file }}`}}
             app: >-
-              {{`{{ kubernetes.pod_labels.app\.kubernetes\.io/name }}`}}
+              {{`{{ kubernetes.pod_labels.app.kubernetes."io/name" }}`}}
             node: >-
               {{`{{ kubernetes.pod_node_name }}`}}
             namespace: >-
