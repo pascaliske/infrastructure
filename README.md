@@ -2,7 +2,7 @@
 
 > Flux based GitOps repository for my home lab infrastructure.
 
-[![Branch checks](https://img.shields.io/github/checks-status/pascaliske/infrastructure/master?style=flat-square)](https://github.com/pascaliske/infrastructure) [![Pipeline (linting)](https://img.shields.io/github/actions/workflow/status/pascaliske/infrastructure/linting.yml?branch=master&label=linting&style=flat-square)](https://github.com/pascaliske/infrastructure/actions/workflows/linting.yml) [![Pipeline (docs)](https://img.shields.io/github/actions/workflow/status/pascaliske/infrastructure/docs.yml?branch=master&label=docs&style=flat-square)](https://github.com/pascaliske/infrastructure/actions/workflows/docs.yml) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pascaliske/infrastructure?style=flat-square) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure) ![GitHub top language](https://img.shields.io/github/languages/top/pascaliske/infrastructure?style=flat-square) ![GitHub repo size](https://img.shields.io/github/repo-size/pascaliske/infrastructure?style=flat-square) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Branch checks](https://img.shields.io/github/checks-status/pascaliske/infrastructure/master?style=flat-square)](https://github.com/pascaliske/infrastructure) [![Pipeline (linting)](https://img.shields.io/github/actions/workflow/status/pascaliske/infrastructure/linting.yml?branch=master&label=linting&style=flat-square)](https://github.com/pascaliske/infrastructure/actions/workflows/linting.yml) [![Pipeline (docs)](https://img.shields.io/github/actions/workflow/status/pascaliske/infrastructure/docs.yml?branch=master&label=docs&style=flat-square)](https://github.com/pascaliske/infrastructure/actions/workflows/docs.yml) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pascaliske/infrastructure?style=flat-square) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure/commits/master) ![GitHub top language](https://img.shields.io/github/languages/top/pascaliske/infrastructure?style=flat-square) ![GitHub repo size](https://img.shields.io/github/repo-size/pascaliske/infrastructure?style=flat-square) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=flat-square&logo=kubernetes&logoColor=white) ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=flat-square&logo=terraform&logoColor=white) ![Ansible](https://img.shields.io/badge/ansible-%231A1918.svg?style=flat-square&logo=ansible&logoColor=white)
 
@@ -42,16 +42,7 @@ $ flux bootstrap github \
 
 ## Updates
 
-Flux is configured to take care of automatic updates of all images.
-
-The underlying cluster nodes can be updated using the following Ansible playbook:
-
-```zsh
-# update nodes using ansible (1)
-$ yarn run play playbooks/update.yml
-```
-
-1. More information on this command can be found in the [provisioning section](/provisioning/#updateyml).
+Most updates inside this project are automated. Take a look at the [update section](/updates/) for detailed information on this topic.
 
 ## Thanks
 
