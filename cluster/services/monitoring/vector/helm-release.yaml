@@ -53,12 +53,16 @@ spec:
           type: internal_logs
         internal_metrics:
           type: internal_metrics
+        journald_logs:
+          type: journald
+          journal_directory: /var/log/journal
       sinks:
         loki:
           type: loki
           inputs:
             - kubernetes_logs
             - vector_logs
+            - journald_logs
           endpoint: http://loki.monitoring.svc.cluster.local:3100
           encoding:
             codec: text
