@@ -73,10 +73,11 @@ spec:
                 color: >-
                   {{ template "slack.iske.color" . }}
                 send_resolved: true
-          - name: discord
-            webhook_configs:
-              - url: http://localhost:9094
-                send_resolved: true
+          # disabled due to incompatible image architecture
+          # - name: discord
+          #   webhook_configs:
+          #     - url: http://localhost:9094
+          #       send_resolved: true
         templates:
           - /etc/alertmanager/config/*.tmpl
       templateFiles:
@@ -129,16 +130,17 @@ spec:
               resources:
                 requests:
                   storage: 50Gi
-        containers:
-          - name: discord-webhook
-            image: benjojo/alertmanager-discord:latest
-            ports:
-              - name: http
-                containerPort: 9094
-                protocol: TCP
-            env:
-              - name: DISCORD_WEBHOOK
-                value: ${ALERTMANAGER_DISCORD_URL}
+        # disabled due to incompatible image architecture
+        # containers:
+        #   - name: discord-webhook
+        #     image: benjojo/alertmanager-discord:latest
+        #     ports:
+        #       - name: http
+        #         containerPort: 9094
+        #         protocol: TCP
+        #     env:
+        #       - name: DISCORD_WEBHOOK
+        #         value: ${ALERTMANAGER_DISCORD_URL}
 
     grafana:
       defaultDashboardsEnabled: false
