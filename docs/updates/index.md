@@ -11,7 +11,11 @@ $ yarn run play playbooks/update.yml
 
 1. More information on this command can be found in the [provisioning section](/provisioning/#updateyml).
 
-For critical and/or security relevant updates the unattended-upgrades tool is configured on all nodes.
+For critical and/or security relevant updates the unattended-upgrades tool is configured on all nodes:
+
+```shell
+--8<-- "roles/common/templates/unattended-upgrades/50unattended-upgrades.j2"
+```
 
 ## Kubernetes
 
