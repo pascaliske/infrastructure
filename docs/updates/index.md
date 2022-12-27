@@ -13,7 +13,7 @@ $ yarn run play playbooks/update.yml
 
 For critical and/or security relevant updates the unattended-upgrades tool is configured on all nodes:
 
-```shell
+```shell title="/etc/apt/apt.conf.d/50unattended-upgrades"
 --8<-- "roles/common/templates/unattended-upgrades/50unattended-upgrades.j2"
 ```
 
