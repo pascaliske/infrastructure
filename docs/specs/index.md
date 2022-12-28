@@ -4,13 +4,13 @@
 
 The following hardware components are used:
 
-- 3x [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (2 GB, 4 GB & 8 GB RAM)
-- 3x [Raspberry Pi PoE Hat](https://www.raspberrypi.com/products/poe-plus-hat/) (2x PoE+, 1x PoE)
-- 3x [SanDisk Extreme microSDXC](https://www.amazon.de/dp/B07FCMKK5X?ref_=cm_sw_r_cp_ud_dp_4064FB9RN1YDMTAM69ZN) (2x 128 GB, 1x 64 GB)
+- 3x [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (1x 4 GB & 2x 8 GB RAM)
+- 3x [Raspberry Pi PoE+ Hat](https://www.raspberrypi.com/products/poe-plus-hat/)
+- 3x [SanDisk Extreme microSDXC](https://www.amazon.de/dp/B07FCMKK5X?ref_=cm_sw_r_cp_ud_dp_4064FB9RN1YDMTAM69ZN) (1x 64 GB, 2x 128 GB)
 - 1x [UniFi Switch 8 PoE (60W)](https://store.ui.com/collections/unifi-network-switching/products/unifi-switch-8-60w)
 - 1x [GeekPi 6 Layer Cluster Case](https://www.amazon.de/dp/B08614TZ7Q?ref_=cm_sw_r_cp_ud_dp_CS87DZKT38PC9KK1778P)
 - 1x [Netcup VPS 1000 G10](https://www.netcup.de/vserver/vps.php) (6 vCores, 8 GB RAM)
-- 1x [Synology DiskStation DS920+](https://www.synology.com/en-global/products/DS920+)
+- 1x [Synology DiskStation DS920+](https://www.synology.com/en-global/products/DS920+) (2x 3 GB & 2x 4 GB)
 
 !!! note
 
@@ -57,7 +57,7 @@ All services with a UI running in my cluster have a dedicated subdomain configur
 
 Services that need to be reachable externally have dedicated public DNS records. These are configured using [Terraform](https://terraform.io).
 
-??? example "Example of a DNS Terraform resource"
+!!! example "Example of a DNS Terraform resource"
 
     ```terraform
     data "cloudflare_zone" "zone_public" {
@@ -92,4 +92,11 @@ Every node has configured a hostname which follows a particular naming scheme:
 <planet>.iske.cloud
 ```
 
-As you may have guessed, the planets are taken from the [Star Wars universe](https://namingschemes.com/Star_Wars#Planets).
+As you may have guessed, the planets are taken from the [Star Wars universe](https://namingschemes.com/Star_Wars#Planets). Currently the following names are in use:
+
+- `coruscant`
+- `dathomir`
+- `mustafar`
+- `jakku`
+- `ryloth`
+- `ilum`
