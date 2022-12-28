@@ -25,6 +25,8 @@ Additionally, Renovate Bot is configured to automatically create Pull Requests f
 
 As soon as a pull request with an K3s update is merged, Flux starts reconciling the `Plan` manifests, the `system-upgrade-controller` detects the new version inside them and starts updating all nodes one by one, starting with the master nodes.
 
+![Renovate Pull Request for K3s dependency](/assets/renovate-pr.png)
+
 ## Services
 
 Updates of the running services are also done via Pull Requests by Renovate Bot which fits perfectly into the GitOps based workflow of Flux. It continuously checks the following data sources for new versions and creates Pull Requests to adapt them inside the cluster:
