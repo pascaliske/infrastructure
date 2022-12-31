@@ -17,3 +17,5 @@ spec:
       name: "*"
     - kind: HelmRelease
       name: "*"
+  exclusionList:
+    - "Dependencies.*not.*ready"
