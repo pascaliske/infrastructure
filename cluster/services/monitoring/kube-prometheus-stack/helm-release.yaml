@@ -54,7 +54,7 @@ spec:
               - 'namespace'
         route:
           group_by: ['namespace']
-          receiver: slack
+          receiver: discord
           routes:
             - receiver: nowhere
               matchers:
