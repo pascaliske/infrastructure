@@ -28,7 +28,7 @@ spec:
         - https
       rule: Host(`tasks.${DOMAIN_EXTERNAL}`)
       middlewares:
-        - name: auth
+        - name: auth-external
           namespace: traefik
         - name: security
           namespace: traefik
