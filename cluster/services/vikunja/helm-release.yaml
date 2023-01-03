@@ -1,0 +1,61 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vikunja
+  namespace: vikunja
+spec:
+  chart:
+    spec:
+      chart: vikunja
+      version: '0.0.2'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: vikunja/api
+      tag: 0.20.1
+    serviceMonitor:
+      enabled: true
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`tasks.${DOMAIN_EXTERNAL}`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+    certificate:
+      create: true
+      dnsNames:
+        - tasks.${DOMAIN_EXTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: PGID
+        value: ${GID}
+      - name: PUID
+        value: ${UID}
+      - name: VIKUNJA_CACHE_ENABLED
+        value: 'true'
+      - name: VIKUNJA_CACHE_TYPE
+        value: redis
+      - name: VIKUNJA_REDIS_ENABLED
+        value: 'true'
+      - name: VIKUNJA_REDIS_HOST
+        value: redis.redis.svc.cluster.local:6379
+      - name: VIKUNJA_KEYVALUE_TYPE
+        value: redis
+  interval: 10m0s
