@@ -95,6 +95,7 @@ nav:
           - unifi: cluster/services/unifi/index.md
           - uptime-kuma: cluster/services/uptime-kuma/index.md
           - vaultwarden: cluster/services/vaultwarden/index.md
+          - vikunja: cluster/services/vikunja/index.md
 
 # socials
 extra:
