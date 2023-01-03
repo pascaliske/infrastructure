@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: louislam/uptime-kuma
-      tag: 1.19.2-alpine
+      tag: 1.19.3-alpine
     serviceMonitor:
       enabled: true
     ingressRoute:
