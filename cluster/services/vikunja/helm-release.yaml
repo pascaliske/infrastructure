@@ -58,4 +58,16 @@ spec:
         value: redis.redis.svc.cluster.local:6379
       - name: VIKUNJA_KEYVALUE_TYPE
         value: redis
+      - name: VIKUNJA_MAILER_ENABLED
+        value: 'true'
+      - name: VIKUNJA_MAILER_HOST
+        value: '${SMTP_HOST}'
+      - name: VIKUNJA_MAILER_PORT
+        value: '587'
+      - name: VIKUNJA_MAILER_USERNAME
+        value: '${SMTP_ACCOUNT_VIKUNJA_EMAIL}'
+      - name: VIKUNJA_MAILER_PASSWORD
+        value: '${SMTP_ACCOUNT_VIKUNJA_PASSWORD}'
+      - name: VIKUNJA_MAILER_FROMEMAIL
+        value: '${SMTP_ACCOUNT_VIKUNJA_EMAIL}'
   interval: 10m0s
