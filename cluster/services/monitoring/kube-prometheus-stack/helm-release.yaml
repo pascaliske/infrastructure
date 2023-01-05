@@ -61,28 +61,21 @@ spec:
                 - alertname =~ "InfoInhibitor|Watchdog"
         receivers:
           - name: nowhere
-          - name: slack
-            slack_configs:
-              - channel: ${ALERTMANAGER_SLACK_CHANNEL}
-                username: ${ALERTMANAGER_SLACK_USERNAME}
-                api_url: ${ALERTMANAGER_SLACK_URL}
-                title: >-
-                  {{ template "slack.iske.title" . }}
-                text: >-
-                  {{ template "slack.iske.text" . }}
-                color: >-
-                  {{ template "slack.iske.color" . }}
-                send_resolved: true
           - name: discord
             discord_configs:
               - webhook_url: ${ALERTMANAGER_DISCORD_URL}
+                title: >-
+                  {{ template "discord.iske.title" . }}
+                message: >-
+                  {{ template "discord.iske.message" . }}
+                send_resolved: true
         templates:
           - /etc/alertmanager/config/*.tmpl
       templateFiles:
-        slack.tmpl: |-
-          {{ define "slack.iske.title" }}
+        discord.tmpl: |-
+          {{ define "discord.iske.title" }}
           [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }}{{ end }}
-          {{ define "slack.iske.text" }}
+          {{ define "discord.iske.message" }}
           {{ range $i, $e := .Alerts -}}
           {{ if $i }}———{{ end }}
           {{ if .Labels.severity }}`{{ .Labels.severity }}`{{ end }}
@@ -102,12 +95,6 @@ spec:
           {{- end }}
           {{- end }}
           {{ end }}{{ end }}
-          {{ define "slack.iske.color" }}
-          {{- if eq .Status "firing" -}}
-          danger
-          {{- else -}}
-          good
-          {{- end -}}{{ end }}
       serviceMonitor:
         relabelings:
           - sourceLabels: [__meta_kubernetes_pod_node_name]
