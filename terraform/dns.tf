@@ -13,7 +13,7 @@ resource "cloudflare_record" "vpn" {
   type    = "A"
   name    = "vpn"
   value   = ""
-  proxied = true
+  proxied = false
 
   lifecycle {
     ignore_changes = [value]
