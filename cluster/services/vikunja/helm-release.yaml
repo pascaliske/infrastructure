@@ -48,6 +48,22 @@ spec:
         value: ${GID}
       - name: PUID
         value: ${UID}
+      - name: VIKUNJA_DATABASE_TYPE
+        value: postgres
+      - name: VIKUNJA_DATABASE_HOST
+        value: postgresql-rw
+      - name: VIKUNJA_DATABASE_DATABASE
+        value: vikunja
+      - name: VIKUNJA_DATABASE_USER
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: username
+      - name: VIKUNJA_DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: password
       - name: VIKUNJA_CACHE_ENABLED
         value: 'true'
       - name: VIKUNJA_CACHE_TYPE

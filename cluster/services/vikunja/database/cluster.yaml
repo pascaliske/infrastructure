@@ -1,0 +1,21 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgresql
+  namespace: vikunja
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 1Gi
+  superuserSecret:
+    name: postgresql-superuser
+  bootstrap:
+    initdb:
+      database: vikunja
+      owner: vikunja
+      secret:
+        name: postgresql-user
+  monitoring:
+    enablePodMonitor: true

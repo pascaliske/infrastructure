@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: postgresql-user
+    namespace: vikunja
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:F0vF6r3j9A==,iv:g4XEtejFtmSeyywgsxAENH8JMjd/zWX5WyGQwMlnFl0=,tag:Alw7geRUIcJQSMgFGEV2ZQ==,type:str]
+    password: ENC[AES256_GCM,data:VCkBqwoPk69O3wQ7fVhq598/sopm/uhX+fSDW10bSKzUHYqmg1h7BOz2,iv:XWdu3iOxqo/7Th1EsU1H6qDx89zjFREVlAMmKilFz1s=,tag:mdwTSncmgGtSdqxjE5EbaQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwNXhZSTJZWitablJBVnQ4
+            RXRRdnh2ZkJJbnRlWmg3a0VkTU5MdGsyb2tvCmFRQXZGOEdkRmdpbTh4am9FNTF5
+            SmFBYnhwWG5KVDdFdk9FZnkwOFNXYUkKLS0tIGdZTThzT2RxSnR6TXRtZXlwdnJh
+            ZC9GejJyTzQ0UzFId05MRmVJSG9mQ00KiJwQ40JEBrQY+gYNbndWuPXcJ+Vq5eCo
+            ykgoq5NlMzRi9YqAN2tnnxr6tnKFnQ0LTMrE70C0Sp694QmtKwz5gA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-01-08T19:46:02Z"
+    mac: ENC[AES256_GCM,data:rBZRULv81p1rKvHN+ZnNlRqWU20GBcLdpTbsOMAnJs2YbmGaDYyV7dBW8Ghff8sED1RhRGKr+EM5QfNQBsZjH6H48FTTdLsd1zjGtPpNRENjTuBdteYGyUp+MA8yV0lOUFoJVxHv0LPpoIYzI2sTpS0yLFKtnGqVj/3jMLp1/6U=,iv:mQ9vI0C4FPwdIa/Cze0J0S1sYEEY2dF3qOhXwCqvREk=,tag:DV7uu5fhO4MF4zpkndMGJA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
