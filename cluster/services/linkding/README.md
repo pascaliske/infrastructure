@@ -2,6 +2,8 @@
 
 ## Introduction
 
+`linkding` is a great software but yet minimal bookmark service which you can easily self-host.
+
 ## Created Resources
 
 | Kind                                | Name                       |
