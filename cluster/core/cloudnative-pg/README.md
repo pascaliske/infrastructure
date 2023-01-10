@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The [`cloudnative-pg`](https://cloudnative-pg.io) controller is leveraged to deploy a [single-node PostgreSQL cluster](/cluster/services/postgresql/) inside the Kubernetes cluster which is used as a database for various services within the cluster.
+The [`cloudnative-pg`](https://cloudnative-pg.io) controller is leveraged to deploy multiple [PostgreSQL](https://www.postgresql.org) databases which are used for various services within the cluster.
 
 > It’s entirely declarative, and directly integrates with the Kubernetes API server to update the state of the cluster — for this reason, it does not require an external failover management tool. — <https://cloudnative-pg.io>
 
@@ -13,12 +13,22 @@ The [`cloudnative-pg`](https://cloudnative-pg.io) controller is leveraged to dep
     kind: Cluster
     metadata:
       name: postgresql
-      namespace: postgresql
+      namespace: my-app
     spec:
       instances: 1
       primaryUpdateStrategy: unsupervised
       storage:
         size: 1Gi
+      superuserSecret:
+          name: postgresql-superuser
+        bootstrap:
+          initdb:
+            database: my-app
+            owner: my-app
+            secret:
+              name: postgresql-user
+        monitoring:
+          enablePodMonitor: true
     ```
 
 ## Created Resources

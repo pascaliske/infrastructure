@@ -87,7 +87,6 @@ nav:
               - unifi-poller: cluster/services/monitoring/unifi-poller/index.md
               - vector: cluster/services/monitoring/vector/index.md
           - paperless: cluster/services/paperless/index.md
-          - postgresql: cluster/services/postgresql/index.md
           - redis: cluster/services/redis/index.md
           - shlink: cluster/services/shlink/index.md
           - snapdrop: cluster/services/snapdrop/index.md
