@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 11,
+  "id": 9,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -64,7 +64,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 1
+            "y": 17
           },
           "id": 8,
           "options": {
@@ -148,7 +148,7 @@
             "h": 10,
             "w": 8,
             "x": 0,
-            "y": 2
+            "y": 18
           },
           "id": 16,
           "options": {
@@ -218,7 +218,7 @@
             "h": 10,
             "w": 8,
             "x": 8,
-            "y": 2
+            "y": 18
           },
           "id": 18,
           "options": {
@@ -288,7 +288,7 @@
             "h": 10,
             "w": 8,
             "x": 16,
-            "y": 2
+            "y": 18
           },
           "id": 20,
           "options": {
@@ -1113,7 +1113,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1224,7 +1225,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1287,6 +1289,133 @@
       "title": "Network Dropped Packets",
       "transparent": true,
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": 3600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": false,
+          "width": 300
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "asc"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "unpoller_device_port_poe_watts{port_name=\"Coruscant\"}",
+          "legendFormat": "{{port_name}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "unpoller_device_port_poe_watts{port_name=\"Dathomir\"}",
+          "hide": false,
+          "legendFormat": "{{port_name}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "unpoller_device_port_poe_watts{port_name=\"Mustafar\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{port_name}}",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Power Consumption",
+      "transparent": true,
+      "type": "timeseries"
     }
   ],
   "refresh": "5s",
@@ -1297,7 +1426,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -1407,6 +1536,6 @@
   "timezone": "",
   "title": "Nodes",
   "uid": "nodes",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
