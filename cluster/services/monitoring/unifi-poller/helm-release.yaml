@@ -17,8 +17,8 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: golift/unifi-poller
-      tag: '2.1.3'
+      repository: ghcr.io/unpoller/unpoller
+      tag: 'v2.7.10'
 
     env:
       - name: TZ
