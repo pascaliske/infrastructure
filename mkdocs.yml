@@ -62,6 +62,7 @@ nav:
           - traefik: cluster/core/traefik/index.md
           - cert-manager: cluster/core/cert-manager/index.md
           - cloudnative-pg: cluster/core/cloudnative-pg/index.md
+          - crowdsec: cluster/core/crowdsec/index.md
           - velero: cluster/core/velero/index.md
       - Services:
           - Overview: cluster/services/index.md
