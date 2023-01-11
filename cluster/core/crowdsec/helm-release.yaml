@@ -1,0 +1,75 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: crowdsec
+  namespace: crowdsec
+spec:
+  chart:
+    spec:
+      chart: crowdsec
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: crowdsec
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    container_runtime: containerd
+    lapi:
+      env:
+        - name: ENROLL_KEY
+          valueFrom:
+            secretKeyRef:
+              name: crowdsec-keys
+              key: ENROLL_KEY
+        - name: ENROLL_INSTANCE_NAME
+          value: infrastructure
+        - name: DISABLE_AGENT
+          value: "true"
+      dashboard:
+        enabled: false
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+    agent:
+      acquisition:
+        - namespace: traefik
+          podName: traefik-*
+          program: traefik
+        - namespace: '*'
+          podName: postgresql-*
+          program: pgsql
+      env:
+        - name: TZ
+          value: ${TIMEZONE}
+        - name: COLLECTIONS
+          value: >-
+            crowdsecurity/linux
+            crowdsecurity/traefik
+            crowdsecurity/base-http-scenarios
+            crowdsecurity/http-cve
+            crowdsecurity/pgsql
+        - name: PARSERS
+          value: >-
+            crowdsecurity/cri-logs
+            crowdsecurity/docker-logs
+        - name: DISABLE_ONLINE_API
+          value: "false"
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+  interval: 10m0s

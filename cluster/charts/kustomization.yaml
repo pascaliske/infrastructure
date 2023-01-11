@@ -6,6 +6,7 @@ resources:
   - authelia.yaml
   - cloudflare-exporter.yaml
   - cloudnative-pg-charts.yaml
+  - crowdsec.yaml
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml
