@@ -68,6 +68,10 @@ spec:
         - key: node-role.kubernetes.io/control-plane
           operator: Exists
           effect: NoSchedule
+        - key: k8s.pascaliske.dev/location
+          operator: Equal
+          value: public
+          effect: NoSchedule
       metrics:
         enabled: true
         serviceMonitor:
