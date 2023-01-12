@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: postgresql-user
+    namespace: linkding
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:+lY71jLmMC4=,iv:rcp6HnaD3j7zhX0q7QJV9t5e+xFvg50XqOkIfEBK3xk=,tag:Q0fTxadDgFGZ4vbVPJTa7g==,type:str]
+    password: ENC[AES256_GCM,data:tR3J5i8hHWHOUcE2iRJqsYmD8lDgYjuO1SpXabf143SJ2/X8Y8XQOYCv,iv:oUCa0gpi9gbFfVBCrNssGwW7NjQbSVc5uHlAOVLH+go=,tag:2dfvQych9THxd5Hb4aOjlg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1NE14a082MENua3paYnN6
+            KzV3TWxnUWJIUm1DeHlWSHBiRTNPcnFNa3owCittTWkzRjNYOWIvRytObjJKYzhF
+            VG5ob1NHMVVFWDB5T2daZGpyRDlTVVEKLS0tIGVFYUpNMVQ3KzM5QXBqejMySHlt
+            Y1lPdzBTS0ZLYzdsSDRJYThGYXBTK1kK1y33G2gLBeCfM1WIC8Eua9w/uEcGT1u7
+            C/DYnQolf5zPfmB+BDCnKbUMDl8aBzLeoBHBq9amsLbRU6mX0bLbgw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-01-12T21:27:59Z"
+    mac: ENC[AES256_GCM,data:Egjld6+zkM7xGx+qmxTaIxErbUAjyhXjy33iPf5I3DxhkFkwFBArpTAGwHUyv9FRVXPMNh1erlwPGCOAEpF76q9uVigQ5XAuO1C11wfcJ/HjIX9+vWkccX0gkM0CmLkFOSDYE8ma55G7shMcdXokknmufDwRoq4JaPdjEnp6FpI=,iv:dLGLGihKMRTGS7noTa7aQELPM6zMPuL4sw75DaRhb08=,tag:NJw+M6qXHjvaX5fKaZToxw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

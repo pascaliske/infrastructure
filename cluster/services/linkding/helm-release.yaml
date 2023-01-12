@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: linkding
+      version: '0.3.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -19,13 +20,6 @@ spec:
     image:
       repository: sissbruecker/linkding
       tag: 1.16.0
-    # deployment:
-    #   annotations:
-    #     backup.velero.io/backup-volumes: storage-volume
-    #     pre.hook.backup.velero.io/container: fsfreeze
-    #     pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/etc/linkding/data"]'
-    #     post.hook.backup.velero.io/container: fsfreeze
-    #     post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/etc/linkding/data"]'
     ingressRoute:
       create: true
       entryPoints:
@@ -48,39 +42,34 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
-      - name: LD_ENABLE_AUTH_PROXY
-        value: 'True'
       - name: LD_SUPERUSER_NAME
         value: ${LINKDING_ADMIN_USER}
       - name: LD_SUPERUSER_PASSWORD
         value: ${LINKDING_ADMIN_PASSWORD}
+      - name: LD_ENABLE_AUTH_PROXY
+        value: 'True'
       - name: LD_AUTH_PROXY_USERNAME_HEADER
         value: HTTP_REMOTE_USER
       - name: LD_AUTH_PROXY_LOGOUT_URL
         value: https://auth.${DOMAIN_EXTERNAL}/logout?rd=https://links.${DOMAIN_EXTERNAL}
+      - name: LD_DB_ENGINE
+        value: postgres
+      - name: LD_DB_HOST
+        value: postgresql-rw
+      - name: LD_DB_PORT
+        value: '5432'
+      - name: LD_DB_DATABASE
+        value: linkding
+      - name: LD_DB_USER
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: username
+      - name: LD_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: password
     persistentVolumeClaim:
-      storageClassName: local-path
-    # additionalContainers:
-    #   fsfreeze:
-    #     name: fsfreeze
-    #     image: ghcr.io/pascaliske/fsfreeze:0.1.0
-    #     volumeMounts:
-    #       - name: storage-volume
-    #         mountPath: /etc/linkding/data
-    #     securityContext:
-    #       privileged: true
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: k8s.pascaliske.dev/location
-                  operator: In
-                  values:
-                    - public
-    tolerations:
-      - key: k8s.pascaliske.dev/location
-        operator: Equal
-        value: public
-        effect: NoSchedule
+      create: false
   interval: 10m0s
