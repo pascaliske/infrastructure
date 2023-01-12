@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: sissbruecker/linkding
-      tag: 1.15.1
+      tag: 1.16.0
     # deployment:
     #   annotations:
     #     backup.velero.io/backup-volumes: storage-volume
