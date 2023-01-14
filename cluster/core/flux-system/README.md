@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Flux is configured to notify me about important events like reconciliation errors via Slack. It also sends the current reconciliation status of all sections to GitHub as status checks, which are nicely displayed inside PRs:
+Flux is configured to notify me about important events like reconciliation errors via Discord. It also sends the current reconciliation status of all sections to GitHub as status checks, which are nicely displayed inside PRs:
 
 ![Flux GitHub Status](https://k8s.pascaliske.dev/assets/flux-github-status.png){ loading=lazy }
 
@@ -10,11 +10,11 @@ For a complete guide of how to setup this notifications [visit their documentati
 
 ## Created Resources
 
-| Kind                       | Name                                                |
-| -------------------------- | --------------------------------------------------- |
-| [`Provider`][ref-provider] | `github`, `slack`, `grafana`                        |
-| [`Alert`][ref-alert]       | `github`, `infrastructure`, `grafana`               |
-| [`Secret`][ref-secret]     | `github-token`, `slack-webhook-url`, `grafana-auth` |
+| Kind                       | Name                                                  |
+| -------------------------- | ----------------------------------------------------- |
+| [`Provider`][ref-provider] | `github`, `discord`, `grafana`                        |
+| [`Alert`][ref-alert]       | `github`, `infrastructure`, `grafana`                 |
+| [`Secret`][ref-secret]     | `github-token`, `discord-webhook-url`, `grafana-auth` |
 
 [ref-provider]: https://fluxcd.io/docs/components/notification/provider/
 [ref-alert]: https://fluxcd.io/docs/components/notification/alert/
