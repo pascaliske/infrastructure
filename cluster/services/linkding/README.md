@@ -2,7 +2,7 @@
 
 ## Introduction
 
-`linkding` is a great software but yet minimal bookmark service which you can easily self-host.
+`linkding` is a great and minimal bookmark service which you can easily self-host. It supports tagging, sharing and automatic internet archive snapshots. It does not require an external database but I set it up with a PostgreSQL database from the [`cloudnative-pg`](/cluster/core/cloudnative-pg/) controller.
 
 ## Created Resources
 
