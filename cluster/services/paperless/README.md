@@ -2,6 +2,18 @@
 
 ## Introduction
 
+> A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
+
+Paperless-ngx is a document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper – although I still keep almost all documents in paper form.
+
+Some of it's features are:
+
+- Performs OCR on your documents, adds selectable text to image only documents and adds tags, correspondents and document types to your documents.
+- Full text search helps you find what you need.
+- Email processing: Paperless adds documents from your email accounts.
+- Machine learning powered document matching.
+- [More features can be found on their GitHub repository](https://github.com/paperless-ngx/paperless-ngx#features)
+
 ![Paperless screenshot](https://k8s.pascaliske.dev/assets/paperless.png){ loading=lazy }
 
 ## Created Resources
