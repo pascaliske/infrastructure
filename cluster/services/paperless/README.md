@@ -14,7 +14,7 @@ Some of it's features are:
 - Machine learning powered document matching.
 - [More features can be found on their GitHub repository](https://github.com/paperless-ngx/paperless-ngx#features)
 
-![Paperless screenshot](https://k8s.pascaliske.dev/assets/paperless.png){ loading=lazy }
+![Paperless screenshot](/assets/paperless.png){ loading=lazy }
 
 ## Created Resources
 

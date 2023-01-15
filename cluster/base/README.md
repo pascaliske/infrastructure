@@ -4,7 +4,7 @@ The cluster represents the heart of this project. Since I wanted to keep things 
 
 The cluster state is managed by [Flux](https://fluxcd.io) in a [GitOps](https://www.weave.works/technologies/gitops/) based manner. To provide a clean separation of concerns the cluster is divided into several sections reflected as folders in the repository.
 
-![GitOps Workflow Diagram](https://k8s.pascaliske.dev/assets/gitops-workflow.png){ loading=lazy }
+![GitOps Workflow Diagram](/assets/gitops-workflow.png){ loading=lazy }
 
 The `base` directory serves as an entrypoint from which all other sections are executed. It manages all Flux related components and afterwards reconciles the following [`Kustomization`](https://fluxcd.io/docs/components/kustomize/kustomization/) files in exactly this order:
 
