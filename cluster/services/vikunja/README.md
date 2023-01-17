@@ -2,6 +2,10 @@
 
 ## Introduction
 
+> The open-source, self-hostable to-do app.
+
+Notes and to-do lists play a big role in my daily job. They help me to structure and speed up my work. [Recently](https://github.com/pascaliske/infrastructure/pull/344) I made the switch from simple text files to Vikunja. With it's multiple types of views and many options to enrich to-dos with metadata I hope to be even more productive than before.
+
 ## Created Resources
 
 | Kind                              | Name                                      |
