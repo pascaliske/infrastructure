@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Redis is used for multiple services and multiple causes. Many services (e.g. [Authelia](/cluser/services/authelia/)) use it to cache sessions.
+> The open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
+
+Redis is used by multiple services (e.g. [Authelia](/cluser/services/authelia/)) to cache sessions, store short-lived data or as storage between multiple replicas of an application.
 
 ## Created Resources
 
