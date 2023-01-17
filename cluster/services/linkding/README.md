@@ -2,6 +2,10 @@
 
 ## Introduction
 
+[`linkding`](https://github.com/sissbruecker/linkding) is a great and minimal bookmark service which you can easily self-host. It supports tagging, sharing and automatic internet archive snapshots. It does not require an external database but I set it up with a PostgreSQL database from the [`cloudnative-pg`](/cluster/core/cloudnative-pg/) controller.
+
+![linkding screenshot](/assets/linkding.png){ loading=lazy }
+
 ## Created Resources
 
 | Kind                                | Name                       |

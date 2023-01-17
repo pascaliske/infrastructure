@@ -2,6 +2,10 @@
 
 ## Introduction
 
+The UniFi ecosystem is a great and valuable choice if you want to level up your home network from consumer grade hardware to a more professional one.
+
+Both their switches and access points are awesome products and can be managed from a single pane of glass: the UniFi controller software. It can easily be self-hosted thanks to [@jacobalberty](https://github.com/jacobalberty/unifi-docker).
+
 ## Created Resources
 
 | Kind                                | Name           |

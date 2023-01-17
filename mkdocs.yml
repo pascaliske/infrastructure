@@ -38,9 +38,11 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.top
+    - navigation.footer
     - toc.follow
     - toc.integrate
     - content.code.annotate
+    - content.code.copy
     - content.tabs.link
 
 # navigation
@@ -56,13 +58,15 @@ nav:
       - CRDs: cluster/crds/index.md
       - Core:
           - Overview: cluster/core/index.md
-          - flux-system: cluster/core/flux-system/index.md
-          - system-upgrade: cluster/core/system-upgrade/index.md
-          - kured: cluster/core/kured/index.md
-          - traefik: cluster/core/traefik/index.md
           - cert-manager: cluster/core/cert-manager/index.md
           - cloudnative-pg: cluster/core/cloudnative-pg/index.md
           - crowdsec: cluster/core/crowdsec/index.md
+          - flux-system: cluster/core/flux-system/index.md
+          - kured: cluster/core/kured/index.md
+          - system-upgrade: cluster/core/system-upgrade/index.md
+          - traefik-errors: cluster/core/traefik-errors/index.md
+          - traefik: cluster/core/traefik/index.md
+          - trivy-operator: cluster/core/trivy-operator/index.md
           - velero: cluster/core/velero/index.md
       - Services:
           - Overview: cluster/services/index.md

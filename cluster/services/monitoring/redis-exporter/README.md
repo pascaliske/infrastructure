@@ -1,4 +1,4 @@
-# `fritzbox-exporter`
+# `redis-exporter`
 
 ## Introduction
 
