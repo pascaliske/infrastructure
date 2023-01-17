@@ -2,6 +2,10 @@
 
 ## Introduction
 
+> The definitive self-hosted URL shortener.
+
+More or less as an experiment I set up this piece of software in my homelab. Shlink provides an easy to self-host and fully privacy aware link shortener.
+
 ## Created Resources
 
 | Kind                                | Name                     |
@@ -49,6 +53,6 @@ For more information on the commands itself [visit their docs](https://shlink.io
 
 ## Links
 
-- [Documentation](https://paperless-ngx.readthedocs.io)
-- [Helm Chart](https://charts.pascaliske.dev/charts/paperless/)
-- [GitHub Repository](https://github.com/paperless-ngx/paperless-ngx)
+- [Documentation](https://shlink.io/documentation/)
+- [Helm Chart](https://charts.pascaliske.dev/charts/shlink/)
+- [GitHub Repository](https://github.com/shlinkio/shlink)
