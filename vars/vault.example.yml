@@ -1,0 +1,30 @@
+vault:
+  # static ips
+  ips:
+    # network
+    router: ''
+
+    # nodes - local
+    coruscant: ''
+    dathomir: ''
+    mustafar: ''
+    jakku: ''
+
+    # nodes - tailscale
+    tailscale_coruscant: ''
+    tailscale_dathomir: ''
+    tailscale_mustafar: ''
+    tailscale_jakku: ''
+
+  # ssh
+  ssh:
+    authorized_key: '' # e.g. id_ed25519
+
+  # tailscale
+  tailscale:
+    auth_key: '' # e.g. tskey-xyz
+
+  # minio - only if needed
+  minio:
+    username: ''
+    password: ''

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+tasks:
+  provision:
+    summary: Provision all cluster nodes using Ansible
+    cmds:
+      - ansible-playbook --diff --ask-vault-pass --extra-vars @vars/vault.yml playbooks/provision.yml {{.CLI_ARGS}}
+
+  bootstrap:
+    summary: Bootstrap the cluster using Flux CLI
+    cmds:
+      - flux bootstrap github {{.CLI_ARGS}} --path=./cluster/base --personal
+
+  ssh:
+    summary: SSH into cluster nodes by name
+    interactive: true
+    cmds:
+      - sh scripts/ssh.sh {{.CLI_ARGS}}

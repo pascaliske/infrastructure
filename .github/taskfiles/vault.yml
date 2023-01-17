@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+tasks:
+  setup:
+    summary: Setup Ansible vault file
+    interactive: true
+    cmds:
+      - cp vars/vault.example.yml vars/vault.yml
+      - vim vars/vault.yml
+      - task: encrypt
+
+  encrypt:
+    summary: Encrypt Ansible vault file
+    interactive: true
+    cmds:
+      - ansible-vault encrypt vars/vault.yml
+
+  decrypt:
+    summary: Decrypt Ansible vault file
+    interactive: true
+    cmds:
+      - ansible-vault decrypt vars/vault.yml

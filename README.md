@@ -8,7 +8,8 @@
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) + [Yarn](https://yarnpkg.com) (for local repository management only)
+- [Task](https://taskfile.dev) to execute all required commands
+- [Node.js](https://nodejs.org) + [Yarn](https://yarnpkg.com) (for local repository management only)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) to provision the cluster nodes with common settings, Tailscale and K3s
 - [Terraform](https://www.terraform.io/) to deploy all external DNS records
 - [Flux](https://fluxcd.io/docs/installation/) which manages and updates the cluster state
@@ -22,18 +23,19 @@ The cluster can be set up using the following commands:
 $ git clone https://github.com/pascaliske/infrastructure
 
 # install needed dependencies
-$ yarn install
+$ task install
+
+# setup ansible vault file (one-time)
+$ task vault:setup
 
 # provision nodes using ansible (1)
-$ yarn run play playbooks/provision.yml
+$ task cluster:provision
 
 # bootstrap flux cluster
-$ flux bootstrap github \
+$ task cluster:bootstrap -- \
     --owner=$GITHUB_USER \ # required flag (2)
     --repository=$GITHUB_REPO \ # required flag (3)
-    --branch=master \
-    --path=./cluster/base \
-    --personal
+    --branch=master
 ```
 
 1. More information on the following command can be found in the [provisioning section](/provisioning/#provisionyml).
