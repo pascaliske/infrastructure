@@ -2,6 +2,10 @@
 
 ## Introduction
 
+> Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs.
+
+Coming from 1Password (which is a great software!) I found an even better password manager: Vaultwarden/Bitwarden. It combines awesome features and privacy awareness into a beautiful UI which dan be used on almost any device.
+
 ## Created Resources
 
 | Kind                                | Name               |
