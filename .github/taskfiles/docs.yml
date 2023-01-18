@@ -9,12 +9,12 @@ tasks:
   # prepare default documentation pages
   default-pages:
     cmds:
-      - cat README.md >> docs/index.md
+      - cat README.md > docs/index.md
       - echo "---" > docs/LICENSE.md
       - echo "hide:" >> docs/LICENSE.md
       - echo "  - navigation" >> docs/LICENSE.md
       - echo "---" >> docs/LICENSE.md
-      - cat LICENSE.md >> docs/LICENSE.md
+      - cat LICENSE.md > docs/LICENSE.md
 
   # serve documentation for development purposes
   serve:

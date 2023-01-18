@@ -51,4 +51,4 @@
   authorized_key:
     state: present
     user: '{{ ansible_user }}'
-    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/' + ssh.authorized_key) }}"
+    key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/' + ssh.authorized_key + '.pub') }}"

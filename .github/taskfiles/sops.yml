@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+tasks:
+  encrypt:secret:
+    summary: Encrypt file using Mozilla SOPS
+    cmds:
+      - sops --age $AGE_PUBLIC_KEY --encrypt --encrypted-regex '^(data|stringData)$' --in-place {{.CLI_ARGS}}
+
+  decrypt:secret:
+    summary: Decrypt file using Mozilla SOPS
+    cmds:
+      - sops --age $AGE_PUBLIC_KEY --decrypt --encrypted-regex '^(data|stringData)$' --in-place {{.CLI_ARGS}}
+
+  encrypt:generic:
+    summary: Encrypt file using Mozilla SOPS
+    cmds:
+      - sops --age $AGE_PUBLIC_KEY --encrypt --in-place {{.CLI_ARGS}}
+
+  decrypt:generic:
+    summary: Decrypt file using Mozilla SOPS
+    cmds:
+      - sops --age $AGE_PUBLIC_KEY --decrypt --in-place {{.CLI_ARGS}}
