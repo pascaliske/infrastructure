@@ -276,11 +276,6 @@ spec:
               replacement: $1
               action: replace
 
-    # manually upgrade operator due to incompatible discord configs value
-    prometheusOperator:
-      image:
-        tag: v0.62.0
-
     prometheus:
       prometheusSpec:
         externalUrl: https://prometheus.${DOMAIN}
