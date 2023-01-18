@@ -20,6 +20,8 @@ spec:
   upgrade:
     crds: Skip
   values:
+    fullnameOverride: ''
+
     defaultRules:
       rules:
         etcd: false
@@ -117,6 +119,7 @@ spec:
                   storage: 50Gi
 
     grafana:
+      fullnameOverride: grafana
       defaultDashboardsEnabled: false
       defaultDashboardsTimezone: ${TIMEZONE}
       adminUser: ${GRAFANA_USERNAME}
@@ -246,6 +249,7 @@ spec:
       enabled: false
 
     kube-state-metrics:
+      fullnameOverride: kube-state-metrics
       prometheus:
         monitor:
           relabelings:
@@ -257,6 +261,7 @@ spec:
               action: replace
 
     prometheus-node-exporter:
+      fullnameOverride: prometheus-node-exporter
       extraArgs:
         - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
         - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$

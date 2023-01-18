@@ -64,7 +64,7 @@ spec:
       match: Host(`grafana.${DOMAIN}`)
       services:
         - kind: Service
-          name: kube-prometheus-stack-grafana
+          name: grafana
           namespace: monitoring
           port: 80
       middlewares:
