@@ -6,7 +6,7 @@ The underlying cluster nodes can be fully updated by using the following Ansible
 
 ```zsh
 # update nodes using ansible (1)
-$ yarn run play playbooks/update.yml
+$ task cluster:update
 ```
 
 1. More information on this command can be found in the [provisioning section](/provisioning/#updateyml).

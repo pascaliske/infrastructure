@@ -23,13 +23,13 @@ Inside this file all hosts for the cluster and their connection details are defi
 For a initial and complete provisioning of all nodes the following command can be used:
 
 ```shell
-$ yarn run play playbooks/provision.yml
+$ task cluster:provision
 ```
 
 To only run specific parts of the playbook the `--tags` flag can be appended to the command:
 
 ```shell
-$ yarn run play playbooks/provision.yml --tags <tag1>[,<tag2>]
+$ task cluster:provision -- --tags <tag1>[,<tag2>]
 ```
 
 The following tags are available for usage with `--tags`:
@@ -52,13 +52,13 @@ The following tags are available for usage with `--tags`:
 The update playbook allows me to simply update / patch all nodes:
 
 ```shell
-$ yarn run play playbooks/update.yml
+$ task cluster:update
 ```
 
 To only run specific parts of the playbook the `--tags` flag can be appended to the command:
 
 ```shell
-$ yarn run play playbooks/update.yml --tags <tag1>[,<tag2>]
+$ task cluster:update -- --tags <tag1>[,<tag2>]
 ```
 
 The following tags are available for usage with `--tags`:
@@ -68,10 +68,10 @@ The following tags are available for usage with `--tags`:
 
 ## Limit
 
-All playbooks can be executed on a limited set of hosts using the `--limit` flag:
+Both playbooks can be executed on a limited set of hosts using the `--limit` flag:
 
 ```shell
-$ yarn run play playbooks/<playbook>.yml --limit <host1>[,<host2>]
+$ task cluster:<provision|update> -- --limit <host1>[,<host2>]
 ```
 
 Any hosts from the [inventory](#inventory) can be used with this flag.
@@ -85,11 +85,11 @@ To encrypt or decrypt I use the following commands:
 === "Encryption"
 
     ```shell
-    $ yarn run vault:encrypt
+    $ task vault:encrypt
     ```
 
 === "Decryption"
 
     ```shell
-    $ yarn run vault:decrypt
+    $ task vault:decrypt
     ```
