@@ -51,6 +51,7 @@ nav:
   - Specs: specs/index.md
   - Provisioning: provisioning/index.md
   - Updates: updates/index.md
+  - Secrets: secrets/index.md
   - Cluster:
       - Overview: cluster/base/index.md
       - Config: cluster/config/index.md
