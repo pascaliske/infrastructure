@@ -2,40 +2,68 @@
 
 ## Introduction
 
+> Authelia is an open-source authentication and authorization server providing two-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for reverse proxies by allowing, denying, or redirecting requests.
+
+![authelia screenshot](/assets/authelia.png){ loading=lazy }
+
 [Authelia](https://www.authelia.com/) allows me to centralize the authentication part of nearly all deployed services into one neat web portal. It features a complex access control rule system and enables the usage of multi-factor authentication.
 
 For every service which supports user authentication by HTTP headers or complete disablement of authentication, I configured Authelia as authentication layer using a Traefik middleware.
 
-??? example "Example `Middleware` for Traefik"
+??? example "Example via Traefik `Middleware`"
 
-    ```yaml
-    apiVersion: traefik.containo.us/v1alpha1
-    kind: Middleware
-    metadata:
-      name: auth
-      namespace: traefik
-    spec:
-      forwardAuth:
-        address: http://authelia.authelia.svc.cluster.local/api/verify?rd=https://auth.${DOMAIN}
-        trustForwardHeader: true
-        authResponseHeaders:
-          - Remote-User
-          - Remote-Groups
-          - Remote-Name
-          - Remote-Email
-    ```
+    === "`Middleware`"
 
-??? example "Example usage of `Middleware`"
+        First a `Middleware` object needs to be created which defines the `forwardAuth` address and headers:
 
-    In order for the `Middleware` to take effect, it must be added to the middlewares section of any `IngressRoute`:
+        ```yaml linenums="1" hl_lines="7-14"
+        apiVersion: traefik.containo.us/v1alpha1
+        kind: Middleware
+        metadata:
+          name: auth
+          namespace: traefik
+        spec:
+          forwardAuth:
+            address: http://authelia.authelia.svc.cluster.local/api/verify?rd=https://auth.${DOMAIN}
+            trustForwardHeader: true
+            authResponseHeaders:
+              - Remote-User
+              - Remote-Groups
+              - Remote-Name
+              - Remote-Email
+        ```
 
-    ```yaml
-          middlewares:
-            - name: auth
-              namespace: traefik
-    ```
+    === "Usage"
 
-Currently Authelia [does not support multi-domain usage](https://github.com/authelia/authelia/issues/1198). Therefore I deployed two instances of Authelia inside my cluster. One for internal services and one for external services. Since the feature [is on the roadmap](https://www.authelia.com/roadmap/active/multi-domain-protection/), it will probably be implemented sometime in the future and both instances can be merged back into one.
+        In order for the `Middleware` to take effect, it must be added to the middlewares section of any `IngressRoute`:
+
+        ```yaml linenums="1" hl_lines="17-19"
+        apiVersion: traefik.containo.us/v1alpha1
+        kind: IngressRoute
+        metadata:
+          name: dashboard
+          namespace: authelia
+        spec:
+          entryPoints:
+            - https
+          routes:
+            - kind: Rule
+              match: Host(`auth.${DOMAIN}`)
+              services:
+                - kind: Service
+                  name: authelia
+                  namespace: authelia
+                  port: 80
+              middlewares:
+                - name: auth
+                  namespace: traefik
+          tls:
+            secretName: auth.${DOMAIN}
+        ```
+
+!!! info
+
+    ~~Currently Authelia [does not support multi-domain usage](https://github.com/authelia/authelia/issues/1198). Since the feature [is on the roadmap](https://www.authelia.com/roadmap/active/multi-domain-protection/), it will probably be implemented sometime in the future and both instances can be merged back into one.~~ This feature [ships with `v4.38.0`](https://github.com/authelia/authelia/pull/3754)! 🎉
 
 ## Created Resources
 
