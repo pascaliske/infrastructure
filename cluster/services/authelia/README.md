@@ -16,49 +16,16 @@ For every service which supports user authentication by HTTP headers or complete
 
         First a `Middleware` object needs to be created which defines the `forwardAuth` address and headers:
 
-        ```yaml linenums="1" hl_lines="7-14"
-        apiVersion: traefik.containo.us/v1alpha1
-        kind: Middleware
-        metadata:
-          name: auth
-          namespace: traefik
-        spec:
-          forwardAuth:
-            address: http://authelia.authelia.svc.cluster.local/api/verify?rd=https://auth.${DOMAIN}
-            trustForwardHeader: true
-            authResponseHeaders:
-              - Remote-User
-              - Remote-Groups
-              - Remote-Name
-              - Remote-Email
+        ```yaml linenums="1" hl_lines="8-15"
+        --8<-- "cluster/core/traefik/middlewares/auth.yaml"
         ```
 
     === "Usage"
 
         In order for the `Middleware` to take effect, it must be added to the middlewares section of any `IngressRoute`:
 
-        ```yaml linenums="1" hl_lines="17-19"
-        apiVersion: traefik.containo.us/v1alpha1
-        kind: IngressRoute
-        metadata:
-          name: dashboard
-          namespace: authelia
-        spec:
-          entryPoints:
-            - https
-          routes:
-            - kind: Rule
-              match: Host(`auth.${DOMAIN}`)
-              services:
-                - kind: Service
-                  name: authelia
-                  namespace: authelia
-                  port: 80
-              middlewares:
-                - name: auth
-                  namespace: traefik
-          tls:
-            secretName: auth.${DOMAIN}
+        ```yaml linenums="1" hl_lines="17-18"
+        --8<-- "cluster/core/traefik/route.yaml"
         ```
 
 !!! info
