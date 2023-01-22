@@ -235,13 +235,18 @@ services:
         url: https://homeassistant.${DOMAIN}
         <<: *automation
       - name: Office Desk WLED
-        subtitle: Office Desk WLED instance
+        subtitle: WLED controller
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/wled.png
         url: http://10.0.2.40
         <<: *automation
   - name: Self Hosted
     icon: fas fa-server
     items:
+      - name: Vikunja
+        subtitle: Task management
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vikunja.png
+        url: https://tasks.${DOMAIN_EXTERNAL}
+        <<: *self-hosted
       - name: Vaultwarden
         subtitle: Password management
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vaultwarden.png
