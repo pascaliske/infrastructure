@@ -12,6 +12,10 @@ $ brew install sops age
 
 You also need to [generate a key](https://fluxcd.io/flux/guides/mozilla-sops/#encrypting-secrets-using-age) for `age` and [enable the Flux controllers to decrypt](https://fluxcd.io/flux/guides/mozilla-sops/#configure-in-cluster-secrets-decryption) your secrets.
 
+!!! tip "Store `age` key in environment variable"
+
+    This repository provides some [task definitions](#commands) to easily maintain SOPS encrypted files. To use them you just need to ensure your `age` public key is available in an environment variable called `AGE_PUBLIC_KEY`.
+
 ## Workflow
 
 Let's assume you want to deploy an application which needs the following secret to connect to a database:
