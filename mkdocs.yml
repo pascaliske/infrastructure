@@ -64,6 +64,7 @@ nav:
           - crowdsec: cluster/core/crowdsec/index.md
           - flux-system: cluster/core/flux-system/index.md
           - kured: cluster/core/kured/index.md
+          - node-problem-detector: cluster/core/node-problem-detector/index.md
           - system-upgrade: cluster/core/system-upgrade/index.md
           - traefik-errors: cluster/core/traefik-errors/index.md
           - traefik: cluster/core/traefik/index.md
