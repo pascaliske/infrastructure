@@ -8,6 +8,7 @@ resources:
   - cloudnative-pg
   - crowdsec
   - trivy-operator
+  - node-problem-detector
   - kured
   - traefik
   - traefik-errors

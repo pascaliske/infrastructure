@@ -7,6 +7,7 @@ resources:
   - cloudflare-exporter.yaml
   - cloudnative-pg-charts.yaml
   - crowdsec.yaml
+  - deliveryhero.yaml
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml
