@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 9,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -52,7 +52,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "blue"
+                    "color": "blue",
+                    "value": null
                   }
                 ]
               },
@@ -64,7 +65,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 17
+            "y": 1
           },
           "id": 8,
           "options": {
@@ -82,7 +83,7 @@
             "text": {},
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.1.2",
+          "pluginVersion": "9.3.1",
           "targets": [
             {
               "datasource": {
@@ -843,20 +844,23 @@
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 10,
-            "gradientMode": "none",
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
             "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1426,7 +1430,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -1536,6 +1540,6 @@
   "timezone": "",
   "title": "Nodes",
   "uid": "nodes",
-  "version": 4,
+  "version": 3,
   "weekStart": ""
 }
