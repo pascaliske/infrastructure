@@ -12,8 +12,8 @@ Most of my home automation stuff is ZigBee based which requires a small USB ZigB
     apiVersion: v1
     kind: Node
     metadata:
-    name: dathomir.iske.cloud
-    labels:
+      name: dathomir.iske.cloud
+      labels:
         k8s.pascaliske.dev/hardware: zigbee
     ```
 
