@@ -6,6 +6,7 @@ includes:
   vault: ./.github/taskfiles/vault.yml
   sops: ./.github/taskfiles/sops.yml
   cluster: ./.github/taskfiles/cluster.yml
+  blocky: ./.github/taskfiles/blocky.yml
   backup: ./.github/taskfiles/backup.yml
   docs: ./.github/taskfiles/docs.yml
 

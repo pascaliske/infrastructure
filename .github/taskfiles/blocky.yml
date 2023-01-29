@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+tasks:
+  enable:
+    summary: Enable blocking via Blocky CLI.
+    cmds:
+      - kubectl exec -it --namespace blocky deploy/blocky -- ./blocky blocking enable
+
+  disable:
+    summary: Disable blocking via Blocky CLI.
+    cmds:
+      - kubectl exec -it --namespace blocky deploy/blocky -- ./blocky blocking disable {{.CLI_ARGS}}
+
+  status:
+    summary: Output the blocking state via Blocky CLI.
+    cmds:
+      - kubectl exec -it --namespace blocky deploy/blocky -- ./blocky blocking status
+
+  query:
+    summary: Perform DNS query via Blocky CLI.
+    cmds:
+      - kubectl exec -it --namespace blocky deploy/blocky -- ./blocky query {{.CLI_ARGS}}
+
+  refresh:
+    summary: Refresh all lists via Blocky CLI.
+    cmds:
+      - kubectl exec -it --namespace blocky deploy/blocky -- ./blocky refresh
