@@ -25,14 +25,6 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
-    # TODO: check for real values, as those below cause `CPUThrottlingHigh` alerts
-    # resources:
-    #   requests:
-    #     cpu: 100m
-    #     memory: 128Mi
-    #   limits:
-    #     cpu: 100m
-    #     memory: 128Mi
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
