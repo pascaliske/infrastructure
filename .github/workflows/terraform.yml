@@ -22,6 +22,24 @@ env:
   CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
 jobs:
+  scan:
+    name: Scan
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v3
+
+      # setup tfsec
+      - uses: tfsec/tfsec-sarif-action@v0.1.4
+        with:
+          working_directory: terraform
+          sarif_file: tfsec.sarif
+
+      # upload report to github
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: tfsec.sarif
+
   plan:
     name: Plan
     runs-on: ubuntu-latest
