@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`prometheus.${DOMAIN}`)
+      match: Host(`prometheus.${DOMAIN_INTERNAL}`)
       services:
         - kind: Service
           name: prometheus-operated
@@ -23,7 +23,7 @@ spec:
         - name: error-pages
           namespace: traefik-errors
   tls:
-    secretName: prometheus.${DOMAIN}
+    secretName: prometheus.${DOMAIN_INTERNAL}
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -35,7 +35,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`alerts.${DOMAIN}`)
+      match: Host(`alerts.${DOMAIN_INTERNAL}`)
       services:
         - kind: Service
           name: alertmanager-operated
@@ -49,7 +49,7 @@ spec:
         - name: error-pages
           namespace: traefik-errors
   tls:
-    secretName: alerts.${DOMAIN}
+    secretName: alerts.${DOMAIN_INTERNAL}
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -61,7 +61,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`grafana.${DOMAIN}`)
+      match: Host(`grafana.${DOMAIN_INTERNAL}`)
       services:
         - kind: Service
           name: grafana
@@ -75,4 +75,4 @@ spec:
         - name: error-pages
           namespace: traefik-errors
   tls:
-    secretName: grafana.${DOMAIN}
+    secretName: grafana.${DOMAIN_INTERNAL}

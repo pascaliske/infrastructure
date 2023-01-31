@@ -12,7 +12,7 @@ Coming from 1Password (which is a great software!) I found an even better passwo
 | ----------------------------------- | ------------------ |
 | [`Namespace`][ref-namespace]        | `vaultwarden`      |
 | [`HelmRelease`][ref-helm-release]   | `vaultwarden`      |
-| [`Certificate`][ref-certificate]    | `vault.${DOMAIN}`  |
+| [`Certificate`][ref-certificate]    | `vault.${DOMAIN_INTERNAL}`  |
 | [`IngressRoute`][ref-ingress-route] | `dashboard`        |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/

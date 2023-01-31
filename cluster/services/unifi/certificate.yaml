@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: unifi.${DOMAIN}
+  name: unifi.${DOMAIN_INTERNAL}
   namespace: unifi
 spec:
-  secretName: unifi.${DOMAIN}
+  secretName: unifi.${DOMAIN_INTERNAL}
   dnsNames:
-    - unifi.${DOMAIN}
+    - unifi.${DOMAIN_INTERNAL}
   issuerRef:
     kind: ClusterIssuer
     name: lets-encrypt-production

@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`unifi.${DOMAIN}`)
+      match: Host(`unifi.${DOMAIN_INTERNAL}`)
       services:
         - kind: Service
           name: unifi
@@ -26,4 +26,4 @@ spec:
         - name: error-pages
           namespace: traefik-errors
   tls:
-    secretName: 'unifi.${DOMAIN}'
+    secretName: 'unifi.${DOMAIN_INTERNAL}'

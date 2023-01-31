@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`loki.${DOMAIN}`)
+      match: Host(`loki.${DOMAIN_INTERNAL}`)
       services:
         - kind: Service
           name: loki
@@ -21,4 +21,4 @@ spec:
         - name: security
           namespace: traefik
   tls:
-    secretName: loki.${DOMAIN}
+    secretName: loki.${DOMAIN_INTERNAL}

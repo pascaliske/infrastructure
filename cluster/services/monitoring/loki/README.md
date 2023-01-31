@@ -7,7 +7,7 @@
 | Kind                                | Name             |
 | ----------------------------------- | ---------------- |
 | [`HelmRelease`][ref-helm-release]   | `loki`           |
-| [`Certificate`][ref-certificate]    | `loki.${DOMAIN}` |
+| [`Certificate`][ref-certificate]    | `loki.${DOMAIN_INTERNAL}` |
 | [`IngressRoute`][ref-ingress-route] | `loki`           |
 
 [ref-helm-release]: https://fluxcd.io/docs/components/helm/helmreleases/

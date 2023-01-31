@@ -24,7 +24,7 @@ Traefik provides a custom resource definition [`IngressRoute`](https://doc.traef
         - https
       routes:
         - kind: Rule
-          match: Host(`auth.${DOMAIN}`)
+          match: Host(`auth.${DOMAIN_INTERNAL}`)
           services:
             - kind: Service
               name: authelia
@@ -34,7 +34,7 @@ Traefik provides a custom resource definition [`IngressRoute`](https://doc.traef
             - name: security
               namespace: traefik
       tls:
-        secretName: auth.${DOMAIN}
+        secretName: auth.${DOMAIN_INTERNAL}
     ```
 
 ??? example "Example of kind `Middleware`"
@@ -63,7 +63,7 @@ The dashboard of Traefik is enabled and needs to be accessible by domain. This `
 | [`Namespace`][ref-namespace]            | `traefik`           |
 | [`HelmRelease`][ref-helm-release]       | `traefik`           |
 | [`Service`][ref-service]                | `traefik-metrics`   |
-| [`Certificate`][ref-certificate]        | `traefik.${DOMAIN}` |
+| [`Certificate`][ref-certificate]        | `traefik.${DOMAIN_INTERNAL}` |
 | [`IngressRoute`][ref-ingress-route]     | `dashboard`         |
 | [`ServiceMonitor`][ref-service-monitor] | `traefik`           |
 

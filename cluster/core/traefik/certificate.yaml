@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: traefik.${DOMAIN}
+  name: traefik.${DOMAIN_INTERNAL}
   namespace: traefik
 spec:
-  secretName: traefik.${DOMAIN}
+  secretName: traefik.${DOMAIN_INTERNAL}
   dnsNames:
-    - traefik.${DOMAIN}
+    - traefik.${DOMAIN_INTERNAL}
   issuerRef:
     kind: ClusterIssuer
     name: lets-encrypt-production

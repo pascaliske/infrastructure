@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`vault.${DOMAIN}`)
+      match: Host(`vault.${DOMAIN_INTERNAL}`)
       services:
         - kind: Service
           name: vaultwarden
@@ -23,7 +23,7 @@ spec:
         - name: error-pages
           namespace: traefik-errors
   tls:
-    secretName: vault.${DOMAIN}
+    secretName: vault.${DOMAIN_INTERNAL}
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -35,7 +35,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`vault.${DOMAIN}`) && Path(`/notifications/hub`)
+      match: Host(`vault.${DOMAIN_INTERNAL}`) && Path(`/notifications/hub`)
       services:
         - kind: Service
           name: vaultwarden
@@ -49,4 +49,4 @@ spec:
         - name: error-pages
           namespace: traefik-errors
   tls:
-    secretName: vault.${DOMAIN}
+    secretName: vault.${DOMAIN_INTERNAL}

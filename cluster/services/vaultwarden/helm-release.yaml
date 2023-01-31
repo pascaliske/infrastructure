@@ -23,7 +23,7 @@ spec:
       - name: TZ
         value: ${TIMEZONE}
       - name: DOMAIN
-        value: https://vault.${DOMAIN}
+        value: https://vault.${DOMAIN_INTERNAL}
       - name: DATA_FOLDER
         value: config
       - name: LOG_LEVEL
@@ -33,7 +33,7 @@ spec:
       - name: SIGNUPS_VERIFY
         value: 'true'
       - name: SIGNUPS_DOMAINS_WHITELIST
-        value: '${DOMAIN},${DOMAIN_EXTERNAL}'
+        value: '${DOMAIN_INTERNAL},${DOMAIN_EXTERNAL}'
       - name: DISABLE_ADMIN_TOKEN
         value: 'true'
       - name: SMTP_HOST

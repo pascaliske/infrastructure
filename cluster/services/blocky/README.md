@@ -24,7 +24,7 @@ For clients to resolve domains using Blocky. Their DNS server setting needs to b
 | ----------------------------------- | ---------------------------------------- |
 | [`Namespace`][ref-namespace]        | `blocky`                                 |
 | [`HelmRelease`][ref-helm-release]   | `blocky`                                 |
-| [`Certificate`][ref-certificate]    | `blocky.${DOMAIN}`                       |
+| [`Certificate`][ref-certificate]    | `blocky.${DOMAIN_INTERNAL}`                       |
 | [`IngressRoute`][ref-ingress-route] | `api`                                    |
 | [`ConfigMap`][ref-config-map]       | `blocky-config`, `grafana-dashboard-dns` |
 

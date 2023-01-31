@@ -6,7 +6,7 @@ metadata:
   namespace: traefik
 spec:
   forwardAuth:
-    address: http://authelia.authelia.svc.cluster.local/api/verify?rd=https://auth.${DOMAIN}
+    address: http://authelia.authelia.svc.cluster.local/api/verify?rd=https://auth.${DOMAIN_INTERNAL}
     trustForwardHeader: true
     authResponseHeaders:
       - Remote-User

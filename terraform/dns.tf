@@ -1,15 +1,15 @@
 # zones
-data "cloudflare_zone" "zone_private" {
-  name = local.domain_private
+data "cloudflare_zone" "zone_internal" {
+  name = local.domain_internal
 }
 
-data "cloudflare_zone" "zone_public" {
-  name = local.domain_public
+data "cloudflare_zone" "zone_external" {
+  name = local.domain_external
 }
 
 # vpn, will be updated frequently using a K8s CronJob
 resource "cloudflare_record" "vpn" {
-  zone_id = data.cloudflare_zone.zone_private.id
+  zone_id = data.cloudflare_zone.zone_internal.id
   type    = "A"
   name    = "vpn"
   value   = ""
@@ -22,15 +22,15 @@ resource "cloudflare_record" "vpn" {
 
 # dmarc
 resource "cloudflare_record" "dmarc" {
-  zone_id = data.cloudflare_zone.zone_private.id
+  zone_id = data.cloudflare_zone.zone_internal.id
   type    = "TXT"
   name    = "_dmarc"
-  value   = "v=DMARC1; p=quarantine; rua=mailto:info@${local.domain_public}"
+  value   = "v=DMARC1; p=quarantine; rua=mailto:info@${local.domain_external}"
 }
 
 # dkim
 resource "cloudflare_record" "dkim" {
-  zone_id = data.cloudflare_zone.zone_private.id
+  zone_id = data.cloudflare_zone.zone_internal.id
   type    = "TXT"
   name    = "*._domainkey"
   value   = "v=DKIM1; p="
@@ -38,23 +38,23 @@ resource "cloudflare_record" "dkim" {
 
 # spf
 resource "cloudflare_record" "spf" {
-  zone_id = data.cloudflare_zone.zone_private.id
+  zone_id = data.cloudflare_zone.zone_internal.id
   type    = "TXT"
-  name    = local.domain_private
+  name    = local.domain_internal
   value   = "v=spf1 ~all"
 }
 
 # google
 resource "cloudflare_record" "google" {
-  zone_id = data.cloudflare_zone.zone_private.id
+  zone_id = data.cloudflare_zone.zone_internal.id
   type    = "TXT"
-  name    = local.domain_private
+  name    = local.domain_internal
   value   = "google-site-verification=${var.GOOGLE_VERIFICATION_TOKEN}"
 }
 
 # public
 resource "cloudflare_record" "public" {
-  zone_id = data.cloudflare_zone.zone_public.id
+  zone_id = data.cloudflare_zone.zone_external.id
   type    = "A"
   name    = "*"
   value   = local.public_ip_jakku
@@ -62,7 +62,7 @@ resource "cloudflare_record" "public" {
 
 # docs
 resource "cloudflare_record" "docs" {
-  zone_id = data.cloudflare_zone.zone_public.id
+  zone_id = data.cloudflare_zone.zone_external.id
   type    = "CNAME"
   name    = "k8s"
   value   = local.domain_github
@@ -70,7 +70,7 @@ resource "cloudflare_record" "docs" {
 
 # charts
 resource "cloudflare_record" "charts" {
-  zone_id = data.cloudflare_zone.zone_public.id
+  zone_id = data.cloudflare_zone.zone_external.id
   type    = "CNAME"
   name    = "charts"
   value   = local.domain_github

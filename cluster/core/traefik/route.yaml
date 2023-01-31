@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`traefik.${DOMAIN}`)
+      match: Host(`traefik.${DOMAIN_INTERNAL}`)
       services:
         - kind: TraefikService
           name: api@internal
@@ -21,4 +21,4 @@ spec:
         - name: error-pages
           namespace: traefik-errors
   tls:
-    secretName: traefik.${DOMAIN}
+    secretName: traefik.${DOMAIN_INTERNAL}

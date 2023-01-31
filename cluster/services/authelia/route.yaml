@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`auth.${DOMAIN}`)
+      match: Host(`auth.${DOMAIN_INTERNAL}`)
       services:
         - kind: Service
           name: authelia
@@ -23,4 +23,4 @@ spec:
         - name: error-pages
           namespace: traefik-errors
   tls:
-    secretName: auth.${DOMAIN}
+    secretName: auth.${DOMAIN_INTERNAL}

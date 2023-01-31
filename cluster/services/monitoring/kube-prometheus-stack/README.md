@@ -49,7 +49,7 @@ The Prometheus Operator looks for `ServiceMonitor` and `PodMonitor` objects in a
 | Kind                                | Name                                                                  |
 | ----------------------------------- | --------------------------------------------------------------------- |
 | [`HelmRelease`][ref-helm-release]   | `kube-prometheus-stack`                                               |
-| [`Certificate`][ref-certificate]    | `prometheus.${DOMAIN}`, `alerts.${DOMAIN}`, `grafana.${DOMAIN}`       |
+| [`Certificate`][ref-certificate]    | `prometheus.${DOMAIN_INTERNAL}`, `alerts.${DOMAIN_INTERNAL}`, `grafana.${DOMAIN_INTERNAL}`       |
 | [`IngressRoute`][ref-ingress-route] | `dashboard-prometheus`, `dashboard-alertmanager`, `dashboard-grafana` |
 | [`ConfigMap`][ref-config-map]       | `grafana-dashboard-nodes`, `grafana-dashboard-containers`             |
 

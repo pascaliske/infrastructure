@@ -11,7 +11,7 @@ spec:
     contentTypeNosniff: true
     forceSTSHeader: true
     frameDeny: true
-    # sslHost: unifi.${DOMAIN} # TODO: deprecated
+    # sslHost: unifi.${DOMAIN_INTERNAL} # TODO: deprecated
     # sslRedirect: true # TODO: deprecated
     stsIncludeSubdomains: true
     stsPreload: true

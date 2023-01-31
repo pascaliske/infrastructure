@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: homeassistant.${DOMAIN}
+  name: homeassistant.${DOMAIN_INTERNAL}
   namespace: home-assistant
 spec:
-  secretName: homeassistant.${DOMAIN}
+  secretName: homeassistant.${DOMAIN_INTERNAL}
   dnsNames:
-    - homeassistant.${DOMAIN}
+    - homeassistant.${DOMAIN_INTERNAL}
   issuerRef:
     kind: ClusterIssuer
     name: lets-encrypt-production

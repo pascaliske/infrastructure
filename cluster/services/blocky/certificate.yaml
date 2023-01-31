@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: blocky.${DOMAIN}
+  name: blocky.${DOMAIN_INTERNAL}
   namespace: blocky
 spec:
-  secretName: blocky.${DOMAIN}
+  secretName: blocky.${DOMAIN_INTERNAL}
   dnsNames:
-    - blocky.${DOMAIN}
+    - blocky.${DOMAIN_INTERNAL}
   issuerRef:
     kind: ClusterIssuer
     name: lets-encrypt-production
