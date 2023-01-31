@@ -22,6 +22,36 @@ env:
   CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
 jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v3
+
+      # setup taskfile
+      - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # setup terraform
+      - uses: hashicorp/setup-terraform@v2
+
+      # setup tflint
+      - uses: terraform-linters/setup-tflint@v3
+
+      # init terraform
+      - name: Init Terraform
+        run: task tf:init -- -backend=false
+
+      # validate terraform
+      - name: Validate Terraform
+        run: task tf:validate
+
+      # lint terraform
+      - name: Lint Terraform
+        run: task tf:lint
+
   scan:
     name: Scan
     runs-on: ubuntu-latest
