@@ -16,6 +16,8 @@ spec:
   install:
     createNamespace: true
   values:
+    rbac:
+      pspEnabled: false
     image:
       repository: oliver006/redis_exporter
       tag: v1.46.0
