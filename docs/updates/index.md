@@ -14,7 +14,7 @@ $ task cluster:update
 For critical and/or security relevant updates the unattended-upgrades tool is configured on all nodes:
 
 ```shell title="/etc/apt/apt.conf.d/50unattended-upgrades"
---8<-- "roles/common/templates/unattended-upgrades/50unattended-upgrades.j2"
+--8<-- "ansible/roles/common/templates/unattended-upgrades/50unattended-upgrades.j2"
 ```
 
 ## Kubernetes

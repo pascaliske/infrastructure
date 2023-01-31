@@ -2,7 +2,7 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # check if vault is encrypted
-if (cat vars/vault.yml | grep -q "\$ANSIBLE_VAULT;"); then
+if (cat ansible/vars/vault.yml | grep -q "\$ANSIBLE_VAULT;"); then
     echo "Vault Encrypted. Safe to commit."
 else
     echo "Vault not encrypted! Run 'yr vault:encrypt' and try again."
