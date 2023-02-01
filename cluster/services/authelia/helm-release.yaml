@@ -20,7 +20,7 @@ spec:
       registry: ghcr.io
       repository: authelia/authelia
       tag: '4.37'
-    domain: ${DOMAIN}
+    domain: ${DOMAIN_INTERNAL}
     pod:
       kind: Deployment
       env:
@@ -46,7 +46,7 @@ spec:
           enabled: true
           serviceMonitor:
             enabled: true
-      default_redirection_url: https://${DOMAIN}
+      default_redirection_url: https://${DOMAIN_INTERNAL}
       theme: dark
       webauthn:
         display_name: auth@infrastructure
@@ -68,24 +68,24 @@ spec:
         rules:
           - policy: bypass
             domain:
-              - unifi.${DOMAIN}
-              - vault.${DOMAIN}
+              - unifi.${DOMAIN_INTERNAL}
+              - vault.${DOMAIN_INTERNAL}
           - policy: bypass
-            domain: blocky.${DOMAIN}
+            domain: blocky.${DOMAIN_INTERNAL}
             resources:
               - /dns-query
           - policy: bypass
-            domain: loki.${DOMAIN}
+            domain: loki.${DOMAIN_INTERNAL}
             resources:
               - /ready
               - /loki/api/v1/push
           - policy: bypass
-            domain: homeassistant.${DOMAIN}
+            domain: homeassistant.${DOMAIN_INTERNAL}
             resources:
               - /api/services
               - /api/websocket
           - policy: bypass
-            domain: status.${DOMAIN}
+            domain: status.${DOMAIN_INTERNAL}
             resources:
               - ^\/assets
               - ^\/icon
@@ -95,15 +95,15 @@ spec:
               - ^\/api\/status-page
               - ^\/$
           - policy: two_factor
-            domain: vault.${DOMAIN}
+            domain: vault.${DOMAIN_INTERNAL}
             subject:
               - group:admins
             resources:
               - /admin
           - policy: two_factor
             domain:
-              - ${DOMAIN}
-              - '*.${DOMAIN}'
+              - ${DOMAIN_INTERNAL}
+              - '*.${DOMAIN_INTERNAL}'
             subject:
               - group:admins
       session:

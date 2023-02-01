@@ -24,9 +24,9 @@
     },
     {
       "description": "Process various dependencies",
-      "fileMatch": ["roles/.+\\.ya?ml$", "cluster/.+\\.ya?ml$", ".+\\.md$"],
+      "fileMatch": ["ansible/.+\\.ya?ml$", "cluster/.+\\.ya?ml$", ".+\\.md$"],
       "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?(?<annotation> \\(\\d\\))?\n.*?\"(?<currentValue>.*)\"\n"
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?(?<annotation> \\(\\d\\))?\n.*?\"(?<currentValue>.*)\"\n?"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"

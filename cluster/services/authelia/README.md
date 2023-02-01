@@ -38,7 +38,7 @@ For every service which supports user authentication by HTTP headers or complete
 | ----------------------------------- | ------------------------------------------- |
 | [`Namespace`][ref-namespace]        | `authelia`                                  |
 | [`HelmRelease`][ref-helm-release]   | `authelia`, `authelia-external`             |
-| [`Certificate`][ref-certificate]    | `auth.${DOMAIN}`, `auth.${DOMAIN_EXTERNAL}` |
+| [`Certificate`][ref-certificate]    | `auth.${DOMAIN_INTERNAL}`, `auth.${DOMAIN_EXTERNAL}` |
 | [`IngressRoute`][ref-ingress-route] | `dashboard`, `dashboard-external`           |
 | [`ConfigMap`][ref-config-map]       | `authelia-users`                            |
 | [`Middleware`][ref-middleware]      | `headers`                                   |

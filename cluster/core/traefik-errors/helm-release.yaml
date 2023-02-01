@@ -36,7 +36,7 @@ spec:
       statusCodes:
         - '404'
         - '410-599'
-      homeUrl: https://${DOMAIN}
+      homeUrl: https://${DOMAIN_INTERNAL}
     env:
       - name: TZ
         value: ${TIMEZONE}

@@ -12,7 +12,7 @@ Both their switches and access points are awesome products and can be managed fr
 | ----------------------------------- | -------------- |
 | [`Namespace`][ref-namespace]        | `homer`        |
 | [`HelmRelease`][ref-helm-release]   | `homer`        |
-| [`Certificate`][ref-certificate]    | `${DOMAIN}`    |
+| [`Certificate`][ref-certificate]    | `${DOMAIN_INTERNAL}`    |
 | [`IngressRoute`][ref-ingress-route] | `dashboard`    |
 
 [ref-namespace]: https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/namespace-v1/

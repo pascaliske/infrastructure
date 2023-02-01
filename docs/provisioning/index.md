@@ -14,10 +14,10 @@ Inside this file all hosts for the cluster and their connection details are defi
 
 ### `provision.yml`
 
-??? abstract "TL;DR — `playbooks/provision.yml`"
+??? abstract "TL;DR — `ansible/playbooks/provision.yml`"
 
     ```yaml linenums="1"
-    --8<-- "playbooks/provision.yml"
+    --8<-- "ansible/playbooks/provision.yml"
     ```
 
 For a initial and complete provisioning of all nodes the following command can be used:
@@ -43,10 +43,10 @@ The following tags are available for usage with `--tags`:
 
 ### `update.yml`
 
-??? abstract "TL;DR — `playbooks/update.yml`"
+??? abstract "TL;DR — `ansible/playbooks/update.yml`"
 
     ```yaml linenums="1"
-    --8<-- "playbooks/update.yml"
+    --8<-- "ansible/playbooks/update.yml"
     ```
 
 The update playbook allows me to simply update / patch all nodes:

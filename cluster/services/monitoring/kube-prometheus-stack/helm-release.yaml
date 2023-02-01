@@ -107,7 +107,7 @@ spec:
             action: replace
       alertmanagerSpec:
         logLevel: info # before: warn
-        externalUrl: https://alerts.${DOMAIN}
+        externalUrl: https://alerts.${DOMAIN_INTERNAL}
         storage:
           volumeClaimTemplate:
             spec:
@@ -177,7 +177,7 @@ spec:
                 foldersFromFilesStructure: true
       grafana.ini:
         server:
-          domain: grafana.${DOMAIN}
+          domain: grafana.${DOMAIN_INTERNAL}
           root_url: '%(protocol)s://%(domain)s:%(http_port)s'
           serve_from_sub_path: false
           enable_gzip: true
@@ -278,7 +278,7 @@ spec:
 
     prometheus:
       prometheusSpec:
-        externalUrl: https://prometheus.${DOMAIN}
+        externalUrl: https://prometheus.${DOMAIN_INTERNAL}
         # TODO: implement label for selection, enable all service monitors for now
         serviceMonitorSelector: {}
         serviceMonitorSelectorNilUsesHelmValues: false

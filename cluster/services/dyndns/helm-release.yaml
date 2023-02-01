@@ -34,7 +34,7 @@ spec:
       - name: TZ
         value: ${TIMEZONE}
       - name: DOMAIN
-        value: ${DOMAIN}
+        value: ${DOMAIN_INTERNAL}
       - name: NAME
         value: vpn
 

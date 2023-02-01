@@ -2,12 +2,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: loki.${DOMAIN}
+  name: loki.${DOMAIN_INTERNAL}
   namespace: monitoring
 spec:
-  secretName: loki.${DOMAIN}
+  secretName: loki.${DOMAIN_INTERNAL}
   dnsNames:
-    - loki.${DOMAIN}
+    - loki.${DOMAIN_INTERNAL}
   issuerRef:
     kind: ClusterIssuer
     name: lets-encrypt-production

@@ -121,15 +121,15 @@ footer: >
 links:
   - name: Status
     icon: fas fa-stream
-    url: https://status.${DOMAIN}
+    url: https://status.${DOMAIN_INTERNAL}
     target: _blank
   - name: Proxy
     icon: fas fa-shield-alt
-    url: https://traefik.${DOMAIN}
+    url: https://traefik.${DOMAIN_INTERNAL}
     target: _blank
   - name: Auth
     icon: fas fa-lock
-    url: https://auth.${DOMAIN}
+    url: https://auth.${DOMAIN_INTERNAL}
     target: _blank
   - name: GitHub
     icon: fab fa-github
@@ -166,22 +166,22 @@ services:
       - name: Prometheus
         subtitle: Metrics collector
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/prometheus.png
-        url: https://prometheus.${DOMAIN}
+        url: https://prometheus.${DOMAIN_INTERNAL}
         <<: *monitoring
       - name: Alertmanager
         subtitle: Alert handling
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/prometheus.png
-        url: https://alerts.${DOMAIN}
+        url: https://alerts.${DOMAIN_INTERNAL}
         <<: *monitoring
       - name: Grafana
         subtitle: Metrics visualizer
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/grafana.png
-        url: https://grafana.${DOMAIN}
+        url: https://grafana.${DOMAIN_INTERNAL}
         <<: *monitoring
       - name: Uptime Kuma
         subtitle: Uptime monitoring
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/uptime-kuma.png
-        url: https://status.${DOMAIN}/dashboard
+        url: https://status.${DOMAIN_INTERNAL}/dashboard
         <<: *monitoring
   - name: Network
     icon: fas fa-network-wired
@@ -189,7 +189,7 @@ services:
       - name: UniFi Controller
         subtitle: Network management controller
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/unifi.png
-        url: https://unifi.${DOMAIN}
+        url: https://unifi.${DOMAIN_INTERNAL}
         <<: *network
       - name: FRITZ!Box
         subtitle: Gateway & Firewall
@@ -232,7 +232,7 @@ services:
       - name: Home Assistant
         subtitle: Central home automation hub
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/home-assistant.png
-        url: https://homeassistant.${DOMAIN}
+        url: https://homeassistant.${DOMAIN_INTERNAL}
         <<: *automation
       - name: Office Desk WLED
         subtitle: WLED controller
@@ -250,7 +250,7 @@ services:
       - name: Vaultwarden
         subtitle: Password management
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vaultwarden.png
-        url: https://vault.${DOMAIN}
+        url: https://vault.${DOMAIN_INTERNAL}
         <<: *self-hosted
       - name: GitLab
         subtitle: Web based DevOps lifecycle platform
@@ -275,5 +275,5 @@ services:
       - name: Snapdrop
         subtitle: Local file sharing
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/snapdrop.png
-        url: https://drop.${DOMAIN}
+        url: https://drop.${DOMAIN_INTERNAL}
         <<: *self-hosted
