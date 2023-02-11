@@ -21,7 +21,6 @@ spec:
     crds: Skip
   values:
     image:
-      name: traefik
       repository: traefik
       tag: 'v2.9.6'
 
