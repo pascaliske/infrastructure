@@ -106,10 +106,12 @@ nav:
 # socials
 extra:
   social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/pascaliske
     - icon: fontawesome/brands/github
       link: https://github.com/pascaliske
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/pascaliske
+    - icon: fontawesome/brands/mastodon
+      link: https://hachyderm.io/@pascaliske
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/u/pascaliske
 
