@@ -25,9 +25,9 @@ spec:
       create: true
       entryPoints:
         - https
-      rule: Host(`status.${DOMAIN_INTERNAL}`)
+      rule: Host(`status.${DOMAIN_EXTERNAL}`)
       middlewares:
-        - name: auth
+        - name: auth-external
           namespace: traefik
         - name: security
           namespace: traefik
@@ -36,7 +36,7 @@ spec:
     certificate:
       create: true
       dnsNames:
-        - status.${DOMAIN_INTERNAL}
+        - status.${DOMAIN_EXTERNAL}
       issuerRef:
         kind: ClusterIssuer
         name: lets-encrypt-production

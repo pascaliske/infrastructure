@@ -74,6 +74,16 @@ spec:
             domain: docs.${DOMAIN_EXTERNAL}
             resources:
               - ^\/api
+          - policy: bypass
+            domain: status.${DOMAIN_EXTERNAL}
+            resources:
+              - ^\/assets
+              - ^\/icon
+              - ^\/manifest
+              - ^\/status
+              - ^\/api\/entry-page
+              - ^\/api\/status-page
+              - ^\/$
           - policy: one_factor
             domain: docs.${DOMAIN_EXTERNAL}
             subject:

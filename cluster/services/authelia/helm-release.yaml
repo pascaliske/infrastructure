@@ -84,16 +84,6 @@ spec:
             resources:
               - /api/services
               - /api/websocket
-          - policy: bypass
-            domain: status.${DOMAIN_INTERNAL}
-            resources:
-              - ^\/assets
-              - ^\/icon
-              - ^\/manifest
-              - ^\/status
-              - ^\/api\/entry-page
-              - ^\/api\/status-page
-              - ^\/$
           - policy: two_factor
             domain: vault.${DOMAIN_INTERNAL}
             subject:
