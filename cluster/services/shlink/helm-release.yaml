@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/shlinkio/shlink
-      tag: '3.5.1'
+      tag: '3.5.2'
     env:
       - name: TZ
         value: ${TIMEZONE}
