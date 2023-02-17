@@ -121,7 +121,7 @@ footer: >
 links:
   - name: Status
     icon: fas fa-stream
-    url: https://status.${DOMAIN_INTERNAL}
+    url: https://status.${DOMAIN_EXTERNAL}
     target: _blank
   - name: Proxy
     icon: fas fa-shield-alt
@@ -181,7 +181,7 @@ services:
       - name: Uptime Kuma
         subtitle: Uptime monitoring
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/uptime-kuma.png
-        url: https://status.${DOMAIN_INTERNAL}/dashboard
+        url: https://status.${DOMAIN_EXTERNAL}/dashboard
         <<: *monitoring
   - name: Network
     icon: fas fa-network-wired
