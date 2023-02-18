@@ -20,7 +20,7 @@ spec:
     image:
       repository: ghcr.io/pascaliske/unbound
       tag: '0.1.0'
-    deployment:
+    controller:
       replicas: 2
     env:
       - name: TZ
