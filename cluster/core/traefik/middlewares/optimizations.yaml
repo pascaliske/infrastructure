@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: optimizations
+  namespace: traefik
+spec:
+  chain:
+    middlewares:
+      - name: compression
+        namespace: traefik
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: compression
+  namespace: traefik
+spec:
+  compress: {}

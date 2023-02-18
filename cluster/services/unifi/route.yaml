@@ -21,6 +21,8 @@ spec:
           namespace: traefik
         - name: security
           namespace: traefik
+        - name: optimizations
+          namespace: traefik
         - name: headers
           namespace: unifi
         - name: error-pages

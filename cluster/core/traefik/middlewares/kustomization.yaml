@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - auth.yaml
   - auth-external.yaml
+  - optimizations.yaml
   - security.yaml
