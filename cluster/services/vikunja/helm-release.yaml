@@ -32,6 +32,8 @@ spec:
           namespace: traefik
         - name: security
           namespace: traefik
+        - name: optimizations
+          namespace: traefik
         - name: error-pages
           namespace: traefik-errors
     certificate:

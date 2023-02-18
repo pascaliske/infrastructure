@@ -20,5 +20,7 @@ spec:
           namespace: traefik
         - name: security
           namespace: traefik
+        - name: optimizations
+          namespace: traefik
   tls:
     secretName: loki.${DOMAIN_INTERNAL}
