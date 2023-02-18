@@ -20,7 +20,7 @@ spec:
     image:
       repository: ghcr.io/crazy-max/cloudflared
       tag: '2022.12.1'
-    deployment:
+    controller:
       replicas: 2
     service:
       metrics:
