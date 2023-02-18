@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: cloudflared
-      version: '1.5.1'
+      version: '2.0.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
