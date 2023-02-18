@@ -68,6 +68,8 @@ spec:
         value: ${PAPERLESS_IGNORE_DATES}
       - name: PAPERLESS_ENABLE_UPDATE_CHECK
         value: 'true'
+      - name: PAPERLESS_ENABLE_COMPRESSION
+        value: 'false'
     secret:
       create: true
       secretKey: ${PAPERLESS_SECRET_KEY}
