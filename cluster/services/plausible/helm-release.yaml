@@ -1,0 +1,103 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: plausible
+  namespace: plausible
+spec:
+  chart:
+    spec:
+      chart: plausible
+      version: '0.0.1'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: plausible/analytics
+      tag: v1.5.1
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`analytics.${DOMAIN_EXTERNAL}`)
+      middlewares:
+        - name: auth-external
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+    certificate:
+      create: true
+      dnsNames:
+        - analytics.${DOMAIN_EXTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: BASE_URL
+        value: https://analytics.${DOMAIN_EXTERNAL}
+      - name: SECRET_KEY_BASE
+        value: ${PLAUSIBLE_SECRET_KEY}
+      - name: DATABASE_URL
+        value: postgres://$(DATABASE_USER):$(DATABASE_PASSWORD)@postgresql-rw:5432/plausible
+      - name: DATABASE_USER
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: username
+      - name: DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: password
+      - name: CLICKHOUSE_DATABASE_URL
+        value: http://$(CLICKHOUSE_DATABASE_USER):$(CLICKHOUSE_DATABASE_PASSWORD)@clickhouse.clickhouse.svc.cluster.local:8123/plausible
+      - name: CLICKHOUSE_DATABASE_USER
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: username
+      - name: CLICKHOUSE_DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: password
+      - name: MAILER_EMAIL
+        value: '${SMTP_ACCOUNT_PLAUSIBLE_EMAIL}'
+      - name: SMTP_HOST_ADDR
+        value: '${SMTP_HOST}'
+      - name: SMTP_HOST_PORT
+        value: 587
+      - name: SMTP_USER_NAME
+        value: '${SMTP_ACCOUNT_PLAUSIBLE_EMAIL}'
+      - name: SMTP_USER_PWD
+        value: '${SMTP_ACCOUNT_PLAUSIBLE_PASSWORD}'
+      - name: SMTP_HOST_SSL_ENABLED
+        value: 'true'
+      - name: DISABLE_REGISTRATION
+        value: 'true'
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: k8s.pascaliske.dev/location
+                  operator: In
+                  values:
+                    - public
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
+  interval: 10m0s
