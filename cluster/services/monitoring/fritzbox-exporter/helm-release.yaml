@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: fritzbox-exporter
+      version: '2.0.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository

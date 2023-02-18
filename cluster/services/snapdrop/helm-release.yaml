@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: snapdrop
+      version: '1.0.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository

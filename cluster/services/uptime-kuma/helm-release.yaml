@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: uptime-kuma
+      version: '1.0.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository

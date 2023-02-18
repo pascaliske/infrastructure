@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: traefik-errors
+      version: '3.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
