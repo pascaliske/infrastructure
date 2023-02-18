@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2,
+  "id": 23,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -52,8 +52,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "blue",
-                    "value": null
+                    "color": "blue"
                   }
                 ]
               },
@@ -919,7 +918,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.0.3",
@@ -1540,6 +1539,6 @@
   "timezone": "",
   "title": "Nodes",
   "uid": "nodes",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
