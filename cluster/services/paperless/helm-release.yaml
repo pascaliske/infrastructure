@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 1.12.2
+      tag: 1.13.0
     ingressRoute:
       create: true
       entryPoints:
@@ -68,6 +68,8 @@ spec:
         value: ${PAPERLESS_IGNORE_DATES}
       - name: PAPERLESS_ENABLE_UPDATE_CHECK
         value: 'true'
+      - name: PAPERLESS_ENABLE_COMPRESSION
+        value: 'false'
     secret:
       create: true
       secretKey: ${PAPERLESS_SECRET_KEY}
