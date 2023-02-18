@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: unbound
-      version: '0.0.1'
+      version: '1.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -20,7 +20,7 @@ spec:
     image:
       repository: ghcr.io/pascaliske/unbound
       tag: '0.1.0'
-    deployment:
+    controller:
       replicas: 2
     env:
       - name: TZ
