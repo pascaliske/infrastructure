@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - authelia
   - blocky
+  - clickhouse
   - cloudflared
   - code-server
   - dyndns

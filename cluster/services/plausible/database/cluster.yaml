@@ -1,0 +1,21 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgresql
+  namespace: plausible
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 1Gi
+  superuserSecret:
+    name: postgresql-superuser
+  bootstrap:
+    initdb:
+      database: plausible
+      owner: plausible
+      secret:
+        name: postgresql-user
+  monitoring:
+    enablePodMonitor: true
