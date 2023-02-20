@@ -74,6 +74,7 @@ nav:
           - Overview: cluster/services/index.md
           - authelia: cluster/services/authelia/index.md
           - blocky: cluster/services/blocky/index.md
+          - clickhouse: cluster/services/clickhouse/index.md
           - cloudflared: cluster/services/cloudflared/index.md
           - code-server: cluster/services/code-server/index.md
           - dyndns: cluster/services/dyndns/index.md
@@ -94,6 +95,7 @@ nav:
               - unifi-poller: cluster/services/monitoring/unifi-poller/index.md
               - vector: cluster/services/monitoring/vector/index.md
           - paperless: cluster/services/paperless/index.md
+          - plausible: cluster/services/plausible/index.md
           - redis: cluster/services/redis/index.md
           - shlink: cluster/services/shlink/index.md
           - snapdrop: cluster/services/snapdrop/index.md
