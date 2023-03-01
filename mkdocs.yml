@@ -116,6 +116,10 @@ extra:
       link: https://hachyderm.io/@pascaliske
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/u/pascaliske
+  analytics:
+    provider: plausible
+    domain: k8s.pascaliske.dev
+    src: https://analytics.pascaliske.dev/js/script.js
 
 # customizations
 extra_css:
@@ -125,6 +129,7 @@ extra_css:
 plugins:
   - search
   - social
+  - material-plausible
 
 # code highlighting
 markdown_extensions:
