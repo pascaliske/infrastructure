@@ -47,31 +47,20 @@ spec:
       - name: BASE_URL
         value: https://analytics.${DOMAIN_EXTERNAL}
       - name: SECRET_KEY_BASE
-        value: ${PLAUSIBLE_SECRET_KEY}
+        valueFrom:
+          secretKeyRef:
+            name: plausible-secrets
+            key: SECRET_KEY_BASE
       - name: DATABASE_URL
-        value: postgres://$(DATABASE_USER):$(DATABASE_PASSWORD)@postgresql-rw:5432/plausible
-      - name: DATABASE_USER
         valueFrom:
           secretKeyRef:
-            name: postgresql-user
-            key: username
-      - name: DATABASE_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: postgresql-user
-            key: password
+            name: plausible-secrets
+            key: DATABASE_URL
       - name: CLICKHOUSE_DATABASE_URL
-        value: http://$(CLICKHOUSE_DATABASE_USER):$(CLICKHOUSE_DATABASE_PASSWORD)@clickhouse.clickhouse.svc.cluster.local:8123/plausible
-      - name: CLICKHOUSE_DATABASE_USER
         valueFrom:
           secretKeyRef:
-            name: postgresql-user
-            key: username
-      - name: CLICKHOUSE_DATABASE_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: postgresql-user
-            key: password
+            name: plausible-secrets
+            key: CLICKHOUSE_DATABASE_URL
       - name: MAILER_EMAIL
         value: '${SMTP_ACCOUNT_PLAUSIBLE_EMAIL}'
       - name: SMTP_HOST_ADDR
