@@ -75,6 +75,16 @@ spec:
         value: 'true'
       - name: DISABLE_REGISTRATION
         value: 'true'
+      - name: GOOGLE_CLIENT_ID
+        valueFrom:
+          secretKeyRef:
+            name: plausible-secrets
+            key: GOOGLE_CLIENT_ID
+      - name: GOOGLE_CLIENT_SECRET
+        valueFrom:
+          secretKeyRef:
+            name: plausible-secrets
+            key: GOOGLE_CLIENT_SECRET
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
