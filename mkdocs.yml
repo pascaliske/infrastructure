@@ -119,7 +119,7 @@ extra:
   analytics:
     provider: plausible
     domain: k8s.pascaliske.dev
-    src: https://analytics.pascaliske.dev/js/script.js
+    src: https://analytics.pascaliske.dev/js/script.outbound-links.js
     feedback:
       title: Was this page helpful?
       ratings:
