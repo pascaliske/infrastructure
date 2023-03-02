@@ -120,6 +120,21 @@ extra:
     provider: plausible
     domain: k8s.pascaliske.dev
     src: https://analytics.pascaliske.dev/js/script.js
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: happy
+          note: >-
+            Thanks for your feedback!
+
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: sad
+          note: >-
+            Thanks for your feedback! Help me improve this page by
+            opening a <a href="https://github.com/pascaliske/infrastructure/issues/new" target="_blank" rel="noopener">issue on GitHub</a>.
 
 # customizations
 extra_css:
