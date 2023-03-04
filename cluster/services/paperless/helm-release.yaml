@@ -76,6 +76,7 @@ spec:
       create: true
       secretKey: ${PAPERLESS_SECRET_KEY}
     persistentVolumeClaim:
+      size: 10Gi
       storageClassName: local-path
     consumption:
       enabled: true
