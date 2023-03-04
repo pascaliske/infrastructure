@@ -77,7 +77,7 @@ spec:
           - policy: bypass
             domain: analytics.${DOMAIN_EXTERNAL}
             resources:
-              - ^\/api\/event
+              - ^\/api
               - ^\/auth\/google\/callback
               - ^\/js\/script
           - policy: bypass
