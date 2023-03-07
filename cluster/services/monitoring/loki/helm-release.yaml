@@ -42,6 +42,8 @@ spec:
       lokiCanary:
         enabled: false
     singleBinary:
+      # workaround to fix helm error due to weird default value of zero replicas: https://github.com/grafana/loki/issues/8443#issuecomment-1421636858
+      replicas: 1
       extraArgs:
         - -config.expand-env=true
         - -log.level=warn
