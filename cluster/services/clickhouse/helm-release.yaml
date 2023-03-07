@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: clickhouse/clickhouse-server
-      tag: 23.2.2.20-alpine
+      tag: 23.2.3.17-alpine
     env:
       - name: TZ
         value: ${TIMEZONE}
