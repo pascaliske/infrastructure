@@ -15,6 +15,7 @@ spec:
         name: prometheus-community
         namespace: flux-system
   install:
+    replace: true
     createNamespace: true
   upgrade:
     force: true
