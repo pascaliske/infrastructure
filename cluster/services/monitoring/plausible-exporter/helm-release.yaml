@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: plausible-exporter
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: plausible-exporter
+      version: '0.0.1'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/riesinger/plausible-exporter
+      tag: '1.1.0'
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: PLAUSIBLE_HOST
+        value: https://analytics.${DOMAIN_EXTERNAL}
+      - name: PLAUSIBLE_TOKEN
+        value: ${PLAUSIBLE_TOKEN}
+      - name: PLAUSIBLE_SITE_IDS
+        value: ${PLAUSIBLE_SITE_IDS}
+  interval: 10m0s

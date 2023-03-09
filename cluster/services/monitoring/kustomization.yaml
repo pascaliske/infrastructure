@@ -9,6 +9,7 @@ resources:
   - loki
   - magicmirror
   - minio
+  - plausible-exporter
   - redis-exporter
   - speedtest-exporter
   - unifi-poller
