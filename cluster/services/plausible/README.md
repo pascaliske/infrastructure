@@ -4,7 +4,7 @@
 
 > Easy to use and privacy-friendly Google Analytics alternative.
 
-Plausible is an intuitive, lightweight and open source web analytics software. It does not require cookies and therefore is fully compliant with GDPR, CCPA and PECR.
+Plausible is an intuitive, lightweight and open source web analytics software. It does not require cookies and therefore is fully compliant with GDPR, CCPA and PECR. See their [data policy](https://plausible.io/data-policy) for more information.
 
 ![Plausible screenshot](/assets/plausible.png){ loading=lazy }
 
