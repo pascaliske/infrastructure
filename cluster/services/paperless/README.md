@@ -28,7 +28,7 @@ Some of it's features are:
 
 ## CLI
 
-Paperless provides [several CLI tools](https://paperless-ng.readthedocs.io/en/latest/administration.html#management-utilities) to interact with the instance. These are the most important ones:
+Paperless provides [several CLI tools](https://docs.paperless-ngx.com/administration/#management-commands) to interact with the instance. These are the most important ones:
 
 === "Exporting documents"
 
@@ -36,7 +36,7 @@ Paperless provides [several CLI tools](https://paperless-ng.readthedocs.io/en/la
     kubectl exec -it --namespace paperless deploy/paperless -- document_exporter
     ```
 
-    For more information on the `document_exporter` command [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#document-exporter).
+    For more information on the `document_exporter` command [visit their docs](https://docs.paperless-ngx.com/administration/#exporter).
 
 === "Importing documents"
 
@@ -44,7 +44,7 @@ Paperless provides [several CLI tools](https://paperless-ng.readthedocs.io/en/la
     kubectl exec -it --namespace paperless deploy/paperless -- document_importer
     ```
 
-    For more information on the `document_importer` command [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#document-importer).
+    For more information on the `document_importer` command [visit their docs](https://docs.paperless-ngx.com/administration/#importer).
 
 === "Re-tag documents"
 
@@ -52,7 +52,7 @@ Paperless provides [several CLI tools](https://paperless-ng.readthedocs.io/en/la
     kubectl exec -it --namespace paperless deploy/paperless -- document_retagger
     ```
 
-    For more information on the `document_retagger` command [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#document-retagger).
+    For more information on the `document_retagger` command [visit their docs](https://docs.paperless-ngx.com/administration/#retagger).
 
 === "Fetching e-mails"
 
@@ -60,10 +60,10 @@ Paperless provides [several CLI tools](https://paperless-ng.readthedocs.io/en/la
     kubectl exec -it --namespace paperless deploy/paperless -- mail_fetcher
     ```
 
-    For more information on the `mail_fetcher` command [visit their docs](https://paperless-ng.readthedocs.io/en/latest/administration.html#fetching-e-mail).
+    For more information on the `mail_fetcher` command [visit their docs](https://docs.paperless-ngx.com/administration/#fetching-e-mail).
 
 ## Links
 
-- [Documentation](https://paperless-ngx.readthedocs.io)
+- [Documentation](https://docs.paperless-ngx.com)
 - [Helm Chart](https://charts.pascaliske.dev/charts/paperless/)
 - [GitHub Repository](https://github.com/paperless-ngx/paperless-ngx)
