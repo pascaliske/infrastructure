@@ -23,21 +23,19 @@ spec:
     image:
       repository: traefik
       tag: 'v2.9.8'
-
+    deployment:
+      kind: DaemonSet
     ingressRoute:
       dashboard:
         enabled: false
-
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
-
     logs:
       access:
         enabled: true
         filters:
           statuscodes: 400-599
-
     metrics:
       prometheus:
         entryPoint: metrics
@@ -57,19 +55,15 @@ spec:
               annotations:
                 summary: "Traefik Down"
                 description: "{{ $labels.pod }} on {{ $labels.nodename }} is down"
-
     globalArguments:
       - --global.checknewversion=true
       - --global.sendanonymoususage=false
-
     additionalArguments:
       - '--ping.entrypoint=metrics'
       - '--serverstransport.insecureskipverify'
-
     env:
       - name: TZ
         value: ${TIMEZONE}
-
     ports:
       # services
       http:
@@ -98,27 +92,19 @@ spec:
       # disable default entry points
       web: null
       websecure: null
-
     tlsOptions:
       default:
         minVersion: VersionTLS12
         sniStrict: true
-
     service:
-      single: true
       spec:
         externalTrafficPolicy: Local
-
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: node-role.kubernetes.io/control-plane
-                  operator: Exists
-
     tolerations:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
+        effect: NoSchedule
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
         effect: NoSchedule
   interval: 10m0s
