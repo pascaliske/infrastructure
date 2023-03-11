@@ -52,10 +52,10 @@ spec:
         value: https://docs.${DOMAIN_EXTERNAL}
       - name: PAPERLESS_ADMIN_USER
         value: ${PAPERLESS_ADMIN_USER}
-      - name: PAPERLESS_ADMIN_MAIL
-        value: ${PAPERLESS_ADMIN_EMAIL}
       - name: PAPERLESS_ADMIN_PASSWORD
         value: ${PAPERLESS_ADMIN_PASSWORD}
+      - name: PAPERLESS_ADMIN_MAIL
+        value: ${PAPERLESS_ADMIN_EMAIL}
       - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
         value: 'true'
       - name: PAPERLESS_LOGOUT_REDIRECT_URL
@@ -74,7 +74,8 @@ spec:
         value: 'false'
     secret:
       create: true
-      secretKey: ${PAPERLESS_SECRET_KEY}
+      values:
+        PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
     persistentVolumeClaim:
       size: 10Gi
       storageClassName: local-path
