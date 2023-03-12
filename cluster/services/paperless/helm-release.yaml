@@ -45,9 +45,9 @@ spec:
       - name: TZ
         value: ${TIMEZONE}
       - name: USERMAP_UID
-        value: ${UID}
+        value: '${UID}'
       - name: USERMAP_GID
-        value: ${GID}
+        value: '${GID}'
       - name: PAPERLESS_URL
         value: https://docs.${DOMAIN_EXTERNAL}
       - name: PAPERLESS_ADMIN_USER
