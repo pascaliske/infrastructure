@@ -92,7 +92,4 @@ spec:
         tag: v4.10.0
       accountId: '${PLAUSIBLE_GEOIP_ACCOUNT_ID}'
       licenseKey: ${PLAUSIBLE_GEOIP_LICENSE_KEY}
-      editionIds: >-
-        GeoLite2-Country
-        GeoLite2-City
   interval: 10m0s
