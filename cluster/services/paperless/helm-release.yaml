@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: paperless
-      version: '3.0.0'
+      version: '4.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -81,10 +81,16 @@ spec:
       storageClassName: local-path
     consumption:
       enabled: true
-      hostPath: ${PATH_HOME}/paperless/import
+      type: hostPath
+      hostPath:
+        type: Directory
+        path: ${PATH_HOME}/paperless/import
     export:
       enabled: true
-      hostPath: ${PATH_HOME}/paperless/export
+      type: hostPath
+      hostPath:
+        type: Directory
+        path: ${PATH_HOME}/paperless/export
       cronJob:
         enabled: true
         schedule: '0 4 * * 1'
@@ -92,7 +98,10 @@ spec:
         failedJobsHistoryLimit: 1
     trash:
       enabled: true
-      hostPath: ${PATH_HOME}/paperless/trash
+      type: hostPath
+      hostPath:
+        type: Directory
+        path: ${PATH_HOME}/paperless/trash
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
