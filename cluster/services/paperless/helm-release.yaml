@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: paperless
-      version: '3.0.0'
+      version: '4.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
