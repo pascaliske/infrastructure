@@ -88,4 +88,6 @@ spec:
         value: '${SMTP_ACCOUNT_VIKUNJA_PASSWORD}'
       - name: VIKUNJA_MAILER_FROMEMAIL
         value: '${SMTP_ACCOUNT_VIKUNJA_EMAIL}'
+      - name: VIKUNJA_SERVICE_ENABLEEMAILREMINDERS
+        value: 'false'
   interval: 10m0s
