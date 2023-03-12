@@ -43,9 +43,9 @@ spec:
       - name: TZ
         value: ${TIMEZONE}
       - name: PGID
-        value: '${GID}'
+        value: "'${GID}'"
       - name: PUID
-        value: '${UID}'
+        value: "'${UID}'"
     resources:
       limits:
         cpu: 100m
