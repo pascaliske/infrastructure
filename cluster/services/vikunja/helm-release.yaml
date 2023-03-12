@@ -47,9 +47,9 @@ spec:
       - name: TZ
         value: ${TIMEZONE}
       - name: PGID
-        value: ${GID}
+        value: '${GID}'
       - name: PUID
-        value: ${UID}
+        value: '${UID}'
       - name: VIKUNJA_DATABASE_TYPE
         value: postgres
       - name: VIKUNJA_DATABASE_HOST
