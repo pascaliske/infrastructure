@@ -3,7 +3,7 @@ title: Infrastructure
 documentTitle: Infrastructure
 subtitle: Pascal Iske
 logo: logo.png
-columns: 4
+columns: 3
 colors:
   dark:
     highlight-primary: '#2d333d'
@@ -154,6 +154,9 @@ links:
 .automation: &automation
   tag: automation
   target: _blank
+.productivity: &productivity
+  tag: productivity
+  target: _blank
 .self-hosted: &self-hosted
   tag: self-hosted
   target: _blank
@@ -239,38 +242,51 @@ services:
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/wled.png
         url: http://10.0.2.40
         <<: *automation
-  - name: Self Hosted
-    icon: fas fa-server
+  - name: Productivity
+    icon: fas fa-paper-plane
     items:
       - name: Vikunja
         subtitle: Task management
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vikunja.png
         url: https://tasks.${DOMAIN_EXTERNAL}
+        <<: *productivity
+      - name: Paperless
+        subtitle: Online document management
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/paperless.png
+        url: https://docs.${DOMAIN_EXTERNAL}
+        <<: *productivity
+      - name: GitLab
+        subtitle: Web based DevOps lifecycle platform
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gitlab.png
+        url: https://git.${DOMAIN_EXTERNAL}
+        <<: *productivity
+      - name: Code Server
+        subtitle: Web based integrated development environment
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vscode.png
+        url: https://code.${DOMAIN_EXTERNAL}
+        <<: *productivity
+  - name: Self Hosted
+    icon: fas fa-server
+    items:
+      - name: Plausible
+        subtitle: Privacy-friendly Google Analytics alternative
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/plausible.png
+        url: https://vehicles.${DOMAIN_EXTERNAL}
+        <<: *self-hosted
+      - name: Hammond
+        subtitle: Vehicle fuel & expenses management
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/hammond.png
+        url: https://vehicles.${DOMAIN_EXTERNAL}
         <<: *self-hosted
       - name: Vaultwarden
         subtitle: Password management
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vaultwarden.png
         url: https://vault.${DOMAIN_INTERNAL}
         <<: *self-hosted
-      - name: GitLab
-        subtitle: Web based DevOps lifecycle platform
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gitlab.png
-        url: https://git.${DOMAIN_EXTERNAL}
-        <<: *self-hosted
-      - name: Code Server
-        subtitle: Web based integrated development environment
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vscode.png
-        url: https://code.${DOMAIN_EXTERNAL}
-        <<: *self-hosted
       - name: Linkding
         subtitle: Collect links and categorize them
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/linkding.png
         url: https://links.${DOMAIN_EXTERNAL}
-        <<: *self-hosted
-      - name: Paperless
-        subtitle: Online document management
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/paperless.png
-        url: https://docs.${DOMAIN_EXTERNAL}
         <<: *self-hosted
       - name: Snapdrop
         subtitle: Local file sharing
