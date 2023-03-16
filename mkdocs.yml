@@ -80,6 +80,7 @@ nav:
           - descheduler: cluster/services/descheduler/index.md
           - dyndns: cluster/services/dyndns/index.md
           - gitlab: cluster/services/gitlab/index.md
+          - hammond: cluster/services/hammond/index.md
           - home-assistant: cluster/services/home-assistant/index.md
           - homer: cluster/services/homer/index.md
           - linkding: cluster/services/linkding/index.md

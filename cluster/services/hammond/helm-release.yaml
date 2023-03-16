@@ -1,0 +1,49 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: hammond
+  namespace: hammond
+spec:
+  chart:
+    spec:
+      chart: hammond
+      version: '0.0.1'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/alfhou/hammond
+      tag: v0.0.3
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`vehicles.${DOMAIN_EXTERNAL}`)
+      middlewares:
+        - name: auth-external
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+    certificate:
+      create: true
+      dnsNames:
+        - vehicles.${DOMAIN_EXTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: JWT_SECRET
+        value: ${HAMMOND_JWT_SECRET}
+  interval: 10m0s
