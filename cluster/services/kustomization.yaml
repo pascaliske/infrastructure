@@ -10,6 +10,7 @@ resources:
   - descheduler
   - dyndns
   - gitlab
+  - hammond
   - home-assistant
   - homer
   - linkding
