@@ -7,6 +7,7 @@ resources:
   - clickhouse
   - cloudflared
   - code-server
+  - descheduler
   - dyndns
   - gitlab
   - home-assistant
