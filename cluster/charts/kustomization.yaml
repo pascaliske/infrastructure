@@ -8,6 +8,7 @@ resources:
   - cloudnative-pg-charts.yaml
   - crowdsec.yaml
   - deliveryhero.yaml
+  - descheduler.yaml
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml
