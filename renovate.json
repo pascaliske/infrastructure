@@ -48,6 +48,10 @@
       "enabled": false
     },
     {
+      "matchPackagePatterns": ["flux"],
+      "groupName": "flux"
+    },
+    {
       "matchPackagePatterns": ["traefik"],
       "groupName": "traefik"
     },
