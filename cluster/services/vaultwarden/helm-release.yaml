@@ -17,7 +17,7 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: vaultwarden/server
+      repository: ghcr.io/dani-garcia/vaultwarden
       tag: 1.28.0-alpine
     env:
       - name: TZ
