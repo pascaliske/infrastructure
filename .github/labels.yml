@@ -25,3 +25,6 @@
 - name: blocked
   color: 'd93f0b'
   description: This item is blocked due to some bug/incompatibility
+- name: planned
+  color: '44d5ed'
+  description: This is planned to be worked on in a scheduled maintenance window
