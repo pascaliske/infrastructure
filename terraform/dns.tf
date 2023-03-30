@@ -1,12 +1,3 @@
-# zones
-data "cloudflare_zone" "zone_internal" {
-  name = local.domain_internal
-}
-
-data "cloudflare_zone" "zone_external" {
-  name = local.domain_external
-}
-
 # vpn, will be updated frequently using a K8s CronJob
 resource "cloudflare_record" "vpn" {
   zone_id = data.cloudflare_zone.zone_internal.id
