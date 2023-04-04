@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: registry.k8s.io/descheduler/descheduler
-      tag: v0.26.0
+      tag: v0.26.1
     schedule: '*/10 * * * *'
     suspend: false
     serviceMonitor:
