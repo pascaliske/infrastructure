@@ -1,8 +1,10 @@
-port: 53
-httpPort: 4000
+ports:
+  dns: 53
+  http: 4000
 
-logLevel: info
-logFormat: text
+log:
+  level: info
+  format: text
 
 upstream:
   default:
