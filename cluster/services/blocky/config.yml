@@ -46,17 +46,13 @@ blocking:
       - https://blocklistproject.github.io/Lists/scam.txt
       - https://blocklistproject.github.io/Lists/tiktok.txt
       - https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
-      - https://raw.githubusercontent.com/d43m0nhLInt3r/socialblocklists/master/TikTok/tiktokblocklist.txt
       - https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt
       - https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/blocky/blocklist.txt
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Risk/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/UncheckyAds/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-      - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
-      - https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
       - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-      - https://v.firebog.net/hosts/AdguardDNS.txt
-      - https://v.firebog.net/hosts/Easylist.txt
+      - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
   whiteLists:
     all:
       - https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/blocky/allowlist.txt
