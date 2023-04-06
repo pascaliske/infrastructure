@@ -6,6 +6,7 @@ logFormat: text
 
 upstream:
   default:
+    - unbound-dns.unbound.svc.cluster.local:5053
     - cloudflared-dns.cloudflared.svc.cluster.local:5053
 
 customDNS:
