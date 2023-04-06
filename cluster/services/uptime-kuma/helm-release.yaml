@@ -52,13 +52,6 @@ spec:
         value: '${UID}'
     persistentVolumeClaim:
       storageClassName: local-path
-    resources:
-      limits:
-        cpu: 256m
-        memory: 1Gi
-      requests:
-        cpu: 128m
-        memory: 512Mi
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
