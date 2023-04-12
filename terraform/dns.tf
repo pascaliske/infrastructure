@@ -43,8 +43,8 @@ resource "cloudflare_record" "google" {
   value   = "google-site-verification=${var.GOOGLE_VERIFICATION_TOKEN}"
 }
 
-# public
-resource "cloudflare_record" "public" {
+# wildcard
+resource "cloudflare_record" "wildcard" {
   zone_id = data.cloudflare_zone.zone_external.id
   type    = "A"
   name    = "*"
