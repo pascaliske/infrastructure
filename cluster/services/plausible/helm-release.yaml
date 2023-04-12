@@ -92,4 +92,9 @@ spec:
         tag: v4.11.1
       accountId: '${PLAUSIBLE_GEOIP_ACCOUNT_ID}'
       licenseKey: ${PLAUSIBLE_GEOIP_LICENSE_KEY}
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
   interval: 10m0s
