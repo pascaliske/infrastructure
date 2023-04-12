@@ -74,4 +74,9 @@ spec:
             key: password
     persistentVolumeClaim:
       create: false
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
   interval: 10m0s
