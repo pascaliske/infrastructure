@@ -89,7 +89,7 @@ spec:
       enabled: true
       image:
         repository: maxmindinc/geoipupdate
-        tag: v4.11.1
+        tag: v5.0.2
       accountId: '${PLAUSIBLE_GEOIP_ACCOUNT_ID}'
       licenseKey: ${PLAUSIBLE_GEOIP_LICENSE_KEY}
     tolerations:
