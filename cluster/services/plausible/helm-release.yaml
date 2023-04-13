@@ -66,7 +66,7 @@ spec:
       - name: SMTP_HOST_ADDR
         value: '${SMTP_HOST}'
       - name: SMTP_HOST_PORT
-        value: '587'
+        value: '465'
       - name: SMTP_USER_NAME
         value: '${SMTP_ACCOUNT_PLAUSIBLE_EMAIL}'
       - name: SMTP_USER_PWD
