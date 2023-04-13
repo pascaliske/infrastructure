@@ -9,21 +9,31 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`go.${DOMAIN_EXTERNAL}`) && Path(`/admin`)
+      match: Host(`shlink.${DOMAIN_INTERNAL}`)
       services:
         - kind: Service
           name: shlink-admin
           namespace: shlink
           port: 80
       middlewares:
-        - name: auth-external
+        - name: auth
           namespace: traefik
         - name: security
           namespace: traefik
         - name: optimizations
           namespace: traefik
-        - name: strip-prefix
-          namespace: shlink
+  tls:
+    secretName: shlink.${DOMAIN_INTERNAL}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: public
+  namespace: shlink
+spec:
+  entryPoints:
+    - https
+  routes:
     - kind: Rule
       match: Host(`go.${DOMAIN_EXTERNAL}`)
       services:
@@ -35,6 +45,8 @@ spec:
         - name: auth-external
           namespace: traefik
         - name: security
+          namespace: traefik
+        - name: optimizations
           namespace: traefik
   tls:
     secretName: go.${DOMAIN_EXTERNAL}

@@ -7,4 +7,3 @@ resources:
   - certificate.yaml
   - service.yaml
   - route.yaml
-  - middlewares
