@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 21,
+  "id": 25,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -39,6 +39,80 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": false,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.3.8",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(monitor_status) by (monitor_type)",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Monitor Types",
+      "transparent": true,
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -85,16 +159,17 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 24,
-        "x": 0,
+        "w": 20,
+        "x": 4,
         "y": 0
       },
       "id": 4,
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -139,12 +214,12 @@
                 "0": {
                   "color": "red",
                   "index": 0,
-                  "text": "Down"
+                  "text": "DOWN"
                 },
                 "1": {
                   "color": "light-green",
                   "index": 1,
-                  "text": "Up"
+                  "text": "UP"
                 }
               },
               "type": "value"
@@ -164,17 +239,18 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 18,
+        "h": 31,
         "w": 24,
         "x": 0,
         "y": 8
       },
       "id": 2,
       "options": {
-        "alignValue": "left",
+        "alignValue": "right",
         "legend": {
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": false
         },
         "mergeValues": true,
         "rowHeight": 0.8,
@@ -192,9 +268,9 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(monitor_status) by (monitor_name)",
+          "expr": "sum(monitor_status) by (monitor_type, monitor_name)",
           "format": "time_series",
-          "legendFormat": "{{monitor_name}}",
+          "legendFormat": "{{monitor_name}} ({{monitor_type}})",
           "range": true,
           "refId": "A"
         }
@@ -206,7 +282,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -220,6 +296,6 @@
   "timezone": "",
   "title": "Status",
   "uid": "status",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }
