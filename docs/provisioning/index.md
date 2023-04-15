@@ -7,7 +7,7 @@ The hardware in the cluster is fully provisioned and managed using Ansible. Spec
 Inside this file all hosts for the cluster and their connection details are defined.
 
 ```ini
---8<-- "inventory"
+--8<-- "ansible/inventory"
 ```
 
 ## Playbooks
