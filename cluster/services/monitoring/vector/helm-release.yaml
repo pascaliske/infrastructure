@@ -23,6 +23,8 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
+      - name: VECTOR_LOG
+        value: WARN
       - name: VECTOR_WATCH_CONFIG
         value: 'true'
     containerPorts:
