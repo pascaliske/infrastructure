@@ -1,14 +1,20 @@
 - name: Configure journald
   become: yes
   block:
-    - name: Set system max use for journald
+    - name: Set SystemMaxUse for journald
       lineinfile:
         path: /etc/systemd/journald.conf
-        line: SystemMaxUse=20M
+        line: 'SystemMaxUse={{ journal.size }}'
         regexp: '^#?SystemMaxUse'
       register: system_max_use
+    - name: Set MaxFileSec for journald
+      lineinfile:
+        path: /etc/systemd/journald.conf
+        line: 'MaxFileSec={{ journal.retention }}'
+        regexp: '^#?MaxFileSec'
+      register: max_file_sec
     - name: Restart journald
       systemd:
         name: systemd-journald
         state: restarted
-      when: system_max_use.changed
+      when: system_max_use.changed or max_file_sec.changed

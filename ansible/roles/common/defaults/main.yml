@@ -12,6 +12,9 @@ shell:
   aliases:
     - alias: ll
       command: ls -lisahG
+journal:
+  retention: 7d
+  size: 20M
 log2ram:
   config: /etc/log2ram.conf
   size: 350M
