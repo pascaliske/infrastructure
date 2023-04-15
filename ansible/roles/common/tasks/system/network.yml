@@ -45,10 +45,3 @@
         path: /usr/sbin/ip6tables-legacy
         name: ip6tables
       notify: Reboot
-
-# configure ssh key
-- name: Configure ssh key
-  authorized_key:
-    state: present
-    user: '{{ ansible_user }}'
-    key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/' + ssh.authorized_key + '.pub') }}"
