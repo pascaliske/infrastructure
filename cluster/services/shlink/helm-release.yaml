@@ -62,15 +62,6 @@ spec:
         subPath: database.sqlite
         accessMode: ReadWriteOnce
         size: 1Gi
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: k8s.pascaliske.dev/location
-                  operator: In
-                  values:
-                    - public
     tolerations:
       - key: k8s.pascaliske.dev/location
         operator: Equal
