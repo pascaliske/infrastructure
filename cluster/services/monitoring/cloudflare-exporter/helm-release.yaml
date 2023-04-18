@@ -35,13 +35,4 @@ spec:
         operator: Equal
         value: public
         effect: NoSchedule
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: k8s.pascaliske.dev/location
-                  operator: In
-                  values:
-                    - public
   interval: 10m0s
