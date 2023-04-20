@@ -15,7 +15,7 @@ tasks:
     summary: Install all related dependencies
     cmds:
       - yarn install
-      - ansible-galaxy install -r requirements.yml
+      - cd ansible && ansible-galaxy install -r requirements.yml
 
   docs:
     summary: Documentation specific tasks.
