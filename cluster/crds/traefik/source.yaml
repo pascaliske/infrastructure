@@ -8,7 +8,7 @@ spec:
   url: https://github.com/traefik/traefik-helm-chart
   ref:
     # renovate: datasource=github-releases depName=traefik/traefik-helm-chart
-    tag: v22.2.0
+    tag: v22.3.0
   interval: 15m
   ignore: |
     # exclude all
