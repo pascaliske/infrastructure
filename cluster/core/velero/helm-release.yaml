@@ -31,15 +31,14 @@ spec:
             name: plugins
     upgradeCRDs: false
     configuration:
-      provider: aws
       backupStorageLocation:
-        name: default
-        provider: aws
-        bucket: velero-infrastructure
-        config:
-          region: minio
-          s3Url: http://${IP_RYLOTH_TAILSCALE}:9000
-          s3ForcePathStyle: true
+        - name: default
+          provider: aws
+          bucket: velero-infrastructure
+          config:
+            region: minio
+            s3Url: http://${IP_RYLOTH_TAILSCALE}:9000
+            s3ForcePathStyle: true
       uploaderType: restic
       logLevel: warning
       extraEnvVars:
