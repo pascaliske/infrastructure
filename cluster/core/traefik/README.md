@@ -14,7 +14,7 @@ Traefik provides a custom resource definition [`IngressRoute`](https://doc.traef
 ??? example "Example of kind `IngressRoute`"
 
     ```yaml
-    apiVersion: traefik.containo.us/v1alpha1
+    apiVersion: traefik.io/v1alpha1
     kind: IngressRoute
     metadata:
       name: dashboard
@@ -40,7 +40,7 @@ Traefik provides a custom resource definition [`IngressRoute`](https://doc.traef
 ??? example "Example of kind `Middleware`"
 
     ```yaml
-    apiVersion: traefik.containo.us/v1alpha1
+    apiVersion: traefik.io/v1alpha1
     kind: Middleware
     metadata:
       name: headers
