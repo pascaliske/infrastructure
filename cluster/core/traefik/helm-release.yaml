@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: '22.2.0'
+      version: '22.3.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: traefik
-      tag: 'v2.9.10'
+      tag: 'v2.10.1'
     deployment:
       kind: DaemonSet
     ingressRoute:
