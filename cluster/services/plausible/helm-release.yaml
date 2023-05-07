@@ -89,7 +89,7 @@ spec:
       enabled: true
       image:
         repository: ghcr.io/maxmind/geoipupdate
-        tag: v5.0.4
+        tag: v5.1.0
       accountId: '${PLAUSIBLE_GEOIP_ACCOUNT_ID}'
       licenseKey: ${PLAUSIBLE_GEOIP_LICENSE_KEY}
     tolerations:
