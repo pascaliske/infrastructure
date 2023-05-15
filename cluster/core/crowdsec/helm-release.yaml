@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: crowdsec
+      version: '0.9.6'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -17,25 +18,27 @@ spec:
     createNamespace: true
   values:
     container_runtime: containerd
+    image:
+      repository: ghcr.io/crowdsecurity/crowdsec
+      pullPolicy: IfNotPresent
+      tag: 'v1.4.6'
     lapi:
       env:
-        - name: ENROLL_KEY
-          valueFrom:
-            secretKeyRef:
-              name: crowdsec-keys
-              key: ENROLL_KEY
+        - name: TZ
+          value: ${TIMEZONE}
         - name: ENROLL_INSTANCE_NAME
           value: infrastructure
-        - name: DISABLE_AGENT
-          value: "true"
+        # Setting the enroll key after initial startup requires force enrollment which currently breaks the local API.
+        # - name: ENROLL_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: crowdsec-keys
+        #       key: ENROLL_KEY
       dashboard:
-        enabled: false
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: "true"
-      tolerations:
-        - key: node-role.kubernetes.io/control-plane
-          operator: Exists
-          effect: NoSchedule
+        enabled: true
+        image:
+          repository: metabase/metabase
+          tag: 'v0.41.5'
       metrics:
         enabled: true
         serviceMonitor:
@@ -62,8 +65,6 @@ spec:
           value: >-
             crowdsecurity/cri-logs
             crowdsecurity/docker-logs
-        - name: DISABLE_ONLINE_API
-          value: "false"
       tolerations:
         - key: node-role.kubernetes.io/control-plane
           operator: Exists
