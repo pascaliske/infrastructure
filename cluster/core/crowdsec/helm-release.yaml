@@ -35,7 +35,7 @@ spec:
         #       name: crowdsec-keys
         #       key: ENROLL_KEY
       dashboard:
-        enabled: true
+        enabled: false # TODO: look for arm image
         image:
           repository: metabase/metabase
           tag: 'v0.41.5'
