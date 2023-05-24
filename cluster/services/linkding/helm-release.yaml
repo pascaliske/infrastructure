@@ -72,6 +72,8 @@ spec:
           secretKeyRef:
             name: postgresql-user
             key: password
+      - name: LD_LOG_X_FORWARDED_FOR
+        value: 'true'
     persistentVolumeClaim:
       create: false
     tolerations:
