@@ -28,9 +28,7 @@
         "files.associations": {
             "*.j2": "nunjucks",
             "*.yml.j2": "helm",
-            "*.yaml": "home-assistant",
-            "*.yaml.disabled": "home-assistant",
-            "*.yaml.example": "home-assistant"
+            "*.yaml": "helm"
         },
         "search.exclude": {
             "**/node_modules": true,
