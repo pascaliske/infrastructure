@@ -19,7 +19,7 @@ spec:
     role: Agent
     image:
       repository: timberio/vector
-      tag: 0.29.1-alpine # pinned to 0.28.2-alpine - latest produces "exec format error"
+      tag: 0.30.0-alpine # pinned to 0.28.2-alpine - latest produces "exec format error"
     env:
       - name: TZ
         value: ${TIMEZONE}
