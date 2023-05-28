@@ -51,6 +51,9 @@ spec:
     additionalContainers:
       sync-config:
         image: ghcr.io/pascaliske/home-assistant:master
+        env:
+          - name: GIT_SYNC_MAX_SYNC_FAILURES
+            value: '5'
         volumeMounts:
           - name: config
             mountPath: /config
