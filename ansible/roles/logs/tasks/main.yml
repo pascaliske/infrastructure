@@ -1,0 +1,16 @@
+- name: Rotate logs using journalctl
+  become: true
+  command: journalctl --rotate
+
+- name: Vacuum archived logs using journalctl
+  become: true
+  command: journalctl --vacuum-size=5M
+
+- name: Clear system log files
+  become: true
+  shell: '>{{item}}'
+  loop:
+    - /var/log/syslog
+    - /var/log/syslog.1
+    - /var/log/daemon.log
+    - /var/log/daemon.log.1

@@ -1,0 +1,17 @@
+# masters
+- name: Clean-up Masters
+  hosts: masters
+  roles:
+    - role: logs
+      tags:
+        - masters
+        - logs
+
+# workers
+- name: Clean-up Workers
+  hosts: workers
+  roles:
+    - role: logs
+      tags:
+        - workers
+        - logs

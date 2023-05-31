@@ -14,6 +14,12 @@ tasks:
     cmds:
       - ansible-playbook --diff --ask-vault-pass --extra-vars @vars/vault.yml playbooks/update.yml {{.CLI_ARGS}}
 
+  cleanup:
+    summary: Update all cluster nodes using Ansible
+    dir: ansible
+    cmds:
+      - ansible-playbook --diff playbooks/cleanup.yml {{.CLI_ARGS}}
+
   bootstrap:
     summary: Bootstrap the cluster using Flux CLI
     cmds:
