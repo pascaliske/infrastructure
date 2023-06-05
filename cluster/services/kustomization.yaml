@@ -18,7 +18,6 @@ resources:
   - paperless
   - plausible
   - redis
-  - shlink
   - snapdrop
   - unbound
   - unifi
