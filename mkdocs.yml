@@ -99,7 +99,6 @@ nav:
           - paperless: cluster/services/paperless/index.md
           - plausible: cluster/services/plausible/index.md
           - redis: cluster/services/redis/index.md
-          - shlink: cluster/services/shlink/index.md
           - snapdrop: cluster/services/snapdrop/index.md
           - unbound: cluster/services/unbound/index.md
           - unifi: cluster/services/unifi/index.md
