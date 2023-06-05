@@ -9,6 +9,9 @@ configMapGenerator:
   - name: grafana-dashboard-pods
     files:
       - pods.json
+  - name: grafana-dashboard-alerts
+    files:
+      - alerts.json
 generatorOptions:
   disableNameSuffixHash: true
   labels:
