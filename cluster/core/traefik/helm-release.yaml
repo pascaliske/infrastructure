@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: traefik
-      tag: 'v2.10.1'
+      tag: 'v2.10.3'
     deployment:
       kind: DaemonSet
     ingressRoute:
