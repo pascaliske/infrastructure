@@ -25,4 +25,4 @@ tasks:
   lint:
     dir: terraform
     cmds:
-      - tflint --format compact .
+      - tflint --format compact
