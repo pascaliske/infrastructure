@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: vikunja/api
-      tag: 0.20.4
+      tag: 0.21.0
     serviceMonitor:
       enabled: true
     ingressRoute:
