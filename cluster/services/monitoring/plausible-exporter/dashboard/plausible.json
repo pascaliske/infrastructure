@@ -24,6 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
+  "id": 25,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -319,7 +320,7 @@
           "refId": "A"
         }
       ],
-      "title": "Page VIews",
+      "title": "Page Views",
       "transparent": true,
       "type": "timeseries"
     },
@@ -425,7 +426,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -435,6 +436,10 @@
           "selected": true,
           "text": "All",
           "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
         },
         "definition": "label_values(plausible_visitors, site_id)",
         "hide": 0,
@@ -463,6 +468,6 @@
   "timezone": "",
   "title": "Plausible Analytics",
   "uid": "plausible",
-  "version": 0,
+  "version": 3,
   "weekStart": ""
 }
