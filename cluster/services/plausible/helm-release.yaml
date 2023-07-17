@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: plausible/analytics
-      tag: v1.5.1
+      tag: v2.0.0
     ingressRoute:
       create: true
       entryPoints:
