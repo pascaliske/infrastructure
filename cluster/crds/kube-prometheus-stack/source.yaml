@@ -8,10 +8,10 @@ spec:
   url: https://github.com/prometheus-community/helm-charts
   ref:
     # renovate: registryUrl=https://prometheus-community.github.io/helm-charts chart=kube-prometheus-stack
-    tag: kube-prometheus-stack-47.6.1
+    tag: kube-prometheus-stack-48.1.1
   interval: 15m
   ignore: |
     # exclude all
     /*
     # include crds directory
-    !/charts/kube-prometheus-stack/crds
+    !/charts/kube-prometheus-stack/charts/crds/crds
