@@ -26,8 +26,6 @@ spec:
         - https
       rule: Host(`analytics.${DOMAIN_EXTERNAL}`)
       middlewares:
-        - name: auth-external
-          namespace: traefik
         - name: security
           namespace: traefik
         - name: optimizations

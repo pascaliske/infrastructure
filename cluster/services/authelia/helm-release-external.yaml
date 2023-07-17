@@ -75,12 +75,6 @@ spec:
             resources:
               - ^\/api
           - policy: bypass
-            domain: analytics.${DOMAIN_EXTERNAL}
-            resources:
-              - ^\/api
-              - ^\/auth\/google\/callback
-              - ^\/js\/script
-          - policy: bypass
             domain: status.${DOMAIN_EXTERNAL}
             resources:
               - ^\/assets
