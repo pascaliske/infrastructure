@@ -90,6 +90,10 @@ spec:
               - group:admins
             resources:
               - /admin
+          - policy: one_factor
+            domain: homeassistant.${DOMAIN_INTERNAL}
+            subject:
+              - group:family
           - policy: two_factor
             domain:
               - ${DOMAIN_INTERNAL}
