@@ -110,15 +110,25 @@ spec:
           username: ${SMTP_ACCOUNT_AUTH_EMAIL}
           sender: ${SMTP_ACCOUNT_AUTH_EMAIL}
           subject: '[auth@infrastructure] {title}'
+      identity_providers:
+        oidc:
+          enabled: true
+          clients:
+            - id: gitlab
+              description: GitLab
+              secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              public: false
+              authorization_policy: two_factor
+              redirect_uris:
+                - https://git.${DOMAIN_EXTERNAL}/users/auth/openid_connect/callback
+              scopes:
+                - openid
+                - profile
+                - groups
+                - email
+              userinfo_signing_algorithm: none
     secret:
-      jwt:
-        value: ${AUTH_JWT_SECRET}
-      storageEncryptionKey:
-        value: ${AUTH_STORAGE_SECRET}
-      session:
-        value: ${AUTH_SESSION_SECRET}
-      smtp:
-        value: ${SMTP_ACCOUNT_AUTH_PASSWORD}
+      existingSecret: authelia-secrets
     persistence:
       enabled: true
       storageClass: local-path
