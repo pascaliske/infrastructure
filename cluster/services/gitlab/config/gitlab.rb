@@ -49,6 +49,34 @@ gitlab_rails['smtp_authentication'] = 'login'
 gitlab_rails['smtp_enable_starttls_auto'] = true
 gitlab_rails['smtp_port'] = 587
 
+# oidc auth
+gitlab_rails['omniauth_allow_single_sign_on'] = ['openid_connect']
+gitlab_rails['omniauth_allow_bypass_two_factor'] = ['openid_connect']
+gitlab_rails['omniauth_auto_link_ldap_user'] = false
+gitlab_rails['omniauth_block_auto_created_users'] = true
+gitlab_rails['omniauth_providers'] = [
+    {
+        name: "openid_connect",
+        label: "Authelia",
+        icon: "https://www.authelia.com/images/branding/logo-cropped.png",
+        args: {
+            name: "openid_connect",
+            scope: ["openid", "profile", "email", "groups"],
+            response_type: "code",
+            issuer: "https://auth.${DOMAIN_EXTERNAL}",
+            discovery: true,
+            client_auth_method: "query",
+            uid_field: "preferred_username",
+            send_scope_to_token_endpoint: "false",
+            client_options: {
+                identifier: "gitlab",
+                secret: "${AUTH_OIDC_CLIENT_SECRET}",
+                redirect_uri: "https://git.${DOMAIN_EXTERNAL}/users/auth/openid_connect/callback"
+            }
+        }
+    }
+]
+
 # disable integrated certificates
 letsencrypt['enable'] = false
 letsencrypt['auto_renew'] = false
