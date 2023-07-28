@@ -66,7 +66,7 @@ jobs:
           sarif_file: tfsec.sarif
 
       # upload report to github
-      - uses: github/codeql-action/upload-sarif@v2.21.1
+      - uses: github/codeql-action/upload-sarif@v2.21.2
         with:
           sarif_file: tfsec.sarif
 
