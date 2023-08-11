@@ -5,11 +5,13 @@ on:
       - master
     paths:
       - 'ansible/**'
+      - '.github/workflows/ansible.yml'
   pull_request:
     branches:
       - master
     paths:
       - 'ansible/**'
+      - '.github/workflows/ansible.yml'
 
 env:
   ANSIBLE_ROLES_PATH: ansible/roles

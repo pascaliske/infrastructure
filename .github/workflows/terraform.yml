@@ -5,11 +5,13 @@ on:
       - master
     paths:
       - 'terraform/**'
+      - '.github/workflows/terraform.yml'
   pull_request:
     branches:
       - master
     paths:
       - 'terraform/**'
+      - '.github/workflows/terraform.yml'
 
 permissions:
   contents: read
