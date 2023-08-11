@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: '23.2.0'
+      version: '24.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -25,6 +25,7 @@ spec:
       tag: 'v2.10.4'
     deployment:
       kind: DaemonSet
+      healthchecksPort: 9100
     ingressRoute:
       dashboard:
         enabled: false
@@ -79,7 +80,6 @@ spec:
       # dashboard
       traefik:
         port: 9000
-        healthchecksPort: 9100
         expose: false
         exposedPort: 9000
 
