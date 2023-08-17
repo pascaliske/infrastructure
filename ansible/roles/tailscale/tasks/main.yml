@@ -19,6 +19,27 @@
     update_cache: yes
     state: latest
 
+# configure drop-in for reducing log noise
+- name: Configure service drop-in
+  become: true
+  block:
+    - name: Create service drop-in directory
+      file:
+        path: /etc/systemd/system/tailscaled.service.d/
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+    - name: Create service drop-in file
+      template:
+        src: '{{ role_name }}/tailscaled.service.j2'
+        dest: /etc/systemd/system/tailscaled.service.d/override.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify: Reload systemd daemon
+
+# check connection status
 - name: Check connection
   command: tailscale status
   changed_when: false
@@ -27,6 +48,7 @@
     - tailscale_status.rc != 0
     - "'Logged out.' not in tailscale_status.stdout"
 
+# start-up daemon
 - name: Start tailscale
   become: true
   no_log: true
