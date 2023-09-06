@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # setup taskfile
       - uses: arduino/setup-task@v1
