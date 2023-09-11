@@ -90,7 +90,7 @@ spec:
             - vector_logs_source
           endpoint: http://loki.monitoring.svc.cluster.local:3100
           encoding:
-            codec: text
+            codec: logfmt
           out_of_order_action: accept
           remove_label_fields: true
           remove_timestamp: true
@@ -103,7 +103,7 @@ spec:
             - kubernetes_logs_transform
           endpoint: http://loki.monitoring.svc.cluster.local:3100
           encoding:
-            codec: text
+            codec: logfmt
           out_of_order_action: accept
           remove_label_fields: true
           remove_timestamp: true
@@ -132,7 +132,7 @@ spec:
         #     - journald_logs
         #   endpoint: http://loki.monitoring.svc.cluster.local:3100
         #   encoding:
-        #     codec: text
+        #     codec: logfmt
         #   out_of_order_action: accept
         #   remove_label_fields: true
         #   remove_timestamp: true
