@@ -41,7 +41,7 @@ spec:
       init-config:
         image: ghcr.io/pascaliske/home-assistant:master
         env:
-          - name: GIT_SYNC_ONE_TIME
+          - name: GITSYNC_ONE_TIME
             value: 'true'
         volumeMounts:
           - name: config
@@ -52,7 +52,7 @@ spec:
       sync-config:
         image: ghcr.io/pascaliske/home-assistant:master
         env:
-          - name: GIT_SYNC_MAX_SYNC_FAILURES
+          - name: GITSYNC_MAX_FAILURES
             value: '5'
         volumeMounts:
           - name: config
