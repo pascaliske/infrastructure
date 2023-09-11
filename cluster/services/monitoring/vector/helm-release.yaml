@@ -19,7 +19,7 @@ spec:
     role: Agent
     image:
       repository: timberio/vector
-      tag: 0.32.1-alpine # pinned to 0.28.2-alpine - latest produces "exec format error"
+      tag: 0.32.1-alpine
     env:
       - name: TZ
         value: ${TIMEZONE}
@@ -49,26 +49,62 @@ spec:
         address: 127.0.0.1:8686
         playground: false
       sources:
-        kubernetes_logs:
-          type: kubernetes_logs
-        vector_logs:
-          type: internal_logs
-        internal_metrics:
+        vector_metrics_source:
           type: internal_metrics
+        vector_logs_source:
+          type: internal_logs
+        kubernetes_logs_source:
+          type: kubernetes_logs
+          use_apiserver_cache: true
+          pod_annotation_fields:
+            pod_labels: pod_labels
+            pod_name: pod_name
+            pod_annotations: ""
+          namespace_annotation_fields:
+            namespace_labels: ""
+          node_annotation_fields:
+            node_labels: ""
         # Note: Not working due to missing `journalctl` binary in Vector image.
-        # journald_logs:
+        # journald_logs_source:
         #   type: journald
         #   journal_directory: /var/log/journal
+      transforms:
+        kubernetes_logs_transform:
+          type: remap
+          inputs:
+            - kubernetes_logs_source
+          source: |
+            # Standardize 'app' index
+            .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
+            # Drop pod_labels
+            del(.pod_labels)
       sinks:
-        loki:
+        vector_metrics_sink:
+          type: prometheus_exporter
+          inputs:
+            - vector_metrics_source
+          address: 0.0.0.0:9090
+        vector_logs_sink:
           type: loki
           inputs:
-            - kubernetes_logs
-            - vector_logs
-            # - journald_logs # See above not about `journald_logs`.
+            - vector_logs_source
           endpoint: http://loki.monitoring.svc.cluster.local:3100
           encoding:
             codec: text
+          out_of_order_action: accept
+          remove_label_fields: true
+          remove_timestamp: true
+          labels:
+            source: >-
+              {{`{{ source_type }}`}}
+        kubernetes_logs_sink:
+          type: loki
+          inputs:
+            - kubernetes_logs_transform
+          endpoint: http://loki.monitoring.svc.cluster.local:3100
+          encoding:
+            codec: text
+          out_of_order_action: accept
           remove_label_fields: true
           remove_timestamp: true
           labels:
@@ -79,7 +115,7 @@ spec:
             file: >-
               {{`{{ file }}`}}
             app: >-
-              {{`{{ kubernetes.pod_labels.app.kubernetes."io/name" }}`}}
+              {{`{{ custom_app_name }}`}}
             node: >-
               {{`{{ kubernetes.pod_node_name }}`}}
             namespace: >-
@@ -90,11 +126,16 @@ spec:
               {{`{{ kubernetes.container_name }}`}}
             image: >-
               {{`{{ kubernetes.container_image }}`}}
-        prometheus_exporter:
-          type: prometheus_exporter
-          inputs:
-            - internal_metrics
-          address: 0.0.0.0:9090
+        # journald_logs_sink:
+        #   type: loki
+        #   inputs:
+        #     - journald_logs
+        #   endpoint: http://loki.monitoring.svc.cluster.local:3100
+        #   encoding:
+        #     codec: text
+        #   out_of_order_action: accept
+        #   remove_label_fields: true
+        #   remove_timestamp: true
     persistence:
       enabled: true
     podMonitor:
