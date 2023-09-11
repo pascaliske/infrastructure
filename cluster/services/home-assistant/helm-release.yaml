@@ -40,6 +40,7 @@ spec:
     initContainers:
       init-config:
         image: ghcr.io/pascaliske/home-assistant:master
+        imagePullPolicy: Always
         env:
           - name: GITSYNC_ONE_TIME
             value: 'true'
@@ -51,6 +52,7 @@ spec:
     additionalContainers:
       sync-config:
         image: ghcr.io/pascaliske/home-assistant:master
+        imagePullPolicy: Always
         env:
           - name: GITSYNC_MAX_FAILURES
             value: '5'
