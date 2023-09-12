@@ -6,13 +6,13 @@ tasks:
     summary: Provision all cluster nodes using Ansible
     dir: ansible
     cmds:
-      - ansible-playbook --diff --ask-vault-pass --extra-vars @vars/vault.yml playbooks/provision.yml {{.CLI_ARGS}}
+      - ansible-playbook --diff --extra-vars @vars/vault.yml playbooks/provision.yml {{.CLI_ARGS}}
 
   update:
     summary: Update all cluster nodes using Ansible
     dir: ansible
     cmds:
-      - ansible-playbook --diff --ask-vault-pass --extra-vars @vars/vault.yml playbooks/update.yml {{.CLI_ARGS}}
+      - ansible-playbook --diff --extra-vars @vars/vault.yml playbooks/update.yml {{.CLI_ARGS}}
 
   cleanup:
     summary: Update all cluster nodes using Ansible
