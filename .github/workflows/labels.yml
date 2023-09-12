@@ -10,5 +10,5 @@ jobs:
       - uses: actions/checkout@v4
 
       # sync labels
-      - uses: crazy-max/ghaction-github-labeler@v4
+      - uses: crazy-max/ghaction-github-labeler@v5
         if: success()
