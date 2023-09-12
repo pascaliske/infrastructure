@@ -1,6 +1,7 @@
 # ignores
 .cache
 .vagrant
+.ansible-vault-password
 *pem*
 *p12*
 *env*

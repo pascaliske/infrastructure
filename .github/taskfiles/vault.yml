@@ -4,20 +4,21 @@ version: '3'
 tasks:
   setup:
     summary: Setup Ansible vault file
+    dir: ansible
     interactive: true
     cmds:
-      - cp ansible/vars/vault.example.yml ansible/vars/vault.yml
-      - vim ansible/vars/vault.yml
+      - cp vars/vault.example.yml vars/vault.yml
+      - vim vars/vault.yml
       - task: encrypt
 
   encrypt:
     summary: Encrypt Ansible vault file
-    interactive: true
+    dir: ansible
     cmds:
-      - ansible-vault encrypt ansible/vars/vault.yml
+      - ansible-vault encrypt vars/vault.yml
 
   decrypt:
     summary: Decrypt Ansible vault file
-    interactive: true
+    dir: ansible
     cmds:
-      - ansible-vault decrypt ansible/vars/vault.yml
+      - ansible-vault decrypt vars/vault.yml
