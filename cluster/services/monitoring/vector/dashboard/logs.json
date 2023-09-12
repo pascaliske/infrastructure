@@ -63,6 +63,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -74,6 +76,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "dash": [
@@ -164,7 +167,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -178,11 +182,13 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(vector_events_in_total{component_kind=\"source\"}[5m])) by (component_name)",
+          "expr": "sum(rate(vector_component_received_events_total{component_kind=\"source\"}[5m])) by (component_name)",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{ component_name }}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -244,7 +250,9 @@
             "type": "loki",
             "uid": "loki"
           },
-          "expr": "{namespace=~\"$namespace\", pod=~\"$pod\"} |~ \"$search\"",
+          "editorMode": "code",
+          "expr": "{namespace=~\"$namespace\", pod=~\"$pod\"} | logfmt | line_format `{{.message}}` |~ \"$search\"",
+          "queryType": "range",
           "refId": "A"
         }
       ],
@@ -253,7 +261,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 36,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -335,13 +343,13 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Logs",
   "uid": "logs",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
