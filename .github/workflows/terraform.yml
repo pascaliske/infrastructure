@@ -40,7 +40,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v2
 
       # setup tflint
-      - uses: terraform-linters/setup-tflint@v3
+      - uses: terraform-linters/setup-tflint@v4
 
       # init terraform
       - name: Init Terraform
