@@ -8,12 +8,16 @@ spec:
   chart:
     spec:
       chart: node-problem-detector
+      version: '2.3.11'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: deliveryhero
         namespace: flux-system
   values:
+    image:
+      repository: registry.k8s.io/node-problem-detector/node-problem-detector
+      tag: v0.8.13
     metrics:
       enabled: true
       serviceMonitor:
