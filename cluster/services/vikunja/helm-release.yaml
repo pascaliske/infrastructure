@@ -52,6 +52,8 @@ spec:
         value: '${UID}'
       - name: VIKUNJA_LOG_LEVEL
         value: 'warning'
+      - name: VIKUNJA_LOG_HTTP
+        value: 'off'
       - name: VIKUNJA_DATABASE_TYPE
         value: postgres
       - name: VIKUNJA_DATABASE_HOST
