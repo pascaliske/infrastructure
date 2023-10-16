@@ -14,3 +14,14 @@
     - /var/log/syslog.1
     - /var/log/daemon.log
     - /var/log/daemon.log.1
+
+- name: Output current disk usage
+  when: arm
+  block:
+    - name: Check disk usage of log2ram
+      shell: 'df -hT | grep log2ram'
+      register: disk_usage
+
+    - name: Output current disk usage
+      debug:
+        msg: "{{ disk_usage.stdout }}"
