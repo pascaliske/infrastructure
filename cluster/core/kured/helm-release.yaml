@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: kured
-      version: '2.14.2'
+      version: '5.2.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -18,12 +18,12 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: weaveworks/kured
-      tag: 1.10.2
-    configuration: {}
+      repository: ghcr.io/kubereboot/kured
+      tag: 1.14.0
     extraEnvVars:
       - name: TZ
         value: ${TIMEZONE}
+    configuration: {}
     metrics:
       create: true
     service:
