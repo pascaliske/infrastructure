@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: speedtest-exporter
+      version: '5.4.2'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository

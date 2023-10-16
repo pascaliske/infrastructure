@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: home-assistant
+      version: '13.4.2'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository

@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: kured
+      version: '2.14.2'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
