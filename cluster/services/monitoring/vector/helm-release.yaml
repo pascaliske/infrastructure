@@ -74,9 +74,11 @@ spec:
           inputs:
             - kubernetes_logs_source
           source: |
-            # Standardize 'app' index
+            # remap app name from label
             .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
-            # Drop pod_labels
+            # remap pod name from event
+            .custom_pod_name = .pod_name || "unknown"
+            # drop remapped fields
             del(.pod_labels)
       sinks:
         vector_metrics_sink:
@@ -121,7 +123,7 @@ spec:
             namespace: >-
               {{`{{ kubernetes.pod_namespace }}`}}
             pod: >-
-              {{`{{ kubernetes.pod_name }}`}}
+              {{`{{ custom_pod_name }}`}}
             container: >-
               {{`{{ kubernetes.container_name }}`}}
             image: >-
