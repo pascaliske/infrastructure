@@ -5,7 +5,7 @@
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
-    create: yes
+    create: true
   loop: '{{ shell.aliases }}'
 
 # setup bash aliases for root user
@@ -16,5 +16,5 @@
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
-    create: yes
+    create: true
   loop: '{{ shell.aliases }}'

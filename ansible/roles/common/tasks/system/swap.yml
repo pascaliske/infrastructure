@@ -10,13 +10,15 @@
         name: dphys-swapfile
         state: stopped
       ignore_errors: true
+      register: stop_swap_errors
     - name: Disable swap service
       systemd:
         name: dphys-swapfile
-        enabled: no
+        enabled: false
       ignore_errors: true
+      register: disable_swap_errors
     - name: Uninstall swap service
       apt:
         name: dphys-swapfile
         state: absent
-        purge: yes
+        purge: true

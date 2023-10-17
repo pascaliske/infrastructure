@@ -3,7 +3,7 @@
   become: true
   apt:
     name: '{{ item }}'
-    update_cache: yes
+    update_cache: true
     state: latest
   loop: '{{ packages.apt }}'
 
@@ -36,5 +36,5 @@
       apt:
         name: libseccomp2
         default_release: buster-backports
-        update_cache: yes
+        update_cache: true
         state: latest

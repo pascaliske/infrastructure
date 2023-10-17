@@ -1,12 +1,12 @@
 ---
 boot_config:
-  dtoverlay=disable-bt: yes
-  dtoverlay=disable-wifi: yes
-  dtoverlay=rpi-poe: yes
-  dtparam=poe_fan_temp0=72000,poe_fan_temp0_hyst=2000: yes
-  dtparam=poe_fan_temp1=76000,poe_fan_temp1_hyst=2000: yes
-  dtparam=poe_fan_temp2=80000,poe_fan_temp2_hyst=2000: yes
-  dtparam=poe_fan_temp3=84000,poe_fan_temp3_hyst=2000: yes
+  dtoverlay=disable-bt: 'yes'
+  dtoverlay=disable-wifi: 'yes'
+  dtoverlay=rpi-poe: 'yes'
+  dtparam=poe_fan_temp0=72000,poe_fan_temp0_hyst=2000: 'yes'
+  dtparam=poe_fan_temp1=76000,poe_fan_temp1_hyst=2000: 'yes'
+  dtparam=poe_fan_temp2=80000,poe_fan_temp2_hyst=2000: 'yes'
+  dtparam=poe_fan_temp3=84000,poe_fan_temp3_hyst=2000: 'yes'
   gpu_mem: 16
 shell:
   aliases:

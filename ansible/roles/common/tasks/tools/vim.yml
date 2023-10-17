@@ -2,10 +2,10 @@
 - name: Install vim
   block:
     - name: Install apt package for vim
-      become: yes
+      become: true
       apt:
         name: vim
-        update_cache: yes
+        update_cache: true
         state: latest
     - name: Configure vim
       template:

@@ -4,7 +4,7 @@
   template:
     src: unattended-upgrades/{{ item }}.j2
     dest: /etc/apt/apt.conf.d/{{ item }}
-    mode: 0644
+    mode: '0644'
   loop:
     - 10periodic
     - 50unattended-upgrades

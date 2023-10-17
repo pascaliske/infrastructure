@@ -35,7 +35,7 @@
     - name: Store node-token
       set_fact:
         node_token: "{{ node_token_file.content | b64decode | regex_replace('\n', '') }}"
-        cacheable: yes
+        cacheable: true
 
 - name: Create aliases
   lineinfile:
@@ -43,7 +43,7 @@
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
-    create: yes
+    create: true
   loop:
     - { alias: 'kubectl', command: 'kubectl --kubeconfig {{ kubeconfig.local }}' }
     - { alias: 'k', command: 'kubectl --kubeconfig {{ kubeconfig.local }}' }
@@ -67,8 +67,8 @@
         src: '{{ kubeconfig.local }}'
         dest: '{{ kubeconfig.remote }}'
         owner: '{{ ansible_user }}'
-        mode: 0600
-        remote_src: yes
+        mode: '0600'
+        remote_src: true
     - name: Replace server in config file
       replace:
         path: '{{ kubeconfig.remote }}'
@@ -78,4 +78,4 @@
       fetch:
         src: '{{ kubeconfig.remote }}'
         dest: "{{ lookup('env', 'HOME') }}/.kube/infrastructure/config"
-        flat: yes
+        flat: true
