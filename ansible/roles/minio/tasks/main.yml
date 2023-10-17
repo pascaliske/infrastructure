@@ -13,7 +13,7 @@
     name: '{{ role_name }}'
     image: '{{ role_name }}/{{ role_name }}'
     restart_policy: unless-stopped
-    detach: yes
+    detach: true
     command: server /data --console-address ":9001"
     user: '{{ ansible_user_uid }}:{{ ansible_user_gid }}'
     ports:

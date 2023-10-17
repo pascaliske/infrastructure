@@ -6,8 +6,8 @@
     - name: Update apt packages
       apt:
         upgrade: safe
-        update_cache: yes
-        autoremove: yes
+        update_cache: true
+        autoremove: true
       tags:
         - masters
 
@@ -19,7 +19,7 @@
     - name: Update apt packages
       apt:
         upgrade: safe
-        update_cache: yes
-        autoremove: yes
+        update_cache: true
+        autoremove: true
       tags:
         - workers

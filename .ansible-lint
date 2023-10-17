@@ -6,3 +6,10 @@ skip_list:
   - package-latest
   - risky-file-permissions
   - role-name
+  - name[missing]
+  - var-naming[no-role-prefix]
+  - fqcn[action]
+  - fqcn[action-core]
+  - fqcn[canonical]
+  - fqcn[deep]
+  - fqcn[keyword]

@@ -10,7 +10,7 @@
         path: /etc/hosts
         line: "127.0.1.1\t\traspberrypi {{ inventory_hostname }}"
         regexp: "^127.0.1.1"
-        backrefs: yes
+        backrefs: true
 
 # configure static ip
 - name: Configure static ip

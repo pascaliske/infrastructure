@@ -1,5 +1,5 @@
 - name: Configure logrotate
-  become: yes
+  become: true
   block:
     - name: Set daily log rotation
       lineinfile:

@@ -1,5 +1,5 @@
 - name: Install log2ram
-  become: yes
+  become: true
   block:
     - name: Add apt key for log2ram
       apt_key:
@@ -13,16 +13,11 @@
     - name: Install apt package for log2ram
       apt:
         name: log2ram
-        update_cache: yes
+        update_cache: true
         state: latest
     - name: Update size of log2ram
       lineinfile:
         path: '{{ log2ram.config }}'
         line: 'SIZE={{ log2ram.size }}'
         regexp: '^SIZE='
-      register: size
-    - name: Restart log2ram
-      systemd:
-        name: log2ram
-        state: restarted
-      when: size.changed
+      notify: Restart log2ram
