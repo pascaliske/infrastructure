@@ -6,3 +6,8 @@ skip_list:
   - package-latest
   - risky-file-permissions
   - role-name
+  - fqcn[action]
+  - fqcn[action-core]
+  - fqcn[canonical]
+  - fqcn[deep]
+  - fqcn[keyword]
