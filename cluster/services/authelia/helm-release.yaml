@@ -119,6 +119,23 @@ spec:
           username: ${SMTP_ACCOUNT_AUTH_EMAIL}
           sender: ${SMTP_ACCOUNT_AUTH_EMAIL}
           subject: '[auth@infrastructure] {title}'
+      identity_providers:
+        oidc:
+          enabled: true
+          clients:
+            - id: synology-dsm
+              description: Synology DSM
+              secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              public: false
+              authorization_policy: two_factor
+              redirect_uris:
+                - https://ryloth.${DOMAIN_INTERNAL}
+              scopes:
+                - openid
+                - profile
+                - groups
+                - email
+              userinfo_signing_algorithm: none
     secret:
       jwt:
         value: ${AUTH_JWT_SECRET}
