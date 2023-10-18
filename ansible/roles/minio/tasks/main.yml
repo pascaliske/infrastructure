@@ -11,7 +11,8 @@
 - name: Create container
   docker_container:
     name: '{{ role_name }}'
-    image: '{{ role_name }}/{{ role_name }}'
+    image: '{{ role_name }}/{{ role_name }}:RELEASE.2022-10-24T18-35-07Z'
+    pull: true
     restart_policy: unless-stopped
     detach: true
     command: server /data --console-address ":9001"
