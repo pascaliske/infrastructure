@@ -6,10 +6,14 @@ log:
   level: info
   format: text
 
-upstream:
-  default:
-    - unbound-dns.unbound.svc.cluster.local:5053
-    - cloudflared-dns.cloudflared.svc.cluster.local:5053
+upstreams:
+  strategy: strict
+  timeout: 3s
+  groups:
+    default:
+      - tcp-tls:cloudflared-dns.cloudflared.svc.cluster.local:5053
+      - tcp-tls:unbound-dns.unbound.svc.cluster.local:5053
+      - https://1.1.1.1/dns-query
 
 customDNS:
   mapping:
@@ -57,7 +61,8 @@ blocking:
   clientGroupsBlock:
     default:
       - all
-  startStrategy: fast
+  loading:
+    strategy: fast
 
 caching:
   minTime: 5m
