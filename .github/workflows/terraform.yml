@@ -37,7 +37,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       # setup terraform
-      - uses: hashicorp/setup-terraform@v2
+      - uses: hashicorp/setup-terraform@v3
 
       # setup tflint
       - uses: terraform-linters/setup-tflint@v4
@@ -85,7 +85,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       # setup terraform
-      - uses: hashicorp/setup-terraform@v2
+      - uses: hashicorp/setup-terraform@v3
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
