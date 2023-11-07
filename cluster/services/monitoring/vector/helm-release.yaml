@@ -20,7 +20,7 @@ spec:
     role: Agent
     image:
       repository: timberio/vector
-      tag: 0.33.1-alpine
+      tag: 0.34.0-alpine
     env:
       - name: TZ
         value: ${TIMEZONE}
