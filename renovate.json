@@ -60,6 +60,10 @@
       "groupName": "trivy-operator"
     },
     {
+      "matchPackagePatterns": ["vector"],
+      "groupName": "vector"
+    },
+    {
       "matchPackagePatterns": ["descheduler"],
       "groupName": "descheduler"
     },
