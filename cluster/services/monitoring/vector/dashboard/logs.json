@@ -184,10 +184,10 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(vector_component_received_events_total{component_kind=\"source\"}[5m])) by (component_name)",
+          "expr": "sum(rate(vector_component_received_events_total{component_kind=\"source\"}[5m])) by (component_id)",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{ component_name }}",
+          "legendFormat": "{{ component_id }}",
           "range": true,
           "refId": "A"
         }
