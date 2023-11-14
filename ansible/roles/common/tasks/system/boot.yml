@@ -16,6 +16,6 @@
   lineinfile:
     path: /boot/config.txt
     line: "{{ item.key }}{{ '=' ~ item.value if item.value != 'yes' }}"
-    regexp: "^#?{{ item.key }}="
+    regexp: "^#?{{ item.key }}=?"
   loop: '{{ boot_config | dict2items }}'
   notify: Reboot
