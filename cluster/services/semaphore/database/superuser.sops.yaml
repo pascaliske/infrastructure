@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: postgresql-superuser
+    namespace: semaphore
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:1nAKwhBYtTo=,iv:HLbAZi/qC46m1QI1AyF+YW0OOpH9fFEO2QGG58wfIb4=,tag:SPc1K7U7Wakxu1E+zbFZrw==,type:str]
+    password: ENC[AES256_GCM,data:Uop1RSjtbk24eFL0ZRD3+qq3Uho32Ih5WVPzB/T/IjeIGKHKK94jPMiL,iv:rKX1AYD6braHxeirbUUFqTyGpeV/UxROIQio0O8BUt0=,tag:7gtWvOXscawyaSOb9WKxHA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWbm5NeU44dkFPMERsQUxB
+            Rmd4WVdvYTJMeEVHL3BPRTNTSUVNNmRKY0RFClpLOWszQW1tSkgrTTVKSHFuTGtY
+            TUNtMm4xeVFDWFMwa3dLY2NjdjY2Mm8KLS0tIE9XSzl4Y3dlaHJiSHVCWFFQMVJD
+            MFRFOTUwZDlueG4zMVNUdHA0YjBGcEUKlF5J0me7Djyf2vHRwWQGy+BiVQvV4khb
+            c1xBwCSmjEoHRpZC493pQeIV20wFHfy+kS4iTwmgGiqsG+0O7xptLg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-11-15T04:33:40Z"
+    mac: ENC[AES256_GCM,data:OE2K8zBAgc3gHY7vk3DOGHa80AFWDonIlH6wz1oVrC579AIJU5ZBfDWC84eqQQAFyyvU6y63WIizIaPWpemliRV64E4fInF4FFzkG5DH9dOoMGpeYfq2qjZh2QFwBw0jj9t4/CggvpiINdNaMxtoW3PUaNvwHwzl+fxMItATP10=,iv:0LFFA7F8c1bdlGWzxETtQQsZJhnipmUkh1nKr3lKcQI=,tag:NIYS7/1ZFurCh/XjpD5rLw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1
