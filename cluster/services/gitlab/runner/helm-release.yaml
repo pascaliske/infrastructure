@@ -22,8 +22,7 @@ spec:
       - name: gitlab-registry-auth
     replicas: 1
     gitlabUrl: https://git.${DOMAIN_EXTERNAL}
-    runnerRegistrationToken: ${GITLAB_RUNNER_REGISTRATION_TOKEN}
-    unregisterRunner: false
+    runnerToken: ${GITLAB_RUNNER_TOKEN}
     unregisterRunners: true
     concurrent: 2
     logLevel: info
