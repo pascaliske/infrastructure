@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/crazy-max/cloudflared
-      tag: '2023.8.0'
+      tag: '2023.10.0'
     controller:
       replicas: 2
     service:
