@@ -74,6 +74,7 @@ spec:
           - policy: bypass
             domain: docs.${DOMAIN_EXTERNAL}
             resources:
+              - ^\/share
               - ^\/api
           - policy: bypass
             domain: status.${DOMAIN_EXTERNAL}
