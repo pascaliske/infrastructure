@@ -168,22 +168,22 @@ services:
     items:
       - name: Prometheus
         subtitle: Metrics collector
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/prometheus.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/prometheus.png
         url: https://prometheus.${DOMAIN_INTERNAL}
         <<: *monitoring
       - name: Alertmanager
         subtitle: Alert handling
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/prometheus.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/prometheus.png
         url: https://alerts.${DOMAIN_INTERNAL}
         <<: *monitoring
       - name: Grafana
         subtitle: Metrics visualizer
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/grafana.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/grafana.png
         url: https://grafana.${DOMAIN_INTERNAL}
         <<: *monitoring
       - name: Uptime Kuma
         subtitle: Uptime monitoring
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/uptime-kuma.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/uptime-kuma.png
         url: https://status.${DOMAIN_EXTERNAL}/dashboard
         <<: *monitoring
   - name: Network
@@ -191,42 +191,42 @@ services:
     items:
       - name: UniFi Controller
         subtitle: Network management controller
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/unifi.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/unifi.png
         url: https://unifi.${DOMAIN_INTERNAL}
         <<: *network
       - name: FRITZ!Box
         subtitle: Gateway & Firewall
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/fritzbox.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/fritzbox.png
         url: http://${IP_ROUTER}
         <<: *network
       - name: TP-Link Switch 8
         subtitle: 8 port core switch
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/tplink.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/tplink.png
         url: http://10.0.2.20
         <<: *network
       - name: TP-Link Switch 5
         subtitle: 5 port distribution switch
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/tplink.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/tplink.png
         url: http://10.0.2.21
         <<: *network
       - name: Synology DS920+
         subtitle: Network Attached Storage
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/synology.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/synology.png
         url: https://${IP_RYLOTH}:5001
         <<: *network
       - name: Gigaset S850A GO
         subtitle: VoIP phone management
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gigaset-go.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/gigaset-go.png
         url: http://10.0.2.30
         <<: *network
       - name: Gigaset C430A GO
         subtitle: VoIP phone management
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gigaset-go.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/gigaset-go.png
         url: http://10.0.2.31
         <<: *network
       - name: EPSON ET-2750
         subtitle: Printer
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/epson.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/epson.png
         url: https://10.0.2.35
         <<: *network
   - name: Automation
@@ -234,12 +234,12 @@ services:
     items:
       - name: Home Assistant
         subtitle: Central home automation hub
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/home-assistant.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/home-assistant.png
         url: https://homeassistant.${DOMAIN_INTERNAL}
         <<: *automation
       - name: Office Desk WLED
         subtitle: WLED controller
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/wled.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/wled.png
         url: http://10.0.2.40
         <<: *automation
   - name: Productivity
@@ -247,22 +247,22 @@ services:
     items:
       - name: Vikunja
         subtitle: Task management
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vikunja.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/vikunja.png
         url: https://tasks.${DOMAIN_EXTERNAL}
         <<: *productivity
       - name: Paperless
         subtitle: Online document management
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/paperless.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/paperless.png
         url: https://docs.${DOMAIN_EXTERNAL}
         <<: *productivity
       - name: GitLab
         subtitle: Web based DevOps lifecycle platform
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/gitlab.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/gitlab.png
         url: https://git.${DOMAIN_EXTERNAL}
         <<: *productivity
       - name: Code Server
         subtitle: Web based integrated development environment
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vscode.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/vscode.png
         url: https://code.${DOMAIN_EXTERNAL}
         <<: *productivity
   - name: Self Hosted
@@ -270,26 +270,26 @@ services:
     items:
       - name: Plausible
         subtitle: Privacy-friendly Google Analytics alternative
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/plausible.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/plausible.png
         url: https://vehicles.${DOMAIN_EXTERNAL}
         <<: *self-hosted
       - name: Hammond
         subtitle: Vehicle fuel & expenses management
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/hammond.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/hammond.png
         url: https://vehicles.${DOMAIN_EXTERNAL}
         <<: *self-hosted
       - name: Vaultwarden
         subtitle: Password management
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/vaultwarden.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/vaultwarden.png
         url: https://vault.${DOMAIN_INTERNAL}
         <<: *self-hosted
       - name: Linkding
         subtitle: Collect links and categorize them
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/linkding.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/linkding.png
         url: https://links.${DOMAIN_EXTERNAL}
         <<: *self-hosted
       - name: Snapdrop
         subtitle: Local file sharing
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/master/cluster/services/homer/files/logos/snapdrop.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/homer/files/logos/snapdrop.png
         url: https://drop.${DOMAIN_INTERNAL}
         <<: *self-hosted

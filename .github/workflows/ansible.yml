@@ -2,13 +2,13 @@ name: Ansible
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'ansible/**'
       - '.github/workflows/ansible.yml'
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'ansible/**'
       - '.github/workflows/ansible.yml'

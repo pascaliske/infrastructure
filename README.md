@@ -2,7 +2,7 @@
 
 > Flux based GitOps repository for my home lab infrastructure.
 
-[![Branch checks](https://img.shields.io/github/checks-status/pascaliske/infrastructure/master?style=flat-square)](https://github.com/pascaliske/infrastructure) [![Pipeline (linting)](https://img.shields.io/github/actions/workflow/status/pascaliske/infrastructure/linting.yml?branch=master&label=linting&style=flat-square)](https://github.com/pascaliske/infrastructure/actions/workflows/linting.yml) [![Pipeline (docs)](https://img.shields.io/github/actions/workflow/status/pascaliske/infrastructure/docs.yml?branch=master&label=docs&style=flat-square)](https://github.com/pascaliske/infrastructure/actions/workflows/docs.yml) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pascaliske/infrastructure?style=flat-square) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure/commits/master) ![GitHub top language](https://img.shields.io/github/languages/top/pascaliske/infrastructure?style=flat-square) ![GitHub repo size](https://img.shields.io/github/repo-size/pascaliske/infrastructure?style=flat-square) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Branch checks](https://img.shields.io/github/checks-status/pascaliske/infrastructure/main?style=flat-square)](https://github.com/pascaliske/infrastructure) [![Pipeline (linting)](https://img.shields.io/github/actions/workflow/status/pascaliske/infrastructure/linting.yml?branch=main&label=linting&style=flat-square)](https://github.com/pascaliske/infrastructure/actions/workflows/linting.yml) [![Pipeline (docs)](https://img.shields.io/github/actions/workflow/status/pascaliske/infrastructure/docs.yml?branch=main&label=docs&style=flat-square)](https://github.com/pascaliske/infrastructure/actions/workflows/docs.yml) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pascaliske/infrastructure?style=flat-square) [![GitHub Last Commit](https://img.shields.io/github/last-commit/pascaliske/infrastructure?style=flat-square)](https://github.com/pascaliske/infrastructure/commits/main) ![GitHub top language](https://img.shields.io/github/languages/top/pascaliske/infrastructure?style=flat-square) ![GitHub repo size](https://img.shields.io/github/repo-size/pascaliske/infrastructure?style=flat-square) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=flat-square&logo=kubernetes&logoColor=white) ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=flat-square&logo=terraform&logoColor=white) ![Ansible](https://img.shields.io/badge/ansible-%231A1918.svg?style=flat-square&logo=ansible&logoColor=white)
 
@@ -35,7 +35,7 @@ $ task cluster:provision
 $ task cluster:bootstrap -- \
     --owner=$GITHUB_USER \ # required flag (2)
     --repository=$GITHUB_REPO \ # required flag (3)
-    --branch=master
+    --branch=main
 ```
 
 1. More information on the following command can be found in the [provisioning section](/provisioning/#provisionyml).
