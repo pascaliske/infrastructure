@@ -62,7 +62,9 @@ blocking:
     default:
       - all
   loading:
+    refreshPeriod: 8h
     strategy: fast
+    concurrency: 2
 
 caching:
   minTime: 5m
