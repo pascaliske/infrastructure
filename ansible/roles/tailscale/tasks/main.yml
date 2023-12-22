@@ -14,10 +14,20 @@
 # install tailscale
 - name: Install apt package
   become: true
-  apt:
-    name: tailscale
-    update_cache: true
-    state: latest
+  block:
+    - name: Unhold apt package
+      dpkg_selections:
+        name: tailscale
+        selection: install
+    - name: Install apt package
+      apt:
+        name: tailscale
+        update_cache: true
+        state: latest
+    - name: Hold apt package
+      dpkg_selections:
+        name: tailscale
+        selection: hold
 
 # configure drop-in for reducing log noise
 - name: Configure service drop-in
