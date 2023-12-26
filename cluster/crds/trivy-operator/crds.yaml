@@ -19,7 +19,13 @@ spec:
       name: clusterconfigauditreports.aquasecurity.github.io
     - apiVersion: apiextensions.k8s.io/v1
       kind: CustomResourceDefinition
+      name: clusterinfraassessmentreports.aquasecurity.github.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
       name: clusterrbacassessmentreports.aquasecurity.github.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: clustersbomreports.aquasecurity.github.io
     - apiVersion: apiextensions.k8s.io/v1
       kind: CustomResourceDefinition
       name: configauditreports.aquasecurity.github.io
@@ -32,6 +38,9 @@ spec:
     - apiVersion: apiextensions.k8s.io/v1
       kind: CustomResourceDefinition
       name: rbacassessmentreports.aquasecurity.github.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: sbomreports.aquasecurity.github.io
     - apiVersion: apiextensions.k8s.io/v1
       kind: CustomResourceDefinition
       name: vulnerabilityreports.aquasecurity.github.io
