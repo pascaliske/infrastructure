@@ -5,7 +5,7 @@ metadata:
     namespace: home-assistant
 type: kubernetes.io/dockerconfigjson
 data:
-    .dockerconfigjson: ENC[AES256_GCM,data:BMOECV75vM0pPHVZhGH+kTg6kqTewxZrTlKUAkOi5X3vqzmDmM2y7Q/Uw+Plrwn8cyGJFaS9eYElZzDbHUKZxf81HWCYysukThobEwZlEd86xQiXbIkAB62t0hyVVGlFQNRLxzPnwXWff1XzBjxjo6xQz9iy+BhbRLnerSlGSTPhjJDTnoWnyQIABDfzjixk1X6QW1HD4zVkDtmSlHGBszCW7ueoFVXziU4aNZmPHWgWbP7RGq9jnhHejoPYmEpzLvoJ/eq2LJnE07cfy8fSNtp5gNh9xY7NcEEfY7Qzn30yQTM4i5Ix0h06s7eytKuZghsWCYpkuwR/LSy5gt9kAfVcxuFfaV6thvNvjCyJQs7WojDx36iuxQ==,iv:pg4Y9PZJuPVWJl4LhMU7men8GPfQ4sYeBssQtdaDVPw=,tag:cWFqG6YlP4qnFgplIOvGew==,type:str]
+    .dockerconfigjson: ENC[AES256_GCM,data:UjFnO3c8clUjE3pYvuzsaGVt+sZT+jYOsHw9qQ8wTjG1ijiAWo4C30wKheqcHS/s8fCALl5SPq01auJvkU4zd/8VCD4rJUWZoDBBB4Yr9iPbjG0C0HELQL2lHGMhnk1PhhPOr2uXhgnqwcq4beasHMxsa1B2NG8NNGaOT2AAvBlsIkvcbbdlJLydaJodjXbNd86CJWs9weK84x8T8nLW2mQGIokEMPm6Zohvz/3mHuU9ngAkuNbzTvj1xmhynNhhN8bAR3cV2Mx0NV1hor0H4ZUkc/b71QxtTEFfMGcsI38KpPQuV40/6GcFMlkS7VIwzoFC4RnDbOlpn8gqW2yg5eVwIbJGdcS+bwLfks/Aauy45uPBZrnF3g==,iv:VqfsvnSaYWVskvr13vI0caPveaSiWEfhNkdo0dgDiNo=,tag:g7usxrhQbKPYWyTCnsPsdw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -15,14 +15,14 @@ sops:
         - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1UXFxa1d2VEZkQ3lFRisz
-            aHRSM25ISFVvTVlGY1JnZHAxVVFJdWQ1SUJnClh6a0tJdXVKaFc5VTltbGxYNlNi
-            OG9wT3BsRWJNVEhzSllzRmdHYlVLSlEKLS0tIHQ3azdzTmZUR2dzMjJLZG5yS0p5
-            S3J3VGYzRitpWUI3RnQ3VklhQTEwVFkKWB7BfRL3Fw/tAYOcmpd5SOHv55DN4AGw
-            jbfPLG2WR64Qyhj3Qv3BkyhGJYWU1q4Gsdr4psj5CV13rX1Fyi6v9g==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDZWlOYjl3eGYrRkhBbGto
+            YllKM0d2N2V3TWUzRVBZVXpJVExnVW5KczBFCk5nc0ZDaHBybzVQSklhc3lteWZx
+            akVUNFRWNlBZYnRyS3F3ejlKNEp1cjAKLS0tIHB4dnVJeThNL2RSNHBhZjJVcFRa
+            Vi9jd0ZyeGtxa3pMaUh2VVhHcWExVVEKRpwE52UllRv5Q9xazan/F/6DoNAAstRM
+            2+q6vUmZjYw21G6S4W8wAGM2sB/ij7DC4rPeBtabzypOgnNxZpm4RA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-08-27T09:01:56Z"
-    mac: ENC[AES256_GCM,data:BthyShP29wkJySez1BnuovuM4UOh0brX50NOroEI0I74ysIQDR1Q+/A1+xBZFoJqkIh+1FflaVic06/Qgl0G3KXXDl80wI8WI1SxduJT+LFgeNbISiiQ5/U8veAeNw0KOwoiWvPOROQejPlEXHoSB+OGA+Xgjx5LW+rET+5Qz28=,iv:F64cppcDD3BLKmV0GPL/S5evKQ/b3kPGjCdwnaJgybU=,tag:3qArDxxvFlpRGPJnWeglyQ==,type:str]
+    lastmodified: "2023-12-28T11:14:09Z"
+    mac: ENC[AES256_GCM,data:l6BdnLIvM0qUXAgpH7A6k614yQ7+tZy1TlStnYPVkmME0oW2GDsuRMIMRDNg4T84LT5HThhMb/wvRF0qECJ6FYini+mgDz3shfwjGKwFZHviHPrscF0U8TmyfNNk1Hx2ZpKxj076eOlAYAP+vnPddxthNDHtiHJK2ap8Gdsam8w=,iv:LtJjAk6Z7/UhkZ6nWSd44dXXSR2lFs9Nyo0vozOfXaM=,tag:bYxnLdjC+uqyH7um14xvRg==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
-    version: 3.7.3
+    version: 3.8.1
