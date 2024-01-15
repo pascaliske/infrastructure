@@ -87,7 +87,7 @@ spec:
       enabled: true
       image:
         repository: ghcr.io/maxmind/geoipupdate
-        tag: v6.0.0
+        tag: v6.1.0
       accountId: '${PLAUSIBLE_GEOIP_ACCOUNT_ID}'
       licenseKey: ${PLAUSIBLE_GEOIP_LICENSE_KEY}
     tolerations:
