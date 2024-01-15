@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: velero/velero
-      tag: v1.12.2 # downgrade due to missing CRDs in helm chart
+      tag: v1.12.3 # downgrade due to missing CRDs in helm chart
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:latest
