@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/alfhou/hammond
-      tag: v0.0.22
+      tag: v0.0.24
     ingressRoute:
       create: true
       entryPoints:
