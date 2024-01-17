@@ -40,6 +40,12 @@ spec:
               - key: users.yaml
                 path: users.yaml
     configMap:
+      server:
+        # increase defaults for slow hammond api calls
+        timeouts:
+          read: 15s
+          write: 15s
+          idle: 30s
       log:
         level: info
       telemetry:
