@@ -130,6 +130,7 @@ spec:
               authorization_policy: two_factor
               redirect_uris:
                 - https://ryloth.${DOMAIN_INTERNAL}
+                - https://photos.ryloth.${DOMAIN_INTERNAL}
               scopes:
                 - openid
                 - profile
