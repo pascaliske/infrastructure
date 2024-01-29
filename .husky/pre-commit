@@ -1,5 +1,5 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+# -*- coding: utf-8 -*-
 
 # check if vault is encrypted
 if (cat ansible/vars/vault.yml | grep -q "\$ANSIBLE_VAULT;"); then

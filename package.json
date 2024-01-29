@@ -16,7 +16,7 @@
   },
   "private": true,
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.0.0",
