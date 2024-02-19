@@ -24,6 +24,7 @@
         name: tailscale
         update_cache: true
         state: latest
+      ignore_errors: '{{ ansible_check_mode }}'
     - name: Hold apt package
       dpkg_selections:
         name: tailscale
