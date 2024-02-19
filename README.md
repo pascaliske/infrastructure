@@ -58,4 +58,4 @@ Also I want to thank you the awesome [`k8s-at-home` community](https://github.co
 
 ## License
 
-[MIT](LICENSE.md) – © 2023 [Pascal Iske](https://pascaliske.dev)
+[MIT](LICENSE.md) – © 2024 [Pascal Iske](https://pascaliske.dev)
