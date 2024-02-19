@@ -4,7 +4,7 @@
 
 The following hardware components are used:
 
-- 3x [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (1x 4 GB & 2x 8 GB RAM)
+- 3x [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (4 Cores, 8 GB RAM)
 - 3x [Raspberry Pi PoE+ Hat](https://www.raspberrypi.com/products/poe-plus-hat/)
 - 3x [SanDisk Extreme microSDXC](https://www.amazon.de/dp/B07FCMKK5X?ref_=cm_sw_r_cp_ud_dp_4064FB9RN1YDMTAM69ZN) (1x 64 GB, 2x 128 GB)
 - 1x [UniFi Switch 8 PoE (60W)](https://store.ui.com/collections/unifi-network-switching/products/unifi-switch-8-60w)
