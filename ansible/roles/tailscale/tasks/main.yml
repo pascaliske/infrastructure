@@ -1,3 +1,13 @@
+# check auth key
+- name: Check format of auth key
+  assert:
+    success_msg: The provided auth key looks valid.
+    fail_msg: The provided auth key is empty or has an invalid format!
+    that:
+      - tailscale_auth_key is defined
+      - tailscale_auth_key | length > 0
+      - tailscale_auth_key is regex('^tskey-auth.*')
+
 # configure apt
 - name: Add signing key
   become: true
@@ -63,6 +73,6 @@
 - name: Start tailscale
   become: true
   no_log: true
-  command: tailscale up --authkey={{ vault.tailscale.auth_key }}
+  command: tailscale up --authkey={{ tailscale_auth_key }}
   when:
     - "'Logged out.' in tailscale_status.stdout"

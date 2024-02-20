@@ -2,3 +2,6 @@
 domain: '{{ domains.private }}'
 node:
   location: private
+
+# tailscale
+tailscale_auth_key: '{{ vault.tailscale.auth_key }}'
