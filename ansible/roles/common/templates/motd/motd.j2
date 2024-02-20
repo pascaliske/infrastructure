@@ -11,7 +11,7 @@ MESSAGE="
             \/                  \/     \/                          \/                        \/
 
 
-    Hostname:       {{ inventory_hostname }}
+    Hostname:       {{ hostname_fqdn }}
     IP:             {{ ansible_default_ipv4.address }} / $(tailscale ip -4)
 
     Architecture:   {{ ansible_architecture }}

@@ -1,11 +1,5 @@
 ---
 # system
 arm: '{{ ansible_architecture in ["aarch64", "armhf", "armv7l"] }}'
-
-# services
-domains:
-  private: iske.cloud
-  public: pascaliske.dev
-paths:
-  home: '{{ ansible_env.HOME }}'
-  root: '{{ ansible_env.HOME }}/{{ inventory_hostname }}'
+hostname_fqdn: '{{ inventory_hostname }}'
+hostname_prefix: "{{ inventory_hostname | split('.') | first }}"

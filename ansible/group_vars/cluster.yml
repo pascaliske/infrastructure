@@ -1,6 +1,4 @@
 ---
-domain: '{{ domains.private }}'
-
 # common
 common_static_ip: "{{ vault.ips[hostname_prefix] }}"
 common_static_router: '{{ vault.ips.router }}'

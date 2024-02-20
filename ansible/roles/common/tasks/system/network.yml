@@ -3,12 +3,12 @@
   become: true
   block:
     - name: Set the hostname
-      command: hostnamectl set-hostname "{{ inventory_hostname }}"
+      command: hostnamectl set-hostname "{{ hostname_fqdn }}"
     - name: Update /etc/hosts with new hostname
       when: arm
       lineinfile:
         path: /etc/hosts
-        line: "127.0.1.1\t\traspberrypi {{ inventory_hostname }}"
+        line: "127.0.1.1\t\traspberrypi {{ hostname_fqdn }}"
         regexp: "^127.0.1.1"
         backrefs: true
 

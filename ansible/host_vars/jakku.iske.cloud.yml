@@ -1,6 +1,4 @@
 ---
-domain: '{{ domains.public }}'
-
 # common
 common_location: public
 
