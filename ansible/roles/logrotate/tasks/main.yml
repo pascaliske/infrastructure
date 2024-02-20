@@ -6,18 +6,13 @@
         path: /etc/logrotate.conf
         line: daily
         regexp: '^weekly'
-      register: frequency
+      notify: Restart logrotate
     - name: Compress rotated logs
       lineinfile:
         path: /etc/logrotate.conf
         line: compress
         regexp: '^#compress'
-      register: compress
-    - name: Restart logrotate
-      systemd:
-        name: logrotate
-        state: restarted
-      when: frequency.changed or compress.changed
+      notify: Restart logrotate
     - name: Force log rotation every night
       cron:
         name: Force log rotation every night
