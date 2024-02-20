@@ -12,9 +12,6 @@ shell:
   aliases:
     - alias: ll
       command: ls -lisahG
-journal:
-  retention: 7d
-  size: 20M
 packages:
   apt:
     - apt-transport-https

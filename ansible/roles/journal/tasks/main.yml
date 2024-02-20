@@ -4,13 +4,13 @@
     - name: Set SystemMaxUse for journald
       lineinfile:
         path: /etc/systemd/journald.conf
-        line: 'SystemMaxUse={{ journal.size }}'
+        line: 'SystemMaxUse={{ journal_size }}'
         regexp: '^#?SystemMaxUse'
       register: system_max_use
     - name: Set MaxFileSec for journald
       lineinfile:
         path: /etc/systemd/journald.conf
-        line: 'MaxFileSec={{ journal.retention }}'
+        line: 'MaxFileSec={{ journal_retention }}'
         regexp: '^#?MaxFileSec'
       register: max_file_sec
     - name: Restart journald

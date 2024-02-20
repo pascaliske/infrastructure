@@ -10,6 +10,10 @@
       tags:
         - masters
         - log2ram
+    - role: journal
+      tags:
+        - masters
+        - journal
     - role: tailscale
       tags:
         - masters
@@ -31,6 +35,10 @@
       tags:
         - workers
         - log2ram
+    - role: journal
+      tags:
+        - workers
+        - journal
     - role: tailscale
       tags:
         - workers

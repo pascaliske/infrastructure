@@ -13,5 +13,4 @@
 # install tools
 - include_tasks: tools/vim.yml
 - include_tasks: tools/unattended-upgrades.yml
-- include_tasks: tools/journal.yml
 - include_tasks: tools/logrotate.yml
