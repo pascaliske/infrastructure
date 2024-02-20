@@ -2,4 +2,6 @@
 # k3s
 k3s_master_ip: "{{ vault.ips[hostname_prefix] }}"
 k3s_master_ip_tailscale: "{{ vault.ips['tailscale_' ~ hostname_prefix] }}"
+k3s_master_registration_url: '{{ vault.ips.tailscale_coruscant }}'
+k3s_master_registration_token: '{{ vault.k3s.registration_token }}'
 k3s_master_kubeconfig_local: "{{ lookup('env', 'HOME') }}/.kube/infrastructure/config"

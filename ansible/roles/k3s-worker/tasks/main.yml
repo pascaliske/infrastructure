@@ -12,10 +12,7 @@
         dest: /etc/rancher/k3s/config.yaml
 
 # install k3s
-- name: Install binaries
+- name: Install k3s on workers
   shell:
-    cmd: '{{ item }}'
+    cmd: curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="{{ k3s_worker_version }}" K3S_URL="https://{{ k3s_worker_registration_url }}:6443" K3S_TOKEN="{{ k3s_worker_registration_token }}" sh -
   changed_when: true
-  loop:
-    # renovate: datasource=github-releases depName=k3s-io/k3s
-    - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.29.1+k3s2" K3S_URL="https://{{ k3s_worker_registration_url }}:6443" K3S_TOKEN="{{ k3s_worker_registration_token }}" sh -
