@@ -15,9 +15,6 @@ shell:
 journal:
   retention: 7d
   size: 20M
-log2ram:
-  config: /etc/log2ram.conf
-  size: 350M
 packages:
   apt:
     - apt-transport-https

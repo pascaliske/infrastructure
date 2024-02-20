@@ -15,5 +15,3 @@
 - include_tasks: tools/unattended-upgrades.yml
 - include_tasks: tools/journal.yml
 - include_tasks: tools/logrotate.yml
-- include_tasks: tools/log2ram.yml
-  when: arm

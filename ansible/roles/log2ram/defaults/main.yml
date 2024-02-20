@@ -1,0 +1,3 @@
+---
+log2ram_config: /etc/log2ram.conf
+log2ram_size: 350M

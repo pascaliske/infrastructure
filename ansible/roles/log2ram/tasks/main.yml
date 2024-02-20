@@ -1,4 +1,5 @@
 - name: Install log2ram
+  when: arm
   become: true
   block:
     - name: Add apt key for log2ram
@@ -17,7 +18,7 @@
         state: latest
     - name: Update size of log2ram
       lineinfile:
-        path: '{{ log2ram.config }}'
-        line: 'SIZE={{ log2ram.size }}'
+        path: '{{ log2ram_config }}'
+        line: 'SIZE={{ log2ram_size }}'
         regexp: '^SIZE='
       notify: Restart log2ram

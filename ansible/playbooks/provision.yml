@@ -6,6 +6,10 @@
       tags:
         - masters
         - common
+    - role: log2ram
+      tags:
+        - masters
+        - log2ram
     - role: tailscale
       tags:
         - masters
@@ -23,6 +27,10 @@
       tags:
         - workers
         - common
+    - role: log2ram
+      tags:
+        - workers
+        - log2ram
     - role: tailscale
       tags:
         - workers
