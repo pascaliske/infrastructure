@@ -1,6 +1,0 @@
----
-master_ip: '{{ vault.ips.coruscant }}'
-master_ip_tailscale: '{{ vault.ips.tailscale_coruscant }}'
-worker_ip: "{{ vault.ips[inventory_hostname | replace('.' ~ domains.private, '')] }}"
-worker_ip_tailscale: "{{ vault.ips['tailscale_' ~ inventory_hostname | replace('.' ~ domains.private, '')] }}"
-node_token: "{{ hostvars[groups['masters'][0]]['node_token'] }}"

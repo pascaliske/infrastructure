@@ -2,7 +2,9 @@
 domain: '{{ domains.public }}'
 node:
   location: public
-  labels:
-    - k8s.pascaliske.dev/location=public
-  taints:
-    - k8s.pascaliske.dev/location=public:NoSchedule
+
+# k3s
+k3s_worker_labels:
+  - k8s.pascaliske.dev/location=public
+k3s_worker_taints:
+  - k8s.pascaliske.dev/location=public:NoSchedule

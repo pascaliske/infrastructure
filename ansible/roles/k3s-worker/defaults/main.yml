@@ -1,0 +1,7 @@
+---
+k3s_worker_ip: ''
+k3s_worker_ip_tailscale: ''
+k3s_worker_registration_url: ''
+k3s_worker_registration_token: ''
+k3s_worker_labels: []
+k3s_worker_taints: []

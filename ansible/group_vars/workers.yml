@@ -1,0 +1,6 @@
+---
+# k3s
+k3s_worker_ip: "{{ vault.ips[inventory_hostname | replace('.' ~ domain_private, '')] }}"
+k3s_worker_ip_tailscale: "{{ vault.ips['tailscale_' ~ inventory_hostname | replace('.' ~ domain_private, '')] }}"
+k3s_worker_registration_url: '{{ vault.ips.tailscale_coruscant }}'
+k3s_worker_registration_token: "{{ hostvars[groups['masters'][0]]['node_token'] }}"

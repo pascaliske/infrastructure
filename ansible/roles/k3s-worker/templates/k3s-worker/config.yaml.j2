@@ -1,16 +1,16 @@
 # {{ ansible_managed }}
 flannel-iface: tailscale0
-node-ip: {{ worker_ip_tailscale }}
-node-external-ip: {{ worker_ip }}
-{% if node.labels | default([]) | length > 0 %}
+node-ip: {{ k3s_worker_ip_tailscale }}
+node-external-ip: {{ k3s_worker_ip }}
+{% if k3s_worker_labels | default([]) | length > 0 %}
 node-label:
-{% for label in node.labels %}
+{% for label in k3s_worker_labels %}
   - {{ label }}
 {% endfor %}
 {% endif %}
-{% if node.taints | default([]) | length > 0 %}
+{% if k3s_worker_taints | default([]) | length > 0 %}
 node-taint:
-{% for taint in node.taints %}
+{% for taint in k3s_worker_taints %}
   - {{ taint }}
 {% endfor %}
 {% endif %}
