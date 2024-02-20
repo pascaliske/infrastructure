@@ -1,0 +1,4 @@
+---
+minio_data_directory: '{{ ansible_env.HOME }}/minio'
+minio_root_user: ''
+minio_root_password: ''

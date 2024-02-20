@@ -1,11 +1,19 @@
+# check data directory
+- name: Check data directory
+  assert:
+    success_msg: The provided data directory value is valid.
+    fail_msg: The provided data directory value is invalid!
+    that:
+      - minio_data_directory is defined
+      - minio_data_directory | length > 0
+
 # directories
 - name: Ensure directories exist
   file:
-    path: '{{ paths.root }}/{{ item }}'
+    path: '{{ item }}'
     state: directory
   loop:
-    - '{{ role_name }}'
-    - '{{ role_name }}/data'
+    - '{{ minio_data_directory }}'
 
 # minio
 - name: Create container
@@ -21,7 +29,7 @@
       - '9000:9000'
       - '9001:9001'
     env:
-      MINIO_ROOT_USER: '{{ vault.minio.username }}'
-      MINIO_ROOT_PASSWORD: '{{ vault.minio.password }}'
+      MINIO_ROOT_USER: '{{ minio_root_user }}'
+      MINIO_ROOT_PASSWORD: '{{ minio_root_password }}'
     volumes:
-      - '{{ paths.root }}/{{ role_name }}/data:/data'
+      - '{{ minio_data_directory }}:/data'
