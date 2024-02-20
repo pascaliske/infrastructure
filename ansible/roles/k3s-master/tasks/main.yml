@@ -39,43 +39,43 @@
 
 - name: Create aliases
   lineinfile:
-    path: '{{ paths.home }}/.bashrc'
+    path: '{{ ansible_env.HOME }}/.bashrc'
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
     create: true
   loop:
-    - { alias: 'kubectl', command: 'kubectl --kubeconfig {{ kubeconfig.local }}' }
-    - { alias: 'k', command: 'kubectl --kubeconfig {{ kubeconfig.local }}' }
-    - { alias: 'helm', command: 'helm --kubeconfig {{ kubeconfig.local }}' }
-    - { alias: 'h', command: 'helm --kubeconfig {{ kubeconfig.local }}' }
+    - { alias: 'kubectl', command: 'kubectl --kubeconfig {{ k3s_master_kubeconfig_system }}' }
+    - { alias: 'k', command: 'kubectl --kubeconfig {{ k3s_master_kubeconfig_system }}' }
+    - { alias: 'helm', command: 'helm --kubeconfig {{ k3s_master_kubeconfig_system }}' }
+    - { alias: 'h', command: 'helm --kubeconfig {{ k3s_master_kubeconfig_system }}' }
 
 # configure remote access
 - name: Configure remote access
   become: true
   block:
-    - name: Change ownership of local config file
+    - name: Change ownership of system config file
       file:
-        path: '{{ kubeconfig.local }}'
+        path: '{{ k3s_master_kubeconfig_system }}'
         owner: '{{ ansible_user }}'
     - name: Ensure directory exists
       file:
-        path: '{{ kubeconfig.remote | dirname }}'
+        path: '{{ k3s_master_kubeconfig_remote | dirname }}'
         state: directory
     - name: Duplicate config file for remote access
       copy:
-        src: '{{ kubeconfig.local }}'
-        dest: '{{ kubeconfig.remote }}'
+        src: '{{ k3s_master_kubeconfig_system }}'
+        dest: '{{ k3s_master_kubeconfig_remote }}'
         owner: '{{ ansible_user }}'
         mode: '0600'
         remote_src: true
     - name: Replace server in config file
       replace:
-        path: '{{ kubeconfig.remote }}'
+        path: '{{ k3s_master_kubeconfig_remote }}'
         regexp: '127\.0\.0\.1'
         replace: '{{ ansible_host }}'
     - name: Fetch config file for remote access
       fetch:
-        src: '{{ kubeconfig.remote }}'
-        dest: "{{ lookup('env', 'HOME') }}/.kube/infrastructure/config"
+        src: '{{ k3s_master_kubeconfig_remote }}'
+        dest: '{{ k3s_master_kubeconfig_local }}'
         flat: true

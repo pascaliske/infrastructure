@@ -1,0 +1,9 @@
+---
+k3s_master_ip: ''
+k3s_master_ip_tailscale: ''
+k3s_master_kubeconfig_system: /etc/rancher/k3s/k3s.yaml
+k3s_master_kubeconfig_remote: '{{ ansible_env.HOME }}/.kube/config'
+k3s_master_kubeconfig_local: "{{ lookup('env', 'HOME') }}/.kube/config"
+k3s_master_labels: []
+k3s_master_taints:
+  - node-role.kubernetes.io/control-plane:NoSchedule

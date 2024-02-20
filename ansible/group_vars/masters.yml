@@ -1,0 +1,5 @@
+---
+# k3s
+k3s_master_ip: "{{ vault.ips[inventory_hostname | replace('.' ~ domain_private, '')] }}"
+k3s_master_ip_tailscale: "{{ vault.ips['tailscale_' ~ inventory_hostname | replace('.' ~ domain_private, '')] }}"
+k3s_master_kubeconfig_local: "{{ lookup('env', 'HOME') }}/.kube/infrastructure/config"
