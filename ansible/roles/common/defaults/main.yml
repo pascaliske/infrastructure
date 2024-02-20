@@ -1,5 +1,7 @@
 ---
-boot_config:
+common_cmdline_config_file: /boot/cmdline.txt
+common_boot_config_file: /boot/config.txt
+common_boot_config_values:
   dtoverlay=disable-bt: 'yes'
   dtoverlay=disable-wifi: 'yes'
   dtoverlay=rpi-poe: 'yes'
@@ -8,24 +10,25 @@ boot_config:
   dtparam=poe_fan_temp2=80000,poe_fan_temp2_hyst=2000: 'yes'
   dtparam=poe_fan_temp3=84000,poe_fan_temp3_hyst=2000: 'yes'
   gpu_mem: 16
-shell:
-  aliases:
-    - alias: ll
-      command: ls -lisahG
-packages:
-  apt:
-    - apt-transport-https
-    - unattended-upgrades
-    - iptables
-    - dnsutils
-    - tmux
-    - htop
-    - curl
-    - git
-    - unzip
-    - python3
-    - python3-pip
-    - open-iscsi
-  pip:
-    - pyyaml
-    - kubernetes
+common_timezone: Europe/Berlin
+common_locale: en_US.UTF-8
+common_location: private
+common_shell_aliases:
+  - alias: ll
+    command: ls -lisahG
+common_apt_packages:
+  - apt-transport-https
+  - unattended-upgrades
+  - iptables
+  - dnsutils
+  - tmux
+  - htop
+  - curl
+  - git
+  - unzip
+  - python3
+  - python3-pip
+  - open-iscsi
+common_pip_packages:
+  - pyyaml
+  - kubernetes

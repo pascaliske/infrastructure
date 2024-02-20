@@ -14,18 +14,21 @@
 
 # configure static ip
 - name: Configure static ip
-  when: node.location == 'private'
+  when: common_location == 'private'
   become: true
-  lineinfile:
-    path: /etc/dhcpcd.conf
-    line: '{{ item.line }}'
-    regexp: '{{ item.regex }}'
-  loop:
-    - { regex: '^interface eth[0-9]$', line: 'interface eth0' }
-    - { regex: '^static ip_address', line: "static ip_address={{ vault.ips[inventory_hostname | replace('.' ~ domain, '')] }}" }
-    - { regex: '^static routers', line: 'static routers={{ vault.ips.router }}' }
-    - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ vault.ips.router }}' }
-  notify: Restart dhcpcd
+  block:
+    - name: Configure static ip via dhcpcd
+      when: ansible_distribution == 'Debian' and ansible_distribution_major_version <= "11"
+      lineinfile:
+        path: /etc/dhcpcd.conf
+        line: '{{ item.line }}'
+        regexp: '{{ item.regex }}'
+      loop:
+        - { regex: '^interface eth[0-9]$', line: 'interface eth0' }
+        - { regex: '^static ip_address', line: "static ip_address={{ common_static_ip }}" }
+        - { regex: '^static routers', line: 'static routers={{ common_static_router }}' }
+        - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ common_static_dns }}' }
+      notify: Restart dhcpcd
 
 # configure iptables-legacy
 - name: Configure iptables-legacy

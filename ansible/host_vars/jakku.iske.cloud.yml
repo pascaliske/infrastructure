@@ -1,7 +1,8 @@
 ---
 domain: '{{ domains.public }}'
-node:
-  location: public
+
+# common
+common_location: public
 
 # k3s
 k3s_worker_labels:

@@ -1,7 +1,4 @@
 ---
-node:
-  location: private
-
 # k3s
 k3s_worker_labels:
   - k8s.pascaliske.dev/hardware=zigbee

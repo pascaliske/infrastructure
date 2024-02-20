@@ -3,7 +3,6 @@
 arm: '{{ ansible_architecture in ["aarch64", "armhf", "armv7l"] }}'
 
 # services
-timezone: Europe/Berlin
 domains:
   private: iske.cloud
   public: pascaliske.dev

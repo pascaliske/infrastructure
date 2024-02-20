@@ -1,7 +1,10 @@
 ---
 domain: '{{ domains.private }}'
-node:
-  location: private
+
+# common
+common_static_ip: "{{ vault.ips[hostname_prefix] }}"
+common_static_router: '{{ vault.ips.router }}'
+common_static_dns: '{{ vault.ips.router }}'
 
 # tailscale
 tailscale_auth_key: '{{ vault.tailscale.auth_key }}'

@@ -10,4 +10,4 @@
     - name: Configure vim
       template:
         src: vim/.vimrc.j2
-        dest: '{{ paths.home }}/.vimrc'
+        dest: '{{ ansible_env.HOME }}/.vimrc'

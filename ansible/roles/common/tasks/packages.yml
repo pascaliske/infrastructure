@@ -5,14 +5,14 @@
     name: '{{ item }}'
     update_cache: true
     state: latest
-  loop: '{{ packages.apt }}'
+  loop: '{{ common_apt_packages }}'
 
 # install common pip packages
 - name: Install python packages
   pip:
     name: '{{ item }}'
     state: latest
-  loop: '{{ packages.pip }}'
+  loop: '{{ common_pip_packages }}'
 
 # install system dependencies for alpine 3.13
 - name: Install dependencies for alpine 3.13

@@ -1,21 +1,28 @@
+# override boot files for bookworm
+- name: Override boot files
+  when: ansible_distribution == 'Debian' and ansible_distribution_release == 'bookworm'
+  set_fact:
+    common_cmdline_config_file: /boot/firmware/cmdline.txt
+    common_boot_config_file: /boot/firmware/config.txt
+
 # configure cgroup directives
-- name: Configure cgroup directives
+- name: Configure cgroup directives in {{ common_cmdline_config_file }}
   when: arm
   become: true
   lineinfile:
-    path: /boot/cmdline.txt
+    path: '{{ common_cmdline_config_file }}'
     line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
     regexp: '((.)+?)(\scgroup_\w+=\w+)*$'
     backrefs: true
   notify: Reboot
 
 # configure boot config
-- name: Configure boot config
+- name: Configure boot config in {{ common_boot_config_file }}
   when: arm
   become: true
   lineinfile:
-    path: /boot/config.txt
+    path: '{{ common_boot_config_file }}'
     line: "{{ item.key }}{{ '=' ~ item.value if item.value != 'yes' }}"
     regexp: "^#?{{ item.key }}=?"
-  loop: '{{ boot_config | dict2items }}'
+  loop: '{{ common_boot_config_values | dict2items }}'
   notify: Reboot
