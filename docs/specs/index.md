@@ -95,6 +95,7 @@ Every node has configured a hostname which follows a particular naming scheme:
 As you may have guessed, the planets are taken from the [Star Wars universe](https://namingschemes.com/Star_Wars#Planets). Currently the following names are in use:
 
 - `coruscant`
+- `kashyyyk`
 - `dathomir`
 - `mustafar`
 - `jakku`
