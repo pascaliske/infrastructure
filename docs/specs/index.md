@@ -96,6 +96,7 @@ As you may have guessed, the planets are taken from the [Star Wars universe](htt
 
 - `coruscant`
 - `kashyyyk`
+- `alderaan`
 - `dathomir`
 - `mustafar`
 - `jakku`
