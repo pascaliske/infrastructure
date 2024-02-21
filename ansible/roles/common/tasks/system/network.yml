@@ -29,6 +29,16 @@
         - { regex: '^static routers', line: 'static routers={{ common_static_router }}' }
         - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ common_static_dns }}' }
       notify: Restart dhcpcd
+    - name: Configure static ip via nmcli
+      when: ansible_distribution == 'Debian' and ansible_distribution_major_version >= "12"
+      community.general.nmcli:
+        state: present
+        type: ethernet
+        conn_name: eth0
+        ip4: '{{ common_static_ip }}/24'
+        gw4: '{{ common_static_router }}'
+        dns4:
+          - '{{ common_static_dns }}'
 
 # configure iptables-legacy
 - name: Configure iptables-legacy
