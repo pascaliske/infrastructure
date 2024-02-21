@@ -12,6 +12,7 @@
   pip:
     name: '{{ item }}'
     state: latest
+    extra_args: --break-system-packages
   loop: '{{ common_pip_packages }}'
 
 # install system dependencies for alpine 3.13
