@@ -25,10 +25,14 @@
 - name: Install apt package
   become: true
   block:
+    - name: Check if tailscale is installed
+      package_facts:
+        manager: auto
     - name: Unhold apt package
       dpkg_selections:
         name: tailscale
         selection: install
+      when: "'tailscale' in ansible_facts.packages"
     - name: Install apt package
       apt:
         name: tailscale
