@@ -1,11 +1,9 @@
 ---
-# renovate: datasource=github-releases depName=k3s-io/k3s
-k3s_master_version: v1.29.1+k3s2
 k3s_master_cluster_init: false
 k3s_master_ip: ''
 k3s_master_ip_tailscale: ''
-k3s_master_registration_url: ''
-k3s_master_registration_token: ''
+k3s_master_url: ''
+k3s_master_token: ''
 k3s_master_kubeconfig_system: /etc/rancher/k3s/k3s.yaml
 k3s_master_kubeconfig_remote: '{{ ansible_env.HOME }}/.kube/config'
 k3s_master_kubeconfig_local: "{{ lookup('env', 'HOME') }}/.kube/config"

@@ -14,14 +14,20 @@
 # install k3s
 - name: Install k3s on initial master
   when: k3s_master_cluster_init
-  shell:
-    cmd: curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="{{ k3s_master_version }}" K3S_TOKEN="{{ k3s_master_registration_token }}" sh -s - server --cluster-init
   changed_when: true
+  shell:
+    cmd: '{{ item }}'
+  loop:
+    # renovate: datasource=github-releases depName=k3s-io/k3s
+    - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.29.1+k3s2" K3S_TOKEN="{{ k3s_master_token }}" sh -s - server --cluster-init
 - name: Install k3s on additional masters
   when: not k3s_master_cluster_init
-  shell:
-    cmd: curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="{{ k3s_master_version }}" K3S_URL="https://{{ k3s_master_registration_url }}:6443" K3S_TOKEN="{{ k3s_master_registration_token }}" sh -
   changed_when: true
+  shell:
+    cmd: '{{ item }}'
+  loop:
+    # renovate: datasource=github-releases depName=k3s-io/k3s
+    - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.29.1+k3s2" K3S_URL="https://{{ k3s_master_url }}:6443" K3S_TOKEN="{{ k3s_master_token }}" sh -
 
 # install additional tooling
 - name: Install additional tooling
