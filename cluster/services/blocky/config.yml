@@ -22,6 +22,7 @@ customDNS:
 
     # servers
     corsucant.iske.cloud: ${IP_CORUSCANT}
+    kashyyyk.iske.cloud: ${IP_KASHYYYK}
     dathomir.iske.cloud: ${IP_DATHOMIR}
     mustafar.iske.cloud: ${IP_MUSTAFAR}
     jakku.iske.cloud: ${IP_JAKKU}

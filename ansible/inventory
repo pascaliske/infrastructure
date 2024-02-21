@@ -1,6 +1,7 @@
 # cluster
 [masters]
 coruscant.iske.cloud ansible_user=pi
+kashyyyk.iske.cloud ansible_user=pi
 
 [workers]
 dathomir.iske.cloud ansible_user=pi

@@ -6,12 +6,14 @@ vault:
 
     # nodes - local
     coruscant: ''
+    kashyyyk: ''
     dathomir: ''
     mustafar: ''
     jakku: ''
 
     # nodes - tailscale
     tailscale_coruscant: ''
+    tailscale_kashyyyk: ''
     tailscale_dathomir: ''
     tailscale_mustafar: ''
     tailscale_jakku: ''
