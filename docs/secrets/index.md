@@ -1,10 +1,14 @@
 # Secrets
 
-Almost any service needs some kind of secret value at runtime. In order to store those secrets safely inside the Git repository I use **Mozilla SOPS** which is [natively supported by Flux](https://fluxcd.io/flux/guides/mozilla-sops/) – more precisely, I use [`age`](https://age-encryption.org) as an algorithm for encryption.
+Almost all services require some kind of secret value at runtime. In order to store those secrets safely inside the Git repository I use **Mozilla SOPS** which is [natively supported by Flux](https://fluxcd.io/flux/guides/mozilla-sops/) – more precisely, I use [`age`](https://age-encryption.org) as an algorithm for encryption.
+
+!!! info
+
+    Please keep in mind that this page is only meant as an example implementation of my workflow. You're free to adapt it, but you will need to adjust it by yourself.
 
 ## Prerequisites
 
-It is required to have SOPS and `age` installed on your machine. You can use `brew` for that:
+It is required to have SOPS and `age` installed on your machine. You can leverage `brew` for that:
 
 ```sh
 $ brew install sops age

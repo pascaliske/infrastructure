@@ -37,6 +37,9 @@ The following tags are available for usage with `--tags`:
 - `masters`
 - `workers`
 - `common`
+- `journal`
+- `log2ram`
+- `logrotate`
 - `tailscale`
 - `k3s`
 - `minio`
@@ -66,12 +69,38 @@ The following tags are available for usage with `--tags`:
 - `masters`
 - `workers`
 
-## Limit
+### `cleanup.yml`
 
-Both playbooks can be executed on a limited set of hosts using the `--limit` flag:
+??? abstract "TL;DR — `ansible/playbooks/cleanup.yml`"
+
+    ```yaml linenums="1"
+    --8<-- "ansible/playbooks/cleanup.yml"
+    ```
+
+Sometimes, `logrotate` and `log2ram` can't keep up with the log files. For this rare cases I have an cleanup playbook which allows me to cleanup the `/var/log` folders of all cluster nodes to prevent an overflow of the available disk space:
 
 ```shell
-$ task cluster:<provision|update> -- --limit <host1>[,<host2>]
+$ task cluster:cleanup
+```
+
+To only run specific parts of the playbook the `--tags` flag can be appended to the command:
+
+```shell
+$ task cluster:cleanup -- --tags <tag1>[,<tag2>]
+```
+
+The following tags are available for usage with `--tags`:
+
+- `masters`
+- `workers`
+- `logs`
+
+## Limit
+
+All playbooks can be executed on a limited set of hosts using the `--limit` flag:
+
+```shell
+$ task cluster:<provision|update|cleanup> -- --limit <host1>[,<host2>]
 ```
 
 Any hosts from the [inventory](#inventory) can be used with this flag.

@@ -4,10 +4,10 @@
 
 The following hardware components are used:
 
-- 3x [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (4 Cores, 8 GB RAM)
-- 3x [Raspberry Pi PoE+ Hat](https://www.raspberrypi.com/products/poe-plus-hat/)
-- 3x [SanDisk Extreme microSDXC](https://www.amazon.de/dp/B07FCMKK5X?ref_=cm_sw_r_cp_ud_dp_4064FB9RN1YDMTAM69ZN) (1x 64 GB, 2x 128 GB)
-- 1x [UniFi Switch 8 PoE (60W)](https://store.ui.com/collections/unifi-network-switching/products/unifi-switch-8-60w)
+- 5x [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (1x 4 GB, 4x 8 GB)
+- 5x [Raspberry Pi PoE+ Hat](https://www.raspberrypi.com/products/poe-plus-hat/)
+- 5x [SanDisk Extreme microSDXC](https://www.amazon.de/dp/B07FCMKK5X?ref_=cm_sw_r_cp_ud_dp_4064FB9RN1YDMTAM69ZN) (1x 64 GB, 4x 128 GB)
+- 1x [UniFi Switch Lite 16 PoE](https://eu.store.ui.com/eu/en/pro/category/all-switching/products/usw-lite-16-poe)
 - 1x [GeekPi 6 Layer Cluster Case](https://www.amazon.de/dp/B08614TZ7Q?ref_=cm_sw_r_cp_ud_dp_CS87DZKT38PC9KK1778P)
 - 1x [Netcup VPS 1000 G10](https://www.netcup.de/vserver/vps.php) (6 vCores, 8 GB RAM)
 - 1x [Synology DiskStation DS920+](https://www.synology.com/en-global/products/DS920+) (2x 3 GB & 2x 4 GB)

@@ -29,7 +29,7 @@ As soon as a pull request with an K3s update is merged, Flux starts reconciling 
 
 ## Services
 
-Updates of the running services are also done via Pull Requests by Renovate Bot which fits perfectly into the GitOps based workflow of Flux. It continuously checks the following data sources for new versions and creates Pull Requests to adapt them inside the cluster:
+Updates of the running services and containers are also done via Pull Requests by Renovate Bot which fits perfectly into the GitOps based workflow of Flux. It continuously checks the following data sources for new versions and creates Pull Requests to adapt them inside the cluster:
 
 - Container images
 - Helm Charts

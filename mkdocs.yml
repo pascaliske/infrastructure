@@ -92,6 +92,7 @@ nav:
               - loki: cluster/services/monitoring/loki/index.md
               - magicmirror: cluster/services/monitoring/magicmirror/index.md
               - minio: cluster/services/monitoring/minio/index.md
+              - plausible-exporter: cluster/services/monitoring/plausible-exporter/index.md
               - redis-exporter: cluster/services/monitoring/redis-exporter/index.md
               - speedtest-exporter: cluster/services/monitoring/speedtest-exporter/index.md
               - unifi-poller: cluster/services/monitoring/unifi-poller/index.md
