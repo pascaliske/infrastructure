@@ -1,0 +1,25 @@
+# {{ ansible_managed }}
+{% if k3s_node_interface | default('') | length > 0 %}
+flannel-iface: {{ k3s_node_interface }}
+{% endif %}
+{% if k3s_cluster_role == 'master' %}
+advertise-address: {{ k3s_advertise_address }}
+{% endif %}
+node-ip: {{ k3s_node_ip }}
+node-external-ip: {{ k3s_node_ip_external }}
+{% if k3s_node_labels | default([]) | length > 0 %}
+node-label:
+{% for label in k3s_node_labels %}
+  - {{ label }}
+{% endfor %}
+{% endif %}
+{% if k3s_node_taints | default([]) | length > 0 %}
+node-taint:
+{% for taint in k3s_node_taints %}
+  - {{ taint }}
+{% endfor %}
+{% endif %}
+{% if k3s_cluster_role == 'master' %}
+disable:
+  - traefik
+{% endif %}

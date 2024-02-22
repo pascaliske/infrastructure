@@ -1,6 +1,3 @@
 ---
 # k3s
-k3s_worker_ip: "{{ vault.ips[hostname_prefix] }}"
-k3s_worker_ip_tailscale: "{{ vault.ips['tailscale_' ~ hostname_prefix] }}"
-k3s_worker_url: '{{ vault.ips.tailscale_coruscant }}'
-k3s_worker_token: '{{ vault.k3s.registration_token }}'
+k3s_cluster_role: worker

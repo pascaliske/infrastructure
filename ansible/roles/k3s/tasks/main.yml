@@ -1,0 +1,36 @@
+# configure k3s
+- name: Configure k3s
+  become: true
+  block:
+    - name: Ensure configuration directory exists
+      file:
+        path: /etc/rancher/k3s
+        state: directory
+    - name: Create configuration file
+      template:
+        src: '{{ role_name }}/config.yaml.j2'
+        dest: /etc/rancher/k3s/config.yaml
+
+# install k3s
+- name: Install k3s {{ k3s_cluster_role }}
+  changed_when: true
+  shell:
+    cmd: '{{ item }}'
+  vars:
+    k3s_install_flags: >-
+      INSTALL_K3S_VERSION="{{ k3s_version }}"
+      K3S_TOKEN="{{ k3s_token }}"
+    k3s_command: >-
+      {{ 'server' if k3s_cluster_role == 'master' else 'agent' }}
+    k3s_command_flags: >-
+      {%- if k3s_cluster_role == 'master' and k3s_cluster_init == true -%}
+      --cluster-init
+      {%- else -%}
+      --server https://{{ k3s_url }}:6443
+      {%- endif -%}
+  loop:
+    - curl -sfL https://get.k3s.io | {{ k3s_install_flags }} sh -s - {{ k3s_command }} {{ k3s_command_flags }}
+
+# configure remote access
+- include_tasks: remote-access.yml
+  when: k3s_cluster_role == 'master' and k3s_cluster_init == true
