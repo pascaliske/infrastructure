@@ -12,7 +12,7 @@
   pip:
     name: '{{ item }}'
     state: latest
-    extra_args: --break-system-packages
+    extra_args: "{{ '--break-system-packages' if ansible_distribution == 'Debian' and ansible_distribution_major_version >= '12' else '' }}"
   loop: '{{ common_pip_packages }}'
 
 # install system dependencies for alpine 3.13
