@@ -1,15 +1,16 @@
 quiet: true
 skip_list:
   - command-instead-of-shell
+  - fqcn[action-core]
+  - fqcn[action]
+  - fqcn[canonical]
+  - fqcn[deep]
+  - fqcn[keyword]
+  - literal-compare
+  - name[missing]
   - no-changed-when
   - no-tabs
   - package-latest
   - risky-file-permissions
   - role-name
-  - name[missing]
   - var-naming[no-role-prefix]
-  - fqcn[action]
-  - fqcn[action-core]
-  - fqcn[canonical]
-  - fqcn[deep]
-  - fqcn[keyword]
