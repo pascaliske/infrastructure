@@ -1,3 +1,3 @@
 ---
 # k3s
-k3s_master_cluster_init: true
+k3s_cluster_init: true

@@ -22,7 +22,7 @@
       tags:
         - masters
         - tailscale
-    - role: k3s-master
+    - role: k3s
       tags:
         - masters
         - k3s
@@ -51,7 +51,7 @@
       tags:
         - workers
         - tailscale
-    - role: k3s-worker
+    - role: k3s
       tags:
         - workers
         - k3s
