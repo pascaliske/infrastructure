@@ -10,6 +10,8 @@
       template:
         src: '{{ role_name }}/keepalived.conf.j2'
         dest: /etc/keepalived/keepalived.conf
+        validate: /usr/sbin/keepalived --config-test --use-file %s
+      notify: Restart keepalived
 
 # install keepalived
 - name: Install keepalived

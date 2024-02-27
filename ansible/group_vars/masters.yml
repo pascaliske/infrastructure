@@ -4,6 +4,7 @@ keepalived_name: k3s
 keepalived_interface: "{{ ansible_default_ipv4['interface'] }}"
 keepalived_auth_password: '{{ vault.keepalived.auth_password }}'
 keepalived_virtual_ip: '{{ vault.ips.cluster_vip }}'
+keepalived_check_script: 'killall -0 k3s-server'
 
 # k3s
 k3s_cluster_role: master

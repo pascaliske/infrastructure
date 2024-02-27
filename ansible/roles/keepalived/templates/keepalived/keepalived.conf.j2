@@ -1,3 +1,11 @@
+# {{ ansible_managed }}
+
+vrrp_script check_{{ keepalived_name }} {
+    # faster than pidof
+    script '{{ keepalived_check_script }}'
+    interval 2
+}
+
 vrrp_instance {{ keepalived_name }} {
     state {{ keepalived_state }}
     interface {{ keepalived_interface }}
@@ -12,5 +20,9 @@ vrrp_instance {{ keepalived_name }} {
 
     virtual_ipaddress {
         {{ keepalived_virtual_ip }}
+    }
+
+    track_script {
+        check_{{ keepalived_name }}
     }
 }
