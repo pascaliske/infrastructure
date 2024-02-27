@@ -3,6 +3,7 @@
 flannel-iface: {{ k3s_node_interface }}
 {% endif %}
 {% if k3s_cluster_role == 'master' %}
+tls-san: {{ k3s_tls_san }}
 advertise-address: {{ k3s_advertise_address }}
 {% endif %}
 node-ip: {{ k3s_node_ip }}
