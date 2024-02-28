@@ -1,0 +1,22 @@
+# configure keepalived
+- name: Configure keepalived
+  become: true
+  block:
+    - name: Ensure configuration directory exists
+      file:
+        path: /etc/keepalived
+        state: directory
+    - name: Create configuration file
+      template:
+        src: '{{ role_name }}/keepalived.conf.j2'
+        dest: /etc/keepalived/keepalived.conf
+        validate: /usr/sbin/keepalived --config-test --use-file %s
+      notify: Restart keepalived
+
+# install keepalived
+- name: Install keepalived
+  become: true
+  apt:
+    name: keepalived
+    update_cache: true
+    state: latest

@@ -1,3 +1,7 @@
 ---
+# keepalived
+keepalived_state: MASTER
+keepalived_priority: 255
+
 # k3s
 k3s_cluster_init: true

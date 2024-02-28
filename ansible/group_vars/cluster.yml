@@ -10,6 +10,7 @@ tailscale_auth_key: '{{ vault.tailscale.auth_key }}'
 # k3s
 k3s_url: '{{ vault.ips.tailscale_coruscant }}'
 k3s_token: '{{ vault.k3s.registration_token }}'
+k3s_tls_san: '{{ vault.ips.cluster_vip }}'
 k3s_advertise_address: "{{ vault.ips['tailscale_' ~ hostname_prefix] }}"
 k3s_node_ip: "{{ vault.ips['tailscale_' ~ hostname_prefix] }}"
 k3s_node_ip_external: "{{ vault.ips[hostname_prefix] }}"
