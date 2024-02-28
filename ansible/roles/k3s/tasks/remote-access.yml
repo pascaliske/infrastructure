@@ -24,14 +24,11 @@
 - name: Configure remote access
   become: true
   block:
-    - name: Change ownership of system config file
-      file:
-        path: '{{ k3s_kubeconfig_system }}'
-        owner: '{{ ansible_user }}'
     - name: Ensure directory exists
       file:
         path: '{{ k3s_kubeconfig_remote | dirname }}'
         state: directory
+        owner: '{{ ansible_user }}'
     - name: Duplicate config file for remote access
       copy:
         src: '{{ k3s_kubeconfig_system }}'
@@ -39,11 +36,12 @@
         owner: '{{ ansible_user }}'
         mode: '0600'
         remote_src: true
+        force: true
     - name: Replace server in config file
       replace:
         path: '{{ k3s_kubeconfig_remote }}'
         regexp: '127\.0\.0\.1'
-        replace: '{{ ansible_host }}'
+        replace: '{{ k3s_access_url }}'
     - name: Fetch config file for remote access
       fetch:
         src: '{{ k3s_kubeconfig_remote }}'

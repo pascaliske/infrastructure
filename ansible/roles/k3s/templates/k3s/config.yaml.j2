@@ -2,12 +2,17 @@
 {% if k3s_node_interface | default('') | length > 0 %}
 flannel-iface: {{ k3s_node_interface }}
 {% endif %}
-{% if k3s_cluster_role == 'master' %}
-tls-san: {{ k3s_tls_san }}
-advertise-address: {{ k3s_advertise_address }}
-{% endif %}
 node-ip: {{ k3s_node_ip }}
 node-external-ip: {{ k3s_node_ip_external }}
+{% if k3s_cluster_role == 'master' and k3s_advertise_address | length > 0 %}
+advertise-address: {{ k3s_advertise_address }}
+{% endif %}
+{% if k3s_cluster_role == 'master' and k3s_tls_san | default([]) | length > 0 %}
+tls-san:
+{% for label in k3s_tls_san %}
+  - {{ label }}
+{% endfor %}
+{% endif %}
 {% if k3s_node_labels | default([]) | length > 0 %}
 node-label:
 {% for label in k3s_node_labels %}

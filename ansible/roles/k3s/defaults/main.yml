@@ -6,17 +6,18 @@ k3s_cluster_role: ''
 k3s_cluster_init: false
 
 k3s_url: ''
+k3s_access_url: ''
 k3s_token: ''
-k3s_tls_san: ''
-k3s_advertise_address: ''
 
 k3s_node_ip: ''
 k3s_node_ip_external: ''
 k3s_node_interface: ''
+k3s_advertise_address: ''
 
 k3s_kubeconfig_system: /etc/rancher/k3s/k3s.yaml
 k3s_kubeconfig_remote: '{{ ansible_env.HOME }}/.kube/config'
 k3s_kubeconfig_local: "{{ lookup('env', 'HOME') }}/.kube/config"
 
+k3s_tls_san: []
 k3s_node_labels: []
 k3s_node_taints: []
