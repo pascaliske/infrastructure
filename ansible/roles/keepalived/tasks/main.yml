@@ -1,3 +1,22 @@
+# check virtual ip variable
+- name: Check provided virtual ip
+  assert:
+    success_msg: The provided virtual ip looks valid.
+    fail_msg: The provided virtual ip is empty or has an invalid format!
+    that:
+      - keepalived_virtual_ip is defined
+      - keepalived_virtual_ip is ansible.utils.ipv4
+
+# check auth password variable
+- name: Check provided auth password
+  assert:
+    success_msg: The provided auth password looks valid.
+    fail_msg: The provided auth password is empty or has an invalid length!
+    that:
+      - keepalived_auth_password is defined
+      - keepalived_auth_password | length > 0
+      - keepalived_auth_password | length < 9
+
 # configure keepalived
 - name: Configure keepalived
   become: true
