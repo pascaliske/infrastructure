@@ -1,8 +1,8 @@
 ---
-keepalived_name: ''
-keepalived_state: ''
+keepalived_name: vip
+keepalived_state: MASTER
 keepalived_interface: "{{ ansible_default_ipv4['interface'] }}"
-keepalived_priority: ''
+keepalived_priority: 255
 keepalived_auth_password: ''
 keepalived_virtual_ip: ''
 keepalived_check_script: ''
