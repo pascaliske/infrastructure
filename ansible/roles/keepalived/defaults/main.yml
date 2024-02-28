@@ -1,7 +1,7 @@
 ---
 keepalived_name: ''
 keepalived_state: ''
-keepalived_interface: ''
+keepalived_interface: "{{ ansible_default_ipv4['interface'] }}"
 keepalived_priority: ''
 keepalived_auth_password: ''
 keepalived_virtual_ip: ''
