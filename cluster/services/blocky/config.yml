@@ -20,13 +20,16 @@ customDNS:
     # general
     iske.cloud: ${IP_CORUSCANT}
 
-    # servers
-    corsucant.iske.cloud: ${IP_CORUSCANT}
+    # cluster
+    cluster.iske.cloud: ${IP_CLUSTER_VIP}
+    coruscant.iske.cloud: ${IP_CORUSCANT}
     kashyyyk.iske.cloud: ${IP_KASHYYYK}
     alderaan.iske.cloud: ${IP_ALDERAAN}
     dathomir.iske.cloud: ${IP_DATHOMIR}
     mustafar.iske.cloud: ${IP_MUSTAFAR}
     jakku.iske.cloud: ${IP_JAKKU}
+
+    # servers
     ryloth.iske.cloud: ${IP_RYLOTH}
     ilum.iske.cloud: ${IP_ILUM}
 
