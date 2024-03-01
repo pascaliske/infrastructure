@@ -10,7 +10,7 @@ The following chart repositories will be created as [`HelmRepository` declaratio
 - `grafana` → <https://grafana.github.io/helm-charts>
 - `jetstack` → <https://charts.jetstack.io>
 - `k8s-at-home` → <https://k8s-at-home.com/charts>
-- `kured` → <https://weaveworks.github.io/kured>
+- `kured` → <https://kubereboot.github.io/charts>
 - `pascaliske` → <https://charts.pascaliske.dev>
 - `prometheus-community` → <https://prometheus-community.github.io/helm-charts>
 - `traefik` → <https://helm.traefik.io/traefik>

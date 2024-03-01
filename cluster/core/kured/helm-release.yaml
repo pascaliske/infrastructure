@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: kured
-      version: '5.2.0'
+      version: '5.4.3'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -23,12 +23,21 @@ spec:
     extraEnvVars:
       - name: TZ
         value: ${TIMEZONE}
-    configuration: {}
+    configuration:
+      timeZone: ${TIMEZONE}
+      rebootDays: ['fr', 'sa', 'su']
+      startTime: '22:00'
+      blockingPodSelector:
+        - app.kubernetes.io/name=paperless
+        - app.kubernetes.io/name=home-assistant
+        - app.kubernetes.io/name=gitlab
     metrics:
       create: true
     service:
       create: true
     tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        effect: NoSchedule
       - key: k8s.pascaliske.dev/location
         operator: Equal
         value: public
