@@ -3,9 +3,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: system-upgrade
 resources:
-  - github.com/rancher/system-upgrade-controller?ref=v0.13.3
+  - github.com/rancher/system-upgrade-controller?ref=v0.13.4
 images:
   - name: rancher/system-upgrade-controller
-    newTag: v0.13.3
+    newTag: v0.13.4
 patchesStrategicMerge:
   - ./system-upgrade-patches.yaml
