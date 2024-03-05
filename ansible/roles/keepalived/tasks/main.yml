@@ -33,9 +33,16 @@
       notify: Restart keepalived
 
 # install keepalived
+- name: Add bullseye-backports apt repository
+  become: true
+  apt_repository:
+    repo: deb http://deb.debian.org/debian bullseye-backports main contrib non-free
+    filename: debian-backports
+    state: present
 - name: Install keepalived
   become: true
   apt:
     name: keepalived
+    default_release: bullseye-backports
     update_cache: true
     state: latest

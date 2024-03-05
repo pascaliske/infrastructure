@@ -3,7 +3,7 @@
 keepalived_name: k3s
 keepalived_auth_password: '{{ vault.keepalived.auth_password }}'
 keepalived_virtual_ip: '{{ vault.ips.cluster_vip }}'
-keepalived_check_script: 'killall -0 k3s-server'
+keepalived_check_script: '/usr/bin/curl --silent --insecure --max-time 2 https://localhost:6443/'
 
 # k3s
 k3s_cluster_role: master

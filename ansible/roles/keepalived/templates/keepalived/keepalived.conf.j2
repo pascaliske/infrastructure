@@ -1,10 +1,16 @@
 # {{ ansible_managed }}
 {% if keepalived_check_script | default('') | length > 0 %}
 
+global_defs {
+    script_user {{ ansible_user }}
+    enable_script_security
+}
+
 vrrp_script check_{{ keepalived_name }} {
-    # faster than pidof
     script '{{ keepalived_check_script }}'
     interval 2
+    rise 5
+    fall 2
 }
 {% endif %}
 
