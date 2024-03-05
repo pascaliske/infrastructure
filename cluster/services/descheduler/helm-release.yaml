@@ -22,6 +22,17 @@ spec:
       tag: v0.29.0
     schedule: '*/10 * * * *'
     suspend: false
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists
+    tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
     serviceMonitor:
       enabled: true
   interval: 10m0s
