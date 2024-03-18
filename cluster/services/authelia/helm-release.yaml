@@ -47,7 +47,6 @@ spec:
           enabled: true
           serviceMonitor:
             enabled: true
-      default_redirection_url: https://${DOMAIN_INTERNAL}
       theme: dark
       webauthn:
         display_name: auth@infrastructure
@@ -103,6 +102,10 @@ spec:
               - group:admins
       session:
         inactivity: 10m
+        cookies:
+          - domain: ${DOMAIN_INTERNAL}
+            authelia_url: https://auth.${DOMAIN_INTERNAL}
+            default_redirection_url: https://${DOMAIN_INTERNAL}
         redis:
           host: redis.redis.svc.cluster.local
       storage:
@@ -122,10 +125,13 @@ spec:
       identity_providers:
         oidc:
           enabled: true
+          jwks:
+            - key: '${AUTH_OIDC_JWKS_PRIVATE_KEY}'
           clients:
             - id: synology-dsm
               description: Synology DSM
               secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              sector_identifier: 'ryloth.${DOMAIN_INTERNAL}'
               public: false
               authorization_policy: two_factor
               redirect_uris:
