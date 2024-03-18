@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: loki
-      version: '5.44.1'
+      version: '5.44.3'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
