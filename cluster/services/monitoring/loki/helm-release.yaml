@@ -20,7 +20,7 @@ spec:
     loki:
       image:
         repository: grafana/loki
-        tag: '2.9.5'
+        tag: '2.9.6'
       auth_enabled: false
       commonConfig:
         replication_factor: 1
