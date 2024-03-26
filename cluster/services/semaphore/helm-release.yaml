@@ -1,0 +1,58 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: semaphore
+  namespace: semaphore
+spec:
+  chart:
+    spec:
+      chart: semaphore
+      version: '0.0.1'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: semaphoreui/semaphore
+      tag: 'v2.9.37'
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: SEMAPHORE_DB_DIALECT
+        value: postgres
+      - name: SEMAPHORE_DB_HOST
+        value: postgresql-rw
+      - name: SEMAPHORE_DB_PORT
+        value: '5432'
+      - name: SEMAPHORE_DB_USER
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: username
+      - name: SEMAPHORE_DB_PASS
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: password
+      - name: SEMAPHORE_DB
+        value: semaphore
+      - name: SEMAPHORE_ADMIN
+        value: ${SEMAPHORE_ADMIN_USER}
+      - name: SEMAPHORE_ADMIN_NAME
+        value: ${SEMAPHORE_ADMIN_NAME}
+      - name: SEMAPHORE_ADMIN_EMAIL
+        value: ${SEMAPHORE_ADMIN_EMAIL}
+      - name: SEMAPHORE_ADMIN_PASSWORD
+        value: ${SEMAPHORE_ADMIN_PASSWORD}
+      - name: SEMAPHORE_ACCESS_KEY_ENCRYPTION
+        valueFrom:
+          secretKeyRef:
+            name: semaphore-secrets
+            key: SEMAPHORE_ACCESS_KEY_ENCRYPTION
+  interval: 10m0s
+
