@@ -20,7 +20,7 @@ spec:
     image:
       registry: ghcr.io
       repository: authelia/authelia
-      tag: '4.37.5'
+      tag: '4.38.6'
     domain: ${DOMAIN_EXTERNAL}
     pod:
       kind: Deployment
@@ -125,6 +125,7 @@ spec:
             - id: gitlab
               description: GitLab
               secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              sector_identifier: git.${DOMAIN_EXTERNAL}
               public: false
               authorization_policy: two_factor
               redirect_uris:

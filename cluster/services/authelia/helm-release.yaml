@@ -20,7 +20,7 @@ spec:
     image:
       registry: ghcr.io
       repository: authelia/authelia
-      tag: '4.37.5'
+      tag: '4.38.6'
     domain: ${DOMAIN_INTERNAL}
     pod:
       kind: Deployment
@@ -126,6 +126,7 @@ spec:
             - id: synology-dsm
               description: Synology DSM
               secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              sector_identifier: ryloth.${DOMAIN_INTERNAL}
               public: false
               authorization_policy: two_factor
               redirect_uris:
@@ -138,14 +139,7 @@ spec:
                 - email
               userinfo_signing_algorithm: none
     secret:
-      jwt:
-        value: ${AUTH_JWT_SECRET}
-      storageEncryptionKey:
-        value: ${AUTH_STORAGE_SECRET}
-      session:
-        value: ${AUTH_SESSION_SECRET}
-      smtp:
-        value: ${SMTP_ACCOUNT_AUTH_PASSWORD}
+      existingSecret: authelia-secrets
     persistence:
       enabled: true
       storageClass: local-path
