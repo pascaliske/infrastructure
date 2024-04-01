@@ -25,6 +25,8 @@ spec:
         value: ${TIMEZONE}
       - name: DOMAIN
         value: https://vault.${DOMAIN_INTERNAL}
+      - name: ADMIN_TOKEN
+        value: '${VAULTWARDEN_ADMIN_TOKEN}'
       - name: DATABASE_URL
         value: postgresql://postgresql-rw:5432/vaultwarden
       - name: PGUSER
@@ -47,8 +49,6 @@ spec:
         value: 'true'
       - name: SIGNUPS_DOMAINS_WHITELIST
         value: '${DOMAIN_INTERNAL},${DOMAIN_EXTERNAL}'
-      - name: DISABLE_ADMIN_TOKEN
-        value: 'true'
       - name: SMTP_HOST
         value: '${SMTP_HOST}'
       - name: SMTP_PORT
