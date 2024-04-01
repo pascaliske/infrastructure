@@ -26,7 +26,7 @@ spec:
       - name: DOMAIN
         value: https://vault.${DOMAIN_INTERNAL}
       - name: DATA_FOLDER
-        value: config
+        value: data
       - name: LOG_LEVEL
         value: warn
       - name: EXTENDED_LOGGING
@@ -56,7 +56,10 @@ spec:
       - name: WEBSOCKET_ENABLED
         value: 'true'
     persistence:
-      config:
+      data:
         enabled: true
+        type: pvc
         storageClass: local-path
+        accessMode: ReadWriteOnce
+        size: 1Gi
   interval: 10m0s
