@@ -25,6 +25,18 @@ spec:
         value: ${TIMEZONE}
       - name: DOMAIN
         value: https://vault.${DOMAIN_INTERNAL}
+      - name: DATABASE_URL
+        value: postgresql://postgresql-rw:5432/vaultwarden
+      - name: PGUSER
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: username
+      - name: PGPASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: password
       - name: DATA_FOLDER
         value: data
       - name: LOG_LEVEL
