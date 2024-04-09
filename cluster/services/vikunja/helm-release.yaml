@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: vikunja
-      version: '4.0.0'
+      version: '5.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
