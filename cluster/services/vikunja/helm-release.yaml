@@ -18,8 +18,8 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: vikunja/api
-      tag: 0.22.1
+      repository: vikunja/vikunja
+      tag: 0.23.0
     serviceMonitor:
       enabled: true
     ingressRoute:
