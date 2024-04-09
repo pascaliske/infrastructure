@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: '26.1.0'
+      version: '27.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -69,25 +69,29 @@ spec:
       # services
       http:
         port: 9080
-        expose: true
+        expose:
+          default: true
         exposedPort: 80
         redirectTo:
           port: https
       https:
         port: 9443
-        expose: true
+        expose:
+          default: true
         exposedPort: 443
 
       # dashboard
       traefik:
         port: 9000
-        expose: false
+        expose:
+          default: false
         exposedPort: 9000
 
       # metrics
       metrics:
         port: 9100
-        expose: false
+        expose:
+          default: false
         exposedPort: 9100
 
       # disable default entry points
