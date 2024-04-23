@@ -65,6 +65,10 @@ spec:
                     ]
             [runners.kubernetes.node_tolerations]
               "k8s.pascaliske.dev/location=public" = "NoSchedule"
+            [runners.kubernetes.dns_config]
+              [[runners.kubernetes.dns_config.options]]
+                name = "ndots"
+                value = "1"
       runUntagged: true
     resources: {}
       # limits:
