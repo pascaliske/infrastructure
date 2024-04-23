@@ -44,6 +44,7 @@ spec:
       secret: gitlab-runner-tokens
       config: |
         [[runners]]
+          pre_clone_script = 'cat /etc/resolv.conf | sed -r "s/^(search.*|options.*)/#\1/" > /tmp/resolv && cat /tmp/resolv > /etc/resolv.conf'
           [runners.cache]
             [runners.cache.s3]
             [runners.cache.gcs]
