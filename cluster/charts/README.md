@@ -22,7 +22,7 @@ Flux checks these helm repositories regularly at the specified intervals of `10m
 ??? example "Example of a `HelmRepository` declaration"
 
     ```yaml
-    apiVersion: source.toolkit.fluxcd.io/v1
+    apiVersion: source.toolkit.fluxcd.io/v1beta2
     kind: HelmRepository
     metadata:
       name: pascaliske
