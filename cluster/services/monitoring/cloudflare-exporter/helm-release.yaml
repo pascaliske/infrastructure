@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/lablabs/cloudflare_exporter
-      tag: 0.0.14
+      tag: 0.0.15
     env:
       - name: TZ
         value: ${TIMEZONE}
