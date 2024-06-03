@@ -17,6 +17,7 @@ spec:
   install:
     createNamespace: true
   values:
+    deploymentMode: SingleBinary
     loki:
       image:
         repository: grafana/loki
