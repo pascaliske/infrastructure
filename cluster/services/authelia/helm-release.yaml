@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: authelia
-      version: '0.8.58'
+      version: '0.9.0-beta5'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -21,7 +21,6 @@ spec:
       registry: ghcr.io
       repository: authelia/authelia
       tag: '4.38.8'
-    domain: ${DOMAIN_INTERNAL}
     pod:
       kind: Deployment
       env:
@@ -47,18 +46,16 @@ spec:
           enabled: true
           serviceMonitor:
             enabled: true
-      default_redirection_url: https://${DOMAIN_INTERNAL}
       theme: dark
       webauthn:
         display_name: auth@infrastructure
       authentication_backend:
         password_reset:
           disable: true
-        ldap:
-          enabled: false
         file:
           enabled: true
           path: /users.yaml
+          watch: true
           search:
             email: true
           password:
@@ -103,14 +100,15 @@ spec:
               - group:admins
       session:
         inactivity: 10m
+        cookies:
+          - domain: ${DOMAIN_INTERNAL}
+            default_redirection_url: https://${DOMAIN_INTERNAL}
         redis:
           host: redis.redis.svc.cluster.local
       storage:
         local:
           enabled: true
           path: /config/db.sqlite3
-        postgres:
-          enabled: false
       notifier:
         smtp:
           enabledSecret: true
@@ -122,11 +120,13 @@ spec:
       identity_providers:
         oidc:
           enabled: true
+          jwks:
+            - key: '${AUTH_OIDC_JWKS_PRIVATE_KEY}'
           clients:
-            - id: synology-dsm
-              description: Synology DSM
-              secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
-              sector_identifier: ryloth.${DOMAIN_INTERNAL}
+            - client_id: synology-dsm
+              client_name: Synology DSM
+              client_secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              sector_identifier_uri: ryloth.${DOMAIN_INTERNAL}
               public: false
               authorization_policy: two_factor
               redirect_uris:
@@ -137,7 +137,7 @@ spec:
                 - profile
                 - groups
                 - email
-              userinfo_signing_algorithm: none
+              userinfo_signed_response_alg: none
     secret:
       existingSecret: authelia-secrets
     persistence:
