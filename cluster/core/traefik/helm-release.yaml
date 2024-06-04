@@ -32,6 +32,7 @@ spec:
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
+        allowEmptyServices: true
     logs:
       access:
         enabled: true
