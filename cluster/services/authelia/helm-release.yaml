@@ -102,6 +102,7 @@ spec:
         inactivity: 10m
         cookies:
           - domain: ${DOMAIN_INTERNAL}
+            authelia_url: https://auth.${DOMAIN_INTERNAL}
             default_redirection_url: https://${DOMAIN_INTERNAL}
         redis:
           host: redis.redis.svc.cluster.local
