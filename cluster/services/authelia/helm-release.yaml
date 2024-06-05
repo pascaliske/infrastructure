@@ -28,11 +28,11 @@ spec:
           value: ${TIMEZONE}
       extraVolumeMounts:
         - name: users
-          mountPath: /users.yaml
+          mountPath: /extras/users.yaml
           subPath: users.yaml
           readOnly: true
         - name: oidc-jwks-key
-          mountPath: /oidc-jwks-key.pem
+          mountPath: /extras/oidc-jwks-key.pem
           subPath: oidc-jwks-key.pem
           readOnly: true
       extraVolumes:
@@ -74,7 +74,7 @@ spec:
           disable: true
         file:
           enabled: true
-          path: /users.yaml
+          path: /extras/users.yaml
           watch: true
           search:
             email: true
@@ -184,7 +184,7 @@ spec:
             path: OIDC_HMAC_SECRET
           jwks:
             - key:
-                path: /oidc-jwks-key.pem
+                path: /extras/oidc-jwks-key.pem
           clients:
             # internal
             - client_id: synology-dsm
