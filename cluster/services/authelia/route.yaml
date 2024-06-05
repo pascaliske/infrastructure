@@ -9,7 +9,7 @@ spec:
     - https
   routes:
     - kind: Rule
-      match: Host(`auth.${DOMAIN_INTERNAL}`)
+      match: Host(`auth.${DOMAIN_INTERNAL}`) || Host(`auth.${DOMAIN_EXTERNAL}`)
       services:
         - kind: Service
           name: authelia

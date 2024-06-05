@@ -50,10 +50,11 @@ spec:
                 path: oidc-jwks-key.pem
     configMap:
       server:
+        # increase defaults for slow hammond api calls
         timeouts:
-          read: 10 seconds
-          write: 10 seconds
-          idle: 30 seconds
+          read: 15s
+          write: 15s
+          idle: 30s
       log:
         level: info
       telemetry:
@@ -83,6 +84,7 @@ spec:
         secret:
           enabled: true
         rules:
+          # internal
           - policy: bypass
             domain:
               - unifi.${DOMAIN_INTERNAL}
@@ -117,6 +119,35 @@ spec:
               - '*.${DOMAIN_INTERNAL}'
             subject:
               - group:admins
+
+          # external
+          - policy: bypass
+            domain:
+              - git.${DOMAIN_EXTERNAL}
+              - registry.${DOMAIN_EXTERNAL}
+          - policy: bypass
+            domain: docs.${DOMAIN_EXTERNAL}
+            resources:
+              - ^\/share
+              - ^\/api
+          - policy: bypass
+            domain: status.${DOMAIN_EXTERNAL}
+            resources:
+              - ^\/assets
+              - ^\/icon
+              - ^\/manifest
+              - ^\/status
+              - ^\/api\/entry-page
+              - ^\/api\/status-page
+              - ^\/$
+          - policy: one_factor
+            domain: docs.${DOMAIN_EXTERNAL}
+            subject:
+              - user:${AUTH_SARAH_USERNAME}
+          - policy: two_factor
+            domain: '*.${DOMAIN_EXTERNAL}'
+            subject:
+              - group:admins
       session:
         inactivity: 10m
         encryption_key:
@@ -125,6 +156,9 @@ spec:
           - domain: ${DOMAIN_INTERNAL}
             subdomain: auth
             default_redirection_url: https://${DOMAIN_INTERNAL}
+          - domain: ${DOMAIN_EXTERNAL}
+            subdomain: auth
+            default_redirection_url: https://${DOMAIN_EXTERNAL}
         redis:
           host: redis.redis.svc.cluster.local
       storage:
@@ -152,6 +186,7 @@ spec:
             - key:
                 path: /oidc-jwks-key.pem
           clients:
+            # internal
             - client_id: synology-dsm
               client_name: Synology DSM
               client_secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
@@ -167,6 +202,22 @@ spec:
                 - email
               userinfo_signed_response_alg: none
               token_endpoint_auth_method: client_secret_post
+
+            # external
+            - client_id: gitlab
+              client_name: GitLab
+              client_secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              public: false
+              authorization_policy: two_factor
+              redirect_uris:
+                - https://git.${DOMAIN_EXTERNAL}/users/auth/openid_connect/callback
+              scopes:
+                - openid
+                - profile
+                - groups
+                - email
+              userinfo_signed_response_alg: none
+              token_endpoint_auth_method: client_secret_basic
     secret:
       existingSecret: authelia-secrets
     persistence:
