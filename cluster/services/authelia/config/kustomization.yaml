@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: authelia
 resources:
   - secrets.sops.yaml
+  - oidc-jwks-key.sops.yaml
 configMapGenerator:
   - name: authelia-users
     files:
