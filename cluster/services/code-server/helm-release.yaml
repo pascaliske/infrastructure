@@ -26,7 +26,7 @@ spec:
         - https
       rule: Host(`code.${DOMAIN_EXTERNAL}`)
       middlewares:
-        - name: auth-external
+        - name: auth
           namespace: traefik
         - name: security
           namespace: traefik
