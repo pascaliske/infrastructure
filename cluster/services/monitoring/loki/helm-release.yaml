@@ -28,7 +28,7 @@ spec:
       # another workaround for another weird chart validation error: https://github.com/grafana/loki/blob/1b80458e2eff2d41b9126a7529ee32ae1e269f05/production/helm/loki/templates/validate.yaml#L40
       schemaConfig:
         configs:
-          - from: 2024-04-01
+          - from: '2024-04-01'
             object_store: filesystem
             store: tsdb
             schema: v13
