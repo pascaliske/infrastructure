@@ -23,26 +23,14 @@ spec:
         repository: grafana/loki
         tag: '3.0.0'
       auth_enabled: false
-      commonConfig:
-        replication_factor: 1
       storage:
         type: filesystem
-      # workaround to fix invalid ruler config error
-      rulerConfig:
-        storage:
-          type: local
     test:
       enabled: false
-    monitoring:
-      serviceMonitor:
-        # disabled due to requirement of grafana operator: https://github.com/grafana/loki/issues/7546
-        enabled: false
-      selfMonitoring:
-        enabled: false
-        grafanaAgent:
-          installOperator: false
-      lokiCanary:
-        enabled: false
+    lokiCanary:
+      enabled: false
+    gateway:
+      enabled: false
     singleBinary:
       # workaround to fix helm error due to weird default value of zero replicas: https://github.com/grafana/loki/issues/8443#issuecomment-1421636858
       replicas: 1
@@ -54,6 +42,7 @@ spec:
           value: ${TIMEZONE}
       persistence:
         storageClass: local-path
-    gateway:
-      enabled: false
+    monitoring:
+      serviceMonitor:
+        enabled: true
   interval: 10m0s
