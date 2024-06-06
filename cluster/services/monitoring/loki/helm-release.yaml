@@ -59,6 +59,10 @@ spec:
       replicas: 0
     backend:
       replicas: 0
+    resultsCache:
+      enabled: false
+    chunksCache:
+      enabled: false
     monitoring:
       serviceMonitor:
         enabled: true
