@@ -42,6 +42,13 @@ spec:
           value: ${TIMEZONE}
       persistence:
         storageClass: local-path
+    # single binary mode requires to manually set the following replicas to zero: https://github.com/grafana/loki/blob/1b80458e2eff2d41b9126a7529ee32ae1e269f05/production/helm/loki/templates/validate.yaml#L31
+    write:
+      replicas: 0
+    read:
+      replicas: 0
+    backend:
+      replicas: 0
     monitoring:
       serviceMonitor:
         enabled: true
