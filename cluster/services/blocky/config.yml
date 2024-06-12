@@ -7,13 +7,15 @@ log:
   format: text
 
 upstreams:
-  strategy: strict
-  timeout: 3s
+  init:
+    strategy: fast
   groups:
     default:
       - tcp-tls:cloudflared-dns.cloudflared.svc.cluster.local:5053
       - tcp-tls:unbound-dns.unbound.svc.cluster.local:5053
       - https://1.1.1.1/dns-query
+  strategy: strict
+  timeout: 3s
 
 customDNS:
   mapping:
@@ -47,7 +49,7 @@ clientLookup:
     - 1
 
 blocking:
-  blackLists:
+  denylists:
     all:
       - https://blocklistproject.github.io/Lists/ads.txt
       - https://blocklistproject.github.io/Lists/drugs.txt
@@ -60,7 +62,7 @@ blocking:
       - https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
       - https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt
       - https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/blocky/blocklist.txt
-  whiteLists:
+  allowlists:
     all:
       - https://raw.githubusercontent.com/pascaliske/infrastructure/main/cluster/services/blocky/allowlist.txt
   clientGroupsBlock:
