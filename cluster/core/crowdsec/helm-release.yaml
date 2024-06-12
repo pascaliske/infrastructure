@@ -38,7 +38,7 @@ spec:
         enabled: false # TODO: look for arm image
         image:
           repository: metabase/metabase
-          tag: 'v0.50.0'
+          tag: 'v0.50.1'
       metrics:
         enabled: true
         serviceMonitor:
