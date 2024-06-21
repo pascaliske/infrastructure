@@ -125,9 +125,11 @@ pages_nginx['listen_https'] = false
 
 # sidekiq
 sidekiq['concurrency'] = 2
+sidekiq['metrics_enabled'] = false
 
 # puma
 puma['worker_processes'] = 2
+puma['exporter_enabled'] = false
 
 # monitoring
 prometheus['enable'] = false
@@ -135,6 +137,7 @@ alertmanager['enable'] = false
 node_exporter['enable'] = false
 redis_exporter['enable'] = false
 postgres_exporter['enable'] = false
+pgbouncer_exporter['enable'] = false
 gitlab_exporter['enable'] = false
 
 # ensure kubelet probes are whitelisted
