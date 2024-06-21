@@ -136,7 +136,6 @@ node_exporter['enable'] = false
 redis_exporter['enable'] = false
 postgres_exporter['enable'] = false
 gitlab_exporter['enable'] = false
-grafana['enable'] = false
 
 # ensure kubelet probes are whitelisted
 gitlab_rails['monitoring_whitelist'] = [
