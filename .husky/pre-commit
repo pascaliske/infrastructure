@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # check if vault is encrypted
-if (cat ansible/vars/vault.yml | grep -q "\$ANSIBLE_VAULT;"); then
+if (grep -q "\$ANSIBLE_VAULT;" ansible/vars/vault.yml); then
     echo "Vault Encrypted. Safe to commit."
 else
     echo "Vault not encrypted! Run 'yr vault:encrypt' and try again."
