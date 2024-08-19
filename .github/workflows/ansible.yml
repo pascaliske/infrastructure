@@ -34,4 +34,4 @@ jobs:
       # lint ansible
       - uses: ansible/ansible-lint@v24.7.0
         with:
-          working_directory: ./ansible
+          working_directory: ${{ github.workspace }}/ansible
