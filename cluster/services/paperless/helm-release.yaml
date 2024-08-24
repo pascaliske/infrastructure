@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 2.11.4
+      tag: 2.11.6
     ingressRoute:
       create: true
       entryPoints:
