@@ -6,7 +6,6 @@ resources:
   - blocky
   - clickhouse
   - cloudflared
-  - code-server
   - descheduler
   - dyndns
   - gitlab

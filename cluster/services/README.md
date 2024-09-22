@@ -7,7 +7,6 @@ The following services are deployed by this section:
 - [`authelia`](/cluster/services/authelia/)
 - [`blocky`](/cluster/services/blocky/)
 - [`cloudflared`](/cluster/services/cloudflared/)
-- [`code-server`](/cluster/services/code-server/)
 - [`dyndns`](/cluster/services/dyndns/)
 - [`gitlab`](/cluster/services/gitlab/)
 - [`home-assistant`](/cluster/services/home-assistant/)

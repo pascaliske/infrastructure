@@ -76,7 +76,6 @@ nav:
           - blocky: cluster/services/blocky/index.md
           - clickhouse: cluster/services/clickhouse/index.md
           - cloudflared: cluster/services/cloudflared/index.md
-          - code-server: cluster/services/code-server/index.md
           - descheduler: cluster/services/descheduler/index.md
           - dyndns: cluster/services/dyndns/index.md
           - gitlab: cluster/services/gitlab/index.md
