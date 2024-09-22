@@ -16,6 +16,5 @@ Sometimes I need to securely access my home infrastructure while I'm away. For t
 
 ## Links
 
-- [Documentation](https://coder.com/docs/coder-oss/latest)
-- [Helm Chart](https://charts.pascaliske.dev/charts/code-server/)
-- [GitHub Repository](https://github.com/coder/code-server)
+- [Helm Chart](https://charts.pascaliske.dev/charts/cloudflare-dyndns/)
+- [GitHub Repository](https://github.com/pascaliske/docker-cloudflare-dyndns)
