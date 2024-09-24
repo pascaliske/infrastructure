@@ -20,7 +20,7 @@ spec:
     image:
       registry: ghcr.io
       repository: authelia/authelia
-      tag: '4.38.11'
+      tag: '4.38.12'
     pod:
       kind: Deployment
       env:
