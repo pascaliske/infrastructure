@@ -22,7 +22,15 @@ spec:
       repository: authelia/authelia
       tag: '4.38.16'
     pod:
-      kind: Deployment
+      kind: DaemonSet
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+        - key: k8s.pascaliske.dev/location
+          operator: Equal
+          value: public
+          effect: NoSchedule
       env:
         - name: TZ
           value: ${TIMEZONE}
