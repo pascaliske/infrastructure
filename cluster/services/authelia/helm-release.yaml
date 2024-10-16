@@ -26,6 +26,8 @@ spec:
       env:
         - name: TZ
           value: ${TIMEZONE}
+        - name: AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE
+          value: /extras/postgresql-password
       extraVolumeMounts:
         - name: users
           mountPath: /extras/users.yaml
@@ -182,6 +184,7 @@ spec:
           database: authelia
           username: authelia
           password:
+            disabled: true
             path: /extras/postgresql-password
       notifier:
         smtp:
