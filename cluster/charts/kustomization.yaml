@@ -16,6 +16,7 @@ resources:
   - kured.yaml
   - pascaliske.yaml
   - prometheus-community.yaml
+  - redis-operator.yaml
   - traefik.yaml
   - vector.yaml
   - vmware-tanzu.yaml

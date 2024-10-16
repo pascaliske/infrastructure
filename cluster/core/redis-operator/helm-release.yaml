@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: redis-operator
+  namespace: redis-operator
+spec:
+  chart:
+    spec:
+      chart: redis-operator
+      version: '3.2.9'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: redis-operator
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: quay.io/spotahome/redis-operator
+      tag: v1.3.0
+    monitoring:
+      enabled: true
+      serviceMonitor: true
+  interval: 10m0s
