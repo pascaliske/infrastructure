@@ -67,8 +67,10 @@ spec:
         reset_password:
           secret:
             path: JWT_TOKEN
+      totp:
+        issuer: Infrastructure
       webauthn:
-        display_name: auth@infrastructure
+        display_name: Infrastructure
       authentication_backend:
         password_reset:
           disable: true
@@ -224,4 +226,3 @@ spec:
       enabled: true
       storageClass: local-path
   interval: 10m0s
-
