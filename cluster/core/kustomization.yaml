@@ -10,6 +10,7 @@ resources:
   - trivy-operator
   - node-problem-detector
   - kured
+  - redis-operator
   - traefik
   - traefik-errors
   - velero
