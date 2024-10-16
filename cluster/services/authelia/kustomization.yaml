@@ -6,6 +6,7 @@ resources:
   - middlewares
   - config
   - namespace.yaml
+  - redis.yaml
   - helm-release.yaml
   - certificate.yaml
   - route.yaml

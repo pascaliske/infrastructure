@@ -182,7 +182,16 @@ spec:
             subdomain: auth
             default_redirection_url: https://${DOMAIN_EXTERNAL}
         redis:
-          host: redis.redis.svc.cluster.local
+          enabled: true
+          host: rfs-redis
+          port: 26379
+          password:
+            disabled: true
+          high_availability:
+            enabled: true
+            sentinel_name: mymaster
+            password:
+              disabled: true
       storage:
         encryption_key:
           path: STORAGE_ENCRYPTION_KEY
