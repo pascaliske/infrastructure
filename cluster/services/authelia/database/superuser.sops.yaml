@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: postgresql-superuser
+    namespace: authelia
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:Pn2EEcXTVmg=,iv:ds7dB8zc1t2hNfes3dojkHvJE8vNb6t7Sbpm1qpOlm4=,tag:X5a84a/uCOllCq9GnBUKNQ==,type:str]
+    password: ENC[AES256_GCM,data:0ru/nqRvNHJNL1hV3JoCfFNFki40L1kfEzAMF0foXDgHvv7GFskortvR,iv:4qQFArnccl8KL/OMUnth0zndGWf5MJKwsbCFcwZK9mw=,tag:wDz3W0incFWEVRpA3Y1aVg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA2dkdkM1VVd2lORUtwTVo3
+            cDIwUGJDNTB6NldKK3dqcjI5emhjZkRrTTBRCnJVREFOUytWOGFWaDF6VDJjYkly
+            Z0hEdWl4ZWY1cVRBUk9KWER0T0lRQW8KLS0tIGpRT3diQTlMUEg5dXpXaitOSHF2
+            dTBsMDlwNlVNK1ltYkdLdXV1YTAzaE0Kt+9fGawJvTkWI4tZQLCTjNcx/HxeM0b3
+            WxiL/UaNWf8KNH8d/aEFhZx5SIT2XQIVjZElrMSg6rJDziasTXYLbA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-04-01T20:41:50Z"
+    mac: ENC[AES256_GCM,data:39/JLTmaj6A3sfvMwdkTiw8+Fe7M38MJz3LV/2KjoZYkBGJ3+O/llwkLg+iHIP8FX/rgAbMg3SEaOJ2Gyp+mDOw9gA692Y0vEUCytrRPgKdTjXvaQqj/wfD5gMlqcWOxEm6tlCwaQ8QnhIIknkNNSjigHpzKSmFqGq1Mkvq5NiA=,iv:BjALLFiZr33XfLbbJGblZUAgqqeTAjk02dcd40pwRYo=,tag:lJ23lunk7fvDi16gfUg6TQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1

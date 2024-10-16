@@ -31,6 +31,10 @@ spec:
           mountPath: /extras/users.yaml
           subPath: users.yaml
           readOnly: true
+        - name: postgresql-password
+          mountPath: /extras/postgresql-password
+          subPath: password
+          readOnly: true
         - name: oidc-jwks-key
           mountPath: /extras/oidc-jwks-key.pem
           subPath: oidc-jwks-key.pem
@@ -42,6 +46,12 @@ spec:
             items:
               - key: users.yaml
                 path: users.yaml
+        - name: postgresql-password
+          secret:
+            secretName: postgresql-user
+            items:
+              - key: password
+                path: password
         - name: oidc-jwks-key
           secret:
             secretName: authelia-oidc-jwks-key
@@ -166,9 +176,13 @@ spec:
       storage:
         encryption_key:
           path: STORAGE_ENCRYPTION_KEY
-        local:
+        postgres:
           enabled: true
-          path: /config/db.sqlite3
+          address: tcp://postgresql-rw:5432
+          database: authelia
+          username: authelia
+          password:
+            path: /extras/postgresql-password
       notifier:
         smtp:
           enabled: true
@@ -222,7 +236,4 @@ spec:
               token_endpoint_auth_method: client_secret_basic
     secret:
       existingSecret: authelia-secrets
-    persistence:
-      enabled: true
-      storageClass: local-path
   interval: 10m0s
