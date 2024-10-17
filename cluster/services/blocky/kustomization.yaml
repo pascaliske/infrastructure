@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: blocky
 resources:
   - namespace.yaml
+  - redis.yaml
   - helm-release.yaml
   - certificate.yaml
   - route.yaml

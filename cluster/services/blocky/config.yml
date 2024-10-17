@@ -79,7 +79,9 @@ caching:
   prefetching: true
 
 redis:
-  address: redis.redis.svc.cluster.local:6379
+  address: mymaster
+  sentinelAddresses:
+    - rfs-redis:26379
 
 prometheus:
   enable: true
