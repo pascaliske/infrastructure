@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/jacobalberty/unifi-docker
-      tag: 'v8.5.6'
+      tag: 'v8.6.9'
     env:
       - name: TZ
         value: '${TIMEZONE}'
