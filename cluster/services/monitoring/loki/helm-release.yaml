@@ -23,6 +23,9 @@ spec:
         repository: grafana/loki
         tag: '3.3.0'
       auth_enabled: false
+      # replication factor needs to be set explicitly with custom replicas value: https://togithub.com/grafana/loki/issues/8899
+      commonConfig:
+        replication_factor: 1
       storage:
         type: filesystem
       # another workaround for another weird chart validation error: https://github.com/grafana/loki/blob/1b80458e2eff2d41b9126a7529ee32ae1e269f05/production/helm/loki/templates/validate.yaml#L40
