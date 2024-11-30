@@ -21,7 +21,7 @@ spec:
       repository: ghcr.io/0xerr0r/blocky
       tag: v0.24
     controller:
-      replicas: 3
+      type: daemonset
       strategy: RollingUpdate
       rollingUpdate:
         surge: 1
@@ -47,6 +47,10 @@ spec:
       enabled: true
       prometheusRule:
         enabled: true
+    tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
   valuesFrom:
     - kind: ConfigMap
       name: blocky-config
