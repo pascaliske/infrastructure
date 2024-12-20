@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/dani-garcia/vaultwarden
-      tag: 1.32.6-alpine
+      tag: 1.32.7-alpine
     env:
       - name: TZ
         value: ${TIMEZONE}
