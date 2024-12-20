@@ -42,6 +42,15 @@
       "matchStrings": [
         "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
       ]
+    },
+    {
+      "customType": "regex",
+      "description": ["Process any imageName keys in YAML files (cloudnative-pg)"],
+      "fileMatch": ["(^|/)cluster/.+\\.ya?ml$"],
+      "datasourceTemplate": "docker",
+      "matchStrings": [
+        "imageName: (?<depName>[^\\s:]+):(?<currentValue>\\S+)(@(?<currentDigest>sha256:\\S+)?)"
+      ]
     }
   ],
   "packageRules": [
