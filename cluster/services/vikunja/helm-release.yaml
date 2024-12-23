@@ -76,6 +76,18 @@ spec:
         value: 'true'
       - name: VIKUNJA_REDIS_HOST
         value: redis.redis.svc.cluster.local:6379
+      - name: VIKUNJA_AUTH_OPENID_ENABLED
+        value: 'true'
+      - name: VIKUNJA_AUTH_OPENID_PROVIDERS_AUTHELIA_NAME
+        value: Authelia
+      - name: VIKUNJA_AUTH_OPENID_PROVIDERS_AUTHELIA_AUTHURL
+        value: 'https://auth.${DOMAIN_EXTERNAL}'
+      - name: VIKUNJA_AUTH_OPENID_PROVIDERS_AUTHELIA_LOGOUTURL
+        value: 'https://${DOMAIN_EXTERNAL}'
+      - name: VIKUNJA_AUTH_OPENID_PROVIDERS_AUTHELIA_CLIENTID
+        value: vikunja
+      - name: VIKUNJA_AUTH_OPENID_PROVIDERS_AUTHELIA_CLIENTSECRET
+        value: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
       - name: VIKUNJA_MAILER_ENABLED
         value: 'true'
       - name: VIKUNJA_MAILER_HOST

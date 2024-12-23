@@ -254,6 +254,19 @@ spec:
                 - email
               userinfo_signed_response_alg: none
               token_endpoint_auth_method: client_secret_basic
+            - client_id: vikunja
+              client_name: Vikunja
+              client_secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              public: false
+              authorization_policy: two_factor
+              redirect_uris:
+                - https://tasks.${DOMAIN_EXTERNAL}/auth/openid/authelia
+              scopes:
+                - openid
+                - email
+                - profile
+              userinfo_signed_response_alg: none
+              token_endpoint_auth_method: client_secret_basic
     secret:
       existingSecret: authelia-secrets
   interval: 10m0s
