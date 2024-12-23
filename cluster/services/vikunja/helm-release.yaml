@@ -70,16 +70,12 @@ spec:
           secretKeyRef:
             name: postgresql-user
             key: password
-      - name: VIKUNJA_CACHE_ENABLED
-        value: 'true'
-      - name: VIKUNJA_CACHE_TYPE
+      - name: VIKUNJA_KEYVALUE_TYPE
         value: redis
       - name: VIKUNJA_REDIS_ENABLED
         value: 'true'
       - name: VIKUNJA_REDIS_HOST
         value: redis.redis.svc.cluster.local:6379
-      - name: VIKUNJA_KEYVALUE_TYPE
-        value: redis
       - name: VIKUNJA_MAILER_ENABLED
         value: 'true'
       - name: VIKUNJA_MAILER_HOST
