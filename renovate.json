@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", ":preserveSemverRanges", ":disableRateLimiting"],
+  "extends": ["config:recommended", ":preserveSemverRanges", ":disableRateLimiting"],
   "labels": ["dependencies"],
   "dependencyDashboard": true,
   "dependencyDashboardLabels": ["dependencies"],
@@ -22,7 +22,7 @@
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}",
       "matchStrings": [
         "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
-        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)\/(?<currentValue>[^/]+)\/[^/]+\n"
+        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)\\/(?<currentValue>[^/]+)\\/[^/]+\n"
       ]
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "customType": "regex",
-      "description": ["Process any imageName keys in YAML files (cloudnative-pg)"],
+      "description": "Process any imageName keys in YAML files (cloudnative-pg)",
       "fileMatch": ["(^|/)cluster/.+\\.ya?ml$"],
       "datasourceTemplate": "docker",
       "matchStrings": [
@@ -62,27 +62,27 @@
       "enabled": false
     },
     {
-      "matchPackagePatterns": ["flux"],
+      "matchPackageNames": ["/flux/"],
       "groupName": "flux"
     },
     {
-      "matchPackagePatterns": ["traefik"],
+      "matchPackageNames": ["/traefik/"],
       "groupName": "traefik"
     },
     {
-      "matchPackagePatterns": ["trivy-operator"],
+      "matchPackageNames": ["/trivy-operator/"],
       "groupName": "trivy-operator"
     },
     {
-      "matchPackagePatterns": ["vector"],
+      "matchPackageNames": ["/vector/"],
       "groupName": "vector"
     },
     {
-      "matchPackagePatterns": ["descheduler"],
+      "matchPackageNames": ["/descheduler/"],
       "groupName": "descheduler"
     },
     {
-      "matchPackagePatterns": ["commitlint"],
+      "matchPackageNames": ["/commitlint/"],
       "groupName": "commitlint"
     }
   ]
