@@ -16,5 +16,8 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
-  values: {}
+  values:
+    image:
+      repository: ghcr.io/cloudnative-pg/cloudnative-pg
+      tag: '1.25.0'
   interval: 10m0s

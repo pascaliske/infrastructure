@@ -70,6 +70,10 @@
       "groupName": "traefik"
     },
     {
+      "matchPackageNames": ["/cloudnative-pg/"],
+      "groupName": "cloudnative-pg"
+    },
+    {
       "matchPackageNames": ["/trivy-operator/"],
       "groupName": "trivy-operator"
     },
