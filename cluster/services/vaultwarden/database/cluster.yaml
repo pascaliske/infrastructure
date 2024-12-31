@@ -7,7 +7,7 @@ metadata:
   namespace: vaultwarden
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.2
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.6
   primaryUpdateStrategy: unsupervised
   storage:
     size: 1Gi
