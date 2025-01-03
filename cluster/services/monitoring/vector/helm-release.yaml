@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: vector
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     role: Agent
     image:

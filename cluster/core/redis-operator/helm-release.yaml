@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: redis-operator
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     image:
       repository: quay.io/spotahome/redis-operator

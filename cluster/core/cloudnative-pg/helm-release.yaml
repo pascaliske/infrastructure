@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: cloudnative-pg-charts
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     image:
       repository: ghcr.io/cloudnative-pg/cloudnative-pg

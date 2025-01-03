@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: crowdsec
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     container_runtime: containerd
     image:

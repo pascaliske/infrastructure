@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: descheduler
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     image:
       repository: registry.k8s.io/descheduler/descheduler

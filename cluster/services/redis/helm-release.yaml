@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: pascaliske
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     image:
       repository: redis

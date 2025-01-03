@@ -15,7 +15,6 @@ spec:
         name: vmware-tanzu
         namespace: flux-system
   install:
-    createNamespace: true
     crds: Skip
   upgrade:
     crds: Skip

@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: gitlab
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     fullnameOverride: gitlab-runner
     imagePullSecrets:

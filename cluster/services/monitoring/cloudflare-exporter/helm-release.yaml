@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: cloudflare-exporter
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     image:
       repository: ghcr.io/lablabs/cloudflare_exporter

@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: authelia
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     image:
       registry: ghcr.io

@@ -15,7 +15,6 @@ spec:
         name: traefik
         namespace: flux-system
   install:
-    createNamespace: true
     crds: Skip
   upgrade:
     crds: Skip

@@ -14,8 +14,6 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
-  install:
-    createNamespace: true
   values:
     deploymentMode: SingleBinary
     loki:
