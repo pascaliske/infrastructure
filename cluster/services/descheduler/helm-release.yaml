@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: descheduler
-      version: '0.31.0'
+      version: '0.32.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: registry.k8s.io/descheduler/descheduler
-      tag: v0.31.0
+      tag: v0.32.0
     schedule: '*/10 * * * *'
     suspend: false
     affinity:
