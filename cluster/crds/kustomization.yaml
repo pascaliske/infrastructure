@@ -5,6 +5,7 @@ resources:
   - cert-manager
   - cloudnative-pg
   - kube-prometheus-stack
+  - redis-operator
   - system-upgrade
   - traefik
   - trivy-operator
