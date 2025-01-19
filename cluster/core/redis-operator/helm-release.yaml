@@ -14,6 +14,10 @@ spec:
         kind: HelmRepository
         name: redis-operator
         namespace: flux-system
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
   values:
     image:
       repository: quay.io/spotahome/redis-operator
