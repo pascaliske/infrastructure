@@ -72,6 +72,8 @@ spec:
             key: password
       - name: LD_LOG_X_FORWARDED_FOR
         value: 'true'
+      - name: LD_DISABLE_REQUEST_LOGS
+        value: 'true'
     persistentVolumeClaim:
       create: false
   interval: 10m0s
