@@ -15,6 +15,7 @@ The following services are deployed by this section:
 - [`monitoring`](/cluster/services/monitoring/)
 - [`paperless`](/cluster/services/paperless/)
 - [`redis`](/cluster/services/redis/)
+- [`semaphore`](/cluster/services/semaphore/)
 - [`snapdrop`](/cluster/services/snapdrop/)
 - [`traefik`](/cluster/services/traefik/)
 - [`unifi`](/cluster/services/unifi/)
