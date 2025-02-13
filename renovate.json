@@ -55,6 +55,10 @@
       "groupName": "cloudnative-pg"
     },
     {
+      "matchPackageNames": ["/cert-manager/"],
+      "groupName": "cert-manager"
+    },
+    {
       "matchPackageNames": ["/trivy-operator/"],
       "groupName": "trivy-operator"
     },
