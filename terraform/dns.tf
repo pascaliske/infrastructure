@@ -1,10 +1,11 @@
 # vpn, will be updated frequently using a K8s CronJob
-resource "cloudflare_record" "vpn" {
-  zone_id = data.cloudflare_zone.zone_internal.id
+resource "cloudflare_dns_record" "vpn" {
+  zone_id = data.cloudflare_zone.zone_internal.zone_id
   type    = "A"
   name    = "vpn"
   content = ""
   proxied = false
+  ttl     = 1
 
   lifecycle {
     ignore_changes = [content]
@@ -12,57 +13,64 @@ resource "cloudflare_record" "vpn" {
 }
 
 # dmarc
-resource "cloudflare_record" "dmarc" {
-  zone_id = data.cloudflare_zone.zone_internal.id
+resource "cloudflare_dns_record" "dmarc" {
+  zone_id = data.cloudflare_zone.zone_internal.zone_id
   type    = "TXT"
   name    = "_dmarc"
   content = "v=DMARC1; p=quarantine; rua=mailto:info@${local.domain_external}"
+  ttl     = 1
 }
 
 # dkim
-resource "cloudflare_record" "dkim" {
-  zone_id = data.cloudflare_zone.zone_internal.id
+resource "cloudflare_dns_record" "dkim" {
+  zone_id = data.cloudflare_zone.zone_internal.zone_id
   type    = "TXT"
   name    = "*._domainkey"
   content = "v=DKIM1; p="
+  ttl     = 1
 }
 
 # spf
-resource "cloudflare_record" "spf" {
-  zone_id = data.cloudflare_zone.zone_internal.id
+resource "cloudflare_dns_record" "spf" {
+  zone_id = data.cloudflare_zone.zone_internal.zone_id
   type    = "TXT"
   name    = local.domain_internal
   content = "v=spf1 ~all"
+  ttl     = 1
 }
 
 # google
-resource "cloudflare_record" "google" {
-  zone_id = data.cloudflare_zone.zone_internal.id
+resource "cloudflare_dns_record" "google" {
+  zone_id = data.cloudflare_zone.zone_internal.zone_id
   type    = "TXT"
   name    = local.domain_internal
   content = "google-site-verification=${var.GOOGLE_VERIFICATION_TOKEN}"
+  ttl     = 1
 }
 
 # wildcard
-resource "cloudflare_record" "wildcard" {
-  zone_id = data.cloudflare_zone.zone_external.id
+resource "cloudflare_dns_record" "wildcard" {
+  zone_id = data.cloudflare_zone.zone_external.zone_id
   type    = "A"
   name    = "*"
   content = local.public_ip_jakku
+  ttl     = 1
 }
 
 # docs
-resource "cloudflare_record" "docs" {
-  zone_id = data.cloudflare_zone.zone_external.id
+resource "cloudflare_dns_record" "docs" {
+  zone_id = data.cloudflare_zone.zone_external.zone_id
   type    = "CNAME"
   name    = "k8s"
   content = local.domain_github
+  ttl     = 1
 }
 
 # charts
-resource "cloudflare_record" "charts" {
-  zone_id = data.cloudflare_zone.zone_external.id
+resource "cloudflare_dns_record" "charts" {
+  zone_id = data.cloudflare_zone.zone_external.zone_id
   type    = "CNAME"
   name    = "charts"
   content = local.domain_github
+  ttl     = 1
 }
