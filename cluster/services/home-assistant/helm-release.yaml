@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: '2025.2.3'
+      tag: '2025.2.4'
 
     imagePullSecrets:
       - name: github-registry
