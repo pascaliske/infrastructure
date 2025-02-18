@@ -17,6 +17,7 @@ resources:
   - paperless
   - plausible
   - redis
+  - semaphore
   - snapdrop
   - unbound
   - unifi
