@@ -32,6 +32,6 @@ jobs:
           ln -s ${{ github.workspace }}/.ansible-lint ${{ github.workspace }}/ansible/.ansible-lint
 
       # lint ansible
-      - uses: ansible/ansible-lint@v25.1.2
+      - uses: ansible/ansible-lint@v25.1.3
         with:
           working_directory: ${{ github.workspace }}/ansible
