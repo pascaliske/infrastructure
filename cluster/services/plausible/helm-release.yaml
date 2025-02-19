@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: plausible
-      version: '1.1.0'
+      version: '2.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -16,8 +16,9 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: plausible/analytics
-      tag: v2.0.0
+      registry: ghcr.io
+      repository: plausible/community-edition
+      tag: v2.1.5
     ingressRoute:
       create: true
       entryPoints:
@@ -81,6 +82,14 @@ spec:
           secretKeyRef:
             name: plausible-secrets
             key: GOOGLE_CLIENT_SECRET
+    secret:
+      values:
+        SECRET_KEY_BASE: ${PLAUSIBLE_SECRET_KEY_BASE}
+        TOTP_VAULT_KEY: ${PLAUSIBLE_TOTP_VAULT_KEY}
+        DATABASE_URL: ${PLAUSIBLE_DATABASE_URL}
+        CLICKHOUSE_DATABASE_URL: ${PLAUSIBLE_CLICKHOUSE_DATABASE_URL}
+        GOOGLE_CLIENT_ID: ${PLAUSIBLE_GOOGLE_CLIENT_ID}
+        GOOGLE_CLIENT_SECRET: ${PLAUSIBLE_GOOGLE_CLIENT_SECRET}
     geoip:
       enabled: true
       image:
