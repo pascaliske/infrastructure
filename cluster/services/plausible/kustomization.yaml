@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - database
   - namespace.yaml
-  - secret.sops.yaml
   - helm-release.yaml
