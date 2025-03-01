@@ -17,5 +17,5 @@ spec:
   values:
     image:
       repository: ghcr.io/cloudnative-pg/cloudnative-pg
-      tag: '1.25.0'
+      tag: '1.25.1'
   interval: 10m0s
