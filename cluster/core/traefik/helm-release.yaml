@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: '34.4.0'
+      version: '34.4.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
