@@ -1,1 +1,1 @@
-material-plausible-plugin==0.2.0
+material-plausible-plugin==0.3.0
