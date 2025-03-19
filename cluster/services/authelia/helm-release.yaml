@@ -18,7 +18,7 @@ spec:
     image:
       registry: ghcr.io
       repository: authelia/authelia
-      tag: '4.38.19'
+      tag: '4.39.1'
     pod:
       kind: DaemonSet
       tolerations:
