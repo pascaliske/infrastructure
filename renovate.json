@@ -51,6 +51,10 @@
       "groupName": "traefik"
     },
     {
+      "matchPackageNames": ["/authelia/"],
+      "groupName": "authelia"
+    },
+    {
       "matchPackageNames": ["/cloudnative-pg/"],
       "groupName": "cloudnative-pg"
     },
