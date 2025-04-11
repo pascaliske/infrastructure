@@ -17,7 +17,7 @@ spec:
   values:
     role: Agent
     image:
-      repository: timberio/vector
+      repository: ghcr.io/vectordotdev/vector
       tag: 0.46.0-alpine
     env:
       - name: TZ
