@@ -19,7 +19,7 @@ spec:
       pspEnabled: false
     image:
       repository: oliver006/redis_exporter
-      tag: v1.69.0
+      tag: v1.70.0
     env:
       - name: TZ
         value: ${TIMEZONE}
