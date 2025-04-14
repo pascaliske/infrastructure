@@ -18,7 +18,7 @@ spec:
     role: Agent
     image:
       repository: ghcr.io/vectordotdev/vector
-      tag: 0.46.0-alpine
+      tag: 0.46.1-alpine
     env:
       - name: TZ
         value: ${TIMEZONE}
