@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: vector
-      version: '0.42.0'
+      version: '0.42.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
