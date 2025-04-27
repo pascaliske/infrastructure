@@ -96,10 +96,10 @@ nav:
               - speedtest-exporter: cluster/services/monitoring/speedtest-exporter/index.md
               - unifi-poller: cluster/services/monitoring/unifi-poller/index.md
               - vector: cluster/services/monitoring/vector/index.md
+          - pairdrop: cluster/services/pairdrop/index.md
           - paperless: cluster/services/paperless/index.md
           - plausible: cluster/services/plausible/index.md
           - redis: cluster/services/redis/index.md
-          - snapdrop: cluster/services/snapdrop/index.md
           - unbound: cluster/services/unbound/index.md
           - unifi: cluster/services/unifi/index.md
           - uptime-kuma: cluster/services/uptime-kuma/index.md

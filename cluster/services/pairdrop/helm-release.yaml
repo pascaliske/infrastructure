@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: snapdrop
-  namespace: snapdrop
+  name: pairdrop
+  namespace: pairdrop
 spec:
   chart:
     spec:
-      chart: snapdrop
-      version: '2.0.0'
+      chart: pairdrop
+      version: '1.0.2'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -16,8 +16,9 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/linuxserver/snapdrop
-      tag: latest
+      registry: ghcr.io
+      repository: linuxserver/pairdrop
+      tag: version-v1.11.2
     ingressRoute:
       create: true
       entryPoints:
@@ -40,10 +41,6 @@ spec:
     env:
       - name: TZ
         value: ${TIMEZONE}
-      - name: PGID
-        value: '${GID}'
-      - name: PUID
-        value: '${UID}'
     resources:
       limits:
         cpu: 100m

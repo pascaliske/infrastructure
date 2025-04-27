@@ -14,10 +14,10 @@ resources:
   - homer
   - linkding
   - monitoring
+  - pairdrop
   - paperless
   - plausible
   - redis
-  - snapdrop
   - unbound
   - unifi
   - uptime-kuma
