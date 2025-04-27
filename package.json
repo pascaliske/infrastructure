@@ -15,6 +15,7 @@
     "url": "https://github.com/pascaliske/infrastructure/issues"
   },
   "private": true,
+  "prettier": "@pascaliske/prettier-config",
   "scripts": {
     "prepare": "husky"
   },
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
+    "@pascaliske/prettier-config": "^1.3.0",
     "husky": "^9.0.0"
   }
 }
