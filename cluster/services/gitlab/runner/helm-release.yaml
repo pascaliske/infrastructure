@@ -50,19 +50,8 @@ spec:
             namespace = "gitlab"
             image = "alpine:latest"
             image_pull_secrets = ["gitlab-registry-auth"]
-            helper_image_flavor = "ubuntu"
+            helper_image = "registry.gitlab.com/gitlab-org/gitlab-runner/gitlab-runner-helper:ubuntu-arm64-latest"
             pull_policy = ["always", "if-not-present"]
-            [runners.kubernetes.affinity]
-              [runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution]
-                [[runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms]]
-                  [[runners.kubernetes.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions]]
-                    key = "k8s.pascaliske.dev/location"
-                    operator = "In"
-                    values = [
-                      "public"
-                    ]
-            [runners.kubernetes.node_tolerations]
-              "k8s.pascaliske.dev/location=public" = "NoSchedule"
             [runners.kubernetes.dns_config]
               [[runners.kubernetes.dns_config.options]]
                 name = "ndots"
@@ -75,18 +64,4 @@ spec:
       # requests:
       #   memory: 128Mi
       #   cpu: 100m
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: k8s.pascaliske.dev/location
-                  operator: In
-                  values:
-                    - public
-    tolerations:
-      - key: k8s.pascaliske.dev/location
-        operator: Equal
-        value: public
-        effect: NoSchedule
   interval: 10m0s
