@@ -21,7 +21,7 @@ spec:
   values:
     image:
       repository: traefik
-      tag: 'v3.3.6'
+      tag: 'v3.4.0'
     deployment:
       kind: DaemonSet
       healthchecksPort: 9100
