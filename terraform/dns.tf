@@ -2,7 +2,7 @@
 resource "cloudflare_dns_record" "vpn" {
   zone_id = data.cloudflare_zone.zone_internal.zone_id
   type    = "A"
-  name    = "vpn"
+  name    = "vpn.${local.domain_internal}"
   content = ""
   proxied = false
   ttl     = 1
@@ -16,7 +16,7 @@ resource "cloudflare_dns_record" "vpn" {
 resource "cloudflare_dns_record" "dmarc" {
   zone_id = data.cloudflare_zone.zone_internal.zone_id
   type    = "TXT"
-  name    = "_dmarc"
+  name    = "_dmarc.${local.domain_internal}"
   content = "v=DMARC1; p=quarantine; rua=mailto:info@${local.domain_external}"
   ttl     = 1
 }
@@ -25,7 +25,7 @@ resource "cloudflare_dns_record" "dmarc" {
 resource "cloudflare_dns_record" "dkim" {
   zone_id = data.cloudflare_zone.zone_internal.zone_id
   type    = "TXT"
-  name    = "*._domainkey"
+  name    = "*._domainkey.${local.domain_internal}"
   content = "v=DKIM1; p="
   ttl     = 1
 }
@@ -52,7 +52,7 @@ resource "cloudflare_dns_record" "google" {
 resource "cloudflare_dns_record" "wildcard" {
   zone_id = data.cloudflare_zone.zone_external.zone_id
   type    = "A"
-  name    = "*"
+  name    = "*.${local.domain_external}"
   content = local.public_ip_jakku
   ttl     = 1
 }
@@ -61,7 +61,7 @@ resource "cloudflare_dns_record" "wildcard" {
 resource "cloudflare_dns_record" "docs" {
   zone_id = data.cloudflare_zone.zone_external.zone_id
   type    = "CNAME"
-  name    = "k8s"
+  name    = "k8s.${local.domain_external}"
   content = local.domain_github
   ttl     = 1
 }
@@ -70,7 +70,7 @@ resource "cloudflare_dns_record" "docs" {
 resource "cloudflare_dns_record" "charts" {
   zone_id = data.cloudflare_zone.zone_external.zone_id
   type    = "CNAME"
-  name    = "charts"
+  name    = "charts.${local.domain_external}"
   content = local.domain_github
   ttl     = 1
 }
