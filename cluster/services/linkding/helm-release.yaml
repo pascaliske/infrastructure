@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: linkding
-      version: '2.0.0'
+      version: '2.1.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -16,8 +16,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: sissbruecker/linkding
-      tag: 1.39.1
+      repository: ghcr.io/sissbruecker/linkding
+      tag: 1.40.0
     ingressRoute:
       create: true
       entryPoints:
