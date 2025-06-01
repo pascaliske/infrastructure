@@ -28,3 +28,30 @@ spec:
     crds:
       install: false
   interval: 10m0s
+  postRenderers:
+    # workaround due to missing support for affinities and tolerations in helm chart
+    # see: https://redirect.github.com/giantswarm/silence-operator/issues/497
+    - kustomize:
+        patches:
+          - patch: |-
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: silence-operator
+              spec:
+                template:
+                  spec:
+                    affinity:
+                      nodeAffinity:
+                        requiredDuringSchedulingIgnoredDuringExecution:
+                          nodeSelectorTerms:
+                            - matchExpressions:
+                                - key: k8s.pascaliske.dev/location
+                                  operator: In
+                                  values:
+                                    - public
+                    tolerations:
+                      - key: k8s.pascaliske.dev/location
+                        operator: Equal
+                        value: public
+                        effect: NoSchedule
