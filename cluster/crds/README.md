@@ -7,6 +7,7 @@ The following services require CRDs which are deployed by this section:
 - [`cert-manager`](/cluster/core/cert-manager/)
 - [`cloudnative-pg`](/cluster/core/cloudnative-pg/)
 - [`kube-prometheus-stack`](/cluster/services/monitoring/kube-prometheus-stack/)
+- [`silence-operator`](/cluster/core/silence-operator/)
 - [`system-upgrade`](/cluster/core/system-upgrade/)
 - [`traefik`](/cluster/core/traefik/)
 - [`trivy-operator`](/cluster/core/trivy-operator/)

@@ -6,6 +6,7 @@ The following chart repositories will be created as [`HelmRepository` declaratio
 
 - `authelia` → <https://charts.authelia.com>
 - `cloudflare-exporter` → <https://lablabs.github.io/cloudflare-exporter>
+- `giantswarm` → <https://giantswarm.github.io/control-plane-catalog/>
 - `gitlab` → <https://charts.gitlab.io>
 - `grafana` → <https://grafana.github.io/helm-charts>
 - `jetstack` → <https://charts.jetstack.io>
