@@ -14,3 +14,4 @@ The following services are deployed by this section:
 - [`crowdsec`](/cluster/core/crowdsec/)
 - [`velero`](/cluster/core/velero/)
 - [`trivy-operator`](/cluster/core/trivy-operator/)
+- [`silence-operator`](/cluster/core/silence-operator/)

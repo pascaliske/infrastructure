@@ -9,6 +9,7 @@ resources:
   - crowdsec.yaml
   - deliveryhero.yaml
   - descheduler.yaml
+  - giantswarm.yaml
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml
