@@ -21,6 +21,8 @@ spec:
         repository: grafana/loki
         tag: '3.5.1'
       auth_enabled: false
+      limits_config:
+        retention_period: 14d
       # replication factor needs to be set explicitly with custom replicas value: https://togithub.com/grafana/loki/issues/8899
       commonConfig:
         replication_factor: 1
@@ -36,6 +38,9 @@ spec:
             index:
               prefix: index_
               period: 24h
+      compactor:
+        retention_enabled: true
+        retention_delete_delay: 2h
     test:
       enabled: false
     lokiCanary:
