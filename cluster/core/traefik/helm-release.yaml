@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: '35.4.0'
+      version: '36.1.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -53,11 +53,11 @@ spec:
                 context: traefik
                 severity: warning
               annotations:
-                summary: "Traefik Down"
-                description: "{{ $labels.pod }} on {{ $labels.nodename }} is down"
-    globalArguments:
-      - --global.checknewversion=true
-      - --global.sendanonymoususage=false
+                summary: 'Traefik Down'
+                description: '{{ $labels.pod }} on {{ $labels.nodename }} is down'
+    global:
+      checkNewVersion: true
+      sendAnonymousUsage: false
     additionalArguments:
       - --ping.entrypoint=metrics
       - --serverstransport.insecureskipverify
