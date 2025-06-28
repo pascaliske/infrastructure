@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: authelia
-      version: '0.10.17'
+      version: '0.10.34'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
