@@ -8,7 +8,7 @@ spec:
   url: https://github.com/giantswarm/silence-operator
   ref:
     # renovate: datasource=github-releases depName=giantswarm/silence-operator
-    tag: 'v0.16.1'
+    tag: 'v0.17.0'
   interval: 15m
   ignore: |
     # exclude all
