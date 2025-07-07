@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: vector
-      version: '0.43.0'
+      version: '0.44.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -18,7 +18,7 @@ spec:
     role: Agent
     image:
       repository: ghcr.io/vectordotdev/vector
-      tag: 0.47.0-alpine
+      tag: 0.48.0-alpine
     env:
       - name: TZ
         value: ${TIMEZONE}
