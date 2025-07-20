@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: velero
-      version: '10.0.5'
+      version: '10.0.10'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
