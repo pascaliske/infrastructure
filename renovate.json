@@ -67,6 +67,10 @@
       "groupName": "trivy-operator"
     },
     {
+      "matchPackageNames": ["/silence-operator/"],
+      "groupName": "silence-operator"
+    },
+    {
       "matchPackageNames": ["/vector/"],
       "groupName": "vector"
     },
