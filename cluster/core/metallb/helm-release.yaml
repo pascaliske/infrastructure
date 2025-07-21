@@ -25,5 +25,5 @@ spec:
       frr:
         enabled: false
     crds:
-      enabled: true
+      enabled: false
   interval: 10m0s

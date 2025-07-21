@@ -5,6 +5,7 @@ resources:
   - cert-manager
   - cloudnative-pg
   - kube-prometheus-stack
+  - metallb
   - redis-operator
   - silence-operator
   - system-upgrade

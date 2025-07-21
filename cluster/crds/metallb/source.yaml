@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: metallb-source
+  namespace: flux-system
+spec:
+  url: https://github.com/metallb/metallb
+  ref:
+    # renovate: datasource=github-releases depName=metallb/metallb
+    tag: v0.15.2
+  interval: 15m
+  ignore: |
+    # exclude all
+    /*
+    # include crds directory
+    !/config/crd/bases
