@@ -21,9 +21,12 @@ spec:
         enabled: true
       prometheusRule:
         enabled: true
+    controller:
+      webhookMode: disabled
     speaker:
       frr:
         enabled: false
     crds:
       enabled: false
+      validationFailurePolicy: Ignore
   interval: 10m0s
