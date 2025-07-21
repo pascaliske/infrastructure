@@ -32,9 +32,13 @@ spec:
       dns-tcp:
         enabled: true
         type: LoadBalancer
+        annotations:
+          metallb.io/loadBalancerIPs: ${IP_LB_BLOCKY_TCP}
       dns-udp:
         enabled: true
         type: LoadBalancer
+        annotations:
+          metallb.io/loadBalancerIPs: ${IP_LB_BLOCKY_UDP}
     persistence:
       logs:
         enabled: false

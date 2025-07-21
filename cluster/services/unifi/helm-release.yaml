@@ -39,6 +39,8 @@ spec:
       controller:
         enabled: true
         type: LoadBalancer
+        annotations:
+          metallb.io/loadBalancerIPs: ${IP_LB_UNIFI}
         ports:
           controller-tcp:
             enabled: true

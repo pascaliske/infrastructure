@@ -20,7 +20,7 @@ upstreams:
 customDNS:
   mapping:
     # general
-    iske.cloud: ${IP_CORUSCANT}
+    iske.cloud: ${IP_LB_TRAEFIK}
 
     # cluster
     cluster.iske.cloud: ${IP_CLUSTER_VIP}
@@ -36,7 +36,7 @@ customDNS:
     ilum.iske.cloud: ${IP_ILUM}
 
     # misc
-    unifi: ${IP_CORUSCANT} # simplifies unifi layer 2 device adoption
+    unifi: ${IP_LB_UNIFI} # simplifies unifi layer 2 device adoption
 
 conditional:
   mapping:

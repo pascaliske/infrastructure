@@ -104,6 +104,8 @@ spec:
         minVersion: VersionTLS12
         sniStrict: true
     service:
+      annotations:
+        metallb.io/loadBalancerIPs: ${IP_LB_TRAEFIK}
       spec:
         externalTrafficPolicy: Local
     tolerations:
