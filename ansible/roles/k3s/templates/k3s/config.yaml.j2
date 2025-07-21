@@ -27,5 +27,6 @@ node-taint:
 {% endif %}
 {% if k3s_cluster_role == 'master' %}
 disable:
+  - servicelb
   - traefik
 {% endif %}
