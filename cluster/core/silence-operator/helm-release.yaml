@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: silence-operator
-      version: '0.17.0'
+      version: '0.18.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -21,37 +21,24 @@ spec:
   values:
     image:
       repository: quay.io/giantswarm/silence-operator
-      tag: '0.17.0'
+      tag: '0.18.0'
     alertmanagerAddress: 'http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093'
     networkPolicy:
       enabled: true
     crds:
       install: false
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: k8s.pascaliske.dev/location
+                  operator: In
+                  values:
+                    - public
+    tolerations:
+      - key: k8s.pascaliske.dev/location
+        operator: Equal
+        value: public
+        effect: NoSchedule
   interval: 10m0s
-  postRenderers:
-    # workaround due to missing support for affinities and tolerations in helm chart
-    # see: https://redirect.github.com/giantswarm/silence-operator/issues/497
-    - kustomize:
-        patches:
-          - patch: |-
-              apiVersion: apps/v1
-              kind: Deployment
-              metadata:
-                name: silence-operator
-              spec:
-                template:
-                  spec:
-                    affinity:
-                      nodeAffinity:
-                        requiredDuringSchedulingIgnoredDuringExecution:
-                          nodeSelectorTerms:
-                            - matchExpressions:
-                                - key: k8s.pascaliske.dev/location
-                                  operator: In
-                                  values:
-                                    - public
-                    tolerations:
-                      - key: k8s.pascaliske.dev/location
-                        operator: Equal
-                        value: public
-                        effect: NoSchedule
