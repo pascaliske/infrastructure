@@ -1,2 +1,5 @@
+provider "proxmox" {
+}
+
 provider "cloudflare" {
 }
