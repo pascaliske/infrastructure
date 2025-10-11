@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: '37.1.1'
+      version: '37.1.2'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -21,7 +21,7 @@ spec:
   values:
     image:
       repository: traefik
-      tag: 'v3.5.2'
+      tag: 'v3.5.3'
     deployment:
       kind: DaemonSet
       healthchecksPort: 9100
