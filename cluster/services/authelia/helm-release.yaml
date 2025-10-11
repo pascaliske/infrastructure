@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: authelia
-      version: '0.10.42'
+      version: '0.10.46'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -18,7 +18,7 @@ spec:
     image:
       registry: ghcr.io
       repository: authelia/authelia
-      tag: '4.39.6'
+      tag: '4.39.12'
     pod:
       kind: DaemonSet
       tolerations:
