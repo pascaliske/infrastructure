@@ -1,0 +1,12 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cert-manager
+  - cloudnative-pg
+  - kube-prometheus-stack
+  - redis-operator
+  - silence-operator
+  - traefik
+  - trivy-operator
+  - velero

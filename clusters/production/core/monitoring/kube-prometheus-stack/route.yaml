@@ -1,0 +1,84 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-prometheus
+  namespace: monitoring
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`prometheus.${DOMAIN_INTERNAL}`)
+      services:
+        - kind: Service
+          name: prometheus-operated
+          namespace: monitoring
+          port: 9090
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+  tls:
+    secretName: prometheus.${DOMAIN_INTERNAL}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-alertmanager
+  namespace: monitoring
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`alerts.${DOMAIN_INTERNAL}`)
+      services:
+        - kind: Service
+          name: alertmanager-operated
+          namespace: monitoring
+          port: 9093
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+  tls:
+    secretName: alerts.${DOMAIN_INTERNAL}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-grafana
+  namespace: monitoring
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`grafana.${DOMAIN_INTERNAL}`)
+      services:
+        - kind: Service
+          name: grafana
+          namespace: monitoring
+          port: 80
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+  tls:
+    secretName: grafana.${DOMAIN_INTERNAL}

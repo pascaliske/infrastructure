@@ -1,0 +1,42 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: fritzbox-exporter
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: fritzbox-exporter
+      version: '2.0.3'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  values:
+    image:
+      repository: sealife/fritzbox-exporter
+      tag: '1.0'
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: FRITZ_HOST
+        value: ${IP_ROUTER}
+      - name: FRITZ_USER
+        value: ${FRITZBOX_USERNAME}
+      - name: FRITZ_PASS
+        value: ${FRITZBOX_PASSWORD}
+    ports:
+      metrics:
+        enabled: true
+        port: 8765
+        protocol: TCP
+    resources:
+      requests:
+        cpu: 500m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 128Mi
+  interval: 10m0s

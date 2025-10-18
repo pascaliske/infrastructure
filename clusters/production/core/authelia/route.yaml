@@ -1,0 +1,28 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: authelia
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`auth.${DOMAIN_INTERNAL}`) || Host(`auth.${DOMAIN_EXTERNAL}`)
+      services:
+        - kind: Service
+          name: authelia
+          namespace: authelia
+          port: 80
+      middlewares:
+        - name: security
+          namespace: traefik
+        - name: headers
+          namespace: authelia
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+  tls:
+    secretName: auth.${DOMAIN_INTERNAL}

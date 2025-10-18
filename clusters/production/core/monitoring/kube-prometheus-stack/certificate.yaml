@@ -1,0 +1,39 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: prometheus.${DOMAIN_INTERNAL}
+  namespace: monitoring
+spec:
+  secretName: prometheus.${DOMAIN_INTERNAL}
+  dnsNames:
+    - prometheus.${DOMAIN_INTERNAL}
+  issuerRef:
+    kind: ClusterIssuer
+    name: lets-encrypt-production
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: alerts.${DOMAIN_INTERNAL}
+  namespace: monitoring
+spec:
+  secretName: alerts.${DOMAIN_INTERNAL}
+  dnsNames:
+    - alerts.${DOMAIN_INTERNAL}
+  issuerRef:
+    kind: ClusterIssuer
+    name: lets-encrypt-production
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana.${DOMAIN_INTERNAL}
+  namespace: monitoring
+spec:
+  secretName: grafana.${DOMAIN_INTERNAL}
+  dnsNames:
+    - grafana.${DOMAIN_INTERNAL}
+  issuerRef:
+    kind: ClusterIssuer
+    name: lets-encrypt-production

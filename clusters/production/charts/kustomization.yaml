@@ -1,0 +1,30 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - aquasecurity.yaml
+  - authelia.yaml
+  - cloudnative-pg.yaml
+  - crowdsec.yaml
+  - deliveryhero.yaml
+  - descheduler.yaml
+  - falcosecurity.yaml
+  - giantswarm.yaml
+  - gitlab.yaml
+  - grafana.yaml
+  - jetstack.yaml
+  - k8s-at-home.yaml
+  - kubereboot.yaml
+  - kyverno.yaml
+  - local-path-provisioner.yaml
+  - metallb.yaml
+  - mittwald.yaml
+  - node-feature-discovery.yaml
+  - pascaliske.yaml
+  - prometheus-community.yaml
+  - redis-operator.yaml
+  - spegel.yaml
+  - traefik.yaml
+  - vector.yaml
+  - vmware-tanzu.yaml

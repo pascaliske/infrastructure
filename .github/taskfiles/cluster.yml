@@ -20,11 +20,6 @@ tasks:
     cmds:
       - ansible-playbook --diff playbooks/cleanup.yml {{.CLI_ARGS}}
 
-  bootstrap:
-    summary: Bootstrap the cluster using Flux CLI
-    cmds:
-      - flux bootstrap github {{.CLI_ARGS}} --path=./cluster/base --personal
-
   ssh:
     summary: SSH into cluster nodes by name
     interactive: true

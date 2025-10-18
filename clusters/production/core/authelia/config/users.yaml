@@ -1,0 +1,14 @@
+users:
+  ${AUTH_USERNAME}:
+    email: ${AUTH_EMAIL}
+    password: ${AUTH_PASSWORD}
+    displayname: ${AUTH_DISPLAY_NAME}
+    groups:
+      - admins
+      - family
+  ${AUTH_SARAH_USERNAME}:
+    email: ${AUTH_SARAH_EMAIL}
+    password: ${AUTH_SARAH_PASSWORD}
+    displayname: ${AUTH_SARAH_DISPLAY_NAME}
+    groups:
+      - family
