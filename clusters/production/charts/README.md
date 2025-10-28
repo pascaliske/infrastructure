@@ -1,6 +1,23 @@
 # Charts
 
 All [services](/cluster/services/) inside the cluster are deployed by Flux using [Helm charts](https://helm.sh/docs/topics/charts/). To ensure the existence of all chart repositories before the service reconciliation they're grouped together and applied as a [`Kustomization`](https://fluxcd.io/docs/components/kustomize/kustomization/) dependency for all services.
+
+The following chart repositories will be created as [`HelmRepository` declarations](https://fluxcd.io/docs/components/source/helmrepositories/) by this section:
+
+- `authelia` → <https://charts.authelia.com>
+- `cloudflare-exporter` → <https://lablabs.github.io/cloudflare-exporter>
+- `giantswarm` → <https://giantswarm.github.io/control-plane-catalog/>
+- `gitlab` → <https://charts.gitlab.io>
+- `grafana` → <https://grafana.github.io/helm-charts>
+- `jetstack` → <https://charts.jetstack.io>
+- `k8s-at-home` → <https://k8s-at-home.com/charts>
+- `kured` → <https://kubereboot.github.io/charts>
+- `pascaliske` → <https://charts.pascaliske.dev>
+- `prometheus-community` → <https://prometheus-community.github.io/helm-charts>
+- `traefik` → <https://helm.traefik.io/traefik>
+- `vector` → <https://helm.vector.dev>
+- `vmware-tanzu` → <https://vmware-tanzu.github.io/helm-charts>
+
 Flux checks these helm repositories regularly at the specified intervals of `10m0s` and updates the [`HelmRelease`](https://fluxcd.io/docs/components/helm/helmreleases/) objects accordingly.
 
 ??? example "Example of a `HelmRepository` declaration"
