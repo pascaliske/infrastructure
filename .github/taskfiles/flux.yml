@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+tasks:
+  bootstrap:
+    summary: Bootstrap the cluster
+    cmds:
+      - kubectl apply -f https://github.com/controlplaneio-fluxcd/flux-operator/releases/latest/download/install.yaml
+      - kubectl apply -f clusters/production/base/flux.yaml
