@@ -1,0 +1,96 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  chart:
+    spec:
+      chart: home-assistant
+      version: '0.1.1'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  values:
+    image:
+      registry: ghcr.io
+      repository: home-assistant/home-assistant
+      tag: '2025.11.3'
+    imagePullSecrets:
+      - name: github-registry
+    serviceMonitor:
+      enabled: true
+      bearerTokenSecretRef:
+        key: token
+        name: monitoring-auth
+    prometheusRule:
+      enabled: true
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: 'Host(`homeassistant.${DOMAIN_INTERNAL}`)'
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+    certificate:
+      create: true
+      dnsNames:
+        - homeassistant.${DOMAIN_INTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+    # needed for homekit, wake-on-lan and ps4 integrations
+    hostNetwork: true
+    # needed as workaround for dns issues with host network
+    dnsPolicy: ClusterFirstWithHostNet
+    extraInitContainers:
+      - name: init-config
+        image: ghcr.io/pascaliske/home-assistant:main
+        env:
+          - name: GITSYNC_ONE_TIME
+            value: 'true'
+        volumeMounts:
+          - name: home-assistant-storage
+            mountPath: /config
+          - name: home-assistant-config-sync
+            mountPath: /config-sync
+        resources: {}
+    extraContainers:
+      - name: sync-config
+        image: ghcr.io/pascaliske/home-assistant:main
+        env:
+          - name: GITSYNC_MAX_FAILURES
+            value: '5'
+        volumeMounts:
+          - name: home-assistant-storage
+            mountPath: /config
+          - name: home-assistant-config-sync
+            mountPath: /config-sync
+        resources: {}
+    extraVolumeMounts:
+      - name: home-assistant-config-sync
+        mountPath: /config-sync
+      - name: home-assistant-secrets
+        mountPath: /config/secrets.yaml
+        subPath: secrets.yaml
+    extraVolumes:
+      - name: home-assistant-config-sync
+        emptyDir: {}
+      - name: home-assistant-secrets
+        secret:
+          secretName: secrets
+          defaultMode: 420
+  interval: 10m0s

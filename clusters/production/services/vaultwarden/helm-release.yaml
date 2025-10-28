@@ -1,0 +1,87 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vaultwarden
+  namespace: vaultwarden
+spec:
+  chart:
+    spec:
+      chart: vaultwarden
+      version: '1.3.0'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  values:
+    image:
+      registry: ghcr.io
+      repository: dani-garcia/vaultwarden
+      tag: 1.34.3-alpine
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`pass.${DOMAIN_INTERNAL}`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+    certificate:
+      create: true
+      dnsNames:
+        - pass.${DOMAIN_INTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: DOMAIN
+        value: https://pass.${DOMAIN_INTERNAL}
+      - name: DATABASE_URL
+        value: postgresql://postgresql-rw:5432/vaultwarden
+      - name: PGUSER
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: username
+      - name: PGPASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgresql-user
+            key: password
+      - name: LOG_LEVEL
+        value: warn
+      - name: EXTENDED_LOGGING
+        value: 'true'
+      - name: SIGNUPS_VERIFY
+        value: 'true'
+      - name: SIGNUPS_DOMAINS_WHITELIST
+        value: '${DOMAIN_INTERNAL},${DOMAIN_EXTERNAL}'
+      - name: SMTP_HOST
+        value: '${SMTP_HOST}'
+      - name: SMTP_PORT
+        value: '465'
+      - name: SMTP_USERNAME
+        value: '${SMTP_ACCOUNT_VAULTWARDEN_EMAIL}'
+      - name: SMTP_PASSWORD
+        value: '${SMTP_ACCOUNT_VAULTWARDEN_PASSWORD}'
+      - name: SMTP_SECURITY
+        value: force_tls
+      - name: SMTP_FROM
+        value: '${SMTP_ACCOUNT_VAULTWARDEN_EMAIL}'
+      - name: SMTP_FROM_NAME
+        value: '${SMTP_ACCOUNT_VAULTWARDEN_NAME}'
+      - name: IP_HEADER
+        value: X-Forwarded-For
+    secret:
+      values:
+        ADMIN_TOKEN: '${VAULTWARDEN_ADMIN_TOKEN}'
+  interval: 10m0s

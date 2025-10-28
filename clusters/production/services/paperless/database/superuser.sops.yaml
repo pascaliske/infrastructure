@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: postgresql-superuser
+    namespace: paperless
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:FiCzVoJpDEA=,iv:wQ/+JsXEL6aszVtWIiZ+dzsfHZo1hK7SCqM3VC8djL4=,tag:qFKgao9+c+wq+5cPz9t7Dw==,type:str]
+    password: ENC[AES256_GCM,data:JV4eTg1ysQ6vTkfn7LPZ+72iTB16RxEZIKDnfXO91ltGSxRowxDBvSTk,iv:ZCrKAMbghZJEEGYOgjgQ0BZHjKf7VWspptnNAsed2RA=,tag:mVHQUVxg6kYRI+elEM54AA==,type:str]
+sops:
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBub1k5ZFN2WEJUY0syclRP
+            N01IWW5IWTRTRC9QejBnd2FlOEpQdUloZWlFCjhXWGx4bVRZM05EUTJ4NE1Cc29S
+            aEpkUkl2K3lDeXRZWWNqaGE3L1B1MDgKLS0tIHNhQ3hSeWZYS1B5VzhzYlgyeGl5
+            Qk84dWJ5K1QyaEhOb0xTRzZtdGdFVTgKaB1LktFBInpKxhKCmBiTSMTw7naq0d/u
+            8RYj5I21RmX6TFqJbNEPzdvMGDVkkN+HzMK4jobncm2hJHeq8er66A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-08T10:07:58Z"
+    mac: ENC[AES256_GCM,data:OXaGC/ERAFM0lyZdWX1GvqFBYkknz6C8YbBBjZiaIyVJ7HpYiqrYC56IshfjAglY6UIq8Wb3Lbcxgl92/C8XAbyZxxokiaXHdGNb9Ln5B4249y39aPyKxFQZEEelS51e+zVOqqtEvqRXJaQ1KZ3yNXCzWFuegxNxQ+LzcYdRwHg=,iv:lnxslXyX0l5gXCWz/z5YUPG0xjnqWfPuTKFvUYd7tMM=,tag:KIXzXtltkfpHSnAo9q1fHA==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0

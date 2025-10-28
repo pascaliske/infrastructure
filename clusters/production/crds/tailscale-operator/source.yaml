@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: tailscale-operator-source
+  namespace: flux-system
+spec:
+  url: https://github.com/tailscale/tailscale
+  ref:
+    # renovate: datasource=github-releases depName=tailscale/tailscale
+    tag: 'v1.90.9'
+  interval: 15m
+  ignore: |
+    # exclude all
+    /*
+    # include crds file
+    !/cmd/k8s-operator/deploy/crds

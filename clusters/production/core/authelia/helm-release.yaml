@@ -1,0 +1,270 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authelia
+  namespace: authelia
+spec:
+  chart:
+    spec:
+      chart: authelia
+      version: '0.10.46'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: authelia
+        namespace: flux-system
+  values:
+    image:
+      registry: ghcr.io
+      repository: authelia/authelia
+      tag: '4.39.12'
+    rbac:
+      enabled: true
+    pod:
+      kind: DaemonSet
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      env:
+        - name: TZ
+          value: ${TIMEZONE}
+        - name: AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE
+          value: /extras/postgresql-password
+      extraVolumeMounts:
+        - name: users
+          mountPath: /extras/users.yaml
+          subPath: users.yaml
+          readOnly: true
+        - name: postgresql-password
+          mountPath: /extras/postgresql-password
+          subPath: password
+          readOnly: true
+        - name: oidc-jwks-key
+          mountPath: /extras/oidc-jwks-key.pem
+          subPath: oidc-jwks-key.pem
+          readOnly: true
+      extraVolumes:
+        - name: users
+          configMap:
+            name: authelia-users
+            items:
+              - key: users.yaml
+                path: users.yaml
+        - name: postgresql-password
+          secret:
+            secretName: postgresql-user
+            items:
+              - key: password
+                path: password
+        - name: oidc-jwks-key
+          secret:
+            secretName: authelia-oidc-jwks-key
+            items:
+              - key: oidc-jwks-key.pem
+                path: oidc-jwks-key.pem
+    configMap:
+      server:
+        # increase defaults for slow hammond api calls
+        timeouts:
+          read: 15s
+          write: 15s
+          idle: 30s
+      log:
+        level: info
+      telemetry:
+        metrics:
+          enabled: true
+          serviceMonitor:
+            enabled: true
+      theme: dark
+      identity_validation:
+        reset_password:
+          secret:
+            path: JWT_TOKEN
+      totp:
+        issuer: Infrastructure
+      webauthn:
+        enable_passkey_login: true
+        display_name: Infrastructure
+      authentication_backend:
+        password_reset:
+          disable: true
+        password_change:
+          disable: true
+        file:
+          enabled: true
+          path: /extras/users.yaml
+          watch: true
+          search:
+            email: true
+          password:
+            algorithm: argon2
+      access_control:
+        secret:
+          enabled: true
+        rules:
+          # internal
+          - policy: bypass
+            domain:
+              - unifi.${DOMAIN_INTERNAL}
+              - vault.${DOMAIN_INTERNAL}
+          - policy: bypass
+            domain: blocky.${DOMAIN_INTERNAL}
+            resources:
+              - /dns-query
+          - policy: bypass
+            domain: loki.${DOMAIN_INTERNAL}
+            resources:
+              - /ready
+              - /loki/api/v1/push
+          - policy: bypass
+            domain: homeassistant.${DOMAIN_INTERNAL}
+            resources:
+              - /api/services
+              - /api/websocket
+          - policy: two_factor
+            domain: vault.${DOMAIN_INTERNAL}
+            subject:
+              - group:admins
+            resources:
+              - /admin
+          - policy: one_factor
+            domain: homeassistant.${DOMAIN_INTERNAL}
+            subject:
+              - group:family
+          - policy: two_factor
+            domain:
+              - ${DOMAIN_INTERNAL}
+              - '*.${DOMAIN_INTERNAL}'
+            subject:
+              - group:admins
+
+          # external
+          - policy: bypass
+            domain:
+              - git.${DOMAIN_EXTERNAL}
+              - registry.${DOMAIN_EXTERNAL}
+          - policy: bypass
+            domain: docs.${DOMAIN_EXTERNAL}
+            resources:
+              - ^\/share
+              - ^\/api
+          - policy: bypass
+            domain: status.${DOMAIN_EXTERNAL}
+            resources:
+              - ^\/assets
+              - ^\/icon
+              - ^\/manifest
+              - ^\/status
+              - ^\/api\/entry-page
+              - ^\/api\/status-page
+              - ^\/$
+          - policy: one_factor
+            domain: docs.${DOMAIN_EXTERNAL}
+            subject:
+              - user:${AUTH_SARAH_USERNAME}
+          - policy: two_factor
+            domain: '*.${DOMAIN_EXTERNAL}'
+            subject:
+              - group:admins
+      session:
+        inactivity: 10m
+        encryption_key:
+          path: STORAGE_ENCRYPTION_KEY
+        cookies:
+          - domain: ${DOMAIN_INTERNAL}
+            subdomain: auth
+            default_redirection_url: https://${DOMAIN_INTERNAL}
+          - domain: ${DOMAIN_EXTERNAL}
+            subdomain: auth
+            default_redirection_url: https://${DOMAIN_EXTERNAL}
+        redis:
+          enabled: true
+          host: rfs-redis
+          port: 26379
+          password:
+            disabled: true
+          high_availability:
+            enabled: true
+            sentinel_name: mymaster
+            password:
+              disabled: true
+      storage:
+        encryption_key:
+          path: STORAGE_ENCRYPTION_KEY
+        postgres:
+          enabled: true
+          address: tcp://postgresql-rw:5432
+          database: authelia
+          username: authelia
+          password:
+            disabled: true
+            path: /extras/postgresql-password
+      notifier:
+        smtp:
+          enabled: true
+          address: ${SMTP_HOST}:587
+          sender: ${SMTP_ACCOUNT_AUTH_EMAIL}
+          subject: '[auth@infrastructure] {title}'
+          username: ${SMTP_ACCOUNT_AUTH_EMAIL}
+          password:
+            path: SMTP_PASSWORD
+      identity_providers:
+        oidc:
+          enabled: true
+          hmac_secret:
+            path: OIDC_HMAC_SECRET
+          jwks:
+            - key:
+                path: /extras/oidc-jwks-key.pem
+          clients:
+            # internal
+            - client_id: synology-dsm
+              client_name: Synology DSM
+              client_secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              public: false
+              authorization_policy: two_factor
+              redirect_uris:
+                - https://ryloth.${DOMAIN_INTERNAL}
+                - https://photos.ryloth.${DOMAIN_INTERNAL}
+              scopes:
+                - openid
+                - profile
+                - groups
+                - email
+              userinfo_signed_response_alg: none
+              token_endpoint_auth_method: client_secret_post
+
+            # external
+            - client_id: gitlab
+              client_name: GitLab
+              client_secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              public: false
+              authorization_policy: two_factor
+              redirect_uris:
+                - https://git.${DOMAIN_EXTERNAL}/users/auth/openid_connect/callback
+              scopes:
+                - openid
+                - profile
+                - groups
+                - email
+              userinfo_signed_response_alg: none
+              token_endpoint_auth_method: client_secret_basic
+            - client_id: vikunja
+              client_name: Vikunja
+              client_secret: '${AUTH_OIDC_CLIENT_SECRET_HASH}'
+              public: false
+              authorization_policy: two_factor
+              redirect_uris:
+                - https://tasks.${DOMAIN_EXTERNAL}/auth/openid/authelia
+              scopes:
+                - openid
+                - email
+                - profile
+              userinfo_signed_response_alg: none
+              token_endpoint_auth_method: client_secret_basic
+    secret:
+      existingSecret: authelia-secrets
+  interval: 10m0s

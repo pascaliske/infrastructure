@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cloudnative-pg
+  namespace: flux-system
+spec:
+  type: oci
+  url: oci://ghcr.io/cloudnative-pg/charts
+  interval: 10m0s

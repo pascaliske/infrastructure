@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: cloudnative-pg-source
+  namespace: flux-system
+spec:
+  url: https://github.com/cloudnative-pg/cloudnative-pg
+  ref:
+    # renovate: datasource=github-releases depName=cloudnative-pg/cloudnative-pg
+    tag: v1.27.0
+  interval: 15m
+  ignore: |
+    # exclude all
+    /*
+    # include crds directory
+    !/config/crd/bases
