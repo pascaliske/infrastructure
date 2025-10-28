@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: vmware-tanzu
+  namespace: flux-system
+spec:
+  type: oci
+  url: oci://ghcr.io/vmware-tanzu/charts
+  interval: 10m0s

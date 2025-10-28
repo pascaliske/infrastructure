@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: silence-operator-source
+  namespace: flux-system
+spec:
+  url: https://github.com/giantswarm/silence-operator
+  ref:
+    # renovate: datasource=github-releases depName=giantswarm/silence-operator
+    tag: 'v0.19.0'
+  interval: 15m
+  ignore: |
+    # exclude all
+    /*
+    # include crds file
+    !/config/crd/bases
