@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: cloudflare-operator
+resources:
+  # operator
+  - https://github.com/adyanth/cloudflare-operator/config/default?ref=v0.13.1
+
+  # tunnel
+  - token.sops.yaml
+  - tunnel.yaml
+patches:
+  # fix leader election manually by cleaning hard-coded default namespace
+  # waiting for merge: https://togithub.com/adyanth/cloudflare-operator/pull/178
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --cluster-resource-namespace=cloudflare-operator

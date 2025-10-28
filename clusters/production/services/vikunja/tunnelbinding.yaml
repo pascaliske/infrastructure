@@ -1,0 +1,15 @@
+---
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: tasks.${DOMAIN_EXTERNAL}
+  namespace: vikunja
+subjects:
+  - name: tasks.${DOMAIN_EXTERNAL}
+    spec:
+      fqdn: 'tasks.${DOMAIN_EXTERNAL}'
+      target: https://traefik.traefik.svc.cluster.local:443
+      noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: talos-traefik

@@ -1,0 +1,15 @@
+---
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: auth.${DOMAIN_EXTERNAL}
+  namespace: authelia
+subjects:
+  - name: auth.${DOMAIN_EXTERNAL}
+    spec:
+      fqdn: 'auth.${DOMAIN_EXTERNAL}'
+      target: https://traefik.traefik.svc.cluster.local:443
+      noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: talos-traefik

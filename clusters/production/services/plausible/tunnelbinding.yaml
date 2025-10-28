@@ -1,0 +1,15 @@
+---
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: analytics.${DOMAIN_EXTERNAL}
+  namespace: plausible
+subjects:
+  - name: analytics.${DOMAIN_EXTERNAL}
+    spec:
+      fqdn: 'analytics.${DOMAIN_EXTERNAL}'
+      target: https://traefik.traefik.svc.cluster.local:443
+      noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: talos-traefik

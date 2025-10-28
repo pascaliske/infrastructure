@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: cluster-settings
+data:
+  TIMEZONE: Europe/Berlin
+  DOMAIN_INTERNAL: iske.cloud
+  DOMAIN_EXTERNAL: pascaliske.dev
+  DOMAIN_TAILNET: hawk-decibel.ts.net
+  PATH_HOME: /home/pi
+  UID: '1000'
+  GID: '1000'
