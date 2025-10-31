@@ -1,0 +1,55 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/siderolabs/talos/refs/heads/release-1.10/website/content/v1.10/schemas/config.schema.json
+version: v1alpha1
+machine:
+  type: controlplane
+  install:
+    disk: /dev/vda
+    image: ${install_image}
+  network:
+    hostname: ${hostname}
+    nameservers:
+      - 10.0.2.1
+    interfaces:
+      - deviceSelector:
+          driver: virtio_net
+          busPath: '0*'
+        dhcp: false
+        addresses:
+          - ${ipv4_address}/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.0.2.1
+        vip:
+          ip: ${cluster_vip}
+  kubelet:
+    nodeIP:
+      validSubnets:
+        - 10.0.2.0/24
+  files:
+    - op: create
+      path: /etc/cri/conf.d/20-customization.part
+      content: |
+        [plugins."io.containerd.cri.v1.images"]
+          discard_unpacked_layers = false
+        [plugins."io.containerd.cri.v1.runtime"]
+          device_ownership_from_security_context = true
+  sysctls:
+    vm.nr_hugepages: '1024' # PostgreSQL
+  features:
+    rbac: true
+    stableHostname: true
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles: ['os:admin']
+      allowedKubernetesNamespaces: ['system-upgrade']
+cluster:
+  network:
+    dnsDomain: cluster.local
+    podSubnets:
+      - 10.42.0.0/16
+    serviceSubnets:
+      - 10.43.0.0/16
+  etcd:
+    advertisedSubnets:
+      - 10.0.2.0/24

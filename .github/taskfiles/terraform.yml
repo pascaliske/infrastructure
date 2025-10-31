@@ -14,6 +14,18 @@ tasks:
     dir: terraform
     cmds:
       - terraform apply {{.CLI_ARGS}}
+  destroy:
+    dir: terraform
+    cmds:
+      - terraform destroy {{.CLI_ARGS}}
+  show:
+    dir: terraform
+    cmds:
+      - terraform show {{.CLI_ARGS}}
+  output:
+    dir: terraform
+    cmds:
+      - terraform output --raw {{.CLI_ARGS}}
   format:
     dir: terraform
     cmds:
@@ -26,3 +38,7 @@ tasks:
     dir: terraform
     cmds:
       - tflint --format compact
+  docs:
+    dir: terraform
+    cmds:
+      - terraform-docs markdown --output-file README.md .

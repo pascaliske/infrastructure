@@ -1,0 +1,59 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/siderolabs/talos/refs/heads/release-1.10/website/content/v1.10/schemas/config.schema.json
+version: v1alpha1
+machine:
+  type: worker
+  install:
+    disk: /dev/vda
+    image: ${install_image}
+  network:
+    hostname: ${hostname}
+    nameservers:
+      - 10.0.2.1
+    interfaces:
+      - deviceSelector:
+          driver: virtio_net
+          busPath: '0*'
+        dhcp: false
+        addresses:
+          - ${ipv4_address}/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.0.2.1
+  kubelet:
+    nodeIP:
+      validSubnets:
+        - 10.0.2.0/24
+  files:
+    - op: create
+      path: /etc/cri/conf.d/20-customization.part
+      content: |
+        [plugins."io.containerd.cri.v1.images"]
+          discard_unpacked_layers = false
+        [plugins."io.containerd.cri.v1.runtime"]
+          device_ownership_from_security_context = true
+  sysctls:
+    vm.nr_hugepages: '1024' # PostgreSQL
+cluster:
+  network:
+    dnsDomain: cluster.local
+    podSubnets:
+      - 10.42.0.0/16
+    serviceSubnets:
+      - 10.43.0.0/16
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: local-path-provisioner
+provisioning:
+  diskSelector:
+    match: disk.dev_path == '/dev/vdb' && !system_disk
+  maxSize: 100GB
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: longhorn
+provisioning:
+  diskSelector:
+    match: disk.dev_path == '/dev/vdb' && !system_disk
+  maxSize: 100GB
