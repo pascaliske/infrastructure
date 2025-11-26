@@ -1,0 +1,33 @@
+---
+apiVersion: databases.spotahome.com/v1
+kind: RedisFailover
+metadata:
+  name: redis
+  namespace: authelia
+spec:
+  redis:
+    image: redis:7.4.6-alpine
+    replicas: 3
+    exporter:
+      enabled: true
+      image: oliver006/redis_exporter:v1.78.0-alpine
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        cpu: 400m
+        memory: 500Mi
+  sentinel:
+    image: redis:7.4.6-alpine
+    replicas: 3
+    exporter:
+      enabled: true
+      image: oliver006/redis_exporter:v1.78.0-alpine
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        cpu: 400m
+        memory: 500Mi

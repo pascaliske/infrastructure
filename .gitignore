@@ -1,6 +1,7 @@
 # ignores
 .cache
 .vagrant
+.talosconfig
 .ansible-vault-password
 *pem*
 *p12*

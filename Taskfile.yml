@@ -5,6 +5,7 @@ includes:
   tf: ./.github/taskfiles/terraform.yml
   vault: ./.github/taskfiles/vault.yml
   sops: ./.github/taskfiles/sops.yml
+  flux: ./.github/taskfiles/flux.yml
   cluster: ./.github/taskfiles/cluster.yml
   blocky: ./.github/taskfiles/blocky.yml
   backup: ./.github/taskfiles/backup.yml

@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+configMapGenerator:
+  - name: grafana-dashboard-nodes
+    files:
+      - nodes.json
+  - name: grafana-dashboard-pods
+    files:
+      - pods.json
+  - name: grafana-dashboard-alerts
+    files:
+      - alerts.json
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana-dashboard: 'true'
+  annotations:
+    k8s-sidecar-target-directory: /tmp/dashboards/Cluster

@@ -1,0 +1,28 @@
+---
+# expected as the magicmirror is shutdown
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  name: target-down-magicmirror
+  namespace: monitoring
+spec:
+  owner: ${AUTH_USERNAME}
+  matchers:
+    - name: alertname
+      value: TargetDown
+    - name: job
+      value: custom/magicmirror
+---
+# expected as the minio host is shutdown regularly
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  name: target-down-minio
+  namespace: monitoring
+spec:
+  owner: ${AUTH_USERNAME}
+  matchers:
+    - name: alertname
+      value: TargetDown
+    - name: job
+      value: custom/minio
