@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       # workaround: ensure git directory exists in working directory, ansible action requires this
       - name: Symlink Git directory to ansible working directory
