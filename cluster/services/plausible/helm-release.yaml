@@ -18,7 +18,7 @@ spec:
     image:
       registry: ghcr.io
       repository: plausible/community-edition
-      tag: v3.0.1
+      tag: v3.1.0
     ingressRoute:
       create: true
       entryPoints:
