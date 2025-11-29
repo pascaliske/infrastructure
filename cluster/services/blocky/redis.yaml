@@ -10,7 +10,7 @@ spec:
     replicas: 3
     exporter:
       enabled: true
-      image: oliver006/redis_exporter:v1.78.0-alpine
+      image: oliver006/redis_exporter:v1.80.1-alpine
     resources:
       requests:
         cpu: 100m
@@ -23,7 +23,7 @@ spec:
     replicas: 3
     exporter:
       enabled: true
-      image: oliver006/redis_exporter:v1.78.0-alpine
+      image: oliver006/redis_exporter:v1.80.1-alpine
     resources:
       requests:
         cpu: 100m
