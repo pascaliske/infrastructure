@@ -2,19 +2,19 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["pascaliske/renovate-config"],
   "flux": {
-    "managerFilePatterns": ["/cluster/.+\\.ya?ml$/"]
+    "managerFilePatterns": ["/clusters/.+\\.ya?ml$/"]
   },
   "helm-values": {
-    "managerFilePatterns": ["/cluster/.+\\.ya?ml$/"]
+    "managerFilePatterns": ["/clusters/.+\\.ya?ml$/"]
   },
   "kubernetes": {
-    "managerFilePatterns": ["/cluster/.+\\.ya?ml$/"]
+    "managerFilePatterns": ["/clusters/.+\\.ya?ml$/"]
   },
   "customManagers": [
     {
       "customType": "regex",
       "description": "Process CRD dependencies",
-      "managerFilePatterns": ["/cluster/.+\\.ya?ml$/"],
+      "managerFilePatterns": ["/clusters/.+\\.ya?ml$/"],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}",
       "matchStrings": [
         "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
@@ -24,7 +24,7 @@
     {
       "customType": "regex",
       "description": "Process any imageName keys in YAML files (cloudnative-pg)",
-      "managerFilePatterns": ["/cluster/.+\\.ya?ml$/"],
+      "managerFilePatterns": ["/clusters/.+\\.ya?ml$/"],
       "datasourceTemplate": "docker",
       "matchStrings": [
         "imageName: (?<depName>[^\\s:]+):(?<currentValue>\\S+)(@(?<currentDigest>sha256:\\S+)?)?"
@@ -38,7 +38,7 @@
       "enabled": false
     },
     {
-      "matchPackageNames": ["/cloudnative-pg\/postgresql/"],
+      "matchPackageNames": ["/cloudnative-pg/postgresql/"],
       "matchUpdateTypes": ["major"],
       "enabled": false
     },
