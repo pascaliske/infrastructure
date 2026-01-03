@@ -1,0 +1,15 @@
+---
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: docs.${DOMAIN_EXTERNAL}
+  namespace: paperless
+subjects:
+  - name: docs.${DOMAIN_EXTERNAL}
+    spec:
+      fqdn: 'docs.${DOMAIN_EXTERNAL}'
+      target: https://traefik.traefik.svc.cluster.local:443
+      noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: talos-traefik

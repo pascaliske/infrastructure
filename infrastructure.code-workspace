@@ -2,15 +2,6 @@
     "folders": [
         {
             "path": "."
-        },
-        {
-            "path": "./ansible"
-        },
-        {
-            "path": "./terraform"
-        },
-        {
-            "path": "./cluster"
         }
     ],
     "settings": {

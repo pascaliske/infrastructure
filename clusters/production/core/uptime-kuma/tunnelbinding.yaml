@@ -1,0 +1,15 @@
+---
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: status.${DOMAIN_EXTERNAL}
+  namespace: uptime-kuma
+subjects:
+  - name: status.${DOMAIN_EXTERNAL}
+    spec:
+      fqdn: 'status.${DOMAIN_EXTERNAL}'
+      target: https://traefik.traefik.svc.cluster.local:443
+      noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: talos-traefik

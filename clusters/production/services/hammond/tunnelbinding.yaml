@@ -1,0 +1,15 @@
+---
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: vehicles.${DOMAIN_EXTERNAL}
+  namespace: hammond
+subjects:
+  - name: vehicles.${DOMAIN_EXTERNAL}
+    spec:
+      fqdn: 'vehicles.${DOMAIN_EXTERNAL}'
+      target: https://traefik.traefik.svc.cluster.local:443
+      noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: talos-traefik

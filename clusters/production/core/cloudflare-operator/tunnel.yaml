@@ -1,0 +1,14 @@
+---
+apiVersion: networking.cfargotunnel.com/v1alpha2
+kind: ClusterTunnel
+metadata:
+  name: talos-traefik
+  namespace: cloudflare-operator
+spec:
+  newTunnel:
+    name: talos-traefik
+  cloudflare:
+    email: info@${DOMAIN_EXTERNAL}
+    domain: ${DOMAIN_EXTERNAL}
+    accountId: ${CLOUDFLARE_ACCOUNT_ID}
+    secret: cloudflare-token

@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+spec:
+  chart:
+    spec:
+      chart: uptime-kuma
+      version: '2.6.0'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: flux-system
+  values:
+    image:
+      repository: louislam/uptime-kuma
+      tag: 1.23.16
+    serviceMonitor:
+      enabled: true
+    ingressRoute:
+      create: true
+      entryPoints:
+        - https
+      rule: Host(`status.${DOMAIN_EXTERNAL}`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+    certificate:
+      create: true
+      dnsNames:
+        - status.${DOMAIN_EXTERNAL}
+      issuerRef:
+        kind: ClusterIssuer
+        name: lets-encrypt-production
+    env:
+      - name: TZ
+        value: ${TIMEZONE}
+      - name: PGID
+        value: '${GID}'
+      - name: PUID
+        value: '${UID}'
+    persistentVolumeClaim:
+      storageClassName: local-path
+    dnsConfig:
+      nameservers:
+        - 10.0.2.32
+  interval: 10m0s
