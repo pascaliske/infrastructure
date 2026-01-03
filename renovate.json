@@ -83,6 +83,10 @@
       "groupName": "silence-operator"
     },
     {
+      "matchPackageNames": ["/loki/"],
+      "groupName": "loki"
+    },
+    {
       "matchPackageNames": ["/velero/"],
       "groupName": "velero"
     },
