@@ -19,7 +19,7 @@ spec:
     loki:
       image:
         repository: grafana/loki
-        tag: '3.5.7'
+        tag: '3.6.3'
       auth_enabled: false
       # replication factor needs to be set explicitly with custom replicas value: https://togithub.com/grafana/loki/issues/8899
       commonConfig:
