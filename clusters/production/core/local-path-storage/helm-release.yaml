@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: local-path-provisioner
-      version: '0.0.32'
+      version: '0.0.33'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -17,7 +17,7 @@ spec:
   values: # defaults: https://github.com/rancher/local-path-provisioner/blob/master/deploy/chart/local-path-provisioner/values.yaml
     image:
       repository: docker.io/rancher/local-path-provisioner
-      tag: 'v0.0.32'
+      tag: 'v0.0.33'
     helperImage:
       repository: docker.io/library/busybox
       tag: '1.37.0'
