@@ -26,5 +26,5 @@ spec:
     operatorConfig:
       image:
         repository: ghcr.io/tailscale/k8s-operator
-        tag: 'v1.90.9'
+        tag: 'v1.92.4'
   interval: 10m0s
