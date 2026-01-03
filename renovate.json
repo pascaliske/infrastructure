@@ -55,6 +55,10 @@
       "groupName": "tailscale"
     },
     {
+      "matchPackageNames": ["/crowdsec/"],
+      "groupName": "crowdsec"
+    },
+    {
       "matchPackageNames": ["/authelia/"],
       "groupName": "authelia"
     },
