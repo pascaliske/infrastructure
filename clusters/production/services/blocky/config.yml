@@ -28,14 +28,13 @@ customDNS:
     # legacy cluster
     coruscant.iske.cloud: ${IP_CORUSCANT}
     kashyyyk.iske.cloud: ${IP_KASHYYYK}
-    alderaan.iske.cloud: ${IP_ALDERAAN}
     dathomir.iske.cloud: ${IP_DATHOMIR}
-    mustafar.iske.cloud: ${IP_MUSTAFAR}
     jakku.iske.cloud: ${IP_JAKKU}
 
     # servers
     ryloth.iske.cloud: ${IP_RYLOTH}
     ilum.iske.cloud: ${IP_ILUM}
+    zigbeeproxy.iske.cloud: ${IP_ZIGBEEPROXY}
 
     # simplified unifi layer 2 device adoption
     unifi: ${IP_SERVICE_VIP}
