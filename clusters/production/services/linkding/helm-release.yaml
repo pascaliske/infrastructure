@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/sissbruecker/linkding
-      tag: 1.44.1
+      tag: 1.44.2
     ingressRoute:
       create: true
       entryPoints:
