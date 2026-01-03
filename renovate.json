@@ -59,6 +59,10 @@
       "groupName": "crowdsec"
     },
     {
+      "matchPackageNames": ["/local-path-provisioner/"],
+      "groupName": "local-path-provisioner"
+    },
+    {
       "matchPackageNames": ["/authelia/"],
       "groupName": "authelia"
     },
