@@ -26,6 +26,6 @@ spec:
   sync:
     kind: GitRepository
     url: ssh://git@github.com/pascaliske/infrastructure
-    ref: refs/heads/feature/rebuild
+    ref: refs/heads/main
     path: clusters/production/base
     pullSecret: flux-system
