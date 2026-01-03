@@ -51,6 +51,10 @@
       "groupName": "traefik"
     },
     {
+      "matchPackageNames": ["/tailscale/"],
+      "groupName": "tailscale"
+    },
+    {
       "matchPackageNames": ["/authelia/"],
       "groupName": "authelia"
     },
