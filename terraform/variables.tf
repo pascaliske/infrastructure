@@ -1,7 +1,12 @@
 # --- talos specific variables
 variable "talos_version" {
   type        = string
-  description = "Version of Talos image to deploy."
+  description = "Version of Talos to deploy."
+}
+
+variable "talos_kubernetes_version" {
+  type        = string
+  description = "Version of Kubernetes to deploy."
 }
 
 variable "talos_schematic" {

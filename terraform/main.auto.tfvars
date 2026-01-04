@@ -2,6 +2,8 @@
 
 talos_version = "v1.11.3"
 
+talos_kubernetes_version = "v1.33.0"
+
 talos_schematic = <<-EOS
   customization:
     systemExtensions:

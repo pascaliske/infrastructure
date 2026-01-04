@@ -23,7 +23,8 @@ resource "talos_machine_secrets" "this" {
 }
 
 data "talos_machine_configuration" "control_plane" {
-  talos_version = var.talos_version
+  talos_version      = var.talos_version
+  kubernetes_version = var.talos_kubernetes_version
 
   cluster_name     = var.cluster_name
   cluster_endpoint = "https://${var.cluster_endpoint}:6443"
@@ -33,7 +34,8 @@ data "talos_machine_configuration" "control_plane" {
 }
 
 data "talos_machine_configuration" "worker" {
-  talos_version = var.talos_version
+  talos_version      = var.talos_version
+  kubernetes_version = var.talos_kubernetes_version
 
   cluster_name     = var.cluster_name
   cluster_endpoint = "https://${var.cluster_vip}:6443"
