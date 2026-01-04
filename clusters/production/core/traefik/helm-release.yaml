@@ -81,6 +81,15 @@ spec:
         expose:
           default: true
         exposedPort: 443
+        http:
+          encodedCharacters:
+            allowEncodedSlash: true
+            allowEncodedBackSlash: true
+            allowEncodedNullCharacter: true
+            allowEncodedSemicolon: true
+            allowEncodedPercent: true
+            allowEncodedQuestionMark: true
+            allowEncodedHash: true
 
       # dashboard
       traefik:
