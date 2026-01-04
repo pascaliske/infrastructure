@@ -4,12 +4,12 @@ output "talos_client_configuration" {
 }
 
 output "talos_machine_configuration_control_plane" {
-  value     = try(data.talos_machine_configuration.control_plane.machine_configuration)
+  value     = try(talos_machine_configuration_apply.control_plane[*].machine_configuration)
   sensitive = true
 }
 
 output "talos_machine_configuration_worker" {
-  value     = try(data.talos_machine_configuration.worker.machine_configuration)
+  value     = try(talos_machine_configuration_apply.worker[*].machine_configuration)
   sensitive = true
 }
 
