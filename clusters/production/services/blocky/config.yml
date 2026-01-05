@@ -11,8 +11,8 @@ upstreams:
     strategy: fast
   groups:
     default:
-      - tcp-tls:cloudflared-dns.cloudflared.svc.cluster.local:5053
-      - tcp-tls:unbound-dns.unbound.svc.cluster.local:5053
+      - tcp+udp:cloudflared-dns.cloudflared.svc.cluster.local:5053
+      - tcp+udp:unbound-dns.unbound.svc.cluster.local:5053
       - https://1.1.1.1/dns-query
   strategy: strict
   timeout: 3s
