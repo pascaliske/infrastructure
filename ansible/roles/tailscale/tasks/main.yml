@@ -1,6 +1,6 @@
 # check auth key
 - name: Check format of auth key
-  assert:
+  ansible.builtin.assert:
     success_msg: The provided auth key looks valid.
     fail_msg: The provided auth key is empty or has an invalid format!
     that:
@@ -9,38 +9,36 @@
       - tailscale_auth_key is regex('^tskey-auth.*')
 
 # configure apt
-- name: Add signing key
+- name: Add apt repository
   become: true
-  apt_key:
-    url: https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}.gpg
-    state: present
-- name: Add repository
-  become: true
-  apt_repository:
-    repo: deb https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main
-    filename: tailscale
-    state: present
+  ansible.builtin.deb822_repository:
+    name: tailscale
+    uris: https://pkgs.tailscale.com/stable/{{ ansible_facts.distribution | lower }}
+    signed_by: https://pkgs.tailscale.com/stable/{{ ansible_facts.distribution | lower }}/{{ ansible_facts.distribution_release | lower }}.gpg
+    suites: '{{ ansible_facts.distribution_release | lower }}'
+    components:
+      - main
 
 # install tailscale
 - name: Install apt package
   become: true
   block:
     - name: Check if tailscale is installed
-      package_facts:
+      ansible.builtin.package_facts:
         manager: auto
     - name: Unhold apt package
-      dpkg_selections:
+      ansible.builtin.dpkg_selections:
         name: tailscale
         selection: install
       when: "'tailscale' in ansible_facts.packages"
     - name: Install apt package
-      apt:
+      ansible.builtin.apt:
         name: tailscale
         update_cache: true
         state: latest
       ignore_errors: '{{ ansible_check_mode }}'
     - name: Hold apt package
-      dpkg_selections:
+      ansible.builtin.dpkg_selections:
         name: tailscale
         selection: hold
 
@@ -49,14 +47,14 @@
   become: true
   block:
     - name: Create service drop-in directory
-      file:
+      ansible.builtin.file:
         path: /etc/systemd/system/tailscaled.service.d/
         state: directory
         owner: root
         group: root
         mode: '0755'
     - name: Create service drop-in file
-      template:
+      ansible.builtin.template:
         src: '{{ role_name }}/tailscaled.service.j2'
         dest: /etc/systemd/system/tailscaled.service.d/override.conf
         owner: root
@@ -65,8 +63,8 @@
       notify: Reload systemd daemon
 
 # check connection status
-- name: Check connection
-  command: tailscale status
+- name: Check connection status
+  ansible.builtin.command: tailscale status
   changed_when: false
   register: tailscale_status
   failed_when:
@@ -74,9 +72,9 @@
     - "'Logged out.' not in tailscale_status.stdout"
 
 # start-up daemon
-- name: Start tailscale
+- name: Start tailscale daemon
   become: true
   no_log: true
-  command: tailscale up --authkey={{ tailscale_auth_key }}
+  ansible.builtin.command: tailscale up --authkey={{ tailscale_auth_key }}
   when:
     - "'Logged out.' in tailscale_status.stdout"
