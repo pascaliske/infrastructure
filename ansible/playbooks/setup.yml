@@ -1,0 +1,10 @@
+---
+# --- hosts
+- name: Setup Ryloth
+  hosts: ryloth.iske.cloud
+  become: true
+  roles:
+    - role: minio
+      tags:
+        - minio
+

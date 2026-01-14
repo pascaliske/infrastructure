@@ -1,42 +1,12 @@
-# masters
-- name: Provision Masters
-  hosts: masters
+---
+# --- all
+- name: Provision all hosts (except synology based)
+  hosts: all,!synology
   roles:
     - role: common
       tags:
-        - masters
         - common
-    - role: log2ram
-      tags:
-        - masters
-        - log2ram
     - role: tailscale
       tags:
-        - masters
         - tailscale
 
-# workers
-- name: Provision Workers
-  hosts: workers
-  roles:
-    - role: common
-      tags:
-        - workers
-        - common
-    - role: log2ram
-      tags:
-        - workers
-        - log2ram
-    - role: tailscale
-      tags:
-        - workers
-        - tailscale
-
-# backup
-- name: Provision Backup
-  hosts: backup
-  become: true
-  roles:
-    - role: minio
-      tags:
-        - minio

@@ -1,18 +1,7 @@
-# cluster
-[masters]
-coruscant.iske.cloud ansible_user=pi
-kashyyyk.iske.cloud ansible_user=pi
-alderaan.iske.cloud ansible_user=pi
-
-[workers]
-dathomir.iske.cloud ansible_user=pi
-mustafar.iske.cloud ansible_user=pi
-jakku.iske.cloud ansible_user=pi
-
-[cluster:children]
-masters
-workers
-
-# backup
-[backup]
+# --- type
+[synology]
 ryloth.iske.cloud ansible_user=pascaliske
+
+# --- purpose
+[backup]
+ryloth.iske.cloud
