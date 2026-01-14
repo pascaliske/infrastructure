@@ -1,0 +1,25 @@
+# --- install ser2net
+- name: Install ser2net proxy
+  become: true
+  ansible.builtin.apt:
+    name: ser2net
+    state: latest
+    update_cache: true
+
+# --- configure proxying of zigbee coordinator via tcp/ip
+- name: Configure ser2net proxy
+  become: true
+  ansible.builtin.template:
+    src: '{{ role_name }}/ser2net.yaml.j2'
+    dest: /etc/ser2net.yaml
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart ser2net
+
+# --- ensure ser2net is started
+- name: Start ser2net proxy
+  become: true
+  ansible.builtin.systemd:
+    name: ser2net
+    state: started

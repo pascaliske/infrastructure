@@ -8,3 +8,9 @@
       tags:
         - minio
 
+- name: Setup ZigBeeProxy
+  hosts: zigbeeproxy.iske.cloud
+  roles:
+    - role: ser2net
+      tags:
+        - ser2net

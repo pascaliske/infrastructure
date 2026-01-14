@@ -1,0 +1,12 @@
+%YAML 1.1
+---
+# {{ ansible_managed }}
+{% for connection in ser2net_connections|default([]) %}
+
+connection: &con{{ '%04d' | format(loop.index) }}
+  accepter: tcp,{{ '9%03d' | format(loop.index) }}
+  enable: {{ 'on' if connection.enabled | default(true) else 'off' }}
+  connector: serialdev,{{ connection.device }},115200n81,nobreak,local
+  options:
+    {{ connection.options | to_nice_yaml | indent(4) | trim }}
+{% endfor %}

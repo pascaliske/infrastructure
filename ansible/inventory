@@ -1,7 +1,13 @@
 # --- type
+[raspberry]
+zigbeeproxy.iske.cloud ansible_user=pi
+
 [synology]
 ryloth.iske.cloud ansible_user=pascaliske
 
 # --- purpose
+[automation]
+zigbeeproxy.iske.cloud
+
 [backup]
 ryloth.iske.cloud

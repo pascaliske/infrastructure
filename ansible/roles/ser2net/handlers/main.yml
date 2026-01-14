@@ -1,0 +1,5 @@
+---
+- name: Restart ser2net
+  ansible.builtin.systemd:
+    name: ser2net
+    state: restarted

@@ -10,3 +10,10 @@
       tags:
         - tailscale
 
+# --- groups
+- name: Provision Raspberry Pis
+  hosts: raspberry
+  roles:
+    - role: log2ram
+      tags:
+        - log2ram

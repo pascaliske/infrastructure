@@ -1,0 +1,7 @@
+---
+ser2net_connections:
+  - device: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2225046-if00
+    options:
+      kickolduser: true
+      chardelay-min: 0
+      chardelay-max: 0
