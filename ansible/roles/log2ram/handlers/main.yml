@@ -1,5 +1,5 @@
 ---
 - name: Restart log2ram
-  systemd:
+  ansible.builtin.systemd:
     name: log2ram
     state: restarted

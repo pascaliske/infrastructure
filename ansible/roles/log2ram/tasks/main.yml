@@ -1,24 +1,26 @@
-- name: Install log2ram
-  when: arm
+# --- install log2ram
+- name: Setup apt repository
   become: true
-  block:
-    - name: Add apt key for log2ram
-      apt_key:
-        url: https://azlux.fr/repo.gpg.key
-        state: present
-    - name: Add apt repository for log2ram
-      apt_repository:
-        repo: deb http://packages.azlux.fr/debian/ buster main
-        filename: azlux
-        state: present
-    - name: Install apt package for log2ram
-      apt:
-        name: log2ram
-        update_cache: true
-        state: latest
-    - name: Update size of log2ram
-      lineinfile:
-        path: '{{ log2ram_config }}'
-        line: 'SIZE={{ log2ram_size }}'
-        regexp: '^SIZE='
-      notify: Restart log2ram
+  ansible.builtin.deb822_repository:
+    name: azlux
+    uris: http://packages.azlux.fr/{{ ansible_facts.distribution | lower }}/
+    signed_by: https://azlux.fr/repo.gpg.key
+    suites: '{{ ansible_facts.distribution_release | lower }}'
+    components:
+      - main
+
+- name: Install log2ram
+  become: true
+  ansible.builtin.apt:
+    name: log2ram
+    state: latest
+    update_cache: true
+
+# --- configure log2ram
+- name: Update size of log2ram
+  become: true
+  ansible.builtin.lineinfile:
+    path: '{{ log2ram_config }}'
+    line: 'SIZE={{ log2ram_size }}'
+    regexp: '^SIZE='
+  notify: Restart log2ram
