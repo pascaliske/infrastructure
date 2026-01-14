@@ -17,3 +17,11 @@
     - role: log2ram
       tags:
         - log2ram
+
+# --- hosts
+- name: Provision GitLab
+  hosts: gitlab.iske.cloud
+  roles:
+    - role: storage
+      tags:
+        - storage

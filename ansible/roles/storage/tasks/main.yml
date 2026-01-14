@@ -1,0 +1,52 @@
+---
+- name: Re-scan host bus for potential disk resizes
+  become: true
+  ansible.builtin.shell:
+    cmd: 'set -o pipefail && echo "- - -" | sudo tee /sys/class/scsi_host/{{ item.host }}/scan'
+    executable: /bin/bash
+  loop: '{{ storage_groups }}'
+
+- name: Setup volume groups
+  become: true
+  community.general.lvg:
+    state: present
+    vg: '{{ item.name }}'
+    pvs: '{{ item.disk }}'
+    pvresize: true
+  loop: '{{ storage_groups }}'
+
+- name: Setup logical volumes
+  become: true
+  community.general.lvol:
+    state: present
+    vg: '{{ item.group }}'
+    lv: '{{ item.name }}'
+    size: '{{ item.size }}'
+  loop: '{{ storage_volumes }}'
+
+- name: Format the logical volumes
+  become: true
+  community.general.filesystem:
+    state: present
+    fstype: '{{ item.type }}'
+    dev: '/dev/{{ item.group }}/{{ item.name }}'
+    resizefs: true
+  loop: '{{ storage_volumes }}'
+
+- name: Ensure mount directories exist
+  become: true
+  ansible.builtin.file:
+    state: directory
+    path: '{{ item.mount }}'
+    owner: '{{ ansible_user }}'
+    mode: '755'
+  loop: '{{ storage_volumes }}'
+
+- name: Mount the logical volumes
+  become: true
+  ansible.posix.mount:
+    state: mounted
+    src: '/dev/{{ item.group }}/{{ item.name }}'
+    path: '{{ item.mount }}'
+    fstype: '{{ item.type }}'
+  loop: '{{ storage_volumes }}'

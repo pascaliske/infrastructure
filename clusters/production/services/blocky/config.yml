@@ -35,6 +35,7 @@ customDNS:
     ryloth.iske.cloud: ${IP_RYLOTH}
     ilum.iske.cloud: ${IP_ILUM}
     zigbeeproxy.iske.cloud: ${IP_ZIGBEEPROXY}
+    gitlab.iske.cloud: ${IP_GITLAB}
 
     # simplified unifi layer 2 device adoption
     unifi: ${IP_SERVICE_VIP}

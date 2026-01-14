@@ -1,4 +1,7 @@
 # --- type
+[proxmox]
+gitlab.iske.cloud ansible_user=pi
+
 [raspberry]
 zigbeeproxy.iske.cloud ansible_user=pi
 
