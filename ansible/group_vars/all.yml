@@ -3,3 +3,6 @@
 arm: '{{ ansible_architecture in ["aarch64", "armhf", "armv7l"] }}'
 hostname_fqdn: '{{ inventory_hostname }}'
 hostname_prefix: "{{ inventory_hostname | split('.') | first }}"
+
+# tailscale
+tailscale_auth_key: '{{ vault.tailscale.auth_key }}'
