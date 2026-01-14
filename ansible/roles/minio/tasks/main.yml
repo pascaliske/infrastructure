@@ -1,27 +1,27 @@
-# check data directory
-- name: Check data directory
-  assert:
+# --- check variables
+- name: Check provided data directory
+  ansible.builtin.assert:
     success_msg: The provided data directory value is valid.
     fail_msg: The provided data directory value is invalid!
     that:
       - minio_data_directory is defined
       - minio_data_directory | length > 0
 
-# directories
+# --- preparation
 - name: Ensure directories exist
-  file:
+  ansible.builtin.file:
     path: '{{ item }}'
     state: directory
   loop:
     - '{{ minio_data_directory }}'
 
-# minio
+# --- install minio
 - name: Create container
-  docker_container:
+  community.docker.docker_container:
     name: '{{ role_name }}'
     image: '{{ role_name }}/{{ role_name }}:RELEASE.2022-10-24T18-35-07Z'
-    pull: true
     restart_policy: unless-stopped
+    pull: true
     detach: true
     command: server /data --console-address ":9001"
     user: '{{ ansible_user_uid }}:{{ ansible_user_gid }}'
