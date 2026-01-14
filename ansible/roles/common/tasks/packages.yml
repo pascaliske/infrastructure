@@ -1,41 +1,16 @@
 # install common apt packages
 - name: Install common apt packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: '{{ item }}'
-    update_cache: true
     state: latest
+    update_cache: true
   loop: '{{ common_apt_packages }}'
 
 # install common pip packages
-- name: Install python packages
-  pip:
+- name: Install common python packages
+  ansible.builtin.pip:
     name: '{{ item }}'
     state: latest
     extra_args: "{{ '--break-system-packages' if ansible_distribution == 'Debian' and ansible_distribution_major_version >= '12' else '' }}"
   loop: '{{ common_pip_packages }}'
-
-# install system dependencies for alpine 3.13
-- name: Install dependencies for alpine 3.13
-  when: ansible_distribution == 'Debian' and ansible_distribution_major_version < '12'
-  become: true
-  block:
-    - name: Add signing keys for buster backports
-      apt_key:
-        keyserver: keyserver.ubuntu.com
-        id: '{{ item }}'
-        state: present
-      loop:
-        - 04EE7237B7D453EC
-        - 648ACFD622F3D138
-    - name: Add apt repository for buster backports
-      apt_repository:
-        repo: deb http://httpredir.debian.org/debian buster-backports main contrib non-free
-        filename: debian-backports
-        state: present
-    - name: Install libseccomp2 for alpine 3.13
-      apt:
-        name: libseccomp2
-        default_release: buster-backports
-        update_cache: true
-        state: latest

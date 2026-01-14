@@ -1,15 +1,15 @@
 # install dependencies
-- include_tasks: packages.yml
+- ansible.builtin.include_tasks: packages.yml
 
 # configure system
-- include_tasks: system/boot.yml
-- include_tasks: system/network.yml
-- include_tasks: system/filesystem.yml
-- include_tasks: system/swap.yml
-- include_tasks: system/localization.yml
-- include_tasks: system/motd.yml
-- include_tasks: system/shell.yml
+- ansible.builtin.include_tasks: system/boot.yml
+- ansible.builtin.include_tasks: system/network.yml
+- ansible.builtin.include_tasks: system/filesystem.yml
+- ansible.builtin.include_tasks: system/swap.yml
+- ansible.builtin.include_tasks: system/localization.yml
+- ansible.builtin.include_tasks: system/motd.yml
+- ansible.builtin.include_tasks: system/shell.yml
 
 # install tools
-- include_tasks: tools/vim.yml
-- include_tasks: tools/unattended-upgrades.yml
+- ansible.builtin.include_tasks: tools/vim.yml
+- ansible.builtin.include_tasks: tools/unattended-upgrades.yml

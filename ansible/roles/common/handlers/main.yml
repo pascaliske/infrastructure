@@ -1,10 +1,11 @@
 ---
 - name: Reboot
   become: true
-  reboot:
+  ansible.builtin.reboot:
     reboot_timeout: 3600
+
 - name: Restart dhcpcd
   become: true
-  service:
+  ansible.builtin.service:
     name: dhcpcd
     state: restarted
