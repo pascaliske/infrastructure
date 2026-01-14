@@ -22,10 +22,6 @@
       tags:
         - masters
         - tailscale
-    - role: keepalived
-      tags:
-        - masters
-        - keepalived
     - role: k3s
       tags:
         - masters
