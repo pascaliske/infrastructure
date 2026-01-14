@@ -2,7 +2,6 @@
 - ansible.builtin.include_tasks: packages.yml
 
 # configure system
-- ansible.builtin.include_tasks: system/boot.yml
 - ansible.builtin.include_tasks: system/network.yml
 - ansible.builtin.include_tasks: system/filesystem.yml
 - ansible.builtin.include_tasks: system/swap.yml

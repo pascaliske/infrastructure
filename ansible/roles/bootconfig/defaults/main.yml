@@ -1,0 +1,5 @@
+---
+bootconfig_file: /boot/firmware/config.txt
+bootconfig_values:
+  dtoverlay=disable-bt: 'yes'
+  dtoverlay=disable-wifi: 'yes'

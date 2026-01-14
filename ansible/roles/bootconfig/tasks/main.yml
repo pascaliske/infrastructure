@@ -1,0 +1,11 @@
+---
+# --- configure boot config
+- name: Configure boot config in {{ bootconfig_file }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: '{{ bootconfig_file }}'
+    line: "{{ item.key }}{{ '=' ~ item.value if item.value != 'yes' }}"
+    regexp: "^#?{{ item.key }}=?"
+  loop: '{{ bootconfig_values | dict2items }}'
+  notify: Reboot
+
