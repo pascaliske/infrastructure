@@ -1,0 +1,44 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+vars:
+  PLAYBOOK: provision
+
+tasks:
+  install:
+    desc: Install all Ansible related dependencies.
+    dir: ansible
+    cmds:
+      - ansible-galaxy install -r requirements.yml {{.CLI_ARGS}}
+
+  plan:
+    desc: Do a plan / check run of the given Ansible playbook.
+    dir: ansible
+    cmds:
+      - ansible-playbook --diff --extra-vars @vars/vault.yml playbooks/{{.PLAYBOOK}}.yml {{.CLI_ARGS}} --check
+
+  apply:
+    desc: Apply the given Ansible playbook.
+    dir: ansible
+    cmds:
+      - ansible-playbook --diff --extra-vars @vars/vault.yml playbooks/{{.PLAYBOOK}}.yml {{.CLI_ARGS}}
+
+  encrypt:
+    desc: Encrypt Ansible vault file.
+    dir: ansible
+    cmds:
+      - ansible-vault encrypt vars/vault.yml
+
+  decrypt:
+    desc: Decrypt Ansible vault file.
+    dir: ansible
+    cmds:
+      - ansible-vault decrypt vars/vault.yml
+
+  lint:
+    desc: Locally run ansible-lint tool.
+    env:
+      ANSIBLE_ROLES_PATH: ansible/roles
+    cmds:
+      - ansible-lint ansible

@@ -1,44 +1,62 @@
+---
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: '3'
 
 tasks:
   init:
+    desc: Initialize the working directory for Terraform.
     dir: terraform
     cmds:
       - terraform init {{.CLI_ARGS}}
   plan:
+    desc: Perform plan run to determine changes to the infrastructure.
     dir: terraform
     cmds:
       - terraform plan {{.CLI_ARGS}}
   apply:
+    desc: Apply planned changes to the infrastructure.
+    prompt: This command can be destructive. Do you want to continue?
     dir: terraform
     cmds:
-      - terraform apply {{.CLI_ARGS}}
+      - terraform apply --auto-approve {{.CLI_ARGS}}
   destroy:
+    desc: Destroy resources defined by the configuration.
+    prompt: This command can be destructive. Do you want to continue?
     dir: terraform
     cmds:
       - terraform destroy {{.CLI_ARGS}}
   show:
+    desc: Show the current state or a saved plan.
     dir: terraform
     cmds:
       - terraform show {{.CLI_ARGS}}
   output:
+    desc: Show output values from the root module.
     dir: terraform
     cmds:
       - terraform output --raw {{.CLI_ARGS}}
+  state:
+    desc: Perform advanced state management. Be careful!
+    dir: terraform
+    cmds:
+      - terraform state {{.CLI_ARGS}}
   format:
+    desc: Format the configuration according to the standard style.
     dir: terraform
     cmds:
       - terraform fmt {{.CLI_ARGS}}
   validate:
+    desc: Check if the configuration is valid.
     dir: terraform
     cmds:
       - terraform validate {{.CLI_ARGS}}
   lint:
+    desc: Lint the configuration for possible errors, deprecated syntax and unused declarations.
     dir: terraform
     cmds:
       - tflint --format compact
   docs:
+    desc: Generate documentation of the defined infrastructure.
     dir: terraform
     cmds:
       - terraform-docs markdown --output-file README.md .
