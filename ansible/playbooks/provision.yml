@@ -14,10 +14,6 @@
       tags:
         - masters
         - tailscale
-    - role: k3s
-      tags:
-        - masters
-        - k3s
 
 # workers
 - name: Provision Workers
@@ -35,10 +31,6 @@
       tags:
         - workers
         - tailscale
-    - role: k3s
-      tags:
-        - workers
-        - k3s
 
 # backup
 - name: Provision Backup
