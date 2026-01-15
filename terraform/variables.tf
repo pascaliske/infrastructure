@@ -107,6 +107,28 @@ variable "worker_storage" {
   description = "Size of storage for the workers."
 }
 
+# --- gitlab specific variables
+
+variable "gitlab_cores" {
+  type        = number
+  description = "Number of cores for the gitlab virtual machine."
+}
+
+variable "gitlab_memory" {
+  type        = number
+  description = "Size of memory for the gitlab virtual machine."
+}
+
+variable "gitlab_storage" {
+  type        = number
+  description = "Size of storage for the gitlab virtual machine."
+}
+
+variable "gitlab_ipv4_address" {
+  type        = string
+  description = "IPv4 address for the gitlab virtual machine."
+}
+
 # --- dns variables
 
 variable "GOOGLE_VERIFICATION_TOKEN" {

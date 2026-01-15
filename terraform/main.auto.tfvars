@@ -55,3 +55,13 @@ worker_cores = 2
 worker_memory = 12288
 
 worker_storage = 200
+
+# --- gitlab specific values
+
+gitlab_cores = 2
+
+gitlab_memory = 4096
+
+gitlab_storage = 50
+
+gitlab_ipv4_address = "10.0.2.12/24"
