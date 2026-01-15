@@ -38,7 +38,7 @@ customDNS:
     gitlab.iske.cloud: ${IP_GITLAB}
 
     # simplified unifi layer 2 device adoption
-    unifi: ${IP_SERVICE_VIP}
+    unifi: ${IP_UNIFI_CONTROLLER}
 
 conditional:
   mapping:
