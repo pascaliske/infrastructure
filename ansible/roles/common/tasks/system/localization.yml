@@ -14,4 +14,4 @@
 - name: Set locale as default
   become: true
   ansible.builtin.command:
-    cmd: 'localectl set-locale {{ common_locale }}'
+    cmd: 'update-locale LANG={{ common_locale }}'
