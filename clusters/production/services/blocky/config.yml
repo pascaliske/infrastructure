@@ -25,12 +25,6 @@ customDNS:
     # cluster
     cluster.iske.cloud: ${IP_CLUSTER_VIP}
 
-    # legacy cluster
-    coruscant.iske.cloud: ${IP_CORUSCANT}
-    kashyyyk.iske.cloud: ${IP_KASHYYYK}
-    dathomir.iske.cloud: ${IP_DATHOMIR}
-    jakku.iske.cloud: ${IP_JAKKU}
-
     # servers
     ryloth.iske.cloud: ${IP_RYLOTH}
     ilum.iske.cloud: ${IP_ILUM}

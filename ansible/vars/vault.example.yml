@@ -4,21 +4,8 @@ vault:
     # network
     router: ''
 
-    # nodes - local
-    coruscant: ''
-    kashyyyk: ''
-    alderaan: ''
-    dathomir: ''
-    mustafar: ''
-    jakku: ''
-
-    # nodes - tailscale
-    tailscale_coruscant: ''
-    tailscale_kashyyyk: ''
-    tailscale_alderaan: ''
-    tailscale_dathomir: ''
-    tailscale_mustafar: ''
-    tailscale_jakku: ''
+    # cluster
+    cluster_vip: ''
 
   # ssh
   ssh:
@@ -26,7 +13,7 @@ vault:
 
   # tailscale
   tailscale:
-    auth_key: '' # e.g. tskey-xyz
+    auth_key: '' # e.g. tskey-auth-xyz
 
   # minio - only if needed
   minio:
