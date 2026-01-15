@@ -1,4 +1,7 @@
 ---
+# ansible
+ansible_managed: "{{ 'Ansible managed file - ' + template_path }}"
+
 # system
 arm: '{{ ansible_architecture in ["aarch64", "armhf", "armv7l"] }}'
 hostname_fqdn: '{{ inventory_hostname }}'
