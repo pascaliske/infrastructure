@@ -17,13 +17,17 @@ resource "proxmox_virtual_environment_vm" "this" {
   description = "Managed by Terraform"
   tags        = concat(["terraform"], var.tags)
 
-  boot_order      = ["virtio0"]
+  boot_order      = ["${var.storage_bus}0"]
   scsi_hardware   = "virtio-scsi-single"
   keyboard_layout = "de"
 
-  startup {
-    order    = var.order
-    up_delay = 10
+  dynamic "startup" {
+    for_each = var.order >= 0 ? [0] : []
+
+    content {
+      order    = var.order
+      up_delay = 10
+    }
   }
 
   agent {
@@ -48,18 +52,47 @@ resource "proxmox_virtual_environment_vm" "this" {
     firewall = true
   }
 
-  disk {
-    datastore_id = var.datastore
-    interface    = "virtio0"
-    file_format  = "raw"
-    file_id      = var.image
-    size         = 20
+  # use bootable image as first disk if image is supplied
+  dynamic "disk" {
+    for_each = var.image != null ? [0] : []
+
+    content {
+      datastore_id = var.datastore
+      interface    = "${var.storage_bus}0"
+      file_format  = "raw"
+      file_id      = var.image
+      size         = 20
+    }
   }
 
-  disk {
-    datastore_id = var.datastore
-    interface    = "virtio1"
-    size         = var.storage
+  # use boot disk as first disk if image is not supplied
+  dynamic "disk" {
+    for_each = var.image == null ? [0] : []
+
+    content {
+      datastore_id = var.datastore
+      interface    = "${var.storage_bus}0"
+      size         = 20
+    }
+  }
+
+  dynamic "disk" {
+    for_each = var.storage > 0 ? [0] : []
+
+    content {
+      datastore_id = var.datastore
+      interface    = "${var.storage_bus}1"
+      size         = var.storage
+    }
+  }
+
+  dynamic "cdrom" {
+    for_each = var.cdrom != null ? [0] : []
+
+    content {
+      file_id   = var.cdrom
+      interface = "ide0"
+    }
   }
 
   initialization {
@@ -77,5 +110,10 @@ resource "proxmox_virtual_environment_vm" "this" {
       servers = var.dns_servers
       domain  = var.dns_domain
     }
+  }
+
+  # ignore if cdrom is removed manually
+  lifecycle {
+    ignore_changes = [cdrom]
   }
 }

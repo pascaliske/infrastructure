@@ -78,9 +78,11 @@ module "control_plane" {
   datastore = "data"
   node      = "pve-01"
 
-  cores   = var.control_plane_cores
-  memory  = var.control_plane_memory
-  storage = var.control_plane_storage
+  cores  = var.control_plane_cores
+  memory = var.control_plane_memory
+
+  storage     = var.control_plane_storage
+  storage_bus = "virtio"
 
   ipv4_address = "${local.talos_control_plane_ips[count.index]}/24"
   ipv4_gateway = var.network_gateway
@@ -129,9 +131,11 @@ module "worker" {
   datastore = "data"
   node      = "pve-01"
 
-  cores   = var.worker_cores
-  memory  = var.worker_memory
-  storage = var.worker_storage
+  cores  = var.worker_cores
+  memory = var.worker_memory
+
+  storage     = var.worker_storage
+  storage_bus = "virtio"
 
   ipv4_address = "${local.talos_worker_ips[count.index]}/24"
   ipv4_gateway = var.network_gateway

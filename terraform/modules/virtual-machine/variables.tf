@@ -11,9 +11,10 @@ variable "id" {
 variable "order" {
   type        = number
   description = "Order of the virtual machine."
+  default     = -1
 
   validation {
-    condition     = var.order >= 0
+    condition     = var.order >= 0 || var.order == -1
     error_message = "The order is required!"
   }
 }
@@ -81,6 +82,17 @@ variable "storage" {
   }
 }
 
+variable "storage_bus" {
+  type        = string
+  description = "The storage bus used for all disks of the virtual machine."
+  default     = "scsi"
+
+  validation {
+    condition     = contains(["scsi", "virtio"], var.storage_bus)
+    error_message = "The storage bus must either 'scsi' or 'virtio'!"
+  }
+}
+
 variable "ipv4_address" {
   type        = string
   description = "IPv4 address for the virtual machine."
@@ -123,12 +135,16 @@ variable "dns_domain" {
 
 variable "image" {
   type        = string
-  description = "Image for the virtual machine."
+  description = "Optional bootable image for the virtual machine."
+  nullable    = true
+  default     = null
+}
 
-  validation {
-    condition     = length(var.image) > 0
-    error_message = "Image is required!"
-  }
+variable "cdrom" {
+  type        = string
+  description = "Optional cdrom image for the virtual machine."
+  nullable    = true
+  default     = null
 }
 
 variable "tags" {
