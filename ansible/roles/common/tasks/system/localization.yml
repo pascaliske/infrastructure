@@ -1,16 +1,17 @@
-# configure timezone
+# --- configure timezone
 - name: Configure timezone
   become: true
-  timezone:
+  ansible.builtin.timezone:
     name: '{{ common_timezone }}'
 
-# configure locale
-- name: Configure locale
+# --- configure locale
+- name: Ensure the locale exists
   become: true
-  block:
-    - name: Ensure the locale exists
-      locale_gen:
-        name: '{{ common_locale }}'
-        state: present
-    - name: Set locale as default
-      command: 'localectl set-locale {{ common_locale }}'
+  ansible.builtin.locale_gen:
+    name: '{{ common_locale }}'
+    state: present
+
+- name: Set locale as default
+  become: true
+  ansible.builtin.command:
+    cmd: 'localectl set-locale {{ common_locale }}'

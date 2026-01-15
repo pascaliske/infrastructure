@@ -1,5 +1,0 @@
----
-# common
-common_static_ip: "{{ vault.ips[hostname_prefix] }}"
-common_static_router: '{{ vault.ips.router }}'
-common_static_dns: '{{ vault.ips.router }}'

@@ -1,7 +1,7 @@
-# configure unattended upgrades
+# --- configure unattended upgrades
 - name: Configure unattended-upgrades
   become: true
-  template:
+  ansible.builtin.template:
     src: unattended-upgrades/{{ item }}.j2
     dest: /etc/apt/apt.conf.d/{{ item }}
     mode: '0644'

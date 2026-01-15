@@ -1,5 +1,7 @@
-# expand filesystem
-- name: Expand filesystem to fill disk
-  when: arm
+# --- expand root filesystem
+- name: Expand root filesystem
   become: true
-  command: raspi-config --expand-rootfs
+  ansible.builtin.command:
+    cmd: raspi-config --expand-rootfs
+  when:
+    - '"raspberry" in group_names'

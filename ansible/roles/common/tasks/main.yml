@@ -4,7 +4,6 @@
 # configure system
 - ansible.builtin.include_tasks: system/network.yml
 - ansible.builtin.include_tasks: system/filesystem.yml
-- ansible.builtin.include_tasks: system/swap.yml
 - ansible.builtin.include_tasks: system/localization.yml
 - ansible.builtin.include_tasks: system/motd.yml
 - ansible.builtin.include_tasks: system/shell.yml

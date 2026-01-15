@@ -1,23 +1,20 @@
 ---
+common_hostname: '{{ inventory_hostname }}'
+common_static_ip: ''
+common_static_router: ''
+common_static_dns: ''
 common_timezone: Europe/Berlin
 common_locale: en_US.UTF-8
-common_location: private
 common_shell_aliases:
   - alias: ll
     command: ls -lisahG
 common_apt_packages:
   - apt-transport-https
   - unattended-upgrades
-  - iptables
   - dnsutils
-  - tmux
   - htop
+  - iftop
+  - iotop
+  - ncdu
+  - tmux
   - curl
-  - git
-  - unzip
-  - python3
-  - python3-pip
-  - open-iscsi
-common_pip_packages:
-  - pyyaml
-  - kubernetes

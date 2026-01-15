@@ -1,60 +1,38 @@
-# configure hostname
-- name: Configure hostname
+---
+# --- configure system hostname
+- name: Set the hostname
   become: true
-  block:
-    - name: Set the hostname
-      command: hostnamectl set-hostname "{{ hostname_fqdn }}"
-    - name: Update /etc/hosts with new hostname
-      when: arm
-      lineinfile:
-        path: /etc/hosts
-        line: "127.0.1.1\t\traspberrypi {{ hostname_fqdn }}"
-        regexp: "^127.0.1.1"
-        backrefs: true
+  ansible.builtin.command:
+    cmd: hostnamectl set-hostname "{{ common_hostname }}"
 
-# configure static ip
-- name: Configure static ip
-  when: common_location == 'private'
+- name: Update /etc/hosts with new hostname
   become: true
-  block:
-    - name: Configure static ip via dhcpcd
-      when: ansible_distribution == 'Debian' and ansible_distribution_major_version <= "11"
-      lineinfile:
-        path: /etc/dhcpcd.conf
-        line: '{{ item.line }}'
-        regexp: '{{ item.regex }}'
-      loop:
-        - { regex: '^interface eth[0-9]$', line: 'interface eth0' }
-        - { regex: '^static ip_address', line: "static ip_address={{ common_static_ip }}" }
-        - { regex: '^static routers', line: 'static routers={{ common_static_router }}' }
-        - { regex: '^static domain_name_servers', line: 'static domain_name_servers={{ common_static_dns }}' }
-      notify: Restart dhcpcd
-    - name: Configure static ip via nmcli
-      when: ansible_distribution == 'Debian' and ansible_distribution_major_version >= "12"
-      community.general.nmcli:
-        state: present
-        type: ethernet
-        conn_name: eth0
-        ip4: '{{ common_static_ip }}/24'
-        gw4: '{{ common_static_router }}'
-        dns4:
-          - '{{ common_static_dns }}'
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    state: present
+    regexp: '127\.0\.1\.1\s+'
+    line: "127.0.1.1 {{ hostnames | select | join(' ') }}"
+    backrefs: true
+  vars:
+    hostnames:
+      - "{{ 'raspberrypi' if 'raspberry' in group_names else None }}"
+      - "{{ common_hostname | default(inventory_hostname) }}"
+  when:
+    - common_hostname is defined
+    - common_hostname | length > 0
 
-# configure iptables-legacy
-- name: Configure iptables-legacy
+# --- configure static ip
+- name: Configure static ip via nmcli
   become: true
-  block:
-    - name: Flush iptables before changing to iptables-legacy
-      iptables:
-        flush: true
-      changed_when: false
-    - name: Changing to iptables-legacy
-      alternatives:
-        path: /usr/sbin/iptables-legacy
-        name: iptables
-      notify: Reboot
-    - name: Changing to ip6tables-legacy
-      alternatives:
-        path: /usr/sbin/ip6tables-legacy
-        name: ip6tables
-      notify: Reboot
+  community.general.nmcli:
+    state: present
+    type: ethernet
+    conn_name: eth0
+    ip4: '{{ common_static_ip }}'
+    gw4: '{{ common_static_router }}'
+    dns4:
+      - '{{ common_static_dns }}'
+  when:
+    - common_static_ip is defined
+    - common_static_router is defined
+    - common_static_dns is defined

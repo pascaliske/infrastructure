@@ -1,13 +1,13 @@
-# configure vim
-- name: Install vim
-  block:
-    - name: Install apt package for vim
-      become: true
-      apt:
-        name: vim
-        update_cache: true
-        state: latest
-    - name: Configure vim
-      template:
-        src: vim/.vimrc.j2
-        dest: '{{ ansible_env.HOME }}/.vimrc'
+# --- ensure vim is installed
+- name: Install apt package for vim
+  become: true
+  ansible.builtin.apt:
+    name: vim
+    state: latest
+    update_cache: true
+
+# --- configure vim
+- name: Configure vim
+  ansible.builtin.template:
+    src: vim/.vimrc.j2
+    dest: '{{ ansible_facts.env.HOME }}/.vimrc'

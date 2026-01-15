@@ -1,4 +1,8 @@
 ---
+common_static_ip: '10.0.2.11/24'
+common_static_router: '10.0.2.1'
+common_static_dns: '10.0.2.1'
+
 ser2net_connections:
   - device: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2225046-if00
     options:

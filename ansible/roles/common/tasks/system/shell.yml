@@ -1,17 +1,17 @@
-# setup bash aliases for regular user
+# --- setup bash aliases for regular user
 - name: Create aliases for regular user
-  lineinfile:
-    path: '{{ ansible_env.HOME }}/.bashrc'
+  ansible.builtin.lineinfile:
+    path: '{{ ansible_facts.env.HOME }}/.bashrc'
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
     insertafter: ^alias
     create: true
   loop: '{{ common_shell_aliases }}'
 
-# setup bash aliases for root user
+# --- setup bash aliases for root user
 - name: Create aliases for root user
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: '/root/.bashrc'
     line: 'alias {{ item.alias }}="{{ item.command }}"'
     regexp: 'alias {{ item.alias }}="{{ item.command }}"$'
