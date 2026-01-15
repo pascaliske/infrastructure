@@ -2,8 +2,5 @@
 # ansible
 ansible_managed: "{{ 'Ansible managed file - ' + template_path }}"
 
-# common
-common_hostname: '{{ inventory_hostname }}'
-
 # tailscale
 tailscale_auth_key: '{{ vault.tailscale.auth_key }}'

@@ -33,6 +33,7 @@
     dns4:
       - '{{ common_static_dns }}'
   when:
+    - "'raspberry' in group_names"
     - common_static_ip is defined
     - common_static_router is defined
     - common_static_dns is defined

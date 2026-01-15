@@ -1,4 +1,5 @@
 ---
+# bootconfig
 bootconfig_values:
   # disable wifi & bluetooth
   dtoverlay=disable-wifi: 'yes'
