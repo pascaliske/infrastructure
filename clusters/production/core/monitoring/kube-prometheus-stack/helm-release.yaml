@@ -203,6 +203,8 @@ spec:
         # remote_cache:
         #   type: redis
         #   connstr: addr=redis.redis.svc.cluster.local:6379
+        public_dashboards:
+          enabled: false
         analytics:
           reporting_enabled: false
           check_for_updates: true
