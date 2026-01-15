@@ -18,6 +18,13 @@
       tags:
         - log2ram
 
+- name: Provision Docker hosts
+  hosts: docker
+  roles:
+    - role: docker
+      tags:
+        - docker
+
 # --- hosts
 - name: Provision GitLab
   hosts: gitlab.iske.cloud

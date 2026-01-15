@@ -1,0 +1,76 @@
+---
+# --- check variables
+- name: Check provided data directory
+  ansible.builtin.assert:
+    success_msg: The provided data directory value is valid.
+    fail_msg: The provided data directory value is invalid!
+    that:
+      - docker_data_dir is defined
+      - docker_data_dir | length > 0
+
+- name: Check provided docker network
+  ansible.builtin.assert:
+    success_msg: The provided docker network value is valid.
+    fail_msg: The provided docker network value is invalid!
+    that:
+      - docker_network is defined
+      - docker_network | length > 0
+
+# --- install docker
+- name: Setup apt repository
+  become: true
+  ansible.builtin.deb822_repository:
+    name: docker
+    uris: 'https://download.docker.com/linux/{{ ansible_facts.distribution | lower }}'
+    signed_by: 'https://download.docker.com/linux/{{ ansible_facts.distribution | lower }}/gpg'
+    architectures: '{{ "arm64" if ansible_facts.architecture == "aarch64" else "amd64" }}'
+    suites: '{{ ansible_facts.distribution_release | lower }}'
+    components:
+      - stable
+
+- name: Install packages
+  become: true
+  ansible.builtin.apt:
+    name: '{{ item }}'
+    state: present
+    update_cache: true
+  loop:
+    - docker-ce
+    - docker-ce-cli
+
+# --- configure docker
+- name: Ensure directories exists
+  become: true
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    mode: '710'
+  loop:
+    - '{{ docker_config_dir }}'
+    - '{{ docker_data_dir }}'
+
+- name: Configure docker daemon
+  become: true
+  ansible.builtin.template:
+    src: '{{ role_name }}/daemon.json.j2'
+    dest: /etc/docker/daemon.json
+    validate: /usr/bin/dockerd --validate --config-file %s
+    mode: '644'
+  notify: Restart docker
+
+# --- setup network
+- name: Setup container network
+  become: true
+  community.docker.docker_network:
+    name: '{{ docker_network }}'
+    state: present
+
+# # --- setup image clean-up cronjob
+# - name: Setup container image clean-up cronjob
+#   become: true
+#   ansible.builtin.cron:
+#     name: 'clean-up container images daily at 03:42'
+#     hour: '3'
+#     minute: '42'
+#     job: 'docker system prune --filter "until=720h" --all --force'
+#   when: docker_image_cleanup_enabled

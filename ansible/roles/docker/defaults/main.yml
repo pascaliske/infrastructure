@@ -1,0 +1,6 @@
+---
+docker_config_dir: '{{ ansible_facts.env.HOME }}/docker'
+docker_data_dir: /var/lib/docker
+docker_network: "{{ inventory_hostname | split('.') | first }}"
+docker_live_restore: true
+docker_image_cleanup_enabled: true

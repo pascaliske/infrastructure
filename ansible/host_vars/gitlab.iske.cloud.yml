@@ -10,3 +10,6 @@ storage_volumes:
     size: +100%FREE
     type: ext4
     mount: /data
+
+# docker
+docker_data_dir: /data/docker
