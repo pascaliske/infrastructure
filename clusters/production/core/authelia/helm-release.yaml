@@ -109,7 +109,7 @@ spec:
           - policy: bypass
             domain:
               - unifi.${DOMAIN_INTERNAL}
-              - vault.${DOMAIN_INTERNAL}
+              - pass.${DOMAIN_INTERNAL}
           - policy: bypass
             domain: status.${DOMAIN_INTERNAL}
             resources:
@@ -135,7 +135,7 @@ spec:
               - /api/services
               - /api/websocket
           - policy: two_factor
-            domain: vault.${DOMAIN_INTERNAL}
+            domain: pass.${DOMAIN_INTERNAL}
             subject:
               - group:admins
             resources:
