@@ -111,6 +111,16 @@ spec:
               - unifi.${DOMAIN_INTERNAL}
               - vault.${DOMAIN_INTERNAL}
           - policy: bypass
+            domain: status.${DOMAIN_INTERNAL}
+            resources:
+              - ^\/assets
+              - ^\/icon
+              - ^\/manifest
+              - ^\/status
+              - ^\/api\/entry-page
+              - ^\/api\/status-page
+              - ^\/$
+          - policy: bypass
             domain: blocky.${DOMAIN_INTERNAL}
             resources:
               - /dns-query
