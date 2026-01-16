@@ -2,19 +2,19 @@
 title: Infrastructure
 documentTitle: Infrastructure
 subtitle: Pascal Iske
-logo: logo.png
+logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logo-round.png
 columns: 3
 colors:
   dark:
-    highlight-primary: '#2d333d'
-    highlight-secondary: '#2d333d'
-    highlight-hover: '#484d56'
-    card-background: '#212020'
+    highlight-primary: '#ff5858'
+    highlight-secondary: '#ff5858'
+    highlight-hover: '#ff6b6b'
+    card-background: '#3b414c'
 footer: >
   <p>&copy; <span id="year"></span> <a href="https://${DOMAIN_EXTERNAL}">Pascal Iske</a></p>
   <script>document.querySelector('#year').innerText = new Date().getFullYear();</script>
   <style>
-    body #bighead {
+      body #bighead {
           position: sticky;
           top: 0;
           z-index: 99999;
