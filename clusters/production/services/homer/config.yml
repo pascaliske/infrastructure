@@ -136,14 +136,6 @@ links:
     icon: fab fa-github
     url: https://github.com/pascaliske/infrastructure
     target: _blank
-  - name: Slack
-    icon: fab fa-slack
-    url: https://pascaliske.slack.com
-    target: _blank
-  - name: Configure
-    icon: fas fa-wrench
-    url: https://code.${DOMAIN_EXTERNAL}/?workspace=/home/coder/projects/infrastructure/infrastructure.code-workspace
-    target: _blank
 
 # tags
 .monitoring: &monitoring
@@ -200,16 +192,6 @@ services:
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/fritzbox.png
         url: http://${IP_ROUTER}
         <<: *network
-      - name: TP-Link Switch 8
-        subtitle: 8 port core switch
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/tplink.png
-        url: http://10.0.2.20
-        <<: *network
-      - name: TP-Link Switch 5
-        subtitle: 5 port distribution switch
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/tplink.png
-        url: http://10.0.2.21
-        <<: *network
       - name: Synology DS920+
         subtitle: Network Attached Storage
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/synology.png
@@ -261,18 +243,13 @@ services:
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/gitlab.png
         url: https://git.${DOMAIN_EXTERNAL}
         <<: *productivity
-      - name: Code Server
-        subtitle: Web based integrated development environment
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/vscode.png
-        url: https://code.${DOMAIN_EXTERNAL}
-        <<: *productivity
   - name: Self Hosted
     icon: fas fa-server
     items:
       - name: Plausible
         subtitle: Privacy-friendly Google Analytics alternative
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/plausible.png
-        url: https://vehicles.${DOMAIN_EXTERNAL}
+        url: https://analytics.${DOMAIN_EXTERNAL}
         <<: *self-hosted
       - name: Hammond
         subtitle: Vehicle fuel & expenses management
@@ -282,15 +259,15 @@ services:
       - name: Vaultwarden
         subtitle: Password management
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/vaultwarden.png
-        url: https://vault.${DOMAIN_INTERNAL}
+        url: https://pass.${DOMAIN_INTERNAL}
         <<: *self-hosted
       - name: Linkding
         subtitle: Collect links and categorize them
         logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/linkding.png
         url: https://links.${DOMAIN_EXTERNAL}
         <<: *self-hosted
-      - name: Snapdrop
+      - name: Pairdrop
         subtitle: Local file sharing
-        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/snapdrop.png
+        logo: https://raw.githubusercontent.com/pascaliske/infrastructure/main/clusters/production/services/homer/files/logos/pairdrop.png
         url: https://drop.${DOMAIN_INTERNAL}
         <<: *self-hosted
