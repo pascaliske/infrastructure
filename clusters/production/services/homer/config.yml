@@ -10,6 +10,7 @@ colors:
     highlight-secondary: '#ff5858'
     highlight-hover: '#ff6b6b'
     card-background: '#3b414c'
+    background: '#2d333d'
 footer: >
   <p>&copy; <span id="year"></span> <a href="https://${DOMAIN_EXTERNAL}">Pascal Iske</a></p>
   <script>document.querySelector('#year').innerText = new Date().getFullYear();</script>
