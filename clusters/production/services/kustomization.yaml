@@ -6,7 +6,7 @@ resources:
   - clickhouse
   - cloudflared
   - dyndns
-  # - gitlab # -> not yet
+  - gitlab
   - hammond
   - home-assistant
   - homer

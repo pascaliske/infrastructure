@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: gitlab
-      version: '3.2.0'
+      version: '4.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -24,41 +24,34 @@ spec:
     configMap:
       create: false
       existingConfigMap: gitlab-config
-    persistentVolumeClaims:
-      secrets:
-        storageClassName: local-path
-      storage:
-        storageClassName: local-path
     healthCheck:
       whitelist:
         - 127.0.0.1
         - 10.42.2.1
     backups:
-      hostPath: ${PATH_HOME}/gitlab/backups
+      enabled: false
+      type: pvc
+      persistentVolumeClaim:
+        claimName: gitlab-backups
       cronJob:
-        enabled: true
+        enabled: false
         schedule: '0 3 * * 1'
         successfulJobsHistoryLimit: 1
         failedJobsHistoryLimit: 1
-    resources: {}
-      # limits:
-      #   cpu: 100m
-      #   memory: 128Mi
-      # requests:
-      #   cpu: 100m
-      #   memory: 128Mi
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: k8s.pascaliske.dev/location
-                  operator: In
-                  values:
-                    - public
-    tolerations:
-      - key: k8s.pascaliske.dev/location
-        operator: Equal
-        value: public
-        effect: NoSchedule
+    registryGarbageCollection:
+      cronJob:
+        enabled: false
+    extraObjects:
+      - apiVersion: v1
+        kind: PersistentVolumeClaim
+        metadata:
+          name: gitlab-backups
+          namespace: gitlab
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5Gi
+          volumeMode: Filesystem
   interval: 10m0s

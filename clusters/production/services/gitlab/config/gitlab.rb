@@ -5,13 +5,45 @@ pages_external_url 'https://pages.${DOMAIN_EXTERNAL}'
 gitlab_rails['time_zone'] = '${TIMEZONE}'
 
 # backups
+gitlab_rails['manage_backup_path'] = true
 gitlab_rails['backup_path'] = '/backups'
+gitlab_rails['backup_archive_permissions'] = 0644
 gitlab_rails['backup_keep_time'] = 604800
 
-# default theme
-gitlab_rails['gitlab_default_theme'] = 2
+# external auth
+gitlab_rails['omniauth_allow_single_sign_on'] = ['openid_connect']
+gitlab_rails['omniauth_allow_bypass_two_factor'] = ['openid_connect']
+gitlab_rails['omniauth_auto_link_user'] = true
+gitlab_rails['omniauth_auto_link_ldap_user'] = false
+gitlab_rails['omniauth_block_auto_created_users'] = true
+gitlab_rails['omniauth_providers'] = [
+    {
+        name: 'openid_connect',
+        label: 'Authelia',
+        icon: 'https://www.authelia.com/images/branding/logo-cropped.png',
+        args: {
+            name: 'openid_connect',
+            scope: ['openid', 'profile', 'email', 'groups'],
+            response_type: 'code',
+            response_mode: 'query',
+            strategy_class: 'OmniAuth::Strategies::OpenIDConnect',
+            issuer: 'https://auth.${DOMAIN_EXTERNAL}',
+            discovery: true,
+            client_auth_method: 'basic',
+            uid_field: 'preferred_username',
+            send_scope_to_token_endpoint: true,
+            pkce: true,
+            client_options: {
+                identifier: 'gitlab',
+                secret: '${AUTH_OIDC_CLIENT_SECRET}',
+                redirect_uri: 'https://git.${DOMAIN_EXTERNAL}/users/auth/openid_connect/callback'
+            }
+        }
+    }
+]
 
-# default project features
+# default settings
+gitlab_rails['gitlab_default_theme'] = 2
 gitlab_rails['gitlab_default_projects_features_issues'] = true
 gitlab_rails['gitlab_default_projects_features_merge_requests'] = true
 gitlab_rails['gitlab_default_projects_features_wiki'] = true
@@ -19,22 +51,7 @@ gitlab_rails['gitlab_default_projects_features_snippets'] = true
 gitlab_rails['gitlab_default_projects_features_builds'] = true
 gitlab_rails['gitlab_default_projects_features_container_registry'] = true
 
-# gitlab ci
-gitlab_ci['gitlab_ci_all_broken_builds'] = true
-
-# artifacts
-gitlab_rails['artifacts_enabled'] = true
-
-# dependency proxy
-gitlab_rails['dependency_proxy_enabled'] = true
-
-# git lfs
-gitlab_rails['lfs_enabled'] = true
-
-# impersonation settings
-gitlab_rails['impersonation_enabled'] = true
-
-# emails
+# email settings
 gitlab_rails['gitlab_email_enabled'] = true
 gitlab_rails['gitlab_email_from'] = '${SMTP_ACCOUNT_GITLAB_EMAIL}'
 gitlab_rails['gitlab_email_reply_to'] = '${SMTP_ACCOUNT_GITLAB_EMAIL}'
@@ -49,46 +66,30 @@ gitlab_rails['smtp_authentication'] = 'login'
 gitlab_rails['smtp_enable_starttls_auto'] = true
 gitlab_rails['smtp_port'] = 587
 
-# oidc auth
-gitlab_rails['omniauth_allow_single_sign_on'] = ['openid_connect']
-gitlab_rails['omniauth_allow_bypass_two_factor'] = ['openid_connect']
-gitlab_rails['omniauth_auto_link_ldap_user'] = false
-gitlab_rails['omniauth_block_auto_created_users'] = true
-gitlab_rails['omniauth_providers'] = [
-    {
-        name: "openid_connect",
-        label: "Authelia",
-        icon: "https://www.authelia.com/images/branding/logo-cropped.png",
-        args: {
-            name: "openid_connect",
-            scope: ["openid", "profile", "email", "groups"],
-            response_type: "code",
-            response_mode: "query",
-            strategy_class: "OmniAuth::Strategies::OpenIDConnect",
-            issuer: "https://auth.${DOMAIN_EXTERNAL}",
-            discovery: true,
-            client_auth_method: "basic",
-            uid_field: "preferred_username",
-            send_scope_to_token_endpoint: true,
-            pkce: true,
-            client_options: {
-                identifier: "gitlab",
-                secret: "${AUTH_OIDC_CLIENT_SECRET}",
-                redirect_uri: "https://git.${DOMAIN_EXTERNAL}/users/auth/openid_connect/callback"
-            }
-        }
-    }
-]
+# artifacts
+gitlab_rails['artifacts_enabled'] = true
 
-# disable integrated certificates
-letsencrypt['enable'] = false
-letsencrypt['auto_renew'] = false
+# dependency proxy
+gitlab_rails['dependency_proxy_enabled'] = true
+
+# git lfs
+gitlab_rails['lfs_enabled'] = true
+
+# impersonation settings
+gitlab_rails['impersonation_enabled'] = true
 
 # sentry error logging
 gitlab_rails['sentry_enabled'] = true
 gitlab_rails['sentry_dsn'] = '${SENTRY_DSN}'
 gitlab_rails['sentry_clientside_dsn'] = '${SENTRY_DSN}'
 gitlab_rails['sentry_environment'] = 'production'
+
+# gitlab ci
+gitlab_ci['gitlab_ci_all_broken_builds'] = true
+
+# disable integrated certificates
+letsencrypt['enable'] = false
+letsencrypt['auto_renew'] = false
 
 # gitlab pages
 gitlab_pages['enable'] = false

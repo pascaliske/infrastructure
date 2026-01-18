@@ -7,4 +7,4 @@ resources:
   - certificate.yaml
   - route.yaml
   - config
-  - runner
+  # - runner
