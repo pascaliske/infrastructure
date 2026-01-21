@@ -98,10 +98,12 @@ module "control_plane" {
 resource "talos_machine_configuration_apply" "control_plane" {
   count = var.control_plane_count
 
+  node = local.talos_control_plane_ips[count.index]
+
+  apply_mode = "staged_if_needing_reboot"
+
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.control_plane.machine_configuration
-
-  node = local.talos_control_plane_ips[count.index]
 
   config_patches = [
     templatefile("${path.module}/templates/control-plane.yaml.tftpl", {
@@ -151,10 +153,12 @@ module "worker" {
 resource "talos_machine_configuration_apply" "worker" {
   count = var.worker_count
 
+  node = local.talos_worker_ips[count.index]
+
+  apply_mode = "staged_if_needing_reboot"
+
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
-
-  node = local.talos_worker_ips[count.index]
 
   config_patches = [
     templatefile("${path.root}/templates/worker.yaml.tftpl", {
