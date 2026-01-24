@@ -147,6 +147,13 @@ variable "cdrom" {
   default     = null
 }
 
+variable "started" {
+  type        = bool
+  description = "Optional bool if virtual machine should be started."
+  nullable    = true
+  default     = true
+}
+
 variable "tags" {
   type        = list(string)
   description = "List of tags to apply to the virtual machine."

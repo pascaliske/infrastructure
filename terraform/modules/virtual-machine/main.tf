@@ -21,6 +21,8 @@ resource "proxmox_virtual_environment_vm" "this" {
   scsi_hardware   = "virtio-scsi-single"
   keyboard_layout = "de"
 
+  started = var.started
+
   dynamic "startup" {
     for_each = var.order >= 0 ? [0] : []
 
@@ -61,7 +63,7 @@ resource "proxmox_virtual_environment_vm" "this" {
       interface    = "${var.storage_bus}0"
       file_format  = "raw"
       file_id      = var.image
-      size         = 20
+      size         = 80
     }
   }
 
