@@ -4,7 +4,7 @@ version: v1alpha1
 machine:
   type: controlplane
   install:
-    disk: /dev/vda
+    disk: ${install_disk}
     image: ${install_image}
   network:
     hostname: ${hostname}

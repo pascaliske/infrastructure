@@ -82,7 +82,7 @@ module "control_plane" {
   memory = var.control_plane_memory
 
   storage     = var.control_plane_storage
-  storage_bus = "virtio"
+  storage_bus = "scsi"
 
   ipv4_address = "${local.talos_control_plane_ips[count.index]}/24"
   ipv4_gateway = var.network_gateway
@@ -107,6 +107,7 @@ resource "talos_machine_configuration_apply" "control_plane" {
 
   config_patches = [
     templatefile("${path.module}/templates/control-plane.yaml.tftpl", {
+      install_disk  = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
       install_image = data.talos_image_factory_urls.this.urls.installer
       ipv4_address  = local.talos_control_plane_ips[count.index]
       cluster_vip   = var.cluster_vip
