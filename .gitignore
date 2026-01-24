@@ -3,6 +3,7 @@
 .vagrant
 .talosconfig
 .ansible-vault-password
+*tfstate*
 *pem*
 *p12*
 *env*
