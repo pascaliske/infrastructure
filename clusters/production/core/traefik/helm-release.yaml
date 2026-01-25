@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: '38.0.2'
+      version: '39.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -84,11 +84,12 @@ spec:
         expose:
           default: true
         exposedPort: 80
-        redirections:
-          entryPoint:
-            to: https
-            scheme: https
-            permanent: true
+        http:
+          redirections:
+            entryPoint:
+              to: https
+              scheme: https
+              permanent: true
       https:
         port: 9443
         expose:
