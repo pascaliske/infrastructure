@@ -143,6 +143,7 @@ gitlab_exporter['enable'] = false
 
 # ensure kubelet probes are whitelisted
 gitlab_rails['monitoring_whitelist'] = [
-  '127.0.0.1',
-  '10.42.2.1',
+  '127.0.0.0/8',
+  '10.42.0.0/16',
+  '10.0.2.0/24',
 ]
