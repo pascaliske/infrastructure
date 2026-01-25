@@ -90,11 +90,17 @@ spec:
               to: https
               scheme: https
               permanent: true
+        forwardedHeaders:
+          trustedIPs:
+            - 10.42.0.0/16
       https:
         port: 9443
         expose:
           default: true
         exposedPort: 443
+        forwardedHeaders:
+          trustedIPs:
+            - 10.42.0.0/16
 
       # dashboard
       traefik:
