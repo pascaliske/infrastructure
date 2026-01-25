@@ -4,7 +4,7 @@ version: v1alpha1
 machine:
   type: worker
   install:
-    disk: /dev/vda
+    disk: ${install_disk}
     image: ${install_image}
   network:
     hostname: ${hostname}
@@ -47,7 +47,7 @@ kind: UserVolumeConfig
 name: local-path-provisioner
 provisioning:
   diskSelector:
-    match: disk.dev_path == '/dev/vdb' && !system_disk
+    match: disk.dev_path == '${data_disk}' && !system_disk
   maxSize: 100GB
 ---
 apiVersion: v1alpha1
@@ -55,5 +55,5 @@ kind: UserVolumeConfig
 name: longhorn
 provisioning:
   diskSelector:
-    match: disk.dev_path == '/dev/vdb' && !system_disk
+    match: disk.dev_path == '${data_disk}' && !system_disk
   maxSize: 100GB

@@ -138,7 +138,7 @@ module "worker" {
   memory = var.worker_memory
 
   storage     = var.worker_storage
-  storage_bus = "virtio"
+  storage_bus = "scsi"
 
   ipv4_address = "${local.talos_worker_ips[count.index]}/24"
   ipv4_gateway = var.network_gateway
@@ -163,9 +163,11 @@ resource "talos_machine_configuration_apply" "worker" {
 
   config_patches = [
     templatefile("${path.root}/templates/worker.yaml.tftpl", {
+      install_disk  = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
       install_image = data.talos_image_factory_urls.this.urls.installer
       ipv4_address  = local.talos_worker_ips[count.index]
       hostname      = "${var.worker_prefix}${count.index + 1}"
+      data_disk     = "/dev/sdb"
     })
   ]
 
