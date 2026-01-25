@@ -65,23 +65,3 @@ resource "cloudflare_dns_record" "charts" {
   content = local.domain_github
   ttl     = 1
 }
-
-# gitlab
-resource "cloudflare_dns_record" "gitlab" {
-  zone_id = data.cloudflare_zone.zone_external.zone_id
-  type    = "A"
-  name    = "git.${local.domain_external}"
-  content = local.public_ip_jakku
-  proxied = true
-  ttl     = 1
-}
-
-# registry
-resource "cloudflare_dns_record" "registry" {
-  zone_id = data.cloudflare_zone.zone_external.zone_id
-  type    = "A"
-  name    = "registry.${local.domain_external}"
-  content = local.public_ip_jakku
-  proxied = true
-  ttl     = 1
-}
