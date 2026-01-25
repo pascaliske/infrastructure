@@ -18,7 +18,7 @@ spec:
     image:
       registry: docker.io
       repository: clickhouse/clickhouse-server
-      tag: 24.12.6.70-alpine
+      tag: 25.12.4.35-alpine
     env:
       - name: TZ
         value: ${TIMEZONE}
