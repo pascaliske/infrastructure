@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: loki
-      version: '6.49.0'
+      version: '6.51.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -19,7 +19,7 @@ spec:
     loki:
       image:
         repository: grafana/loki
-        tag: '3.6.3'
+        tag: '3.6.4'
       auth_enabled: false
       # replication factor needs to be set explicitly with custom replicas value: https://togithub.com/grafana/loki/issues/8899
       commonConfig:
