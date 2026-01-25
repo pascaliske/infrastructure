@@ -25,10 +25,23 @@ spec:
     deployment:
       kind: DaemonSet
       healthchecksPort: 9100
+    podDisruptionBudget:
+      enabled: true
+    gateway:
+      listeners:
+        # name and port must match http entrypoint
+        http:
+          port: 9080
+          protocol: HTTP
+
+        # disable default listener
+        web: null
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
         allowEmptyServices: true
+      kubernetesGateway:
+        enabled: true
     logs:
       access:
         enabled: true
@@ -103,6 +116,9 @@ spec:
       default:
         minVersion: VersionTLS12
         sniStrict: true
+    service:
+      spec:
+        externalTrafficPolicy: Local
     tolerations:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
