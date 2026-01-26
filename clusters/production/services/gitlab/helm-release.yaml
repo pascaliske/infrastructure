@@ -30,7 +30,7 @@ spec:
         - 10.42.0.0/16
         - 10.0.2.0/24
     backups:
-      enabled: false
+      enabled: true
       type: pvc
       persistentVolumeClaim:
         claimName: gitlab-backups
