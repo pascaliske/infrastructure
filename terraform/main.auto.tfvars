@@ -52,7 +52,7 @@ worker_count = 3
 
 worker_cores = 2
 
-worker_memory = 12288
+worker_memory = 14336
 
 worker_storage = 200
 
