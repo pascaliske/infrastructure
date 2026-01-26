@@ -26,12 +26,11 @@ spec:
           value: ${TIMEZONE}
         - name: ENROLL_INSTANCE_NAME
           value: infrastructure
-        # Setting the enroll key after initial startup requires force enrollment which currently breaks the local API.
-        # - name: ENROLL_KEY
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: crowdsec-keys
-        #       key: ENROLL_KEY
+        - name: ENROLL_KEY
+          valueFrom:
+            secretKeyRef:
+              name: crowdsec-keys
+              key: ENROLL_KEY
       metrics:
         enabled: true
         serviceMonitor:
