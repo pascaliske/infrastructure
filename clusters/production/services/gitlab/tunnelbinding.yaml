@@ -10,6 +10,11 @@ subjects:
       fqdn: 'git.${DOMAIN_EXTERNAL}'
       target: https://traefik.traefik.svc.cluster.local:443
       noTlsVerify: true
+  - name: registry.${DOMAIN_EXTERNAL}
+    spec:
+      fqdn: 'registry.${DOMAIN_EXTERNAL}'
+      target: https://traefik.traefik.svc.cluster.local:443
+      noTlsVerify: true
 tunnelRef:
   kind: ClusterTunnel
   name: talos-traefik
