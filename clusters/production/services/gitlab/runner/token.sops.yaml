@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: gitlab-runner-tokens
+    namespace: gitlab
+type: Opaque
+stringData:
+    runner-registration-token: ""
+    runner-token: ENC[AES256_GCM,data:3qBBB98riT25qhdJR/JavUObmtguiuKrvw==,iv:kMf0j3RWMuWvB7CUH2wWnHcdPrbSEGvM/26yGAqRJyE=,tag:iPQpuQbX1yTVB7J6/ykK7A==,type:str]
+sops:
+    age:
+        - recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOcXZYTENjZDdLM0dvSEpK
+            L2xCWmVGek5WQmdvVUNiSll6Sis5cUM4dXpnCjZOM0Vhd0t5bzhtYy9Wa2tGZmh4
+            VXZnaStvU2RLRnhzbllZSFExQmpsQVUKLS0tIGwyejdXcThObDE4OE13cDRKSm9X
+            MkIxUjhUSklPOUtld0kya0Z1TzlwRzAK/24AWa0mk3BMDY1W6WhCHKYEPvyzJu9K
+            vrTTpS4tlOA9YPA5uGIgwst1xNmjH+F8sPsGRvfjMGiWNJ2znuMbZw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-01-26T09:45:18Z"
+    mac: ENC[AES256_GCM,data:JlVKc3YDIwzfkkFEQ3nbknoNuaL6VJPBAwmssvxBgdRTanRdIILfn3UmuyiWJfijBkCL6coJzPGLjNHhmqC/JOlZ9wlxmUXLrQ9Z0zwqAEs5KRtTffmWgfV1sMdZdQyeN5tGvKIpQ79/CUgy6fTjzHffejUJzc/JJPpRTlPuxm4=,iv:JGU+vdu3xYFB4DsWdgc/Nn5ZgDM2Sco1rFAz4Q1g4yo=,tag:XWpfDbW8pkGmUyC/n+DbNQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
