@@ -165,9 +165,9 @@ spec:
             domain: status.${DOMAIN_EXTERNAL}
             resources:
               - ^\/assets
+              - ^\/upload
               - ^\/icon
               - ^\/manifest
-              - ^\/status
               - ^\/api\/entry-page
               - ^\/api\/status-page
               - ^\/$
