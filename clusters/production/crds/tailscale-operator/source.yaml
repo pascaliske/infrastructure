@@ -8,7 +8,7 @@ spec:
   url: https://github.com/tailscale/tailscale
   ref:
     # renovate: datasource=github-releases depName=tailscale/tailscale
-    tag: 'v1.92.5'
+    tag: 'v1.94.1'
   interval: 15m
   ignore: |
     # exclude all
