@@ -48,6 +48,8 @@ spec:
         value: '${GID}'
       - name: PUID
         value: '${UID}'
+      - name: VIKUNJA_SERVICE_PUBLICURL
+        value: 'https://tasks.${DOMAIN_EXTERNAL}'
       - name: VIKUNJA_LOG_LEVEL
         value: 'warning'
       - name: VIKUNJA_LOG_HTTP
