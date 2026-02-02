@@ -37,5 +37,4 @@ locals {
   domain_internal = "iske.cloud"
   domain_external = "pascaliske.dev"
   domain_github   = "pascaliske.github.io"
-  public_ip_jakku = "89.58.45.252"
 }
