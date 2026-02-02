@@ -7,10 +7,12 @@ metadata:
   annotations:
     fluxcd.controlplane.io/reconcile: enabled
     fluxcd.controlplane.io/reconcileEvery: 1h
+    fluxcd.controlplane.io/reconcileArtifactEvery: 10m
     fluxcd.controlplane.io/reconcileTimeout: 5m
 spec:
   distribution:
-    version: '2.7.x'
+    # renovate: datasource=github-releases depName=controlplaneio-fluxcd/distribution
+    version: '2.7.5'
     registry: ghcr.io/fluxcd
     artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests
   components:
@@ -25,7 +27,9 @@ spec:
     domain: cluster.local
   sync:
     kind: GitRepository
+    name: flux-system
     url: ssh://git@github.com/pascaliske/infrastructure
     ref: refs/heads/main
     path: clusters/production/base
     pullSecret: flux-system
+    interval: 1m

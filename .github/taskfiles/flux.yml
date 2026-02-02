@@ -3,8 +3,18 @@
 version: '3'
 
 tasks:
+  check:
+    summary: Run Flux' (pre-)installation checks.
+    cmd: flux check {{.CLI_ARGS}}
+
   bootstrap:
-    summary: Bootstrap the cluster
+    summary: Bootstrap the GitOps toolkit using the Flux Operator.
     cmds:
-      - kubectl apply -f https://github.com/controlplaneio-fluxcd/flux-operator/releases/latest/download/install.yaml
-      - kubectl apply -f clusters/production/base/flux.yaml
+      # create flux secret
+      - flux create secret git flux-system -n flux-system --url $GITHUB_URL
+
+      # create sops secret
+      - flux-operator create secret sops sops-age -n flux-system --age-key-file $SOPS_AGE_KEY_FILE
+
+      # apply flux operator & instance directly
+      - kubectl apply -k clusters/production/base/flux
