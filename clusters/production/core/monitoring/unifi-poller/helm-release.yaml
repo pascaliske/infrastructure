@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/unpoller/unpoller
-      tag: 'v2.28.0'
+      tag: 'v2.32.0'
     env:
       - name: TZ
         value: ${TIMEZONE}
