@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: cloudnative-pg
-      version: '0.27.0'
+      version: '0.27.1'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -17,5 +17,5 @@ spec:
   values:
     image:
       repository: ghcr.io/cloudnative-pg/cloudnative-pg
-      tag: '1.28.0'
+      tag: '1.28.1'
   interval: 10m0s
