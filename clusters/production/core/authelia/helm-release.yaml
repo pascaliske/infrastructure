@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: authelia
         namespace: flux-system
-  values:
+  values: # defaults: https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml
     image:
       registry: ghcr.io
       repository: authelia/authelia
@@ -64,6 +64,8 @@ spec:
             items:
               - key: oidc-jwks-key.pem
                 path: oidc-jwks-key.pem
+    podDisruptionBudget:
+      enabled: true
     configMap:
       server:
         # increase defaults for slow hammond api calls
