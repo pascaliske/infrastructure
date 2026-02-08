@@ -116,9 +116,9 @@ spec:
             domain: status.${DOMAIN_INTERNAL}
             resources:
               - ^\/assets
+              - ^\/upload
               - ^\/icon
               - ^\/manifest
-              - ^\/status
               - ^\/api\/entry-page
               - ^\/api\/status-page
               - ^\/$
