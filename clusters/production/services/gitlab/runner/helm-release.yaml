@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: gitlab
         namespace: flux-system
-  values:
+  values: # defaults: https://gitlab.com/gitlab-org/charts/gitlab-runner/-/blob/main/values.yaml
     fullnameOverride: gitlab-runner
     imagePullSecrets:
       - name: gitlab-registry-auth
@@ -51,4 +51,6 @@ spec:
             image_pull_secrets = ["gitlab-registry-auth"]
             helper_image = "registry.gitlab.com/gitlab-org/gitlab-runner/gitlab-runner-helper:x86_64-v18.8.0"
             pull_policy = ["always", "if-not-present"]
+          [runners.feature_flags]
+            FF_USE_ADAPTIVE_REQUEST_CONCURRENCY = true
   interval: 10m0s
