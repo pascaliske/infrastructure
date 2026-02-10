@@ -17,7 +17,7 @@ spec:
   values: # defaults: https://github.com/deliveryhero/helm-charts/blob/master/stable/node-problem-detector/values.yaml
     image:
       repository: registry.k8s.io/node-problem-detector/node-problem-detector
-      tag: v1.35.1
+      tag: v1.35.2
     metrics:
       enabled: true
       serviceMonitor:
