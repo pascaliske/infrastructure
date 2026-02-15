@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: tailscale-operator
-      version: '1.92.5'
+      version: '1.94.2'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -26,5 +26,5 @@ spec:
     operatorConfig:
       image:
         repository: ghcr.io/tailscale/k8s-operator
-        tag: 'v1.92.5'
+        tag: 'v1.94.2'
   interval: 10m0s
