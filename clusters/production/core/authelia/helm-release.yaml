@@ -18,7 +18,7 @@ spec:
     image:
       registry: ghcr.io
       repository: authelia/authelia
-      tag: '4.39.15'
+      tag: '4.39.16'
     rbac:
       enabled: true
     pod:
