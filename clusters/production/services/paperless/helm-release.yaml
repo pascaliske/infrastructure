@@ -18,7 +18,7 @@ spec:
     image:
       registry: ghcr.io
       repository: paperless-ngx/paperless-ngx
-      tag: '2.20.10'
+      tag: '2.20.11'
     ingressRoute:
       create: true
       entryPoints:
