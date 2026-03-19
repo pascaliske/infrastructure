@@ -37,6 +37,12 @@
       "enabled": false
     },
     {
+      "matchPackageNames": ["ghcr.io/siderolabs/installer"],
+      "matchDatasources": ["docker"],
+      "separateMajorMinor": true,
+      "separateMinorPatch": true
+    },
+    {
       "matchPackageNames": ["/cloudnative-pg/postgresql/"],
       "matchUpdateTypes": ["major"],
       "enabled": false
