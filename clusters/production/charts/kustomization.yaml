@@ -24,5 +24,6 @@ resources:
   - redis-operator.yaml
   - tailscale.yaml
   - traefik.yaml
+  - tuppr.yaml
   - vector.yaml
   - vmware-tanzu.yaml
