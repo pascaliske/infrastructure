@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: tuppr-source
+  namespace: flux-system
+spec:
+  url: https://github.com/home-operations/tuppr
+  ref:
+    # renovate: datasource=github-releases depName=home-operations/tuppr
+    tag: v0.1.2
+  interval: 15m
+  ignore: |
+    # exclude all
+    /*
+    # include crds directory
+    !/config/crd/bases

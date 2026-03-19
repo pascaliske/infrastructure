@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: tuppr
+  namespace: system-upgrade
+spec:
+  chart:
+    spec:
+      chart: tuppr
+      version: '0.1.2'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: tuppr
+        namespace: flux-system
+  values: # defaults: https://github.com/home-operations/tuppr/blob/main/charts/tuppr/values.yaml
+    monitoring:
+      serviceMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: true
+  interval: 10m0s
