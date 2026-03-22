@@ -18,7 +18,7 @@ EOS
 
 network_gateway = "10.0.2.1"
 
-network_ipv4_prefix = "10.0.2.2%s"
+network_ipv4_cidr = "10.0.2.0/24"
 
 network_dns_server = "10.0.2.1"
 

@@ -1,6 +1,6 @@
 locals {
-  talos_control_plane_ips = [for i in range(var.control_plane_count) : format(var.network_ipv4_prefix, i + 1)]
-  talos_worker_ips        = [for i in range(var.worker_count) : format(var.network_ipv4_prefix, i + 4)]
+  talos_control_plane_ips = [for i in range(var.control_plane_count) : cidrhost(var.network_ipv4_cidr, i + 21)]
+  talos_worker_ips        = [for i in range(var.worker_count) : cidrhost(var.network_ipv4_cidr, i + 24)]
 }
 
 # --- talos

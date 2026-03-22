@@ -21,9 +21,9 @@ variable "network_gateway" {
   description = "Gateway of the network."
 }
 
-variable "network_ipv4_prefix" {
+variable "network_ipv4_cidr" {
   type        = string
-  description = "IPv4 prefix of the virtual machines."
+  description = "IPv4 CIDR to place the virtual machine IPs in."
 }
 
 variable "network_dns_server" {
