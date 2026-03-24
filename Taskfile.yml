@@ -20,7 +20,5 @@ tasks:
   docs:
     summary: Documentation specific tasks.
     cmds:
-      - task: docs:default
-      - for file in cluster/**/README.md; do mkdir -p docs/$(dirname $file) && cp $file docs/$(dirname $file)/index.md; done
-      - for file in cluster/**/**/README.md; do mkdir -p docs/$(dirname $file) && cp $file docs/$(dirname $file)/index.md; done
-      - for file in cluster/**/**/**/README.md; do mkdir -p docs/$(dirname $file) && cp $file docs/$(dirname $file)/index.md; done
+      - task: docs:general-pages
+      - task: docs:cluster-pages

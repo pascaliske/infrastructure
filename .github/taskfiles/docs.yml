@@ -3,12 +3,8 @@
 version: '3'
 
 tasks:
-  default:
-    cmds:
-      - task: default-pages
-
-  # prepare default documentation pages
-  default-pages:
+  # generate documentation pages
+  general-pages:
     cmds:
       - cat README.md > docs/index.md
       - echo "---" > docs/LICENSE.md
@@ -16,6 +12,13 @@ tasks:
       - echo "  - navigation" >> docs/LICENSE.md
       - echo "---" >> docs/LICENSE.md
       - cat LICENSE.md > docs/LICENSE.md
+
+  cluster-pages:
+    dir: clusters/production
+    cmds:
+      - for file in **/README.md; do mkdir -p ../../docs/cluster/$(dirname $file) && cp $file ../../docs/cluster/$(dirname $file)/index.md; done
+      - for file in **/**/README.md; do mkdir -p ../../docs/cluster/$(dirname $file) && cp $file ../../docs/cluster/$(dirname $file)/index.md; done
+      - for file in **/**/**/README.md; do mkdir -p ../../docs/cluster/$(dirname $file) && cp $file ../../docs/cluster/$(dirname $file)/index.md; done
 
   # serve documentation for development purposes
   serve:
