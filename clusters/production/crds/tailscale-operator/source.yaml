@@ -8,7 +8,7 @@ spec:
   url: https://github.com/tailscale/tailscale
   ref:
     # renovate: datasource=docker image=ghcr.io/tailscale/k8s-operator
-    tag: 'v1.96.3'
+    tag: 'v1.96.5'
   interval: 15m
   ignore: |
     # exclude all
