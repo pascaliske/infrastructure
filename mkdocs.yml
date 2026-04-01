@@ -59,51 +59,52 @@ nav:
       - CRDs: cluster/crds/index.md
       - Core:
           - Overview: cluster/core/index.md
+          - authelia: cluster/core/authelia/index.md
           - cert-manager: cluster/core/cert-manager/index.md
-          - cloudnative-pg: cluster/core/cloudnative-pg/index.md
+          - cloudflare-operator: cluster/core/cloudflare-operator/index.md
+          - cloudnative-pg: cluster/core/cpng-system/cloudnative-pg/index.md
           - crowdsec: cluster/core/crowdsec/index.md
           - flux-system: cluster/core/flux-system/index.md
-          - kured: cluster/core/kured/index.md
-          - node-problem-detector: cluster/core/node-problem-detector/index.md
+          - kube-system: cluster/core/kube-system/index.md
+          - local-path-storage: cluster/core/local-path-storage/index.md
+          - metallb: cluster/core/metallb/index.md
+          - monitoring:
+              - Overview: cluster/core/monitoring/index.md
+              - cloudflare-exporter: cluster/core/monitoring/cloudflare-exporter/index.md
+              - fritzbox-exporter: cluster/core/monitoring/fritzbox-exporter/index.md
+              - kube-prometheus-stack: cluster/core/monitoring/kube-prometheus-stack/index.md
+              - loki: cluster/core/monitoring/loki/index.md
+              - magicmirror: cluster/core/monitoring/magicmirror/index.md
+              - minio: cluster/core/monitoring/minio/index.md
+              - plausible-exporter: cluster/core/monitoring/plausible-exporter/index.md
+              - speedtest-exporter: cluster/core/monitoring/speedtest-exporter/index.md
+              - unifi-poller: cluster/core/monitoring/unifi-poller/index.md
+              - vector: cluster/core/monitoring/vector/index.md
+          - redis-operator: cluster/core/redis-operator/index.md
           - silence-operator: cluster/core/silence-operator/index.md
           - system-upgrade: cluster/core/system-upgrade/index.md
-          - traefik-errors: cluster/core/traefik-errors/index.md
+          - tailscale-operator: cluster/core/tailscale-operator/index.md
           - traefik: cluster/core/traefik/index.md
+          - traefik-errors: cluster/core/traefik-errors/index.md
           - trivy-operator: cluster/core/trivy-operator/index.md
+          - uptime-kuma: cluster/core/uptime-kuma/index.md
           - velero: cluster/core/velero/index.md
       - Services:
           - Overview: cluster/services/index.md
-          - authelia: cluster/services/authelia/index.md
           - blocky: cluster/services/blocky/index.md
           - clickhouse: cluster/services/clickhouse/index.md
           - cloudflared: cluster/services/cloudflared/index.md
-          - descheduler: cluster/services/descheduler/index.md
           - dyndns: cluster/services/dyndns/index.md
           - gitlab: cluster/services/gitlab/index.md
           - hammond: cluster/services/hammond/index.md
           - home-assistant: cluster/services/home-assistant/index.md
           - homer: cluster/services/homer/index.md
           - linkding: cluster/services/linkding/index.md
-          - monitoring:
-              - Overview: cluster/services/monitoring/index.md
-              - cloudflare-exporter: cluster/services/monitoring/cloudflare-exporter/index.md
-              - fritzbox-exporter: cluster/services/monitoring/fritzbox-exporter/index.md
-              - kube-prometheus-stack: cluster/services/monitoring/kube-prometheus-stack/index.md
-              - loki: cluster/services/monitoring/loki/index.md
-              - magicmirror: cluster/services/monitoring/magicmirror/index.md
-              - minio: cluster/services/monitoring/minio/index.md
-              - plausible-exporter: cluster/services/monitoring/plausible-exporter/index.md
-              - redis-exporter: cluster/services/monitoring/redis-exporter/index.md
-              - speedtest-exporter: cluster/services/monitoring/speedtest-exporter/index.md
-              - unifi-poller: cluster/services/monitoring/unifi-poller/index.md
-              - vector: cluster/services/monitoring/vector/index.md
           - pairdrop: cluster/services/pairdrop/index.md
           - paperless: cluster/services/paperless/index.md
           - plausible: cluster/services/plausible/index.md
-          - redis: cluster/services/redis/index.md
           - unbound: cluster/services/unbound/index.md
           - unifi: cluster/services/unifi/index.md
-          - uptime-kuma: cluster/services/uptime-kuma/index.md
           - vaultwarden: cluster/services/vaultwarden/index.md
           - vikunja: cluster/services/vikunja/index.md
 
@@ -118,25 +119,25 @@ extra:
       link: https://hachyderm.io/@pascaliske
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/u/pascaliske
-  analytics:
-    provider: plausible
-    domain: k8s.pascaliske.dev
-    src: https://analytics.pascaliske.dev/js/script.outbound-links.js
-    feedback:
-      title: Was this page helpful?
-      ratings:
-        - icon: material/emoticon-happy-outline
-          name: This page was helpful
-          data: happy
-          note: >-
-            Thanks for your feedback!
+  # analytics:
+  #   provider: plausible
+  #   domain: k8s.pascaliske.dev
+  #   src: https://analytics.pascaliske.dev/js/script.outbound-links.js
+  #   feedback:
+  #     title: Was this page helpful?
+  #     ratings:
+  #       - icon: material/emoticon-happy-outline
+  #         name: This page was helpful
+  #         data: happy
+  #         note: >-
+  #           Thanks for your feedback!
 
-        - icon: material/emoticon-sad-outline
-          name: This page could be improved
-          data: sad
-          note: >-
-            Thanks for your feedback! Help me improve this page by
-            opening a <a href="https://github.com/pascaliske/infrastructure/issues/new" target="_blank" rel="noopener">issue on GitHub</a>.
+  #       - icon: material/emoticon-sad-outline
+  #         name: This page could be improved
+  #         data: sad
+  #         note: >-
+  #           Thanks for your feedback! Help me improve this page by
+  #           opening a <a href="https://github.com/pascaliske/infrastructure/issues/new" target="_blank" rel="noopener">issue on GitHub</a>.
 
 # customizations
 extra_css:
@@ -146,7 +147,7 @@ extra_css:
 plugins:
   - search
   - social
-  - material-plausible
+  # - material-plausible
 
 # code highlighting
 markdown_extensions:

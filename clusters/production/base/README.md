@@ -6,10 +6,10 @@ State inside the cluster is managed by [Flux](https://fluxcd.io) in a [GitOps](h
 
 ![GitOps Workflow Diagram](/assets/gitops-workflow.png){ loading=lazy }
 
-The [`base`](/clusters/production/base/) directory serves as an entrypoint from which all other sections are executed. It is called by the Flux Operator which manages the Flux instance and it's related components. Afterwards the following [`Kustomization`](https://fluxcd.io/docs/components/kustomize/kustomization/) overlays are reconciled in exactly this order:
+The [`base`](/cluster/base/) directory serves as an entrypoint from which all other sections are executed. It is called by the Flux Operator which manages the Flux instance and it's related components. Afterwards the following [`Kustomization`](https://fluxcd.io/docs/components/kustomize/kustomization/) overlays are reconciled in exactly this order:
 
-- [`overlays/crds.yaml`](/clusters/production/crds/) — Custom Resource Definitions for specific applications
-- [`overlays/charts.yaml`](/clusters/production/charts/) — Helm chart repositories for all applications
-- [`overlays/config.yaml`](/clusters/production/config/) — Cluster-wide configuration values
-- [`overlays/core.yaml`](/clusters/production/core/) — Core applications which depend on [`overlays/config.yaml`](/clusters/production/config/), [`overlays/charts.yaml`](/clusters/production/charts/) & [`overlays/crds.yaml`](/clusters/production/crds/)
-- [`overlays/services.yaml`](/clusters/production/services/) — Regular applications which depend on [`overlays/config.yaml`](/clusters/production/config/), [`overlays/charts.yaml`](/clusters/production/charts/), [`overlays/crds.yaml`](/clusters/production/crds/) & [`overlays/core.yaml`](/clusters/production/core/)
+- [`overlays/crds.yaml`](/cluster/crds/) — Custom Resource Definitions for specific applications
+- [`overlays/charts.yaml`](/cluster/charts/) — Helm chart repositories for all applications
+- [`overlays/config.yaml`](/cluster/config/) — Cluster-wide configuration values
+- [`overlays/core.yaml`](/cluster/core/) — Core applications which depend on [`overlays/config.yaml`](/cluster/config/), [`overlays/charts.yaml`](/cluster/charts/) & [`overlays/crds.yaml`](/cluster/crds/)
+- [`overlays/services.yaml`](/cluster/services/) — Regular applications which depend on [`overlays/config.yaml`](/cluster/config/), [`overlays/charts.yaml`](/cluster/charts/), [`overlays/crds.yaml`](/cluster/crds/) & [`overlays/core.yaml`](/cluster/core/)
