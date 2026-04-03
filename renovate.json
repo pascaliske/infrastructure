@@ -60,6 +60,10 @@
       "groupName": "tailscale"
     },
     {
+      "matchPackageNames": ["/tuppr/"],
+      "groupName": "tuppr"
+    },
+    {
       "matchPackageNames": ["/crowdsec/"],
       "groupName": "crowdsec"
     },
