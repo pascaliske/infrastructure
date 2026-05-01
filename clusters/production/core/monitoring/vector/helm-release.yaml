@@ -42,7 +42,6 @@ spec:
       api:
         enabled: true
         address: 127.0.0.1:8686
-        playground: false
       sources:
         vector_metrics_source:
           type: internal_metrics
