@@ -52,7 +52,7 @@ data "talos_client_configuration" "this" {
   endpoints = local.talos_control_plane_ips
 }
 
-resource "proxmox_virtual_environment_download_file" "talos_image" {
+resource "proxmox_download_file" "talos_image" {
   node_name    = "pve-01"
   datastore_id = "local"
 
@@ -90,7 +90,7 @@ module "control_plane" {
   dns_servers = [var.network_dns_server]
   dns_domain  = var.network_dns_domain
 
-  image = proxmox_virtual_environment_download_file.talos_image.id
+  image = proxmox_download_file.talos_image.id
 
   tags = ["talos"]
 }
@@ -146,7 +146,7 @@ module "worker" {
   dns_servers = [var.network_dns_server]
   dns_domain  = var.network_dns_domain
 
-  image = proxmox_virtual_environment_download_file.talos_image.id
+  image = proxmox_download_file.talos_image.id
 
   tags = ["talos"]
 }
