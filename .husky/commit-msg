@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-# -*- coding: utf-8 -*-
-
-# lint commit messages
-yarn commitlint --edit $1
