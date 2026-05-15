@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       # workaround: ensure git directory exists in working directory, ansible action requires this
       - name: Symlink Git directory to ansible working directory
@@ -32,6 +32,6 @@ jobs:
           ln -s ${{ github.workspace }}/.ansible-lint ${{ github.workspace }}/ansible/.ansible-lint
 
       # lint ansible
-      - uses: ansible/ansible-lint@v26.4.0
+      - uses: ansible/ansible-lint@5fac056c45595896c973fbde871f01f6cb14d74c # v26.4.0
         with:
           working_directory: ${{ github.workspace }}/ansible

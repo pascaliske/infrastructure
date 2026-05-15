@@ -16,13 +16,10 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 env:
   TF_INPUT: false
   TF_IN_AUTOMATION: true
-  TF_VAR_GOOGLE_VERIFICATION_TOKEN: ${{ secrets.GOOGLE_VERIFICATION_TOKEN }}
-  CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
 jobs:
   linting:
@@ -30,18 +27,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       # setup taskfile
-      - uses: arduino/setup-task@v2.0.0
+      - uses: arduino/setup-task@b91d5d2c96a56797b48ac1e0e89220bf64044611 # v2.0.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       # setup terraform
-      - uses: hashicorp/setup-terraform@v4
+      - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
 
       # setup tflint
-      - uses: terraform-linters/setup-tflint@v6
+      - uses: terraform-linters/setup-tflint@b480b8fcdaa6f2c577f8e4fa799e89e756bb7c93 # v6.2.2
 
       # init terraform
       - name: Init Terraform
@@ -54,31 +51,3 @@ jobs:
       # lint terraform
       - name: Lint Terraform
         run: task tf:lint
-
-  plan:
-    name: Plan
-    runs-on: ubuntu-latest
-    steps:
-      # checkout
-      - uses: actions/checkout@v6
-
-      # setup taskfile
-      - uses: arduino/setup-task@v2.0.0
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
-      # setup terraform
-      - uses: hashicorp/setup-terraform@v4
-        with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-      # init terraform
-      - name: Init Terraform
-        id: init
-        run: task tf:init
-
-      # validate terraform
-      - name: Validate Terraform
-        id: validate
-        run: task tf:validate -- -no-color
-
