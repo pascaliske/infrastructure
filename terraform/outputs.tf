@@ -1,3 +1,7 @@
+output "talos_installer_image" {
+  value = try(data.talos_image_factory_urls.this.urls.installer)
+}
+
 output "talos_client_configuration" {
   value     = try(data.talos_client_configuration.this.talos_config)
   sensitive = true
