@@ -16,11 +16,9 @@ EOS
 
 # --- network values
 
-network_gateway = "10.0.2.1"
-
 network_ipv4_cidr = "10.0.2.0/24"
 
-network_dns_server = "10.0.2.1"
+network_dns_servers = ["10.0.2.1"]
 
 network_dns_domain = "iske.cloud"
 
@@ -28,7 +26,7 @@ network_dns_domain = "iske.cloud"
 
 cluster_name = "talos"
 
-cluster_endpoint = "cluster.iske.cloud"
+cluster_endpoint = "https://cluster.iske.cloud:6443"
 
 cluster_vip = "10.0.2.20"
 

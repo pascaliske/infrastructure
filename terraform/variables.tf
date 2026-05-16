@@ -16,19 +16,14 @@ variable "talos_schematic" {
 
 # --- network variables
 
-variable "network_gateway" {
-  type        = string
-  description = "Gateway of the network."
-}
-
 variable "network_ipv4_cidr" {
   type        = string
   description = "IPv4 CIDR to place the virtual machine IPs in."
 }
 
-variable "network_dns_server" {
-  type        = string
-  description = "DNS server of the network."
+variable "network_dns_servers" {
+  type        = list(string)
+  description = "DNS servers of the network."
 }
 
 variable "network_dns_domain" {

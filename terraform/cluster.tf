@@ -1,6 +1,8 @@
 locals {
-  talos_control_plane_ips = [for i in range(var.control_plane_count) : cidrhost(var.network_ipv4_cidr, i + 21)]
-  talos_worker_ips        = [for i in range(var.worker_count) : cidrhost(var.network_ipv4_cidr, i + 24)]
+  control_plane_names = [for i in range(var.control_plane_count) : "${var.control_plane_prefix}${i + 1}"]
+  control_plane_ips   = [for i in range(var.control_plane_count) : cidrhost(var.network_ipv4_cidr, i + 21)]
+  worker_names        = [for i in range(var.worker_count) : "${var.worker_prefix}${i + 1}"]
+  worker_ips          = [for i in range(var.worker_count) : cidrhost(var.network_ipv4_cidr, i + 24)]
 }
 
 # --- talos
@@ -22,34 +24,12 @@ resource "talos_machine_secrets" "this" {
   talos_version = var.talos_version
 }
 
-data "talos_machine_configuration" "control_plane" {
-  talos_version      = var.talos_version
-  kubernetes_version = var.talos_kubernetes_version
-
-  cluster_name     = var.cluster_name
-  cluster_endpoint = "https://${var.cluster_endpoint}:6443"
-
-  machine_type    = "controlplane"
-  machine_secrets = talos_machine_secrets.this.machine_secrets
-}
-
-data "talos_machine_configuration" "worker" {
-  talos_version      = var.talos_version
-  kubernetes_version = var.talos_kubernetes_version
-
-  cluster_name     = var.cluster_name
-  cluster_endpoint = "https://${var.cluster_vip}:6443"
-
-  machine_type    = "worker"
-  machine_secrets = talos_machine_secrets.this.machine_secrets
-}
-
 data "talos_client_configuration" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
 
   cluster_name = var.cluster_name
 
-  endpoints = local.talos_control_plane_ips
+  endpoints = local.control_plane_ips
 }
 
 resource "proxmox_download_file" "talos_image" {
@@ -66,13 +46,24 @@ resource "proxmox_download_file" "talos_image" {
 
 # --- control plane
 
+data "talos_machine_configuration" "control_plane" {
+  talos_version      = var.talos_version
+  kubernetes_version = var.talos_kubernetes_version
+
+  cluster_name     = var.cluster_name
+  cluster_endpoint = var.cluster_endpoint
+
+  machine_type    = "controlplane"
+  machine_secrets = talos_machine_secrets.this.machine_secrets
+}
+
 module "control_plane" {
   source = "./modules/virtual-machine"
 
   count = var.control_plane_count
 
   id    = 1000 + count.index + 1
-  name  = "${var.control_plane_prefix}${count.index + 1}"
+  name  = local.control_plane_names[count.index]
   order = count.index + 1
 
   datastore = "data"
@@ -84,10 +75,10 @@ module "control_plane" {
   storage     = var.control_plane_storage
   storage_bus = "scsi"
 
-  ipv4_address = "${local.talos_control_plane_ips[count.index]}/24"
-  ipv4_gateway = var.network_gateway
+  ipv4_address = "${local.control_plane_ips[count.index]}/24"
+  ipv4_gateway = cidrhost(var.network_ipv4_cidr, 1)
 
-  dns_servers = [var.network_dns_server]
+  dns_servers = var.network_dns_servers
   dns_domain  = var.network_dns_domain
 
   image = proxmox_download_file.talos_image.id
@@ -98,7 +89,7 @@ module "control_plane" {
 resource "talos_machine_configuration_apply" "control_plane" {
   count = var.control_plane_count
 
-  node = local.talos_control_plane_ips[count.index]
+  node = local.control_plane_ips[count.index]
 
   apply_mode = "staged"
 
@@ -109,9 +100,9 @@ resource "talos_machine_configuration_apply" "control_plane" {
     templatefile("${path.module}/templates/control-plane.yaml.tftpl", {
       install_disk  = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
       install_image = data.talos_image_factory_urls.this.urls.installer
-      ipv4_address  = local.talos_control_plane_ips[count.index]
+      ipv4_address  = local.control_plane_ips[count.index]
       cluster_vip   = var.cluster_vip
-      hostname      = "${var.control_plane_prefix}${count.index + 1}"
+      hostname      = local.control_plane_names[count.index]
     })
   ]
 
@@ -122,13 +113,24 @@ resource "talos_machine_configuration_apply" "control_plane" {
 
 # --- worker
 
+data "talos_machine_configuration" "worker" {
+  talos_version      = var.talos_version
+  kubernetes_version = var.talos_kubernetes_version
+
+  cluster_name     = var.cluster_name
+  cluster_endpoint = "https://${var.cluster_vip}:6443"
+
+  machine_type    = "worker"
+  machine_secrets = talos_machine_secrets.this.machine_secrets
+}
+
 module "worker" {
   source = "./modules/virtual-machine"
 
   count = var.worker_count
 
   id    = 1000 + count.index + 4
-  name  = "${var.worker_prefix}${count.index + 1}"
+  name  = local.worker_names[count.index]
   order = count.index + 4
 
   datastore = "data"
@@ -140,10 +142,10 @@ module "worker" {
   storage     = var.worker_storage
   storage_bus = "scsi"
 
-  ipv4_address = "${local.talos_worker_ips[count.index]}/24"
-  ipv4_gateway = var.network_gateway
+  ipv4_address = "${local.worker_ips[count.index]}/24"
+  ipv4_gateway = cidrhost(var.network_ipv4_cidr, 1)
 
-  dns_servers = [var.network_dns_server]
+  dns_servers = var.network_dns_servers
   dns_domain  = var.network_dns_domain
 
   image = proxmox_download_file.talos_image.id
@@ -154,7 +156,7 @@ module "worker" {
 resource "talos_machine_configuration_apply" "worker" {
   count = var.worker_count
 
-  node = local.talos_worker_ips[count.index]
+  node = local.worker_ips[count.index]
 
   apply_mode = "staged"
 
@@ -165,8 +167,8 @@ resource "talos_machine_configuration_apply" "worker" {
     templatefile("${path.root}/templates/worker.yaml.tftpl", {
       install_disk  = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
       install_image = data.talos_image_factory_urls.this.urls.installer
-      ipv4_address  = local.talos_worker_ips[count.index]
-      hostname      = "${var.worker_prefix}${count.index + 1}"
+      ipv4_address  = local.worker_ips[count.index]
+      hostname      = local.worker_names[count.index]
       data_disk     = "/dev/sdb"
     })
   ]
@@ -181,7 +183,7 @@ resource "talos_machine_configuration_apply" "worker" {
 resource "talos_machine_bootstrap" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
 
-  node = local.talos_control_plane_ips[0]
+  node = local.control_plane_ips[0]
 
   depends_on = [
     talos_machine_configuration_apply.control_plane,
@@ -192,8 +194,8 @@ data "talos_cluster_health" "this" {
   client_configuration = data.talos_client_configuration.this.client_configuration
 
   endpoints           = data.talos_client_configuration.this.endpoints
-  control_plane_nodes = local.talos_control_plane_ips
-  worker_nodes        = local.talos_worker_ips
+  control_plane_nodes = local.control_plane_ips
+  worker_nodes        = local.worker_ips
 
   skip_kubernetes_checks = true
 
@@ -205,7 +207,7 @@ data "talos_cluster_health" "this" {
 resource "talos_cluster_kubeconfig" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
 
-  node = local.talos_control_plane_ips[0]
+  node = local.control_plane_ips[0]
 
   depends_on = [
     data.talos_cluster_health.this,
