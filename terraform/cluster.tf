@@ -1,4 +1,6 @@
 locals {
+  dns_servers = [for i, v in var.network_dns_servers : { "address" = v }]
+
   control_plane_names = [for i in range(var.control_plane_count) : "${var.control_plane_prefix}${i + 1}"]
   control_plane_ips   = [for i in range(var.control_plane_count) : cidrhost(var.network_ipv4_cidr, i + 21)]
   worker_names        = [for i in range(var.worker_count) : "${var.worker_prefix}${i + 1}"]
@@ -100,10 +102,14 @@ resource "talos_machine_configuration_apply" "control_plane" {
     templatefile("${path.module}/templates/control-plane.yaml.tftpl", {
       install_disk  = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
       install_image = data.talos_image_factory_urls.this.urls.installer
-      ipv4_address  = local.control_plane_ips[count.index]
+      ipv4_cidr     = var.network_ipv4_cidr
       cluster_vip   = var.cluster_vip
-      hostname      = local.control_plane_names[count.index]
-    })
+    }),
+    templatefile("${path.module}/templates/network-config.yaml.tftpl", {
+      ipv4_address = local.control_plane_ips[count.index]
+      ipv4_gateway = cidrhost(var.network_ipv4_cidr, 1)
+      dns_servers  = indent(2, trimspace(yamlencode(local.dns_servers)))
+    }),
   ]
 
   depends_on = [
