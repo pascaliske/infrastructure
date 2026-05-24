@@ -21,9 +21,8 @@ spec:
         enabled: true
       prometheusRule:
         enabled: true
-    speaker:
-      frr:
-        enabled: false
     crds:
       enabled: true
+    frrk8s:
+      enabled: false
   interval: 10m0s
