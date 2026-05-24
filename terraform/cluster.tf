@@ -173,10 +173,16 @@ resource "talos_machine_configuration_apply" "worker" {
     templatefile("${path.root}/templates/worker.yaml.tftpl", {
       install_disk  = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
       install_image = data.talos_image_factory_urls.this.urls.installer
-      ipv4_address  = local.worker_ips[count.index]
-      hostname      = local.worker_names[count.index]
-      data_disk     = "/dev/sdb"
-    })
+      ipv4_cidr     = var.network_ipv4_cidr
+    }),
+    templatefile("${path.module}/templates/network-config.yaml.tftpl", {
+      ipv4_address = local.worker_ips[count.index]
+      ipv4_gateway = cidrhost(var.network_ipv4_cidr, 1)
+      dns_servers  = indent(2, trimspace(yamlencode(local.dns_servers)))
+    }),
+    templatefile("${path.module}/templates/storage.yaml.tftpl", {
+      data_disk = "/dev/sdb"
+    }),
   ]
 
   depends_on = [
