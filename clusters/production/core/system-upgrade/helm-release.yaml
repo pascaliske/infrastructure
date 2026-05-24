@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: tuppr
-      version: '0.1.34'
+      version: '0.1.36'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
