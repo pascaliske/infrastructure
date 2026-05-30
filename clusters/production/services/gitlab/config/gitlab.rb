@@ -109,7 +109,9 @@ nginx['proxy_set_headers'] = {
 }
 
 # registry database
-registry['database']['enabled'] = false # ref: https://gitlab.com/gitlab-org/gitlab/-/work_items/600955
+registry['database'] = {
+  'enabled' => true
+}
 
 # registry nginx
 registry_nginx['listen_port'] = 5005
