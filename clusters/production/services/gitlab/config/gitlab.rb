@@ -108,6 +108,9 @@ nginx['proxy_set_headers'] = {
     'X-Real-IP' => '$remote_addr'
 }
 
+# registry database
+registry['database']['enabled'] = false # ref: https://gitlab.com/gitlab-org/gitlab/-/work_items/600955
+
 # registry nginx
 registry_nginx['listen_port'] = 5005
 registry_nginx['listen_https'] = false
