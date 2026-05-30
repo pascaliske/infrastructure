@@ -18,7 +18,7 @@ spec:
     crds: Skip
   upgrade:
     crds: Skip
-  values:
+  values: # defaults: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
     image:
       repository: traefik
       tag: 'v3.7.1'
