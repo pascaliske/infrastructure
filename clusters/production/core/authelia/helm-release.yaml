@@ -66,6 +66,19 @@ spec:
                 path: oidc-jwks-key.pem
     podDisruptionBudget:
       enabled: true
+    networkPolicy:
+      enabled: true
+      ingress:
+        - from:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: traefik
+              podSelector:
+                matchLabels:
+                  app.kubernetes.io/name: traefik
+          ports:
+            - port: 80
+              protocol: TCP
     configMap:
       server:
         # increase defaults for slow hammond api calls
