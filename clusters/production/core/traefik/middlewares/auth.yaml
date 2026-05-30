@@ -13,3 +13,4 @@ spec:
       - Remote-Groups
       - Remote-Name
       - Remote-Email
+    maxResponseBodySize: 10485760 # 10MB
