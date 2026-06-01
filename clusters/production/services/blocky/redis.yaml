@@ -13,6 +13,9 @@ spec:
     exporter:
       enabled: true
       image: oliver006/redis_exporter:v1.84.0-alpine
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
     resources:
       requests:
         cpu: 100m
@@ -26,6 +29,9 @@ spec:
     exporter:
       enabled: true
       image: oliver006/redis_exporter:v1.84.0-alpine
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
     resources:
       requests:
         cpu: 100m
