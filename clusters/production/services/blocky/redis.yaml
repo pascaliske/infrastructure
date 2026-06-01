@@ -4,6 +4,8 @@ kind: RedisFailover
 metadata:
   name: redis
   namespace: blocky
+  labels:
+    redis-failover.freshworks.com/operator-group: main
 spec:
   redis:
     image: redis:8.8.0-alpine

@@ -25,4 +25,23 @@ spec:
     monitoring:
       enabled: true
       serviceMonitor: true
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: redis-operator
+            patch: |
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: redis-operator
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: redis-operator
+                        env:
+                          - name: OPERATOR_GROUP_ID
+                            value: main
   interval: 10m0s
