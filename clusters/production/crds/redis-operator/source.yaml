@@ -5,10 +5,10 @@ metadata:
   name: redis-operator-source
   namespace: flux-system
 spec:
-  url: https://github.com/freshworks/redis-operator
+  url: https://github.com/freshworks-oss/redis-operator
   ref:
-    # renovate: datasource=github-releases depName=freshworks/redis-operator
-    tag: Chart-3.2.9
+    # renovate: datasource=github-releases depName=freshworks-oss/redis-operator
+    tag: v3.3.5
   interval: 15m
   ignore: |
     # exclude all

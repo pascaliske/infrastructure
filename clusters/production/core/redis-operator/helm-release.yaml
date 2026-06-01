@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: redis-operator
-      version: '3.2.9'
+      version: '3.3.4'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
@@ -20,8 +20,8 @@ spec:
     crds: Skip
   values:
     image:
-      repository: quay.io/spotahome/redis-operator
-      tag: v1.2.4
+      repository: ghcr.io/freshworks-oss/redis-operator
+      tag: v3.3.5
     monitoring:
       enabled: true
       serviceMonitor: true
