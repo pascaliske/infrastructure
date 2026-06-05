@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: crowdsec
         namespace: flux-system
-  values:
+  values: # defaults: https://github.com/crowdsecurity/helm-charts/blob/main/charts/crowdsec/values.yaml
     container_runtime: containerd
     image:
       repository: ghcr.io/crowdsecurity/crowdsec
@@ -31,6 +31,9 @@ spec:
             secretKeyRef:
               name: crowdsec-keys
               key: ENROLL_KEY
+      podSecurityContext:
+        seccompProfile:
+          type: RuntimeDefault
       metrics:
         enabled: true
         serviceMonitor:
@@ -43,6 +46,9 @@ spec:
         - namespace: '*'
           podName: postgresql-*
           program: pgsql
+      podSecurityContext:
+        seccompProfile:
+          type: RuntimeDefault
       env:
         - name: TZ
           value: ${TIMEZONE}
