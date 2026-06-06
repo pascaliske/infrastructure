@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: security-profiles-operator-source
+  namespace: flux-system
+spec:
+  url: https://github.com/kubernetes-sigs/security-profiles-operator
+  ref:
+    # renovate: datasource=github-releases depName=kubernetes-sigs/security-profiles-operator
+    tag: v0.10.1
+  interval: 15m
+  ignore: |
+    # exclude all
+    /*
+    # include crds directory
+    !/deploy/base-crds/crds

@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kube-system
+sortOptions:
+  order: fifo
+resources:
+  - https://github.com/kubernetes-sigs/security-profiles-operator/deploy/base?ref=v0.10.1
+  - https://github.com/kubernetes-sigs/security-profiles-operator/deploy/kustomize-deployment?ref=v0.10.1
+patches:
+  # skip namespace manifest
+  - target:
+      kind: Namespace
+    patch: |
+      $patch: delete
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: security-profiles-operator

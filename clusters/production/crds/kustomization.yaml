@@ -6,6 +6,7 @@ resources:
   - cloudnative-pg
   - kube-prometheus-stack
   - redis-operator
+  - security-profiles-operator
   - silence-operator
   - tailscale-operator
   - traefik

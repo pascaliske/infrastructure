@@ -1,0 +1,37 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: security-profiles-operator-crds
+  namespace: flux-system
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: security-profiles-operator-source
+  interval: 15m
+  prune: false
+  healthChecks:
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: apparmorprofiles.security-profiles-operator.x-k8s.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: profilebindings.security-profiles-operator.x-k8s.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: profilerecordings.security-profiles-operator.x-k8s.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: seccompprofiles.security-profiles-operator.x-k8s.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: securityprofilenodestatuses.security-profiles-operator.x-k8s.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: securityprofilesoperatordaemons.security-profiles-operator.x-k8s.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: rawselinuxprofiles.security-profiles-operator.x-k8s.io
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: selinuxprofiles.security-profiles-operator.x-k8s.io
