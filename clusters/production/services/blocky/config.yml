@@ -1,3 +1,5 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/0xERR0R/blocky/main/docs/config.schema.json
 ports:
   dns: 53
   http: 4000
@@ -32,7 +34,6 @@ customDNS:
     ryloth.iske.cloud: ${IP_RYLOTH}
     ilum.iske.cloud: ${IP_ILUM}
     zigbeeproxy.iske.cloud: ${IP_ZIGBEEPROXY}
-    gitlab.iske.cloud: ${IP_GITLAB}
 
     # simplified unifi layer 2 device adoption
     unifi: ${IP_UNIFI_CONTROLLER}
