@@ -8,33 +8,34 @@ spec:
   chart:
     spec:
       chart: blocky
-      version: '10.5.2'
+      version: '11.27.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: johanneskastl
         namespace: flux-system
-  values:
+  values: # defaults: https://github.com/johanneskastl/helm-charts/blob/main/charts/blocky/values.yaml
     image:
       repository: ghcr.io/0xerr0r/blocky
       tag: v0.31.0
     controller:
-      type: daemonset
+      replicas: 3
       strategy: RollingUpdate
       rollingUpdate:
         surge: 1
         unavailable: 0
+    serviceAccount:
+      create: true
     env:
       TZ: ${TIMEZONE}
     service:
       main:
         enabled: true
-      dns-tcp:
+      dns:
         enabled: true
         type: LoadBalancer
-      dns-udp:
-        enabled: true
-        type: LoadBalancer
+        annotations:
+          metallb.io/loadBalancerIPs: 10.0.2.31
     persistence:
       logs:
         enabled: false
@@ -45,10 +46,16 @@ spec:
       enabled: true
       prometheusRule:
         enabled: true
-    tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - blocky
+            topologyKey: kubernetes.io/hostname
   valuesFrom:
     - kind: ConfigMap
       name: blocky-config

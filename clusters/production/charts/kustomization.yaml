@@ -13,6 +13,7 @@ resources:
   - gitlab.yaml
   - grafana.yaml
   - jetstack.yaml
+  - johanneskastl.yaml
   - k8s-at-home.yaml
   - kubereboot.yaml
   - local-path-provisioner.yaml
