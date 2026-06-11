@@ -48,7 +48,7 @@ worker_prefix = "talos-worker-0"
 
 worker_count = 3
 
-worker_cores = 2
+worker_cores = 4
 
 worker_memory = 14336
 
