@@ -18,6 +18,5 @@ resources:
   - tailscale-operator
   - traefik
   - traefik-errors
-  - trivy-operator
   - uptime-kuma
   - velero

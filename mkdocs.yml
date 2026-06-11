@@ -86,7 +86,6 @@ nav:
           - tailscale-operator: cluster/core/tailscale-operator/index.md
           - traefik: cluster/core/traefik/index.md
           - traefik-errors: cluster/core/traefik-errors/index.md
-          - trivy-operator: cluster/core/trivy-operator/index.md
           - uptime-kuma: cluster/core/uptime-kuma/index.md
           - velero: cluster/core/velero/index.md
       - Services:

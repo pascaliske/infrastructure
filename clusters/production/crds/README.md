@@ -11,6 +11,5 @@ The following services require CRDs which are deployed by this section:
 - [`silence-operator`](/cluster/core/silence-operator/)
 - [`tailscale-operator`](/cluster/core/tailscale-operator/)
 - [`traefik`](/cluster/core/traefik/)
-- [`trivy-operator`](/cluster/core/trivy-operator/)
 - [`tuppr`](/cluster/core/tuppr/)
 - [`velero`](/cluster/core/velero/)

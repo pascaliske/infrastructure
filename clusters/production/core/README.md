@@ -20,6 +20,5 @@ The following services are deployed by this section:
 - [`tailscale-operator`](/cluster/core/tailscale-operator/)
 - [`traefik`](/cluster/core/traefik/)
 - [`traefik-errors`](/cluster/core/traefik-errors/)
-- [`trivy-operator`](/cluster/core/trivy-operator/)
 - [`uptime-kuma`](/cluster/core/uptime-kuma/)
 - [`velero`](/cluster/core/velero/)

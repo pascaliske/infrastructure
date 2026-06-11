@@ -84,10 +84,6 @@
       "groupName": "cert-manager"
     },
     {
-      "matchPackageNames": ["/trivy-operator/"],
-      "groupName": "trivy-operator"
-    },
-    {
       "matchPackageNames": ["/silence-operator/"],
       "groupName": "silence-operator"
     },

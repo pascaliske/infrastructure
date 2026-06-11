@@ -10,6 +10,5 @@ resources:
   - silence-operator
   - tailscale-operator
   - traefik
-  - trivy-operator
   - tuppr
   - velero
