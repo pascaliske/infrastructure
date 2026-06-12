@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/kubereboot/kured
-      tag: 1.22.0
+      tag: 1.22.1
     extraEnvVars:
       - name: TZ
         value: ${TIMEZONE}
