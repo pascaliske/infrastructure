@@ -19,9 +19,6 @@ spec:
   upgrade:
     crds: Skip
   values: # defaults: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
-    image:
-      repository: traefik
-      tag: 'v3.7.5'
     deployment:
       kind: DaemonSet
       healthchecksPort: 9100
