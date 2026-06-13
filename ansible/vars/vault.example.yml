@@ -1,16 +1,4 @@
 vault:
-  # static ips
-  ips:
-    # network
-    router: ''
-
-    # cluster
-    cluster_vip: ''
-
-  # ssh
-  ssh:
-    authorized_key: '' # e.g. id_ed25519
-
   # tailscale
   tailscale:
     auth_key: '' # e.g. tskey-auth-xyz
