@@ -8,4 +8,3 @@
     regexp: "^#?{{ item.key }}=?"
   loop: '{{ bootconfig_values | dict2items }}'
   notify: Reboot
-
