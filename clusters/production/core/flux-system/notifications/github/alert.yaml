@@ -11,5 +11,7 @@ spec:
   eventSources:
     - kind: Kustomization
       name: "*"
+      matchLabels:
+        kustomize.toolkit.fluxcd.io/name: flux-system
     - kind: HelmRelease
       name: "*"
