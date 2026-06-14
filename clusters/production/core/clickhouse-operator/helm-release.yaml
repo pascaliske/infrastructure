@@ -1,0 +1,22 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: clickhouse-operator
+  namespace: clickhouse-operator-system
+spec:
+  chart:
+    spec:
+      chart: clickhouse-operator-helm
+      version: '0.0.6-23.2e19eb5'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: clickhouse-operator
+        namespace: flux-system
+  values: # defaults: https://github.com/ClickHouse/clickhouse-operator/blob/main/dist/chart/values.yaml
+    crd:
+      enable: false
+    prometheus:
+      enable: true
+  interval: 10m0s

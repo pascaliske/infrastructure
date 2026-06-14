@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: clickhouse-operator-source
+  namespace: flux-system
+spec:
+  url: https://github.com/clickhouse/clickhouse-operator
+  ref:
+    # renovate: datasource=github-releases depName=clickhouse/clickhouse-operator
+    tag: v0.0.5
+  interval: 15m
+  ignore: |
+    # exclude all
+    /*
+    # include crds directory
+    !/config/crd/bases

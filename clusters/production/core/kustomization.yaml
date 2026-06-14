@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - authelia
   - cert-manager
+  - clickhouse-operator
   - cloudflare-operator
   - cnpg-system
   - crowdsec
