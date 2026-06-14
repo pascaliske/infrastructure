@@ -22,8 +22,8 @@ spec:
       replicas: 3
       strategy: RollingUpdate
       rollingUpdate:
-        surge: 1
-        unavailable: 0
+        surge: 0
+        unavailable: 1
     serviceAccount:
       create: true
     env:
