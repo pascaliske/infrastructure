@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - database
   - namespace.yaml
+  # - clickhouse.yaml
   - helm-release.yaml
   - tunnelbinding.yaml

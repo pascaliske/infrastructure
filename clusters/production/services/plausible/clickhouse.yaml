@@ -1,0 +1,58 @@
+---
+apiVersion: clickhouse.com/v1alpha1
+kind: KeeperCluster
+metadata:
+  name: clickhouse
+  namespace: plausible
+spec:
+  replicas: 3
+  containerTemplate:
+    image:
+      repository: clickhouse/clickhouse-keeper
+      tag: 24.12.6.70-alpine
+  podTemplate:
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: clickhouse-keeper
+            topologyKey: kubernetes.io/hostname
+  dataVolumeClaimSpec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+---
+apiVersion: clickhouse.com/v1alpha1
+kind: ClickHouseCluster
+metadata:
+  name: clickhouse
+  namespace: plausible
+spec:
+  replicas: 3
+  keeperClusterRef:
+    name: clickhouse
+    namespace: plausible
+  containerTemplate:
+    image:
+      repository: clickhouse/clickhouse-server
+      tag: 24.12.6.70-alpine
+    env:
+      - name: CLICKHOUSE_SKIP_USER_SETUP
+        value: '1'
+  podTemplate:
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: clickhouse-server
+            topologyKey: kubernetes.io/hostname
+  dataVolumeClaimSpec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
