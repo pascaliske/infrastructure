@@ -8,7 +8,7 @@ spec:
   url: https://github.com/kubernetes-sigs/security-profiles-operator
   ref:
     # renovate: datasource=github-releases depName=kubernetes-sigs/security-profiles-operator
-    tag: v0.10.1
+    tag: v1.0.0
   interval: 15m
   ignore: |
     # exclude all
