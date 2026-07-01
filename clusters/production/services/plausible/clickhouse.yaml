@@ -38,7 +38,7 @@ spec:
   containerTemplate:
     image:
       repository: clickhouse/clickhouse-server
-      tag: 24.12.6.70-alpine
+      tag: 26.6.1.1193-alpine
     env:
       - name: CLICKHOUSE_SKIP_USER_SETUP
         value: '1'
