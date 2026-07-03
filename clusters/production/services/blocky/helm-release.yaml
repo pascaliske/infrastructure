@@ -17,7 +17,7 @@ spec:
   values: # defaults: https://github.com/johanneskastl/helm-charts/blob/main/charts/blocky/values.yaml
     image:
       repository: ghcr.io/0xerr0r/blocky
-      tag: v0.32.1
+      tag: v0.33.0
     controller:
       replicas: 3
       strategy: RollingUpdate
