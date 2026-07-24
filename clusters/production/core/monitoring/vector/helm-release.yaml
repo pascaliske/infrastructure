@@ -92,7 +92,7 @@ spec:
           remove_timestamp: true
           labels:
             source: >-
-              {{`{{ source_type }}`}}
+              vector-{{`{{ source_type }}`}}
         kubernetes_logs_sink:
           type: loki
           inputs:
@@ -105,23 +105,23 @@ spec:
           remove_timestamp: true
           labels:
             source: >-
-              {{`{{ source_type }}`}}
+              k8s-{{`{{ source_type }}`}}
             stream: >-
-              {{`{{ stream }}`}}
+              k8s-{{`{{ stream }}`}}
             file: >-
-              {{`{{ file }}`}}
+              k8s-{{`{{ file }}`}}
             app: >-
-              {{`{{ custom_app_name }}`}}
+              k8s-{{`{{ custom_app_name }}`}}
             node: >-
-              {{`{{ kubernetes.pod_node_name }}`}}
+              k8s-{{`{{ kubernetes.pod_node_name }}`}}
             namespace: >-
-              {{`{{ kubernetes.pod_namespace }}`}}
+              k8s-{{`{{ kubernetes.pod_namespace }}`}}
             pod: >-
-              {{`{{ custom_pod_name }}`}}
+              k8s-{{`{{ custom_pod_name }}`}}
             container: >-
-              {{`{{ kubernetes.container_name }}`}}
+              k8s-{{`{{ kubernetes.container_name }}`}}
             image: >-
-              {{`{{ kubernetes.container_image }}`}}
+              k8s-{{`{{ kubernetes.container_image }}`}}
         # journald_logs_sink:
         #   type: loki
         #   inputs:
