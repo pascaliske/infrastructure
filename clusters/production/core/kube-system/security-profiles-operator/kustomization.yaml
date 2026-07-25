@@ -6,8 +6,8 @@ namespace: kube-system
 sortOptions:
   order: fifo
 resources:
-  - https://github.com/kubernetes-sigs/security-profiles-operator/deploy/base?ref=v0.10.1
-  - https://github.com/kubernetes-sigs/security-profiles-operator/deploy/kustomize-deployment?ref=v0.10.1
+  - https://github.com/kubernetes-sigs/security-profiles-operator/deploy/base?ref=v1.0.0
+  - https://github.com/kubernetes-sigs/security-profiles-operator/deploy/kustomize-deployment?ref=v1.0.0
 patches:
   # skip namespace manifest
   - target:
