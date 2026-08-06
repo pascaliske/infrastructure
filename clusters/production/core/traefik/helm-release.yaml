@@ -15,7 +15,7 @@ spec:
     crds: Skip
   values: # defaults: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
     deployment:
-      kind: DaemonSet
+      replicas: 3
       healthchecksPort: 9100
     podDisruptionBudget:
       enabled: true
@@ -119,8 +119,4 @@ spec:
         metallb.io/loadBalancerIPs: 10.0.2.30
       spec:
         externalTrafficPolicy: Local
-    tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
   interval: 10m0s
