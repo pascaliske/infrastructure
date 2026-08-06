@@ -8,7 +8,7 @@ metadata:
     redis-failover.freshworks.com/operator-group: main
 spec:
   redis:
-    image: redis:8.8.1-alpine
+    image: redis:8.10.0-alpine
     replicas: 3
     exporter:
       enabled: true
@@ -24,7 +24,7 @@ spec:
         cpu: 400m
         memory: 500Mi
   sentinel:
-    image: redis:8.8.1-alpine
+    image: redis:8.10.0-alpine
     replicas: 3
     exporter:
       enabled: true
