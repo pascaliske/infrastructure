@@ -8,7 +8,7 @@ spec:
   url: oci://ghcr.io/rancher/local-path-provisioner/charts/local-path-provisioner
   interval: 10m0s
   ref:
-    tag: '0.0.36'
+    tag: '0.0.37'
   layerSelector:
     mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
   # verify:
