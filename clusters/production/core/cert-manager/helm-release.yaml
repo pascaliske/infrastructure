@@ -5,15 +5,10 @@ metadata:
   name: cert-manager
   namespace: cert-manager
 spec:
-  chart:
-    spec:
-      chart: cert-manager
-      version: 'v1.21.1'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: jetstack
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: cert-manager
+    namespace: flux-system
   values:
     installCRDs: false
     extraArgs:

@@ -5,15 +5,10 @@ metadata:
   name: node-problem-detector
   namespace: kube-system
 spec:
-  chart:
-    spec:
-      chart: node-problem-detector
-      version: '2.4.1'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: deliveryhero
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: node-problem-detector
+    namespace: flux-system
   values: # defaults: https://github.com/deliveryhero/helm-charts/blob/master/stable/node-problem-detector/values.yaml
     image:
       repository: registry.k8s.io/node-problem-detector/node-problem-detector

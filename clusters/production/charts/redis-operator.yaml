@@ -1,10 +1,18 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: redis-operator
   namespace: flux-system
 spec:
-  type: oci
-  url: oci://ghcr.io/freshworks-oss/charts
+  url: oci://ghcr.io/freshworks-oss/charts/redis-operator
   interval: 10m0s
+  ref:
+    tag: '3.3.5'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/freshworks-oss/redis-operator.*$'

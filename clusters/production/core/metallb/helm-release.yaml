@@ -5,15 +5,10 @@ metadata:
   name: metallb
   namespace: metallb-system
 spec:
-  chart:
-    spec:
-      chart: metallb
-      version: '0.15.3'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: metallb
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: metallb
+    namespace: flux-system
   values: # defaults: https://github.com/metallb/metallb/blob/main/charts/metallb/values.yaml
     prometheus:
       rbacPrometheus: false

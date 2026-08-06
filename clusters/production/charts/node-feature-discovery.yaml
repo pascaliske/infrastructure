@@ -1,10 +1,18 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: node-feature-discovery
   namespace: flux-system
 spec:
-  type: oci
-  url: oci://gcr.io/k8s-staging-nfd/charts
+  url: oci://registry.k8s.io/nfd/charts/node-feature-discovery
   interval: 10m0s
+  ref:
+    tag: '0.19.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/kubernetes-sigs/node-feature-discovery.*$'

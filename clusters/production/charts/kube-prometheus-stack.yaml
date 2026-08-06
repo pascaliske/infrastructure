@@ -2,17 +2,17 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: metallb
+  name: kube-prometheus-stack
   namespace: flux-system
 spec:
-  url: oci://quay.io/metallb/chart/metallb
+  url: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
   interval: 10m0s
   ref:
-    tag: '0.15.3'
+    tag: '88.0.1'
   layerSelector:
     mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
   # verify:
   #   provider: cosign
   #   matchOIDCIdentity:
   #     - issuer: '^https://token.actions.githubusercontent.com$'
-  #       subject: '^https://github.com/metallb/metallb.*$'
+  #       subject: '^https://github.com/prometheus-community/helm-charts.*$'

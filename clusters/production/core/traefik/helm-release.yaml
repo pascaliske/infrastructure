@@ -5,15 +5,10 @@ metadata:
   name: traefik
   namespace: traefik
 spec:
-  chart:
-    spec:
-      chart: traefik
-      version: '41.0.2'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: traefik
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: traefik
+    namespace: flux-system
   install:
     crds: Skip
   upgrade:

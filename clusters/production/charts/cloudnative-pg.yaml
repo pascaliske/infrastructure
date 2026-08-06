@@ -1,10 +1,18 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: cloudnative-pg
   namespace: flux-system
 spec:
-  type: oci
-  url: oci://ghcr.io/cloudnative-pg/charts
+  url: oci://ghcr.io/cloudnative-pg/charts/cloudnative-pg
   interval: 10m0s
+  ref:
+    tag: '0.29.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  verify:
+    provider: cosign
+    matchOIDCIdentity:
+      - issuer: '^https://token.actions.githubusercontent.com$'
+        subject: '^https://github.com/cloudnative-pg/charts.*$'

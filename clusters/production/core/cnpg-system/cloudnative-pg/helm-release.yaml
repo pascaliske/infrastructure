@@ -5,15 +5,10 @@ metadata:
   name: cloudnative-pg
   namespace: cnpg-system
 spec:
-  chart:
-    spec:
-      chart: cloudnative-pg
-      version: '0.29.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: cloudnative-pg
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: cloudnative-pg
+    namespace: flux-system
   values:
     image:
       repository: ghcr.io/cloudnative-pg/cloudnative-pg

@@ -5,15 +5,10 @@ metadata:
   name: kured
   namespace: kube-system
 spec:
-  chart:
-    spec:
-      chart: kured
-      version: '6.1.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: kubereboot
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kured
+    namespace: flux-system
   values:
     image:
       repository: ghcr.io/kubereboot/kured

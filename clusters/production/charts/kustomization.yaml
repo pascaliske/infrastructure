@@ -4,27 +4,27 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - authelia.yaml
+  - cert-manager.yaml
   - clickhouse-operator.yaml
   - cloudflare-exporter.yaml
   - cloudnative-pg.yaml
   - crowdsec.yaml
-  - deliveryhero.yaml
   - descheduler.yaml
   - giantswarm.yaml
   - gitlab.yaml
-  - grafana.yaml
-  - jetstack.yaml
   - johanneskastl.yaml
   - k8s-at-home.yaml
-  - kubereboot.yaml
+  - kube-prometheus-stack.yaml
+  - kured.yaml
   - local-path-provisioner.yaml
+  - loki.yaml
   - metallb.yaml
   - node-feature-discovery.yaml
+  - node-problem-detector.yaml
   - pascaliske.yaml
-  - prometheus-community.yaml
   - redis-operator.yaml
   - tailscale.yaml
   - traefik.yaml
   - tuppr.yaml
   - vector.yaml
-  - vmware-tanzu.yaml
+  - velero.yaml

@@ -5,15 +5,10 @@ metadata:
   name: velero
   namespace: velero
 spec:
-  chart:
-    spec:
-      chart: velero
-      version: '12.1.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: vmware-tanzu
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: velero
+    namespace: flux-system
   install:
     crds: Skip
   upgrade:

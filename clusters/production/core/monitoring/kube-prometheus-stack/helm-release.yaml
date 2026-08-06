@@ -5,15 +5,10 @@ metadata:
   name: kube-prometheus-stack
   namespace: monitoring
 spec:
-  chart:
-    spec:
-      chart: kube-prometheus-stack
-      version: '88.0.1'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: prometheus-community
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kube-prometheus-stack
+    namespace: flux-system
   install:
     crds: Skip
   upgrade:

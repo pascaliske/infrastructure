@@ -1,10 +1,18 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: clickhouse-operator
   namespace: flux-system
 spec:
-  type: oci
-  url: oci://ghcr.io/clickhouse
+  url: oci://ghcr.io/clickhouse/clickhouse-operator-helm
   interval: 10m0s
+  ref:
+    tag: '0.0.8-12.b1f0179'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/clickhouse/clickhouse-operator.*$'

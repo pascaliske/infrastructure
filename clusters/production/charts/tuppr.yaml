@@ -1,10 +1,18 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: tuppr
   namespace: flux-system
 spec:
-  type: oci
-  url: oci://ghcr.io/home-operations/charts
+  url: oci://ghcr.io/home-operations/charts/tuppr
   interval: 10m0s
+  ref:
+    tag: '0.4.3'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  verify:
+    provider: cosign
+    matchOIDCIdentity:
+      - issuer: '^https://token.actions.githubusercontent.com$'
+        subject: '^https://github.com/home-operations/tuppr.*$'

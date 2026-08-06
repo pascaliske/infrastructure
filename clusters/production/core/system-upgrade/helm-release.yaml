@@ -5,15 +5,10 @@ metadata:
   name: tuppr
   namespace: system-upgrade
 spec:
-  chart:
-    spec:
-      chart: tuppr
-      version: '0.4.3'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: tuppr
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: tuppr
+    namespace: flux-system
   values: # defaults: https://github.com/home-operations/tuppr/blob/main/charts/tuppr/values.yaml
     monitoring:
       serviceMonitor:

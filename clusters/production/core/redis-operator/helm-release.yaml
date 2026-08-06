@@ -5,15 +5,10 @@ metadata:
   name: redis-operator
   namespace: redis-operator
 spec:
-  chart:
-    spec:
-      chart: redis-operator
-      version: '3.3.5'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: redis-operator
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: redis-operator
+    namespace: flux-system
   install:
     crds: Skip
   upgrade:

@@ -5,15 +5,10 @@ metadata:
   name: vector
   namespace: monitoring
 spec:
-  chart:
-    spec:
-      chart: vector
-      version: '0.57.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: vector
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: vector
+    namespace: flux-system
   values:
     role: Agent
     image:
