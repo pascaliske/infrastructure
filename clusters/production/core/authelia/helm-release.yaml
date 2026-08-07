@@ -22,7 +22,8 @@ spec:
     rbac:
       enabled: true
     pod:
-      kind: DaemonSet
+      kind: Deployment
+      replicas: 3
       securityContext:
         pod:
           runAsNonRoot: true
@@ -35,10 +36,6 @@ spec:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
           privileged: false
-      tolerations:
-        - key: node-role.kubernetes.io/control-plane
-          operator: Exists
-          effect: NoSchedule
       env:
         - name: TZ
           value: ${TIMEZONE}
