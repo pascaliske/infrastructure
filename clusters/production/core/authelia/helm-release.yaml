@@ -23,7 +23,6 @@ spec:
       enabled: true
     pod:
       kind: Deployment
-      replicas: 3
       securityContext:
         pod:
           runAsNonRoot: true
@@ -301,4 +300,15 @@ spec:
               token_endpoint_auth_method: client_secret_basic
     secret:
       existingSecret: authelia-secrets
+  # authelia considers file backend as stateful and prevents setting multiple replicas via value
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: authelia
+            patch: |
+              - op: replace
+                path: /spec/replicas
+                value: 3
   interval: 10m0s
