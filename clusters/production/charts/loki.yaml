@@ -8,7 +8,7 @@ spec:
   url: oci://ghcr.io/grafana/helm-charts/loki
   interval: 10m0s
   ref:
-    tag: '7.2.0'
+    tag: '7.3.0'
   layerSelector:
     mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
   # verify:
