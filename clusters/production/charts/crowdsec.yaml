@@ -1,9 +1,18 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: crowdsec
   namespace: flux-system
 spec:
-  url: https://crowdsecurity.github.io/helm-charts
+  url: oci://ghcr.io/crowdsecurity/helm-charts/crowdsec
   interval: 10m0s
+  ref:
+    tag: '0.24.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/crowdsecurity/helm-charts.*$'

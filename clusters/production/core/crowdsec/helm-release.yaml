@@ -5,15 +5,10 @@ metadata:
   name: crowdsec
   namespace: crowdsec
 spec:
-  chart:
-    spec:
-      chart: crowdsec
-      version: '0.24.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: crowdsec
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: crowdsec
+    namespace: flux-system
   values: # defaults: https://github.com/crowdsecurity/helm-charts/blob/main/charts/crowdsec/values.yaml
     container_runtime: containerd
     image:
