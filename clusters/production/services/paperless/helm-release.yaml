@@ -5,15 +5,10 @@ metadata:
   name: paperless
   namespace: paperless
 spec:
-  chart:
-    spec:
-      chart: paperless
-      version: '7.0.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: paperless
+    namespace: flux-system
   values:
     image:
       registry: ghcr.io

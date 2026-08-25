@@ -5,15 +5,10 @@ metadata:
   name: uptime-kuma
   namespace: uptime-kuma
 spec:
-  chart:
-    spec:
-      chart: uptime-kuma
-      version: '3.0.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: uptime-kuma
+    namespace: flux-system
   values:
     image:
       repository: louislam/uptime-kuma

@@ -5,15 +5,10 @@ metadata:
   name: homer
   namespace: homer
 spec:
-  chart:
-    spec:
-      chart: homer
-      version: '3.1.1'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: homer
+    namespace: flux-system
   values:
     image:
       repository: ghcr.io/bastienwirtz/homer

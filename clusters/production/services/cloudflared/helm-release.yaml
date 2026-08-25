@@ -5,15 +5,10 @@ metadata:
   name: cloudflared
   namespace: cloudflared
 spec:
-  chart:
-    spec:
-      chart: cloudflared
-      version: '3.0.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: cloudflared
+    namespace: flux-system
   values:
     image:
       repository: ghcr.io/crazy-max/cloudflared

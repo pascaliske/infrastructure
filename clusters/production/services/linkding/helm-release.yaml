@@ -5,15 +5,10 @@ metadata:
   name: linkding
   namespace: linkding
 spec:
-  chart:
-    spec:
-      chart: linkding
-      version: '3.0.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: linkding
+    namespace: flux-system
   values:
     image:
       repository: ghcr.io/sissbruecker/linkding

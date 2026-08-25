@@ -5,15 +5,10 @@ metadata:
   name: pairdrop
   namespace: pairdrop
 spec:
-  chart:
-    spec:
-      chart: pairdrop
-      version: '2.0.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: pairdrop
+    namespace: flux-system
   values:
     image:
       registry: ghcr.io

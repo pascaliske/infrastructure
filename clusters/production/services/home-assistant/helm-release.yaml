@@ -5,15 +5,10 @@ metadata:
   name: home-assistant
   namespace: home-assistant
 spec:
-  chart:
-    spec:
-      chart: home-assistant
-      version: '0.1.1'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: home-assistant
+    namespace: flux-system
   values:
     image:
       registry: ghcr.io

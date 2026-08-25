@@ -5,15 +5,10 @@ metadata:
   name: vaultwarden
   namespace: vaultwarden
 spec:
-  chart:
-    spec:
-      chart: vaultwarden
-      version: '2.0.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: vaultwarden
+    namespace: flux-system
   values:
     image:
       registry: ghcr.io

@@ -1,10 +1,324 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
-  name: pascaliske
+  name: clickhouse
   namespace: flux-system
 spec:
-  type: oci
-  url: oci://ghcr.io/pascaliske/helm-charts
+  url: oci://ghcr.io/pascaliske/helm-charts/clickhouse
   interval: 10m0s
+  ref:
+    tag: '1.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: cloudflare-dyndns
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/cloudflare-dyndns
+  interval: 10m0s
+  ref:
+    tag: '0.2.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: cloudflared
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/cloudflared
+  interval: 10m0s
+  ref:
+    tag: '3.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: fritzbox-exporter
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/fritzbox-exporter
+  interval: 10m0s
+  ref:
+    tag: '3.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: gitlab
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/gitlab
+  interval: 10m0s
+  ref:
+    tag: '4.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: hammond
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/hammond
+  interval: 10m0s
+  ref:
+    tag: '2.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: home-assistant
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/home-assistant
+  interval: 10m0s
+  ref:
+    tag: '0.1.1'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: homer
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/homer
+  interval: 10m0s
+  ref:
+    tag: '3.1.1'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: linkding
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/linkding
+  interval: 10m0s
+  ref:
+    tag: '3.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: pairdrop
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/pairdrop
+  interval: 10m0s
+  ref:
+    tag: '2.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: paperless
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/paperless
+  interval: 10m0s
+  ref:
+    tag: '7.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: plausible
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/plausible
+  interval: 10m0s
+  ref:
+    tag: '2.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: plausible-exporter
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/plausible-exporter
+  interval: 10m0s
+  ref:
+    tag: '1.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: traefik-errors
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/traefik-errors
+  interval: 10m0s
+  ref:
+    tag: '4.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: unbound
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/unbound
+  interval: 10m0s
+  ref:
+    tag: '2.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: uptime-kuma
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/uptime-kuma
+  interval: 10m0s
+  ref:
+    tag: '3.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: vaultwarden
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/vaultwarden
+  interval: 10m0s
+  ref:
+    tag: '2.0.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: vikunja
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pascaliske/helm-charts/vikunja
+  interval: 10m0s
+  ref:
+    tag: '5.1.0'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/pascaliske/helm-charts.*$'

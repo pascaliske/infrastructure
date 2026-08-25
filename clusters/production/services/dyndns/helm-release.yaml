@@ -5,15 +5,10 @@ metadata:
   name: dyndns
   namespace: dyndns
 spec:
-  chart:
-    spec:
-      chart: cloudflare-dyndns
-      version: '0.2.0'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: pascaliske
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: cloudflare-dyndns
+    namespace: flux-system
   values:
     image:
       repository: ghcr.io/pascaliske/cloudflare-dyndns
