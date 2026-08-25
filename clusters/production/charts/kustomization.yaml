@@ -10,7 +10,6 @@ resources:
   - cloudnative-pg.yaml
   - crowdsec.yaml
   - descheduler.yaml
-  - giantswarm.yaml
   - gitlab.yaml
   - johanneskastl.yaml
   - k8s-at-home.yaml
@@ -23,6 +22,7 @@ resources:
   - node-problem-detector.yaml
   - pascaliske.yaml
   - redis-operator.yaml
+  - silence-operator.yaml
   - tailscale.yaml
   - traefik.yaml
   - tuppr.yaml

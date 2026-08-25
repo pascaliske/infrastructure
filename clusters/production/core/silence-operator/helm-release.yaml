@@ -5,15 +5,10 @@ metadata:
   name: silence-operator
   namespace: silence-operator
 spec:
-  chart:
-    spec:
-      chart: silence-operator
-      version: '0.20.1'
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: giantswarm
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: silence-operator
+    namespace: flux-system
   install:
     crds: Skip
   upgrade:

@@ -1,0 +1,18 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: silence-operator
+  namespace: flux-system
+spec:
+  url: oci://gsoci.azurecr.io/charts/giantswarm/silence-operator
+  interval: 10m0s
+  ref:
+    tag: '0.20.1'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/giantswarm/silence-operator.*$'
