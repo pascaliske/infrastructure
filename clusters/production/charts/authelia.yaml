@@ -8,7 +8,7 @@ spec:
   url: oci://ghcr.io/authelia/chartrepo/authelia
   interval: 10m0s
   ref:
-    tag: '0.11.6'
+    tag: '0.11.20'
   layerSelector:
     mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
   # verify:
