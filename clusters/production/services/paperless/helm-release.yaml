@@ -14,6 +14,9 @@ spec:
       registry: ghcr.io
       repository: paperless-ngx/paperless-ngx
       tag: '3.0.5'
+    controller:
+      updateStrategy:
+        type: Recreate
     ingressRoute:
       create: true
       entryPoints:
