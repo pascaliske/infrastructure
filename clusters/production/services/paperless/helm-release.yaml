@@ -13,7 +13,7 @@ spec:
     image:
       registry: ghcr.io
       repository: paperless-ngx/paperless-ngx
-      tag: '2.20.15'
+      tag: '3.0.5'
     ingressRoute:
       create: true
       entryPoints:
@@ -64,6 +64,8 @@ spec:
         value: ${PAPERLESS_ADMIN_PASSWORD}
       - name: PAPERLESS_ADMIN_MAIL
         value: ${PAPERLESS_ADMIN_EMAIL}
+      - name: PAPERLESS_CONSUMER_DELETE_DUPLICATES
+        value: 'true'
       - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
         value: 'true'
       - name: PAPERLESS_LOGOUT_REDIRECT_URL
