@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: gitlab/gitlab-ce
-      tag: 19.3.0-ce.0
+      tag: 19.3.1-ce.0
     env:
       - name: TZ
         value: ${TIMEZONE}
