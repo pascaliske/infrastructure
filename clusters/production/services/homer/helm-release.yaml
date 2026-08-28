@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: ghcr.io/bastienwirtz/homer
-      tag: v26.4.2
+      tag: v26.08.2
     ingressRoute:
       create: true
       entryPoints:
