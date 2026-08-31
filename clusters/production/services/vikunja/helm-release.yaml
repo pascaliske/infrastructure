@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: vikunja/vikunja
-      tag: 2.5.0
+      tag: 2.6.0
     serviceMonitor:
       enabled: true
     ingressRoute:
