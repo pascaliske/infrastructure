@@ -8,7 +8,7 @@ spec:
   url: oci://ghcr.io/home-operations/charts/tuppr
   interval: 10m0s
   ref:
-    tag: '0.5.2'
+    tag: '0.5.3'
   layerSelector:
     mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
   verify:
