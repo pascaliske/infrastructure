@@ -14,7 +14,7 @@ spec:
     image:
       repository: ghcr.io/crowdsecurity/crowdsec
       pullPolicy: IfNotPresent
-      tag: 'v1.8.0'
+      tag: 'v1.8.1'
     lapi:
       env:
         - name: TZ
