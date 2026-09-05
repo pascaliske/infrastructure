@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: ghcr.io/pascaliske/unbound
-      tag: '0.1.0'
+      tag: '0.2.0'
     controller:
       replicas: 2
     env:
