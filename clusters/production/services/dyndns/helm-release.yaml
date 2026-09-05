@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: ghcr.io/pascaliske/cloudflare-dyndns
-      tag: '0.2.0'
+      tag: '0.3.0'
     fullnameOverride: dyndns
     cronJob:
       enabled: true
