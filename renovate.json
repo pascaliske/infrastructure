@@ -92,6 +92,10 @@
       "groupName": "silence-operator"
     },
     {
+      "matchPackageNames": ["/netbox/"],
+      "groupName": "netbox"
+    },
+    {
       "matchPackageNames": ["/loki/"],
       "groupName": "loki"
     },

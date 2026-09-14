@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://json.schemastore.org/yamllint.json
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgresql
+  namespace: netbox
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.6
+  primaryUpdateStrategy: unsupervised
+  storage:
+    storageClass: local-path
+    size: 10Gi
+  superuserSecret:
+    name: postgresql-superuser
+  bootstrap:
+    initdb:
+      database: netbox
+      owner: netbox
+      secret:
+        name: postgresql-user
+  monitoring:
+    enablePodMonitor: true

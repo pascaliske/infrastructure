@@ -1,0 +1,28 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: netbox
+spec:
+  entryPoints:
+    - https
+  routes:
+    - kind: Rule
+      match: Host(`netbox.${DOMAIN_INTERNAL}`)
+      services:
+        - kind: Service
+          name: netbox
+          namespace: netbox
+          port: 80
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: security
+          namespace: traefik
+        - name: optimizations
+          namespace: traefik
+        - name: error-pages
+          namespace: traefik-errors
+  tls:
+    secretName: 'netbox.${DOMAIN_INTERNAL}'

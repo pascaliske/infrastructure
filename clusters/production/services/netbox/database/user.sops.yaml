@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: postgresql-user
+    namespace: netbox
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:c+srql15,iv:E0e1Td/6/dpjsPvtyndWDKfB02O4WF64RLiv7g87iys=,tag:WCAgU5iqtmPEt7BbwXAMng==,type:str]
+    password: ENC[AES256_GCM,data:DOgkxzUsGI1sEJ9EwGBzhOe7MI1XFX8TA3d11ST81flP9IR5s4CcHsLw,iv:yLu66Xx0FH2aUcO5xwlyVoyAtkJ4o/A8l4MzEQZrWEs=,tag:1IUQH7AqB6VlyNh38Y+ETA==,type:str]
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBCZjhwc21kOEJBNHBxMmRT
+            YkdKbEFDOC9yQkN6TU8xdGRMR0FsTG0ySG4wCndjYUFjUzdmN2dQb1c4clVnUjJV
+            N0piUDRyQXZ2MENhTm9tekJaS3ZRSmMKLS0tIDk1S29hWnZtMmNqKyt3WkZmYWVQ
+            cDFKSFBpbUMxcmpQUmd5bHNRWFlUT0kKsJB9N0ObXsdwe1kxNT1JXVeLklAj5G28
+            ARun4ymQZ2EwoDEHVKLuJk59UNvht4HpMAHOlMrrXnWTGi5jmOAoHg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1znmsndwgl8f4wxn5ydl3f0gkcvcz5uqd5zeervevmmsaygwvrfysgx8xpp
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-09-14T11:14:27Z"
+    mac: ENC[AES256_GCM,data:u7938UMs9Bee99cnbFaarsGvaF0DhAFKtARgp2v26ix0EnvvlT9k+1Me0BfYEgobrPMjeMCldkp289cAEulCGWbbEYvPr4s1RXo2Qi4vC9CNA+HNh8FX9dHVK23w/7xesoC2KAg8Cni7cxT7SbLjEYNEbULv5DcAelCUOSwsbWE=,iv:gQsyfJwXJG5OX4hE831R1LtBlMIwsXgG3on10t3nk28=,tag:v6xrzJt3R5BZWRgW9av3rA==,type:str]
+    version: 3.13.3

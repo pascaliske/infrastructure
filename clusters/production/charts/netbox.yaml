@@ -1,0 +1,18 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: netbox
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/netbox-community/netbox-chart/netbox
+  interval: 10m0s
+  ref:
+    tag: '8.3.74'
+  layerSelector:
+    mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
+  # verify:
+  #   provider: cosign
+  #   matchOIDCIdentity:
+  #     - issuer: '^https://token.actions.githubusercontent.com$'
+  #       subject: '^https://github.com/netbox-community/netbox-chart.*$'

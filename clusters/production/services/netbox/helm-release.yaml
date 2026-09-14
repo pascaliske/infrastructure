@@ -1,0 +1,64 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: netbox
+  namespace: netbox
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: netbox
+    namespace: flux-system
+  values:
+    image:
+      registry: ghcr.io
+      repository: netbox-community/netbox
+      tag: 'v4.7.0'
+    superuser:
+      existingSecret: netbox-admin
+    allowedHosts:
+      - netbox.${DOMAIN_INTERNAL}
+    email:
+      server: ${SMTP_HOST}
+      port: 587
+      username: ${SMTP_ACCOUNT_NETBOX_EMAIL}
+      from: ${SMTP_ACCOUNT_NETBOX_EMAIL}
+      existingSecretName: netbox-smtp-credentials
+      existingSecretKey: password
+    timeZone: ${TIMEZONE}
+    existingSecret: netbox-api-secrets
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+      granian:
+        serviceMonitor:
+          enabled: true
+    postgresql:
+      enabled: false
+    externalDatabase:
+      host: postgresql-rw
+      port: 5432
+      database: netbox
+      username: netbox
+      existingSecretName: postgresql-user
+      existingSecretKey: password
+    valkey:
+      enabled: false
+    tasksDatabase:
+      sentinels:
+        - rfs-redis:26379
+      sentinelService: mymaster
+      username: default
+      existingSecretName: netbox-redis-credentials
+      existingSecretKey: password
+    cachingDatabase:
+      sentinels:
+        - rfs-redis:26379
+      sentinelService: mymaster
+      username: default
+      existingSecretName: netbox-redis-credentials
+      existingSecretKey: password
+    worker:
+      enabled: false
+  interval: 10m0s

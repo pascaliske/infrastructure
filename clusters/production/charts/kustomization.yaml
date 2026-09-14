@@ -18,6 +18,7 @@ resources:
   - local-path-provisioner.yaml
   - loki.yaml
   - metallb.yaml
+  - netbox.yaml
   - node-feature-discovery.yaml
   - node-problem-detector.yaml
   - pascaliske.yaml

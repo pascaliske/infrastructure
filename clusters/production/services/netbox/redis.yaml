@@ -1,0 +1,43 @@
+---
+apiVersion: databases.spotahome.com/v1
+kind: RedisFailover
+metadata:
+  name: redis
+  namespace: netbox
+  labels:
+    redis-failover.freshworks.com/operator-group: main
+spec:
+  auth:
+    secretPath: netbox-redis-credentials
+  redis:
+    image: docker.io/library/redis:8.10.1-alpine
+    replicas: 3
+    exporter:
+      enabled: true
+      image: docker.io/oliver006/redis_exporter:v1.91.1-alpine
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        cpu: 400m
+        memory: 500Mi
+  sentinel:
+    image: docker.io/library/redis:8.10.1-alpine
+    replicas: 3
+    exporter:
+      enabled: true
+      image: docker.io/oliver006/redis_exporter:v1.91.1-alpine
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        cpu: 400m
+        memory: 500Mi
