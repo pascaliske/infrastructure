@@ -8,7 +8,7 @@ spec:
   url: oci://ghcr.io/vmware-tanzu/charts/velero
   interval: 10m0s
   ref:
-    tag: '12.1.0'
+    tag: '12.2.0'
   layerSelector:
     mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
   # verify:
