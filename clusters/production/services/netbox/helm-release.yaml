@@ -27,6 +27,9 @@ spec:
       existingSecretKey: password
     timeZone: ${TIMEZONE}
     existingSecret: netbox-api-secrets
+    extraEnvs:
+      - name: GRANIAN_METRICS_ADDRESS
+        value: '0.0.0.0'
     metrics:
       enabled: true
       serviceMonitor:
