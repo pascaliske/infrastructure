@@ -13,7 +13,7 @@ spec:
     image:
       registry: ghcr.io
       repository: paperless-ngx/paperless-ngx
-      tag: '3.2.0'
+      tag: '3.2.1'
     controller:
       updateStrategy:
         type: Recreate
