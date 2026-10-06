@@ -13,7 +13,7 @@ spec:
     image:
       registry: ghcr.io
       repository: dani-garcia/vaultwarden
-      tag: 1.37.3-alpine
+      tag: 1.37.4-alpine
     ingressRoute:
       create: true
       entryPoints:
