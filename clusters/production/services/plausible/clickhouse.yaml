@@ -9,7 +9,7 @@ spec:
   containerTemplate:
     image:
       repository: clickhouse/clickhouse-keeper
-      tag: 26.9.6.6-alpine
+      tag: 26.9.14.10-alpine
   podTemplate:
     affinity:
       podAntiAffinity:
