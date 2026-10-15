@@ -8,7 +8,7 @@ spec:
   url: oci://ghcr.io/deliveryhero/helm-charts/node-problem-detector
   interval: 10m0s
   ref:
-    tag: '2.4.1'
+    tag: '2.4.2'
   layerSelector:
     mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
   # verify:
