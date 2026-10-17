@@ -13,7 +13,7 @@ spec:
     image:
       registry: ghcr.io
       repository: netbox-community/netbox
-      tag: 'v4.7.2'
+      tag: 'v4.7.3'
     superuser:
       existingSecret: netbox-admin
     allowedHosts:
