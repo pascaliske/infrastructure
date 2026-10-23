@@ -18,7 +18,8 @@ spec:
     crds: Skip
   upgrade:
     crds: Skip
-  values:
+  values: # defaults: https://github.com/tailscale/tailscale/blob/main/cmd/k8s-operator/deploy/chart/values.yaml
+    fullnameOverride: tailscale-operator
     oauth:
       clientId: ${TAILSCALE_OAUTH_CLIENT_ID}
       clientSecret: ${TAILSCALE_OAUTH_CLIENT_SECRET}
