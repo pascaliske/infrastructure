@@ -12,3 +12,11 @@ spec:
     domain: ${DOMAIN_EXTERNAL}
     accountId: ${CLOUDFLARE_ACCOUNT_ID}
     secret: cloudflare-token
+  deployPatch: |
+    spec:
+      replicas: 2
+      template:
+        spec:
+          containers:
+            - name: cloudflared
+              image: cloudflare/cloudflared:2026.10.4
