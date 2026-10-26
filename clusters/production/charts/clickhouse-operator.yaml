@@ -8,7 +8,7 @@ spec:
   url: oci://ghcr.io/clickhouse/clickhouse-operator-helm
   interval: 10m0s
   ref:
-    tag: '0.0.8-12.b1f0179'
+    tag: '0.0.9-20.e44dd8a'
   layerSelector:
     mediaType: 'application/vnd.cncf.helm.chart.content.v1.tar+gzip'
   # verify:
