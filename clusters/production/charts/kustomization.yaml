@@ -10,7 +10,7 @@ resources:
   - cloudnative-pg.yaml
   - crowdsec.yaml
   - descheduler.yaml
-  - gitlab.yaml
+  - gitlab-runner.yaml
   - johanneskastl.yaml
   - k8s-at-home.yaml
   - kube-prometheus-stack.yaml
