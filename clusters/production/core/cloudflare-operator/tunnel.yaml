@@ -19,4 +19,4 @@ spec:
         spec:
           containers:
             - name: cloudflared
-              image: cloudflare/cloudflared:2026.10.4
+              image: cloudflare/cloudflared:2026.10.5
