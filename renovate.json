@@ -92,6 +92,10 @@
       "groupName": "silence-operator"
     },
     {
+      "matchPackageNames": ["/security-profiles-operator/"],
+      "groupName": "security-profiles-operator"
+    },
+    {
       "matchPackageNames": ["/netbox/"],
       "groupName": "netbox"
     },
