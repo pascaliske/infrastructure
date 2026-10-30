@@ -1,0 +1,21 @@
+/* align logo with nav item */
+img[alt="logo"] {
+    margin-left: 0.6em;
+}
+
+/* invert logo on dark theme */
+body[data-md-color-scheme="slate"] img[alt="logo"] {
+    filter: invert(1);
+}
+
+/* increase logo on desktop */
+@media (min-width: 76.25em) {
+    img[alt="logo"] {
+        transform: scale(1.5) translateY(1px);
+    }
+}
+
+/* decrease space between logo and title */
+.md-header .md-header__title {
+    margin-left: 0.5rem;
+}
