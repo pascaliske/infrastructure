@@ -15,7 +15,7 @@ images:
   # manually replace image ref in deployment
   - name: controller
     newName: ghcr.io/adyanth/cloudflare-operator
-    newTag: 0.14.0
+    newTag: 10.0.2
 patches:
   # fix leader election manually by cleaning hard-coded default namespace
   # waiting for merge: https://togithub.com/adyanth/cloudflare-operator/pull/178
