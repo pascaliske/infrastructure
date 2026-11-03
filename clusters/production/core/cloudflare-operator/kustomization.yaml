@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: cloudflare-operator
 resources:
   # operator
-  - https://github.com/adyanth/cloudflare-operator/config/default?ref=v0.13.1
+  - https://github.com/adyanth/cloudflare-operator/config/default?ref=v0.14.0
 
   # tunnel
   - token.sops.yaml
