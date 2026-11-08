@@ -8,7 +8,7 @@ spec:
   url: https://github.com/home-operations/tuppr
   ref:
     # renovate: datasource=github-releases depName=home-operations/tuppr
-    tag: '0.5.12'
+    tag: '0.5.13'
   interval: 15m
   ignore: |
     # exclude all
