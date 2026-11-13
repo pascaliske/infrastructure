@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: louislam/uptime-kuma
-      tag: '2.5.9'
+      tag: '2.5.11'
     serviceMonitor:
       enabled: true
     ingressRoute:
