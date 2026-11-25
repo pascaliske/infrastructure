@@ -8,11 +8,11 @@ metadata:
     redis-failover.freshworks.com/operator-group: main
 spec:
   redis:
-    image: redis:8.10.3-alpine
+    image: docker.io/library/redis:8.10.3-alpine
     replicas: 3
     exporter:
       enabled: true
-      image: oliver006/redis_exporter:v1.99.0-alpine
+      image: docker.io/oliver006/redis_exporter:v1.99.0-alpine
     securityContext:
       seccompProfile:
         type: RuntimeDefault
@@ -24,11 +24,11 @@ spec:
         cpu: 400m
         memory: 500Mi
   sentinel:
-    image: redis:8.10.3-alpine
+    image: docker.io/library/redis:8.10.3-alpine
     replicas: 3
     exporter:
       enabled: true
-      image: oliver006/redis_exporter:v1.99.0-alpine
+      image: docker.io/oliver006/redis_exporter:v1.99.0-alpine
     securityContext:
       seccompProfile:
         type: RuntimeDefault
