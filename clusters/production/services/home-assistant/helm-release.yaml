@@ -13,7 +13,7 @@ spec:
     image:
       registry: ghcr.io
       repository: home-assistant/home-assistant
-      tag: '2026.11.2'
+      tag: '2026.11.3'
     imagePullSecrets:
       - name: github-registry
     serviceMonitor:
